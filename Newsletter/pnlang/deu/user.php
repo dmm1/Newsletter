@@ -1,9 +1,9 @@
 <?php
-define('_ANON_NOT_ALLOWED','Sorry, but you must be a site member to subscribe to our newsletter.');
+define('_ANON_NOT_ALLOWED','Sorry, Sie müssen Mitglied sein, um sich für den Newsletter anzumelden!');
 define('_APPROVAL_REQUIRED','* subscriptions subject to approval.');
 define('_ARCHIVE_DATE_FORMAT','F jS Y');
-define('_BADAUTHKEY','Authorization key expired.');
-define('_ERROR','An error occurred');
+define('_BADAUTHKEY','Authorization key verfallen.');
+define('_ERROR','Ein Fehler ist aufgetreten.');
 define('_FREQUENCY','Intervall');
 define('_INVALID_EMAIL','Ungültiges Email Format.');
 define('_NEWSLETTER','Newsletter');
