@@ -1,0 +1,77 @@
+/* conventional naming:
+.nl-this-class { color:blue; }
+#nl-this-id { color:blue; }
+
+this is important to avoid conflict with your (or others) default stylesheet.
+
+note: use absolute urls for background images/list-style-images (ie: http://sitename.com/this/url/image.gif)
+*/
+
+html,body { margin:0px; padding:0px; }
+
+body#nl-body, div#nl-body
+{
+	font: normal 11px arial;
+	color: #222;
+	background-color:#000;
+}
+hr { background-color:#000; border-color:#000; }
+
+#nl-wrapper
+{
+	margin:0px auto;
+	font: normal 12px  arial;
+	color: #444;
+	width:500px;
+}
+#nl-wrapper a {
+	font-size:12px; 
+}
+h1#nl-title {
+	margin:0px; padding:7px 0px 0px;
+	font-size:16px;
+	color:#fff;
+	display:block;
+	text-align:center;
+}
+#nl-wrapper p {
+	padding:0px 5px;
+}
+.nl-content-wrapper
+{
+	padding: 15px 10px;
+}
+.nl-content-wrapper h1,
+.nl-content-wrapper h2,
+.nl-content-wrapper h3,
+.nl-content-wrapper h4,
+.nl-content-wrapper h5 { font-size:15px; color:#000; }
+
+.nl-content-wrapper h1 { display:block; border-bottom:1px dashed #000; }
+
+table.nl-new-members,
+table.nl-new-subscribers,
+.nl-content-wrapper div, 
+.nl-content-wrapper p, 
+#nl-wrapper p { color: #444; }
+
+
+#nl-content-container
+{
+	width: 70%;
+	margin: 30px auto;
+}
+.nl-content-wrapper a, 
+#nl-wrapper a
+{
+	color: #7f0000;
+	text-decoration: none;
+}
+
+table.nl-new-members, table.nl-new-subscribers { width: 100%; border-collapse:collapse; }
+table.nl-new-members th, table.nl-new-subscribers th
+{
+	border-bottom: 1px solid #000;
+	color: #000;
+}
+.nl-new-members, .nl-new-subscribers td { text-align: left; font:normal 12px arial; }
