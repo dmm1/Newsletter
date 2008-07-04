@@ -1,0 +1,9 @@
+The roadmap for newsletter
+
+curret status - 1.2.1 beta
+
+1.2.2: code improvement
+1.2.3: full ml support
+1.2.4: help system
+1.2.5: new plugins
+1.3

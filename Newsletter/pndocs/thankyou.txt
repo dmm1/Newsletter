@@ -1,0 +1,4 @@
+People who helped making the module work:
+
+- Davin Haydes aka "invalidresponse" for his work on Newsletter and the possibility to maintain the former .760 module
+- Axel Guckelsberger aka "guite" for code improvement for Zikula 1.0
