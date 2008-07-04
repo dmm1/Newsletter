@@ -11,7 +11,7 @@ define('_NOACCESS','Zugriff verweigert.');
 define('_NOT_WRITABLE','!! chmod 777 !!');
 define('_PRUNE_ARCHIVES','Prune Archives');
 define('_REMOVE_SUBSCRIBER','lösche Abonnent');
-define('_SUBSCRIBER_DATE_FORMAT','M.T.J');
+define('_SUBSCRIBER_DATE_FORMAT','M.D.Y');
 define('_USER_UPDATED','User updated.');
 define('_UPDATE_FAILED','Update fehlgeschlagen.');
 define('_UPDATE_SUCCESSFUL','Update erfolgreich.');
@@ -22,4 +22,8 @@ define('_SEND_NEWSLETTERS_FROM','Absenderadresse ?');
 define('_ARCHIVE_TYPE','Archiv Typ ?');
 define('_DATABASE','Datenbank');
 define('_FILE','Datei');
+define('_TEXT','Text');
+define('_HTML','html');
+define('_TEXTWLINK','text mit Link zum Archiv');
+define('_ITEMS_PER_PAGE','Abonnenten pro Seite');
 ?>
