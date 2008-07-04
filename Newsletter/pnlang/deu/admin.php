@@ -15,7 +15,7 @@ define('_SUBSCRIBER_DATE_FORMAT','M.D.Y');
 define('_USER_UPDATED','User updated.');
 define('_UPDATE_FAILED','Update fehlgeschlagen.');
 define('_UPDATE_SUCCESSFUL','Update erfolgreich.');
-define('_VIEW_SUBSCRIBERS','Manage Abonnenten');
+define('_VIEW_SUBSCRIBERS','Abonnenten');
 define('_PREVIEW_TEMPLATES','Template Vorschau');
 define('_SELECT','- auswählen -');
 define('_SEND_NEWSLETTERS_FROM','Absenderadresse ?');
