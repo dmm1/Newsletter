@@ -1,0 +1,35 @@
+<!--[$title|pnvarprepfordisplay]-->
+
+-- Special Announcements --
+<!--[newsletter_admin_messages assign="admin_messages"]-->
+<!--[section name="admin_messages" loop="$admin_messages"]-->
+<!--[$admin_messages[admin_messages].title|strip_tags:false]-->
+<!--[$admin_messages[admin_messages].content|strip_tags:false]-->
+-------------
+<!--[/section]-->
+
+
+
+-- News --
+<!--[newsletter_news_items limit_items="1" assign="news_items"]-->
+<!--[section name="news_items" loop="$news_items"]-->
+<!--[$news_items[news_items].topic_title|strip_tags:false]--> > <!--[$news_items[news_items].story_title|strip_tags:false]-->
+<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&topic=<!--[$news_items[news_items].topic_id]-->
+<!--[$news_items[news_items].story_content|strip_tags:false]-->
+-------------
+<!--[/section]-->
+
+
+
+Thanks for subscribing!
+<!--[$site_name|pnvarprepfordisplay]--> Staff
+
+------------------------------------
+link to archive:
+<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter&func=view_archive&date=<!--[$archive_time]-->
+
+------------------------------------	
+
+You are receiving this message because you have signed up for our newsletter. 
+If you do not wish to receive any more of these notifications you may unsubscribe at the link below.
+<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter

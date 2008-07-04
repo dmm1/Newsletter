@@ -1,0 +1,14 @@
+<!--[include file="nl_user_menu.htm"]-->
+<div id="nl-content-container">
+	<ul>	
+		<!--[foreach key="key" item="val" from="$archives"]-->		
+			<li><h3><!--[$key]--></h3>
+			<ul>
+				<!--[foreach key="k" item="v" from=$val]-->
+				<li><a href="index.php?module=Newsletter&amp;func=view_archive&amp;date=<!--[$v.archive_name]-->" title="view newsletter archive"><!--[$v.archive_date]--></a></li>
+				<!--[/foreach]-->
+			</ul>	
+			</li>
+		<!--[/foreach]-->
+	</ul>
+</div>
