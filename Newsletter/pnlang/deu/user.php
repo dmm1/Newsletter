@@ -10,7 +10,7 @@ define('_NEWSLETTER','Newsletter');
 define('_NEWSLETTER_MGMT','Newsletter Management');
 define('_NEWSLETTER_TYPE','Newsletter Typ');
 define('_NO_USER','There are no active subscriptions that match your request.');
-define('_NOACCESS','Access forbidden.');
+define('_NOACCESS','Zugriff verweigert.');
 define('_MISSING_INFO','Bitte füllen Sie alle Felder aus.');
 define('_NEWSLETTER','Newsletter');
 define('_NO_ARCHIVE_FOUND','The requested archive was not found.');
