@@ -33,8 +33,8 @@ define('_TERMS_OF_SERVICE','Terms of Service');
 define('_TERMS_OF_SERVICE_AGREE','Yes, I agree to the <a href="index.php?module=Newsletter&amp;func=terms_of_service" title="terms of service">terms of service</a>.');
 define('_TERMS_OF_SERVICE_ERROR','You must agree to the terms of service.');
 define('_VIEWARCHIVES','View Archives');
-define('_YOUR_EMAIL','Your E-Mail Address');
-define('_YOUR_NAME','Your Name');
+define('_YOUR_EMAIL','Ihre E-Mail Addresse');
+define('_YOUR_NAME','Ihr Name');
 
 /* DAYS */
 define('_MONDAY','Monday');
