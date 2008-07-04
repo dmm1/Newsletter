@@ -10,9 +10,9 @@
 				<img src="modules/Newsletter/pnimages/demo.gif" alt="" />
 					<select name="nl_type" onchange="window.location=this.options[selectedIndex].value" >						
 						<option><!--[pnml name="_SELECT"]--></option>
-						<option value="index.php?module=Newsletter&type=admin&func=display_template&nl_type=1"><!--[pnml name="_TEXT"]--></option>
-						<option value="index.php?module=Newsletter&type=admin&func=display_template&nl_type=2"><!--[pnml name="_HTML"]--></option>
-						<option value="index.php?module=Newsletter&type=admin&func=display_template&nl_type=3"><!--[pnml name="_TEXTWLINK"]--></option>
+						<option value="index.php?module=Newsletter&amp;type=admin&amp;func=display_template&amp;nl_type=1"><!--[pnml name="_TEXT"]--></option>
+						<option value="index.php?module=Newsletter&amp;type=admin&amp;func=display_template&amp;nl_type=2"><!--[pnml name="_HTML"]--></option>
+						<option value="index.php?module=Newsletter&amp;type=admin&amp;func=display_template&amp;nl_type=3"><!--[pnml name="_TEXTWLINK"]--></option>
 					</select>
 				</td>
 			</tr>
@@ -125,8 +125,11 @@
 			<th colspan="2">Prune Archives</th>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<p><strong>Note:</strong> This option will remove all selected archives from the server.</p>
+			<td colspan="2" style="margin-bottom: 10px; text-transform: uppercase; background-color: #ffffea;
+    color: inherit; text-align: center; border: 1px solid red;padding: 10px;">
+				<p>
+				<img src="modules/Newsletter/pnimages/error.gif" alt="" />
+				<strong>Note:</strong> This option will remove all selected archives from the server.</p>
 			</td>
 		</tr>
 		<tr>
