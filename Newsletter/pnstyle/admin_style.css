@@ -16,4 +16,5 @@ this is important to avoid conflict with your (or others) default stylesheet.
 #status-message {
 	font:bold 12px arial;
 }
-	
+#status-message-green { font:bold 12px arial; }
+#status-message-red { font:bold 12px arial; }
