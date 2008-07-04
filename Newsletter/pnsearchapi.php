@@ -5,7 +5,7 @@
  * @copyright (c) 2001, Zikula Development Team
  * @link http://www.zikula.org
  * @version $Id: pnsearchapi.php 24342 2008-06-06 12:03:14Z markwest $
- * @version $Id: pnsearchapi.php 00001  2008-07-04 12:03:14Z dmm $
+ * @version $Id: pnsearchapi.php 00001  2008-07-04 10:03:14Z dmm $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Value_Addons
  * @subpackage Newsletter
