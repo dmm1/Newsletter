@@ -37,20 +37,20 @@ define('_YOUR_EMAIL','Ihre E-Mail Addresse');
 define('_YOUR_NAME','Ihr Name');
 
 /* DAYS */
-define('_MONDAY','Monday');
-define('_TUESDAY','Tuesday');
-define('_WEDNESDAY','Wednesday');
-define('_THURSDAY','Thursday');
-define('_FRIDAY','Friday');
-define('_SATURDAY','Saturday');
-define('_SUNDAY','Sunday');
+define('_MONDAY','Montag');
+define('_TUESDAY','Dienstag');
+define('_WEDNESDAY','Mittwoch');
+define('_THURSDAY','Donnerstag');
+define('_FRIDAY','Freitag');
+define('_SATURDAY','Samstag');
+define('_SUNDAY','Sonntag');
 
-define('_WEEKLY','weekly');
-define('_MONTHLY','monthly');
-define('_YEARLY','yearly');
+define('_WEEKLY','wöchentlich');
+define('_MONTHLY','monatlich');
+define('_YEARLY','jährlich');
 
 /* NEWSLETTER TYPES */
-define('_TEXT','text');
+define('_TEXT','Text');
 define('_HTML','html');
-define('_TEXTWLINK','text w/link to archive');
+define('_TEXTWLINK','text mit Link zum Archiv');
 ?>
