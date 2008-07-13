@@ -22,4 +22,9 @@ define('_SEND_NEWSLETTERS_FROM','Send newsletters from?');
 define('_ARCHIVE_TYPE','Archive Type');
 define('_DATABASE','Database');
 define('_FILE','File');
+define('_TEXT','Text');
+define('_HTML','html');
+define('_TEXTWLINK','text with link to archive');
+define('_ITEMS_PER_PAGE','Abonnents per page');
+define('_ARCHIVE_DIRECTORY','Archive Directory');
 ?>
