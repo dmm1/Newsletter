@@ -1,6 +1,6 @@
 <?php
 $modversion['name'] = 'Newsletter';
-$modversion['version'] = '1.2.2';
+$modversion['version'] = '1.3';
 $modversion['description'] = 'Automated Newsletter';
 $modversion['changelog'] = 'pndocs/changelog.txt';
 $modversion['credits'] = 'pndocs/credits.txt';
