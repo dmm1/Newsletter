@@ -1,0 +1,24 @@
+<!--[include file="nl_admin_menu.htm"]-->
+<!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
+<!--[pnthemegetvar name="bgcolor3" assign="bgcolor2"]-->
+<div style="width:100%; margin:0px auto;">
+<h2>Kategorien</h2>
+<div><a href="<!--[pnmodurl modname=Newsletter type=admin func=category_new]-->">neue Kategorie anlegen</a></div>
+<table class="pn-admintable">
+  <tr>
+      <th>Titel</th>
+      <th>Beschreibung</th>
+      <th>ID</th>
+  </tr>
+  <!--[section name="category" loop=$categories]-->  
+    <tr class="#">
+      <td><a href="#">Titel</a></td>
+      <td><a href="#">Beschreibung</a></td>
+      <td><a href="#">ID</a></td>
+
+      </td>
+    </tr>
+  <!--[/section]-->
+</table>
+<!--[pager show="page" rowcount=$pager.numnewsletters limit=$pager.newslettersperpage posvar=startnum shift=1]-->
+</div>

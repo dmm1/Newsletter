@@ -450,6 +450,37 @@ pnSessionSetVar('statusmsg', $amt_sent.' Newsletter(s) sent successfully.');
 pnRedirect(pnModURL('Newsletter', 'admin', 'view_subscribers'));
 return true;
 }
-	
+function Newsletter_admin_view_plugins()
+{
+	  if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
+    }
 
+    $pnRender =& new pnRender('Newsletter');
+    $pnRender->caching = false;
+   
+    return $pnRender->fetch('nl_admin_plugins.htm');
+}
+function Newsletter_admin_view_category()
+{
+	  if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
+    }
+
+    $pnRender =& new pnRender('Newsletter');
+    $pnRender->caching = false;
+   
+    return $pnRender->fetch('nl_admin_category.htm');
+}
+function ItsNews_admin_newsletter_new()
+{
+    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
+    }
+
+    $pnRender =& new pnRender('Newsletter');
+    $pnRender->caching = false;
+
+    return $pnRender->fetch('nl_admin_newsletter_new.htm');
+}
 ?>
