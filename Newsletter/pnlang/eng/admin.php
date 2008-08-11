@@ -28,4 +28,5 @@ define('_HTML','html');
 define('_TEXTWLINK','text with link to archive');
 define('_ITEMS_PER_PAGE','Abonnents per page');
 define('_ARCHIVE_DIRECTORY','Archive Directory');
+define('_CATEGORIES','Categories');
 ?>
