@@ -18,15 +18,20 @@
 			</tr>
 		</table>
 	</form>
-
-	<form name="config" action="<!--[pnmodurl modname="Newsletter" type="admin" func="config_update"]-->" method="post">
+	
+    <form name="config" action="<!--[pnmodurl modname="Newsletter" type="admin" func="config_update"]-->" method="post">
 	<table style="width:100%; border:1px solid #ccc; padding:10px;">
 		<tr>
 			<th colspan="2"><!--[pnml name="_CONFIGURATION"]--></th>
 		</tr>
 		<tr>
 			<td><!--[pnml name="_SEND_NEWSLETTERS_FROM"]--></td>
-			<td><input name="send_from_address" type="text" value="<!--[pnmodgetvar module="Newsletter" name="send_from_address"]-->" style="width:180px;" /></td>
+			<td><input name="send_from_address" type="text" value="<!--[pnmodgetvar module="Newsletter" name="send_from_address"]-->" style="width:180px;" />
+			<a href="#" onclick="Effect.toggle('hint','BLIND'); return false;">(?)</a>
+    <span id="help_send_from" style="display:none">Help</span>
+    <div id="hint" class="hint" style="display:none;">This is the delivering adress of your newsletter e.g. newsletter@yourdomain.com</div>
+	
+			</td>
 		</tr>
 		<tr>
 			<td><!--[pnml name="_ARCHIVE_TYPE"]--></td>

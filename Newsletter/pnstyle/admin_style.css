@@ -18,3 +18,7 @@ this is important to avoid conflict with your (or others) default stylesheet.
 }
 #status-message-green { font:bold 12px arial; }
 #status-message-red { font:bold 12px arial; }
+
+#hint { margin-bottom: 5px; text-transform: uppercase; background-color: #ffffea;
+    color: inherit; text-align: center; border: 1px solid green;padding: 5px;
+}
