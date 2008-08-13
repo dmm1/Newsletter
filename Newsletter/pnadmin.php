@@ -472,7 +472,7 @@ function Newsletter_admin_view_category()
    
     return $pnRender->fetch('nl_admin_category.htm');
 }
-function ItsNews_admin_newsletter_new()
+function Newsletter_admin_view_new()
 {
     if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
         return pnVarPrepHTMLDisplay(_MODULENOAUTH);
@@ -481,6 +481,6 @@ function ItsNews_admin_newsletter_new()
     $pnRender =& new pnRender('Newsletter');
     $pnRender->caching = false;
 
-    return $pnRender->fetch('nl_admin_newsletter_new.htm');
+    return $pnRender->fetch('nl_admin_new.htm');
 }
 ?>
