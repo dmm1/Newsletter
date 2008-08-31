@@ -53,4 +53,8 @@ define('_YEARLY','yearly');
 define('_TEXT','text');
 define('_HTML','html');
 define('_TEXTWLINK','text w/link to archive');
+
+define('_NEWSLETTERSUBSCRIPTIONSVIEW','Newsletter');
+
+
 ?>

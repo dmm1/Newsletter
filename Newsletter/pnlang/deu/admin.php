@@ -29,4 +29,5 @@ define('_TEXTWLINK','text mit Link zum Archiv');
 define('_ITEMS_PER_PAGE','Abonnenten pro Seite');
 define('_ARCHIVE_DIRECTORY','Archiv Verzeichnis');
 define('_CATEGORIES','Kategorien');
+define('_USERIMPORT_FINISH','Alle User erfolgreich importiert!');
 ?>
