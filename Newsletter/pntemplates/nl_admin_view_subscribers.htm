@@ -1,4 +1,5 @@
 <!--[add_additional_header header='<script type="text/javascript" src="modules/Newsletter/pnjavascript/checkall.js"></script>']-->
+
 <!--[include file="nl_admin_menu.htm"]-->
 
 <!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
@@ -67,32 +68,5 @@
 		   shift=1]-->
 
 
-<div style="height:20px;"></div>
-
-<form action="<!--[pnmodurl modname="Newsletter" type="admin" func="remove_subscriber"]-->" method="post">
-	<table style="width:100%; padding:10px;">
-		<tr>
-			<th colspan="2"><!--[pnml name="_REMOVE_SUBSCRIBER"]--></th>
-		</tr>
-		<tr>
-			<td style="text-align:right;">By User Name:</td>
-			<td><input name="user_name" type="text" style="width:150px;" /></td>
-		</tr>
-		<tr>
-			<td style="text-align:right;">By User E-Mail:</td>
-			<td><input name="user_email" type="text" style="width:150px;" /></td>
-		</tr>
-		<tr>
-			<td colspan="2" style="height:10px;"></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>
-				<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
-				<input type="submit" name="submit" value="remove subscriber" />
-			</td>
-		</tr>
-	</table>
-</form>
-
 </div>
+

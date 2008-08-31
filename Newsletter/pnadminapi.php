@@ -267,5 +267,27 @@ function Newsletter_adminapi_get_archive_expire()
 					'12'=>'1 year');
 return $expiry;
 }
+// read plugin-folder from newsletter and load names into array
+   function newsletter_adminapi_getnewsletterPlugins($args)
+{
+    $path = 'modules/Newsletter/pntemplates/plugins/';
+    if (isset($args['path']) && !empty($args['path'])) {
+        $path = $args['path'] . '/' . $path;
+    }
+if (!file_exists(DataUtil::formatForOS($path))) {
+die('FEHLER: Verzeichnis ' . $path . ' existiert nicht');
+}
+    Loader::loadClass('FileUtil');
+    $plugins = FileUtil::getFiles($path, false);
+    asort($plugins);
+	$pluginKeys = array_keys($plugins);
+foreach($pluginKeys as $pluginKey) {
+    if (!(strpos($plugins[$pluginKey], 'modifier') === false)) {
+        unset($plugins[$pluginKey]);
+    }
+}
+    return $plugins;
+}
+
 
 ?>

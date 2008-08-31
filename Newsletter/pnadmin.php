@@ -2,6 +2,18 @@
 
 function Newsletter_admin_main()
 {
+    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
+    }
+
+    $pnRender =& new pnRender('Newsletter');
+    $pnRender->caching = false;
+
+    return $pnRender->fetch('nl_admin_main.htm');
+}
+
+function Newsletter_admin_settings()
+{
 
     if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADMIN)) {
         return pnVarPrepHTMLDisplay(_NOACCESS);
@@ -49,13 +61,14 @@ function Newsletter_admin_main()
 							'max_send_per_hour'=>pnModGetVar('Newsletter','max_send_per_hour'),
 							'last_execution_time'=>(pnModGetVar('Newsletter','end_execution_time')-pnModGetVar('Newsletter','start_execution_time'))));
 
-    return $pnRender->fetch('nl_admin_main.htm');
+    return $pnRender->fetch('nl_admin_settings.htm');
 
 }
 
 function Newsletter_admin_config_update($args)
 {
 	list($send_from_address,
+	
 		 $archive_directory,
 		 $notify_admin,
 		 $allow_anon_registration,
@@ -91,7 +104,7 @@ function Newsletter_admin_config_update($args)
     
     if (!pnSecConfirmAuthKey()) {
         pnSessionSetVar('errormsg', _BADAUTHKEY);
-        pnRedirect(pnModURL('Newsletter', 'admin', 'main'));
+        pnRedirect(pnModURL('Newsletter', 'admin', 'settings'));
         return true;
     }
 
@@ -120,12 +133,12 @@ function Newsletter_admin_config_update($args)
   	pnModSetVar('Newsletter','archive_expire',$archive_expire); // months
   	pnModSetVar('Newsletter','personalize_email',($personalize_email+0));
   	pnModSetVar('Newsletter','send_per_request',$send_per_request);
+	pnModSetVar('Newsletter','import_per_request',$import_per_request);
   	pnModSetVar('Newsletter','admin_key',$admin_key);
   	pnModSetVar('Newsletter','max_send_per_hour',((int)$max_send_per_hour+0));
-  	
 
 pnSessionSetVar('statusmsg', _CONFIG_UPDATE_SUCCESSFUL);
-pnRedirect(pnModURL('Newsletter', 'admin', 'main'));
+pnRedirect(pnModURL('Newsletter', 'admin', 'settings'));
 return true;
 }
 
@@ -194,18 +207,18 @@ function Newsletter_admin_remove_subscriber()
 	list($id,
 		 $user_name,
 		 $user_email) = pnVarCleanFromInput('id',
-		 									'user_name',
-		 									'user_email');
+		 									'user_name', 'user_email');
 	extract($args);	 
-
+	
 	if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_DELETE)) {
         return pnVarPrepHTMLDisplay(_NOACCESS);
     }	
-    
+	
     if((isset($id) and $id != '') 
-    	or (isset($user_name) and $user_name != '') 
+    	or (isset($user_name) and $user_name != '') 	
     	or (isset($user_email) and $user_email != '')){
     	
+		
     	if (!pnSecConfirmAuthKey()) {
         	pnSessionSetVar('errormsg', _BADAUTHKEY);
         	pnRedirect(pnModURL('Newsletter', 'admin', 'view_subscribers'));
@@ -213,8 +226,9 @@ function Newsletter_admin_remove_subscriber()
     	}
     	
     	$remove = pnModAPIFunc('Newsletter','admin','remove_subscriber',array('id'=>$id,
-    																		  'user_name'=>$user_name,
-    																		  'user_email'=>$user_email));
+    																		  'user_name'=>$user_name,																			  
+																			  'user_email'=>$user_email));
+								
     	if($remove){
     		pnSessionSetVar('statusmsg', _DELETE_SUCCESSFUL);
     	} else {
@@ -342,7 +356,7 @@ function Newsletter_admin_flush_archives($args)
 	}
 
 pnSessionSetVar('statusmsg', 'Archives flushed.');
-pnRedirect(pnModURL('Newsletter', 'admin', 'main'));
+pnRedirect(pnModURL('Newsletter', 'admin', 'settings'));
 return true;
 }
 
@@ -355,7 +369,7 @@ function Newsletter_admin_display_template($args){
     }
     
     if($nl_type == ''){
-		pnRedirect(pnModURL('Newsletter', 'admin', 'main'));
+		pnRedirect(pnModURL('Newsletter', 'admin', 'settings'));
 		return true;
 	}
 
@@ -450,16 +464,233 @@ pnSessionSetVar('statusmsg', $amt_sent.' Newsletter(s) sent successfully.');
 pnRedirect(pnModURL('Newsletter', 'admin', 'view_subscribers'));
 return true;
 }
-function Newsletter_admin_view_plugins()
+
+function newsletter_admin_modifynewsletter($args)
 {
-	  if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+    if (!SecurityUtil::checkPermission( 'Newsletter::', '::', ACCESS_ADMIN)) {
+        return LogUtil::registerPermissionError();
+    }
+    $newsletter_activeplugins = FormUtil::getPassedValue('newsletter_activeplugins', null, 'REQUEST');
+	 if(!empty($newsletter_activeplugins)) {
+    	$newsletter_activeplugins = serialize($newsletter_activeplugins);
+    }  
+    if(!pnModSetVar('newsletter', 'newsletter_activeplugins', $newsletter_activeplugins)) {
+        LogUtil::registerStatus (_EDITORNOCONFCHANGE);   
+        return false;
+    }
+
+	
+	$pnRender = pnRender::getInstance('Newsletter', false);
+ 
+   $pnRender->assign('newsletter_allplugins', pnModAPIFunc('Newsletter', 'admin', 'getnewsletterPlugins'));
+    return $pnRender->fetch('nl_admin_modifyplugins.htm');
+}
+
+function newsletter_admin_updatenewsletter($args)
+{					
+    list( 
+		 $newsletter_activeplugins) = pnVarCleanFromInput('newsletter_activeplugins');	
+		 
+    if (!SecurityUtil::checkPermission( 'Newsletter::', '::', ACCESS_ADMIN)) {
+        return LogUtil::registerPermissionError();
+    }
+	if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_OVERVIEW)) {
+        return false;
+    }
+     $newsletter_activeplugins = FormUtil::getPassedValue('newsletter_activeplugins', null, 'REQUEST');
+
+    if(!empty($newsletter_activeplugins)) {
+    	$newsletter_activeplugins = serialize($newsletter_activeplugins);
+    }  
+    if(!pnModSetVar('Newsletter', 'newsletter_activeplugins', $newsletter_activeplugins)) {
+        LogUtil::registerStatus (_EDITORNOCONFCHANGE);   
+        return false;
+    }	
+	pnModSetVar('Newsletter','newsletter_activeplugins',  $newsletter_activeplugins);
+	
+    LogUtil::registerStatus (_CONFIGUPDATED);
+    return pnRedirect(pnModURL('Newsletter', 'admin', 'modifynewsletter'));
+}
+
+function Newsletter_admin_view_new()
+{
+    list($startnum,$order_by,$order,$itemsperpage) = pnVarCleanFromInput('startnum','order_by','order','itemsperpage');
+	extract($args);
+	
+	if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADMIN)) {
+        return pnVarPrepHTMLDisplay(_NOACCESS);
+    }
+ 	
+	$pnRender =& new pnRender('Newsletter');
+	$pnRender->caching = false;
+	
+	if($itemsperpage){
+		pnSessionSetVar('newsetter_view_subscribers_ipp',(int)$itemsperpage);
+	} else {
+		$itemsperpage = pnSessionGetVar('newsetter_view_subscribers_ipp');
+	}
+	if($itemsperpage<10){
+		$itemsperpage = 10; 
+	} 
+	$pnRender->assign('itemsperpage',$itemsperpage);
+
+    $newsletter_types = pnModAPIFunc('Newsletter','admin','get_newsletter_types');
+	$newsletter_frequency = pnModAPIFunc('Newsletter','admin','get_newsletter_frequency');
+    $subscribers = pnModAPIFunc('Newsletter', 'admin', 'get_all_subscribers', 
+    							array('startnum' => $startnum,
+                                      'order_by'  => $order_by,
+                                	  'order'    => $order,
+                                	  'numitems' => $itemsperpage));
+
+	if ($order == 'ASC' or !isset($order)) {
+        $order = 'DESC';
+    } else {
+        $order = 'ASC';
+    }
+	$pnRender->assign('order', $order);
+	// re-build array
+	foreach($subscribers as $s){
+		$subscription_info[] = array('id' => $s['id'],
+						 			 'user_id' => $s['user_id'],
+						 			 'user_name' => $s['user_name'],
+									 'user_email' => $s['user_email'],
+									 'nl_type' => $newsletter_types[$s['nl_type']],
+									 'nl_frequency' =>$newsletter_frequency[$s['nl_frequency']],
+									 'active_val' =>$s['active'],
+									 'active_text'=>($s['active']?$s['active']=_ACTIVE:$s['active']=_INACTIVE),
+									 'approved_val'=>$s['approved'],
+									 'approved_text'=>($s['approved']?'Approved':'Unapproved'),
+									 'last_send_date' => ($s['last_send_date']?date(_SUBSCRIBER_DATE_FORMAT,$s['last_send_date']):'-'),
+									 'join_date' => date(_SUBSCRIBER_DATE_FORMAT,$s['join_date']));
+	
+	}
+	
+	$pnRender->assign('items', $subscription_info);
+   
+   $pnRender->assign('pager', array('numitems' => pnModAPIFunc('Newsletter', 'admin', 'count_subscribers'), 'itemsperpage' => $itemsperpage));
+
+
+
+    return $pnRender->fetch('nl_admin_new.htm');
+}
+function Newsletter_admin_preview_template()
+{
+    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
         return pnVarPrepHTMLDisplay(_MODULENOAUTH);
     }
 
     $pnRender =& new pnRender('Newsletter');
     $pnRender->caching = false;
-   
-    return $pnRender->fetch('nl_admin_plugins.htm');
+
+    return $pnRender->fetch('nl_admin_preview.htm');
+}
+function Newsletter_admin_import()
+{
+    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
+    }
+
+    $pnRender =& new pnRender('Newsletter');
+    $pnRender->caching = false;
+
+    return $pnRender->fetch('nl_admin_import.htm');
+}
+
+function Newsletter_admin_import_update($args)
+{
+	list($import_per_request,
+		 $import_active_status,
+	     $import_approval_status,  
+		 $import_frequency) = pnVarCleanFromInput('import_per_request',	
+													'import_active_status',
+													'import_approval_status',
+													'import_frequency');	 
+										  
+	if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADMIN)) {
+        return pnVarPrepHTMLDisplay(_NOACCESS);
+    }
+    
+    if (!pnSecConfirmAuthKey()) {
+        pnSessionSetVar('errormsg', _BADAUTHKEY);
+        pnRedirect(pnModURL('Newsletter', 'admin', 'import'));
+        return true;
+    }
+    
+	pnModSetVar('Newsletter','import_per_request',$import_per_request);
+	pnModSetVar('Newsletter','import_active_status',  $import_active_status);
+	pnModSetVar('Newsletter','import_approval_status',  $import_approval_status);
+	pnModSetVar('Newsletter','import_frequency',  $import_frequency);
+
+pnSessionSetVar('statusmsg', _CONFIG_UPDATE_SUCCESSFUL);
+pnRedirect(pnModURL('Newsletter', 'admin', 'import'));
+return true;
+}
+
+function Newsletter_admin_import_get_users()
+{
+    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
+    }
+
+	$nl_type = pnModGetVar('Newsletter','import_per_request'); 
+	$nl_frequency = pnModGetVar('Newsletter','import_frequency'); 
+	$nl_active = pnModGetVar('Newsletter','import_active_status'); 
+	$approved = pnModGetVar('Newsletter','import_approval_status');	
+
+	$dbconn  =& pnDBGetConn(true);
+    $pntable =& pnDBGetTables();
+    pnModDBInfoLoad('Newsletter');
+    $user_column = &$pntable['users_column'];
+ 	$nl_column = &$pntable['newsletter_users_column'];
+ 	
+	$sql = "SELECT $user_column[uid],
+ 				   $user_column[uname],
+ 				   $user_column[email]
+ 			FROM $pntable[users]
+ 			WHERE $user_column[uid]>'1'";
+ 		$result = $dbconn->Execute($sql);
+ 		
+ 		if ($dbconn->ErrorNo() != 0) {
+        	die($dbconn->ErrorMsg());
+    	}
+    	
+    $added = 0;
+    $join_date = time();
+    for (; !$result->EOF; $result->MoveNext()) {
+ 		list($user_id,
+ 			 $user_name,
+ 			 $user_email) = $result->fields;
+ 			 
+    	$ins = "INSERT IGNORE INTO $pntable[newsletter_users]
+    			VALUES ('',
+    					'".pnVarPrepForStore($user_id)."',
+						'".pnVarPrepForStore($user_name)."',
+						'".pnVarPrepForStore($user_email)."',
+						'".pnVarPrepForStore($nl_type)."',
+						'".pnVarPrepForStore($nl_frequency)."',
+						'".pnVarPrepForStore($nl_active)."',
+						'".pnVarPrepForStore($approved)."',
+						'0',
+						'".pnVarPrepForStore($join_date)."')";
+		$dbconn->Execute($ins);
+		
+	$added++;	
+	}
+
+pnSessionSetVar('statusmsg', _USERIMPORT_FINISH);
+pnRedirect(pnModURL('Newsletter', 'admin', 'import'));
+return true;
+}
+function Newsletter_admin_delete_user()
+{
+    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
+        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
+    }
+
+    $pnRender =& new pnRender('Newsletter');
+    $pnRender->caching = false;
+
+    return $pnRender->fetch('nl_admin_delete_user.htm');
 }
 function Newsletter_admin_view_category()
 {
@@ -472,15 +703,5 @@ function Newsletter_admin_view_category()
    
     return $pnRender->fetch('nl_admin_category.htm');
 }
-function Newsletter_admin_view_new()
-{
-    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADD)) {
-        return pnVarPrepHTMLDisplay(_MODULENOAUTH);
-    }
 
-    $pnRender =& new pnRender('Newsletter');
-    $pnRender->caching = false;
-
-    return $pnRender->fetch('nl_admin_new.htm');
-}
 ?>
