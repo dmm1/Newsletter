@@ -3,7 +3,7 @@
 function Newsletter_pntables()
 {
     $pntable = array();
-	
+	$pntable['newsletter'] = DBUtil::getLimitedTablename('newsletter');
     $pntable['newsletter_users'] = pnConfigGetVar('prefix') . '_newsletter_users';
     $pntable['newsletter_users_column'] = array('id'					=>	'pn_id',
     											'user_id'				=>	'pn_user_id',
@@ -22,12 +22,19 @@ function Newsletter_pntables()
 												'info_text'				=>	'pn_info_text',
 												'info_name'				=>	'pn_info_name',
 												'info_senddate'			=>	'pn_info_senddate',
+												'newsletter_activeplugins'			=>	'pn_newsletter_activeplugins',
+												'nid'         => 'pn_nid',
     
+	$pntable['newsletter_users_column_def'] = array('nid'         => 'I AUTOINCREMENT PRIMARY'),
+	 
     $pntable['newsletter_archives'] = pnConfigGetVar('prefix') . '_newsletter_archives');
     $pntable['newsletter_archives_column'] = array('archive_date'	=>	'pn_archive_date',
     											   'archive_text'	=>	'pn_archive_text');
-
-
+												   
+ // Enable categorization services
+    $pntable['newsletter_db_extra_enable_categorization'] = pnModGetVar('Newsletter', 'enablecategorization');
+    $pntable['newsletter_primary_key_column'] = 'nid';
+	
     // Return the table information
     return $pntable;
 }
