@@ -68,7 +68,7 @@
 	<form action="<!--[pnmodurl modname="Newsletter" type="user" func="unsubscribe"]-->" method="post" onsubmit="if(this.user_email.value==''){this.user_email.focus(); return false;}">
 	<table style="width:100%; border:1px solid #ccc; padding:10px;">
 		<tr>
-			<th colspan="2"><!--[pnml name="_UNSUBSCRIBE"]--></th>
+			<th colspan="2"><h2><!--[pnml name="_UNSUBSCRIBE"]--></h2></th>
 		</tr>
 		<!--[if $loggedin eq 0]-->
 		<tr>
@@ -78,7 +78,7 @@
 		<!--[/if]-->
 		<tr>
 			<td></td>
-			<td><input type="submit" name="submit" value="unsubscribe" onclick="return confirm('are you sure you want to unsubscribe?');" />
+			<td><input type="submit" name="submit" value="<!--[pnml name="_UNSUBSCRIBE"]-->" onclick="return confirm('are you sure you want to unsubscribe?');" />
 		</tr>
 	</table>
 	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />

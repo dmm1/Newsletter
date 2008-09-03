@@ -41,8 +41,8 @@ function smarty_function_versioncheck($params, &$smarty)
     }  
     
     if ($currentversion != $newestversion) {
-      // generate info link if new version is available
-      $output .= " (<strong><a href=\"http://code.zikula.org/newsletter/\">Please update! Update available! Latest release: ".$newestversion."</a></strong>)";
+	// generate info link if new version is available
+      $output .= " (<strong><a href=\"http://code.zikula.org/newsletter/\">Please update! Latest release: ".$newestversion."</a></strong>)";
     }   
     echo($output);
     return; 

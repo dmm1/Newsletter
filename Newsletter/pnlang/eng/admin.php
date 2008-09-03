@@ -77,4 +77,5 @@ define('_NEWSLETTER_USERNAMECONTAINS','User Name contains:');
 define('_NEWSLETTER_USERS',' users');
 define('_NEWSLETTER_YIMCONTAINS','and Yahoo Messanger contains:');
 define('_NEWSLETTER_TITLE',' Title');
+define('_JOIN','join now!');
 ?>
