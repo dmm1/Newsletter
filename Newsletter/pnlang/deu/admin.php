@@ -77,4 +77,7 @@ define('_NEWSLETTER_USERS',' Benutzer');
 define('_NEWSLETTER_YIMCONTAINS','und Yahoo Messenger enthält:');
 define('_NEWSLETTER_TITLE',' Bezeichnung');
 define('_JOIN','anmelden!');
+define('_PREVIEW','Vorschau');
+define('_USERIMPORT','Benutzer importieren');
+define('_DELETEUSER','Benutzer löschen');
 ?>

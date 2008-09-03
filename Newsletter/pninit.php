@@ -45,8 +45,6 @@ function Newsletter_init()
 	pnModSetVar('Newsletter','import_frequency','1');
 	pnModSetVar('Newsletter','import_active_status','1');
 	pnModSetVar('Newsletter','import_approval_status','1');
-	pnModSetVar('Newsletter','newsplugin','1');
-	pnModSetVar('Newsletter','adminmessagesplugin','1');
   	pnModSetVar('Newsletter','send_day','5'); 
   	pnModSetVar('Newsletter','send_per_request','5');  
   	pnModSetVar('Newsletter','personalize_email','0');

@@ -78,4 +78,7 @@ define('_NEWSLETTER_USERS',' users');
 define('_NEWSLETTER_YIMCONTAINS','and Yahoo Messanger contains:');
 define('_NEWSLETTER_TITLE',' Title');
 define('_JOIN','join now!');
+define('_PREVIEW','Preview');
+define('_USERIMPORT','Import Users');
+define('_DELETEUSERS','Delete Users');
 ?>

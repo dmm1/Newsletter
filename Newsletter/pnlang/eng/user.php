@@ -55,6 +55,6 @@ define('_HTML','html');
 define('_TEXTWLINK','text w/link to archive');
 
 define('_NEWSLETTERSUBSCRIPTIONSVIEW','Newsletter');
-
+define('_JOIN','join now!');
 
 ?>
