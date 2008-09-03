@@ -41,6 +41,10 @@ function Newsletter_init()
   	pnModSetVar('Newsletter','default_type','1'); //text/html/web
   	pnModSetVar('Newsletter','default_frequency','2');
   	pnModSetVar('Newsletter','allow_frequency_change','1');
+	pnModSetVar('Newsletter','import_per_request','2');
+	pnModSetVar('Newsletter','import_frequency','1');
+	pnModSetVar('Newsletter','import_active_status','1');
+	pnModSetVar('Newsletter','import_approval_status','1');
 	pnModSetVar('Newsletter','newsplugin','1');
 	pnModSetVar('Newsletter','adminmessagesplugin','1');
   	pnModSetVar('Newsletter','send_day','5'); 
@@ -48,10 +52,6 @@ function Newsletter_init()
   	pnModSetVar('Newsletter','personalize_email','0');
   	pnModSetVar('Newsletter','admin_key',substr(md5(time()),-10));
   	pnModSetVar('Newsletter','max_send_per_hour',0);
-	pnModSetVar('Newsletter','import_per_request','2');
-	pnModSetVar('Newsletter','import_frequency','1');
-	pnModSetVar('Newsletter','import_active_status','1');
-	pnModSetVar('Newsletter','import_approval_status','1');
 	pnModSetVar('Newsletter', 'enablecategorization', true);
     pnModSetVar('Newsletter', 'addcategorytitletopermalink', true);
 	

@@ -1,0 +1,27 @@
+<!--[include file="nl_admin_menu.htm"]-->
+
+<div style="width:100%; margin:0px auto;">
+<form action="<!--[pnmodurl modname="Newsletter" type="admin" func="remove_subscriber"]-->" method="post">
+
+
+			<h2><!--[pnml name="_REMOVE_SUBSCRIBER"]--></h2>
+
+<p style="text-align:left;">By User Name:
+<input name="user_name" type="text" style="width:150px;" /></p>
+<br />
+<p style="text-align:left;">By User E-Mail:
+<input name="user_email" type="text" style="width:150px;" /></p>
+<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+<input type="submit" name="submit" value="remove subscriber"  />
+				
+</form>
+
+<hr />
+
+<form action="<!--[pnmodurl modname="Newsletter" type="admin" func="remove_all_subscribers"]-->" method="post">
+<p style="text-align:left;">Delete ALL Users:
+<input type="checkbox"  name="delete_all_users" style="width:150px;" /></p>
+<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+<input type="submit" name="submit" value="remove all subscribers"  />
+
+</div>

@@ -75,4 +75,5 @@ define('_NEWSLETTER_USERNAMEIS', 'Benutzername ist:');
 define('_NEWSLETTER_USERNAMECONTAINS','Benutzername enthält:');
 define('_NEWSLETTER_USERS',' Benutzer');
 define('_NEWSLETTER_YIMCONTAINS','und Yahoo Messenger enthält:');
+define('_NEWSLETTER_TITLE',' Bezeichnung');
 ?>

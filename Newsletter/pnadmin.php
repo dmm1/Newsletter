@@ -236,7 +236,7 @@ function Newsletter_admin_remove_subscriber()
     	}
     }
     
-pnRedirect(pnModURL('Newsletter', 'admin', 'view_subscribers'));
+pnRedirect(pnModURL('Newsletter', 'admin', 'delete_user'));
 return true;
 }
 
