@@ -36,8 +36,27 @@
 </div>
 <!--[ else ]-->
 <!--[ /if ]-->
-		
-							
+
+<!--[ pnmodgetvar assign="newmemberplugin" module="Newsletter" name="newmemberplugin" default="0" ]-->
+<!--[ if ($newmemberplugin) ]-->	
+<div class="nl-content-wrapper">
+<h1>Welcome New Members!</h1>
+<!--[newsletter_new_members limit_items="5" assign="new_members"]-->
+<table class="nl-new-members">
+<tr>
+<th>User Name</th>
+<th>Register Date</th>
+</tr>
+<!--[section name="new_members" loop="$new_members"]-->
+<tr>
+<td><a href="<!--[$site_url|pnvarprepfordisplay]-->user.php?op=userinfo&amp;uname=<!--[$new_members[new_members].user_name|pnvarprephtmldisplay]-->" title="<!--[$new_members[new_members].user_name|pnvarprephtmldisplay]-->"><!--[$new_members[new_members].user_name|pnvarprephtmldisplay]--></a></td>
+<td><!--[$new_members[new_members].register_date]--></td>
+</tr>
+<!--[/section]-->
+</table>
+</div>							
+<!--[ else ]-->
+<!--[ /if ]-->
 	
 <p>Thanks for subscribing<!--[if $user_name neq ""]--> <!--[$user_name]--><!--[/if]-->!<br />
 			<!--[$site_name]--> Staff<br />

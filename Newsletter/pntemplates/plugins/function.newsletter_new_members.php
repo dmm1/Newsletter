@@ -1,12 +1,8 @@
 <?php
 // ----------------------------------------------------------------------
-// PostNuke Content Management System
-// Copyright (C) 2004 by the PostNuke Development Team.
+// Zikula Application Framework
+// Copyright (C) 2008 by the Zikula Development Team.
 // http://www.postnuke.com/
-// ----------------------------------------------------------------------
-// Based on:
-// PHP-NUKE Web Portal System - http://phpnuke.org/
-// Thatware - http://thatware.org/
 // ----------------------------------------------------------------------
 // LICENSE
 //
@@ -22,13 +18,7 @@
 //
 // To read the license please visit http://www.gnu.org/copyleft/gpl.html
 // ----------------------------------------------------------------------
-// Module name: Newsletter
-// Original Author of file: D. Hayes (aka: InvalidResponse)
-// Purpose of file: Newsletter with dynamic content
-// xSiteMap module © 2004 InvalidResponse http://www.invalidresponse.com
-// Plugin name: newsletter_new_members
-// function.newsletter_new_members.php
-// ----------------------------------------------------------------------
+
 /**
  * pnRender plugin
  * 
@@ -36,16 +26,15 @@
  *
  * @package      Xanthia_Templating_Environment
  * @subpackage   pnRender
- * @version      $Id: function.newsletter_new_members.php,v 1.0 2004/12/16
+ * @version      $Id: function.newsletter_new_members.php,v 1.1 2008/02/09
  * @author       Devin Hayes
  * @link         http://www.invalidresponse.com
- * @copyright    Copyright (C) 2002 by the PostNuke Development Team
  * @license      http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */ 
 
  
 /**
- * Smarty function to retrieve Recent Comments
+ * Smarty function to retrieve Recent Members
  * 
  * 
  * Available parameters:
@@ -100,7 +89,6 @@ function smarty_function_newsletter_new_members($params, &$smarty)
 
     $sql = "SELECT $column[uid], 
     			   $column[uname], 
-    			   $column[user_avatar],
     			   $column[user_regdate]
     		FROM $pntable[users] WHERE $column[uid]>'1'
 			ORDER BY $column[user_regdate] DESC";
@@ -123,12 +111,11 @@ function smarty_function_newsletter_new_members($params, &$smarty)
     }
     
     for (; !$result->EOF; $result->MoveNext()) {
-    	list($uid, $uname, $avatar, $regdate) = $result->fields;    
-    	$regdate = date('l F jS, Y', $regdate);    
+    	list($uid, $uname, $register_date) = $result->fields;    
+    	$regdate = date('l F jS, Y', $register_date);    
      	$data[] = array('user_id'=>$uid,
      					'user_name'=>$uname,
-     					'user_avatar'=>$avatar,
-     					'register_date'=>$regdate);    
+     					'register_date'=>$register_date);    
 	}
 	
 	$result->Close();
