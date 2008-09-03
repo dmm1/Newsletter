@@ -1,0 +1,26 @@
+<!--[include file="nl_admin_menu.htm"]-->
+
+<!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
+<!--[pnthemegetvar name="bgcolor3" assign="bgcolor2"]-->
+
+<div class="pn-admincontainer">
+ <form class="pn-adminform" action="<!--[pnmodurl modname="Newsletter" type="admin" func="updateplugins"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<h2>verfügbare Plugins</h2>
+  <div id="newsletter_plugins">
+<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+<b>Activate Adminmessages?</b>
+<input name="adminmessagesplugin" type="checkbox" value="1" <!--[$newsplugin_checked]-->/> checked=yes <br />
+<b>Activate News?</b>
+<input name="newsplugin" type="checkbox" value="1" <!--[$newsplugin_checked]-->/> checked=yes <br />
+
+
+</div>
+
+  <div class="pn-adminformrow pn-adminformbuttons">
+    <!--[pnbutton src=button_ok.gif set=icons/small alt="_EDITORUPDATE" title="_EDITORUPDATE"]-->
+    <a href="<!--[pnmodurl modname=newsletter type=admin func="updateplugins"]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+  </div>
+ </form>
+ <br style="clear:both" />
+</div>
+

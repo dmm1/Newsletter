@@ -41,6 +41,8 @@ function Newsletter_init()
   	pnModSetVar('Newsletter','default_type','1'); //text/html/web
   	pnModSetVar('Newsletter','default_frequency','2');
   	pnModSetVar('Newsletter','allow_frequency_change','1');
+	pnModSetVar('Newsletter','newsplugin','1');
+	pnModSetVar('Newsletter','adminmessagesplugin','1');
   	pnModSetVar('Newsletter','send_day','5'); 
   	pnModSetVar('Newsletter','send_per_request','5');  
   	pnModSetVar('Newsletter','personalize_email','0');
