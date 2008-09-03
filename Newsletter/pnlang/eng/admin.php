@@ -1,4 +1,6 @@
 <?php
+include 'modules/Newsletter/pnlang/eng/help.php';
+
 define('_BADAUTHKEY','Authorization key expired.');
 define('_CONFIG_UPDATE_SUCCESSFUL','Configuration updated successfully.');
 define('_CONFIGURATION','Configuration');
@@ -30,4 +32,48 @@ define('_ITEMS_PER_PAGE','Abonnents per page');
 define('_ARCHIVE_DIRECTORY','Archive Directory');
 define('_CATEGORIES','Categories');
 define('_USERIMPORT_FINISH','User import was successful!');
+define('_NEWCATEGORIE','new Categorie');
+
+define('_NEWSLETTER_AIMCONTAINS','and AIM screenname contains:');
+define('_NEWSLETTER_ANY', 'Any');
+define('_NEWSLETTER_EMAIL','Email:');
+define('_NEWSLETTER_EMAILCONTAINS','and Email contains:');
+define('_NEWSLETTER_ERROR2','You didn\'t specify from name');
+define('_NEWSLETTER_ERROR3','Wrong Reply-to-address');
+define('_NEWSLETTER_ERROR4','You didn\'t specify a subject');
+define('_NEWSLETTER_ERROR5','You didn\'t specify a message to the user(s)');
+define('_NEWSLETTER_FINISH','All are finished');
+define('_NEWSLETTER_FROM','From Name:');
+define('_NEWSLETTER_HOMEPAGECONTAINS','and Homepage contains:');
+define('_NEWSLETTER_ICQCONTAINS','and ICQ Number contains:');
+define('_NEWSLETTER_MAILUSERWHERE','Email to users where:');
+define('_NEWSLETTER_MESSAGE','Message:');
+define('_NEWSLETTER_MODNAME','Mail Users');
+define('_NEWSLETTER_MSNMCONTAINS','and MSN Passport contains:');
+define('_NEWSLETTER_NOMATCHUSER','No matched user.');
+define('_NEWSLETTER_NOWPROCCESS',' Now proccess the next page...');
+define('_NEWSLETTER_OK',' OK.');
+define('_NEWSLETTER_PAGE1',' Page ');
+define('_NEWSLETTER_PAGE2',' of ');
+define('_NEWSLETTER_PAGE3',' ');
+define('_NEWSLETTER_PAGE4',' ');
+define('_NEWSLETTER_REALNAMECONTAINS','and Real Name contains:');
+define('_NEWSLETTER_REGDATEAFTER','and Register Date is after:<br />(yyyy-mm-dd)');
+define('_NEWSLETTER_REGDATEBEFORE','and Register Date is before:<br />(yyyy-mm-dd)');
+define('_NEWSLETTER_REPLYTOADDRESS','Reply-to-address:');
+define('_NEWSLETTER_RESET','Reset');
+define('_NEWSLETTER_SEND','Send');
+define('_NEWSLETTER_SEND2','mails per page');
+define('_NEWSLETTER_SENDING','Sending...');
+define('_NEWSLETTER_SENDNEXTPAGE','Send Next Page');
+define('_NEWSLETTER_SEND_MAIL','Send mail');
+define('_NEWSLETTER_SIGNCONTAINS','and Signature contains:');
+define('_NEWSLETTER_SUBJECT','Subject:');
+define('_NEWSLETTER_TESTING','Testing...');
+define('_NEWSLETTER_TESTONLY','Test only.');
+define('_NEWSLETTER_USERGROUPIS','and Usergroup is:');
+define('_NEWSLETTER_USERNAMEIS', 'User Name is:');
+define('_NEWSLETTER_USERNAMECONTAINS','User Name contains:');
+define('_NEWSLETTER_USERS',' users');
+define('_NEWSLETTER_YIMCONTAINS','and Yahoo Messanger contains:');
 ?>
