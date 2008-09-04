@@ -81,4 +81,21 @@ define('_JOIN','join now!');
 define('_PREVIEW','Preview');
 define('_USERIMPORT','Import Users');
 define('_DELETEUSER','Delete Users');
+/* DAYS */
+define('_MONDAY','Monday');
+define('_TUESDAY','Tuesday');
+define('_WEDNESDAY','Wednesday');
+define('_THURSDAY','Thursday');
+define('_FRIDAY','Friday');
+define('_SATURDAY','Saturday');
+define('_SUNDAY','Sunday');
+
+define('_WEEKLY','weekly');
+define('_MONTHLY','monthly');
+define('_YEARLY','yearly');
+
+/* NEWSLETTER TYPES */
+define('_TEXT','text');
+define('_HTML','html');
+define('_TEXTWLINK','text w/link to archive');
 ?>

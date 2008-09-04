@@ -80,4 +80,22 @@ define('_JOIN','anmelden!');
 define('_PREVIEW','Vorschau');
 define('_USERIMPORT','Benutzer importieren');
 define('_DELETEUSER','Benutzer löschen');
+/* DAYS */
+define('_MONDAY','Montag');
+define('_TUESDAY','Dienstag');
+define('_WEDNESDAY','Mittwoch');
+define('_THURSDAY','Donnerstag');
+define('_FRIDAY','Freitag');
+define('_SATURDAY','Samstag');
+define('_SUNDAY','Sonntag');
+
+define('_WEEKLY','wöchentlich');
+define('_MONTHLY','monatlich');
+define('_YEARLY','jährlich');
+
+/* NEWSLETTER TYPES */
+define('_TEXT','Text');
+define('_HTML','html');
+define('_TEXTWLINK','text mit Link zum Archiv');
+define('_JOIN','anmelden!');
 ?>
