@@ -57,6 +57,20 @@
 </div>							
 <!--[ else ]-->
 <!--[ /if ]-->
+
+<!--[ pnmodgetvar assign="pagesplugin" module="Newsletter" name="pagesplugin" default="0" ]-->
+<!--[ if ($pagesplugin) ]-->	
+<div class="nl-content-wrapper">
+	<h1>Recently Added Documents</h1>
+	<!--[newsletter_pages limit_items="2" limit_text="300" assign="pages"]-->
+	<!--[section name="pages" loop="$pages"]-->
+		<h3><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=pages&amp;func=display&amp;pageid=<!--[$pages[pages].pages_pageid]-->" title="<!--[$pages[pages].pages_title|pnvarprepfordisplay]-->"><!--[$pages[pages].pages_title]--></a></h3>
+		<div><!--[$pages[pages].pages_content|pnvarprephtmldisplay]--></div>
+	<!--[/section]-->
+	</div>						
+<!--[ else ]-->
+
+<!--[ /if ]-->
 	
 <p>Thanks for subscribing<!--[if $user_name neq ""]--> <!--[$user_name]--><!--[/if]-->!<br />
 			<!--[$site_name]--> Staff<br />

@@ -607,6 +607,7 @@ function newsletter_admin_modifynewsletter($args)
 						
 	$pnRender->assign(array('newsplugin_checked'=>(pnModGetVar('Newsletter','newsplugin')?'checked="checked" ':''),
 							'newmemberplugin_checked'=>(pnModGetVar('Newsletter','newmemberplugin')?'checked="checked" ':''),
+							'pagesplugin_checked'=>(pnModGetVar('Newsletter','pagesplugin')?'checked="checked" ':''),
 							'adminmessagesplugin_checked'=>(pnModGetVar('Newsletter','adminmessagesplugin')?'checked="checked" ':'')));
 
     return $pnRender->fetch('nl_admin_modifyplugins.htm');
@@ -614,9 +615,10 @@ function newsletter_admin_modifynewsletter($args)
 
 function newsletter_admin_updateplugins($args)
 {					
-list($newsplugin,$newmemberplugin,
+list($newsplugin,$newmemberplugin,$pagesplugin,
 	 $adminmessagesplugin) = pnVarCleanFromInput('newsplugin',
 												'newmemberplugin',
+												'pagesplugin',
 		 										'adminmessagesplugin');
 		 										
 	if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADMIN)) {
@@ -635,16 +637,19 @@ list($newsplugin,$newmemberplugin,
 	 if($adminmessagesplugin == ''){
     	$adminmessagesplugin = '0';
     }
-	
-	
+
 	 if($newmemberplugin == ''){
     	$newmemberplugin = '0';
+    }
+	 if($pagesplugin == ''){
+    	$pagesplugin = '0';
     }
     
 	
   	pnModSetVar('Newsletter','newsplugin',$newsplugin);
 	pnModSetVar('Newsletter','newmemberplugin',$newmemberplugin);
 	pnModSetVar('Newsletter','adminmessagesplugin',$adminmessagesplugin);
+	pnModSetVar('Newsletter','pagesplugin',$pagesplugin);
 
 pnSessionSetVar('statusmsg', _CONFIG_UPDATE_SUCCESSFUL);
 pnRedirect(pnModURL('Newsletter', 'admin', 'modifynewsletter'));
