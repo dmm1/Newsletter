@@ -103,7 +103,7 @@ define('_UPDATELASTSENTDATES','Datum der letzten Sendung aktualisieren?');
 define('_ACTIVE','Aktiv');
 define('_APPROVED','akzeptiert');
 define('_LASTSENT','zuletzt gesendet');
-define('_JOINDATE','aboniert am');
+define('_JOINDATE','abonniert am');
 define('_FREQUENCY','Intervall');
 define('_TYPE','Typ');
 define('_TEXT','Text');
