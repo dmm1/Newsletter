@@ -1,17 +1,19 @@
-<h4>New subscriber Info</h4>
+<h4><!--[pnml name="_NEWUSERINFO"]--></h4>
 <div style="width:50%; border:1px solid #ccc; margin:0px auto;">
 	<table>
 		<tr>
-			<td>User Name:</td>
+			<td><!--[pnml name="_USERNAME"]-->:</td>
 			<td><!--[$user_name|pnvarprepfordisplay]--></td>
 		</tr>
 		<tr>
-			<td>User Email:</td>
+			<td><!--[pnml name="_USEREMAIL"]-->:</td>
 			<td><!--[$user_email|pnvarprepfordisplay]--></td>
 		</tr>
 	</table>
 </div>
 <!--[pnmodgetvar module="Newsletter" name="auto_approve_registrations" assign="auto_approve"]-->
 <!--[if $auto_approve lt 1]-->
-<p>Auto-approve is currently disabled. You will need to login, go to the newsletter admin area and approve this user.</p>
+<p>
+<!--[pnml name="_AUTOAPPROVEDISABLEDMESSAGE"]-->
+</p>
 <!--[/if]-->		

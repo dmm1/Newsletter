@@ -98,4 +98,10 @@ define('_TEXT','Text');
 define('_HTML','html');
 define('_TEXTWLINK','text mit Link zum Archiv');
 define('_JOIN','anmelden!');
+/*USERSETTINGS*/
+define('_USERNAME','Benutzername');
+define('_USEREMAIL','User Emailadresse');
+define('_NEWUSERINFO','Ein neuer Newsletterabonnent hat sich angemeldet:');
+define('_AUTOAPPROVEDISABLEDMESSAGE','Auto-genehmigen ist derzeit deaktiviert. Gehen Sie in den Newsletter Admin-Bereich und genehmigen diesen Benutzer.');
+
 ?>

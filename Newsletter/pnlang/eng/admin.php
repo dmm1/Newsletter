@@ -98,4 +98,10 @@ define('_YEARLY','yearly');
 define('_TEXT','text');
 define('_HTML','html');
 define('_TEXTWLINK','text w/link to archive');
+
+define('_USERNAME','Username');
+define('_NEWUSEREMAIL','User Emailadresse');
+define('_NEWUSERINFO','New subscriber Info');
+define('_AUTOAPPROVEDISABLEDMESSAGE','Auto-approve is currently disabled. You will need to login, go to the newsletter admin area and approve this user.');
+
 ?>
