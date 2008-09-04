@@ -94,13 +94,25 @@ define('_WEEKLY','weekly');
 define('_MONTHLY','monthly');
 define('_YEARLY','yearly');
 
-/* NEWSLETTER TYPES */
+define('_CHECKEDYES','(checked=yes)');
+
+define('_CHANGEUSERSTATUS','Changes User Status?');
+define('_CHANGEUSERAPPROVALSTATUS','Change User Status?');
+
+define('_UPDATELASTSENTDATES','Update last sent date?');
+define('_ACTIVE','aktive');
+define('_APPROVED','approved');
+define('_LASTSENT','last sent');
+define('_JOINDATE','joindate');
+define('_FREQUENCY','frequency');
+define('_TYPE','Type');
 define('_TEXT','text');
 define('_HTML','html');
 define('_TEXTWLINK','text w/link to archive');
 
 define('_USERNAME','Username');
-define('_NEWUSEREMAIL','User Emailadresse');
+define('_NEWUSEREMAIL','User Email');
+define('_USEREMAIL1','Email');
 define('_NEWUSERINFO','New subscriber Info');
 define('_AUTOAPPROVEDISABLEDMESSAGE','Auto-approve is currently disabled. You will need to login, go to the newsletter admin area and approve this user.');
 

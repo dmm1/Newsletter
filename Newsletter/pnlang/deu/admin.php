@@ -93,13 +93,26 @@ define('_WEEKLY','wöchentlich');
 define('_MONTHLY','monatlich');
 define('_YEARLY','jährlich');
 
-/* NEWSLETTER TYPES */
+
+define('_CHECKEDYES','(angehakt=ja)');
+
+define('_CHANGEUSERSTATUS','Wollen Sie den Status des Users wirklich ändern?');
+define('_CHANGEUSERAPPROVALSTATUS','Wollen Sie den Status des Users wirklich ändern?');
+
+define('_UPDATELASTSENTDATES','Datum der letzten Sendung aktualisieren?');
+define('_ACTIVE','Aktiv');
+define('_APPROVED','akzeptiert');
+define('_LASTSENT','zuletzt gesendet');
+define('_JOINDATE','aboniert am');
+define('_FREQUENCY','Intervall');
+define('_TYPE','Typ');
 define('_TEXT','Text');
 define('_HTML','html');
 define('_TEXTWLINK','text mit Link zum Archiv');
 define('_JOIN','anmelden!');
 /*USERSETTINGS*/
 define('_USERNAME','Benutzername');
+define('_USEREMAIL1','Emailadresse');
 define('_USEREMAIL','User Emailadresse');
 define('_NEWUSERINFO','Ein neuer Newsletterabonnent hat sich angemeldet:');
 define('_AUTOAPPROVEDISABLEDMESSAGE','Auto-genehmigen ist derzeit deaktiviert. Gehen Sie in den Newsletter Admin-Bereich und genehmigen diesen Benutzer.');
