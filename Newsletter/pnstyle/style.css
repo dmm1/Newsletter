@@ -1,0 +1,17 @@
+/* conventional naming:
+.nl-this_class { color:blue; }
+#nl-this-id { color:blue; }
+
+this is important to avoid conflict with your (or others) default stylesheet.
+
+note: use absolute urls for background images/list-style-images (ie: http://sitename.com/this/url/image.gif)
+*/
+#nl-content-container
+{
+	width: 70%;
+	margin: 30px auto;
+}
+
+#nl-content-container ul { margin: 3px 5px; }
+#nl-content-container li, #nl_content_container li a { list-style-type: square; }
+#nl-content-container li a:hover { font-style: italic; }

@@ -1,0 +1,15 @@
+<!-- this mailer is sent in html format -->
+<div style="border:1px solid #ccc; padding:10px;">
+	<h3>Your subscription has been received.</h3>
+	<hr />
+	<p>Hello <!--[$user_name|pnvarprepfordisplay]-->,<br />
+	   Thank you for subscribing to our newsletter.</p>
+	<p>Please feel free to let us know if you have any questions or concerns.</p>
+	<p>&nbsp;</p>
+	<p>Thank you,<br />
+	<!--[pnconfiggetvar name="sitename"]--> Staff<br />
+	<!--[pnmodgetvar module="Newsletter" name="send_from_address"]-->
+	</p>
+	<hr />
+	<p>If you've received this message in error, please visit <!--[$site_url|pnvarprepfordisplay]--> to unsubscribe from this newsletter.</p>
+</div>

@@ -1,0 +1,41 @@
+<!--[$title|pnvarprepfordisplay]-->
+
+<!--[ pnmodgetvar assign="adminmessagesplugin" module="Newsletter" name="adminmessagesplugin" default="0" ]-->
+<!--[ if ($adminmessagesplugin) ]-->
+Special Announcements
+<!--[newsletter_admin_messages assign="admin_messages"]-->
+<!--[section name="admin_messages" loop="$admin_messages"]-->
+<!--[$admin_messages[admin_messages].title|pnvarprephtmldisplay]-->
+<!--[$admin_messages[admin_messages].content|pnvarprephtmldisplay|url_check]-->
+<!--[/section]-->
+<!--[ else ]-->
+<!--[ /if ]-->
+
+
+
+<!--[ pnmodgetvar assign="newsplugin" module="Newsletter" name="newsplugin" default="0" ]-->
+<!--[ if ($newsplugin) ]-->
+News
+<!--[newsletter_news_items limit_items="3" assign="news_items"]-->
+<!--[section name="news_items" loop="$news_items"]-->
+<a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&amp;topic=<!--[$news_items[news_items].topic_id]-->" title="<!--[$news_items[news_items].topic_title|pnvarprephtmldisplay]-->"><!--[$news_items[news_items].topic_title|pnvarprephtmldisplay]--></a> <a>&gt;</a> <a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&amp;file=article&amp;sid=<!--[$news_items[news_items].story_id]-->" title="<!--[$news_items[news_items].story_title|pnvarprephtmldisplay]-->"><!--[$news_items[news_items].story_title|pnvarprephtmldisplay]--></a>
+<!--[$news_items[news_items].story_content|pnvarprephtmldisplay|url_check]-->
+<!--[/section]-->
+
+<!--[ else ]-->
+<!--[ /if ]-->
+
+
+
+Thanks for subscribing!
+<!--[$site_name|pnvarprepfordisplay]--> Staff
+
+------------------------------------
+link to archive:
+<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter&func=view_archive&date=<!--[$archive_time]-->
+
+------------------------------------	
+
+You are receiving this message because you have signed up for our newsletter. 
+If you do not wish to receive any more of these notifications you may unsubscribe at the link below.
+<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter

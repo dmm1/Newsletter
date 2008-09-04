@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><!--[$title]--></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=<!--[pnml name="_CHARSET"]-->" />
+		<meta name="DESCRIPTION" content="<!--[$title]-->" />
+		<meta name="ROBOTS" content="INDEX,FOLLOW" />
+		<link rel="StyleSheet" href="<!--[$site_url|pnvarprepfordisplay]-->modules/Newsletter/pnstyle/newsletter_style.css" type="text/css" />
+	</head>
+	<body id="nl-body">
+		<div id="nl-wrapper" style="background:#fff url(<!--[$site_url|pnvarprepfordisplay]-->modules/Newsletter/pnimages/newsletter_images/bg.jpg) top center repeat-x;">			
+			<h1 id="nl-title"><!--[$title]--></h1>
+
+<!--[ pnmodgetvar assign="adminmessagesplugin" module="Newsletter" name="adminmessagesplugin" default="0" ]-->
+<!--[ if ($adminmessagesplugin) ]-->
+<div class="nl-content-wrapper">
+<h1>Special Announcements</h1>
+<!--[newsletter_admin_messages assign="admin_messages"]-->
+<!--[section name="admin_messages" loop="$admin_messages"]-->
+<h2><!--[$admin_messages[admin_messages].title|pnvarprephtmldisplay]--></h2>
+<!--[$admin_messages[admin_messages].content|pnvarprephtmldisplay|url_check]-->
+<!--[/section]-->
+</div>
+<!--[ else ]-->
+<!--[ /if ]-->
+
+<!--[ pnmodgetvar assign="newsplugin" module="Newsletter" name="newsplugin" default="0" ]-->
+<!--[ if ($newsplugin) ]-->
+<div class="nl-content-wrapper">
+<h1>News</h1>
+<!--[newsletter_news_items limit_items="3" assign="news_items"]-->
+<!--[section name="news_items" loop="$news_items"]-->
+<h4><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&amp;topic=<!--[$news_items[news_items].topic_id]-->" title="<!--[$news_items[news_items].topic_title|pnvarprephtmldisplay]-->"><!--[$news_items[news_items].topic_title|pnvarprephtmldisplay]--></a> <a>&gt;</a> <a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&amp;file=article&amp;sid=<!--[$news_items[news_items].story_id]-->" title="<!--[$news_items[news_items].story_title|pnvarprephtmldisplay]-->"><!--[$news_items[news_items].story_title|pnvarprephtmldisplay]--></a></h4>
+<div><!--[$news_items[news_items].story_content|pnvarprephtmldisplay|url_check]--></div>
+<!--[/section]-->
+</div>
+<!--[ else ]-->
+<!--[ /if ]-->
+
+<!--[ pnmodgetvar assign="newmemberplugin" module="Newsletter" name="newmemberplugin" default="0" ]-->
+<!--[ if ($newmemberplugin) ]-->	
+<div class="nl-content-wrapper">
+<h1>Welcome New Members!</h1>
+<!--[newsletter_new_members limit_items="5" assign="new_members"]-->
+<table class="nl-new-members">
+<tr>
+<th>User Name</th>
+<th>Register Date</th>
+</tr>
+<!--[section name="new_members" loop="$new_members"]-->
+<tr>
+<td><a href="<!--[$site_url|pnvarprepfordisplay]-->user.php?op=userinfo&amp;uname=<!--[$new_members[new_members].user_name|pnvarprephtmldisplay]-->" title="<!--[$new_members[new_members].user_name|pnvarprephtmldisplay]-->"><!--[$new_members[new_members].user_name|pnvarprephtmldisplay]--></a></td>
+<td><!--[$new_members[new_members].register_date]--></td>
+</tr>
+<!--[/section]-->
+</table>
+</div>							
+<!--[ else ]-->
+<!--[ /if ]-->
+	
+<p>Thanks for subscribing<!--[if $user_name neq ""]--> <!--[$user_name]--><!--[/if]-->!<br />
+			<!--[$site_name]--> Staff<br />
+			<!--[$site_url]--></p>
+			
+			<!--[if $archive_time gt 0]-->
+			<hr />
+			<p>link to archive:<br />
+			<a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter&amp;func=view_archive&amp;date=<!--[$archive_time]-->" title="link to archive"><!--[$site_url|pnvarprepfordisplay]--></a></p>
+			<!--[/if]-->
+			
+			<hr />
+			<p>You are receiving this message because you have signed up for our news letter. 
+			If you do not wish to receive any more of these notifications you may unsubscribe at the link below.</p>
+			<p><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter" title="unsubscribe"><strong>Unsubscribe</strong></a></p>
+		</div>
+	</body>
+</html>

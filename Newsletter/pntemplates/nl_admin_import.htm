@@ -1,0 +1,32 @@
+<!--[include file="nl_admin_menu.htm"]-->
+<br />
+<h2>User Import</h2>
+<br />
+<h3>Einstellungen</h3>
+<br />
+<form name="config" action="<!--[pnmodurl modname="Newsletter" type="admin" func="import_update"]-->" method="post">
+<b>Newsletter Type: </b>
+<input name="import_per_request" type="text" value="<!--[pnmodgetvar module="Newsletter" name="import_per_request"]-->" style="width:30px;" /> 
+1, 2 or 3 (text, html, text with link)
+<br /><br />
+<b>Frequency: </b>
+<input name="import_frequency" type="text" value="<!--[pnmodgetvar module="Newsletter" name="import_frequency"]-->" style="width:30px;" /> 
+1=weekly | 2=monthly | 3=yearly
+<br /><br />
+<b>Active: </b>
+<input name="import_active_status" type="text" value="<!--[pnmodgetvar module="Newsletter" name="import_active_status"]-->" style="width:30px;" /> 
+1=active | 0=suspended
+<br /><br />
+<b>Approved: </b>
+<input name="import_approval_status" type="text" value="<!--[pnmodgetvar module="Newsletter" name="import_approval_status"]-->" style="width:30px;" /> 
+1=approved | 0=unapproved
+<br /><br />
+<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+<input type="submit" name="submit" value="update configuration" />
+</form>
+<br />
+<br />
+<h3>Importieren</h3>	
+<div class="pn-adminformrow"> 
+<a href="<!--[pnmodurl modname=newsletter type=admin func="import_get_users"]-->"><img src="modules/Newsletter/pnimages/ok.gif" alt="" /></a>
+</div>
