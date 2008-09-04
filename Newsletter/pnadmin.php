@@ -606,6 +606,7 @@ function newsletter_admin_modifynewsletter($args)
 	$pnRender->caching = false;	
 						
 	$pnRender->assign(array('newsplugin_checked'=>(pnModGetVar('Newsletter','newsplugin')?'checked="checked" ':''),
+							'newmemberplugin_checked'=>(pnModGetVar('Newsletter','newmemberplugin')?'checked="checked" ':''),
 							'adminmessagesplugin_checked'=>(pnModGetVar('Newsletter','adminmessagesplugin')?'checked="checked" ':'')));
 
     return $pnRender->fetch('nl_admin_modifyplugins.htm');
@@ -613,8 +614,9 @@ function newsletter_admin_modifynewsletter($args)
 
 function newsletter_admin_updateplugins($args)
 {					
-list($newsplugin,
+list($newsplugin,$newmemberplugin,
 	 $adminmessagesplugin) = pnVarCleanFromInput('newsplugin',
+												'newmemberplugin',
 		 										'adminmessagesplugin');
 		 										
 	if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADMIN)) {
@@ -633,9 +635,15 @@ list($newsplugin,
 	 if($adminmessagesplugin == ''){
     	$adminmessagesplugin = '0';
     }
+	
+	
+	 if($newmemberplugin == ''){
+    	$newmemberplugin = '0';
+    }
     
 	
   	pnModSetVar('Newsletter','newsplugin',$newsplugin);
+	pnModSetVar('Newsletter','newmemberplugin',$newmemberplugin);
 	pnModSetVar('Newsletter','adminmessagesplugin',$adminmessagesplugin);
 
 pnSessionSetVar('statusmsg', _CONFIG_UPDATE_SUCCESSFUL);
