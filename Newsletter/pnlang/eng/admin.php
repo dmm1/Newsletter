@@ -80,5 +80,5 @@ define('_NEWSLETTER_TITLE',' Title');
 define('_JOIN','join now!');
 define('_PREVIEW','Preview');
 define('_USERIMPORT','Import Users');
-define('_DELETEUSERS','Delete Users');
+define('_DELETEUSER','Delete Users');
 ?>
