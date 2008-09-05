@@ -139,5 +139,6 @@ define('_PLEASESELECTANARCHIVETOFLUSH','please select an archive to flush');
 define('_PRUNEARCHIVES','Prune Archives');
 define('_NOTE','Attention');
 define('_ARCHIVEOPTIONREMOVE','the Archive cannot be restored');
-
+define('_SENDTO','Send to');
+define('_USERS','Users');
 ?>

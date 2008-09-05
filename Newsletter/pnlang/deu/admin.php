@@ -139,7 +139,8 @@ define('_PLEASESELECTANARCHIVETOFLUSH','bitte wählen Sie ein Archiv aus, dass ge
 define('_PRUNEARCHIVES','Archiv löschen');
 define('_NOTE','Achtung');
 define('_ARCHIVEOPTIONREMOVE','das Archiv kann nicht wieder hergestellt werden');
-
+define('_SENDTO','sende an');
+define('_USERS','Abonnenten');
 
 
 ?>

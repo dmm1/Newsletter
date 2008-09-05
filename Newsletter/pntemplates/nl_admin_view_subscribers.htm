@@ -1,5 +1,4 @@
 <!--[add_additional_header header='<script type="text/javascript" src="modules/Newsletter/pnjavascript/checkall.js"></script>']-->
-
 <!--[include file="nl_admin_menu.htm"]-->
 
 <!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
@@ -20,7 +19,7 @@
 		<form style="display:inline;" action="<!--[pnmodurl modname="Newsletter" type="admin" func="view_subscribers"]-->" method="post">
 			<div>
 				<input type="text" name="<!--[pnml name="_ITEMS_PER_PAGE"]-->" value="<!--[$itemsperpage]-->" style="width:30px;" />
-				<input type="submit" value="Items per page" />
+				<input type="submit" value="<!--[pnml name="_ITEMS_PER_PAGE"]-->" />
 			</div>
 		</form>
 	</div>
@@ -52,14 +51,10 @@
 	</tr>
 	<!--[/section]-->
 	<tr>
-	<td><label for="testmessage">Testmessage</label></td>
-	<td><textarea id="testmessage" name="testmessage" cols="50" rows="10"></textarea></td>
-	</tr>
-	<tr>
 		<td colspan="3" style="border:none;"><!--[pnml name="_UPDATELASTSENTDATES"]--><input type="checkbox" name="update_send_dates" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></td>
 		<td colspan="6" style="border:none;">
 			<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
-			<input type="submit" value="Send to [0] users" name="sendChecked" id="sendChecked" />
+			<input type="submit" value="<!--[pnml name="_SENDTO"]--> [0] <!--[pnml name="_USERS"]-->" name="sendChecked" id="sendChecked" />
 		</td>
 	</tr>
 </table>

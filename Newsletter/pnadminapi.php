@@ -260,34 +260,36 @@ return $frequency;
 
 function Newsletter_adminapi_get_archive_expire()
 {
-	$expiry = array('1'=>'1 month',
+	$expiry = array('1'=>' 1 month',
 					'2'=>'2 months',
 					'3'=>'3 months',
 					'6'=>'6 months',
 					'12'=>'1 year');
 return $expiry;
 }
+
 // read plugin-folder from newsletter and load names into array
-   function newsletter_adminapi_getnewsletterPlugins($args)
-{
-    $path = 'modules/Newsletter/pntemplates/plugins/';
-    if (isset($args['path']) && !empty($args['path'])) {
-        $path = $args['path'] . '/' . $path;
-    }
-if (!file_exists(DataUtil::formatForOS($path))) {
-die('FEHLER: Verzeichnis ' . $path . ' existiert nicht');
-}
-    Loader::loadClass('FileUtil');
-    $plugins = FileUtil::getFiles($path, false);
-    asort($plugins);
-	$pluginKeys = array_keys($plugins);
-foreach($pluginKeys as $pluginKey) {
-    if (!(strpos($plugins[$pluginKey], 'modifier') === false)) {
-        unset($plugins[$pluginKey]);
-    }
-}
-    return $plugins;
-}
+
+// function newsletter_adminapi_getnewsletterPlugins($args)
+// {
+   //  $path = 'modules/Newsletter/pntemplates/plugins/';
+   //  if (isset($args['path']) && !empty($args['path'])) {
+   //      $path = $args['path'] . '/' . $path;
+   //  }
+// if (!file_exists(DataUtil::formatForOS($path))) {
+// die('FEHLER: Verzeichnis ' . $path . ' existiert nicht');
+// }
+   //  Loader::loadClass('FileUtil');
+    // $plugins = FileUtil::getFiles($path, false);
+    // asort($plugins);
+	// $pluginKeys = array_keys($plugins);
+// foreach($pluginKeys as $pluginKey) {
+   //  if (!(strpos($plugins[$pluginKey], 'modifier') === false)) {
+      //   unset($plugins[$pluginKey]);
+    // }
+// }
+   //  return $plugins;
+// }
 
 
 ?>
