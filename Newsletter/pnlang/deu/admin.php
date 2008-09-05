@@ -110,11 +110,36 @@ define('_TEXT','Text');
 define('_HTML','html');
 define('_TEXTWLINK','text mit Link zum Archiv');
 define('_JOIN','anmelden!');
-/*USERSETTINGS*/
+
 define('_USERNAME','Benutzername');
 define('_USEREMAIL1','Emailadresse');
 define('_USEREMAIL','User Emailadresse');
 define('_NEWUSERINFO','Ein neuer Newsletterabonnent hat sich angemeldet:');
 define('_AUTOAPPROVEDISABLEDMESSAGE','Auto-genehmigen ist derzeit deaktiviert. Gehen Sie in den Newsletter Admin-Bereich und genehmigen diesen Benutzer.');
+
+define('_EXPIREARCHIVEDNEWSLETTERS','Gültigkeit der archivierten Newsletter');
+define('_RECEIVESUBSCRIPTIONNOTICES','Email über neue Benutzer erhalten');
+define('_ALLOWANONYMOUSREGISTRATIONS','anonyme Abonnenten erlauben');
+define('_AUTOAPPROVEREGISTRATIONS','neue Abonnenten automatisch freischalten');
+define('_DEFAULTNEWSLETTERTYPE','Standartnewsletter Typ');
+define('_DEFAULTFREQUENCY','Standartintervall');
+define('_ALLOWFREQUENCYCHANGES','erlaube Intervalländerungen');
+define('_SENDDAY','Sendetag');
+define('_SENDPERREQUEST','sende pro Anfrage');
+define('_MAXIMUMSENDPERHOUR','Maximum an emails pro Stunde');
+define('_PERSONALIZEEMAIL','Email personalisieren');
+define('_X','"x" Anzahl von emails ');
+define('_ZERO','(0 [Null] = keine Einschränkung)');
+define('_DISABLETOINCREASEPERFORMANCE','abhaken um performance zu gewinnen');
+define('_USEDTOSIMPLIFYCRONBATCHPROCESSING','wird benötigt für z.B. Cronjobs');
+define('_ADMINKEY','Administrator Schlüssel');
+define('_ITTOOK','es brauchte');
+define('_SECONDSTOSENDTHELASTBATCH','um die letzte automatische Aufgabe auszuführen');
+define('_PLEASESELECTANARCHIVETOFLUSH','bitte wählen Sie ein Archiv aus, dass geleert werden soll');
+define('_PRUNEARCHIVES','Archiv löschen');
+define('_NOTE','Achtung');
+define('_ARCHIVEOPTIONREMOVE','das Archiv kann nicht wieder hergestellt werden');
+
+
 
 ?>

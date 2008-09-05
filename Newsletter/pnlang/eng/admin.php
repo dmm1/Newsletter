@@ -116,4 +116,28 @@ define('_USEREMAIL1','Email');
 define('_NEWUSERINFO','New subscriber Info');
 define('_AUTOAPPROVEDISABLEDMESSAGE','Auto-approve is currently disabled. You will need to login, go to the newsletter admin area and approve this user.');
 
+
+define('_EXPIREARCHIVEDNEWSLETTERS','expire archived newsletters');
+define('_RECEIVESUBSCRIPTIONNOTICES','receive subscription notices');
+define('_ALLOWANONYMOUSREGISTRATIONS','allow anonymous registrations');
+define('_AUTOAPPROVEREGISTRATIONS','auto-approve registrations');
+define('_DEFAULTNEWSLETTERTYPE','Default Newsletter Type');
+define('_DEFAULTFREQUENCY','Default Frequency');
+define('_ALLOWFREQUENCYCHANGES','Allow Frequency Changes');
+define('_SENDDAY','Sendday');
+define('_SENDPERREQUEST','Send per request');
+define('_MAXIMUMSENDPERHOUR','Maximum send per hour');
+define('_PERSONALIZEEMAIL','personalize email');
+define('_X','"x" number of emails ');
+define('_ZERO','(0 [Zero] = no Restriction)');
+define('_DISABLETOINCREASEPERFORMANCE','disable to increase performance');
+define('_USEDTOSIMPLIFYCRONBATCHPROCESSING','used to simplify cron/batchprocessing');
+define('_ADMINKEY','Adminkey');
+define('_ITTOOK','it took');
+define('_SECONDSTOSENDTHELASTBATCH','Seconds to send the last batch');
+define('_PLEASESELECTANARCHIVETOFLUSH','please select an archive to flush');
+define('_PRUNEARCHIVES','Prune Archives');
+define('_NOTE','Attention');
+define('_ARCHIVEOPTIONREMOVE','the Archive cannot be restored');
+
 ?>
