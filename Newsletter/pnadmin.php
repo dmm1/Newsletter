@@ -21,7 +21,6 @@ function Newsletter_admin_settings()
 
 	$pnRender =& new pnRender('Newsletter');
 	$pnRender->caching = false;
-	
 	$send_days = pnModAPIFunc('Newsletter','admin','get_send_day');
 	$newsletter_types = pnModAPIFunc('Newsletter','admin','get_newsletter_types');
 	$newsletter_frequency = pnModAPIFunc('Newsletter','admin','get_newsletter_frequency');

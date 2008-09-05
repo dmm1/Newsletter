@@ -2,7 +2,6 @@
 /**
  * Zikula Application Framework
  */
-
 /**
  * Return an array of items to show in the your account panel
  *
