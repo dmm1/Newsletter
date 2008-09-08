@@ -141,4 +141,8 @@ define('_NOTE','Attention');
 define('_ARCHIVEOPTIONREMOVE','the Archive cannot be restored');
 define('_SENDTO','Send to');
 define('_USERS','Users');
+define('_BYUSERNAME','By User name');
+define('_BYUSEREMAIL','By User email');
+define('_DELETEALLUSERS','Delete all users');
+
 ?>

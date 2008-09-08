@@ -141,6 +141,7 @@ define('_NOTE','Achtung');
 define('_ARCHIVEOPTIONREMOVE','das Archiv kann nicht wieder hergestellt werden');
 define('_SENDTO','sende an');
 define('_USERS','Abonnenten');
-
-
+define('_BYUSERNAME','mittels Usernamen');
+define('_BYUSEREMAIL','mittels Useremailadresse');
+define('_DELETEALLUSERS','Alle Abonnenten löschen');
 ?>

@@ -6,22 +6,22 @@
 
 			<h2><!--[pnml name="_REMOVE_SUBSCRIBER"]--></h2>
 
-<p style="text-align:left;">By User Name:
+<p style="text-align:left;"><!--[pnml name="_BYUSERNAME"]-->:
 <input name="user_name" type="text" style="width:150px;" /></p>
 <br />
-<p style="text-align:left;">By User E-Mail:
+<p style="text-align:left;"><!--[pnml name="_BYUSEREMAIL"]-->:
 <input name="user_email" type="text" style="width:150px;" /></p>
 <input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
-<input type="submit" name="submit" value="remove subscriber"  />
+<input type="submit" name="submit" value="<!--[pnml name="_REMOVE_SUBSCRIBER"]-->"  />
 				
 </form>
 
 <hr />
 
 <form action="<!--[pnmodurl modname="Newsletter" type="admin" func="remove_all_subscribers"]-->" method="post">
-<p style="text-align:left;">Delete ALL Users:
+<p style="text-align:left;"><!--[pnml name="_DELETEALLUSERS"]-->:
 <input type="checkbox"  name="delete_all_users" style="width:150px;" /></p>
 <input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
-<input type="submit" name="submit" value="remove all subscribers"  />
+<input type="submit" name="submit" value="<!--[pnml name="_DELETEALLUSERS"]-->"  />
 </form>
 </div>
