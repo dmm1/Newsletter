@@ -41,7 +41,7 @@ function Newsletter_init()
   	pnModSetVar('Newsletter','default_type','1'); //text/html/web
   	pnModSetVar('Newsletter','default_frequency','2');
   	pnModSetVar('Newsletter','allow_frequency_change','1');
-	pnModSetVar('Newsletter','import_per_request','2');
+	pnModSetVar('Newsletter','import_type','2');
 	pnModSetVar('Newsletter','import_frequency','1');
 	pnModSetVar('Newsletter','import_active_status','1');
 	pnModSetVar('Newsletter','import_approval_status','1');

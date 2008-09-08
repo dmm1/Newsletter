@@ -132,7 +132,6 @@ function Newsletter_admin_config_update($args)
   	pnModSetVar('Newsletter','archive_expire',$archive_expire); // months
   	pnModSetVar('Newsletter','personalize_email',($personalize_email+0));
   	pnModSetVar('Newsletter','send_per_request',$send_per_request);
-	pnModSetVar('Newsletter','import_per_request',$import_per_request);
   	pnModSetVar('Newsletter','admin_key',$admin_key);
   	pnModSetVar('Newsletter','max_send_per_hour',((int)$max_send_per_hour+0));
 
@@ -489,10 +488,10 @@ function Newsletter_admin_import()
 
 function Newsletter_admin_import_update($args)
 {
-	list($import_per_request,
+	list($import_type,
 		 $import_active_status,
 	     $import_approval_status,  
-		 $import_frequency) = pnVarCleanFromInput('import_per_request',	
+		 $import_frequency) = pnVarCleanFromInput('import_type',	
 													'import_active_status',
 													'import_approval_status',
 													'import_frequency');	 
@@ -507,7 +506,7 @@ function Newsletter_admin_import_update($args)
         return true;
     }
     
-	pnModSetVar('Newsletter','import_per_request',$import_per_request);
+	pnModSetVar('Newsletter','import_type',$import_type);
 	pnModSetVar('Newsletter','import_active_status',  $import_active_status);
 	pnModSetVar('Newsletter','import_approval_status',  $import_approval_status);
 	pnModSetVar('Newsletter','import_frequency',  $import_frequency);
@@ -523,7 +522,7 @@ function Newsletter_admin_import_get_users()
         return pnVarPrepHTMLDisplay(_MODULENOAUTH);
     }
 
-	$nl_type = pnModGetVar('Newsletter','import_per_request'); 
+	$nl_type = pnModGetVar('Newsletter','import_type'); 
 	$nl_frequency = pnModGetVar('Newsletter','import_frequency'); 
 	$nl_active = pnModGetVar('Newsletter','import_active_status'); 
 	$approved = pnModGetVar('Newsletter','import_approval_status');	

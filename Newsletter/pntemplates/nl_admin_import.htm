@@ -1,12 +1,12 @@
 <!--[include file="nl_admin_menu.htm"]-->
 <br />
-<h2>User Import</h2>
+<h2><!--[pnml name="_USERIMPORT"]--></h2>
 <br />
-<h3>Einstellungen</h3>
+<h3><!--[pnml name="_NEWSLETTERADMIN"]--></h3>
 <br />
 <form name="config" action="<!--[pnmodurl modname="Newsletter" type="admin" func="import_update"]-->" method="post">
 <b>Newsletter Type: </b>
-<input name="import_per_request" type="text" value="<!--[pnmodgetvar module="Newsletter" name="import_per_request"]-->" style="width:30px;" /> 
+<input name="import_type" type="text" value="<!--[pnmodgetvar module="Newsletter" name="import_type"]-->" style="width:30px;" /> 
 1, 2 or 3 (text, html, text with link)
 <br /><br />
 <b>Frequency: </b>
