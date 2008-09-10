@@ -1,5 +1,5 @@
 <?php
-define('_ANON_NOT_ALLOWED','Sorry, Sie müssen Mitglied sein, um sich für den Newsletter anzumelden!');
+define('_ANON_NOT_ALLOWED','Entschuldigung, aber Sie müssen Mitglied sein, um sich für den Newsletter anmelden zu können!');
 define('_APPROVAL_REQUIRED','* Abonnements unter dem Vorbehalt der Zustimmung.');
 define('_ARCHIVE_DATE_FORMAT','F jS Y');
 define('_BADAUTHKEY','Authorization key verfallen.');
