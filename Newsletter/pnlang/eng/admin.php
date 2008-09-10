@@ -94,6 +94,12 @@ define('_WEEKLY','weekly');
 define('_MONTHLY','monthly');
 define('_YEARLY','yearly');
 
+define('_1MONTH','1 month');
+define('_2MONTHS','2 months');
+define('_3MONTHS','3 months');
+define('_6MONTHS','6 months');
+define('_1YEAR',' 1 year');
+
 define('_CHECKEDYES','(checked=yes)');
 
 define('_CHANGEUSERSTATUS','Changes User Status?');

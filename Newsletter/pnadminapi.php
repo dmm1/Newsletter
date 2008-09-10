@@ -229,29 +229,35 @@ function Newsletter_adminapi_flush_db($args)
 
 function Newsletter_adminapi_get_send_day()
 {
-	$days = array('1'=>'Monday',
-				  '2'=>'Tuesday',
-				  '3'=>'Wednesday',
-				  '4'=>'Thursday',
-				  '5'=>'Friday',
-				  '6'=>'Saturday',
-				  '0'=>'Sunday');
+    pnModLangLoad('Newsletter', 'admin');
+	
+	$days = array('1'=> pnML('_MONDAY'),
+				  '2'=> pnML('_TUESDAY'), 
+				  '3'=> pnML('_WEDNESDAY'),
+				  '4'=> pnML('_THURSDAY'), 
+				  '5'=> pnML('_FRIDAY'), 
+				  '6'=> pnML('_SATURDAY'), 
+				  '0'=> pnML('_SUNDAY'));
 return $days;
 }
 
 function Newsletter_adminapi_get_newsletter_types($args)
 {
-	$types = array('1'=>'text',
-				   '2'=>'html',
-				   '3'=>'text w/link to web');
+	pnModLangLoad('Newsletter', 'admin');
+	
+	$types = array('1'=> pnML('_TEXT'),
+				   '2'=> pnML('_HTML'),
+				   '3'=> pnML('_TEXTWLINK'));
 return $types;
 }
 
 function Newsletter_adminapi_get_newsletter_frequency()
 {
-	$frequency = array('1'=>'weekly',
-					   '2'=>'monthly',
-					   '3'=>'yearly');
+pnModLangLoad('Newsletter', 'admin');
+
+	$frequency = array('1'=> pnML('_WEEKLY'),  
+					   '2'=> pnML('_MONTHLY'),  
+					   '3'=> pnML('_YEARLY'));
 	// 0=>manually				   
 	//$not_used_yet = array_shift($frequency);
 	
@@ -260,11 +266,13 @@ return $frequency;
 
 function Newsletter_adminapi_get_archive_expire()
 {
-	$expiry = array('1'=>' 1 month',
-					'2'=>'2 months',
-					'3'=>'3 months',
-					'6'=>'6 months',
-					'12'=>'1 year');
+pnModLangLoad('Newsletter', 'admin');
+
+	$expiry = array('1'=> pnML('_1MONTH'), 
+					'2'=> pnML('_2MONTHS'), 
+					'3'=> pnML('_3MONTHS'), 
+					'6'=> pnML('_6MONTHS'), 
+					'12'=> pnML('_1YEAR'));
 return $expiry;
 }
 

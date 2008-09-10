@@ -93,6 +93,13 @@ define('_WEEKLY','wöchentlich');
 define('_MONTHLY','monatlich');
 define('_YEARLY','jährlich');
 
+define('_1MONTH','1 Monat');
+define('_2MONTHS','2 Monate');
+define('_3MONTHS','3 Monate');
+define('_6MONTHS','6 Monate');
+define('_1YEAR',' 1 Jahr');
+					
+					
 
 define('_CHECKEDYES','(angehakt=ja)');
 
