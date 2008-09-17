@@ -15,7 +15,7 @@ function Newsletter_user_main($args)
 	if(pnUserLoggedIn()){
 		$subscribed = pnModAPIFunc('Newsletter','user','check_user_exists',array('user_email'=>pnUserGetVar('email')));
 	}
-	
+
     $newsletter_frequency = pnModAPIFunc('Newsletter','user','get_newsletter_frequency');
     $newsletter_types = pnModAPIFunc('Newsletter','admin','get_newsletter_types');
     

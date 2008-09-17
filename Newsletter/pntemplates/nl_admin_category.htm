@@ -1,17 +1,15 @@
 <!--[include file="nl_admin_menu.htm"]-->
 <!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
 <!--[pnthemegetvar name="bgcolor3" assign="bgcolor2"]-->
-<h3><!--[pnml name="_CATEGORIES"]--></h3>
-<div><a href="<!--[pnmodurl modname=NEWSLETTER type=admin func=newsletter_new]-->"><!--[pnml name="_NEWCATEGORIE"]--></a></div>
-<table class="pn-admintable">
-  <tr>
-      <th><!--[pnml name="_NEWSLETTER_TITLE"]--></th>
-
-  </tr>
-  <!--[section name="newsletters" loop=$newsletters]-->  
-    <tr class="<!--[cycle values=pn-odd,pn-even]-->">
-      <td><!--[$newsletters[newsletters].title|pnvarprephtmldisplay]--></td>
-    </tr>
-  <!--[/section]-->
-</table>
-<!--[pager show="page" rowcount=$pager.numnewsletters limit=$pager.newslettersperpage posvar=startnum shift=1]-->
+<h2><!--[pnml name="_CATEGORIES"]--></h2>
+<h3><!--[pnml name="_NEWSLETTERADMIN"]--></h3>
+<div class="pn-formrow">
+    <!--[nocache]-->
+    <ul>
+    <!--[foreach from=$catregistry key=id item=category]-->
+        <!--[array_field_isset assign="selectedValue" array=$__CATEGORIES__ field=$property returnValue=1]-->
+        <li><!--[selector_category category=$category name="TABLENAME[__CATEGORIES__][$property]" field="id" selectedValue=$selectedValue defaultValue="0"]--></li>
+    <!--[/foreach]-->
+    </ul>
+    <!--[/nocache]-->
+</div>

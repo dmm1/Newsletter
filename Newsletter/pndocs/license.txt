@@ -4,7 +4,10 @@ the following license. By obtaining and using this software you
 (the licensee) agree that you have read, understood, and will comply
 with the following terms and conditions.
 
-You may not reproduce/copy, deconstruct, reverse engineer, re-distribute, sell or re-brand without prior written consent of the author. You may not use this software for commercial purposes, including promotion, without written consent.
+You may not reproduce/copy, deconstruct, reverse engineer, re-distribute, 
+sell or re-brand without prior written consent of the author. 
+You may not use this software for commercial purposes, including promotion,
+without written consent.
 
 THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT
 HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED,

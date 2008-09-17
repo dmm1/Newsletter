@@ -590,7 +590,21 @@ function Newsletter_admin_view_category()
 
     $pnRender =& new pnRender('Newsletter');
     $pnRender->caching = false;
-   
+	
+//	
+$item = DBUtil::selectObjectByID('newsletter_categories');
+$pnRender->assign($item);
+
+// load the categories system
+if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
+    pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+}
+
+$catregistry  = CategoryRegistryUtil::getRegisteredModuleCategories ('Newsletter', 'newsletter_categories');
+
+$pnRender->assign('catregistry', $catregistry); 
+//
+
     return $pnRender->fetch('nl_admin_category.htm');
 }
 function newsletter_admin_modifynewsletter($args)

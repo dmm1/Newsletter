@@ -22,7 +22,7 @@ function Newsletter_pntables()
 												'info_text'				=>	'pn_info_text',
 												'info_name'				=>	'pn_info_name',
 												'info_senddate'			=>	'pn_info_senddate',
-												'newsletter_activeplugins'			=>	'pn_newsletter_activeplugins',
+									//			'newsletter_activeplugins'			=>	'pn_newsletter_activeplugins',
 												'nid'         => 'pn_nid',
     
 	$pntable['newsletter_users_column_def'] = array('nid'         => 'I AUTOINCREMENT PRIMARY'),
@@ -30,11 +30,40 @@ function Newsletter_pntables()
     $pntable['newsletter_archives'] = pnConfigGetVar('prefix') . '_newsletter_archives');
     $pntable['newsletter_archives_column'] = array('archive_date'	=>	'pn_archive_date',
     											   'archive_text'	=>	'pn_archive_text');
+	
+ //  newsletter_categoriestable
+	$table = $prefix . '_newsletter_categories';
+    $pntables['newsletter_categories'] = $table;
+    $columns = array (
+	    'id'		=>	'nl_id',
+	    'category_id'	=>	'nl_category_id',
+	    'category2_id'	=>	'nl_category2_id',
+	    'category3_id'	=>	'nl_category3_id',
+	    'category4_id'	=>	'nl_category4_id',
+	    'category5_id'	=>	'nl_category5_id',
+	    'status_categorie'		=>	'nl_status_categorie'
+        );
+    ObjectUtil::addStandardFieldsToTableDefinition ($columns, 'nl_');
+    $pntables['newsletter_categories_column'] = $columns;
+    $columns_def = array (
+            'id' 		=> 	'I4 NOTNULL AUTO PRIMARY',
+            'category_id' 	=> 	'I4 NOTNULL DEFAULT 0',
+            'category2_id' 	=> 	'I4 NOTNULL DEFAULT 0',
+            'category3_id' 	=> 	'I4 NOTNULL DEFAULT 0',
+            'category4_id' 	=> 	'I4 NOTNULL DEFAULT 0',
+            'category5_id' 	=> 	'I4 NOTNULL DEFAULT 0',
+            'status_categorie' 	=> 	'C(1) NOTNULL DEFAULT \'A\''
+        );
+    ObjectUtil::addStandardFieldsToTableDataDefinition ($columns_def);
+    $pntables['newsletter_categories_column_def'] = $columns_def;
+    $pntables['newsletter_categories_column_idx'] = array ('categories_category_idx'            => array('category_id', 'category2_id', 'category3_id', 'category4_id', 'category5_id', 'status_categorie'), 
+                                                 
+        );
 												   
  // Enable categorization services
     $pntable['newsletter_db_extra_enable_categorization'] = pnModGetVar('Newsletter', 'enablecategorization');
-    $pntable['newsletter_primary_key_column'] = 'nid';
-	
+    $pntable['newsletter_primary_key_column'] = 'id';
+
     // Return the table information
     return $pntable;
 }

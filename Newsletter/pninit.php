@@ -89,16 +89,18 @@ function Newsletter_delete()
     $nl_archives = $prefix.'_newsletter_archives';
     $dbconn->Execute("DROP TABLE IF EXISTS $nl_users, $nl_archives") or die($dbconn->ErrorMsg());
 
-	 // Delete entries from category registry 
+ // Delete entries from category registry
     pnModDBInfoLoad ('Categories');
     Loader::loadArrayClassFromModule('Categories', 'CategoryRegistry');
     $registry = new PNCategoryRegistryArray();
     $registry->deleteWhere ('crg_modname=\'Newsletter\'');
+
+    pnModDelVar ('Newsletter');
 	
 return true;   
 }
 
-function _newsletter_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
+function _Newsletter_createdefaultcategory()
 {
     // load necessary classes
     Loader::loadClass('CategoryUtil');
@@ -110,35 +112,48 @@ function _newsletter_createdefaultcategory($regpath = '/__SYSTEM__/Modules/Globa
 
     // get the category path for which we're going to insert our place holder category
     $rootcat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules');
-    $pCat    = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
-
-    if (!$pCat) {
-        // create placeholder for all our migrated categories
+    $nlCat  = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
+    if (!$nlCat) {
         $cat = new PNCategory ();
         $cat->setDataField('parent_id', $rootcat['id']);
         $cat->setDataField('name', 'Newsletter');
-        $cat->setDataField('display_name', array($lang => _NEWSLETTER_NAME));
-        $cat->setDataField('display_desc', array($lang => _NEWSLETTER_CATEGORY_DESCRIPTION));
+        $cat->setDataField('display_name', array($lang => 'Newsletter'));
+        $cat->setDataField('display_desc', array($lang => 'Newsletter'));
         if (!$cat->validate('admin')) {
             return false;
         }
         $cat->insert();
         $cat->update();
     }
+    $nlCat  = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
 
-    // get the category path for which we're going to insert our upgraded categories
-    $rootcat = CategoryUtil::getCategoryByPath($regpath);
-    if ($rootcat) {
-        // create an entry in the categories registry
+    $prdCat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
+    if (!$prdCat) {
+        $cat = new PNCategory ();
+        $cat->setDataField('parent_id', $nlCat['id']);
+        $cat->setDataField('name', 'Default');
+        $cat->setDataField('display_name', array($lang => 'Default'));
+        $cat->setDataField('display_desc', array($lang => 'Default'));
+        if (!$cat->validate('admin')) {
+            return false;
+        }
+        $cat->insert();
+        $cat->update();
+        $prdCat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
+        }
+   
+
+    if ($prdCat) {
+        // place category registry entry for Default (key == Default)
         $registry = new PNCategoryRegistry();
         $registry->setDataField('modname', 'Newsletter');
-        $registry->setDataField('table', 'newsletter');
-        $registry->setDataField('property', 'Main');
-        $registry->setDataField('category_id', $rootcat['id']);
+        $registry->setDataField('table', 'newsletter_categories');
+        $registry->setDataField('property', 'Newsletter');
+        $registry->setDataField('category_id', $prdCat['id']);
         $registry->insert();
-    } else {
-        return false;
+
     }
+
 
     return true;
 }
