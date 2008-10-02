@@ -1,14 +1,14 @@
 <tr>
 	<td style="vertical-align:top;">
-    	Require Terms of Service:
+		<!--[pnml name="_REQUIRETERMSOFSERVICE"]-->
   	</td>
   	<td>
-    	<input type="checkbox" name="require_tos" value="1"<!--[if $require_tos]--> checked="checked"<!--[/if]--> /> <em>(checked=yes)</em>
+    	<input type="checkbox" name="require_tos" value="1"<!--[if $require_tos]--> checked="checked"<!--[/if]--> /> <em><!--[pnml name="_CHECKEDYES"]--></em>
   	</td>
 </tr>
 <tr>
   	<td>
-   	 	Default type:
+	<!--[pnml name="_DEFAULTNEWSLETTERTYPE"]-->
   	</td>
   	<td>
    		<!--[html_options name="nl_type" options="$nl_types" selected="$nl_type_sel"]-->
@@ -16,7 +16,7 @@
 </tr>
 <tr>
   	<td>
-   	 	Default frequency:
+	<!--[pnml name="_DEFAULTFREQUENCY"]-->
   	</td>
   	<td>
    		<!--[html_options name="nl_frequency" options="$nl_frequencies" selected="$nl_frequency_sel"]-->

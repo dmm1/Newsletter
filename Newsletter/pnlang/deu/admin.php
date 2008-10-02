@@ -128,7 +128,7 @@ define('_EXPIREARCHIVEDNEWSLETTERS','Gültigkeit der archivierten Newsletter');
 define('_RECEIVESUBSCRIPTIONNOTICES','Email über neue Benutzer erhalten');
 define('_ALLOWANONYMOUSREGISTRATIONS','anonyme Abonnenten erlauben');
 define('_AUTOAPPROVEREGISTRATIONS','neue Abonnenten automatisch freischalten');
-define('_DEFAULTNEWSLETTERTYPE','Standartnewsletter Typ');
+define('_DEFAULTNEWSLETTERTYPE','Standardnewsletter Typ');
 define('_DEFAULTFREQUENCY','Standartintervall');
 define('_ALLOWFREQUENCYCHANGES','erlaube Intervalländerungen');
 define('_SENDDAY','Sendetag');
@@ -151,4 +151,5 @@ define('_USERS','Abonnenten');
 define('_BYUSERNAME','mittels Usernamen');
 define('_BYUSEREMAIL','mittels Useremailadresse');
 define('_DELETEALLUSERS','Alle Abonnenten löschen');
+define('_REQUIRETERMSOFSERVICE','Zustimmung zu den Nutzungsbedingungen notwendig?');
 ?>
