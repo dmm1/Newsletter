@@ -3,28 +3,67 @@
 <!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
 <!--[pnthemegetvar name="bgcolor3" assign="bgcolor2"]-->
 
+<!--[pnpageaddvar name="javascript" value="modules/Newsletter/pnjavascript/protocheck.js"]-->
+<!--[pnpageaddvar name="javascript" value="modules/Newsletter/pnstyle/style.css"]-->
+
 <div class="pn-admincontainer">
  <form class="pn-adminform" action="<!--[pnmodurl modname="Newsletter" type="admin" func="updateplugins"]-->" method="post" enctype="application/x-www-form-urlencoded">
-<h2>verfügbare Plugins</h2>
+<h2><!--[pnml name="_AVAILABLEPLUGINS"]--></h2>
   <div id="newsletter_plugins">
 <input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
-<b>Activate Adminmessages?</b>
-<input name="adminmessagesplugin" type="checkbox" value="1" <!--[$adminmessagesplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
-<b>Activate News?</b>
-<input name="newsplugin" type="checkbox" value="1" <!--[$newsplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
-<b>Activate New Members?</b>
-<input name="newmemberplugin" type="checkbox" value="1" <!--[$newmemberplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
-<b>Activate Pages?</b>
-<input name="pagesplugin" type="checkbox" value="1" <!--[$pagesplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
 
+<!--[pnmodavailable modname="Admin_Messages" assign="active"]-->
+<!--[if $active]-->
+<fieldset><legend>Activate Adminmessages?</legend>
+<label class='nl_checkbox'>
+<input name="adminmessagesplugin" type="checkbox" value="1" <!--[$adminmessagesplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> 
+</label>
+</fieldset>
+<!--[/if]-->
+
+<!--[pnmodavailable modname="News" assign="active"]-->
+<!--[if $active]-->
+<fieldset><legend>Activate News?</legend>
+<label class='nl_checkbox'>
+<input name="newsplugin" type="checkbox" value="1" <!--[$newsplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+</label>
+</fieldset>
+<!--[/if]-->
+<!--[pnmodavailable modname="Users" assign="active"]-->
+<!--[if $active]-->
+<fieldset><legend>Activate New Members?</legend>
+<label class='nl_checkbox'>
+<input name="newmemberplugin" type="checkbox" value="1" <!--[$newmemberplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+</label>
+</fieldset>
+<!--[/if]-->
+<!--[pnmodavailable modname="Pages" assign="active"]-->
+<!--[if $active]-->
+<fieldset><legend>Activate Pages?</legend>
+<label class='nl_checkbox'>
+<input name="pagesplugin" type="checkbox" value="1" <!--[$pagesplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+</label>
+</fieldset>
+<!--[/if]-->
 
 </div>
 
-  <div class="pn-adminformrow pn-adminformbuttons">
-    <!--[pnbutton src=button_ok.gif set=icons/small alt="_EDITORUPDATE" title="_EDITORUPDATE"]-->
-    <a href="<!--[pnmodurl modname=newsletter type=admin func="updateplugins"]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
+<div class="pn-adminformrow pn-adminformbuttons">
+<b>Update Config</b><br />
+<!--[pnbutton src=button_ok.gif set=icons/small alt="_EDITORUPDATE" title="_EDITORUPDATE"]-->
+<a href="<!--[pnmodurl modname=newsletter type=admin func="updateplugins"]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
   </div>
  </form>
  <br style="clear:both" />
 </div>
+<script type='text/javascript'>
+document.observe('dom:loaded', function() {
+   new ProtoCheck();
+
+   $('pcform').observe('submit', function(ev) {
+      ev.stop();
+      alert($('pcform').serialize().replace(/&/g, '\n'));
+   });
+});
+</script>
 

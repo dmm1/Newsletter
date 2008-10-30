@@ -152,4 +152,7 @@ define('_BYUSERNAME','mittels Usernamen');
 define('_BYUSEREMAIL','mittels Useremailadresse');
 define('_DELETEALLUSERS','Alle Abonnenten löschen');
 define('_REQUIRETERMSOFSERVICE','Zustimmung zu den Nutzungsbedingungen notwendig?');
+
+define('_AVAILABLEPLUGINS','verfügbare Plugins');
+
 ?>

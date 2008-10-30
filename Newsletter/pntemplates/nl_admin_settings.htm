@@ -1,4 +1,7 @@
 <!--[include file="nl_admin_menu.htm"]-->
+<!--[pnpageaddvar name="javascript" value="modules/Newsletter/pnjavascript/protocheck.js"]-->
+<!--[pnpageaddvar name="javascript" value="modules/Newsletter/pnstyle/style.css"]-->
+
 <div style="width:80%; margin:0px auto;">
 
 <div style="text-align:left; margin:2px auto;">
@@ -20,9 +23,9 @@
 		<tr>
 			<td><!--[pnml name="_ARCHIVE_TYPE"]--></td>
 			<td>
-				<input name="archive_type" type="radio" value="1" <!--[$archive_type_1_checked]-->/> <!--[pnml name="_DATABASE"]-->
+				<label class='nl_radiobutton'><input name="archive_type" name="radio2" type="radio" value="1" <!--[$archive_type_1_checked]-->/> &nbsp; <!--[pnml name="_DATABASE"]--> </label>
 				&nbsp;|&nbsp;
-				<input name="archive_type" type="radio" value="2" <!--[$archive_type_2_checked]-->/> <!--[pnml name="_FILE"]-->
+				<label class='nl_radiobutton'><input name="archive_type" name="radio2" type="radio" value="2" <!--[$archive_type_2_checked]-->/> &nbsp; <!--[pnml name="_FILE"]--> </label>
 			</td>
 		</tr>
 		<tr>
@@ -39,15 +42,15 @@
 		</tr>
 		<tr>
 			<td><!--[pnml name="_RECEIVESUBSCRIPTIONNOTICES"]--> ?</td>
-			<td><input name="notify_admin" type="checkbox" value="1" <!--[$notify_admin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--></td>
+			<td><label class='nl_checkbox'><input name="notify_admin" type="checkbox" value="1" <!--[$notify_admin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
 		</tr>
 		<tr>
 			<td><!--[pnml name="_ALLOWANONYMOUSREGISTRATIONS"]--> ?</td>
-			<td><input name="allow_anon_registration" type="checkbox" value="1" <!--[$allow_anon_registration_checked]-->/> <!--[pnml name="_CHECKEDYES"]--></td>
+			<td><label class='nl_checkbox'><input name="allow_anon_registration" type="checkbox" value="1" <!--[$allow_anon_registration_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
 		</tr>
 		<tr>
 			<td><!--[pnml name="_AUTOAPPROVEREGISTRATIONS"]--> ?</td>
-			<td><input name="auto_approve_registrations" type="checkbox" value="1" <!--[$auto_approve_registrations_checked]-->/> <!--[pnml name="_CHECKEDYES"]--></td>
+			<td><label class='nl_checkbox'><input name="auto_approve_registrations" type="checkbox" value="1" <!--[$auto_approve_registrations_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
 		</tr>
 		<tr>
 			<td><!--[pnml name="_DEFAULTNEWSLETTERTYPE"]-->:</td>
@@ -67,7 +70,7 @@
 		</tr>
 		<tr>
 			<td><!--[pnml name="_ALLOWFREQUENCYCHANGES"]--> ?</td>
-			<td><input name="allow_frequency_change" type="checkbox" value="1" <!--[$allow_frequency_change_checked]-->/> <!--[pnml name="_CHECKEDYES"]--></td>
+			<td><label class='nl_checkbox'><input name="allow_frequency_change" type="checkbox" value="1" <!--[$allow_frequency_change_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
 		</tr>
 		<tr>
 			<td><!--[pnml name="_SENDDAY"]-->:</td>
@@ -87,7 +90,7 @@
 		</tr>
 		<tr>
 			<td><!--[pnml name="_PERSONALIZEEMAIL"]--> ?</td>
-			<td><input name="personalize_email" type="checkbox" value="1" <!--[$personalize_email_checked]-->/> <em> <!--[pnml name="_DISABLETOINCREASEPERFORMANCE"]--></em></td>
+			<td><label class='nl_checkbox'><input name="personalize_email" type="checkbox" value="1" <!--[$personalize_email_checked]-->/> <em> <!--[pnml name="_DISABLETOINCREASEPERFORMANCE"]--></em> </label></td>
 		</tr>
 		<tr>
 			<td><!--[pnml name="_ADMINKEY"]--></td>
@@ -95,12 +98,6 @@
 		</tr>
 		<tr>
 			<td colspan="2" style="height:20px;"></td>
-		</tr>
-		<tr>
-			<td>
-			<tr>
-			<td>enablecategorization ?</td>
-			<td><input name="enablecategorization" type="checkbox" value="1" <!--[$enablecategorization_email_checked]-->/> <em> enablecategorization</em></td>
 		</tr>
 			</td>
 			<td><input type="submit" name="submit" value="<!--[pnml name="_UPDATE"]--> " /> </td>
@@ -129,11 +126,11 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;"><!--[pnml name="_FILE"]-->:</td>
-			<td><input type="checkbox" name="file_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></td>
+			<td><label class='nl_checkbox'><input type="checkbox" name="file_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></label></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;"><!--[pnml name="_DATABASE"]-->:</td>
-			<td><input type="checkbox" name="db_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></td>
+			<td><label class='nl_checkbox'><input type="checkbox" name="db_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></label></td>
 		</tr>
 		<tr>
 			<td colspan="2" style="height:20px;"></td>
@@ -146,3 +143,13 @@
 	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
 	</form>
 </div>
+<script type='text/javascript'>
+document.observe('dom:loaded', function() {
+   new ProtoCheck();
+
+   $('pcform').observe('submit', function(ev) {
+      ev.stop();
+      alert($('pcform').serialize().replace(/&/g, '\n'));
+   });
+});
+</script>

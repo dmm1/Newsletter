@@ -12,8 +12,7 @@
  * @author sven schomacker, modifier by florian schiessl, modified by dmm for newsletter
  * @version 2.1
  *
- * This plugin checks current version for a given 
- * ifs-net programmed module and will
+ * This plugin checks current version for Newslettermodule and will
  * check if a newer version is available for download.
  */
 
@@ -42,7 +41,7 @@ function smarty_function_versioncheck($params, &$smarty)
     
     if ($currentversion != $newestversion) {
 	// generate info link if new version is available
-      $output .= " (<strong><a href=\"http://code.zikula.org/newsletter/\">Please update! Latest release: ".$newestversion."</a></strong>)";
+      $output .= " (<strong><a id=\"versioncheck\" href=\"javascript:showInfo('http://www.ffneunkirchen.at/dev/newsletter-info.txt')\">Please update! Latest release: ".$newestversion."</a></strong>)";
     }   
     echo($output);
     return; 
