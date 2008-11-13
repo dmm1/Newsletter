@@ -37,6 +37,54 @@
 <!--[ else ]-->
 <!--[ /if ]-->
 
+<!--[ pnmodgetvar assign="crpVideoplugin" module="Newsletter" name="crpVideoplugin" default="0" ]-->
+<!--[ if ($crpVideoplugin) ]-->
+<div class="nl-content-wrapper">
+<h1>New Videos</h1>
+	<!--[newsletter_crpvideo limit_items="2" limit_text="300" assign="crpVideo"]-->
+<table class="nl-crpvideo">
+<tr>
+<th>Title</th>
+<th>Description</th>
+</tr>
+<!--[section name="crpVideo" loop="$crpVideo"]-->
+<tr>
+<td><h3><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=crpVideo&amp;func=display&amp;videoid=<!--[$crpVideo[crpVideo].crpvideos_videoid]-->" title="<!--[$pages[pages].pages_title|pnvarprepfordisplay]-->"><!--[$crpVideo[crpVideo].crpvideos_title]--></a></h3></td>
+<td><div><!--[$crpVideo[crpVideo].crpvideos_content|pnvarprephtmldisplay]--></div></td>
+</tr>
+<!--[/section]-->
+</table>
+<!--[ else ]-->
+<!--[ /if ]-->
+
+<!--[ pnmodgetvar assign="crpcalendarplugin" module="Newsletter" name="crpcalendarplugin" default="0" ]-->
+<!--[ if ($crpcalendarplugin) ]-->
+<div class="nl-content-wrapper">
+<h1>New Events</h1>
+	<!--[newsletter_crpcalendar limit_items="2" limit_text="300" assign="crpcalendar"]-->
+<table class="nl-crpcalendar">
+<tr>
+<th>Title</th>
+<th>Begin</th>
+<th>Location</th>
+<th>Description</th>
+</tr>
+<!--[section name="crpcalendar" loop="$crpcalendar"]-->
+<tr>
+<td><h3><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=crpCalendar&amp;func=display&amp;videoid=<!--[$crpcalendar[crpcalendar].crpcalendar_eventid]-->" title="<!--[$pages[pages].pages_title|pnvarprepfordisplay]-->"><!--[$crpcalendar[crpcalendar].crpcalendar_title]--></a></h3></td>
+
+<td><div><!--[$crpcalendar[crpcalendar].crpcalendar_event_text|pnvarprephtmldisplay]--></div></td>
+<td><div><!--[$crpcalendar[crpcalendar].crpcalendar_location|pnvarprephtmldisplay]--></div></td>
+<td><div><!--[$crpcalendar[crpcalendar].crpcalendar_start_date|pnvarprephtmldisplay]--></div></td>
+
+
+
+</tr>
+<!--[/section]-->
+</table>
+<!--[ else ]-->
+<!--[ /if ]-->
+
 <!--[ pnmodgetvar assign="newmemberplugin" module="Newsletter" name="newmemberplugin" default="0" ]-->
 <!--[ if ($newmemberplugin) ]-->	
 <div class="nl-content-wrapper">

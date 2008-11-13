@@ -45,7 +45,24 @@
 </label>
 </fieldset>
 <!--[/if]-->
+<!--[pnmodavailable modname="crpVideo" assign="active"]-->
+<!--[if $active]-->
+<fieldset><legend>Activate crpVideo?</legend>
+<label class='nl_checkbox'>
+<input name="crpVideoplugin" type="checkbox" value="1" <!--[$crpVideoplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+</label>
+</fieldset>
+<!--[/if]-->
+</div>
 
+<!--[pnmodavailable modname="crpVideo" assign="active"]-->
+<!--[if $active]-->
+<fieldset><legend>Activate crpCalendar?</legend>
+<label class='nl_checkbox'>
+<input name="crpcalendarplugin" type="checkbox" value="1" <!--[$crpcalendarplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+</label>
+</fieldset>
+<!--[/if]-->
 </div>
 
 <div class="pn-adminformrow pn-adminformbuttons">
