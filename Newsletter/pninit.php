@@ -50,6 +50,7 @@ function Newsletter_init()
   	pnModSetVar('Newsletter','personalize_email','0');
   	pnModSetVar('Newsletter','admin_key',substr(md5(time()),-10));
   	pnModSetVar('Newsletter','max_send_per_hour',0);
+	pnModSetVar('Newsletter','how_many_news_plugin','2');
 	pnModSetVar('Newsletter', 'enablecategorization', true);
     pnModSetVar('Newsletter', 'addcategorytitletopermalink', true);
 	

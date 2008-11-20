@@ -28,9 +28,10 @@
 <!--[ if ($newsplugin) ]-->
 <div class="nl-content-wrapper">
 <h1>News</h1>
-<!--[newsletter_news_items limit_items="3" assign="news_items"]-->
+<!--[pnmodgetvar module="Newsletter" name="how_many_news_plugin" assign="news_items_x"]-->
+<!--[newsletter_news_items limit_items="$news_items_x" assign="news_items"]-->
 <!--[section name="news_items" loop="$news_items"]-->
-<h4><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&amp;topic=<!--[$news_items[news_items].topic_id]-->" title="<!--[$news_items[news_items].topic_title|pnvarprephtmldisplay]-->"><!--[$news_items[news_items].topic_title|pnvarprephtmldisplay]--></a> <a>&gt;</a> <a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&amp;file=article&amp;sid=<!--[$news_items[news_items].story_id]-->" title="<!--[$news_items[news_items].story_title|pnvarprephtmldisplay]-->"><!--[$news_items[news_items].story_title|pnvarprephtmldisplay]--></a></h4>
+<h4><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=News&amp;func=display&amp;sid=<!--[$news_items[news_items].story_id]-->" title="<!--[$news_items[news_items].story_title|pnvarprephtmldisplay]-->"><!--[$news_items[news_items].story_title|pnvarprephtmldisplay]--></a></h4>
 <div><!--[$news_items[news_items].story_content|pnvarprephtmldisplay|url_check]--></div>
 <!--[/section]-->
 </div>
