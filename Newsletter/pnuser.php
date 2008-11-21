@@ -2,6 +2,11 @@
 
 function Newsletter_user_main($args)
 {
+    // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
+	
 	$user_email = pnVarCleanFromInput('user_email');
 	extract($args);
 	    
@@ -37,6 +42,11 @@ return $pnRender->fetch('nl_user_main.htm');
 
 function Newsletter_user_subscribe($args)
 {
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
+	
 	list($tos,
 		 $user_name,
 		 $user_email,
@@ -137,6 +147,11 @@ return true;
 
 function Newsletter_user_unsubscribe($args)
 {
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
+	
 	$user_email = pnVarCleanFromInput('user_email');
 	
 	if(pnUserLoggedIn()){
@@ -177,9 +192,9 @@ return true;
 
 function Newsletter_user_show_archives()
 {
-	
-	if (!pnSecAuthAction(0, 'Newsletter::Archives', '::', ACCESS_READ)) {
-        return pnVarPrepHTMLDisplay(_NOACCESS);
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
     }
     
 	$pnRender =& new pnRender('Newsletter');
@@ -221,6 +236,10 @@ return $pnRender->fetch('nl_user_show_archives.htm');
 
 function Newsletter_user_terms_of_service()
 {
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
 	
 	$pnRender =& new pnRender('Newsletter');
 	$pnRender->caching = false;
@@ -230,6 +249,11 @@ return $pnRender->fetch('nl_user_terms_of_service.htm');
 
 function Newsletter_user_manage_newsletter()
 {
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
+	
 	$pnRender =& new pnRender('Newsletter');
 	$pnRender->caching = false;
 	
@@ -285,6 +309,11 @@ return $pnRender->fetch('nl_user_manage_newsletter.htm');
 
 function Newsletter_user_modify_subscription($args)
 {
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
+	
 	list($nl_type,
 		 $nl_frequency,
 		 $suspend_account) = pnVarCleanFromInput('nl_type',
@@ -311,6 +340,12 @@ return true;
 }
 
 function Newsletter_user_view_archive($args){
+
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
+	
 	$date = pnVarCleanFromInput('date');
 	extract($args);
 	
@@ -344,6 +379,10 @@ exit;
 
 function Newsletter_user_send($args)
 {
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
 	list($admin_key,$scheduled) = pnVarCleanFromInput('admin_key','scheduled');
 	extract($args);
 	
