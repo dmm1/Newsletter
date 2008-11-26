@@ -576,30 +576,35 @@ function Newsletter_userapi_get_user_by_email($args)
 
 function Newsletter_userapi_get_send_day()
 {
-	$days = array('1'=>_MONDAY,
-				  '2'=>_TUESDAY,
-				  '3'=>_WEDNESDAY,
-				  '4'=>_THURSDAY,
-				  '5'=>_FRIDAY,
-				  '6'=>_SATURDAY,
-				  '7'=>_SUNDAY);
+pnModLangLoad('Newsletter', 'user');
+
+	$days = array('1'=> pnML('_MONDAY'),
+				  '2'=> pnML('_TUESDAY'), 
+				  '3'=> pnML('_WEDNESDAY'),
+				  '4'=> pnML('_THURSDAY'), 
+				  '5'=> pnML('_FRIDAY'), 
+				  '6'=> pnML('_SATURDAY'), 
+				  '0'=> pnML('_SUNDAY'));
 return $days;
 }
 	
 function Newsletter_userapi_get_newsletter_types($args)
 {
-	$types = array('1'=>_TEXT,
-				   '2'=>_HTML,
-				   '3'=>_TEXTWLINK);
+pnModLangLoad('Newsletter', 'user');
+
+	$types = array('1'=> pnML('_TEXT'),
+				   '2'=> pnML('_HTML'),
+				   '3'=> pnML('_TEXTWLINK'));
 return $types;
 }
 
 function Newsletter_userapi_get_newsletter_frequency()
 {
-	$frequency = array('1'=>_WEEKLY,
-					   '2'=>_MONTHLY,
-					   '3'=>_YEARLY);
-	
+pnModLangLoad('Newsletter', 'user');
+
+	$frequency = array('1'=> pnML('_WEEKLY'),  
+					   '2'=> pnML('_MONTHLY'),  
+					   '3'=> pnML('_YEARLY'));
 return $frequency;
 }
 
