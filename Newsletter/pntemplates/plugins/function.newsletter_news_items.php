@@ -8,7 +8,7 @@
  * Smarty function to retrieve recent news items
  * @author  Devin Hayes 2004
   * @author ported to zikula by Axel "guite" Guckelsberger 04.07.2008
-   * @author modified by dmm for bugfixing
+   * @author modified by dmm for bugfixing  20.11.08
    
    *   <!--[newsletter_newsitems  published_status="0" limit_items="2" limit_text="30"]-->
     *  <!--[newsletter_news_items published_status="1" limit_items="2"]-->
@@ -44,7 +44,7 @@ $orderBy = $scolumn['time'] . ' DESC';
         $data[] = array('story_id' => $item['sid'],
                         'story_title' => $item['title'],
                         'story_summary' => $story_parts['0'],
-						'published_status' => $published_status,
+						'story_published_status' => $published_status,
 						'story_content' => $item['hometext']);
     }
 
