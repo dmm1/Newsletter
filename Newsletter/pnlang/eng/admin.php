@@ -151,7 +151,9 @@ define('_BYUSERNAME','By User name');
 define('_BYUSEREMAIL','By User email');
 define('_DELETEALLUSERS','Delete all users');
 define('_REQUIRETERMSOFSERVICE','Require Terms of Service ?');
-
 define('_AVAILABLEPLUGINS','available Plugins');
+define('_ACTIVATE1','activate');
+define('_NEWS','News');
+define('_UPDATECONFIG','update Configuration');
 
 ?>

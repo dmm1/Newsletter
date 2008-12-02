@@ -50,18 +50,15 @@ function Newsletter_init()
   	pnModSetVar('Newsletter','personalize_email','0');
   	pnModSetVar('Newsletter','admin_key',substr(md5(time()),-10));
   	pnModSetVar('Newsletter','max_send_per_hour',0);
-	pnModSetVar('Newsletter','how_many_news_plugin','2');
-	pnModSetVar('Newsletter', 'enablecategorization', true);
-    pnModSetVar('Newsletter', 'addcategorytitletopermalink', true);
+	pnModSetVar('Newsletter', 'how_many_news_plugin', 3);
+	pnModSetVar('Newsletter', 'how_many_weblinks_plugin', 3);
+	
 	
   	 if ($dbconn->ErrorNo() != 0) {
         pnSessionSetVar('errormsg', 'Create Table Failed');
         return false;
     }
 	
-	if (!_newsletter_createdefaultcategory()) {
-        return LogUtil::registerError (_CREATEFAILED);
-    }
     
     return true;
 }
@@ -77,6 +74,10 @@ function Newsletter_upgrade($oldversion) {
 		case '1.2':
 			pnModSetVar('Newsletter','max_send_per_hour',0);
 		break;
+		case '1.5':
+			 	pnModSetVar('Newsletter', 'how_many_news_plugin', 3);
+				pnModSetVar('Newsletter', 'how_many_weblinks_plugin', 3);
+		break;
     }
     return true;
 }
@@ -90,71 +91,8 @@ function Newsletter_delete()
     $nl_archives = $prefix.'_newsletter_archives';
     $dbconn->Execute("DROP TABLE IF EXISTS $nl_users, $nl_archives") or die($dbconn->ErrorMsg());
 
- // Delete entries from category registry
-    pnModDBInfoLoad ('Categories');
-    Loader::loadArrayClassFromModule('Categories', 'CategoryRegistry');
-    $registry = new PNCategoryRegistryArray();
-    $registry->deleteWhere ('crg_modname=\'Newsletter\'');
-
     pnModDelVar ('Newsletter');
 	
 return true;   
 }
 
-function _Newsletter_createdefaultcategory()
-{
-    // load necessary classes
-    Loader::loadClass('CategoryUtil');
-    Loader::loadClassFromModule('Categories', 'Category');
-    Loader::loadClassFromModule('Categories', 'CategoryRegistry');
-
-    // get the language file
-    $lang = pnUserGetLang();
-
-    // get the category path for which we're going to insert our place holder category
-    $rootcat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules');
-    $nlCat  = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
-    if (!$nlCat) {
-        $cat = new PNCategory ();
-        $cat->setDataField('parent_id', $rootcat['id']);
-        $cat->setDataField('name', 'Newsletter');
-        $cat->setDataField('display_name', array($lang => 'Newsletter'));
-        $cat->setDataField('display_desc', array($lang => 'Newsletter'));
-        if (!$cat->validate('admin')) {
-            return false;
-        }
-        $cat->insert();
-        $cat->update();
-    }
-    $nlCat  = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
-
-    $prdCat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
-    if (!$prdCat) {
-        $cat = new PNCategory ();
-        $cat->setDataField('parent_id', $nlCat['id']);
-        $cat->setDataField('name', 'Default');
-        $cat->setDataField('display_name', array($lang => 'Default'));
-        $cat->setDataField('display_desc', array($lang => 'Default'));
-        if (!$cat->validate('admin')) {
-            return false;
-        }
-        $cat->insert();
-        $cat->update();
-        $prdCat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Newsletter');
-        }
-   
-
-    if ($prdCat) {
-        // place category registry entry for Default (key == Default)
-        $registry = new PNCategoryRegistry();
-        $registry->setDataField('modname', 'Newsletter');
-        $registry->setDataField('table', 'newsletter_categories');
-        $registry->setDataField('property', 'Newsletter');
-        $registry->setDataField('category_id', $prdCat['id']);
-        $registry->insert();
-
-    }
-
-
-    return true;
-}

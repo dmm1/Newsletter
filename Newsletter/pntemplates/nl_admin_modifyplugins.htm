@@ -3,9 +3,6 @@
 <!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
 <!--[pnthemegetvar name="bgcolor3" assign="bgcolor2"]-->
 
-
-
-
 <h2><!--[pnml name="_AVAILABLEPLUGINS"]--></h2>
 
 <form class="pn-adminform" action="<!--[pnmodurl modname="Newsletter" type="admin" func="updateplugins"]-->" method="post" enctype="application/x-www-form-urlencoded">
@@ -13,74 +10,81 @@
 <input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
 <!--[pnmodavailable modname="Admin_Messages" assign="active"]-->
 <!--[if $active]-->
-<legend>Activate Adminmessages?</legend>
+<legend><!--[pnml name="_ACTIVATE1"]--> Adminmessages?</legend>
 <label class='nl_checkbox'>
-<input name="adminmessagesplugin" type="checkbox" value="1" <!--[$adminmessagesplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> 
+<input id="adminmessagesplugin" type="checkbox" name="adminmessagesplugin" value="1"<!--[if $adminmessagesplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
 </label>
 <br /><br />
 <!--[/if]-->
 
 <!--[pnmodavailable modname="News" assign="active"]-->
 <!--[if $active]-->
-<legend>Activate News?</legend>
+<legend><!--[pnml name="_ACTIVATE1"]--> News?</legend>
 <label class='nl_checkbox'>
-<input name="newsplugin" type="checkbox" value="1" <!--[$newsplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
-</label>
+<input id="newsplugin" type="checkbox" name="newsplugin" value="1"<!--[if $newsplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
+</label>		
 Anzahl der Newsbeitr&auml;ge <br />
-<input name="how_many_news_plugin" type="text" value="<!--[pnmodgetvar module="Newsletter" name="how_many_news_plugin"]-->" style="width:30px;" /> 
+		<div class="pn-adminformrow">
+			<label for="how_many_news_plugin"><!--[pnml name="_ITEMSPERPAGE"]--></label>
+			<input id="how_many_news_plugin" type="text" name="how_many_news_plugin" size="3" value="<!--[$how_many_news_plugin|pnvarprepfordisplay]-->" />
+		</div>
 <br /><br />
 <!--[/if]-->
 
 <!--[pnmodavailable modname="Users" assign="active"]-->
 <!--[if $active]-->
-<legend>Activate New Members?</legend>
+<legend><!--[pnml name="_ACTIVATE1"]--> New Members?</legend>
 <label class='nl_checkbox'>
-<input name="newmemberplugin" type="checkbox" value="1" <!--[$newmemberplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+<input id="newmemberplugin" type="checkbox" name="newmemberplugin" value="1"<!--[if $newmemberplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
 </label>
 <br /><br />
 <!--[/if]-->
 
 <!--[pnmodavailable modname="Pages" assign="active"]-->
 <!--[if $active]-->
-<legend>Activate Pages?</legend>
+<legend><!--[pnml name="_ACTIVATE1"]--> Pages?</legend>
 <label class='nl_checkbox'>
-<input name="pagesplugin" type="checkbox" value="1" <!--[$pagesplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+<input id="pagesplugin" type="checkbox" name="pagesplugin" value="1"<!--[if $pagesplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
 </label>
 <br /><br />
 <!--[/if]-->
 
 <!--[pnmodavailable modname="crpVideo" assign="active"]-->
 <!--[if $active]-->
-<legend>Activate crpVideo?</legend>
+<legend><!--[pnml name="_ACTIVATE1"]--> crpVideo?</legend>
 <label class='nl_checkbox'>
-<input name="crpVideoplugin" type="checkbox" value="1" <!--[$crpVideoplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+<input id="crpVideoplugin" type="checkbox" name="crpVideoplugin" value="1"<!--[if $crpVideoplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
 </label>
 <br /><br />
 <!--[/if]-->
 
 <!--[pnmodavailable modname="crpVideo" assign="active"]-->
 <!--[if $active]-->
-<legend>Activate crpCalendar?</legend>
+<legend><!--[pnml name="_ACTIVATE1"]--> crpCalendar?</legend>
 <label class='nl_checkbox'>
-<input name="crpcalendarplugin" type="checkbox" value="1" <!--[$crpcalendarplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+<input id="crpcalendarplugin" type="checkbox" name="crpcalendarplugin" value="1"<!--[if $crpcalendarplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
 </label>
 <br /><br />
 <!--[/if]-->
 
 <!--[pnmodavailable modname="Web_Links" assign="active"]-->
 <!--[if $active]-->
-<legend>Activate Web_Links?</legend>
+<legend><!--[pnml name="_ACTIVATE1"]--> Web_Links?</legend>
 <label class='nl_checkbox'>
-<input name="weblinksplugin" type="checkbox" value="1" <!--[$weblinksplugin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> <br />
+<input id="weblinksplugin" type="checkbox" name="weblinksplugin" value="1"<!--[if $weblinksplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
 </label>
-Anzahl der Links <br />
-<input name="how_many_weblinks_plugin" type="text" value="<!--[pnmodgetvar module="Newsletter" name="how_many_weblinks_plugin"]-->" style="width:30px;" /> 
-<br /><br />
+<div class="pn-adminformrow">
+	<div class="pn-adminformrow">
+			<label for="how_many_weblinks_plugin">Anzahl der Links</label>
+			<input id="how_many_weblinks_plugin" type="text" name="how_many_weblinks_plugin" size="3" value="<!--[$how_many_weblinks_plugin|pnvarprepfordisplay]-->" />
+		</div>
+</div>
+
 <!--[/if]-->
 
 
 <br />
-<b>Update Config</b><br />
+<b><!--[pnml name="_UPDATECONFIG"]--></b><br />
 <!--[pnbutton src=button_ok.gif set=icons/small alt="_EDITORUPDATE" title="_EDITORUPDATE"]-->
 <a href="<!--[pnmodurl modname=newsletter type=admin func="updateplugins"]-->"><!--[pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL"]--></a>
   	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />

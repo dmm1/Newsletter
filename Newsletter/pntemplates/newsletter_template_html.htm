@@ -120,20 +120,34 @@
 <!--[ else ]-->
 <!--[ /if ]-->
 
-<p>Thanks for subscribing<!--[if $user_name neq ""]--> <!--[$user_name]--><!--[/if]-->!<br />
-			<!--[$site_name]--> Staff<br />
+<!--[ pnmodgetvar assign="weblinksplugin" module="Newsletter" name="weblinksplugin" default="0" ]-->
+<!--[ if ($weblinksplugin) ]-->	
+	<div class="nl-content-wrapper">
+		<h1>Recently Added Links</h1>
+		<!--[pnmodgetvar module="Newsletter" name="how_many_weblinks_plugin" assign="weblinks_items_x"]-->
+		<!--[newsletter_weblinks limit_items="$weblinks_items_x" assign="link"]-->
+	<!--[section name="link" loop="$link"]-->
+		<h3><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?name=Web_Links&amp;func=display&amp;lid=<!--[$Web_Links[Web_Links].pageid]-->" title="<!--[$pages[pages].pages_title|pnvarprepfordisplay]-->"><!--[$Web_Links[Web_Links].links_links_title]--></a></h3>
+		<div><!--[$pages[pages].pages_content|pnvarprephtmldisplay]--></div>
+	<!--[/section]-->
+	</div>						
+<!--[ else ]-->
+<!--[ /if ]-->
+
+<p>Vielen Dank <!--[if $user_name neq ""]--> <!--[$user_name]--><!--[/if]-->, dass Sie unseren Newsletter abonniert haben!<br />
+			<!--[$site_name]--> Web-Team<br />
 			<!--[$site_url]--></p>
 			
 			<!--[if $archive_time gt 0]-->
 			<hr />
-			<p>link to archive:<br />
+			<p>Link zum Archiv:<br />
 			<a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter&amp;func=view_archive&amp;date=<!--[$archive_time]-->" title="link to archive"><!--[$site_url|pnvarprepfordisplay]--></a></p>
 			<!--[/if]-->
 			
 			<hr />
-			<p>You are receiving this message because you have signed up for our news letter. 
-			If you do not wish to receive any more of these notifications you may unsubscribe at the link below.</p>
-			<p><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter" title="unsubscribe"><strong>Unsubscribe</strong></a></p>
+			<p>Sie bekommen diesen Newsletter, da sie sich auf unserer Seite da&uuml;r angemeldet haben,
+			sollten Sie ihn nicht weiter empfangen m&ouml;chten, so k&ouml;nnen Sie sich</p>
+			<p><a href="<!--[$site_url|pnvarprepfordisplay]-->index.php?module=Newsletter" title="unsubscribe"><strong>hier abmelden!</strong></a></p>
 		</div>
 	</body>
 </html>
