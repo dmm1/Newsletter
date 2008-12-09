@@ -9,7 +9,6 @@ function Newsletter_admin_main()
         return LogUtil::registerPermissionError();
     }
 	
-
     $pnRender =& new pnRender('Newsletter');
     $pnRender->caching = false;
 
