@@ -2,6 +2,7 @@
 include 'modules/Newsletter/pnlang/eng/help.php';
 
 define('_BADAUTHKEY','Authorization key expired.');
+define('_MAIN','Start');
 define('_CONFIG_UPDATE_SUCCESSFUL','Configuration updated successfully.');
 define('_CONFIGURATION','Configuration');
 define('_DELETE_FAILED','Removal failed.');

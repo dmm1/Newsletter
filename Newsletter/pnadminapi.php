@@ -1,5 +1,24 @@
 <?php
 
+function Newsletter_adminapi_getlinks()
+{
+    $links = array();
+
+    pnModLangLoad('Newsletter', 'admin');
+
+    if (SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'main'), 'text' => _MAIN);
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'settings'), 'text' => _NEWSLETTERADMIN);
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'preview_template'), 'text' => _PREVIEW);
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view_subscribers'), 'text' => _VIEW_SUBSCRIBERS);
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'modifynewsletter'), 'text' => _VIEW_PLUGINS);
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'import'), 'text' => _USERIMPORT);
+		$links[] = array('url' => pnModURL('Newsletter', 'admin', 'delete_user'), 'text' => _DELETEUSER);
+    }
+
+    return $links;
+}
+
 function Newsletter_adminapi_get_all_subscribers($args)
 {
     extract($args);
