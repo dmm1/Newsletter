@@ -1,7 +1,18 @@
 <?php
 include 'modules/Newsletter/pnlang/deu/help.php';
 
-define('_BADAUTHKEY','Authorization key expired.');
+define('_BADAUTHKEY','Der Authorisierungsschlüssel ist abgelaufen.');
+define('_WELCOME1','Willkommen bei Newsletter!');
+define('_INFO','Informationen');
+define('_NEWSLETTERTYPE','Newsletter Typ');
+define('_IMPORT','Importieren');
+define('_HOWMANY','Wie viele?');
+
+define('_VERSION','Version');
+define('_YOUFIND','Sie finden alle Informationen rund um Newsletter auf der');
+define('_PROJECT','Projekt');
+define('_PAGE','Seite');
+define('_BUG','Bitte machen Sie dort Fehler- oder Anregungsmeldungen!');
 define('_MAIN','Start');
 define('_CONFIG_UPDATE_SUCCESSFUL','Konfiguration erfolgreich upgedatet !');
 define('_CONFIGURATION','Konfiguration');
@@ -109,7 +120,10 @@ define('_CHANGEUSERAPPROVALSTATUS','Wollen Sie den Status des Users wirklich änd
 
 define('_UPDATELASTSENTDATES','Datum der letzten Sendung aktualisieren?');
 define('_ACTIVE','Aktiv');
+define('_SUSPENDED','Inaktiv');
+
 define('_APPROVED','akzeptiert');
+define('_UNAPPROVED','nicht akzeptiert');
 define('_LASTSENT','zuletzt gesendet');
 define('_JOINDATE','abonniert am');
 define('_FREQUENCY','Intervall');

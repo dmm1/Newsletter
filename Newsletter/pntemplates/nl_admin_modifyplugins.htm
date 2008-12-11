@@ -3,6 +3,9 @@
 <!--[pnthemegetvar name="bgcolor2" assign="bgcolor1"]-->
 <!--[pnthemegetvar name="bgcolor3" assign="bgcolor2"]-->
 
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><img src="modules/Newsletter/pnimages/admin.gif" /></div>
+
 <h2><!--[pnml name="_AVAILABLEPLUGINS"]--></h2>
 
 <form class="pn-adminform" action="<!--[pnmodurl modname="Newsletter" type="admin" func="updateplugins"]-->" method="post" enctype="application/x-www-form-urlencoded">
@@ -23,7 +26,7 @@
 <label class='nl_checkbox'>
 <input id="newsplugin" type="checkbox" name="newsplugin" value="1"<!--[if $newsplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
 </label>		
-Anzahl der Newsbeitr&auml;ge <br />
+<!--[pnml name="_HOWMANY"]--> <br />
 		<div class="pn-adminformrow">
 			<label for="how_many_news_plugin"><!--[pnml name="_ITEMSPERPAGE"]--></label>
 			<input id="how_many_news_plugin" type="text" name="how_many_news_plugin" size="3" value="<!--[$how_many_news_plugin|pnvarprepfordisplay]-->" />
@@ -75,7 +78,7 @@ Anzahl der Newsbeitr&auml;ge <br />
 </label>
 <div class="pn-adminformrow">
 	<div class="pn-adminformrow">
-			<label for="how_many_weblinks_plugin">Anzahl der Links</label>
+			<label for="how_many_weblinks_plugin"><!--[pnml name="_HOWMANY"]--></label>
 			<input id="how_many_weblinks_plugin" type="text" name="how_many_weblinks_plugin" size="3" value="<!--[$how_many_weblinks_plugin|pnvarprepfordisplay]-->" />
 		</div>
 </div>
@@ -101,5 +104,5 @@ document.observe('dom:loaded', function() {
 </script>	
 
 </form>
-
+</div>
 

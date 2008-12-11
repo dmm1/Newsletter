@@ -1,153 +1,137 @@
 <!--[include file="nl_admin_menu.htm"]-->
 
-<div style="width:80%; margin:0px auto;">
 
-<div style="text-align:left; margin:2px auto;">
-<h2><!--[pnml name="_NEWSLETTERADMIN"]--></h2>
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><img src="modules/Newsletter/pnimages/admin.gif" /></div>
 
-</div>
-	
-    <form name="config" action="<!--[pnmodurl modname="Newsletter" type="admin" func="config_update"]-->" method="post">
-	<table style="width:100%; border:1px solid #ccc; padding:10px;">
-		<tr>
-			<td><!--[pnml name="_SEND_NEWSLETTERS_FROM"]--></td>
-			<td><input name="send_from_address" type="text" value="<!--[pnmodgetvar module="Newsletter" name="send_from_address"]-->" style="width:180px;" />
+<form name="config" action="<!--[pnmodurl modname="Newsletter" type="admin" func="config_update"]-->" method="post">
+<fieldset>	
+	<legend><!--[pnml name="_NEWSLETTERADMIN"]--></legend>
+		<div class="pn-adminformrow">
+			<label for="send_from_address"><!--[pnml name="_SEND_NEWSLETTERS_FROM"]-->:</label>
+		<div id="send_from_address">
+			<input name="send_from_address" type="text" value="<!--[pnmodgetvar module="Newsletter" name="send_from_address"]-->" style="width:180px;" />
 			<a href="#" title="<!--[pnml name="_HELP"]-->" onclick="Effect.toggle('hint','BLIND'); return false;">(?)</a>
-    <span id="help_send_from" style="display:none"><!--[pnml name="_HELP"]--></span>
-    <div id="hint" class="hint" style="display:none;"><!--[pnml name="HELP_SEND_NEWSLETTERS_FROM"]--></div>
-	
-			</td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_ARCHIVE_TYPE"]--></td>
-			<td>
-				<label class='nl_radiobutton'><input name="archive_type" name="radio2" type="radio" value="1" <!--[$archive_type_1_checked]-->/> &nbsp; <!--[pnml name="_DATABASE"]--> </label>
-				&nbsp;|&nbsp;
-				<label class='nl_radiobutton'><input name="archive_type" name="radio2" type="radio" value="2" <!--[$archive_type_2_checked]-->/> &nbsp; <!--[pnml name="_FILE"]--> </label>
-			</td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_ARCHIVE_DIRECTORY"]--> <!--[$archive_directory_warning]--></td>
-			<td><input name="archive_directory" type="text" value="<!--[pnmodgetvar module="Newsletter" name="archive_directory"]-->" style="width:300px;" /></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_EXPIREARCHIVEDNEWSLETTERS"]-->:</td>
-			<td>
-				<select name="archive_expire">
+			<span id="help_send_from" style="display:none"><!--[pnml name="_HELP"]--></span>
+			<div id="hint" class="hint" style="display:none;"><!--[pnml name="HELP_SEND_NEWSLETTERS_FROM"]--></div>
+	</div></div>
+		<div class="pn-adminformrow">
+		<label for="archive_type"><!--[pnml name="_ARCHIVE_TYPE"]-->:</label>
+		<div id="archive_type">
+			<label class='nl_radiobutton'><input name="archive_type" type="radio" value="1" <!--[$archive_type_1_checked]-->/> &nbsp; <!--[pnml name="_DATABASE"]--> </label>
+			<label class='nl_radiobutton'><input name="archive_type" type="radio" value="2" <!--[$archive_type_2_checked]-->/> &nbsp; <!--[pnml name="_FILE"]--> </label>
+		</div></div>	
+		<div class="pn-adminformrow">
+		<label for="archive_directory"><!--[pnml name="_ARCHIVE_DIRECTORY"]-->:</label>
+		<div id="archive_directory">
+		<input name="archive_directory" type="text" value="<!--[pnmodgetvar module="Newsletter" name="archive_directory"]-->" style="width:300px;" />
+		 <!--[$archive_directory_warning]-->
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="archive_expire_values"><!--[pnml name="_EXPIREARCHIVEDNEWSLETTERS"]-->:</label>
+		<div id="archive_expire_values">
+		<select name="archive_expire_values">
 					<!--[html_options values="$archive_expire_values" output="$archive_expire_output" selected="$archive_expire_selected"]-->
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_RECEIVESUBSCRIPTIONNOTICES"]--> ?</td>
-			<td><label class='nl_checkbox'><input name="notify_admin" type="checkbox" value="1" <!--[$notify_admin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_ALLOWANONYMOUSREGISTRATIONS"]--> ?</td>
-			<td><label class='nl_checkbox'><input name="allow_anon_registration" type="checkbox" value="1" <!--[$allow_anon_registration_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_AUTOAPPROVEREGISTRATIONS"]--> ?</td>
-			<td><label class='nl_checkbox'><input name="auto_approve_registrations" type="checkbox" value="1" <!--[$auto_approve_registrations_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_DEFAULTNEWSLETTERTYPE"]-->:</td>
-			<td>
-				<select name="default_type">
+		</select></div></div>
+		<div class="pn-adminformrow">
+		<label for="notify_admin"><!--[pnml name="_RECEIVESUBSCRIPTIONNOTICES"]--> ?</label>
+		<div id="notify_admin">
+		<label class='nl_checkbox'><input name="notify_admin" type="checkbox" value="1" <!--[$notify_admin_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label>
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="allow_anon_registration"><!--[pnml name="_ALLOWANONYMOUSREGISTRATIONS"]--> ?</label>
+		<div id="allow_anon_registration">
+		<label class='nl_checkbox'><input name="allow_anon_registration" type="checkbox" value="1" <!--[$allow_anon_registration_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label>
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="auto_approve_registrations"><!--[pnml name="_AUTOAPPROVEREGISTRATIONS"]--> ?</label>
+		<div id="auto_approve_registrations">
+		<label class='nl_checkbox'><input name="auto_approve_registrations" type="checkbox" value="1" <!--[$auto_approve_registrations_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label>
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="default_type"><!--[pnml name="_DEFAULTNEWSLETTERTYPE"]-->:</label>
+		<div id="default_type">
+		<select name="default_type">
 					<!--[html_options values="$default_type_values" output="$default_type_output" selected="$default_type_selected"]-->
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_DEFAULTFREQUENCY"]-->:</td>
-			<td>
-				<select name="default_frequency" onchange="if(this.options[selectedIndex].value=='0'){document.forms[0].allow_frequency_change.checked=false; document.forms[0].allow_frequency_change.disabled = true; } else { document.forms[0].allow_frequency_change.disabled = false;}">
+		</select></div></div>
+		<div class="pn-adminformrow">
+		<label for="default_frequency"><!--[pnml name="_DEFAULTFREQUENCY"]-->:</label>
+		<div id="default_frequency">
+		<select name="default_frequency" onchange="if(this.options[selectedIndex].value=='0'){document.forms[0].allow_frequency_change.checked=false; document.forms[0].allow_frequency_change.disabled = true; } else { document.forms[0].allow_frequency_change.disabled = false;}">
 					<!--[html_options values="$frequency_values" output="$frequency_output" selected="$frequency_selected"]-->
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_ALLOWFREQUENCYCHANGES"]--> ?</td>
-			<td><label class='nl_checkbox'><input name="allow_frequency_change" type="checkbox" value="1" <!--[$allow_frequency_change_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_SENDDAY"]-->:</td>
-			<td>
-				<select name="send_day">
+		</select></div></div>
+		<div class="pn-adminformrow">
+		<label for="allow_frequency_change"><!--[pnml name="_ALLOWFREQUENCYCHANGES"]--> ?</label>
+		<div id="allow_frequency_change">
+		<label class='nl_checkbox'><input name="allow_frequency_change" type="checkbox" value="1" <!--[$allow_frequency_change_checked]-->/> <!--[pnml name="_CHECKEDYES"]--> </label>
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="send_day"><!--[pnml name="_SENDDAY"]-->:</label>
+		<div id="send_day">
+		<select name="send_day">
 					<!--[html_options values="$send_days_values" output="$send_days_output" selected="$send_days_selected"]-->
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_SENDPERREQUEST"]--> ?</td>
-			<td><input name="send_per_request" type="text" value="<!--[pnmodgetvar module="Newsletter" name="send_per_request"]-->" style="width:30px;" /> <!--[pnml name="_X"]--></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_MAXIMUMSENDPERHOUR"]--></td>
-			<td><input name="max_send_per_hour" type="text" value="<!--[pnmodgetvar module="Newsletter" name="max_send_per_hour"]-->" style="width:30px;" /> <!--[pnml name="_X"]--> <em> <!--[pnml name="_ZERO"]--> </em></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_PERSONALIZEEMAIL"]--> ?</td>
-			<td><label class='nl_checkbox'><input name="personalize_email" type="checkbox" value="1" <!--[$personalize_email_checked]-->/> <em> <!--[pnml name="_DISABLETOINCREASEPERFORMANCE"]--></em> </label></td>
-		</tr>
-		<tr>
-			<td><!--[pnml name="_ADMINKEY"]--></td>
-			<td><input name="admin_key" type="text" value="<!--[pnmodgetvar module="Newsletter" name="admin_key"]-->" style="width:100px;" /> <!--[pnml name="_USEDTOSIMPLIFYCRONBATCHPROCESSING"]--> </td>
-		</tr>
-		<tr>
-			<td colspan="2" style="height:20px;"></td>
-		</tr>
-			</td>
-			<td><input type="submit" name="submit" value="<!--[pnml name="_UPDATE"]--> " /> </td>
-		</tr>
-		
-	</table>
-	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+		</select></div></div>
+		<div class="pn-adminformrow">
+		<label for="send_per_request"><!--[pnml name="_SENDPERREQUEST"]--> ?</label>
+		<div id="send_per_request">
+		<input name="send_per_request" type="text" value="<!--[pnmodgetvar module="Newsletter" name="send_per_request"]-->" style="width:30px;" /> <!--[pnml name="_X"]-->
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="max_send_per_hour"><!--[pnml name="_MAXIMUMSENDPERHOUR"]--></label>
+		<div id="max_send_per_hour">
+		<input name="max_send_per_hour" type="text" value="<!--[pnmodgetvar module="Newsletter" name="max_send_per_hour"]-->" style="width:30px;" /> <!--[pnml name="_X"]--> <em> <!--[pnml name="_ZERO"]--> </em>
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="personalize_email"><!--[pnml name="_PERSONALIZEEMAIL"]--> ?</label>
+		<div id="personalize_email">
+		<label class='nl_checkbox'><input name="personalize_email" type="checkbox" value="1" <!--[$personalize_email_checked]-->/> <em> <!--[pnml name="_DISABLETOINCREASEPERFORMANCE"]--></em> </label>
+		</div></div>
+		<div class="pn-adminformrow">
+		<label for="admin_key"><!--[pnml name="_ADMINKEY"]--></label>
+		<div id="admin_key">
+		<input name="admin_key" type="text" value="<!--[pnmodgetvar module="Newsletter" name="admin_key"]-->" style="width:100px;" /> <!--[pnml name="_USEDTOSIMPLIFYCRONBATCHPROCESSING"]--> 
+		</div></div>
+		<div class="pn-adminformrow">
+		<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+		</div>
+		<div class="pn-adminformrow">
+		<input type="submit" name="submit" value="<!--[pnml name="_UPDATE"]--> " /> 
+		</div>
+	</fieldset>
 	</form>
 	
-	<div style="border:1px solid #ccc; padding:10px; margin:10px auto;">
-			<p><!--[pnml name="_ITTOOK"]--> <strong><!--[$last_execution_time]--></strong> <!--[pnml name="_SECONDSTOSENDTHELASTBATCH"]-->.</p>
+	<fieldset>	
+	<legend><!--[pnml name="_INFO"]--></legend>
+	<div class="pn-adminformrow">
+	<p><!--[pnml name="_ITTOOK"]--> <strong><!--[$last_execution_time]--></strong> <!--[pnml name="_SECONDSTOSENDTHELASTBATCH"]-->.</p>
 	</div>
+	</fieldset>
 	
 	<form action="<!--[pnmodurl modname="Newsletter" type="admin" func="flush_archives"]-->" method="post" onsubmit="if(!this.file_archive.checked &amp;&amp; !this.db_archive.checked){alert('<!--[pnml name="_PLEASESELECTANARCHIVETOFLUSH"]-->.'); return false;}">
-	<table style="width:100%; border:1px solid #ccc; padding:10px;">
-		<tr>
-			<th colspan="2"><h2><!--[pnml name="_PRUNEARCHIVES"]--></h2></th>
-		</tr>
-		<tr>
-			<td colspan="2" style="margin-bottom: 10px; text-transform: uppercase; background-color: #ffffea;
-    color: inherit; text-align: center; border: 1px solid red;padding: 10px;">
-				<p>
-				<img src="modules/Newsletter/pnimages/error.gif" alt="" />
-				<strong><!--[pnml name="_NOTE"]-->:</strong> <!--[pnml name="_ARCHIVEOPTIONREMOVE"]-->.</p>
-			</td>
-		</tr>
-		<tr>
-			<td style="text-align:right;"><!--[pnml name="_FILE"]-->:</td>
-			<td><label class='nl_checkbox'><input type="checkbox" name="file_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></label></td>
-		</tr>
-		<tr>
-			<td style="text-align:right;"><!--[pnml name="_DATABASE"]-->:</td>
-			<td><label class='nl_checkbox'><input type="checkbox" name="db_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></label></td>
-		</tr>
-		<tr>
-			<td colspan="2" style="height:20px;"></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input type="submit" name="submit" value="<!--[pnml name="_DELETE"]-->" /> </td>
-		</tr>
-	</table>
+	<fieldset>	
+	<legend><!--[pnml name="_PRUNEARCHIVES"]--></legend>
+	<div class="pn-adminformrow">
+	<p>
+		<img src="modules/Newsletter/pnimages/error.gif" alt="" />
+			<strong><!--[pnml name="_NOTE"]-->:</strong> <!--[pnml name="_ARCHIVEOPTIONREMOVE"]-->.
+	</p>
+	</div>
+	<div class="pn-adminformrow">
+		<label for="file_archive"><!--[pnml name="_FILE"]-->:</label>
+		<div id="file_archive">
+		<label class='nl_checkbox'><input type="checkbox" name="file_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></label>
+		</div></div>
+	<div class="pn-adminformrow">
+		<label for="db_archive"><!--[pnml name="_DATABASE"]-->:</label>
+		<div id="db_archive">
+		<label class='nl_checkbox'><input type="checkbox" name="db_archive" value="1" /> <em><!--[pnml name="_CHECKEDYES"]--></em></label>
+		</div></div>
+	<div class="pn-adminformrow">
 	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+	</div>
+	<div class="pn-adminformrow">	
+	<input type="submit" name="submit" value="<!--[pnml name="_DELETE"]-->" />
+	</div>
+	</fieldset>
 	</form>
 </div>
-<script type='text/javascript'>
-document.observe('dom:loaded', function() {
-   new ProtoCheck();
-
-   $('pcform').observe('submit', function(ev) {
-      ev.stop();
-      alert($('pcform').serialize().replace(/&/g, '\n'));
-   });
-});
-</script>

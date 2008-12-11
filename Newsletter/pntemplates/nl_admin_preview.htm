@@ -1,14 +1,14 @@
 <!--[include file="nl_admin_menu.htm"]-->
-<br />
+
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><img src="modules/Newsletter/pnimages/admin.gif" /></div>
 
 <form name="show_template" action="#" target="_blank">
-		<table style="width:100%; border:1px solid #ccc; padding:10px;">
-			<tr>
-				<th><!--[pnml name="_PREVIEW_TEMPLATES"]--></th>
-			</tr>
-			<tr>
-				<td style="text-align:center;">
-				<img src="modules/Newsletter/pnimages/demo.gif" alt="" />
+<fieldset>	
+	<legend><!--[pnml name="_PREVIEW_TEMPLATES"]--></legend>
+	<div class="pn-adminformrow">
+	<img src="modules/Newsletter/pnimages/demo.gif" style="float:left;" alt="" />
 					<select name="nl_type" onchange="window.location=this.options[selectedIndex].value" >						
 						
 						<option><!--[pnml name="_SELECT"]--></option>
@@ -16,7 +16,7 @@
 						<option value="index.php?module=Newsletter&amp;type=admin&amp;func=display_template&amp;nl_type=2"><!--[pnml name="_HTML"]--></option>
 						<option value="index.php?module=Newsletter&amp;type=admin&amp;func=display_template&amp;nl_type=3"><!--[pnml name="_TEXTWLINK"]--></option>
 					</select>
-	<legend><a href="#" onclick="Effect.toggle('hint','BLIND'); return false;" title="<!--[pnml name="_HELP"]-->">(?)</a></legend>
+	<a href="#" onclick="Effect.toggle('hint','BLIND'); return false;" title="<!--[pnml name="_HELP"]-->">(?)</a>
     <span id="help_preview_form" style="display:none"><!--[pnml name="_HELP"]--></span>
     <div id="hint" class="hint" style="display:none;">
 	<p><!--[pnml name="_FIND_TEMPLATES"]--> /modules/Newsletter/pntemplates/</p>
@@ -25,11 +25,11 @@
 	<li>newsletter_template_text.htm</li>
 	<li>newsletter_template_text_with_link.htm</li>
 	</ul>
-	</div>
 	
-				</td>
-			</tr>
-		</table>
+	</div></div>
+	<div class="pn-adminformrow">
 		<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+	</div>
+	</fieldset>
 	</form>
-
+</div>

@@ -2,6 +2,20 @@
 include 'modules/Newsletter/pnlang/eng/help.php';
 
 define('_BADAUTHKEY','Authorization key expired.');
+define('_WELCOME1','Welcome to Newsletter!');
+define('_INFO','Information');
+define('_NEWSLETTERTYPE','Newsletter Type');
+define('_SUSPENDED','suspended');
+define('_UNAPPROVED','unapproved');
+define('_IMPORT','Import');
+define('_HOWMANY','How many?');
+
+define('_VERSION','Version');
+define('_YOUFIND','You find all Information about Newsletter on the');
+define('_PROJECT','Project');
+define('_PAGE','Page');
+define('_PAGE','Seite');
+define('_BUG','Please make Bug- and Featurerequests!');
 define('_MAIN','Start');
 define('_CONFIG_UPDATE_SUCCESSFUL','Configuration updated successfully.');
 define('_CONFIGURATION','Configuration');
