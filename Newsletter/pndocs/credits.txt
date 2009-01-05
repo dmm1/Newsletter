@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------
 Zikula Aplication Framework
-Copyright (C) 2008 by the Zikula Development Team.
+Copyright (C) 2009 by the Zikula Development Team.
 http://www.zikula.org/
 ----------------------------------------------------------------------
 Newsletter module from 0.1 to 1.2 by Devin Hayes (aka: InvalidReponse)
@@ -12,5 +12,5 @@ Newsletter © 2005 MakeShift Design
 Newsletter module from 1.2 to x by Dominik Mayer (aka: dmm)
 http://support.zikula.de
 Support: http://support.zikula.de
-Newsletter © 2008 support.zikula.de
+Newsletter © 2009 support.zikula.de
 ----------------------------------------------------------------------

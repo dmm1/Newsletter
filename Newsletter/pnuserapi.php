@@ -1,6 +1,5 @@
 <?php
 
-
 function Newsletter_userapi_get_subscriber_info($args)
 {
 	extract($args);

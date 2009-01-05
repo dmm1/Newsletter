@@ -19,49 +19,37 @@ Displays 2 recent Weblinks from category_id 5
 			
 function smarty_function_newsletter_weblinks($params, &$smarty)
 {
-
 	extract($params);
  	
-	$dbconn =& pnDBGetConn(true);
-	$pntable =& pnDBGetTables();
-	$column = &$pntable['links_links_column'];
-
-    $sql = "SELECT $column[lid], 
-
-    			   $column[title],
-    			   $column[description],
-    		FROM $pntable[links_links]";
-  /*   if(isset($category_id)){
-    	$sql .= " WHERE $column[cat_id]='".(int)pnVarPrepForStore($category_id)."' ";
-    } */
-
-	$sql .= "ORDER BY $column[date] DESC";
-				
-	if(isset($limit_items) AND $limit_items != ''){
-    	$sql .= " LIMIT ".(int)pnVarPrepForStore($limit_items)."";
-    } else {
-    	$sql .= " LIMIT 5";
-	}
+	if (!pnModAvailable('Web_Links')) return;	
+	if (!pnModAPILoad('Web_Links', 'user')) return;	
+	if(!isset($limit_items) or $limit_items<1) $limit_items = 5;
+	if(!isset($limit_text) or $limit_text<1) $limit_text = false;
 	
+    $dbconn =& pnDBGetConn(true);
+	$pntable =& pnDBGetTables();
+	pnModDBInfoLoad('Web_Links');
+	$table = $pntable['links_links'];
+    $column = &$pntable['links_links_column'];
+	$sql = "SELECT $column[lid],
+				   $column[title],
+                   $column[content]
+            FROM $table
+            ORDER BY $column[title] DESC
+            LIMIT $limit_items";
     $result = $dbconn->Execute($sql);
     
-    if($dbconn->ErrorNo()<>0) {
-		return $dbconn->ErrorMsg();
-    }
-		
-	if($result->EOF){
-    	return;
-    }
-    
+	$data = array();
     for (; !$result->EOF; $result->MoveNext()) {
-    	list($lid, $cat_id, $title, $description) = $result->fields;
-    	$data[] = array('weblink_id'=>$lid,
-     					'weblink_category_id'=>$cat_id,
-     					'weblink_title'=>$title,
-     					'weblink_descrption'=>$description);    
+    	list($videoid, $title, $content) = $result->fields;
+    	if($limit_text and strlen($content)>$limit_text){
+    		$content = substr($content,0,$limit_text).'..';
+    	}
+    	$data[] = array('links_links_videoid'=>$lid,
+						'links_links_title'=>$title,
+     					'links_links_content'=>$content);    
     }
-
-	$result->Close();
+    $result->Close();
 	
 	if (isset($params['assign'])) {
     	$smarty->assign($params['assign'], $data);

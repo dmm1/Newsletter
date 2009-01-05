@@ -1,7 +1,12 @@
 <!--[include file="nl_user_menu.htm"]-->
-<div id="nl-content-container">
-	<form action="<!--[pnmodurl modname="Newsletter" type="user" func="modify_subscription"]-->" method="post">
-	<table>
+<!--[add_additional_header header='<link rel="stylesheet" href="modules/Newsletter/pnstyle/style.css" type="text/css" />']-->
+
+<div class="pn-admincontainer">
+<div class="pn-adminpageicon"><!--[pnimg modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true]--></div>
+<form action="<!--[pnmodurl modname="Newsletter" type="user" func="modify_subscription"]-->" method="post">
+<fieldset>	
+	<legend><!--[pnml name="_NEWSLETTERADMIN"]--></legend>
+
 		<tr>
 			<td>User Name:</td>
 			<td><!--[$user_name]--></td>

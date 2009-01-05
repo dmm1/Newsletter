@@ -28,8 +28,18 @@ define('_UNSUBSCRIBE_FAILED','Fehler beim entfernen, bitte wenden Sie sich an de
 define('_UNSUBSCRIBE_NO_USER','Es gibt keine Abonnements, die mit Ihrer Anfrage übereinstimmen.');
 define('_UNSUBSCRIBE_SUCCESSFUL','Sie wurden erfolgreich abgemeldet!');
 define('_UNSUBSCRIBE_USER_SUBJECT','Newsletter Abonnement abgebrochen.');
+define('_UNSUBSCRIBE_CONFIRM','Sind Sie sicher, dass Sie sich abmelden möchten?');
+define('_NEWSLETTERADMIN','Einstellungen');
+
 define('_USER_EXISTS','Dieser User existiert bereits.');
+
 define('_TERMS_OF_SERVICE','Nutzungsbedingungen');
+define('_TERMS_OF_SERVICE_TEXT_1','wird Ihre Persönlichen Daten weder veröffentlichen, verkaufen oder an Dritte weiterleiten.');
+define('_TERMS_OF_SERVICE_TEXT_2','Sie können Ihre Zustimmung zum Empfang des Newsletters jederzeit wiederrufen.');
+define('_TERMS_OF_SERVICE_TEXT_3','	bietet keine Gewährleistungen oder Garantien
+für diesen Dienst und übernimmt keine Verantwortung oder Haftung für etwaige Schäden,
+die vor, während oder nach dem Abonnement dieses Dienstes entstehen könnten.');
+
 define('_TERMS_OF_SERVICE_AGREE','	Ja, ich akzeptiere die <a href="index.php?module=Newsletter&amp;func=terms_of_service" title="Nutzungsbedingungen">Nutzungsbedingungen</a>.');
 define('_TERMS_OF_SERVICE_ERROR','Sie müssen den Nutzungsbedingungen zustimmen!');
 define('_VIEWARCHIVES','Archiv');
@@ -55,4 +65,6 @@ define('_HTML','html');
 define('_TEXTWLINK','text mit Link zum Archiv');
 define('_JOIN','anmelden!');
 define('_NEWSLETTERSUBSCRIPTIONSVIEW','Newsletter');
+define('_BACK','zurück');
+
 ?>

@@ -29,7 +29,7 @@ function smarty_function_versioncheck($params, &$smarty)
     // get newest version number
     require_once('Snoopy.class.php');
     $snoopy = new Snoopy;
-    $snoopy->fetchtext("http://www.ffneunkirchen.at/dev/".$params['module'].".txt");
+    $snoopy->fetchtext("http://www.ffneunkirchen.at/dev/Newsletter/".$params['module'].".txt");
 
     $newestversion = $snoopy->results;
     $newestversion = trim($newestversion);   
@@ -41,7 +41,7 @@ function smarty_function_versioncheck($params, &$smarty)
     
     if ($currentversion != $newestversion) {
 	// generate info link if new version is available
-      $output .= " (<strong><a id=\"versioncheck\" href=\"javascript:showInfo('http://www.ffneunkirchen.at/dev/newsletter-info.txt')\">Please update! Latest release: ".$newestversion."</a></strong>)";
+      $output .= " (<strong><a id=\"versioncheck\" href=\"javascript:showInfo('http://www.ffneunkirchen.at/dev/Newsletter/newsletter-info.txt')\">Please update! Latest release: ".$newestversion."</a></strong>)";
     }   
     echo($output);
     return; 

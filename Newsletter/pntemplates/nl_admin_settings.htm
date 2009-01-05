@@ -2,8 +2,7 @@
 
 
 <div class="pn-admincontainer">
-<div class="pn-adminpageicon"><img src="modules/Newsletter/pnimages/admin.gif" /></div>
-
+<div class="pn-adminpageicon"><!--[pnimg modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true]--></div>
 <form name="config" action="<!--[pnmodurl modname="Newsletter" type="admin" func="config_update"]-->" method="post">
 <fieldset>	
 	<legend><!--[pnml name="_NEWSLETTERADMIN"]--></legend>
@@ -95,7 +94,7 @@
 		<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
 		</div>
 		<div class="pn-adminformrow">
-		<input type="submit" name="submit" value="<!--[pnml name="_UPDATE"]--> " /> 
+		<input type="submit" name="submit" value="<!--[pnml name="_UPDATECONFIG"]-->" /> 
 		</div>
 	</fieldset>
 	</form>

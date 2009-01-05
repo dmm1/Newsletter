@@ -29,7 +29,15 @@ define('_UNSUBSCRIBE_NO_USER','There are no subscriptions that match your reques
 define('_UNSUBSCRIBE_SUCCESSFUL','Your subscription has been removed.');
 define('_UNSUBSCRIBE_USER_SUBJECT','Newsletter Subscription Cancelled.');
 define('_USER_EXISTS','This user already exists in our system.');
+define('_UNSUBSCRIBE_CONFIRM','Are you sure that you want to unsubscribe?');
+define('_NEWSLETTERADMIN','Options');
+
 define('_TERMS_OF_SERVICE','Terms of Service');
+
+define('_TERMS_OF_SERVICE_TEXT_1','will not distribute, sell or disclose your personal information to any parties, public or private.');
+define('_TERMS_OF_SERVICE_TEXT_2','staff is not responsible for maintaining your subscription. You may opt in or out or even suspend your account at your own convenience.');
+define('_TERMS_OF_SERVICE_TEXT_3','offers no warranties or guarantees for this service and accepts no responsibility or liability for any damages that may incur before, during or after subscription to this service.');
+
 define('_TERMS_OF_SERVICE_AGREE','Yes, I agree to the <a href="index.php?module=Newsletter&amp;func=terms_of_service" title="terms of service">terms of service</a>.');
 define('_TERMS_OF_SERVICE_ERROR','You must agree to the terms of service.');
 define('_VIEWARCHIVES','View Archives');
@@ -56,5 +64,5 @@ define('_TEXTWLINK','text w/link to archive');
 
 define('_NEWSLETTERSUBSCRIPTIONSVIEW','Newsletter');
 define('_JOIN','join now!');
-
+define('_BACK','back');
 ?>
