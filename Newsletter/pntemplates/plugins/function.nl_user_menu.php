@@ -1,5 +1,5 @@
 <?php
-
+//test
 function smarty_function_nl_user_menu($params, &$smarty) 
 {
 	unset($params);
