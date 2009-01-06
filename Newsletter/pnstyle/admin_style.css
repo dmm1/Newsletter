@@ -24,37 +24,3 @@ this is important to avoid conflict with your (or others) default stylesheet.
 }
 
 
-.nl_checkbox, .nl_radiobutton {
-   background-position: 3px center;
-   background-repeat:   no-repeat;
-   border:              1px solid #fff;
-   padding-left:        24px;
-}
-.nl_check_unchecked {
-   background-image:    url(../pnimages/check_off.gif);
-}
-.nl_check_checked {
-   background-image:    url(../pnimages/check_on.gif);
-}
-.nl_radio_unchecked {
-   background-image:    url(../pnimages/check_off.gif);
-}
-.nl_radio_checked {
-   background-image:    url(../pnimages/check_on.gif);
-}
-.nl_check_checked_disabled {
-   background-image:    url(../pnimages/check_off_disabled.gif);
-}
-.nl_check_unchecked_disabled {
-   background-image:    url(../pnimages/check_on_disabled.gif);
-}
-.nl_radio_checked_disabled {
-   background-image:    url(../pnimages/radio_off_disabled.gif);
-}
-.nl_radio_unchecked_disabled {
-   background-image:    url(../pnimages/radio_on_disabled.gif);
-}
-.nl_focus {
-   background-color:    #ffa;
-   border:              1px dotted #000;
-}

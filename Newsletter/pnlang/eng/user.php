@@ -1,4 +1,11 @@
 <?php
+define('_USEREMAIL1','Email');
+define('_INFO','Information');
+define('_NEWSLETTERTYPE','Newsletter Type');
+define('_SUSPEND','Suspend your subscription?');
+define('_HOME','Home');
+
+
 define('_ANON_NOT_ALLOWED','Sorry, but you must be a site member to subscribe to our newsletter.');
 define('_APPROVAL_REQUIRED','* subscriptions subject to approval.');
 define('_ARCHIVE_DATE_FORMAT','F jS Y');

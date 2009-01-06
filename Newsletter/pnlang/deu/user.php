@@ -1,4 +1,10 @@
 <?php
+define('_USEREMAIL1','Emailadresse');
+define('_INFO','Informationen');
+define('_NEWSLETTERTYPE','Newsletter Typ');
+define('_SUSPEND','Abo vorübergehend aussetzen ?');
+define('_HOME','Start');
+
 define('_ANON_NOT_ALLOWED','Entschuldigung, aber Sie müssen Mitglied sein, um sich für den Newsletter anmelden zu können!');
 define('_APPROVAL_REQUIRED','* Abonnements unter dem Vorbehalt der Zustimmung.');
 define('_ARCHIVE_DATE_FORMAT','F jS Y');
