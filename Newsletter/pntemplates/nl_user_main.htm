@@ -64,25 +64,6 @@
 	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
 	</form>
 	<!--[/if]-->
-	<!--[if $subscribed eq 1 or $loggedin eq 0]-->
-	<form action="<!--[pnmodurl modname="Newsletter" type="user" func="unsubscribe"]-->" method="post" onsubmit="if(this.user_email.value==''){this.user_email.focus(); return false;}">
-	<table style="width:100%; border:1px solid #ccc; padding:10px;">
-		<tr>
-			<th colspan="2"><h2><!--[pnml name="_UNSUBSCRIBE"]--></h2></th>
-		</tr>
-		<!--[if $loggedin eq 0]-->
-		<tr>
-			<td style="text-align:right;"><!--[pnml name="_YOUR_EMAIL"]-->:</td>
-			<td><input name="user_email" type="text" style="width:200px;" alt="user email"<!--[$user_email_val]--> /></td>
-		</tr>
-		<!--[/if]-->
-		<tr>
-			<td></td>
-			<td><input type="submit" name="submit" value="<!--[pnml name="_UNSUBSCRIBE"]-->" onclick="return confirm('<!--[pnml name="_UNSUBSCRIBE_CONFIRM"]-->');" />
-		</tr>
-	</table>
-	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
-	</form>
-	<!--[/if]-->
+	<!--[pnml name="_WELCOME"]-->
 </div>
 

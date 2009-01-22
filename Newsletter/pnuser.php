@@ -392,7 +392,18 @@ function Newsletter_user_send($args)
 
 return $sent;
 }
+function Newsletter_user_cancel()
+{
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
+        return LogUtil::registerPermissionError();
+    }
 
+    $pnRender =& new pnRender('Newsletter');
+    $pnRender->caching = false;
+
+    return $pnRender->fetch('nl_user_cancel.htm');
+}
 
 
 

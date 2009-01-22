@@ -1,16 +1,21 @@
 <!--[include file="nl_admin_menu.htm"]-->
-
+<!--[pnajaxheader modname=Newsletter filename=newsletter.js]-->
 <div class="pn-admincontainer">
 <div class="pn-adminpageicon"><img src="modules/Newsletter/pnimages/admin.gif" /></div>
+<!--[ pnajaxheader modname="Newsletter" ]-->
+
+
+
 
 <form action="<!--[pnmodurl modname="Newsletter" type="admin" func="remove_subscriber"]-->" method="post">
 <fieldset>
 <legend><!--[pnml name="_REMOVE_SUBSCRIBER"]--></legend>
 <div class="pn-adminformrow">
 		<label for="user_name"><!--[pnml name="_BYUSERNAME"]-->:</label>
-		<div id="user_name">
-		<input name="user_name" type="text" style="width:150px;" />
-</div></div>
+		
+		<input name="username" type="text" style="width:150px;" />
+		
+</div>
 
 <div class="pn-adminformrow">
 		<label for="user_email"><!--[pnml name="_BYUSEREMAIL"]-->:</label>
