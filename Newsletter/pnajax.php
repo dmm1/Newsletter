@@ -1,22 +1,15 @@
 <?php
 /**
  * Zikula Application Framework
- *
  * @copyright (c) 2001, Zikula Development Team
  * @link http://www.zikula.org
- * @version $Id: pnajax.php 24737 2008-10-18 18:19:13Z Guite $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @author Frank Schummertz, Frank Chestnut
- * @package Zikula_System_Modules
- * @subpackage Users
- */
-
+ 
 /**
  * getusers
  * performs a user search based on the fragment entered so far
- *
  * @author Frank Schummertz
- * @author Dominik Mayer for Newsletter Module
+ * @modified by Dominik Mayer for Newsletter Module
  * @param fragment string the fragment of the username entered
  * @return void nothing, direct ouptut using echo!
  */
