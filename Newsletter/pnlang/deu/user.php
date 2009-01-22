@@ -1,9 +1,26 @@
 <?php
+define('_NEWUSERINFO','Ein neues Newsletterabo wurde empfangen:');
+
 define('_USEREMAIL1','Emailadresse');
 define('_INFO','Informationen');
 define('_NEWSLETTERTYPE','Newsletter Typ');
 define('_SUSPEND','Abo vorübergehend aussetzen ?');
 define('_HOME','Start');
+define('_UNSUBSCRIBE_MESSAGE','Hier können Sie sich von unserem Newsletter abmelden.');
+define('_USER_WELCOME','Willkommen bei unserem Newsletter, sie können hier Ihr Abo verwalten oder sich abmelden.');
+define('_INACTIVE_WARNING','Sie haben ihr Abo vorübergehend ausgesetzt!');
+
+define('_EMAIL_USER_UNSUBSRIBE','Ihr Abo wurde gelöscht!');
+define('_EMAIL_USER_UNSUBSRIBE1','Wir würden uns freuen, wenn sie unseren Newsletter bald wieder abonnieren.');
+define('_EMAIL_USER_UNSUBSRIBE2','Vielen Dank,');
+define('_EMAIL_USER_UNSUBSRIBE3','Team');
+
+define('_EMAIL_USER_NOTIFY','Vielen Dank, dass Sie sich für unseren Newsletter entschieden haben.');
+define('_EMAIL_USER_NOTIFY1','Hallo');
+define('_EMAIL_USER_NOTIFY3','Ihr');
+define('_EMAIL_USER_NOTIFY4','Wenn Sie sich nicht selbst angemeldet haben, besuchen Sie bitte');
+define('_EMAIL_USER_NOTIFY5','um sich von diesem Newsletter abzumelden.');
+
 
 define('_ANON_NOT_ALLOWED','Entschuldigung, aber Sie müssen Mitglied sein, um sich für den Newsletter anmelden zu können!');
 define('_APPROVAL_REQUIRED','* Abonnements unter dem Vorbehalt der Zustimmung.');
@@ -29,6 +46,7 @@ define('_SUBSCRIPTION_SUCCESSFUL','Vielen Dank, dass Sie unseren Newsletter abon
 define('_SUBSCRIPTION_MODIFY_FAILED','Konnte ihren Account nicht stilllegen.');
 define('_SUBSCRIPTION_MODIFY_SUCCESSFUL','Account upgedated.');
 define('_UNSUBSCRIBE','abmelden');
+define('_UNSUBSCRIBE1','Hier können Sie ihr Abonnement löschen');
 define('_UNSUBSCRIBE_ANON','Sorry, Sie müssen angemeldet sein, um sich abzumelden! ');
 define('_UNSUBSCRIBE_FAILED','Fehler beim entfernen, bitte wenden Sie sich an den Admin dieser Seite.');
 define('_UNSUBSCRIBE_NO_USER','Es gibt keine Abonnements, die mit Ihrer Anfrage übereinstimmen.');

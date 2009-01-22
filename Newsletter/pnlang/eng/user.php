@@ -1,10 +1,25 @@
 <?php
+define('_NEWUSERINFO','New subscriber Info');
+
 define('_USEREMAIL1','Email');
 define('_INFO','Information');
 define('_NEWSLETTERTYPE','Newsletter Type');
 define('_SUSPEND','Suspend your subscription?');
 define('_HOME','Home');
+define('_UNSUBSCRIBE_MESSAGE','Here you can unsubscribe from our Newsletter');
+define('_UNSUBSCRIBE1','Quit your Subscription');
+define('_USER_WELCOME','Welcome to our Newsletter, here you can manage, or delete your Subscription.');
+define('_INACTIVE_WARNING','Your Subscription is currently inactive!');
+define('_EMAIL_USER_UNSUBSRIBE','Your subscription has been cancelled.');
+define('_EMAIL_USER_UNSUBSRIBE1','Please feel free to re-subscribe in the future.');
+define('_EMAIL_USER_UNSUBSRIBE2','Thank you,');
+define('_EMAIL_USER_UNSUBSRIBE3','Staff');
 
+define('_EMAIL_USER_NOTIFY','Thank you for your Subscription');
+define('_EMAIL_USER_NOTIFY1','Hello');
+define('_EMAIL_USER_NOTIFY3','Your');
+define('_EMAIL_USER_NOTIFY4','If you didn`t subsribe yourself, please visit');
+define('_EMAIL_USER_NOTIFY5','to delete this Subscription');
 
 define('_ANON_NOT_ALLOWED','Sorry, but you must be a site member to subscribe to our newsletter.');
 define('_APPROVAL_REQUIRED','* subscriptions subject to approval.');

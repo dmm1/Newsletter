@@ -9,6 +9,7 @@ define('_SUSPENDED','suspended');
 define('_UNAPPROVED','unapproved');
 define('_IMPORT','Import');
 define('_HOWMANY','How many?');
+define('_123','1,2,3 (text, html, text with link)');
 
 define('_VERSION','Version');
 define('_YOUFIND','You find all Information about Newsletter on the');

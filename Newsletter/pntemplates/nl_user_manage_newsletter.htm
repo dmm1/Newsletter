@@ -35,11 +35,11 @@
 	
 	<!--[if $active neq 1]-->
 	<div>
-		<span style="font-size:10px; color:red">invactive warning</span>
+		<span style="font-size:10px; color:red"><!--[pnml name="_INACTIVE_WARNING"]--></span>
 	</div>
 	<!--[/if]-->
 	<div class="pn-adminformrow">
-	<label for="user_nl_suspend"><!--[pnml name="_SUSPEND"]--></label>
+	<label for="user_nl_suspend"><b><!--[pnml name="_SUSPEND"]--></b></label>
 	<input type="checkbox" name="suspend_account" value="1" <!--[$suspend_account_checked]-->/>
 	</div>
 	<div class="pn-adminformrow">

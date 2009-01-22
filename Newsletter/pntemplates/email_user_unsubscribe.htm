@@ -1,9 +1,8 @@
 <!-- this mailer is sent in html format -->
 <div style="border:1px solid #ccc;">
-	<h3>Your subscription has been cancelled.</h3>
-	<p>Please feel free to re-subscribe in the future.</p>
-	<p>Thank you,<br />
-	<!--[pnconfiggetvar name="sitename"]--> Staff<br />
-	<!--[pnmodgetvar module="Newsletter" name="send_from_address"]-->
+	<h3><!--[pnml name="_EMAIL_USER_UNSUBSRIBE"]--></h3>
+	<p><!--[pnml name="_EMAIL_USER_UNSUBSRIBE1"]--></p>
+	<p><!--[pnml name="_EMAIL_USER_UNSUBSRIBE2"]--><br />
+	<!--[pnconfiggetvar name="sitename"]--> <!--[pnml name="_EMAIL_USER_UNSUBSRIBE3"]--><br />
 	</p>
 </div>

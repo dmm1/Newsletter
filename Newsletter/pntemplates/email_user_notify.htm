@@ -1,15 +1,18 @@
 <!-- this mailer is sent in html format -->
 <div style="border:1px solid #ccc; padding:10px;">
-	<h3>Ihr Abonnement wurde empfangen.</h3>
-	<hr />
-	<p>Hallo <!--[$user_name|pnvarprepfordisplay ]-->, <br />
-Vielen Dank, dass Sie sich für unseren Newsletter entschieden haben. </p>
-<p>Sollten Sie fragen haben, zögern Sie nicht und kontaktieren Sie uns.</p>
-	<p>&nbsp;</p>
-	<p>Vielen Dank,<br />
-	<!--[pnconfiggetvar name="sitename"]--> Web-Team<br />
-	<!--[pnmodgetvar module="Newsletter" name="send_from_address"]-->
+	
+
+	<p><!--[pnml name="_EMAIL_USER_NOTIFY1"]--> <!--[$user_name|pnvarprepfordisplay ]-->, <br />
+	<!--[pnml name="_EMAIL_USER_NOTIFY"]-->
+	</p>
+	<p><!--[pnml name="_EMAIL_USER_NOTIFY3"]-->
+	<!--[pnconfiggetvar name="sitename"]--> <!--[pnml name="_EMAIL_USER_UNSUBSRIBE3"]--><br />
+
 	</p>
 	<hr />
-	<p>Wenn Sie diese Meldung irrtümlich erhalten haben, besuchen Sie bitte <a href="<!--[$site_url|pnvarprepfordisplay]-->"><!--[$site_url|pnvarprepfordisplay]--> </a> um sich von diesem Newsletter abzumelden.</p>
+	<p>
+	<!--[pnml name="_EMAIL_USER_NOTIFY4"]-->
+	 <a href="<!--[$site_url|pnvarprepfordisplay]-->"><!--[$site_url|pnvarprepfordisplay]--> </a>
+	<!--[pnml name="_EMAIL_USER_NOTIFY5"]-->
+</p>
 </div>

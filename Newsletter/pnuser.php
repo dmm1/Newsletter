@@ -402,6 +402,30 @@ function Newsletter_user_cancel()
     $pnRender =& new pnRender('Newsletter');
     $pnRender->caching = false;
 
+		if($user_email!=''){
+		$pnRender->assign('user_email_val',' value="'.pnVarPrepForDisplay($user_email).'"');
+	}
+	
+	if(pnUserLoggedIn()){
+		$subscribed = pnModAPIFunc('Newsletter','user','check_user_exists',array('user_email'=>pnUserGetVar('email')));
+	}
+
+    $newsletter_frequency = pnModAPIFunc('Newsletter','user','get_newsletter_frequency');
+    $newsletter_types = pnModAPIFunc('Newsletter','admin','get_newsletter_types');
+    
+    $pnRender->assign(array('type_values'=>array_keys($newsletter_types),
+							'type_output'=>array_values($newsletter_types),
+							'type_selected'=>pnModGetVar('Newsletter','default_type'),
+							'frequency_values'=>array_keys($newsletter_frequency),
+							'frequency_output'=>array_values($newsletter_frequency),
+							'frequency_selected'=>pnModGetVar('Newsletter','default_frequency')));
+    
+    $pnRender->assign(array('allow_anon_registration'=>pnModGetVar('Newsletter','allow_anon_registration'),
+    						'auto_approval'=>pnModGetVar('Newsletter','auto_approve_registrations'),
+    				  		'allow_frequency_change'=>pnModGetVar('Newsletter','allow_frequency_change'),
+    				  		'loggedin'=>(pnUserLoggedIn()?'1':'0'),
+    				  		'subscribed'=>$subscribed));
+							
     return $pnRender->fetch('nl_user_cancel.htm');
 }
 

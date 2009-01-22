@@ -7,6 +7,7 @@ define('_INFO','Informationen');
 define('_NEWSLETTERTYPE','Newsletter Typ');
 define('_IMPORT','Importieren');
 define('_HOWMANY','Wie viele?');
+define('_123','1, 2 oder 3 (Text, html, Text mit Link)');
 
 define('_VERSION','Version');
 define('_YOUFIND','Sie finden alle Informationen rund um Newsletter auf der');

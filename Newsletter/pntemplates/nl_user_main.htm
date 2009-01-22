@@ -64,6 +64,11 @@
 	<input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
 	</form>
 	<!--[/if]-->
-	<!--[pnml name="_WELCOME"]-->
+	<!--[if $allow_anon_registration == 1 OR $loggedin == 1]-->	
+	<br />
+	<p>
+	<!--[pnml name="_USER_WELCOME"]-->
+	</p>
+	<!--[/if]-->
 </div>
 
