@@ -88,7 +88,7 @@ function Newsletter_user_subscribe($args)
         return true;
     }
     
-    if(!$loggedin and !eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $user_email)) {
+    if(!$loggedin and !eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$", $user_email)) {
 		pnSessionSetVar('errormsg', _INVALID_EMAIL);
         pnRedirect(pnModURL('Newsletter', 'user', 'main'));
         return true;

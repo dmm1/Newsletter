@@ -11,6 +11,13 @@
 <form class="pn-adminform" action="<!--[pnmodurl modname="Newsletter" type="admin" func="updateplugins"]-->" method="post" enctype="application/x-www-form-urlencoded">
 
 <input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
+
+<legend><!--[pnml name="_ACTIVATE1"]--> Eigene Nachricht anhängen?</legend>
+<label class='nl_checkbox'>
+<input id="custom_mailsplugin" type="checkbox" name="custom_mailsplugin" value="1"<!--[if $custom_mailsplugin]--> checked="checked"<!--[/if]--> /><!--[pnml name="_CHECKEDYES"]--> <br />
+</label>
+<br /><br />
+
 <!--[pnmodavailable modname="Admin_Messages" assign="active"]-->
 <!--[if $active]-->
 <legend><!--[pnml name="_ACTIVATE1"]--> Adminmessages?</legend>

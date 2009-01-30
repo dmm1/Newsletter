@@ -606,31 +606,76 @@ function Newsletter_admin_delete_user()
 
     return $pnRender->fetch('nl_admin_delete_user.htm');
 }
-function Newsletter_admin_view_category()
+
+function Newsletter_admin_add_message()
 {
    // Security check
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
-
-    $pnRender =& new pnRender('Newsletter');
+	
+	$pnRender =& new pnRender('Newsletter');
     $pnRender->caching = false;
 	
-//	
-$item = DBUtil::selectObjectByID('newsletter_categories');
-$pnRender->assign($item);
-
-// load the categories system
-if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-    pn_exit (pnML('_UNABLETOLOADCLASS', array('s' => 'CategoryRegistryUtil')));
+	return $pnRender->fetch('nl_admin_add_message.htm');
 }
 
-$catregistry  = CategoryRegistryUtil::getRegisteredModuleCategories ('Newsletter', 'newsletter_categories');
-
-$pnRender->assign('catregistry', $catregistry); 
-//
-
-    return $pnRender->fetch('nl_admin_category.htm');
+function Newsletter_admin_create_message ()
+{
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
+        return LogUtil::registerPermissionError();
+    }	
+		if (pnModAvailable('scribite')) {
+	$scribite = pnModFunc('scribite','user','loader', array( 'modname' => $args['Newsletter'],
+	'editor' => $args['xinha'],
+	'areas' => $args['all'],
+	'tpl' => $args['all']));
+     PageUtil::AddVar('rawtext', $scribite);
 }
+
+	extract($args);	 
+	
+	$message = pnVarCleanFromInput('message');
+		
+	$pnRender =& new pnRender('Newsletter');
+	$pnRender->caching = false;
+    $pnRender->assign('message',$message);
+	
+	pnModSetVar('Newsletter','message', $message); 
+	pnSessionSetVar('statusmsg', _MSGSAVED);
+
+	
+	//global $message;
+	
+	
+pnRedirect(pnModURL('Newsletter', 'admin', 'add_message'));
+return true;
+
+}
+
+function Newsletter_admin_clear_message ()
+{
+   // Security check
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
+        return LogUtil::registerPermissionError();
+    }	
+	
+	extract($args);	 
+	
+	$message = '';
+		
+	$pnRender =& new pnRender('Newsletter');
+	$pnRender->caching = false;
+    $pnRender->assign('message',$message);
+	
+	pnModSetVar('Newsletter','message', $message); 
+	pnSessionSetVar('statusmsg', _MSGERASED);
+
+		
+pnRedirect(pnModURL('Newsletter', 'admin', 'add_message'));
+return true;
+
+}		
 
 ?>

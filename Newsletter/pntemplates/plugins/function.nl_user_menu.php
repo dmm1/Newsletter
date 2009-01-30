@@ -13,11 +13,11 @@ function smarty_function_nl_user_menu($params, &$smarty)
 
 	$links .= '&nbsp;|&nbsp;'
 			 	 .'<a href="index.php?module=Newsletter&amp;func=manage_newsletter" title="'._NEWSLETTERADMIN.'">'._NEWSLETTERADMIN.'</a>';
+	
+	}
 	$links .= '&nbsp;|&nbsp;'
 			 	 .'<a href="index.php?module=Newsletter&amp;func=cancel" title="'._UNSUBSCRIBE1.'">'._UNSUBSCRIBE.'</a>';
 	
-	
-	}
 	
 	;
 	

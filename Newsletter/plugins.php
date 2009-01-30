@@ -34,8 +34,8 @@ function newsletter_admin_updateplugins($args)
 	pnModSetVar('Newsletter', 'crpVideoplugin', $crpVideoplugin);
 	$crpcalendarplugin = (bool) FormUtil :: getPassedValue('crpcalendarplugin', false, 'POST');
 	pnModSetVar('Newsletter', 'crpcalendarplugin', $crpcalendarplugin);
-	$weblinksplugin = (bool) FormUtil :: getPassedValue('weblinksplugin', false, 'POST');
-	pnModSetVar('Newsletter', 'weblinksplugin', $weblinksplugin);
+	$custom_mailsplugin = (bool) FormUtil :: getPassedValue('custom_mailsplugin', false, 'POST');
+	pnModSetVar('Newsletter', 'custom_mailsplugin', $custom_mailsplugin);
 	
 	
     $how_many_news_plugin = (int)FormUtil::getPassedValue('how_many_news_plugin', 3, 'POST');

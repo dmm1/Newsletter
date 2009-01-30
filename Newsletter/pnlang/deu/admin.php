@@ -1,6 +1,16 @@
 <?php
 include 'modules/Newsletter/pnlang/deu/help.php';
 
+define('_ADDMESSAGE','Zusatz anhängen');
+define('_MSGERASED','Eigene Nachricht gelöscht');
+define('_MSGSAVED','Eigene Nachricht gespeichert');
+define('_CURRENT_MESSAGE','aktuelle Nachricht');
+define('_NEW_CURRENT_MESSAGE','neue Nachricht');
+define('_CLEAR_MESSAGE','Anhang löschen');
+define('_SAVE_MESSAGE','Anhang speichern');
+define('_ADD_MESSAGE_HERE','Fügen Sie hier Ihren neuen Anhang ein!');
+
+
 define('_BADAUTHKEY','Der Authorisierungsschlüssel ist abgelaufen.');
 define('_WELCOME1','Willkommen bei Newsletter!');
 define('_INFO','Informationen');

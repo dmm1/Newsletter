@@ -1,6 +1,10 @@
 <?php
 include 'modules/Newsletter/pnlang/eng/help.php';
 
+define('_ADDMESSAGE','Add Message');
+define('_MSGERASED','Custom Message Cleared');
+define('_MSGSAVED','Custom Message Saved');
+
 define('_BADAUTHKEY','Authorization key expired.');
 define('_WELCOME1','Welcome to Newsletter!');
 define('_INFO','Information');

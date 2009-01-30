@@ -10,6 +10,8 @@
 	<body id="nl-body">
 		<div id="nl-wrapper" style="background:#fff url(<!--[$site_url|pnvarprepfordisplay]-->modules/Newsletter/pnimages/newsletter_images/bg.jpg) top center repeat-x;">			
 			<h1 id="nl-title"><!--[$title]--></h1>
+			
+<!--[ pnmodgetvar module="Newsletter" name="message" ]-->		
 
 <!--[ pnmodgetvar assign="adminmessagesplugin" module="Newsletter" name="adminmessagesplugin" default="0" ]-->
 <!--[ if ($adminmessagesplugin) ]-->
