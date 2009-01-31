@@ -626,13 +626,6 @@ function Newsletter_admin_create_message ()
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }	
-		if (pnModAvailable('scribite')) {
-	$scribite = pnModFunc('scribite','user','loader', array( 'modname' => $args['Newsletter'],
-	'editor' => $args['xinha'],
-	'areas' => $args['all'],
-	'tpl' => $args['all']));
-     PageUtil::AddVar('rawtext', $scribite);
-}
 
 	extract($args);	 
 	
