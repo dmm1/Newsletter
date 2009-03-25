@@ -1,0 +1,78 @@
+<!--[pnuserloggedin assign="loggedin"]-->
+<!--[if ($loggedin)]-->
+  <fieldset>
+    <legend><!--[pnml name="_NEWSLETTER_INFO"]--></legend>
+    <div class="nl-userformrow">
+      <label for="user_name"><!--[pnml name="_NEWSLETTER_USERNAME"]--></label>
+      <span id="user_name"><strong><!--[pnusergetvar name="uname"]--></strong></span>
+    </div>
+
+    <div class="nl-userformrow">
+      <label for="user_email"><!--[pnml name="_NEWSLETTER_EMAIL"]--></label>
+      <span id="user_email"><strong><!--[ pnusergetvar name="email" ]--></strong></span>
+    </div>
+
+    <div class="nl-userformrow">
+      <label for="user_format"><!--[pnml name="_NEWSLETTER_FORMAT"]--></label>
+      <!--[if ($user.type == 1)]-->
+        <span id="user_format"><strong><!--[ pnml name="_NEWSLETTER_FORMAT_TEXT" ]--></strong></span>
+      <!--[elseif ($user.type == 2)]-->
+        <span id="user_format"><strong><!--[ pnml name="_NEWSLETTER_FORMAT_HTML" ]--></strong></span>
+      <!--[elseif ($user.type == 3)]-->
+        <span id="user_format"><strong><!--[ pnml name="_NEWSLETTER_FORMAT_TEXTWLINK" ]--></strong></span>
+      <!--[else]-->
+        <span id="user_format"><strong>?????? <!--[ $user.type ]--></strong></span>
+      <!--[/if]-->
+    </div>
+
+    <div class="nl-userformrow">
+      <label for="user_frequency"><!--[pnml name="_NEWSLETTER_FREQUENCY"]--></label>
+      <!--[if ($user.frequency == 0) ]-->
+        <span id="user_frequency"><strong><!--[ pnml name="_NEWSLETTER_FREQUENCY_WEEKLY" ]--></strong></span>
+      <!--[elseif ($user.frequency == 1)]-->
+        <span id="user_frequency"><strong><!--[ pnml name="_NEWSLETTER_FREQUENCY_MONTHLY" ]--></strong></span>
+      <!--[elseif ($user.frequency == 2)]-->
+        <span id="user_frequency"><strong><!--[ pnml name="_NEWSLETTER_FREQUENCY_2MONTHS" ]--></strong></span>
+      <!--[elseif ($user.frequency == 3)]-->
+        <span id="user_frequency"><strong><!--[ pnml name="_NEWSLETTER_FREQUENCY_3MONTHS" ]--></strong></span>
+      <!--[elseif ($user.frequency == 6)]-->
+        <span id="user_frequency"><strong><!--[ pnml name="_NEWSLETTER_FREQUENCY_6MONTHS" ]--></strong></span>
+      <!--[elseif ($user.frequency == 9)]-->
+        <span id="user_frequency"><strong><!--[ pnml name="_NEWSLETTER_FREQUENCY_9MONTHS" ]--></strong></span>
+      <!--[elseif ($user.frequency == 12)]-->
+        <span id="user_frequency"><strong><!--[ pnml name="_NEWSLETTER_FREQUENCY_YEARLY" ]--></strong></span>
+      <!--[else]-->
+        <span id="user_frequency"><strong>??????<!--[ $user.frequency ]--></strong></span>
+      <!--[/if]-->
+    </div>
+
+    <div class="nl-userformrow">
+      <label for="user_approved"><!--[pnml name="_NEWSLETTER_STATUS_APPROVED"]--></label>
+      <!--[if ($user.approved) ]-->
+        <span id="user_approved" style="color:green"><!--[pnml name="_NEWSLETTER_STATUS_ISAPPROVED"]--></span>
+      <!--[else]-->
+        <span id="user_approved" style="color:red"><!--[pnml name="_NEWSLETTER_STATUS_NOTAPPROVED"]--></span>
+      <!--[/if]-->
+    </div>
+
+    <div class="nl-userformrow">
+      <label for="user_status"><!--[pnml name="_NEWSLETTER_STATUS"]--></label>
+      <!--[if ($user.active) ]-->
+        <span id="user_status" style="color:green"><!--[pnml name="_NEWSLETTER_STATUS_ACTIVE"]--></span>
+      <!--[else]-->
+        <span id="user_status" style="color:red"><!--[pnml name="_NEWSLETTER_STATUS_INACTIVE"]--></span>
+      <!--[/if]-->
+    </div>
+
+    <div class="nl-userformrow">
+      <label for="user_sent"><!--[pnml name="_NEWSLETTER_SEND_DATE"]--></label>
+      <!--[if ($user.last_send_date) ]-->
+        <span id="user_sent" style="color:green"><!--[$user.last_send_date]--></span>
+      <!--[else]-->
+        <span id="user_sent" style="color:red"><!--[pnml name="_NEWSLETTER_SEND_DATE_NONE"]--></span>
+      <!--[/if]-->
+    </div>
+  </fieldset>
+<!--[/if]-->
+
+<!--[ include file="newsletter_std_footer.html" ]-->

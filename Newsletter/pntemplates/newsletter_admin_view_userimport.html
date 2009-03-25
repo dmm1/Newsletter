@@ -1,0 +1,64 @@
+<!--[include file="newsletter_admin_std_header.html"]-->
+
+<!--[newsletter_selector_frequency assign="frequency_values" return_keys=true]-->
+<!--[newsletter_selector_frequency assign="frequency_output" return_keys=false]-->
+<!--[newsletter_selector_type assign="type_values" return_keys=true]-->
+<!--[newsletter_selector_type assign="type_output" return_keys=false]-->
+
+<!--[pnmodgetvar assign="import_type" module="Newsletter" name="import_type" default="1"]-->
+<!--[pnmodgetvar assign="import_frequency" module="Newsletter" name="import_frequency" default="1"]-->
+<!--[pnmodgetvar assign="import_active_status" module="Newsletter" name="import_active_status" default="1"]-->
+<!--[pnmodgetvar assign="import_approval_status" module="Newsletter" name="import_approval_status" default="1"]-->
+
+<!--[pnmodgetvar assign="admin_key" module="Newsletter" name="admin_key"]-->
+
+<!--[pnuserloggedin assign="loggedin"]-->
+<!--[ pnsecgenauthkey assign="authid" module="Newsletter" ]-->
+
+<!--[pnml assign="pageTitle" name="_NEWSLETTER_USERIMPORT_EXPLAIN"]-->
+<!--[pnpagesetvar name="title" value=$pageTitle]-->
+
+<div class="pn-admincontainer">
+
+  <br />
+  <h2><!--[$pageTitle]--></h2>
+  <form name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
+    <input type="hidden" name="authid" value="<!--[$authid]-->" />
+    <input type="hidden" name="ot" value="import_config" />
+    <input type="hidden" name="otTarget" value="userimport" />
+    <fieldset>
+      <legend>1.) <!--[pnml name="_NEWSLETTER_IMPORT_ADMIN"]--></legend>
+      <div class="pn-adminformrow">
+        <label for="import_type"><!--[pnml name="_NEWSLETTER_TYPE"]--> :</label>
+	<select id="import_type" name="import[import_type]"><!--[html_options values=$type_values output=$type_output selected=$import_type]--></select>
+      </div>
+      <div class="pn-adminformrow">
+        <label for="import_frequency"><!--[pnml name="_NEWSLETTER_FREQUENCY"]-->: </label>
+	<select id="import_frequency" name="import[import_frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$import_frequency]--></select>
+      </div>
+        <div class="pn-adminformrow">
+        <label for="import_active_status"><!--[pnml name="_NEWSLETTER_ACTIVE"]-->:</label>
+        <input id="import_active_status" name="import[import_active_status]" type="text" value="<!--[$import_active_status]-->" size="3" maxlength="1"  /> 
+        1=<!--[pnml name="_NEWSLETTER_ACTIVE"]-->  | 0=<!--[pnml name="_NEWSLETTER_INACTIVE"]--> 
+      </div>
+      
+      <div class="pn-adminformrow">
+        <label for="import_approval_status"><!--[pnml name="_NEWSLETTER_USERS"]--> <!--[pnml name="_NEWSLETTER_APPROVED"]--> :</label>
+        <input id="import_approval_status" name="import[import_approval_status]" type="text" value="<!--[$import_approval_status]-->" size="3" maxlength="1" /> 
+        1=<!--[pnml name="_NEWSLETTER_APPROVED"]-->  | 0=<!--[pnml name="_NEWSLETTER_UNAPPROVED"]--> 
+      </div>
+    
+      <input type="submit" name="submit" value="<!--[pnml name="_NEWSLETTER_UPDATE_CONFIGURATION"]-->" />
+    </fieldset>
+  </form>
+
+  <fieldset>
+    <legend>2.) <!--[pnml name="_NEWSLETTER_IMPORT"]--></legend>  
+    <div class="pn-adminformrow"> 
+      <a href="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit" ot="import_users" otTarget="userimport" authKey=$admin_key authid=$authid ]-->" title="<!--[pnml name="_NEWSLETTER_USERIMPORT"]-->"><img src="images/icons/small/button_ok.gif" alt="" /></a>
+    </div>
+  </fieldset>
+
+</div>
+
+<!--[ include file="newsletter_std_footer.html" ]-->

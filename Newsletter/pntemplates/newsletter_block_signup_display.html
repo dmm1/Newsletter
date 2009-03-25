@@ -1,0 +1,20 @@
+<form action="<!--[pnmodurl modname="Newsletter" type="userform" func="edit" ot="user" ]-->" method="post" enctype="application/x-www-form-urlencoded">
+  <input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+  <input type="hidden" name="nl_frequency" value="<!--[$nl_frequency]-->" />
+  <input type="hidden" name="nl_type" value="<!--[$nl_type]-->" />
+    <!--[if not $loggedin]-->
+      <label for="user_name"><!--[pnml name="_NEWSLETTER_YOUR_NAME"]-->:</label>
+      <input id="user_name" name="user[name]" type="text" size="10" maxlength="64" alt="<!--[pnml name="_NEWSLETTER_YOUR_NAME"]-->" /><br />
+      <label for="user_email"><!--[pnml name="_NEWSLETTER_YOUR_EMAIL"]-->:</label>
+      <input id="user_email" name="user[email]" type="text" size="10" maxlength="128" alt="<!--[pnml name="_NEWSLETTER_YOUR_EMAIL"]-->" /><br />
+    <!--[/if]-->
+
+	<!--[ pnmodgetvar assign="require_tos" module="Newsletter" name="require_tos" default="0" ]-->
+	<!--[ if ($require_tos) ]-->
+      <label for="nl_tos"><!--[pnml name="_NEWSLETTER_TERMS_OF_SERVICE_AGREE" html="1"]--></label>
+      <input type="checkbox" name="user[tos]" value="1" id="nl_tos" />
+    <!--[else]-->
+       <input type="hidden" name="user[tos]" value="1" />
+    <!--[/if]-->
+    <input type="submit" name="submit" value="<!--[pnml name="_NEWSLETTER_SUBSCRIBE"]-->" />
+</form>

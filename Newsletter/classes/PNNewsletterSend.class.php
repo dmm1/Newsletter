@@ -1,0 +1,290 @@
+<?php
+/**
+ * Newletter Module for Zikula
+ *
+ * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @link http://www.zikula.org
+ * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
+ * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * Support: http://support.zikula.de, http://community.zikula.org
+ */
+
+
+class PNNewsletterSend extends PNObject 
+{
+    var $_objLang;
+    var $_objNewsletterData;
+    var $_objSendType;
+    var $_objUpdateSendDate;
+
+    function PNNewsletterSend ($init=null, $key=null, $field=null)
+    {
+        $this->PNObject ();
+
+        $this->_objType           = 'generic';
+        $this->_objColumnPrefix   = 'nlu';
+        $this->_objPath           = 'user_array';
+        $this->_objLang           = null;   // custom var
+        $this->_objNewsletterData = null;   // custom var
+        $this->_objSendType       = null;   // custom var
+        $this->_objUpdateSendDate = null;   // custom var
+
+        $this->_objJoin   = array();
+        $this->_objJoin[] = array ( 'join_table'          =>  'users',
+                                    'join_field'          =>  array ('uname', 'email'),
+                                    'object_field_name'   =>  array ('user_name', 'user_email'), 
+                                    'compare_field_table' =>  'uid',
+                                    'compare_field_join'  =>  'uid');
+
+        $this->_init ($init, $key, $field);
+    }
+
+
+    // doesn't save use info but allows us to use the standard API through Newsletter_userform_edit()
+    function save ($args=array())
+    {
+        if (!pnModAvailable('Mailer')) {
+            return LogUtil::registerError (_NEWSLETTER_MAILER_NOT_AVAILABLE);
+        }
+
+        if (!Loader::loadClassFromModule('Newsletter', 'user')) {
+            return LogUtil::registerError ('Unable to load class [user]');
+        }
+
+        if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
+            return LogUtil::registerError ('Unable to load array class [user]');
+        }
+
+        if (!Loader::loadArrayClassFromModule('Newsletter', 'newsletter_data')) {
+            return LogUtil::registerError ('Unable to load array class [newsletter_data]');
+        }
+        $newsletterDataObjectArray = new PNNewsletterDataArray ();
+
+        $this->_objLang           = FormUtil::getPassedValue ('language', '', 'POST');                          // custom var
+        $this->_objSendType       = FormUtil::getPassedValue ('sendType', '', 'POST');                          // custom var
+        $this->_objUpdateSendDate = FormUtil::getPassedValue ('updateSendDate', '', 'POST');                    // custom var
+        $this->_objNewsletterData = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);            // custom var
+        $testsend                 = FormUtil::getPassedValue ('testsend', 0, 'POST');                           // from admin->preview
+
+        if (!$this->_objNewsletterData) {
+            return LogUtil::registerError ('No newsletter data to send');
+        }
+
+        if ($testsend) {
+            $this->_objSendType = 'test';
+            return $this->_sendTest ();
+        } 
+
+        if ($this->_objSendType == 'manual') {
+            return $this->_sendManual ();
+        } 
+     
+        $this->_objSendType = 'api';
+        return $this->_sendAPI ($args);
+    }
+
+
+    function _sendTest ()
+    {
+        $testsendEmail = FormUtil::getPassedValue ('testsend_email', 0, 'GETPOST');
+        $format        = FormUtil::getPassedValue ('format', 1, 'GETPOST');
+        $user = array();
+        $user['email'] = $testsendEmail;
+        $user['type'] = $format;
+        return $this->_sendNewsletter ($user);
+    }
+
+
+    function _sendManual ()
+    {
+        $data = $this->_objData;
+        if (!$data) {
+            return LogUtil::registerError (_NEWSLETTER_NO_USERS_SELECTED);
+        }
+
+        $objectArray = new PNUserArray ();
+        $userIDs     = implode (',', $data);
+        $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
+        $users       = $objectArray->get ($where, 'id');
+        if (!$users) {
+            return LogUtil::registerError (_NEWSLETTER_NO_USERS);
+        }
+
+        $nSent   = 0;
+        foreach ($users as $user) {
+            if ($this->_sendNewsletter ($user)) {
+                $nSent++;
+            }
+        }
+
+        LogUtil::registerStatus ("$nSent " . _NEWSLETTER_SENT_SUCCESSFULLY);
+        return true;
+    }
+
+
+    function _sendAPI ($args=array()) // API
+    {
+        if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
+            return LogUtil::registerError ('Unable to load class [archive]');
+        }
+
+        // check auth key
+        $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0));
+        $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
+        if ($adminKey != $masterKey) {
+            return 'Invalid admin_key received';
+        }
+
+        // get elegible users
+        $objectArray = new PNUserArray ();
+        $users = $objectArray->getSendable ('', 'id');
+        if (!$users) {
+            return _NEWSLETTER_NO_USERS;
+        }
+
+        $thisDay   = date ('w', time());
+        $scheduled = isset($args['scheduled']) ? $args['scheduled'] : 0;
+        $sendAll   = (boolean)FormUtil::getPassedValue ('send_all', 0);  // overrides send_limit per request
+
+        set_time_limit (90);
+        ignore_user_abort (true);
+
+        // ensure non-scheduled execution happens on the correct day
+        if (!$scheduled){
+            $sendDay = pnModGetVar ('Newsletter', 'send_day', 0);
+            if ($sendDay != $thisDay){        
+                return 'Wrong day';
+            }
+        }
+        
+        // keep a record of how many mails were sent today
+        $maxPerHour = pnModGetVar ('Newsletter', 'max_send_per_hour', 0);
+        if ($maxPerHour) {
+            $spamData  = pnModGetVar ('Newsletter', 'spam_count', '');
+            if ($spamData) {
+                $spamArray = explode ('-', $spamData);
+                $now       = time ();
+                // if now minus start of send is more than an hour and more than "x" have been sent, stop the process
+                // step two: if the hour is greater than when we started, reset counters (and set spam array, used below)
+                if ($now-$spamArray['0'] >= 3600 && $spamArray['1'] >= $maxPerHour && date('G')==date('G', $spamArray['0'])) {
+                    return 'spam limits encountered';
+                } else if (date('G') > date('G', $spamArray['0'])) {
+                    pnModSetVar ('Newsletter', 'spam_count', time().'-0');
+                    $spamArray = array(time(),'0');
+                }
+            }
+        }
+
+        pnModSetVar ('Newsletter', 'start_execution_time', (float)array_sum(explode(' ', microtime())));
+        $today          = date ('w', time()); 
+        $sendPerRequest = pnModGetVar ('Newsletter', 'send_per_request', 5);
+        
+        // check archives for new archive time
+        $matched = false;
+        $archiveObj = new PNArchive ();
+        $archive    = $archiveObj->getRecent ();
+        if ($archive) {
+            $newArchiveTime = $archive['date'];                        
+            $matched = true;
+        } else {
+            $newArchiveTime = $today;
+            $matched = false;
+        }
+
+        $nSent = 0;
+        $allowFrequencyChange = pnModGetVar ('Newsletter', 'allow_frequency_change', 0);
+        foreach ($users as $user) {
+            if (!$allowFrequencyChange || (isset($user['send_now']) && $user['send_now'])) {        
+                if ($this->_sendNewsletter ($user, $newArchiveTime)) {
+                    if (++$nSent == $sendPerRequest) {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if ($maxPerHour) {
+            pnModSetVar ('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));
+        }
+        
+        if (!$matched) {
+            $this->_archiveNewsletter ($newArchive, $newArchiveTime);
+        }
+
+        pnModSetVar ('Newsletter', 'end_execution_time', (float)array_sum(explode(' ', microtime())));
+        pnModSetVar ('Newsletter', 'end_execution_count', $nSent);
+        if (isset($args['respond']) && $args['respond']) {
+            return " $nSent ";
+        }
+        
+        return true;
+    }
+
+
+    function _getNewsletterMessage ($user, $cacheID=null, $personalize=false, &$html=0) 
+    {
+        switch ($user['type']) {
+            case 1:  $tpl = 'newsletter_template_text.html'; $html = 0; break;
+            case 2:  $tpl = 'newsletter_template_html.html'; $html = 1; break;
+            case 3:  $tpl = 'newsletter_template_text_with_link.html'; $html = 0; break; 
+            default: $tpl = 'newsletter_template_html.html'; $html = 1; break;
+        }
+
+        $personalize = pnModGetVar('Newsletter','personalize_email', false);
+        $pnRender    = pnRender::getInstance('Newsletter', $personalize ? false : true, $personalize ? null : $cacheID);
+        $pnRender->assign ('show_header', '1');
+        $pnRender->assign ('site_url', pnGetBaseURL());
+        $pnRender->assign ('site_name', pnConfigGetVar('sitename'));
+        $pnRender->assign ('user_name', $personalize ? $user['name'] : '');
+        $pnRender->assign ('user_email', $personalize ? $user['email'] : '');
+        $pnRender->assign ('objectArray', $this->_objNewsletterData);
+        return $pnRender->fetch ($tpl);
+    }
+
+
+    function _sendNewsletter ($user, $cacheID=null)
+    {
+        $html    = false;
+        $message = $this->_getNewsletterMessage ($user, $cacheID, false, $html); // defaults to html
+        $from    = pnModGetVar ('Newsletter', 'send_from_address', pnConfigGetVar('adminmail'));        
+        $subject = pnConfigGetVar ('sitename') . ' ' . _NEWSLETTER;
+        $sent    = pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $user['email'],
+                                                                       'fromaddress'=> $from,
+                                                                       'subject'    => $subject,
+                                                                       'body'       => $message,
+                                                                       'html'       => $html));
+
+        if ($sent && ($this->_objSendType == 'api' || $this->_objUpdateSendDate)) {
+            $userData = array();
+            $userData['id'] = $user['id'];
+            $userData['last_send_date'] = DateUtil::getDatetime ();
+            $object = new PNUser ();
+            $object->setData ($userData);
+            $object->update ();
+        }
+
+        return $sent;
+    }
+
+
+    function _archiveNewsletter ($newArchive, $newArchiveTime)
+    {
+        if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
+            return LogUtil::registerError ('Unable to load array class [archive]');
+        }
+
+        $message = $this->_getNewsletterMessage (array(), null, false);
+
+        $archiveData = array();
+        $archiveData['date']     = DateUtil::getDatetime ();
+        $archiveData['time']     = $newArchiveTime;
+        $archiveData['lang']     = $this->_objLang;
+        $archiveData['nPlugins'] = $this->_objNewsletterData['nPlugins'];
+        $archiveData['nItems']   = $this->_objNewsletterData['nItems'];
+        $archiveData['text']     = $message;
+        $archiveObj = new PNArchive ();
+        $archiveObj->setData ($archiveData);
+        $archiveObj->save ($archiveData);
+    }
+}
+

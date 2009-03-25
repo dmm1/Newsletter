@@ -1,0 +1,31 @@
+<!--[pngetstatusmsg]-->
+
+<!--[ pnml assign="lblNewsletterhome" name="_NEWSLETTER_HOME" ]-->
+<!--[ pnml assign="lblNewsletteradmin" name="_NEWSLETTER_OPTIONS" ]-->
+<!--[ pnml assign="lblUnsubscribe" name="_NEWSLETTER_UNSUBSCRIBE" ]-->
+<!--[ pnml assign="lblViewarchives" name="_NEWSLETTER_VIEWARCHIVES" ]-->
+<!--[pnmodgetvar assign="allow_anon_registration" module="Newsletter" name="allow_anon_registration"]-->
+<!--[pnuserloggedin assign="loggedin" ]-->
+
+<div class="pn-frontendbox">
+  <h1><!--[pnml name=_NEWSLETTER]--></h1>
+  <!--[if ($allow_anon_registration || $loggedin)]-->
+    <h2><!--[pnml name="_NEWSLETTER_USER_WELCOME"]--></h2>
+  <!--[/if]-->
+  <div class="pn-menu">
+    [
+    <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ]-->" title="<!--[ $lblNewsletterhome ]-->"><!--[ $lblNewsletterhome ]--></a>
+    <!--[ if ($user) ]-->
+      &nbsp;|&nbsp;
+      <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="archive" ]-->" title="<!--[ $lblViewarchives]-->"><!--[ $lblViewarchives]--></a>
+      &nbsp;|&nbsp;
+      <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="options" ]-->" title="<!--[ $lblNewsletteradmin ]-->"><!--[ $lblNewsletteradmin]--></a>
+    <!--[ /if ]-->
+    <!--[ if (!$loggedin || $user) ]-->
+      &nbsp;|&nbsp;
+      <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="unsubscribe" ]-->" title="<!--[ $lblUnsubscribe ]-->"><!--[ $lblUnsubscribe]--></a>
+    <!--[ /if ]-->
+    ]
+  </div>
+</div>
+<br />

@@ -1,0 +1,87 @@
+<!--[include file="newsletter_user_std_header.html"]-->
+
+<!--[newsletter_selector_frequency assign="frequency_values" return_keys=true]-->
+<!--[newsletter_selector_frequency assign="frequency_output" return_keys=false]-->
+<!--[newsletter_selector_type assign="type_values" return_keys=true]-->
+<!--[newsletter_selector_type assign="type_output" return_keys=false]-->
+<!--[pnmodgetvar assign="allow_anon_registration" module="Newsletter" name="allow_anon_registration"]-->
+<!--[pnmodgetvar assign="allow_frequency_change" module="Newsletter" name="allow_frequency_change"]-->
+<!--[pnmodgetvar assign="auto_approve_registrations" module="Newsletter" name="auto_approve_registrations"]-->
+<!--[pnmodgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual"]-->
+<!--[pnmodgetvar assign="limit_type" module="Newsletter" name="limit_type"]-->
+<!--[pnconfiggetvar assign="defaultlang" name="language" default="eng" ]-->
+<!--[pnuserloggedin assign="loggedin" ]-->
+
+<!--[if (!$user)]-->
+
+  <h3><!--[pnml name="_NEWSLETTER_SUBSCRIBE"]--></h3>
+
+  <fieldset>
+    <legend><!--[pnml name="_NEWSLETTER_INFO"]--></legend>
+
+      <!--[if ($allow_anon_registration || $loggedin)]-->    
+
+          <form action="<!--[pnmodurl modname="Newsletter" type="userform" func="edit" ot="user" ]-->" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+
+            <!--[if (!$loggedin)]-->
+              <div class="nl-userformrow">
+                <label for="user_name"><!--[pnml name="_NEWSLETTER_YOUR_NAME"]--></label>
+                <input name="user[name]" type="text" size="20" maxlength="64" />
+              </div>
+
+              <div class="nl-userformrow">
+                <label for="user_email"><!--[pnml name="_NEWSLETTER_YOUR_EMAIL"]--></label>
+                <input id="user_email" name="user[email]" type="text" size="30" maxlength="128" />
+              </div>
+            <!--[/if]-->
+
+            <!--[if ($enable_multilingual)]-->
+              <div class="nl-userformrow">
+                <label for="user_lang"><!--[pnml name="_NEWSLETTER_LANGUAGE"]--></label>
+                <!--[html_select_languages id="user_lang" name="user[lang]" installed=true selected=$user.lang|default:$defaultlang ]-->
+              </div>
+            <!--[/if]-->
+
+            <!--[if (!$limit_type)]-->
+              <div class="nl-userformrow">
+                <label for="user_type"><!--[pnml name="_NEWSLETTER_TYPE"]--></label>
+                <select id="user_type" name="user[type]"><!--[html_options values=$type_values output=$type_output selected=1]--></select>
+              </div>
+            <!--[/if]-->
+
+            <!--[if ($allow_frequency_change) ]-->
+              <div class="nl-userformrow">
+                <label for="user_frequency"><!--[pnml name="_NEWSLETTER_FREQUENCY"]--></label>
+                <select id="user_frequency" name="user[frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=1]--></select>
+              </div>
+            <!--[/if]-->
+
+            <div class="nl-userformrow">
+              <label for="user_tos"><!--[pnml name="_NEWSLETTER_TERMS_OF_SERVICE"]--></label>
+              <input type="checkbox" id="user_tos" name="user[tos]" value="1" /> <!--[pnml name="_NEWSLETTER_TERMS_OF_SERVICE_AGREE" html="1"]-->
+            </div>
+
+            <!--[ include file="newsletter_inc_form_actions.html" ]-->
+
+            <!--[if (!$auto_approve_registrations)]-->
+              <div class="nl-userformrow">
+                <label style="color:red"><!--[pnml name="_NEWSLETTER_APPROVAL_REQUIRED" html=1 ]--></label>
+              </div>
+            <!--[/if]-->
+          </form>
+ 
+      <!--[else]-->
+
+          <div class="nl-userformrow">
+            <!--[pnml name="_NEWSLETTER_ANON_NOT_ALLOWED"]-->
+          </div>
+
+      <!--[/if]-->
+  </fieldset>
+
+<!--[elseif ($loggedin) ]-->
+  <!--[include file="newsletter_user_inc_info.html"]-->
+<!--[/if]-->
+
+<!--[ include file="newsletter_std_footer.html" ]-->

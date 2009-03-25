@@ -1,0 +1,80 @@
+/**
+ * Newletter Module for Zikula
+ *
+ * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @link http://www.zikula.org
+ * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
+ * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * Support: http://support.zikula.de, http://community.zikula.org
+ */
+
+/* conventional naming:
+.nladmin_this_class { color:blue; }
+#nladmin_this_id { color:blue; }
+
+this is important to avoid conflict with your (or others) default stylesheet.
+
+*/
+#nladmin-subscribers {
+	width:100%;
+	border:1px solid #ccc;
+	/*border-collapse:collapse;*/
+}
+#nladmin-subscribers th { 
+	padding:5px; 
+}
+#nladmin-subscribers tr, #nladmin-subscribers td { 
+	border:1px solid #bbb; 
+}
+#nladmin-subscribers td { 
+	padding:2px; 
+}
+#status-message {
+	font:bold 12px arial;
+}
+#status-message-green { 
+	font:bold 12px arial; 
+}
+#status-message-red { 
+	font:bold 12px arial; 
+}
+.nl-hint { 
+	margin-bottom: 5px; 
+	background-color: #ffffea;
+    	color: inherit; 
+	text-align: left; 
+	border: 1px solid green;
+	padding: 5px;
+}
+.nl_autocomplete_user {
+    position: absolute;
+    width: 35em;
+    background-color: white;
+    border: 1px solid #888;
+    margin: 0;
+    padding: 5;
+}
+.nl_autocomplete_user ul {
+    list-style-image: url("../../../images/icons/extrasmall/edit_user.gif");
+    margin: 0;
+    padding: 0;
+}
+.nl_autocomplete_user ul li.selected { 
+	background-color: #ffb;
+}
+.nl_autocomplete_user ul li {
+    margin: 0;
+    padding: 0.1em 0 0.1em 0;
+    line-height: 1.4em;
+    cursor: pointer;
+}
+
+#liveusersearch {
+    margin: 0.5em 0 0.5em 0;
+}
+.pn-hide {
+    display: none;
+}
+.pn-show {
+    display: inherit;
+}

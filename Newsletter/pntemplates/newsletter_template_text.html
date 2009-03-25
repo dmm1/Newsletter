@@ -1,0 +1,160 @@
+<!--[ pnusergetlang assign="currLang" ]-->
+<!--[ formutil_getpassedvalue assign="nllang" name="language" default="currLang" ]-->
+
+<!--[$objectArray.title]-->
+===========================
+<!--[ if (isset($user_name) && $user_name) ]-->
+<!--[pnml name="_NEWSLETTER_HELLO" ]--> <!--[ $user_name ]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_OWN_MESSAGE"]-->
+===========================
+<!--[$objectArray.NewsletterMessage|html_entity_decode]--></p>
+<!--[ /if ]-->
+ 
+<!--[ if (isset($objectArray.AdminMessages) && $objectArray.AdminMessages) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_ADMIN_MESSAGES" ]-->
+===========================
+<!--[foreach from=$objectArray.AdminMessages item="item"]-->
+<!--[$item.title|html_entity_decode]-->
+<!--[$item.content|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]--> 
+
+<!--[ if (isset($objectArray.News) && $objectArray.News) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_NEWS"]-->
+===========================
+<!--[foreach from=$objectArray.News item="item"]-->
+<!--[$item.title|html_entity_decode]-->
+<!--[$item.hometext|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]--> 
+
+<!--[ if (isset($objectArray.ZWebstore) && $objectArray.ZWebstore) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_ZWEBSTORE"]-->
+===========================
+<!--[foreach from=$objectArray.ZWebstore item="item"]-->
+<!--[$item.name|html_entity_decode]-->
+<!--[$item.description|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.CrpVideo) && $objectArray.CrpVideo) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_CRPVIDEO"]-->
+===========================
+<!--[foreach from=$objectArray.CrpVideo item=item]-->
+<!--[$item.crpvideos_title|html_entity_decode]-->: <!--[$item.crpvideos_content|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.crpCalendar) && $objectArray.crpCalendar) ]-->    
+<!--[pnml name="_NEWSLETTER_TITLE_CRPCALENDER"]-->
+===========================
+<!--[foreach from=$objectArray.crpCalendar item="item"]-->
+<!--[$item.crpcalendar_title|html_entity_decode]-->
+  <!--[$item.crpcalendar_event_text|html_entity_decode]--> 
+  <!--[$item.crpcalendar_location|html_entity_decode]-->
+  <!--[$item.crpcalendar_start_date|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.NewMembers) && $objectArray.NewMembers) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_NEW_MEMBERS"]-->
+===========================
+<!--[foreach from=$objectArray.NewMembers item="item"]-->
+<!--[$item.user_name|html_entity_decode]-->: <!--[$item.register_date]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Pagesetter) && $objectArray.Pagesetter) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_PAGESETTER"]-->
+===========================
+<!--[foreach from=$objectArray.Pagesetter item="item"]-->
+<!--[$item.title|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Content) && $objectArray.Content) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_CONTENT"]-->
+===========================
+<!--[foreach from=$objectArray.Content item="item"]-->
+<!--[$item.title|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Pages) && $objectArray.Pages) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_PAGES"]-->
+===========================
+<!--[foreach from=$objectArray.Pages item="item"]-->
+<!--[$item.title|html_entity_decode]-->: <!--[$item.content|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Reviews) && $objectArray.Reviews) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_REVIEWS"]--><
+===========================
+<!--[foreach from=$objectArray.Reviews item="item"]-->
+<!--[$item.title|html_entity_decode]-->
+<!--[$item.text|html_entity_decode]-->
+
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Mediashare) && $objectArray.Mediashare) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_MEDIASHARE"]-->
+===========================
+<!--[foreach from=$objectArray.Mediashare item="item"]-->
+<!--[$item.album.title|html_entity_decode]-->: <!--[$item.media.title|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Downloads) && $objectArray.Downloads) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_DOWNLOADS"]-->
+===========================
+<!--[foreach from=$objectArray.Downloads item="item"]-->
+<!--[$item.title|html_entity_decode]-->: <!--[$item.description|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Weblinks) && $objectArray.Weblinks) ]-->        
+<!--[pnml name="_NEWSLETTER_TITLE_WEBLINKS"]-->
+===========================
+<!--[foreach from=$objectArray.Weblinks item="item"]-->
+<!--[$item.title|html_entity_decode]-->: <!--[$item.description|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Faq) && $objectArray.Faq) ]-->        
+<!--[pnml name="_NEWSLETTER_TITLE_FAQ"]-->
+===========================
+<!--[foreach from=$objectArray.Faq item="item"]-->
+<!--[$item.question|pnvarprephtmldisplay|nl_encodetext]-->
+<!--[$item.answer|pnvarprephtmldisplay|nl_encodetext]-->
+
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($objectArray.Quotes) && $objectArray.Quotes) ]-->
+<!--[pnml name="_NEWSLETTER_TITLE_QUOTES"]-->
+===========================
+<!--[foreach from=$objectArray.Quotes item="item"]-->
+<!--[$item.quote|html_entity_decode]--> -- <!--[$item.author|html_entity_decode]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+   
+<!--[ if (isset($objectArray.Dizkus) && $objectArray.Dizkus) ]-->        
+<!--[pnml name="_NEWSLETTER_TITLE_DIZKUS"]-->
+===========================
+<!--[foreach from=$objectArray.Dizkus item="item"]-->
+<!--[$item.topic_title]-->
+<!--[/foreach]-->
+<!--[ /if ]-->
+
+
+
+<!--[pnmodurl assign="nlurl" modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true ]-->
+<!--[pnml name="_NEWSLETTER_TEXT_SUBSCRIBE"]--> <!--[pnml name="_NEWSLETTER_TEXT_HERE"]-->: <!--[ $nlurl ]-->
+
+<!--[pnmodurl assign="nlurlarchive" modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true ]-->
+<!--[pnml name="_NEWSLETTER_TEXT_LINK_TO_ARCHIVE"]-->: <!--[ $nlurl ]-->

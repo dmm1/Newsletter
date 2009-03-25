@@ -1,0 +1,19 @@
+<h4><!--[pnml name="_NEWSLETTER_NEWUSERINFO"]--></h4>
+<div style="width:50%; border:1px solid #ccc; margin:0px auto;">
+	<table>
+		<tr>
+			<td><!--[pnml name="_NEWSLETTER_USERNAME"]-->:</td>
+			<td><!--[$user_name|pnvarprepfordisplay]--></td>
+		</tr>
+		<tr>
+			<td><!--[pnml name="_NEWSLETTER_EMAIL"]-->:</td>
+			<td><!--[$user_email|pnvarprepfordisplay]--></td>
+		</tr>
+	</table>
+</div>
+<!--[pnmodgetvar module="Newsletter" name="auto_approve_registrations" assign="auto_approve"]-->
+<!--[if (!$auto_approve)]-->
+<p>
+<!--[pnml name="_NEWSLETTER_AUTOAPPROVE_DISABLEDMESSAGE"]-->
+</p>
+<!--[/if]-->		

@@ -1,0 +1,81 @@
+<!--[include file="newsletter_admin_std_header.html" ]-->
+
+<!--[ pnml assign="pageTitle" name="_NEWSLETTER_AVAILABLEPLUGINS"]-->
+<!--[ pnpagesetvar name="title" value=$pageTitle ]-->
+
+<!--[ php ]-->
+  if (pnModAvailable ('Pagesetter')) {
+    $this->assign ('pagesetterPubTypes', pnModAPIFunc ('Pagesetter', 'admin', getPublicationTypes));
+  } else {
+    $this->assign ('pagesetterPubTypes', null);
+  }
+  $pagesetterTIDs = pnModGetVar ('Newsletter', 'pagesetterTIDs', '');
+  $this->assign ('activePagesetterPlugins', explode(',', $pagesetterTIDs));
+<!--[ /php ]-->
+
+
+<div class="pn-admincontainer">
+  <br />
+  <h2><!--[$pageTitle]--></h2>
+
+  <form action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+    <input type="hidden" name="ot" value="plugin" />
+    <table class="pn-admintable" summary="<!--[$pageTitle]-->" width="100%">
+      <thead>
+        <tr>
+          <th align="left"><!--[pnml name="_NEWSLETTER_PLUGIN"]--></th>
+          <th align="left"><!--[pnml name="_NEWSLETTER_PLUGIN_ITEMS"]--></th>
+          <th align="left"><!--[pnml name="_NEWSLETTER_ACTIVE"]--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--[ pnml assign="yes" name="_YES" ]-->
+        <!--[ pnml assign="no" name="_NO" ]-->
+        <!--[ pnsecgenauthkey assign="authid" module="Newsletter"]-->
+        <!--[ foreach from=$objectArray item=plugin ]-->
+          <tr class="<!--[cycle values="pn-odd,pn-even"]-->">
+            <td align="left" valign="top"><!--[ $plugin|pnvarprephtmldisplay ]--></td>
+
+	    <!--[ assign_concat name="inputName" 1="plugin[" 2=$plugin 3="_nItems" 4="]" ]-->
+	    <!--[ assign_concat name="modvarName" 1="plugin_" 2=$plugin 3="_nItems" ]-->
+	    <!--[ pnmodgetvar assign="pluginItems" module="Newsletter" name=$modvarName default=3 ]-->
+            <!--[ if ($plugin != 'NewsletterMessage') ]-->
+	      <td align="left" valign="top"><input type="text" name=<!--[$inputName]--> value="<!--[$pluginItems]-->" size="3" maxlength="2" /></td>
+            <!--[ else ]-->
+	      <td align="left" valign="top"></td>
+            <!--[ /if]-->
+
+	    <!--[ assign_concat name="checkboxName" 1="plugin[" 2=$plugin 3="]" ]-->
+	    <!--[ assign_concat name="modvarName" 1="plugin_" 2=$plugin ]-->
+	    <!--[ pnmodgetvar assign="pluginActive" module="Newsletter" name=$modvarName default=0 ]-->
+            <!--[ if ($plugin == 'Pagesetter') ]-->
+	      <td align="left" valign="top">
+                  <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /> <!--[ pnml name="_NEWSLETTER_PAGESETTER_ACTIVATE" ]--><br /><hr />
+                  <em><!--[ pnml name="_NEWSLETTER_PAGESETTER_EXPLAIN" ]--></em><br />
+                  <!--[ foreach from=$pagesetterPubTypes item=pgPubType ]-->
+	            <!--[ assign_concat name="checkboxName" 1="pagesetterTIDs[" 2=$pgPubType.id 3="]" ]-->
+	            <!--[ assign_concat name="modvarName" 1="pagesetterTID_" 2=$pgPubType.id ]-->
+	            <!--[ php ]-->
+                        $tplVars = $this->_tpl_vars;
+                        if (in_array($tplVars['pgPubType']['id'], $tplVars['activePagesetterPlugins'])) {
+                            $this->assign ('pluginActive', 1);
+                        } else {
+                            $this->assign ('pluginActive', 0);
+                        }
+	            <!--[ /php ]-->
+		    <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /> <!--[ $pgPubType.title|pnvarprephtmldisplay ]--><br />
+                  <!--[ /foreach ]-->
+	      </td>
+            <!--[ else ]-->
+              <td align="left" valign="top"><input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /></td>
+            <!--[ /if ]-->
+          </tr>
+        <!--[ /foreach ]-->
+      </tbody>
+    </table>
+    <!--[include file="newsletter_inc_form_actions.html"]-->
+  </form>
+</div>
+
+<!--[ include file="newsletter_std_footer.html" ]-->

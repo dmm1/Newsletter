@@ -1,0 +1,40 @@
+<!--[include file="newsletter_user_std_header.html"]-->
+
+<!--[ pnml assign="pageTitle" name="_NEWSLETTER_VIEWARCHIVES"]-->
+<!--[ pnpagesetvar name="title" value=$pageTitle ]-->
+
+<!--[ pnml assign="lblDetail" name="_NEWSLETTER_VIEWARCHIVE"]-->
+
+<h3><!--[$pageTitle]--></h3>
+
+<fieldset>
+  <legend><!--[pnml name="_NEWSLETTER_VIEWARCHIVES_LIST"]--></legend>
+
+  <table class="pn-datatable" summary="<!--[$pageTitle]-->" width="100%">
+    <thead>
+      <tr>
+        <th><!--[pnml name="_NEWSLETTER_ID"]--></th>
+        <th><!--[pnml name="_NEWSLETTER_DATE"]--></th>
+        <th><!--[pnml name="_NEWSLETTER_LANGUAGE"]--></th>
+        <th><!--[pnml name="_NEWSLETTER_NPLUGINS"]--></th>
+        <th><!--[pnml name="_NEWSLETTER_NITEMS"]--></th>
+        <th><!--[pnml name="_NEWSLETTER_SIZE"]--></th>
+        <th align="right"><!--[pnml name="_NEWSLETTER_ACTION"]--></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--[foreach from=$objectArray key="key" item="archive"]-->
+        <tr class="<!--[cycle values="pn-odd,pn-even"]-->">
+          <td><!--[$archive.id]--></td>
+          <td><!--[$archive.date_display]--></td>
+          <td><!--[$archive.lang]--></td>
+          <td><!--[$archive.nPlugins]--></td>
+          <td><!--[$archive.nItems]--></td>
+          <td><!--[$archive.text|strlen]--></td>
+          <td align="right"><a href="<!--[ pnmodurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id ]-->" target="_blank"><!--[ pnimg src=demo.gif modname=core set=icons/extrasmall alt=$lblDetail altml=false title=$lblDetail titleml=false ]--></a></td>
+        </tr>
+      <!--[/foreach]-->
+    <tbody>
+  </table>
+</fieldset>
+

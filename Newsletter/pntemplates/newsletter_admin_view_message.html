@@ -1,0 +1,55 @@
+<!--[include file="newsletter_admin_std_header.html"]-->
+
+<!--[ php ]-->
+    $defaultLang  = pnConfigGetVar ('language');
+    $alternateLanguages = pnInstalledLanguages ();
+    unset ($alternateLanguages[$defaultLang]);
+    $this->assign ('defaultLang', $defaultLang);
+    $this->assign ('alternateLanguages', $alternateLanguages);
+    $this->assign ('coremultilingual', pnConfigGetVar ('multilingual', 0));
+<!--[ /php ]-->
+
+<!--[pnml assign="pageTitle" name="_NEWSLETTER_MESSAGE_TITLE"]-->
+<!--[pnpagesetvar name="title" value=$pageTitle]-->
+
+<!--[pnmodgetvar assign="text" module="Newsletter" name="message" default=""]-->
+<div class="pn-admincontainer">
+  <br />
+  <h2><!--[$pageTitle]--></h2>
+  <h4><!--[pnml name="_NEWSLETTER_MESSAGE_INFO"]--></h4>
+
+  <!--[ pnmodgetvar assign="newmessage" module="Newsletter" name="message"]-->
+  <form name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" method="post" enctype="application/x-www-form-urlencoded" />
+    <input type="hidden" name="ot" value="message" />
+    <fieldset>
+
+      <!--[pnmodgetvar assign="text" module="Newsletter" name="message" default=""]-->
+      <div>
+        <label for="message_text"><b><!--[pnml name="_NEWSLETTER_MESSAGE"]--> <strong>(<!--[ $defaultLang ]-->)</strong>:</b></label>
+        <div id="admin_key">
+          <textarea id="message_text" name="message[text]" cols="65" rows="15" ><!--[$text]--></textarea>
+        </div>
+      </div>
+
+      <!--[ if ($coremultilingual && $alternateLanguages) ]-->
+        <!--[ foreach from=$alternateLanguages key="lang" item="language" ]-->
+          <!--[ assign_concat name="fID" 1="message_text_" 2=$lang ]-->
+          <!--[ assign_concat name="fName" 1="message[text_" 2=$lang 3="]" ]-->
+          <!--[ assign_concat name="vName" 1="message_" 2=$lang ]-->
+          <!--[pnmodgetvar assign="text" module="Newsletter" name=$vName default=""]-->
+          <div>
+            <label for="<!--[ $fID ]-->"><b><!--[pnml name="_NEWSLETTER_MESSAGE"]--> <strong>(<!--[ $lang ]-->)</strong>:</b></label>
+            <div id="admin_key">
+              <textarea id="<!--[ $fID ]-->" name="<!--[ $fName ]-->" cols="65" rows="15" ><!--[$text]--></textarea>
+            </div>
+          </div>
+        <!--[ /foreach ]-->
+      <!--[ /if ]-->
+
+      <!--[ include file="newsletter_inc_form_actions.html" ]-->
+    </fieldset>
+  </form>
+</div>
+
+<!--[ include file="newsletter_std_footer.html" ]-->

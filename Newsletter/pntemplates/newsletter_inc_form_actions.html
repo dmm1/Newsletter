@@ -1,0 +1,30 @@
+<!--[ if (isset($ot)) ]-->
+    <!--[ assign var="ot_" value=$ot ]-->
+<!--[ /if ]-->
+
+<!--[ if (isset($otTarget) && $otTarget) ]-->
+  <!--[ assign var="ot_" value=$otTarget ]-->
+<!--[ /if ]-->
+
+<!--[ formutil_getpassedvalue assign="type_" name="type" default="user" ]-->
+<!--[ formutil_getpassedvalue assign="func_" name="func" default="main"]-->
+
+<div class="pn-adminformrow pn-adminformbuttons pn-userformrow nl-userformbuttons">
+    <!--[ if ($type_=='user') ]-->
+      <!--[ if ($func_ =='main') ]-->
+        <a href="<!--[ pnmodurl modname="Newsletter" type=$type_ func="main" ]-->">
+      <!--[ else ]-->
+        <a href="<!--[ pnmodurl modname="Newsletter" type=$type_ func="view" ot=$ot_ ]-->">
+      <!--[ /if ]-->
+    <!--[ else ]-->
+      <!--[ if ($func_ == 'main' || $func_ == 'modifyconfig') ]-->
+        <a href="<!--[ pnmodurl modname="Newsletter" type=$type_ func="modifyconfig" ]-->">
+      <!--[ else ]-->
+        <a href="<!--[ pnmodurl modname="Newsletter" type=$type_ func="view" ot=$ot_ ]-->">
+      <!--[ /if ]-->
+    <!--[ /if ]-->
+    <!--[ pnimg modname=core src=button_cancel.gif set=icons/small altml=true titleml=true alt="_CANCEL" title="_CANCEL" ]-->
+   </a>
+   <!--[ pnbutton src=button_ok.gif mode="input" set=icons/small id="submit" name="submit" value="submit" alt="_UPDATE" title="_UPDATE" ]-->
+</div>
+<br />

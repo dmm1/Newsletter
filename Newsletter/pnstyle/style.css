@@ -1,0 +1,89 @@
+
+div.nl-userformrow {
+	border-top: 0px solid #ccc;
+	padding: 5px 0px 10px 0px; /* top, right, bottom, left */
+	min-height: 2em;
+}
+
+/* style for a input control contained in a div of class formrow */
+/* style for a textarea control contained in a div of class formrow */
+/* style for a select control contained in a div of class formrow */
+/* style for a div contained in a div of class formrow - allows for grouping
+of a control and subsequent non label text.
+e.g. yes (radio) no (radio)*/
+div.nl-userformrow input, div.nl-userformrow textarea,
+div.nl-userformrow select, div.nl-userformrow label {
+	margin-left: 2em;
+	text-align: left;
+}
+div.nl-userformrow span {
+	margin-left: 2.5em;
+}
+
+/* styles for lists of controls */
+div.nl-userformrow ul {
+    list-style: none;
+}
+div.nl-userformrow label + ul > li {
+    margin-left: 23.9em;
+}
+div.nl-userformrow label + ul > li:first-child {
+    margin-left: 0em;
+}
+
+/* styles to ensure that control elements inside the floated div directly above
+don't themselves float*/
+div.nl-userformrow div input, div.nl-userformrow div textarea,
+div.nl-userformrow div select {
+	float: none;
+}
+
+/* styles to allow sub headings to be embedded correctly in admin forms */
+form.nl-userform div h1, form.nl-userform div h2, form.nl-userform div h3,
+form.nl-userform div h4, form.nl-userform div h5, form.nl-userform div h6 {
+	padding: 10px;
+}
+
+/* styles for lists inside an admin form */
+div.nl-userformrow ul {
+	padding: 0px;
+    margin-top: 0px;
+}
+div.nl-userformrow li {
+	margin-left: 25em;
+}
+
+/* add the help cursor to labels that provide additional help via the title
+tag of the label */
+form.nl-userform label.nl-userformhelp {
+    cursor: help;
+}
+
+/* style for a label contained in a div of class formrow */
+div.nl-userformrow>label {
+	float: left;
+	width: 23em;
+	margin-left: 5px;
+    padding: 0px 5px 0px 0px;
+	text-align: right;
+}
+
+/* styles for the buttons on a form */
+form.nl-userform div.nl-userformbuttons {
+	text-align: left;
+	margin-left: 15em;
+}
+form.nl-userform div.nl-userformbuttons input, form.nl-userform div.nl-userformbuttons img {
+	margin: 5px;
+}
+fieldset {
+	border: 1px solid #D9DAD5;
+	margin-top: 5px;
+	padding: 0px 5px 5px 5px;
+}
+legend {
+	padding: 5px;
+	color: #0074B0;
+	background-color: inherit;
+}
+

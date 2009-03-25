@@ -1,0 +1,59 @@
+<!--[include file="newsletter_admin_std_header.html"]-->
+
+<!--[ pnml assign="pageTitle" name="_NEWSLETTER_PREVIEW_TITLE"]-->
+<!--[ pnpagesetvar name="title" value=$pageTitle ]-->
+
+
+<div class="pn-admincontainer">
+  <br />
+  <h2><!--[$pageTitle]--></h2>
+
+  <form name="show_template" action="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot="show_preview" ]-->" target="_blank" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+    <fieldset>
+      <legend><!--[pnml name="_NEWSLETTER_PREVIEW_TEMPLATES"]--></legend>
+
+      <!--[pnmodgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual" default=0]-->
+      <!--[if ($enable_multilingual)]-->
+        <div class="pn-adminformrow">
+          <label for="language"><!--[pnml name="_NEWSLETTER_LANGUAGE"]-->:</label>
+          <!--[pnsessiongetvar assign="currLang" name="lang"]-->
+          <!--[pnconfiggetvar assign="defaultLang" name="language"]-->
+          <!--[html_select_languages id="user_lang" name="language" installed=true selected=$currLang|default:$defaultlang ]-->
+        </div>
+      <!--[/if]-->
+
+      <div class="pn-adminformrow">
+          <!--[ pnusergetvar assign="email" name="email" ]-->
+          <label for="testsend"><!--[pnml name="_NEWSLETTER_TESTSEND"]-->:</label>
+          <input id="testsend" name="testsend" type="checkbox" value="1" />
+          <input id="testsend_email" name="testsend_email" type="text" value="<!--[ $email ]-->" size="20" maxlength="64"  />
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="format"><!--[pnml name="_NEWSLETTER_FORMAT"]-->:</label>
+        <select name="format" onchange="this.form.submit();javascript:location.reload(true);" >                                        
+          <option><!--[pnml name="_NEWSLETTER_SELECT"]--></option>
+          <option value="1"><!--[pnml name="_NEWSLETTER_FORMAT_TEXT"]--></option>
+          <option value="2"><!--[pnml name="_NEWSLETTER_FORMAT_HTML"]--></option>
+          <option value="3"><!--[pnml name="_NEWSLETTER_FORMAT_TEXTWLINK"]--></option>
+        </select>
+        <a href="#" onclick="Effect.toggle('hint-3','BLIND'); return false;" title="<!--[pnml name="_HELP"]-->">(?)</a>
+        <br />
+        <br />
+        <span id="help_preview_form" style="display:none"><!--[pnml name="_NEWSLETTER_HELP"]--></span>
+        <div id="hint-3" class="nl-hint" style="display:none;">
+          <p><!--[pnml name="_NEWSLETTER_FIND_TEMPLATES"]--> /modules/Newsletter/pntemplates/</p>
+          <ul>
+            <li>newsletter_template_html.html</li>
+            <li>newsletter_template_text.html</li>
+            <li>newsletter_template_text_with_link.html</li>
+          </ul>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>
+

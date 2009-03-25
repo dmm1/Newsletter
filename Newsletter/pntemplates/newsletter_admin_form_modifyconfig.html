@@ -1,0 +1,162 @@
+<!--[include file="newsletter_admin_std_header.html" ]-->
+
+<!--[newsletter_selector_archive_expire assign="archive_expire_values" return_keys=true]-->
+<!--[newsletter_selector_archive_expire assign="archive_expire_output" return_keys=false]-->
+<!--[newsletter_selector_frequency assign="frequency_values" return_keys=true]-->
+<!--[newsletter_selector_frequency assign="frequency_output" return_keys=false]-->
+<!--[newsletter_selector_send_days assign="send_days_values" return_keys=true]-->
+<!--[newsletter_selector_send_days assign="send_days_output" return_keys=false]-->
+<!--[newsletter_selector_type assign="type_values" return_keys=true]-->
+<!--[newsletter_selector_type assign="type_output" return_keys=false]-->
+<!--[newsletter_selector_type assign="type_values2" all=true return_keys=true]-->
+<!--[newsletter_selector_type assign="type_output2" all=true return_keys=false]-->
+<!--[pnconfiggetvar assign="multilingual" name="multilingual" default=0 ]-->
+
+  <div class="pn-adminpageicon"><!--[pnimg modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true]--></div>
+  <form name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="modifyconfig"]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+
+    <fieldset>
+    <legend><!--[pnml name="_NEWSLETTER_ADMIN"]--></legend>
+	  
+      <div class="pn-adminformrow">
+        <label for="itemsperpage"><!--[pnml name="_ITEMSPERPAGE"]-->:</label>
+        <input id="itemsperpage" name="preferences[itemsperpage]" type="text" value="<!--[$preferences.itemsperpage|default:25]-->" size="3" maxlength="3" />
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="send_from_address"><!--[pnml name="_NEWSLETTER_SEND_FROM"]-->:</label>
+        <div id="send_from_address">
+          <input name="preferences[send_from_address]" type="text" value="<!--[$preferences.send_from_address]-->" size="20" maxlength="128" />
+          <a href="#" title="<!--[pnml name="_HELP"]-->" onclick="Effect.toggle('hint','BLIND'); return false;">(?)</a>
+          <span id="help_send_from" style="display:none"><!--[pnml name="_NEWSLETTER_HELP"]--></span>
+          <div id="hint" class="nl-hint" style="display:none;"><!--[pnml name="_NEWSLETTER_HELP_SEND_FROM"]--></div>
+        </div>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="limit_type"><!--[pnml name="_NEWSLETTER_TYPE_LIMIT"]-->:</label>
+        <select id="limit_type" name="preferences[limit_type]"><!--[html_options values=$type_values2 output=$type_output2 selected=$preferences.limit_type ]--></select>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="default_type"><!--[pnml name="_NEWSLETTER_DEFAULT_TYPE"]-->:</label>
+        <select id="default_type" name="preferences[default_type]"><!--[html_options values=$type_values output=$type_output selected=$preferences.default_type]--></select>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="default_frequency"><!--[pnml name="_NEWSLETTER_DEFAULT_FREQUENCY"]-->:</label>
+        <select id="default_frequency" name="preferences[default_frequency]" onchange="if(this.options[selectedIndex].value=='0'){document.forms[0].allow_frequency_change.checked=false; document.forms[0].allow_frequency_change.disabled = true; } else { document.forms[0].allow_frequency_change.disabled = false;}"><!--[html_options values=$frequency_values output=$frequency_output selected=$preferences.default_frequency]--></select>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="send_day"><!--[pnml name="_NEWSLETTER_SENDDAY"]-->:</label>
+        <select id="send_day" name="preferences[send_day]"><!--[html_options values=$send_days_values output=$send_days_output selected=$preferences.send_day]--></select>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="archive_expire"><!--[pnml name="_NEWSLETTER_EXPIRE_ARCHIVED"]-->:</label>
+        <div id="archive_expire_values">
+          <select name="preferences[archive_expire]"><!--[html_options values=$archive_expire_values output=$archive_expire_output selected=$preferences.archive_expire]--></select>
+        </div>
+      </div>
+
+      <!--[if ($multilingual)]-->
+        <div class="pn-adminformrow">
+          <label for="enable_multilingual"><!--[pnml name="_NEWSLETTER_ENABLE_MULTILINGUAL"]-->:</label>
+          <input id="enable_multilingual" name="preferences[enable_multilingual]" type="checkbox" value="1" <!--[if ($preferences.enable_multilingual) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+         <a href="#" title="<!--[pnml name="_HELP"]-->" onclick="Effect.toggle('hint-1','BLIND'); return false;">(?)</a>
+          <span id="help_enable_multilingual" style="display:none"><!--[pnml name="_NEWSLETTER_HELP"]--></span>
+          <div class="nl-hint" id="hint-1" style="display:none;"><!--[pnml name="_NEWSLETTER_HELP_ENABLE_MULTILINGUAL"]--></div>
+		</div>
+      <!--[/if]-->
+
+      <div class="pn-adminformrow">
+        <label for="notify_admin"><!--[pnml name="_NEWSLETTER_SUBSCRIPTION_NOTICES"]-->:</label>
+        <input id="notify_admin" name="preferences[notify_admin]" type="checkbox" value="1" <!--[if ($preferences.notify_admin) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="allow_anon_registration"><!--[pnml name="_NEWSLETTER_ALLOW_ANON_REGISTRATION"]-->:</label>
+        <input id="allow_anon_registration" name="preferences[allow_anon_registration]" type="checkbox" value="1" <!--[if ($preferences.allow_anon_registration)]--> checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--> </em>
+      </div>
+	  
+	<div class="pn-adminformrow">
+        <label for="require_tos"><!--[pnml name="_NEWSLETTER_REQUIRE_TERMS_OF_SERVICE"]--></label>
+        <input id="require_tos" name="preferences[require_tos]" type="checkbox" value="1" <!--[if ($preferences.require_tos) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+	  </div>
+	  
+      <div class="pn-adminformrow">
+        <label for="auto_approve_registrations"><!--[pnml name="_NEWSLETTER_AUTO_APPROVE_REGISTRATIONS"]-->:</label>
+        <input id="auto_approve_registrations" name="preferences[auto_approve_registrations]" type="checkbox" value="1" <!--[if ($preferences.auto_approve_registrations)]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="allow_frequency_change"><!--[pnml name="_NEWSLETTER_ALLOW_FREQUENCY_CHANGE"]-->:</label>
+        <input id="allow_frequency_changes" name="preferences[allow_frequency_change]" type="checkbox" value="1" <!--[if ($preferences.allow_frequency_change)]--> checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]-->, <!--[pnml name="_NEWSLETTER_DISABLE_FOR_PERFORMANCE"]--></em> 
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="preferences[personalize_email]"><!--[pnml name="_NEWSLETTER_PERSONALIZE_EMAIL"]-->:</label>
+        <input id="personalize_email" name="preferences[personalize_email]" type="checkbox" value="1" <!--[if ($preferences.personalize_email)]--> checked="checked"<!--[/if]--> /> <em> <!--[pnml name="_NEWSLETTER_CHECKEDYES"]-->, <!--[pnml name="_NEWSLETTER_DISABLE_FOR_PERFORMANCE"]--></em> 
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="send_per_request"><!--[pnml name="_NEWSLETTER_SEND_PER_REQUEST"]-->:</label>
+        <input id="send_per_request" name="preferences[send_per_request]" type="text" value="<!--[$preferences.send_per_request]-->" style="width:30px;" /> <em><!--[pnml name="_NEWSLETTER_X_NUMBER_OF_EMAILS"]--> <!--[pnml name="_NEWSLETTER_ZERO_NO_RESTRICTION"]--></em>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="max_send_per_hour"><!--[pnml name="_NEWSLETTER_MAXIMUM_SEND_PER_HOUR"]--></label>
+        <input id="max_send_per_hour" name="preferences[max_send_per_hour]" type="text" value="<!--[$preferences.max_send_per_hour]-->" style="width:30px;" /> <em><!--[pnml name="_NEWSLETTER_X_NUMBER_OF_EMAILS"]--> <!--[pnml name="_NEWSLETTER_ZERO_NO_RESTRICTION"]--> </em>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="admin_key"><!--[pnml name="_NEWSLETTER_ADMINKEY"]--></label>
+        <input id="admin_key" name="preferences[admin_key]" type="text" value="<!--[$preferences.admin_key]-->" /> <em><!--[pnml name="_NEWSLETTER_SIMPLIFY_BATCH_PROCESSING"]--></em>
+      </div>
+
+      <!--[ include file="newsletter_inc_form_actions.html" ]-->
+
+    </fieldset>
+  </form>
+
+
+
+  <fieldset>
+    <legend><!--[pnml name="_NEWSLETTER_INFO"]--></legend>
+    <div class="pn-adminformrow">
+      <p><!--[pnml name="_NEWSLETTER_ITTOOK"]--> <strong><!--[$last_execution_time]--></strong> <!--[pnml name="_NEWSLETTER_SECONDS_TO_SEND_LAST_BATCH"]--> <!--[$last_execution_count]--> <!--[pnml name="_NEWSLETTER_MAILS"]-->.</p>
+    </div>
+  </fieldset>
+
+
+
+  <form action="<!--[pnmodurl modname="Newsletter" type="adminform" func="delete" ot="archive"]-->" method="post" onsubmit="if(!this.file_archive.checked &amp;&amp; !this.db_archive.checked){alert('<!--[pnml name="_NEWSLETTER_SELECT_ARCHIVE_TO_FLUSH"]-->.'); return false;}">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+    <fieldset>
+      <legend><!--[pnml name="_NEWSLETTER_PRUNE_ARCHIVES"]--></legend>
+
+      <div class="pn-adminformrow">
+        <p>
+          <img src="modules/Newsletter/pnimages/error.gif" alt="" />
+          <strong><!--[pnml name="_NEWSLETTER_NOTE"]-->:</strong> <!--[pnml name="_NEWSLETTER_ARCHIVE_OPTION_REMOVE"]-->.
+        </p>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="file_archive"><!--[pnml name="_NEWSLETTER_FILE"]-->:</label>
+        <input id="file_archive" type="checkbox" name="archive[file]" value="1" /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+      </div>
+
+      <div class="pn-adminformrow">
+        <label for="db_archive"><!--[pnml name="_NEWSLETTER_DATABASE"]-->:</label>
+        <input id="db_archive" type="checkbox" name="archive[database]" value="1" /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+      </div>
+
+      <!--[ include file="newsletter_inc_form_actions.html" ]-->
+
+    </fieldset>
+  </form>
+
+<!--[ include file="newsletter_std_footer.html" ]-->
