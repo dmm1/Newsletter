@@ -2,6 +2,15 @@ README for the Newsletter Module
 --------------------------------
 
 
+Newsletter Sending:
+-------------------
+Standard: 
+index.php?module=Newsletter&func=send&scheduled=1&authKey={Newsletter admin auth key}
+
+If Multlingual Mode is turned on: 
+index.php?module=Newsletter&func=send&scheduled=1&lang={lang}&authKey={Newsletter admin auth key}
+
+
 Export Functionality:
 ---------------------
 
@@ -21,6 +30,7 @@ index.php?module=Newsletter&ot=export&authKey={Newsletter admin auth key}&output
 
 
 Import Functionality: 
+---------------------
 
 Import files are read from the directory modules/Newsletter/import
 

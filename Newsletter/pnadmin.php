@@ -26,8 +26,9 @@ function Newsletter_admin_modifyconfig ()
         return 'Unable to load class [newsletter_util]';
     }
 
+    $preferences = pnModGetVar('Newsletter');
     $pnRender = pnRender::getInstance('Newsletter', false);
-    $pnRender->assign ('preferences', pnModGetVar('Newsletter'));
+    $pnRender->assign ('preferences', $preferences);
     $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
     $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
 
@@ -176,7 +177,7 @@ function Newsletter_admin_view ()
             if ($rc) {
                 $sendObj = new PNNewsletterSend ();
                 if ($sendObj->save ()) {
-                    LogUtil::registerError (_NEWSLETTER_EMAIL_SUCCESS);
+                    LogUtil::registerStatus (_NEWSLETTER_EMAIL_SUCCESS);
                 } else {
                     LogUtil::registerError (_NEWSLETTER_EMAIL_FAILURE);
                 }

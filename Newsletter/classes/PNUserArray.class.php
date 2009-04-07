@@ -93,7 +93,7 @@ class PNUserArray extends PNObjectArray
                     $checkDate = DateUtil::getDatetime_NextMonth ($default_frequency*-1);
                     break;
             }
-            $where .= " AND (nlu_last_send_date IS NULL OR DATEDIFF(nlu_last_send_date, '$checkDate') > 0)";
+            $where .= " AND (nlu_last_send_date IS NULL OR (DATEDIFF(nlu_last_send_date, '$checkDate') <= 0))";
         }
 
         $users = $this->get ($where, 'id');
@@ -121,7 +121,7 @@ class PNUserArray extends PNObjectArray
     function selectPostProcess ($data=null) 
     {
         if (!$data) {
-        $data = $this->_objData;
+            $data = $this->_objData;
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {

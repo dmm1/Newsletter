@@ -34,7 +34,7 @@ function Newsletter_adminform_modifyconfig ()
     pnModSetVar ('Newsletter', 'allow_frequency_change',     $prefs['allow_frequency_change']     ? 1                           : 0);
     pnModSetVar ('Newsletter', 'archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire']    : 0);
     pnModSetVar ('Newsletter', 'auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 1);
+    pnModSetVar ('Newsletter', 'default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
     pnModSetVar ('Newsletter', 'default_type',               $prefs['default_type']               ? $prefs['default_type']      : 1);
     pnModSetVar ('Newsletter', 'enable_multilingual',        $prefs['enable_multilingual']        ? 1                           : 0);
     pnModSetVar ('Newsletter', 'itemsperpage',               $prefs['itemsperpage']               ? $prefs['itemsperpage']      : 25);
@@ -42,7 +42,7 @@ function Newsletter_adminform_modifyconfig ()
     pnModSetVar ('Newsletter', 'max_send_per_hour',          $prefs['max_send_per_hour'] >= 0     ? $prefs['max_send_per_hour'] : 0);
     pnModSetVar ('Newsletter', 'notify_admin',               $prefs['notify_admin']               ? 1                           : 0);
     pnModSetVar ('Newsletter', 'require_tos',                $prefs['require_tos']               ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
+    pnModSetVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
     pnModSetVar ('Newsletter', 'send_day',                   $prefs['send_day']                   ? $prefs['send_day']          : 5);
     pnModSetVar ('Newsletter', 'send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address'] : pnConfigGetVar('adminmail'));
     pnModSetVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);

@@ -58,13 +58,14 @@ class PNNewsletterSend extends PNObject
         if (!Loader::loadArrayClassFromModule('Newsletter', 'newsletter_data')) {
             return LogUtil::registerError ('Unable to load array class [newsletter_data]');
         }
+        $enable_multilingual = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $this->_objLang            = enable_multilingual ? FormUtil::getPassedValue ('language', '', 'GETPOST') : null; // custom var
         $newsletterDataObjectArray = new PNNewsletterDataArray ();
+	$this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);              // custom var
 
-        $this->_objLang           = FormUtil::getPassedValue ('language', '', 'POST');                          // custom var
-        $this->_objSendType       = FormUtil::getPassedValue ('sendType', '', 'POST');                          // custom var
-        $this->_objUpdateSendDate = FormUtil::getPassedValue ('updateSendDate', '', 'POST');                    // custom var
-        $this->_objNewsletterData = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);            // custom var
-        $testsend                 = FormUtil::getPassedValue ('testsend', 0, 'POST');                           // from admin->preview
+        $this->_objSendType       = FormUtil::getPassedValue ('sendType', '', 'GETPOST');                          // custom var
+        $this->_objUpdateSendDate = FormUtil::getPassedValue ('updateSendDate', '', 'GETPOST');                    // custom var
+        $testsend                 = FormUtil::getPassedValue ('testsend', 0, 'GETPOST');                           // from admin->preview
 
         if (!$this->_objNewsletterData) {
             return LogUtil::registerError ('No newsletter data to send');
@@ -137,7 +138,7 @@ class PNNewsletterSend extends PNObject
 
         // get elegible users
         $objectArray = new PNUserArray ();
-        $users = $objectArray->getSendable ('', 'id');
+        $users = $objectArray->getSendable ($this->_objLang, 'id');
         if (!$users) {
             return _NEWSLETTER_NO_USERS;
         }

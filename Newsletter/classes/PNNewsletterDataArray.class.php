@@ -21,8 +21,6 @@ class PNNewsletterDataArray extends PNObjectArray
 
     function getNewsletterData ($lang=null)
     {
-        pnModLangLoad ('Newsletter', 'plugins');
-
         if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
             return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
         }
@@ -30,7 +28,14 @@ class PNNewsletterDataArray extends PNObjectArray
         $data     = array();
         $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
         $plugins  = NewsletterUtil::getActivePlugins ();
-        $language = FormUtil::getPassedValue ('language', null, 'GETPOST');
+        $language = FormUtil::getPassedValue ('language', $lang, 'GETPOST');
+
+	if ($language) {
+	    include_once ("modules/Newsletter/pnlang/$language/plugins.php");
+	} else {
+	    pnModLangLoad ('Newsletter', 'plugins');
+	}
+
         if ($enableML && !$language) {
             return LogUtil::registerError (_NEWSLETTER_LANGUAGE_NOT_SELECTED);
         }

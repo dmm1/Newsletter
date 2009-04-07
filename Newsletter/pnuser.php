@@ -104,6 +104,6 @@ function Newsletter_user_send ()
     $scheduled = (int)FormUtil::getPassedValue ('scheduled', 0);
 
     $obj = new PNNewsletterSend ();
-    return $obj->save (array('respond' => true, 'scheduled' => $scheduled));
+    return $obj->save (array('respond' => 1, 'scheduled' => $scheduled));
 }
 
