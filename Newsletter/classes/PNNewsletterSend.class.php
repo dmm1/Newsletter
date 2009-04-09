@@ -60,7 +60,7 @@ class PNNewsletterSend extends PNObject
         }
 
         $enable_multilingual       = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-        $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue ('language', '', 'GETPOST') : null; // custom var
+        $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue ('language', '', 'GETPOST') : SessionUtil::getVar('lang'); // custom var
         $newsletterDataObjectArray = new PNNewsletterDataArray ();
         $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);              // custom var
 
@@ -209,7 +209,7 @@ class PNNewsletterSend extends PNObject
         if ($maxPerHour) {
             pnModSetVar ('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));
         }
-        
+
         if (!$matched) {
             $this->_archiveNewsletter ($newArchive, $newArchiveTime);
         }
@@ -279,12 +279,12 @@ class PNNewsletterSend extends PNObject
         $message = $this->_getNewsletterMessage (array(), null, false);
 
         $archiveData = array();
-        $archiveData['date']     = DateUtil::getDatetime ();
-        $archiveData['time']     = $newArchiveTime;
-        $archiveData['lang']     = $this->_objLang;
-        $archiveData['nPlugins'] = $this->_objNewsletterData['nPlugins'];
-        $archiveData['nItems']   = $this->_objNewsletterData['nItems'];
-        $archiveData['text']     = $message;
+        $archiveData['date']      = DateUtil::getDatetime ();
+        $archiveData['time']      = $newArchiveTime;
+        $archiveData['lang']      = $this->_objLang;
+        $archiveData['n_plugins'] = $this->_objNewsletterData['nPlugins'];
+        $archiveData['n_items']   = $this->_objNewsletterData['nItems'];
+        $archiveData['text']      = $message;
         $archiveObj = new PNArchive ();
         $archiveObj->setData ($archiveData);
         $archiveObj->save ($archiveData);

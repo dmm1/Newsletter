@@ -10,7 +10,7 @@
  */
 
 $modversion['name'] = 'Newsletter';
-$modversion['version'] = '2.0.0';
+$modversion['version'] = '2.0.1';
 $modversion['displayname'] = _NEWSLETTER_DISPLAYNAME; 
 $modversion['description'] = _NEWSLETTER_DESCRIPTION; 
 $modversion['changelog'] = 'pndocs/changelog.txt';

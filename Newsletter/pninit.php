@@ -49,18 +49,21 @@ function Newsletter_upgrade($oldversion)
             pnModSetVar('Newsletter', 'personalize_email', 0);
             pnModSetVar('Newsletter', 'admin_key', substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
+            _Newsletter_upgrade_to_201 ();
             break;
         case '1.2':
             pnModSetVar('Newsletter', 'max_send_per_hour', 0);
             pnModSetVar('Newsletter', 'personalize_email', 0);
             pnModSetVar('Newsletter', 'admin_key',substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
+            _Newsletter_upgrade_to_201 ();
             break;
         case '1.5':
             pnModSetVar ('Newsletter', 'max_send_per_hour', 0);
             pnModSetVar ('Newsletter', 'personalize_email', 0);
             pnModSetVar ('Newsletter', 'admin_key',substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
+            _Newsletter_upgrade_to_201 ();
             break;
         case '1.6':
         case '1.61':
@@ -69,6 +72,11 @@ function Newsletter_upgrade($oldversion)
             pnModSetVar ('Newsletter', 'personalize_email', 0);
             pnModSetVar ('Newsletter', 'admin_key',substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
+            _Newsletter_upgrade_to_201 ();
+            break;
+        case '2.0.0':
+            _Newsletter_upgrade_to_201 ();
+            break;
     }
 
     return true;
@@ -144,6 +152,20 @@ function _Newsletter_upgrade_to_20 ()
     return true;
 }
 
+
+function _Newsletter_upgrade_to_201 ()
+{
+    $pnTables = pnDBGetTables();
+    $table    = $pnTables['newsletter_archives'];
+
+    $sqls[] = "ALTER TABLE $table ADD COLUMN nla_n_plugins INT(3) NOT NULL DEFAULT 0 AFTER nla_lang";
+    $sqls[] = "ALTER TABLE $table ADD COLUMN nla_n_items INT(6) NOT NULL DEFAULT 0 AFTER nla_n_plugins";
+    foreach ($sqls as $sql) {
+        DBUtil::executeSQL ($sql, -1, -1, false, true);
+    }
+
+    return true;
+}
 
 function Newsletter_delete()
 {

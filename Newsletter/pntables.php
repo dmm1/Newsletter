@@ -54,6 +54,8 @@ function Newsletter_pntables()
     		     'id'		=>	'nla_id',
     		     'date'		=>	'nla_date',
     		     'lang'		=>	'nla_lang',
+    		     'n_plugins'	=>	'nla_n_plugins',
+    		     'n_items'		=>	'nla_n_items',
 		     'text'		=>	'nla_text'
         );
     ObjectUtil::addStandardFieldsToTableDefinition ($columns, 'nla_');
@@ -62,8 +64,8 @@ function Newsletter_pntables()
     		     'id'		=>	'I4 NOTNULL AUTO PRIMARY',
     		     'date'		=>	'T NOTNULL DEFAULT 0',
     		     'lang'		=>	'C(3) NOTNULL DEFAULT \'\'',
-    		     'nPlugins'		=>	'I2 NOTNULL DEFAULT 0',
-    		     'nItems'		=>	'I2 NOTNULL DEFAULT 0',
+    		     'n_plugins'	=>	'I2 NOTNULL DEFAULT 0',
+    		     'n_items'		=>	'I2 NOTNULL DEFAULT 0',
 		     'text'		=>	'X NOTNULL DEFAULT \'\''
         );
     ObjectUtil::addStandardFieldsToTableDataDefinition ($columns_def);

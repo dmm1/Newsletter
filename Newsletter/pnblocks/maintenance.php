@@ -44,7 +44,7 @@ function Newsletter_maintenanceblock_display($blockinfo)
 
     $today = date('w');
     $send_day = pnModGetVar('Newsletter','send_day');
-    //if ($send_day == $today) {
+    if ($send_day == $today) {
         if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_send')) {
             return 'Unable to load class [newsletter_send]';
 	}
@@ -59,14 +59,14 @@ function Newsletter_maintenanceblock_display($blockinfo)
         $object->save ();
 
         // prune on send day before noon
-        if (date('G')<=12) {
-            if (!Loader::loadClassFromModule ('Newsletter', 'archive')) {
-                return 'Unable to load class [archive]';
-            }
-            $object = new PNArchive ();
-            $object->prune ();
-        }
-    //}
+        //if (date('G')<=12) {
+            //if (!Loader::loadClassFromModule ('Newsletter', 'archive')) {
+                //return 'Unable to load class [archive]';
+            //}
+            //$object = new PNArchive ();
+            //$object->prune ();
+        //}
+    }
 
     $blockinfo=array();
     return themesideblock($blockinfo);
