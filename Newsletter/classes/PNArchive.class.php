@@ -54,8 +54,8 @@ class PNArchive extends PNObject
         }
 
         $expire_date = DateUtil::getDatetime_NextMonth ($archive_expire*-1, $format=DATEFORMAT_FIXED);
-        $where = "DATEDIFF(nla_date, '$expire_date') > 0)";
-        return DBUtil::deleteWhere ('newsletter_archive', $where);
+        $where = "DATEDIFF(nla_date, '$expire_date') > 0";
+        return DBUtil::deleteWhere ($this->_objType, $where);
     }
 }
 

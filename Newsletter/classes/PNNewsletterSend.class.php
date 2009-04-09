@@ -58,10 +58,11 @@ class PNNewsletterSend extends PNObject
         if (!Loader::loadArrayClassFromModule('Newsletter', 'newsletter_data')) {
             return LogUtil::registerError ('Unable to load array class [newsletter_data]');
         }
-        $enable_multilingual = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-        $this->_objLang            = enable_multilingual ? FormUtil::getPassedValue ('language', '', 'GETPOST') : null; // custom var
+
+        $enable_multilingual       = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue ('language', '', 'GETPOST') : null; // custom var
         $newsletterDataObjectArray = new PNNewsletterDataArray ();
-	$this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);              // custom var
+        $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);              // custom var
 
         $this->_objSendType       = FormUtil::getPassedValue ('sendType', '', 'GETPOST');                          // custom var
         $this->_objUpdateSendDate = FormUtil::getPassedValue ('updateSendDate', '', 'GETPOST');                    // custom var
@@ -203,6 +204,7 @@ class PNNewsletterSend extends PNObject
                 }
             }
         }
+        LogUtil::registerStatus ("$nSent " . _NEWSLETTER_SENT_SUCCESSFULLY);
         
         if ($maxPerHour) {
             pnModSetVar ('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));

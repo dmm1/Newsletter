@@ -36,16 +36,25 @@ function Newsletter_maintenanceblock_display($blockinfo)
         return;
     }
 
+    pnModDBInfoLoad ('Newsletter');
+
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
         return 'Unable to load class [newsletter_util]';
     }
 
     $today = date('w');
     $send_day = pnModGetVar('Newsletter','send_day');
-    if ($send_day == $today) {
+    //if ($send_day == $today) {
         if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_send')) {
             return 'Unable to load class [newsletter_send]';
-        }
+	}
+
+        $enable_multilingual = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        if ($enable_multilingual) {
+            $_POST['language'] = SessionUtil::getVar ('lang'); // hack, to ensure that language can be retrieved from $_POST
+	}
+        $_POST['authKey'] = pnModGetVar ('Newsletter', 'admin_key');
+
         $object = new PNNewsletterSend ();
         $object->save ();
 
@@ -57,7 +66,7 @@ function Newsletter_maintenanceblock_display($blockinfo)
             $object = new PNArchive ();
             $object->prune ();
         }
-    }
+    //}
 
     $blockinfo=array();
     return themesideblock($blockinfo);

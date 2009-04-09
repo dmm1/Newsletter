@@ -79,9 +79,9 @@ class PNUserArray extends PNObjectArray
         $allow_frequency_change = pnModGetVar ('Newsletter', 'allow_frequency_change', 0);
         $default_frequency = pnModGetVar ('Newsletter', 'default_frequency', 1);
 
-        $where = "nlu_active=1 AND nlu_approved=1";
+        $where = "(nlu_active=1 AND nlu_approved=1)";
         if ($language) {
-            $where = "nlu_lang='$language'";
+            $where = "(nlu_lang='$language' OR nlu_lang='')";
         }
 
         if (!$allow_frequency_change) {
@@ -94,7 +94,7 @@ class PNUserArray extends PNObjectArray
                     break;
             }
             $where .= " AND (nlu_last_send_date IS NULL OR (DATEDIFF(nlu_last_send_date, '$checkDate') <= 0))";
-        }
+	}
 
         $users = $this->get ($where, 'id');
 
