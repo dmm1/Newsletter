@@ -10,6 +10,11 @@ index.php?module=Newsletter&func=send&scheduled=1&authKey={Newsletter admin auth
 If Multlingual Mode is turned on: 
 index.php?module=Newsletter&func=send&scheduled=1&lang={lang}&authKey={Newsletter admin auth key}
 
+Supported Languages:
+---------------------
+English
+German
+Dutch
 
 Export Functionality:
 ---------------------
