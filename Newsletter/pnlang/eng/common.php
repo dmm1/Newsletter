@@ -210,4 +210,11 @@ define('_NEWSLETTER_X_NUMBER_OF_EMAILS',	'"x" number of emails');
 define('_NEWSLETTER_YOUR_EMAIL',		'Your E-Mail Address');
 define('_NEWSLETTER_YOUR_NAME',			'Your Name');
 define('_NEWSLETTER_ZERO_NO_RESTRICTION',	'(0 [Zero] = no Restriction)');
-
+define('_NEWSLETTER_CONFIG_ARCHIVES',			'Archive Settings');
+define('_NEWSLETTER_SHOW_ARCHIVE',			'Show Archive in the user-menu?');
+define('_NEWSLETTER_SHOW_ID',			'Show Newsletter ID ?');
+define('_NEWSLETTER_SHOW_DATE',			'Show date?');
+define('_NEWSLETTER_SHOW_OBJECTS',			'Show Objects?');
+define('_NEWSLETTER_SHOW_PLUGINS',			'Show Plugins?');
+define('_NEWSLETTER_SHOW_SIZE',			'Show Size?');
+define('_NEWSLETTER_SHOW_LANG',			'Show Language?');

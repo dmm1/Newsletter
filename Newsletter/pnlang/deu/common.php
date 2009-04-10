@@ -210,6 +210,21 @@ define('_NEWSLETTER_ZERO_NO_RESTRICTION',	'(0 [Zero] = keine Einschränkung)');
 define('_NEWSLETTER_USERIMPORT_FINISH',		'User-Import fertiggestellt.');
 define('_NEWSLETTER_USERIMPORT_IMPORTED',	'Benutzer wurden importiert');
 define('_NEWSLETTER_EMAIL_SUCCESS',	'Nachricht erfolgreich gesendet!');
+define('_NEWSLETTER_CONFIG_ARCHIVES',			'Archiv Einstellungen');
+define('_NEWSLETTER_SHOW_ARCHIVE',			'Archiv in User-Menü anzeigen?');
+define('_NEWSLETTER_SHOW_ID',			'Newsletter ID anzeigen ?');
+define('_NEWSLETTER_SHOW_DATE',			'Datum azeigen?');
+define('_NEWSLETTER_SHOW_OBJECTS',			'Anzahl an Objekten anzeigen?');
+define('_NEWSLETTER_SHOW_PLUGINS',			'Anzahl an Plugins anzeigen?');
+define('_NEWSLETTER_SHOW_SIZE',			'Größe des Newsletters anzeigen?');
+define('_NEWSLETTER_SHOW_LANG',			'Sprache anzeigen?');
 
+
+  
+  
+  
+  
+
+    
 
 

@@ -16,9 +16,12 @@
     [
     <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ]-->" title="<!--[ $lblNewsletterhome ]-->"><!--[ $lblNewsletterhome ]--></a>
     <!--[ if ($user) ]-->
+	<!--[ pnmodgetvar assign="show_archive" module="Newsletter" name="show_archive" default="0" ]-->
+	<!--[ if ($show_archive) ]-->
       &nbsp;|&nbsp;
       <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="archive" ]-->" title="<!--[ $lblViewarchives]-->"><!--[ $lblViewarchives]--></a>
-      &nbsp;|&nbsp;
+    <!--[ /if ]--> 
+	 &nbsp;|&nbsp;
       <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="options" ]-->" title="<!--[ $lblNewsletteradmin ]-->"><!--[ $lblNewsletteradmin]--></a>
     <!--[ /if ]-->
     <!--[ if (!$loggedin || $user) ]-->

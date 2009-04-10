@@ -190,4 +190,66 @@ function Newsletter_admin_view ()
     $template = 'newsletter_admin_view_' . $ot . '.html';
     return $pnRender->fetch($template);
 }
+function Newsletter_admin_archive() 
+{
+   return Newsletter_admin_modifyarchive ();
+}
 
+
+function Newsletter_admin_modifyarchive () 
+{
+    if (!SecurityUtil::checkPermission('Newsletter::modifyarchive', '::', ACCESS_ADMIN)) {
+        return _PN_TEXT_NOAUTH_ADMIN;
+    }
+
+    if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
+        return 'Unable to load class [newsletter_util]';
+    }
+
+    $preferences_archive = pnModGetVar('Newsletter');
+    $pnRender = pnRender::getInstance('Newsletter', false);
+    $pnRender->assign ('preferences_archive', $preferences_archive);
+    $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
+    $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
+
+    return $pnRender->fetch('newsletter_admin_form_modifyarchive.html');
+}
+
+
+function Newsletter_admin_archive_edit () 
+{
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
+        return LogUtil::registerError (_PN_TEXT_NOAUTH_ADMIN, null, $url);
+    }
+
+    $ot  = 'user';
+    $id  = (int)FormUtil::getPassedValue ('id', 0, 'GETPOST');
+    $url = pnModURL('Newsletter', 'admin', 'main');
+
+    if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
+        return LogUtil::registerError ('Unable to load class [newsletter_util]', null, $url);
+    }
+
+    if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
+        return LogUtil::registerError ("Unable to load class for [$ot]", null, $url);
+    }
+
+    $object = new $class ();
+    if ($id) {
+        $data = $object->get ($id);
+        if (!$data) {
+            $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
+            return LogUtil::registerError ("Unable to retrieve object of type [$ot] with id [$id]", null, $url);
+        } 
+    } else {
+        $data = array();
+    }
+
+    $pnRender = pnRender::getInstance('Newsletter', false);
+    $pnRender->assign ('ot', $ot);
+    $pnRender->assign ($ot, $data);
+    $pnRender->assign ('validation', $object->getValidation());
+
+    $tpl = 'newsletter_admin_form_' . $ot . '.html';
+    return $pnRender->fetch($tpl);
+}

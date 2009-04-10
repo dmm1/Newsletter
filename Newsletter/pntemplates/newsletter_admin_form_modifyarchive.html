@@ -1,0 +1,68 @@
+<!--[include file="newsletter_admin_std_header.html" ]-->
+
+<!--[newsletter_selector_archive_expire assign="archive_expire_values" return_keys=true]-->
+<!--[newsletter_selector_archive_expire assign="archive_expire_output" return_keys=false]-->
+
+
+  <div class="pn-adminpageicon"><!--[pnimg modname=core src=configure.gif set=icons/large alt='_MODIFYCONFIG' altml=true]--></div>
+      
+<form name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="modifyarchive"]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+   <fieldset>
+      <legend><!--[pnml name="_NEWSLETTER_CONFIG_ARCHIVES"]--></legend>
+
+	  	<div class="pn-adminformrow">
+        <label for="show_archive"><!--[pnml name="_NEWSLETTER_SHOW_ARCHIVE"]--></label>
+        <input id="show_archive" name="preferences_archive[show_archive]" type="checkbox" value="1" <!--[if ($preferences_archive.show_archive) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+		</div>
+		<div class="pn-adminformrow">
+        <label for="show_id"><!--[pnml name="_NEWSLETTER_SHOW_ID"]--></label>
+        <input id="show_id" name="preferences_archive[show_id]" type="checkbox" value="1" <!--[if ($preferences_archive.show_id) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+		</div>
+		<div class="pn-adminformrow">
+        <label for="show_date"><!--[pnml name="_NEWSLETTER_SHOW_DATE"]--></label>
+        <input id="show_date" name="preferences_archive[show_date]" type="checkbox" value="1" <!--[if ($preferences_archive.show_date) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+		</div>
+		<div class="pn-adminformrow">
+        <label for="show_lang"><!--[pnml name="_NEWSLETTER_SHOW_LANG"]--></label>
+        <input id="show_lang" name="preferences_archive[show_lang]" type="checkbox" value="1" <!--[if ($preferences_archive.show_lang) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+		</div>
+		<div class="pn-adminformrow">
+        <label for="show_plugins"><!--[pnml name="_NEWSLETTER_SHOW_PLUGINS"]--></label>
+        <input id="show_plugins" name="preferences_archive[show_plugins]" type="checkbox" value="1" <!--[if ($preferences_archive.show_plugins) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+		</div>
+		<div class="pn-adminformrow">
+        <label for="show_objects"><!--[pnml name="_NEWSLETTER_SHOW_OBJECTS"]--></label>
+        <input id="show_objects" name="preferences_archive[show_objects]" type="checkbox" value="1" <!--[if ($preferences_archive.show_objects) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+		</div>
+		<div class="pn-adminformrow">
+        <label for="show_size"><!--[pnml name="_NEWSLETTER_SHOW_SIZE"]--></label>
+        <input id="show_size" name="preferences_archive[show_size]" type="checkbox" value="1" <!--[if ($preferences_archive.show_size) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+		</div>
+		
+		
+			<!--[ include file="newsletter_inc_form_actions.html" ]-->
+			    </fieldset>
+</form>	 
+
+  <form action="<!--[pnmodurl modname="Newsletter" type="adminform" func="delete" ot="archive"]-->" method="post" onsubmit="if(!this.file_archive.checked &amp;&amp; !this.db_archive.checked){alert('<!--[pnml name="_NEWSLETTER_SELECT_ARCHIVE_TO_FLUSH"]-->.'); return false;}">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+    <fieldset>
+      <legend><!--[pnml name="_NEWSLETTER_PRUNE_ARCHIVES"]--></legend>
+
+      <div class="pn-adminformrow">
+        <p>
+          <img src="modules/Newsletter/pnimages/error.gif" alt="" />
+          <strong><!--[pnml name="_NEWSLETTER_NOTE"]-->:</strong> <!--[pnml name="_NEWSLETTER_ARCHIVE_OPTION_REMOVE"]-->.
+        </p>
+      </div>
+      <div class="pn-adminformrow">
+        <label for="db_archive"><!--[pnml name="_NEWSLETTER_DATABASE"]-->:</label>
+        <input id="db_archive" type="checkbox" name="archive[database]" value="1" /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+      </div>
+
+      <!--[ include file="newsletter_inc_form_actions.html" ]-->
+
+    </fieldset>
+  </form>
+<!--[ include file="newsletter_std_footer.html" ]-->
