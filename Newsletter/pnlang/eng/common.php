@@ -218,3 +218,5 @@ define('_NEWSLETTER_SHOW_OBJECTS',			'Show Objects?');
 define('_NEWSLETTER_SHOW_PLUGINS',			'Show Plugins?');
 define('_NEWSLETTER_SHOW_SIZE',			'Show Size?');
 define('_NEWSLETTER_SHOW_LANG',			'Show Language?');
+define('_NEWSLETTER_SHOW_APPROVAL_STATUS',			'Show the Approvalstatus to the user? ');
+

@@ -45,7 +45,9 @@
         <span id="user_frequency"><strong>??????<!--[ $user.frequency ]--></strong></span>
       <!--[/if]-->
     </div>
-
+	
+	<!--[ pnmodgetvar assign="show_approval_status" module="Newsletter" name="show_approval_status" default="0" ]-->
+	<!--[ if ($show_approval_status) ]-->
     <div class="nl-userformrow">
       <label for="user_approved"><!--[pnml name="_NEWSLETTER_STATUS_APPROVED"]--></label>
       <!--[if ($user.approved) ]-->
@@ -54,7 +56,8 @@
         <span id="user_approved" style="color:red"><!--[pnml name="_NEWSLETTER_STATUS_NOTAPPROVED"]--></span>
       <!--[/if]-->
     </div>
-
+	<!--[/if]-->
+	
     <div class="nl-userformrow">
       <label for="user_status"><!--[pnml name="_NEWSLETTER_STATUS"]--></label>
       <!--[if ($user.active) ]-->

@@ -218,6 +218,8 @@ define('_NEWSLETTER_SHOW_OBJECTS',			'Anzahl an Objekten anzeigen?');
 define('_NEWSLETTER_SHOW_PLUGINS',			'Anzahl an Plugins anzeigen?');
 define('_NEWSLETTER_SHOW_SIZE',			'Größe des Newsletters anzeigen?');
 define('_NEWSLETTER_SHOW_LANG',			'Sprache anzeigen?');
+define('_NEWSLETTER_SHOW_APPROVAL_STATUS',			'Soll dem User der Genehmigungsstatus gezeigt werden? ');
+
 
 
   

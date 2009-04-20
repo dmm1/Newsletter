@@ -42,7 +42,8 @@ function Newsletter_adminform_modifyconfig ()
     pnModSetVar ('Newsletter', 'max_send_per_hour',          $prefs['max_send_per_hour'] >= 0     ? $prefs['max_send_per_hour'] : 0);
     pnModSetVar ('Newsletter', 'notify_admin',               $prefs['notify_admin']               ? 1                           : 0);
     pnModSetVar ('Newsletter', 'require_tos',                $prefs['require_tos']               ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'activate_archive',           $prefs['activate_archive']               ? 1                           : 0);
+    pnModSetVar ('Newsletter', 'show_approval_status',   	 $prefs['show_approval_status']  ? 1                           : 0);
+	pnModSetVar ('Newsletter', 'activate_archive',           $prefs['activate_archive']               ? 1                           : 0);
 	pnModSetVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
     pnModSetVar ('Newsletter', 'send_day',                   $prefs['send_day']                   ? $prefs['send_day']          : 5);
     pnModSetVar ('Newsletter', 'send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address'] : pnConfigGetVar('adminmail'));
