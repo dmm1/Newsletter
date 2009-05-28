@@ -250,7 +250,7 @@ class PNNewsletterSend extends PNObject
         $html    = false;
         $message = $this->_getNewsletterMessage ($user, $cacheID, false, $html); // defaults to html
         $from    = pnModGetVar ('Newsletter', 'send_from_address', pnConfigGetVar('adminmail'));        
-        $subject = pnConfigGetVar ('sitename') . ' ' . _NEWSLETTER;
+        $subject = pnModGetVar ('Newsletter', 'newsletter_subject') ;
         $sent    = pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $user['email'],
                                                                        'fromaddress'=> $from,
                                                                        'subject'    => $subject,

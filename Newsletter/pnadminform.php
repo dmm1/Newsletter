@@ -47,7 +47,8 @@ function Newsletter_adminform_modifyconfig ()
 	pnModSetVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
     pnModSetVar ('Newsletter', 'send_day',                   $prefs['send_day']                   ? $prefs['send_day']          : 5);
     pnModSetVar ('Newsletter', 'send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address'] : pnConfigGetVar('adminmail'));
-    pnModSetVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);
+    pnModSetVar ('Newsletter', 'newsletter_subject',         $prefs['newsletter_subject']          ? $prefs['newsletter_subject'] : 0);
+	pnModSetVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);
 
     return pnRedirect($url);
 }

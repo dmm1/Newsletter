@@ -27,13 +27,21 @@
       <div class="pn-adminformrow">
         <label for="send_from_address"><!--[pnml name="_NEWSLETTER_SEND_FROM"]-->:</label>
         <div id="send_from_address">
-          <input name="preferences[send_from_address]" type="text" value="<!--[$preferences.send_from_address]-->" size="20" maxlength="128" />
+          <input name="preferences[send_from_address]" type="text" value="<!--[$preferences.send_from_address]-->" size="30" maxlength="128" />
           <a href="#" title="<!--[pnml name="_HELP"]-->" onclick="Effect.toggle('hint','BLIND'); return false;">(?)</a>
           <span id="help_send_from" style="display:none"><!--[pnml name="_NEWSLETTER_HELP"]--></span>
           <div id="hint" class="nl-hint" style="display:none;"><!--[pnml name="_NEWSLETTER_HELP_SEND_FROM"]--></div>
         </div>
       </div>
-
+	<div class="pn-adminformrow">
+        <label for="newsletter_subject"><!--[pnml name="_NEWSLETTER_SUBJECT"]-->:</label>
+        <div id="newsletter_subject">
+          <input name="preferences[newsletter_subject]" type="text" value="<!--[$preferences.newsletter_subject]-->" size="40" maxlength="128" />
+          <a href="#" title="<!--[pnml name="_HELP"]-->" onclick="Effect.toggle('hint-1','BLIND'); return false;">(?)</a>
+          <span id="help_subject" style="display:none"><!--[pnml name="_NEWSLETTER_HELP"]--></span>
+          <div id="hint-1" class="nl-hint" style="display:none;"><!--[pnml name="_NEWSLETTER_HELP_SUBJECT"]--></div>
+        </div>
+      </div>
       <div class="pn-adminformrow">
         <label for="limit_type"><!--[pnml name="_NEWSLETTER_TYPE_LIMIT"]-->:</label>
         <select id="limit_type" name="preferences[limit_type]"><!--[html_options values=$type_values2 output=$type_output2 selected=$preferences.limit_type ]--></select>

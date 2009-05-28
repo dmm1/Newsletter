@@ -219,7 +219,8 @@ define('_NEWSLETTER_SHOW_PLUGINS',			'Anzahl an Plugins anzeigen?');
 define('_NEWSLETTER_SHOW_SIZE',			'Größe des Newsletters anzeigen?');
 define('_NEWSLETTER_SHOW_LANG',			'Sprache anzeigen?');
 define('_NEWSLETTER_SHOW_APPROVAL_STATUS',			'Soll dem User der Genehmigungsstatus gezeigt werden? ');
-
+define('_NEWSLETTER_SUBJECT',			'Betreff');
+define('_NEWSLETTER_HELP_SUBJECT',			'Das ist der Titel der Betreffszeile des gesendeten Newsletters');
 
 
   

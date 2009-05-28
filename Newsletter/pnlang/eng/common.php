@@ -219,4 +219,6 @@ define('_NEWSLETTER_SHOW_PLUGINS',			'Show Plugins?');
 define('_NEWSLETTER_SHOW_SIZE',			'Show Size?');
 define('_NEWSLETTER_SHOW_LANG',			'Show Language?');
 define('_NEWSLETTER_SHOW_APPROVAL_STATUS',			'Show the Approvalstatus to the user? ');
+define('_NEWSLETTER_SUBJECT',			'Subject');
+define('_NEWSLETTER_HELP_SUBJECT',			'This is the Subject of the generated Newsletter');
 
