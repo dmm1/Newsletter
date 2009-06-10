@@ -42,6 +42,14 @@ function Newsletter_maintenanceblock_display($blockinfo)
         return 'Unable to load class [newsletter_util]';
     }
 
+	$disable_auto = pnModGetVar ('Newsletter', 'disable_auto', 0);
+	if ($disable_auto) {
+	
+	$blockinfo=array();
+    return themesideblock($blockinfo);
+	
+	 } else {
+	
     $today = date('w');
     $send_day = pnModGetVar('Newsletter','send_day');
     if ($send_day == $today) {
@@ -67,7 +75,7 @@ function Newsletter_maintenanceblock_display($blockinfo)
             //$object->prune ();
         //}
     }
-
+	}
     $blockinfo=array();
     return themesideblock($blockinfo);
 }

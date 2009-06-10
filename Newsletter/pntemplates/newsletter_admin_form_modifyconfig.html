@@ -42,6 +42,12 @@
           <div id="hint-1" class="nl-hint" style="display:none;"><!--[pnml name="_NEWSLETTER_HELP_SUBJECT"]--></div>
         </div>
       </div>
+	  
+	  <div class="pn-adminformrow">
+        <label for="disable_auto"><!--[pnml name="_NEWSLETTER_DISABLE_AUTO"]-->:</label>
+        <input id="disable_auto" name="preferences[disable_auto]" type="checkbox" value="1" <!--[if ($preferences.disable_auto) ]-->checked="checked"<!--[/if]--> /> <em><!--[pnml name="_NEWSLETTER_CHECKEDYES"]--></em>
+      </div>
+	  
       <div class="pn-adminformrow">
         <label for="limit_type"><!--[pnml name="_NEWSLETTER_TYPE_LIMIT"]-->:</label>
         <select id="limit_type" name="preferences[limit_type]"><!--[html_options values=$type_values2 output=$type_output2 selected=$preferences.limit_type ]--></select>
