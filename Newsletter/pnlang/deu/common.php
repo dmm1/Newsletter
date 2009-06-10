@@ -221,7 +221,8 @@ define('_NEWSLETTER_SHOW_LANG',			'Sprache anzeigen?');
 define('_NEWSLETTER_SHOW_APPROVAL_STATUS',			'Soll dem User der Genehmigungsstatus gezeigt werden? ');
 define('_NEWSLETTER_SUBJECT',			'Betreff');
 define('_NEWSLETTER_HELP_SUBJECT',			'Das ist der Titel der Betreffszeile des gesendeten Newsletters');
-
+define('_NEWSLETTER_DISABLE_AUTO',			'Manueller Versand');
+define('_NEWSLETTER_HELP_DISABLE_AUTO',			'Deaktiviert die automatische Zusendung. Newsletter müssen nun manuell verschickt werden ');
 
   
   

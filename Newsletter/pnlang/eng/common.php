@@ -221,4 +221,7 @@ define('_NEWSLETTER_SHOW_LANG',			'Show Language?');
 define('_NEWSLETTER_SHOW_APPROVAL_STATUS',			'Show the Approvalstatus to the user? ');
 define('_NEWSLETTER_SUBJECT',			'Subject');
 define('_NEWSLETTER_HELP_SUBJECT',			'This is the Subject of the generated Newsletter');
+define('_NEWSLETTER_DISABLE_AUTO',			'Disable automatic sending');
+define('_NEWSLETTER_HELP_DISABLE_AUTO',		'Newsletters now have to be sent out manually ');
+
 
