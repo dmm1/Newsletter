@@ -27,7 +27,7 @@ class PNPluginReviewsArray extends PNPluginBaseArray
     $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
 	$nItems   = pnModGetVar ('Newsletter', 'plugin_Reviews_nItems', 1);
 	$params   = array();
-	$params['orderBy']  = 'sid DESC';
+	$params['orderBy']  = 'sid ASC';
 	$params['numitems'] = $nItems;
 	$params['startnum'] = 0;
 	$params['ignoreml'] = true;
