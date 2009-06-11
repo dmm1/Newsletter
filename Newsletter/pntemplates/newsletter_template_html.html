@@ -465,6 +465,36 @@ td.footer a {
                           <br />
                         <!--[ /if ]-->
 
+					    <!--[ if (isset($objectArray.TimeIt) && $objectArray.TimeIt) ]-->        
+                          <h2><!--[nl_pnml name="_NEWSLETTER_TITLE_QUOTES" html=1]--></h2>
+                          <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          <!--[foreach from=$objectArray.TimeIt item="item"]-->
+                            <p><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]-->: <i><!--[$item.author|pnvarprephtmldisplay|nl_encodetext]--></i></p>
+                          <!--[/foreach]-->
+                          <br />
+                        <!--[ /if ]-->
+						
+						 <!--[ if (isset($objectArray.TimeIt) && $objectArray.TimeIt) ]-->    
+                          <h2><!--[nl_pnml name="_NEWSLETTER_TITLE_TIMEIT" html=1]--></h2>
+                          <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          <table class="nl-TimeIt">
+                            <tr>
+                              <th><!--[nl_pnml name="_NEWSLETTER_TITLE_TIMEIT_TITLE" html=1]--></th>
+                              <th><!--[nl_pnml name="_NEWSLETTER_TITLE_TIMEIT_BEGIN" html=1]--></th>
+                              <th><!--[nl_pnml name="_NEWSLETTER_TITLE_TIMEIT_DESCRIPTION" html=1]--></th>
+                            </tr>
+                            <!--[foreach from=$objectArray.TimeIt item="item" name="loop"]-->
+                              <tr>
+                                <td><h3><a href="<!--[ pnmodurl modname="TimeIt" type="user" func="display" eventid=$item.TimeIt_enventid newlang=$nllang fqurl=true ]-->" title=$item.crpcalendar_title><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
+                                 <td><div><!--[$item.startDate|pnvarprephtmldisplay|nl_encodetext]--></div></td>
+								<td><div><!--[$item.text|pnvarprephtmldisplay|nl_encodetext]--></div></td>
+                               
+                              </tr>
+                            <!--[/foreach]-->
+                          </table>
+                          <br />
+                        <!--[ /if ]-->
+						
                       </td>
                     </tr>
                   </table>

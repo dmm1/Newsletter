@@ -24,10 +24,21 @@ class PNPluginWeblinksArray extends PNPluginBaseArray
             return array();
         }
 
-        $nItems = pnModGetVar ('Newsletter', 'plugin_WebLinks_nItems', 1);
-        return pnModAPIFunc('Web_Links', 'user', 'weblinks', array('orderbysql' => 'lid DESC', 
-                                                                   'startnum' => 1, 
-                                                                   'numlinks' => $nItems));
+    $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+	$nItems   = pnModGetVar ('Newsletter', 'plugin_Reviews_nItems', 1);
+	$params   = array();
+	$params['sort']  = 'cid DESC';
+	$params['numitems'] = $nItems;
+	$params['startnum'] = 0;
+	$params['ignoreml'] = true;
+	if ($enableML && $lang) {
+	    $params['ignoreml'] = false;
+	    $params['language'] = $lang;
+        }
+	return pnModAPIFunc('Web_Links', 'user', 'getall',
+                                array('orderby' => 'cid',
+									  $params,
+                                      'numitems' => $nItems));
     }
 }
 

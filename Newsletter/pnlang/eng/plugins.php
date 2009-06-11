@@ -27,6 +27,8 @@ define('_NEWSLETTER_TITLE_REVIEWS',			'Recently Added Reviews');
 define('_NEWSLETTER_TITLE_TIMEIT',			'Recently Added Events');
 define('_NEWSLETTER_TITLE_WEBLINKS',			'Recently Added Links');
 define('_NEWSLETTER_TITLE_ZWEBSTORE',			'Recently Added Products');
-
 define('_NEWSLETTER_TEMPLATE_HTML_READMORE',		'read more');
-
+define('_NEWSLETTER_TITLE_TIMEIT_TITLE',		'Title');
+define('_NEWSLETTER_TITLE_TIMEIT_BEGIN',		'Begin');
+define('_NEWSLETTER_TITLE_TIMEIT_LOCATION',	'Location');
+define('_NEWSLETTER_TITLE_TIMEIT_DESCRIPTION',	'Description');

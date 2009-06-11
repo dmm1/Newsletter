@@ -27,5 +27,9 @@ define('_NEWSLETTER_TITLE_REVIEWS',			'Neue Reviews');
 define('_NEWSLETTER_TITLE_TIMEIT',			'Neue Events');
 define('_NEWSLETTER_TITLE_WEBLINKS',			'Neue Weblinks');
 define('_NEWSLETTER_TITLE_ZWEBSTORE',			'Neue Produkte');
-
 define('_NEWSLETTER_TEMPLATE_HTML_READMORE',		'weiterlesen');
+define('_NEWSLETTER_TITLE_TIMEIT',			'Neue Termine');
+define('_NEWSLETTER_TITLE_TIMEIT_TITLE',		'Titel');
+define('_NEWSLETTER_TITLE_TIMEIT_BEGIN',		'Beginn');
+define('_NEWSLETTER_TITLE_TIMEIT_LOCATION',	'Ort');
+define('_NEWSLETTER_TITLE_TIMEIT_DESCRIPTION',	'Beschreibung');
