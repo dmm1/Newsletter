@@ -27,7 +27,7 @@ class PNPluginReviewsArray extends PNPluginBaseArray
     $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
 	$nItems   = pnModGetVar ('Newsletter', 'plugin_Reviews_nItems', 1);
 	$params   = array();
-	$params['orderBy']  = 'sid ASC';
+	$params['sort']  = 'cr_date DESC';
 	$params['numitems'] = $nItems;
 	$params['startnum'] = 0;
 	$params['ignoreml'] = true;
@@ -35,7 +35,10 @@ class PNPluginReviewsArray extends PNPluginBaseArray
 	    $params['ignoreml'] = false;
 	    $params['language'] = $lang;
         }
-	return pnModAPIFunc('Reviews', 'user', 'getall', $params);
+	return pnModAPIFunc('Reviews', 'user', 'getall',
+                                array('orderby' => 'cr_date',
+									  $params,
+                                      'numitems' => $nItems));
     }
 }
 
