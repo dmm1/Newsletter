@@ -24,7 +24,7 @@ class PNPluginNewsArray extends PNPluginBaseArray
             return array();
         }
 
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+    $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
 	$nItems   = pnModGetVar ('Newsletter', 'plugin_News_nItems', 1);
 	$params   = array();
 	$params['orderBy']  = 'sid DESC';

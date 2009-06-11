@@ -24,18 +24,18 @@ class PNPluginReviewsArray extends PNPluginBaseArray
             return array();
         }
 
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-        $nItems   = pnModGetVar ('Reviews', 'plugin_Reviews_nItems', 1);
+    $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+	$nItems   = pnModGetVar ('Newsletter', 'plugin_Reviews_nItems', 1);
 	$params   = array();
-	$params['order']    = 'id DESC';
+	$params['orderBy']  = 'sid DESC';
 	$params['numitems'] = $nItems;
 	$params['startnum'] = 0;
 	$params['ignoreml'] = true;
 	if ($enableML && $lang) {
 	    $params['ignoreml'] = false;
 	    $params['language'] = $lang;
-	}
-        return pnModAPIFunc('Reviews', 'user', 'getall', $params);
+        }
+	return pnModAPIFunc('Reviews', 'user', 'getall', $params);
     }
 }
 
