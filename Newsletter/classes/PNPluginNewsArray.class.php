@@ -20,22 +20,13 @@ class PNPluginNewsArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('News')) {
-            return array();
-        }
-
-    $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	$nItems   = pnModGetVar ('Newsletter', 'plugin_News_nItems', 1);
-	$params   = array();
-	$params['orderBy']  = 'sid DESC';
-	$params['numitems'] = $nItems;
-	$params['startnum'] = 0;
-	$params['ignoreml'] = true;
-	if ($enableML && $lang) {
-	    $params['ignoreml'] = false;
-	    $params['language'] = $lang;
-        }
-	return pnModAPIFunc('News', 'user', 'getall', $params);
+        pnModDBInfoLoad ('News');
+        $pntable = pnDBGetTables();
+        $column  = $pntable['stories_column'];
+        $where   = "$column[published_status] = 0";
+        $sort    = "$column[cr_date] DESC";
+	$nItems  = pnModGetVar ('Newsletter', 'plugin_News_nItems', 1);
+	return DBUtil::selectObjectArray ('stories', $where, $sort, 0, $nItems);
     }
 }
 
