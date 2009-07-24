@@ -31,9 +31,9 @@ class PNPluginMediashareArray extends PNPluginBaseArray {
 				'pageSize' => $nItems
 			));
 		} else {
-			return pnModAPIFunc('Mediashare', 'user', 'getList', array (
-				'order' => 'created',
-				'orderDir' => 'ASC',
+			return pnModAPIFunc('Mediashare', 'user', 'getLatestMediaItems', array (
+				'order' => 'id',
+				'orderDir' => 'DESC',
 				'recordPos' => 0,
 				'pageSize' => $nItems
 			));

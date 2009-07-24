@@ -500,7 +500,9 @@ table.nl-calendar tbody tr th:hover {
                           <!--[foreach from=$objectArray.Mediashare item="item" name="loop"]-->
                           <!--[ if isset($item.album.title) ]-->
                           <h3><a href="<!--[ pnmodurl modname="mediashare" type="user" func="view" aid=$item.album.id newlang=$nllang fqurl=true ]-->"><!--[$item.album.title|pnvarprephtmldisplay|nl_encodetext]--></a>: <a href="<!--[ pnmodurl modname="mediashare" type="user" func="browse" aid=$item.album.id mid=$item.media.id newlang=$nllang fqurl=true ]-->"><!--[$item.media.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
-                          <!--[ else ]-->
+                           <!--[ pnmodgetvar assign="get" module="Newsletter" name="mediasharePath"]-->                         
+						  <img src="<!--[$get]--><!--[$item.mainMediaItem.thumbnailRef]-->" class="thumbnail" />
+						  <!--[ else ]-->
 						  <!--[ pnmodgetvar assign="get" module="Newsletter" name="mediasharePath"]-->
                           <h3><img src="<!--[$get]--><!--[$item.mainMediaItem.thumbnailRef]-->" class="thumbnail" /><a href="<!--[ pnmodurl modname="mediashare" type="user" func="view" aid=$item.id newlang=$nllang fqurl=true ]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3><!--[ if $item.summary ]--> <!--[ $item.summary ]--><!--[ /if ]-->
                           <!--[ /if ]-->
@@ -521,9 +523,9 @@ table.nl-calendar tbody tr th:hover {
                         <!--[ /if ]-->
 
                         <!--[ if (isset($objectArray.Weblinks) && $objectArray.Weblinks) ]-->        
-                          <h2><!--[nl_pnml name="_NEWSLETTER_TITLE_WEBLINKS" html=1]--></h2>
+                          <h2><!--[nl_pnml name="_NEWSLETTER_TITLE_WEB_LINKS" html=1]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <!--[foreach from=$objectArray.Weblinks item="item" name="loop"]-->
+                          <!--[foreach from=$objectArray.Webinks item="item" name="loop"]-->
                             <h3><a href="<!--[ pnmodurl modname="Web_Links" type="user" func="category" cid=$item.cat_id newlang=$nllang fqurl=true ]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
                             <div><!--[$item.description|pnvarprephtmldisplay|nl_encodetext]--></div>
 			    <!--[ if (!$smarty.foreach.loop.last) ]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[ /if ]-->

@@ -26,7 +26,7 @@ class PNPluginWeblinksArray extends PNPluginBaseArray
       
         $sort    = "$column[lid] DESC";
 	$enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_NewMembers_nItems', 1);
+	$nItems  = pnModGetVar ('Newsletter', 'plugin_Weblinks_nItems', 1);
 	return DBUtil::selectObjectArray ('links_links', $where, $sort, 0, $nItems);
     }
 
