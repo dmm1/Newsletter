@@ -1,0 +1,9 @@
+<!--[ assign var="pagesetterPubTypes" value=$plugin_parameters.Pagesetter.param.pagesetterPubTypes ]-->
+<!--[ pnml name="_NEWSLETTER_PAGESETTER_ACTIVATE" ]--><br /><hr />
+<em><!--[ pnml name="_NEWSLETTER_PAGESETTER_EXPLAIN" ]--></em><br />
+<!--[ foreach from=$pagesetterPubTypes item=pgPubType ]-->
+<!--[ assign_concat name="checkboxName" 1="pagesetterTIDs[" 2=$pgPubType.id 3="]" ]-->
+<!--[ assign_concat name="modvarName" 1="pagesetterTID_" 2=$pgPubType.id ]-->
+<input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pgPubType.active)]-->checked="checked"<!--[/if]--> /> <!--[ $pgPubType.title|pnvarprephtmldisplay ]--><br />
+<!--[ /foreach ]-->
+

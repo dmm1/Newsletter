@@ -1,4 +1,5 @@
 <?php
+require_once ('modules/Newsletter/pnlang/deu/plugins.php');
 
 define('_NEWSLETTER',				'Newsletter');
 define('_NEWSLETTER_1MONTH',			'1 Monat');
@@ -81,6 +82,7 @@ define('_NEWSLETTER_FREQUENCYCHANGE_DISABLED',	'Benutzerbasierte Frequenzänderun
 define('_NEWSLETTER_GO',			'los');
 define('_NEWSLETTER_HELLO',			'Hallo');
 define('_NEWSLETTER_HELP',			'Hilfe');
+define('_NEWSLETTER_HELP_MEDIASHARE',		'Geben Sie hier den Pfad zu Ihren Bildern ein, z.B.: mediashare/, pnTemp/mediashare/ usw.');
 define('_NEWSLETTER_HELP_ENABLE_MULTILINGUAL',	'Dies aktiviert die Möglichkeit, dass mehrsprachige Newsletter verschickt werden können.');
 define('_NEWSLETTER_HELP_SEND_FROM',		'Das ist die Absenderadresse Ihres Newsletters z.B. newsletter@ihredomain.at');
 define('_NEWSLETTER_HOME',			'Start');
@@ -114,8 +116,6 @@ define('_NEWSLETTER_NO_USERS',			'Es ist keine Abonnenten verfügbar!');
 define('_NEWSLETTER_NO_USERS_SELECTED',		'Es wurden keine Abonnenten markiert!');
 define('_NEWSLETTER_NPLUGINS',			'Anzahl an Plugins');
 define('_NEWSLETTER_OPTIONS',			'Einstellungen');
-define('_NEWSLETTER_PAGESETTER_ACTIVATE',	'Pagesetter Plugin Aktivieren');
-define('_NEWSLETTER_PAGESETTER_EXPLAIN',	'Entweder eine Auswahl oder ohne Auswahl Alle');
 define('_NEWSLETTER_PERSONALIZE_EMAIL',		'Mail personalisieren');
 define('_NEWSLETTER_PLUGIN',			'Plugin');
 define('_NEWSLETTER_PLUGIN_ITEMS',		'Anzahl der Beiträge');

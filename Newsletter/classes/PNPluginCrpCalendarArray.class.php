@@ -27,7 +27,7 @@ class PNPluginCrpCalendarArray extends PNPluginBaseArray
         $nItems  = pnModGetVar ('Newsletter', 'plugin_CrpCalendar_nItems', 1);
         $modvars = array();
         $modvars['itemsperpage'] = $nItems;
-        return pnModAPIFunc('Admin_Messages', 'user', 'getall', array('sortOrder' => 'videoid DESC', 
+        return pnModAPIFunc('CrpCalendar', 'user', 'getall', array('sortOrder' => 'videoid DESC', 
                                                                       'startnum' => 0, 
                                                                       'modvars' => $modvars));
     }

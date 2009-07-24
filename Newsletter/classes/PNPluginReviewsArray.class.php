@@ -17,28 +17,14 @@ class PNPluginReviewsArray extends PNPluginBaseArray
         $this->PNPluginBaseArray ();
     }
 
-
-    function getPluginData ($lang=null)
+   function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Reviews')) {
-            return array();
-        }
-
-    $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	$nItems   = pnModGetVar ('Newsletter', 'plugin_Reviews_nItems', 1);
-	$params   = array();
-	$params['sort']  = 'cr_date DESC';
-	$params['numitems'] = $nItems;
-	$params['startnum'] = 0;
-	$params['ignoreml'] = true;
-	if ($enableML && $lang) {
-	    $params['ignoreml'] = false;
-	    $params['language'] = $lang;
-        }
-	return pnModAPIFunc('Reviews', 'user', 'getall',
-                                array('orderby' => 'cr_date',
-									  $params,
-                                      'numitems' => $nItems));
+        pnModDBInfoLoad ('Reviews');
+        $pntable = pnDBGetTables();
+        $column  = $pntable['reviews_column'];
+        $where   = "$column[status] = 0"; 
+        $sort    = "$column[cr_date] DESC";
+	$nItems  = pnModGetVar ('Newsletter', 'plugin_TimeIt_nItems', 1);
+	return DBUtil::selectObjectArray ('reviews', $where, $sort, 0, $nItems);
     }
 }
-

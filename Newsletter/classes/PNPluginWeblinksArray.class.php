@@ -20,25 +20,14 @@ class PNPluginWeblinksArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Web_Links')) {
-            return array();
-        }
-
-    $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	$nItems   = pnModGetVar ('Newsletter', 'plugin_Reviews_nItems', 1);
-	$params   = array();
-	$params['sort']  = 'cid DESC';
-	$params['numitems'] = $nItems;
-	$params['startnum'] = 0;
-	$params['ignoreml'] = true;
-	if ($enableML && $lang) {
-	    $params['ignoreml'] = false;
-	    $params['language'] = $lang;
-        }
-	return pnModAPIFunc('Web_Links', 'user', 'getall',
-                                array('orderby' => 'cid',
-									  $params,
-                                      'numitems' => $nItems));
+		pnModDBInfoLoad ('Web_Links');
+        $pntable = pnDBGetTables();
+        $column  = $pntable['links_links_column'];
+      
+        $sort    = "$column[lid] DESC";
+	$enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+	$nItems  = pnModGetVar ('Newsletter', 'plugin_NewMembers_nItems', 1);
+	return DBUtil::selectObjectArray ('links_links', $where, $sort, 0, $nItems);
     }
-}
 
+}

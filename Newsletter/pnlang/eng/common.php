@@ -1,4 +1,5 @@
 <?php 
+require_once ('modules/Newsletter/pnlang/eng/plugins.php');
 
 define('_NEWSLETTER',				'Newsletter');
 define('_NEWSLETTER_1MONTH',			'1 Month');
@@ -85,6 +86,7 @@ define('_NEWSLETTER_HELLO',			'Hello');
 define('_NEWSLETTER_HELP',			'Help');
 define('_NEWSLETTER_HELP_ENABLE_MULTILINGUAL',		'This enables the sending of Multilanguage Newsletters');
 define('_NEWSLETTER_HELP_SEND_FROM',		'This is the delivering adress of your newsletter e.g. newsletter@yourdomain.com');
+define('_NEWSLETTER_HELP_MEDIASHARE',		'Define the Path of your Mediashare images path e.g. mediashare/, pnTemp/mediashare/ etc.');
 define('_NEWSLETTER_HOME',			'Home');
 define('_NEWSLETTER_ID',			'ID');
 define('_NEWSLETTER_IMPORT',			'Import');
@@ -116,8 +118,6 @@ define('_NEWSLETTER_NO_USERS',			'No users were available to send the newsletter
 define('_NEWSLETTER_NO_USERS_SELECTED',		'No users were selected to send the newsletter to');
 define('_NEWSLETTER_NPLUGINS',			'# of Plugins');
 define('_NEWSLETTER_OPTIONS',			'Options');
-define('_NEWSLETTER_PAGESETTER_ACTIVATE',	'Activate Pagesetter Plugin');
-define('_NEWSLETTER_PAGESETTER_EXPLAIN',	'Either a selection or all if no selection');
 define('_NEWSLETTER_PERSONALIZE_EMAIL',		'Personalize EMail');
 define('_NEWSLETTER_PLUGIN',			'Plugin');
 define('_NEWSLETTER_PLUGIN_ITEMS',		'# of Items');

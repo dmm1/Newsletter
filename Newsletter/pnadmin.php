@@ -144,6 +144,14 @@ function Newsletter_admin_view ()
         $pnRender->assign ('filter', $filter);
     }
 
+//EM Start
+    if ($ot == 'plugin') {
+          if (method_exists($objectArray, 'getPluginsParameters')) {
+              $pnRender->assign ('plugin_parameters', $objectArray->getPluginsParameters());
+          }
+    }
+//EM End
+
     if ($ot == 'show_preview') {
         switch ($format){
             case 1:

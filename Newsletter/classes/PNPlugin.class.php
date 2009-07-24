@@ -19,10 +19,23 @@ class PNPlugin extends PNObject
         $this->_init ($init, $key, $field);
     }
 
-
     function save ()
     {
-        $pluginClasses = array_flip(NewsletterUtil::getPluginClasses());
+        if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
+            return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
+        }
+
+        $pluginClasses = NewsletterUtil::getPluginClasses();
+
+        // save plugins parameters
+        foreach ($pluginClasses as $plugin) {
+            $pluginClassName = 'plugin_' . $plugin;
+            if (($class=Loader::loadArrayClassFromModule ('Newsletter', $pluginClassName))) {
+                $objArray        = new $class();
+                $objArray->setPluginParameters ();
+            }
+        }
+         $pluginClasses = array_flip($pluginClasses);
 
         // active plugins
         foreach ($this->_objData as $k=>$dat) {
@@ -42,14 +55,6 @@ class PNPlugin extends PNObject
             if (strpos ($k, '_nItems') !== false) {
                 pnModSetVar ('Newsletter', 'plugin_'.$k, $dat);
             }
-        }
-
-        // pagesetter TIDs
-        $tids = FormUtil::getPassedValue ('pagesetterTIDs', null, 'POST');
-        if ($tids) {
-            pnModSetVar ('Newsletter', 'pagesetterTIDs', implode(',', array_keys($tids)));
-        } else {
-            pnModSetVar ('Newsletter', 'pagesetterTIDs', '');
         }
 
         return true;

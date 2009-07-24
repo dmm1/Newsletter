@@ -3,17 +3,6 @@
 <!--[ pnml assign="pageTitle" name="_NEWSLETTER_AVAILABLEPLUGINS"]-->
 <!--[ pnpagesetvar name="title" value=$pageTitle ]-->
 
-<!--[ php ]-->
-  if (pnModAvailable ('Pagesetter')) {
-    $this->assign ('pagesetterPubTypes', pnModAPIFunc ('Pagesetter', 'admin', getPublicationTypes));
-  } else {
-    $this->assign ('pagesetterPubTypes', null);
-  }
-  $pagesetterTIDs = pnModGetVar ('Newsletter', 'pagesetterTIDs', '');
-  $this->assign ('activePagesetterPlugins', explode(',', $pagesetterTIDs));
-<!--[ /php ]-->
-
-
 <div class="pn-admincontainer">
   <br />
   <h2><!--[$pageTitle]--></h2>
@@ -49,27 +38,11 @@
 	    <!--[ assign_concat name="checkboxName" 1="plugin[" 2=$plugin 3="]" ]-->
 	    <!--[ assign_concat name="modvarName" 1="plugin_" 2=$plugin ]-->
 	    <!--[ pnmodgetvar assign="pluginActive" module="Newsletter" name=$modvarName default=0 ]-->
-            <!--[ if ($plugin == 'Pagesetter') ]-->
-	      <td align="left" valign="top">
-                  <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /> <!--[ pnml name="_NEWSLETTER_PAGESETTER_ACTIVATE" ]--><br /><hr />
-                  <em><!--[ pnml name="_NEWSLETTER_PAGESETTER_EXPLAIN" ]--></em><br />
-                  <!--[ foreach from=$pagesetterPubTypes item=pgPubType ]-->
-	            <!--[ assign_concat name="checkboxName" 1="pagesetterTIDs[" 2=$pgPubType.id 3="]" ]-->
-	            <!--[ assign_concat name="modvarName" 1="pagesetterTID_" 2=$pgPubType.id ]-->
-	            <!--[ php ]-->
-                        $tplVars = $this->_tpl_vars;
-                        if (in_array($tplVars['pgPubType']['id'], $tplVars['activePagesetterPlugins'])) {
-                            $this->assign ('pluginActive', 1);
-                        } else {
-                            $this->assign ('pluginActive', 0);
-                        }
-	            <!--[ /php ]-->
-		    <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /> <!--[ $pgPubType.title|pnvarprephtmldisplay ]--><br />
-                  <!--[ /foreach ]-->
+        <td align="left" valign="top"><input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> />
+        <!--[ if ($plugin_parameters.$plugin.number ne 0) ]-->
+    		<!--[include file="newsletter_admin_view_$plugin.html"]-->
+        <!--[ /if ]-->
 	      </td>
-            <!--[ else ]-->
-              <td align="left" valign="top"><input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /></td>
-            <!--[ /if ]-->
           </tr>
         <!--[ /foreach ]-->
       </tbody>

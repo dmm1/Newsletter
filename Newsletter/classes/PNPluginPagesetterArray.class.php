@@ -32,6 +32,36 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
     }
 
 
+	//EM Start
+    function setPluginParameters ()
+    {
+        // pagesetter TIDs
+        $tids = FormUtil::getPassedValue ('pagesetterTIDs', null, 'POST');
+        if ($tids) {
+            pnModSetVar ('Newsletter', 'pagesetterTIDs', implode(',', array_keys($tids)));
+        } else {
+            pnModSetVar ('Newsletter', 'pagesetterTIDs', '');
+        }
+    }
+
+     function getPluginParameters ()
+    {
+  		if (pnModAvailable ('Pagesetter')) {
+    		$pagesetterPubTypes = pnModAPIFunc ('Pagesetter', 'admin', getPublicationTypes);
+  		} else {
+   			$pagesetterPubTypes = null;
+  		}
+  		$pagesetterTIDs = pnModGetVar ('Newsletter', 'pagesetterTIDs', '');
+ 	 	$activePagesetterPlugins = explode(',', $pagesetterTIDs);
+        foreach ($pagesetterPubTypes as $k=>$v) {
+   			$pagesetterPubTypes[$k]['active'] = in_array($v['id'], $activePagesetterPlugins);
+        }
+    	return array ('number' => 1,
+    				  'param' => array(
+    				  	'pagesetterPubTypes'=> $pagesetterPubTypes));
+    }
+	//EM end
+
     function _getPagesetterItems($lang)
     {
         $rc = true;
@@ -115,7 +145,6 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
                 }
             }
         }
-
         if ($pagesetterPublications) {
             krsort ($pagesetterPublications, SORT_STRING);
             $pagesetterPublications = array_slice ($pagesetterPublications, 0, $nItems);

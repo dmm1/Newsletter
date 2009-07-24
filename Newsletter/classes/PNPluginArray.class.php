@@ -29,5 +29,28 @@ class PNPluginArray extends PNObjectArray
     {
         return count($this->_objData);
     }
+
+//EM Start
+    function getPluginsParameters ()
+    {
+        if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
+            return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
+        }
+
+        $pluginClasses = NewsletterUtil::getPluginClasses();
+        $parameters = array();
+        // get plugins parameters
+        foreach ($pluginClasses as $plugin) {
+            $pluginClassName = 'plugin_' . $plugin;
+            if (($class=Loader::loadArrayClassFromModule ('Newsletter', $pluginClassName))) {
+                $objArray = new $class();
+                $parameters[$plugin] = $objArray->getPluginParameters ();
+            }
+        }
+        return $parameters;
+    }
+//EM End
+
+
 }
 

@@ -23,5 +23,19 @@ class PNPluginBaseArray extends PNObjectArray
     {
         exit ('Base class implementation of getPluginData() should not be called ...');
     }
+
+	//EM Start
+    // to be derived by derived classes when necessary
+    function setPluginParameters ()
+    {
+    }
+
+    // to be derived by derived classes when necessary
+    function getPluginParameters ()
+    {
+    	return array ('number' => 0,
+    				  'param' => array());
+    }
+	//EM end
 }
 
