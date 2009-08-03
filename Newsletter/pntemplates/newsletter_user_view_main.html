@@ -9,6 +9,7 @@
 <!--[pnmodgetvar assign="auto_approve_registrations" module="Newsletter" name="auto_approve_registrations"]-->
 <!--[pnmodgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual"]-->
 <!--[pnmodgetvar assign="limit_type" module="Newsletter" name="limit_type"]-->
+<!--[ pnmodgetvar assign="require_tos" module="Newsletter" name="require_tos" default="0" ]-->
 <!--[pnconfiggetvar assign="defaultlang" name="language" default="eng" ]-->
 <!--[pnuserloggedin assign="loggedin" ]-->
 
@@ -56,12 +57,17 @@
                 <select id="user_frequency" name="user[frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=1]--></select>
               </div>
             <!--[/if]-->
-
+			<!--[if ($require_tos) ]-->			
             <div class="nl-userformrow">
               <label for="user_tos"><!--[pnml name="_NEWSLETTER_TERMS_OF_SERVICE"]--></label>
               <input type="checkbox" id="user_tos" name="user[tos]" value="1" /> <!--[pnml name="_NEWSLETTER_TERMS_OF_SERVICE_AGREE" html="1"]-->
             </div>
-
+			<!--[else]-->
+			<div style="display:none;">
+			<input type="text" id="user_tos" name="user[tos]" value="1" />
+			</div>
+			<!--[/if]-->
+			
             <!--[ include file="newsletter_inc_form_actions.html" ]-->
 
             <!--[if (!$auto_approve_registrations)]-->
