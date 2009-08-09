@@ -31,8 +31,6 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
         return $this->_getPagesetterItems ($lang);
     }
 
-
-	//EM Start
     function setPluginParameters ()
     {
         // pagesetter TIDs
@@ -60,7 +58,6 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
     				  'param' => array(
     				  	'pagesetterPubTypes'=> $pagesetterPubTypes));
     }
-	//EM end
 
     function _getPagesetterItems($lang)
     {
