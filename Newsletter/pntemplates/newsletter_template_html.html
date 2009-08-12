@@ -612,6 +612,31 @@ table.nl-calendar tbody tr th:hover {
                           <br />
                         <!--[ /if ]-->	
 						
+						 <!--[ if (isset($objectArray.Locations) && $objectArray.Locations) ]-->    
+                          <h2><!--[nl_pnml name="_NEWSLETTER_TITLE_LOCATIONS" html=1]--></h2>
+                          <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          <table class="nl-calendar">
+						<thead>
+						   <tr>						
+                              <th><!--[nl_pnml name="_NEWSLETTER_TITLE_LOCATIONS_NAME" html=1]--></th>
+                              <th><!--[nl_pnml name="_NEWSLETTER_TITLE_LOCATIONS_CITY" html=1]--></th>
+                              <th><!--[nl_pnml name="_NEWSLETTER_TITLE_LOCATIONS_TIME" html=1]--></th>
+                            </tr>
+						</thead>
+                            <!--[foreach from=$objectArray.Locations item="item" name="loop"]-->
+							<tbody>
+							  <tr>
+                                <td><h3><a href="<!--[ pnmodurl modname="Locations" type="user" func="display" locationid=$item.locationid fqurl=true ]-->" title=<!--[$item.name|pnvarprephtmldisplay|nl_encodetext]-->><!--[$item.name|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
+                                <td><div><!--[$item.city|pnvarprephtmldisplay|nl_encodetext]--></div></td>
+								<td><div><!--[$item.lu_date|pnvarprephtmldisplay|nl_encodetext]-->								 
+								</div></td>                        
+                              </tr>
+							  </tbody>
+                            <!--[/foreach]-->
+                          </table>
+                          <br />
+                        <!--[ /if ]-->	
+						
                       </td>
                     </tr>
                   </table>
