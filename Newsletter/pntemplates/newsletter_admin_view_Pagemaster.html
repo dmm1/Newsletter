@@ -1,0 +1,10 @@
+<!--[ assign var="PagemasterPubTypes" value=$plugin_parameters.Pagemaster.param.pagemasterPubTypes ]-->
+<!--[ pnml name="_NEWSLETTER_PAGEMASTER_ACTIVATE" ]--><br /><hr />
+<em><!--[ pnml name="_NEWSLETTER_PAGEMASTER_EXPLAIN" ]--></em><br />
+
+<!--[ foreach from=$PagemasterPubTypes item=pgPubType ]-->
+	<!--[ assign_concat name="checkboxName" 1="PagemasterTIDs[" 2=$pgPubType.id 3="]" ]-->
+	<!--[ assign_concat name="modvarName" 1="PagemasterTID_" 2=$pgPubType.id ]-->
+	<input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pgPubType.active)]-->checked="checked"<!--[/if]--> /> <!--[ $pgPubType.title|pnvarprephtmldisplay ]--><br />
+<!--[ /foreach ]-->
+

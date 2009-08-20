@@ -45,3 +45,6 @@ define('_NEWSLETTER_TITLE_LOCATIONS',		'Adressen');
 define('_NEWSLETTER_TITLE_LOCATIONS_NAME',		'Name');
 define('_NEWSLETTER_TITLE_LOCATIONS_CITY',	'Stadt');
 define('_NEWSLETTER_TITLE_LOCATIONS_TIME',	'Zeit');
+define('_NEWSLETTER_PAGEMASTER_ACTIVATE',	'Pagemaster Plugin Aktivieren');
+define('_NEWSLETTER_PAGEMASTER_EXPLAIN',	'Entweder eine Auswahl oder ohne Auswahl Alle');
+define('_NEWSLETTER_TITLE_PAGEMASTER',			'Neue Publikationen');
