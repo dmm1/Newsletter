@@ -5,5 +5,6 @@
 <!--[ assign_concat name="checkboxName" 1="pagesetterTIDs[" 2=$pgPubType.id 3="]" ]-->
 <!--[ assign_concat name="modvarName" 1="pagesetterTID_" 2=$pgPubType.id ]-->
 <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pgPubType.active)]-->checked="checked"<!--[/if]--> /> <!--[ $pgPubType.title|pnvarprephtmldisplay ]--><br />
+<input type="text" name=<!--[$checkboxName]--> value="1" <!--[if ($pgPubField.active)]-->checked="checked"<!--[/if]--> /> <!--[ $pgPubField.title|pnvarprephtmldisplay ]--><br />
 <!--[ /foreach ]-->
 
