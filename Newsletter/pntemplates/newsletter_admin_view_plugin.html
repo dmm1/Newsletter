@@ -38,11 +38,11 @@
 	    <!--[ assign_concat name="checkboxName" 1="plugin[" 2=$plugin 3="]" ]-->
 	    <!--[ assign_concat name="modvarName" 1="plugin_" 2=$plugin ]-->
 	    <!--[ pnmodgetvar assign="pluginActive" module="Newsletter" name=$modvarName default=0 ]-->
-        <td align="left" valign="top"><input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> />
-        <!--[ if ($plugin_parameters.$plugin.number ne 0) ]-->
-    		<!--[include file="newsletter_admin_view_$plugin.html"]-->
-        <!--[ /if ]-->
-	      </td>
+            <td align="left" valign="top"><input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> />
+              <!--[ if ($plugin_parameters.$plugin.number ne 0) ]-->
+                <!--[include file="newsletter_admin_view_$plugin.html"]-->
+              <!--[ /if ]-->
+           </td>
           </tr>
         <!--[ /foreach ]-->
       </tbody>
