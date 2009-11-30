@@ -12,10 +12,25 @@
 
 function Newsletter_admin_main() 
 {
-   return Newsletter_admin_modifyconfig ();
+	if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
+        return _PN_TEXT_NOAUTH_ADMIN;
+    }
+
+    if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
+        return 'Unable to load class [newsletter_util]';
+    }
+
+    $preferences = pnModGetVar('Newsletter');
+    $pnRender = pnRender::getInstance('Newsletter', false);
+    $pnRender->assign ('preferences', $preferences);
+   
+    return $pnRender->fetch('newsletter_admin_form_start.html');
 }
 
-
+function Newsletter_admin_settings() 
+{
+   return Newsletter_admin_modifyconfig ();
+}
 function Newsletter_admin_modifyconfig () 
 {
     if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {

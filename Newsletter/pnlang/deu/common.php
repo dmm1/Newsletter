@@ -2,6 +2,7 @@
 require_once ('modules/Newsletter/pnlang/deu/plugins.php');
 
 define('_NEWSLETTER',				'Newsletter');
+define('_NEWSLETTER_START',				'Start');
 define('_NEWSLETTER_1MONTH',			'1 Monat');
 define('_NEWSLETTER_1YEAR',			'1 Jahr');
 define('_NEWSLETTER_2MONTHS',			'2 Monate');
@@ -222,6 +223,10 @@ define('_NEWSLETTER_SUBJECT',			'Betreff');
 define('_NEWSLETTER_HELP_SUBJECT',			'Das ist der Titel der Betreffszeile des gesendeten Newsletters');
 define('_NEWSLETTER_DISABLE_AUTO',			'Manueller Versand');
 define('_NEWSLETTER_HELP_DISABLE_AUTO',			'Deaktiviert die automatische Zusendung. Newsletter müssen nun manuell verschickt werden ');
+define('_NEWSLETTER_MAILER_NOTE',			'Zikula 1.1.2 und höher: Falls HTML-Mails versendet werden sollen, muss im Mailer-Modul (System --> Mailer) der Haken bei "Mails im html-format senden" aktiviert werden!');
+define('_NEWSLETTER_START_NOTE',			'Willkommen bei Newsletter!');
+define('_NEWSLETTER_START_NOTE_1',			'Besuchen Sie unsere Projekt-Seite');
+define('_NEWSLETTER_START_NOTE_2',			'Bitte melden Sie Fehlermeldungen oder Wünsche für kommende Versionen im Tracker!');
 
   
   
