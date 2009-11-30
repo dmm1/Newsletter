@@ -30,6 +30,7 @@ function getPagemasterPubs($args, $title, $type) {
 	return $pubList;
 }
 
+
 class PNPluginPagemasterArray extends PNPluginBaseArray
 {
     function PNPluginPagemasterArray ($init=null, $where='')
@@ -51,6 +52,7 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
         return $this->_getpagemasterItems ($lang);
     }
 
+
     function setPluginParameters ()
     {
         // pagemaster TIDs
@@ -62,23 +64,26 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
         }
     }
 
-     function getPluginParameters ()
+
+    function getPluginParameters ()
     {
-  		if (pnModAvailable ('pagemaster')) {
-	    		pnModDBInfoLoad('pagemaster');
-			$pagemasterPubTypes = DBUtil::selectObjectArray('pagemaster_pubtypes');
-  		} else {
-   			$pagemasterPubTypes = null;
-  		}
-  		$pagemasterTIDs = pnModGetVar ('Newsletter', 'pagemasterTIDs', '');
- 	 	$activepagemasterPlugins = explode(',', $pagemasterTIDs);
-	       foreach ($pagemasterPubTypes as $k=>$v) {
-   			$pagemasterPubTypes[$k]['active'] = in_array($v['id'], $activepagemasterPlugins);
-       	}
-	    	return array ('number' => 1,
-    				  'param' => array(
-    				  	'pagemasterPubTypes'=> $pagemasterPubTypes));
+        if (pnModAvailable ('pagemaster')) {
+            pnModDBInfoLoad('pagemaster');
+            $pagemasterPubTypes = DBUtil::selectObjectArray('pagemaster_pubtypes');
+        } else {
+            $pagemasterPubTypes = null;
+        }
+
+        $pagemasterTIDs = pnModGetVar ('Newsletter', 'pagemasterTIDs', '');
+        $activepagemasterPlugins = explode(',', $pagemasterTIDs);
+        foreach ($pagemasterPubTypes as $k=>$v) {
+            $pagemasterPubTypes[$k]['active'] = in_array($v['id'], $activepagemasterPlugins);
+        }
+
+        return array ('number'             => 1,
+                      'param'              => array('pagemasterPubTypes'=> $pagemasterPubTypes));
     }
+
 
     function _getPagemasterItems($lang)
     {
@@ -87,16 +92,16 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
         $tids     = pnModGetVar ('Newsletter', 'pagemasterTIDs', '');
         $nItems   = pnModGetVar ('Newsletter', 'plugin_pagemaster_nItems', 1);
         $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	 $args = array ('tid' => 7,'filter' => 'in_newsletter:eq:1');
-	 $output[tid7]['htm'] = getPagemasterPubs($args, 'news', 'getPubFormatted');
-	 $output[tid7]['txt'] = getPagemasterPubs($args, 'news', 'getPubTxt');
-	 $args = array('tid' => 9, 'filter' => 'sys_expire_date:gt:now');
-	 $output[tid9]['htm'] .= getPagemasterPubs($args, 'verlosungen', 'getPubFormatted');
-	 $output[tid9]['txt'] .= getPagemasterPubs($args, 'verlosungen', 'getPubTxt');
-	 $args = array('tid' => 3, 'orderByStr' => 'event_date', 'filter' => 'event_date:gt:now');
-	 $output[tid3]['htm'] .= getPagemasterPubs($args, 'events', 'getPubFormatted');
-	 $output[tid3]['txt'] .= getPagemasterPubs($args, 'events', 'getPubTxt');
-	 return $output;
+	$args = array ('tid' => 7,'filter' => 'in_newsletter:eq:1');
+	$output['tid7']['htm'] = getPagemasterPubs($args, 'news', 'getPubFormatted');
+	$output['tid7']['txt'] = getPagemasterPubs($args, 'news', 'getPubTxt');
+	$args = array('tid' => 9, 'filter' => 'sys_expire_date:gt:now');
+	$output['tid9']['htm'] .= getPagemasterPubs($args, 'verlosungen', 'getPubFormatted');
+	$output['tid9']['txt'] .= getPagemasterPubs($args, 'verlosungen', 'getPubTxt');
+	$args = array('tid' => 3, 'orderByStr' => 'event_date', 'filter' => 'event_date:gt:now');
+	$output['tid3']['htm'] .= getPagemasterPubs($args, 'events', 'getPubFormatted');
+	$output['tid3']['txt'] .= getPagemasterPubs($args, 'events', 'getPubTxt');
+	return $output;
     }
 }
 

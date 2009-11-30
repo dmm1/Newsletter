@@ -24,15 +24,15 @@ class PNPluginAdminMessagesArray extends PNPluginBaseArray
             return array();
         }
 
-    $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	$nItems   = pnModGetVar ('Newsletter', 'plugin_AdminMessages_nItems', 1);
-	$params   = array();
-	$params['startnum'] = 0;
-	$params['numitems'] = $nItems;
-	$params['ignoreml'] = true;
-	if ($enableML && $lang) {
-	    $params['ignoreml'] = false;
-	    $params['language'] = $lang;
+        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $nItems   = pnModGetVar ('Newsletter', 'plugin_AdminMessages_nItems', 1);
+        $params   = array();
+        $params['startnum'] = 0;
+        $params['numitems'] = $nItems;
+        $params['ignoreml'] = true;
+        if ($enableML && $lang) {
+            $params['ignoreml'] = false;
+            $params['language'] = $lang;
         }
         return pnModAPIFunc('Admin_Messages', 'user', 'getactive', $params);
     }

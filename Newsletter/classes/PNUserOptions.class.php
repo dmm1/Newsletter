@@ -27,8 +27,8 @@ class PNUserOptions extends PNUser
     function save ()
     {
         parent::save ();
-	LogUtil::registerStatus (_NEWSLETTER_USER_OPTIONS_UPDATED);
-	return true;
+        LogUtil::registerStatus (_NEWSLETTER_USER_OPTIONS_UPDATED);
+        return true;
     }
 }
 

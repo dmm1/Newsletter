@@ -12,7 +12,7 @@
 
 function Newsletter_admin_main() 
 {
-	if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
+    if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
         return _PN_TEXT_NOAUTH_ADMIN;
     }
 
@@ -27,10 +27,13 @@ function Newsletter_admin_main()
     return $pnRender->fetch('newsletter_admin_form_start.html');
 }
 
+
 function Newsletter_admin_settings() 
 {
    return Newsletter_admin_modifyconfig ();
 }
+
+
 function Newsletter_admin_modifyconfig () 
 {
     if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
@@ -159,13 +162,13 @@ function Newsletter_admin_view ()
         $pnRender->assign ('filter', $filter);
     }
 
-//EM Start
+    //EM Start
     if ($ot == 'plugin') {
           if (method_exists($objectArray, 'getPluginsParameters')) {
               $pnRender->assign ('plugin_parameters', $objectArray->getPluginsParameters());
           }
     }
-//EM End
+    //EM End
 
     if ($ot == 'show_preview') {
         switch ($format){
@@ -213,6 +216,8 @@ function Newsletter_admin_view ()
     $template = 'newsletter_admin_view_' . $ot . '.html';
     return $pnRender->fetch($template);
 }
+
+
 function Newsletter_admin_archive() 
 {
    return Newsletter_admin_modifyarchive ();

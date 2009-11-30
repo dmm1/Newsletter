@@ -25,8 +25,8 @@ class PNPluginNewsArray extends PNPluginBaseArray
         $column  = $pntable['stories_column'];
         $where   = "$column[published_status] = 0";
         $sort    = "$column[cr_date] DESC";
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_News_nItems', 1);
-	return DBUtil::selectObjectArray ('stories', $where, $sort, 0, $nItems);
+        $nItems  = pnModGetVar ('Newsletter', 'plugin_News_nItems', 1);
+        return DBUtil::selectObjectArray ('stories', $where, $sort, 0, $nItems);
     }
 }
 

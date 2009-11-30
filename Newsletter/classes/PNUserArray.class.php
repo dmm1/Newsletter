@@ -94,7 +94,7 @@ class PNUserArray extends PNObjectArray
                     break;
             }
             $where .= " AND (nlu_last_send_date IS NULL OR (DATEDIFF(nlu_last_send_date, '$checkDate') <= 0))";
-	}
+        }
 
         $users = $this->get ($where, 'id');
 

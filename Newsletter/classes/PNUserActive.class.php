@@ -27,8 +27,8 @@ class PNUserActive extends PNUser
     {
         $id = FormUtil::getPassedValue ('id', null, 'GET');
 
-	$data = $this->get ($id);
-	$data['active'] = $data['active'] ? 0 : 1;
+        $data = $this->get ($id);
+        $data['active'] = $data['active'] ? 0 : 1;
 
         $this->_objData = $data;
         $this->update ();

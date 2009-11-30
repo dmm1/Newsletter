@@ -27,7 +27,7 @@ class PNPluginDownloadsArray extends PNPluginBaseArray
         $nItems = pnModGetVar ('Newsletter', 'plugin_Downloads_nItems', 1);
         return pnModAPIFunc('Downloads', 'user', 'get_download_info', array ('sortby'      => 'date', 
                                                                              'cclause'     => 'DESC',
-																			 'sort_active' =>true,																			 
+                                                                             'sort_active' => true,
                                                                              'cid'         => 0,
                                                                              'get_by_cid'  => 0,
                                                                              'sort_date'   => 0,

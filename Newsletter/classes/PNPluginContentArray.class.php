@@ -25,8 +25,8 @@ class PNPluginContentArray extends PNPluginBaseArray
         $column  = $pntable['content_page_column'];
         $where   = "$column[active] = 1";
         $sort    = "$column[id] DESC";
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_Content_nItems', 1);
-	return DBUtil::selectObjectArray ('content_page', $where, $sort, 0, $nItems);
+        $nItems  = pnModGetVar ('Newsletter', 'plugin_Content_nItems', 1);
+        return DBUtil::selectObjectArray ('content_page', $where, $sort, 0, $nItems);
     }
 }
 

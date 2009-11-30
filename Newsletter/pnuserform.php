@@ -42,13 +42,13 @@ function Newsletter_userform_edit ()
             }
             if (!$data['email']) {
                 return LogUtil::registerError (_NEWSLETTER_EMAIL_NOT_SUPPLIED, null, $url);
-	    } elseif (!pnVarValidate($data['email'], 'email')) {
+            } elseif (!pnVarValidate($data['email'], 'email')) {
                 return LogUtil::registerError (_NEWSLETTER_EMAIL_INVALID, null, $url);
-	    }
-	}
+            }
+        }
         if (!isset($data['tos']) || !$data['tos']) {
             return LogUtil::registerError (_NEWSLETTER_TOS_NOT_SELECTED, null, $url);
-	}
+        }
     }
 
     $object->save ();

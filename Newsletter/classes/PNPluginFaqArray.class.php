@@ -24,8 +24,8 @@ class PNPluginFaqArray extends PNPluginBaseArray
             return array();
         }
 
-	$nItems = pnModGetVar ('Newsletter', 'plugin_FAQ_nItems', 1);
-	return pnModAPIFunc('Faq', 'user', 'getall', array('order'    => 'faqid DESC', 
+        $nItems = pnModGetVar ('Newsletter', 'plugin_FAQ_nItems', 1);
+        return pnModAPIFunc('Faq', 'user', 'getall', array('order'    => 'faqid DESC', 
                                                            'startnum' => 0, 
                                                            'numitems' => $nItems));
     }

@@ -20,14 +20,12 @@ class PNPluginWeblinksArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-		pnModDBInfoLoad ('Web_Links');
-        $pntable = pnDBGetTables();
-        $column  = $pntable['links_links_column'];
-      
-        $sort    = "$column[lid] DESC";
-	$enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_Weblinks_nItems', 1);
-	return DBUtil::selectObjectArray ('links_links', $where, $sort, 0, $nItems);
+        pnModDBInfoLoad ('Web_Links');
+        $pntable  = pnDBGetTables();
+        $column   = $pntable['links_links_column'];
+        $sort     = "$column[lid] DESC";
+        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $nItems   = pnModGetVar ('Newsletter', 'plugin_Weblinks_nItems', 1);
+        return DBUtil::selectObjectArray ('links_links', $where, $sort, 0, $nItems);
     }
-
 }

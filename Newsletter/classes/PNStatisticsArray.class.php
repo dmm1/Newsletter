@@ -32,10 +32,10 @@ class PNStatisticsArray extends PNObjectArray
         $data['users_weekly']              = DBUtil::selectObjectCount ('newsletter_users', 'nlu_frequency = 1');
         $data['users_monthly']             = DBUtil::selectObjectCount ('newsletter_users', 'nlu_frequency = 2');
         $data['users_yearly']              = DBUtil::selectObjectCount ('newsletter_users', 'nlu_frequency = 3');
-	$data['archives']                  = DBUtil::selectObjectCount ('newsletter_archives');
+        $data['archives']                  = DBUtil::selectObjectCount ('newsletter_archives');
 
-	$this->_objData = $data;
-	return $this->_objData;
+        $this->_objData = $data;
+        return $this->_objData;
     }
 
 

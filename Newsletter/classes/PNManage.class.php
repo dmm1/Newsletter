@@ -31,7 +31,7 @@ class PNManage extends PNObject
             $data = $this->_objData;
         }
 
-	$data['uid'] = pnUserGetVar ('uid');
+        $data['uid'] = pnUserGetVar ('uid');
 
         $this->_objData = $data;
         return $this->_objData;

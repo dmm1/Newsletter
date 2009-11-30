@@ -25,8 +25,8 @@ class PNPluginAddressbookArray extends PNPluginBaseArray
         $column  = $pntable['addressbook_address_column'];
         $where   = "$column[private] = 0 "; 
         $sort    = "$column[id] DESC";
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_Addressbook_nItems', 1);
-	return DBUtil::selectObjectArray ('addressbook_address', $where, $sort, 0, $nItems);
+        $nItems  = pnModGetVar ('Newsletter', 'plugin_Addressbook_nItems', 1);
+        return DBUtil::selectObjectArray ('addressbook_address', $where, $sort, 0, $nItems);
     }
 }
 

@@ -30,11 +30,11 @@ class PNNewsletterDataArray extends PNObjectArray
         $plugins  = NewsletterUtil::getActivePlugins ();
         $language = FormUtil::getPassedValue ('language', $lang, 'GETPOST');
 
-	if ($language) {
-	    include_once ("modules/Newsletter/pnlang/$language/plugins.php");
-	} else {
-	    pnModLangLoad ('Newsletter', 'plugins');
-	}
+        if ($language) {
+            include_once ("modules/Newsletter/pnlang/$language/plugins.php");
+        } else {
+            pnModLangLoad ('Newsletter', 'plugins');
+        }
 
         if ($enableML && !$language) {
             return LogUtil::registerError (_NEWSLETTER_LANGUAGE_NOT_SELECTED);
@@ -50,10 +50,10 @@ class PNNewsletterDataArray extends PNObjectArray
                 $data[$plugin]   = $objArray->getPluginData ($language);
                 $data['nItems'] += (is_array($data[$plugin]) ? count($data[$plugin]) : 1);
             }
-	}
+        }
 
-	$this->_objData = $data;
-	return $this->_objData;
+        $this->_objData = $data;
+        return $this->_objData;
     }
 
 

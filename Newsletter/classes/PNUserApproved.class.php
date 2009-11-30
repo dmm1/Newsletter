@@ -27,8 +27,8 @@ class PNUserApproved extends PNUser
     {
         $id = FormUtil::getPassedValue ('id', null, 'GET');
 
-	$data = $this->get ($id);
-	$data['approved'] = $data['approved'] ? 0 : 1;
+        $data = $this->get ($id);
+        $data['approved'] = $data['approved'] ? 0 : 1;
 
         $this->_objData = $data;
         $this->update ();

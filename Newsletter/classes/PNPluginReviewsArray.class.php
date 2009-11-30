@@ -17,6 +17,7 @@ class PNPluginReviewsArray extends PNPluginBaseArray
         $this->PNPluginBaseArray ();
     }
 
+
    function getPluginData ($lang=null)
     {
         pnModDBInfoLoad ('Reviews');
@@ -24,7 +25,7 @@ class PNPluginReviewsArray extends PNPluginBaseArray
         $column  = $pntable['reviews_column'];
         $where   = "$column[status] = 0"; 
         $sort    = "$column[cr_date] DESC";
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_TimeIt_nItems', 1);
-	return DBUtil::selectObjectArray ('reviews', $where, $sort, 0, $nItems);
+        $nItems  = pnModGetVar ('Newsletter', 'plugin_TimeIt_nItems', 1);
+        return DBUtil::selectObjectArray ('reviews', $where, $sort, 0, $nItems);
     }
 }

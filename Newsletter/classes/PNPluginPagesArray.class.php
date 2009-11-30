@@ -26,14 +26,14 @@ class PNPluginPagesArray extends PNPluginBaseArray
 
         $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
         $nItems   = pnModGetVar ('Newsletter', 'plugin_Pages_nItems', 1);
-	$params   = array();
-	$params['order']    = 'pageid DESC';
-	$params['numitems'] = $nItems;
-	$params['startnum'] = 0;
-	$params['ignoreml'] = true;
-	if ($enableML && $lang) {
-	    $params['ignoreml'] = false;
-	    $params['language'] = $lang;
+        $params   = array();
+        $params['order']    = 'pageid DESC';
+        $params['numitems'] = $nItems;
+        $params['startnum'] = 0;
+        $params['ignoreml'] = true;
+        if ($enableML && $lang) {
+            $params['ignoreml'] = false;
+            $params['language'] = $lang;
         }
         return pnModAPIFunc('Pages', 'user', 'getall', $params);
     }

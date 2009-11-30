@@ -28,8 +28,8 @@ class PNPluginCrpCalendarArray extends PNPluginBaseArray
         $modvars = array();
         $modvars['itemsperpage'] = $nItems;
         return pnModAPIFunc('CrpCalendar', 'user', 'getall', array('sortOrder' => 'videoid DESC', 
-                                                                      'startnum' => 0, 
-                                                                      'modvars' => $modvars));
+                                                                   'startnum'  => 0, 
+                                                                   'modvars'   => $modvars));
     }
 }
 

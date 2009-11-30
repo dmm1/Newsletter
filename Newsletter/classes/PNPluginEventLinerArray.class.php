@@ -25,8 +25,8 @@ class PNPluginEventLinerArray extends PNPluginBaseArray
         $column  = $pntable['eventliner_events_column'];
         $where   = '';
         $sort    = "$column[id] DESC";
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_EventLiner_nItems', 1);
-	return DBUtil::selectObjectArray ('EventLiner_events', $where, $sort, 0, $nItems);
+        $nItems  = pnModGetVar ('Newsletter', 'plugin_EventLiner_nItems', 1);
+        return DBUtil::selectObjectArray ('EventLiner_events', $where, $sort, 0, $nItems);
     }
 }
 

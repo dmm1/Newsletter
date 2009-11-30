@@ -25,8 +25,8 @@ class PNPluginLocationsArray extends PNPluginBaseArray
         $column  = $pntable['locations_location_column'];
        
         $sort    = "$column[locationid] DESC";
-	$nItems  = pnModGetVar ('Newsletter', 'plugin_Locations_nItems', 1);
-	return DBUtil::selectObjectArray ('locations_location', $where, $sort, 0, $nItems);
+        $nItems  = pnModGetVar ('Newsletter', 'plugin_Locations_nItems', 1);
+        return DBUtil::selectObjectArray ('locations_location', $where, $sort, 0, $nItems);
     }
 }
 

@@ -42,14 +42,14 @@ function Newsletter_adminform_modifyconfig ()
     pnModSetVar ('Newsletter', 'max_send_per_hour',          $prefs['max_send_per_hour'] >= 0     ? $prefs['max_send_per_hour'] : 0);
     pnModSetVar ('Newsletter', 'notify_admin',               $prefs['notify_admin']               ? 1                           : 0);
     pnModSetVar ('Newsletter', 'require_tos',                $prefs['require_tos']                ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'show_approval_status',   	 $prefs['show_approval_status']       ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'disable_auto',   	 		 $prefs['disable_auto']               ? 1                          : 0);
-	pnModSetVar ('Newsletter', 'activate_archive',           $prefs['activate_archive']           ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
+    pnModSetVar ('Newsletter', 'show_approval_status',       $prefs['show_approval_status']       ? 1                           : 0);
+    pnModSetVar ('Newsletter', 'disable_auto',               $prefs['disable_auto']               ? 1                          : 0);
+    pnModSetVar ('Newsletter', 'activate_archive',           $prefs['activate_archive']           ? 1                           : 0);
+    pnModSetVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
     pnModSetVar ('Newsletter', 'send_day',                   $prefs['send_day']                   ? $prefs['send_day']          : 5);
     pnModSetVar ('Newsletter', 'send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address'] : pnConfigGetVar('adminmail'));
     pnModSetVar ('Newsletter', 'newsletter_subject',         $prefs['newsletter_subject']         ? $prefs['newsletter_subject'] : 0);
-	pnModSetVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);
+    pnModSetVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);
     return pnRedirect($url);
 }
 
@@ -126,6 +126,8 @@ function Newsletter_adminform_edit ()
     $object->save ();
     return pnRedirect($url);
 }
+
+
 function Newsletter_adminform_modifyarchive ()
 {
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
@@ -144,14 +146,14 @@ function Newsletter_adminform_modifyarchive ()
         $prefs['default_type'] = $prefs['limit_type'];
         LogUtil::registerError (_NEWSLETTER_LIMIT_DEFAULT_TYPE_MISMATCH);
     }
-	pnModSetVar ('Newsletter', 'show_archive',    $prefs['show_archive']               ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'show_id',    $prefs['show_id']               ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'show_lang',    $prefs['show_lang']               ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'show_objects',    $prefs['show_objects']               ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'show_plugins',    $prefs['show_plugins']               ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'show_size',    $prefs['show_size']               ? 1                           : 0);
-	pnModSetVar ('Newsletter', 'show_date',    $prefs['show_date']               ? 1                           : 0);
-	
-	return pnRedirect($url);
+    pnModSetVar ('Newsletter', 'show_archive', $prefs['show_archive']  ? 1  : 0);
+    pnModSetVar ('Newsletter', 'show_id',      $prefs['show_id']       ? 1  : 0);
+    pnModSetVar ('Newsletter', 'show_lang',    $prefs['show_lang']     ? 1  : 0);
+    pnModSetVar ('Newsletter', 'show_objects', $prefs['show_objects']  ? 1  : 0);
+    pnModSetVar ('Newsletter', 'show_plugins', $prefs['show_plugins']  ? 1  : 0);
+    pnModSetVar ('Newsletter', 'show_size',    $prefs['show_size']     ? 1  : 0);
+    pnModSetVar ('Newsletter', 'show_date',    $prefs['show_date']     ? 1  : 0);
+
+    return pnRedirect($url);
 }
 

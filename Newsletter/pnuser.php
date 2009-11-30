@@ -50,7 +50,7 @@ function Newsletter_user_main ()
         $object = new PNUser ();
         if (pnUserLoggedIn()) {
             $user = $object->getUser (pnUserGetVar('uid'));
-	}
+        }
         $validation = $object->getValidation();
     }
     $pnRender->assign ('user', $user);
