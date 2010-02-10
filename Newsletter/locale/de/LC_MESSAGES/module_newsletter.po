@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-10 16:11+0000\n"
-"PO-Revision-Date: 2010-02-10 16:57+0100\n"
+"POT-Creation-Date: 2010-02-10 18:46+0000\n"
+"PO-Revision-Date: 2010-02-10 19:25+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -192,6 +192,15 @@ msgstr ""
 msgid "The user's active status has been changed"
 msgstr ""
 
+#: classes/NewsletterUtil.class.php:68
+#: classes/NewsletterUtil.class.php:83
+#: classes/NewsletterUtil.class.php:113
+#: classes/NewsletterUtil.class.php:126
+#: classes/NewsletterUtil.class.php:146
+#: pntemplates/newsletter_admin_view_user.html:36
+msgid "All"
+msgstr ""
+
 #: classes/NewsletterUtil.class.php:70
 #: pntemplates/newsletter_admin_view_userimport.html:42
 msgid "Inactive"
@@ -206,14 +215,6 @@ msgstr ""
 #: pntemplates/newsletter_user_view_options.html:51
 #: pntemplates/newsletter_admin_form_user.html:77
 msgid "Active"
-msgstr ""
-
-#: classes/NewsletterUtil.class.php:83
-#: classes/NewsletterUtil.class.php:113
-#: classes/NewsletterUtil.class.php:126
-#: classes/NewsletterUtil.class.php:146
-#: pntemplates/newsletter_admin_view_user.html:36
-msgid "All"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:85
@@ -320,31 +321,31 @@ msgid "Text with Link to Archive"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:160
-msgid "_NEWSLETTER_DAY_MONDAY"
+msgid "Monday"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:161
-msgid "_NEWSLETTER_DAY_TUESDAY"
+msgid "Tuesday"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:162
-msgid "_NEWSLETTER_DAY_WEDNESDAY"
+msgid "Wednesday"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:163
-msgid "_NEWSLETTER_DAY_THURSDAY"
+msgid "Thursday"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:164
-msgid "_NEWSLETTER_DAY_FRIDAY"
+msgid "Firday"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:165
-msgid "_NEWSLETTER_DAY_SATURDAY"
+msgid "Saturday"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:166
-msgid "_NEWSLETTER_DAY_SUNDAY"
+msgid "Sunday"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:175
