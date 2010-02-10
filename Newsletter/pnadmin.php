@@ -18,14 +18,14 @@ function Newsletter_admin_main()
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return 'Unable to load class [newsletter_util]';
+        return __("Unable to load class [newsletter_util]", $dom);
     }
 
     $preferences = pnModGetVar('Newsletter');
-    $pnRender = pnRender::getInstance('Newsletter', false);
-    $pnRender->assign ('preferences', $preferences);
+    $render = pnRender::getInstance('Newsletter', false);
+    $render->assign ('preferences', $preferences);
 
-    return $pnRender->fetch('newsletter_admin_form_start.html');
+    return $render->fetch('newsletter_admin_form_start.html');
 }
 
 
@@ -43,7 +43,7 @@ function Newsletter_admin_modifyconfig ()
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return 'Unable to load class [newsletter_util]';
+        return __("Unable to load class [newsletter_util]", $dom);
     }
 
     $preferences = pnModGetVar('Newsletter');

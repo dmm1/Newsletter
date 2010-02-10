@@ -22,8 +22,8 @@ function Newsletter_userform_edit ()
     }
 
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Overview rights for this module.", $dom));
-    }
+        return __("You don't have Overview rights for this module.", $dom);
+   }
 
     if (!SecurityUtil::confirmAuthKey()) {
         return LogUtil::registerAuthidError ($url);

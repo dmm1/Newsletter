@@ -157,13 +157,13 @@ class NewsletterUtil
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         
-        return array('1' => __('_NEWSLETTER_DAY_MONDAY', $dom),
-                     '2' => __('_NEWSLETTER_DAY_TUESDAY', $dom),
-                     '3' => __('_NEWSLETTER_DAY_WEDNESDAY', $dom),
-                     '4' => __('_NEWSLETTER_DAY_THURSDAY', $dom),
-                     '5' => __('_NEWSLETTER_DAY_FRIDAY', $dom),
-                     '6' => __('_NEWSLETTER_DAY_SATURDAY', $dom),
-                     '0' => __('_NEWSLETTER_DAY_SUNDAY', $dom));
+        return array('1' => __('Monday', $dom),
+                     '2' => __('Tuesday', $dom),
+                     '3' => __('Wednesday', $dom),
+                     '4' => __('Thursday', $dom),
+                     '5' => __('Firday', $dom),
+                     '6' => __('Saturday', $dom),
+                     '0' => __('Sunday', $dom));
     }
 
 

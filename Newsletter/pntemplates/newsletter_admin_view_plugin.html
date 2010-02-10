@@ -1,11 +1,7 @@
 <!--[include file="newsletter_admin_std_header.html"]-->
+<!--[gt text="Available Plugins" assign=templatetitle]-->
 
-<!--[pnml assign="pageTitle" name="Available Plugins"]-->
-<!--[pnpagesetvar name="title" value=$pageTitle]-->
-
-<div class="pn-admincontainer">
-  <br />
-  <h2><!--[$pageTitle]--></h2>
+  <h2><!--[gt text="Available Plugins"]--></h2>
 
   <form action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
@@ -19,11 +15,11 @@
         </tr>
       </thead>
       <tbody>
-        <!--[pnml assign="yes" name="Yes"]-->
-        <!--[pnml assign="no" name="No"]-->
+		<!--[gt text="Yes" assign=yes]-->
+		<!--[gt text="No" assign=no]-->
         <!--[pnsecgenauthkey assign="authid" module="Newsletter"]-->
         <!--[foreach from=$objectArray item=plugin]-->
-          <tr class="<!--[cycle values="pn-odd,pn-even"]-->">
+          <tr class="<!--[cycle values="zk-odd,zk-even"]-->">
             <td align="left" valign="top"><!--[$plugin|pnvarprephtmldisplay]--></td>
 
 	    <!--[assign_concat name="inputName" 1="plugin[" 2=$plugin 3="_nItems" 4="]"]-->
@@ -49,6 +45,6 @@
     </table>
     <!--[include file="newsletter_inc_form_actions.html"]-->
   </form>
-</div>
+
 
 <!--[include file="newsletter_std_footer.html"]-->
