@@ -5,9 +5,9 @@
 <!--[newsletter_selector_type assign="type_values" return_keys=true]-->
 <!--[newsletter_selector_type assign="type_output" return_keys=false]-->
 <!--[pnmodgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual"]-->
-<!--[pnconfiggetvar assign="defaultlang" name="language" default="eng" ]-->
+<!--[pnconfiggetvar assign="defaultlang" name="language" default="eng"]-->
 
-<!--[pnml assign="pageTitle" name="_NEWSLETTER_USER_EDIT"]-->
+<!--[pnml assign="pageTitle" name="Edit a User"]-->
 <!--[pnpagesetvar name="title" value=$pageTitle]-->
 
 <div class="pn-admincontainer">
@@ -24,64 +24,64 @@
     <input type="hidden" name="user[uid]" value="<!--[$user.uid]-->" />
 
     <fieldset>
-      <legend><!--[pnml name="_NEWSLETTER_ADMIN"]--></legend>
+      <legend><!--[gt text="Newsletter Configuration"]--></legend>
 
       <!--[if ($user.uid)]-->
         <div class="pn-adminformrow">
-          <label for="user_name"><!--[pnml name="_NEWSLETTER_USERNAME"]--></label>
+          <label for="user_name"><!--[gt text="Username"]--></label>
 	  <span id="user_name"><!--[$user.user_name]--></span>
         </div>
       <!--[else]-->
         <div class="pn-adminformrow">
-          <label for="user_name"><!--[pnml name="_NEWSLETTER_USERNAME"]--></label>
+          <label for="user_name"><!--[gt text="Username"]--></label>
 	  <input name="user[name]" type="text" value="<!--[$user.name]-->" size="20" maxlength="64" />
         </div>
       <!--[/if]-->
 
       <div class="pn-adminformrow">
-        <label for="user_email"><!--[pnml name="_NEWSLETTER_EMAIL"]--></label>
+        <label for="user_email"><!--[gt text="Email"]--></label>
 	<input name="user[email]" type="text" value="<!--[$user.email]-->" size="30" maxlength="128" />
       </div>
 
       <!--[if ($enable_multilingual)]-->
         <div class="pn-adminformrow">
-          <label for="user_lang"><!--[pnml name="_NEWSLETTER_LANGUAGE"]--></label>
-          <!--[html_select_languages id="user_lang" name="user[lang]" installed=true selected=$user.lang|default:$defaultlang ]-->
+          <label for="user_lang"><!--[gt text="Language"]--></label>
+          <!--[html_select_languages id="user_lang" name="user[lang]" installed=true selected=$user.lang|default:$defaultlang]-->
         </div>
       <!--[/if]-->
 
       <div class="pn-adminformrow">
-        <label for="user_type"><!--[pnml name="_NEWSLETTER_TYPE"]--></label>
+        <label for="user_type"><!--[gt text="Type"]--></label>
         <select id="user_type" name="user[type]"><!--[html_options values=$type_values output=$type_output selected=$user.type]--></select>
       </div>
 
       <!--[pnmodgetvar module="Newsletter" name="allow_frequency_change" assign="change_allowed"]-->
-      <!--[if ($change_allowed) ]-->
+      <!--[if ($change_allowed)]-->
         <div class="nl-userformrow">
-          <label for="user_frequency"><!--[pnml name="_NEWSLETTER_FREQUENCY"]--></label>
+          <label for="user_frequency"><!--[gt text="Frequency"]--></label>
           <select id="user_frequency" name="user[frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$user.frequency]--></select>
         </div>
       <!--[else]-->
         <div class="nl-userformrow">
-          <label for="user_frequency"><!--[pnml name="_NEWSLETTER_FREQUENCY"]--></label>
-          <span id="user_frequency"><!--[pnml name="_NEWSLETTER_FREQUENCYCHANGE_DISABLED"]--></span>
+          <label for="user_frequency"><!--[gt text="Frequency"]--></label>
+          <span id="user_frequency"><!--[gt text="User-based frequency changes have been disabled by the site administrator"]--></span>
         </div>
       <!--[/if]-->
 
       <div class="pn-adminformrow">
-        <label for="user_approved"><b><!--[pnml name="_NEWSLETTER_APPROVED"]--></b></label>
+        <label for="user_approved"><b><!--[gt text="Approved"]--></b></label>
         <input type="checkbox" id="user_approved" name="user[approved]" value="1" <!--[if ($user.approved)]-->checked="checked"<!--[/if]--> />
       </div>
 
       <div class="pn-adminformrow">
-        <label for="user_active"><b><!--[pnml name="_NEWSLETTER_ACTIVE"]--></b></label>
+        <label for="user_active"><b><!--[gt text="Active"]--></b></label>
         <input type="checkbox" id="user_active" name="user[active]" value="1" <!--[if ($user.active)]-->checked="checked"<!--[/if]--> />
       </div>
   
-      <!--[ include file="newsletter_inc_form_actions.html" ]-->
+      <!--[include file="newsletter_inc_form_actions.html"]-->
 
     </fieldset>
   </form>
 </div>
 
-<!--[ include file="newsletter_std_footer.html" ]-->
+<!--[include file="newsletter_std_footer.html"]-->

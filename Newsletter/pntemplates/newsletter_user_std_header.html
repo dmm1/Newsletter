@@ -1,33 +1,33 @@
 <!--[pngetstatusmsg]-->
 
-<!--[ pnml assign="lblNewsletterhome" name="_NEWSLETTER_HOME" ]-->
-<!--[ pnml assign="lblNewsletteradmin" name="_NEWSLETTER_OPTIONS" ]-->
-<!--[ pnml assign="lblUnsubscribe" name="_NEWSLETTER_UNSUBSCRIBE" ]-->
-<!--[ pnml assign="lblViewarchives" name="_NEWSLETTER_VIEWARCHIVES" ]-->
+<!--[pnml assign="lblNewsletterhome" name="Home"]-->
+<!--[pnml assign="lblNewsletteradmin" name="Options"]-->
+<!--[pnml assign="lblUnsubscribe" name="Unsubscribe"]-->
+<!--[pnml assign="lblViewarchives" name="View Archives"]-->
 <!--[pnmodgetvar assign="allow_anon_registration" module="Newsletter" name="allow_anon_registration"]-->
-<!--[pnuserloggedin assign="loggedin" ]-->
+<!--[pnuserloggedin assign="loggedin"]-->
 
 <div class="pn-frontendbox">
-  <h1><!--[pnml name=_NEWSLETTER]--></h1>
+  <h1><!--[gt text="Newsletter"]--></h1>
   <!--[if ($allow_anon_registration || $loggedin)]-->
-    <h2><!--[pnml name="_NEWSLETTER_USER_WELCOME"]--></h2>
+    <h2><!--[gt text="Welcome to our Newsletter, here you can manage, or delete your Subscription."]--></h2>
   <!--[/if]-->
   <div class="pn-menu">
     [
-    <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ]-->" title="<!--[ $lblNewsletterhome ]-->"><!--[ $lblNewsletterhome ]--></a>
-    <!--[ if ($user) ]-->
-	<!--[ pnmodgetvar assign="show_archive" module="Newsletter" name="show_archive" default="0" ]-->
-	<!--[ if ($show_archive) ]-->
+    <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main"]-->" title="<!--[$lblNewsletterhome]-->"><!--[$lblNewsletterhome]--></a>
+    <!--[if ($user)]-->
+	<!--[pnmodgetvar assign="show_archive" module="Newsletter" name="show_archive" default="0"]-->
+	<!--[if ($show_archive)]-->
       &nbsp;|&nbsp;
-      <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="archive" ]-->" title="<!--[ $lblViewarchives]-->"><!--[ $lblViewarchives]--></a>
-    <!--[ /if ]--> 
+      <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="archive"]-->" title="<!--[$lblViewarchives]-->"><!--[$lblViewarchives]--></a>
+    <!--[/if]--> 
 	 &nbsp;|&nbsp;
-      <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="options" ]-->" title="<!--[ $lblNewsletteradmin ]-->"><!--[ $lblNewsletteradmin]--></a>
-    <!--[ /if ]-->
-    <!--[ if (!$loggedin || $user) ]-->
+      <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="options"]-->" title="<!--[$lblNewsletteradmin]-->"><!--[$lblNewsletteradmin]--></a>
+    <!--[/if]-->
+    <!--[if (!$loggedin || $user)]-->
       &nbsp;|&nbsp;
-      <a href="<!--[ pnmodurl modname="Newsletter" type="user" func="main" ot="unsubscribe" ]-->" title="<!--[ $lblUnsubscribe ]-->"><!--[ $lblUnsubscribe]--></a>
-    <!--[ /if ]-->
+      <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="unsubscribe"]-->" title="<!--[$lblUnsubscribe]-->"><!--[$lblUnsubscribe]--></a>
+    <!--[/if]-->
     ]
   </div>
 </div>

@@ -1,67 +1,67 @@
 <!--[include file="newsletter_user_std_header.html"]-->
 
-<!--[ pnml assign="pageTitle" name="_NEWSLETTER_VIEWARCHIVES"]-->
-<!--[ pnpagesetvar name="title" value=$pageTitle ]-->
+<!--[pnml assign="pageTitle" name="View Archives"]-->
+<!--[pnpagesetvar name="title" value=$pageTitle]-->
 
-<!--[ pnml assign="lblDetail" name="_NEWSLETTER_VIEWARCHIVE"]-->
+<!--[pnml assign="lblDetail" name="View Archive"]-->
 
 <h3><!--[$pageTitle]--></h3>
 
 <fieldset>
-  <legend><!--[pnml name="_NEWSLETTER_VIEWARCHIVES_LIST"]--></legend>
+  <legend><!--[gt text="Past Archives"]--></legend>
 
   <table class="pn-datatable" summary="<!--[$pageTitle]-->" width="100%">
     <thead>
       <tr>
-	  <!--[ pnmodgetvar assign="show_id" module="Newsletter" name="show_id" default="0" ]-->
+	  <!--[pnmodgetvar assign="show_id" module="Newsletter" name="show_id" default="0"]-->
 	  <!--[if ($show_id)]-->
-        <th><!--[pnml name="_NEWSLETTER_ID"]--></th>
+        <th><!--[gt text="ID"]--></th>
 	  <!--[/if]--> 
-	  <!--[ pnmodgetvar assign="show_date" module="Newsletter" name="show_date" default="0" ]-->
-	  <!--[if ($show_date) ]-->
-        <th><!--[pnml name="_NEWSLETTER_DATE"]--></th>
+	  <!--[pnmodgetvar assign="show_date" module="Newsletter" name="show_date" default="0"]-->
+	  <!--[if ($show_date)]-->
+        <th><!--[gt text="Date"]--></th>
 	  <!--[/if]--> 
-	  <!--[ pnmodgetvar assign="show_lang" module="Newsletter" name="show_lang" default="0" ]-->
-	  <!--[ if ($show_lang)]-->
-        <th><!--[pnml name="_NEWSLETTER_LANGUAGE"]--></th>
+	  <!--[pnmodgetvar assign="show_lang" module="Newsletter" name="show_lang" default="0"]-->
+	  <!--[if ($show_lang)]-->
+        <th><!--[gt text="Language"]--></th>
 	  <!--[/if]-->
-	  <!--[ pnmodgetvar assign="show_plugins" module="Newsletter" name="show_plugins" default="0" ]-->
-	  <!--[ if ($show_plugins) ]--> 	  
-        <th><!--[pnml name="_NEWSLETTER_NPLUGINS"]--></th>
+	  <!--[pnmodgetvar assign="show_plugins" module="Newsletter" name="show_plugins" default="0"]-->
+	  <!--[if ($show_plugins)]--> 	  
+        <th><!--[gt text="# of Plugins"]--></th>
 	  <!--[/if]-->
-	  <!--[ pnmodgetvar assign="show_objects" module="Newsletter" name="show_objects" default="0" ]-->
-	  <!--[ if ($show_objects )]-->	  
-        <th><!--[pnml name="_NEWSLETTER_NITEMS"]--></th>
-	  <!--[/if ]--> 
-	  <!--[ pnmodgetvar assign="show_size" module="Newsletter" name="show_size" default="0" ]-->
-	  <!--[ if ($show_size) ]-->
-        <th><!--[pnml name="_NEWSLETTER_SIZE"]--></th>
+	  <!--[pnmodgetvar assign="show_objects" module="Newsletter" name="show_objects" default="0"]-->
+	  <!--[if ($show_objects )]-->	  
+        <th><!--[gt text="# of Items"]--></th>
 	  <!--[/if]--> 
-        <th align="right"><!--[pnml name="_NEWSLETTER_ACTION"]--></th>
+	  <!--[pnmodgetvar assign="show_size" module="Newsletter" name="show_size" default="0"]-->
+	  <!--[if ($show_size)]-->
+        <th><!--[gt text="Length"]--></th>
+	  <!--[/if]--> 
+        <th align="right"><!--[gt text="Action"]--></th>
       </tr>
     </thead>
     <tbody>
       <!--[foreach from=$objectArray key="key" item="archive"]-->
         <tr class="<!--[cycle values="pn-odd,pn-even"]-->">
-		  <!--[if ($show_id) ]-->
+		  <!--[if ($show_id)]-->
           <td><!--[$archive.id]--></td>
 		  <!--[/if]--> 
-		  <!--[if ($show_date) ]-->
+		  <!--[if ($show_date)]-->
           <td><!--[$archive.date_display]--></td>
 		   <!--[/if]--> 
-		   <!--[if ($show_lang) ]-->
+		   <!--[if ($show_lang)]-->
           <td><!--[$archive.lang]--></td>
 		   <!--[/if]--> 
-		   <!--[if ($show_plugins) ]-->
+		   <!--[if ($show_plugins)]-->
           <td><!--[$archive.n_plugins]--></td>
 		   <!--[/if]--> 
-		   <!--[if ($show_objects) ]-->
+		   <!--[if ($show_objects)]-->
           <td><!--[$archive.n_items]--></td>
 		   <!--[/if]--> 
-		   <!--[if ($show_size) ]-->
+		   <!--[if ($show_size)]-->
           <td><!--[$archive.text|strlen]--></td>
 		  <!--[/if]--> 
-          <td align="right"><a href="<!--[ pnmodurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id ]-->" target="_blank"><!--[ pnimg src=demo.gif modname=core set=icons/extrasmall alt=$lblDetail altml=false title=$lblDetail titleml=false ]--></a></td>
+          <td align="right"><a href="<!--[pnmodurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id]-->" target="_blank"><!--[pnimg src='demo.gif' modname='core' set='icons/extrasmall' __alt=$lblDetail altml='false' __title=$lblDetail titleml='false']--></a></td>
         </tr>
       <!--[/foreach]-->
     <tbody>

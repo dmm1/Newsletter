@@ -1,11 +1,11 @@
-        <!--[ pnml assign="lblDetail"    name="_NEWSLETTER_ACTION_DETAIL" ]-->
-        <!--[ pnml assign="lblEdit"      name="_NEWSLETTER_ACTION_EDIT" ]-->
-        <!--[ pnml assign="lblDelete"    name="_NEWSLETTER_ACTION_DELETE" ]-->
-        <!--[ formutil_getpassedvalue name="type" assign="curtype" default="user" ]-->
-	<!--[ securityutil_checkpermission assign="adminAuth" component="Newsletter::" instance="::" level="ACCESS_ADMIN" ]-->
+        <!--[pnml assign="lblDetail"    name="View Details"]-->
+        <!--[pnml assign="lblEdit"      name="Edit"]-->
+        <!--[pnml assign="lblDelete"    name="Delete"]-->
+        <!--[formutil_getpassedvalue name="type" assign="curtype" default="user"]-->
+	<!--[securityutil_checkpermission assign="adminAuth" component="Newsletter::" instance="::" level="ACCESS_ADMIN"]-->
 	<td class="nowrap" align="right">
-          <!--[ if ($adminAuth) ]-->
-            <a href="<!--[ pnmodurl modname="Newsletter" type="admin" func="edit" ot=$ot id=$currentObject.id ]-->"><!--[ pnimg src=xedit.gif modname=core set=icons/extrasmall alt=$lblEdit altml=false title=$lblEdit titleml=false]--></a>
-            <a href="<!--[ pnmodurl modname="Newsletter" type="admin" func="delete" ot=$ot1 id=$currentObject.id ]-->"><!--[ pnimg src=cancel.gif modname=core set=icons/extrasmall alt=$lblDelete altml=false title=$lblDelete titleml=false]--></a>
-          <!--[ /if ]-->
+          <!--[if ($adminAuth)]-->
+            <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="edit" ot=$ot id=$currentObject.id]-->"><!--[pnimg src='xedit.gif' modname='core' set='icons/extrasmall' __alt=$lblEdit altml='false' __title=$lblEdit titleml='false']--></a>
+            <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="delete" ot=$ot1 id=$currentObject.id]-->"><!--[pnimg src='cancel.gif' modname='core' set='icons/extrasmall' __alt=$lblDelete altml='false' __title=$lblDelete titleml='false']--></a>
+          <!--[/if]-->
         </td>

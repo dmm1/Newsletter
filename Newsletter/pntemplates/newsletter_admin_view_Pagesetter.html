@@ -1,17 +1,17 @@
-<!--[ assign var="pagesetterPubTypes" value=$plugin_parameters.Pagesetter.param.pagesetterPubTypes ]-->
-<!--[ pnmodgetvar assign="pagesetter_useAPI" module="Newsletter" name="pagesetter_useAPI" ]-->
+<!--[assign var="pagesetterPubTypes" value=$plugin_parameters.Pagesetter.param.pagesetterPubTypes]-->
+<!--[pnmodgetvar assign="pagesetter_useAPI" module="Newsletter" name="pagesetter_useAPI"]-->
 
-<!--[ pnml name="_NEWSLETTER_PAGESETTER_ACTIVATE" ]-->
+<!--[gt text="Activate Pagesetter Plugin"]-->
 <br />
-<input type="checkbox" name="pagesetter_useAPI" value="1" <!--[if ($pagesetter_useAPI)]-->checked="checked"<!--[/if]--> /> <!--[ pnml name="_NEWSLETTER_PAGESETTER_API" ]-->&nbsp;<em><!--[ pnml name="_NEWSLETTER_PAGESETTER_API_EXPLAIN" ]-->
+<input type="checkbox" name="pagesetter_useAPI" value="1" <!--[if ($pagesetter_useAPI)]-->checked="checked"<!--[/if]--> /> <!--[gt text="Use Pagesetter API"]-->&nbsp;<em><!--[gt text="(slower but fetches entire publication)"]-->
 <br />
 <hr />
-<em><!--[ pnml name="_NEWSLETTER_PAGESETTER_EXPLAIN" ]--></em>
+<em><!--[gt text="Either a selection or all if no selection"]--></em>
 <br />
-<!--[ foreach from=$pagesetterPubTypes item=pgPubType ]-->
-    <!--[ assign_concat name="checkboxName" 1="pagesetterTIDs[" 2=$pgPubType.id 3="]" ]-->
-    <!--[ assign_concat name="modvarName" 1="pagesetterTID_" 2=$pgPubType.id ]-->
-    <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pgPubType.active)]-->checked="checked"<!--[/if]--> /> <!--[ $pgPubType.title|pnvarprephtmldisplay ]-->
+<!--[foreach from=$pagesetterPubTypes item=pgPubType]-->
+    <!--[assign_concat name="checkboxName" 1="pagesetterTIDs[" 2=$pgPubType.id 3="]"]-->
+    <!--[assign_concat name="modvarName" 1="pagesetterTID_" 2=$pgPubType.id]-->
+    <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pgPubType.active)]-->checked="checked"<!--[/if]--> /> <!--[$pgPubType.title|pnvarprephtmldisplay]-->
     <br />
-<!--[ /foreach ]-->
+<!--[/foreach]-->
 

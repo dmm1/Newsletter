@@ -13,9 +13,9 @@
 <!--[pnmodgetvar assign="admin_key" module="Newsletter" name="admin_key"]-->
 
 <!--[pnuserloggedin assign="loggedin"]-->
-<!--[ pnsecgenauthkey assign="authid" module="Newsletter" ]-->
+<!--[pnsecgenauthkey assign="authid" module="Newsletter"]-->
 
-<!--[pnml assign="pageTitle" name="_NEWSLETTER_USERIMPORT_EXPLAIN"]-->
+<!--[pnml assign="pageTitle" name="Import Zikula Users"]-->
 <!--[pnpagesetvar name="title" value=$pageTitle]-->
 
 <div class="pn-admincontainer">
@@ -27,38 +27,38 @@
     <input type="hidden" name="ot" value="import_config" />
     <input type="hidden" name="otTarget" value="userimport" />
     <fieldset>
-      <legend>1.) <!--[pnml name="_NEWSLETTER_IMPORT_ADMIN"]--></legend>
+      <legend>1.) <!--[gt text="Zikula User Import Configuration"]--></legend>
       <div class="pn-adminformrow">
-        <label for="import_type"><!--[pnml name="_NEWSLETTER_TYPE"]--> :</label>
+        <label for="import_type"><!--[gt text="Type"]--> :</label>
 	<select id="import_type" name="import[import_type]"><!--[html_options values=$type_values output=$type_output selected=$import_type]--></select>
       </div>
       <div class="pn-adminformrow">
-        <label for="import_frequency"><!--[pnml name="_NEWSLETTER_FREQUENCY"]-->: </label>
+        <label for="import_frequency"><!--[gt text="Frequency"]-->: </label>
 	<select id="import_frequency" name="import[import_frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$import_frequency]--></select>
       </div>
         <div class="pn-adminformrow">
-        <label for="import_active_status"><!--[pnml name="_NEWSLETTER_ACTIVE"]-->:</label>
+        <label for="import_active_status"><!--[gt text="Active"]-->:</label>
         <input id="import_active_status" name="import[import_active_status]" type="text" value="<!--[$import_active_status]-->" size="3" maxlength="1"  /> 
-        1=<!--[pnml name="_NEWSLETTER_ACTIVE"]-->  | 0=<!--[pnml name="_NEWSLETTER_INACTIVE"]--> 
+        1=<!--[gt text="Active"]-->  | 0=<!--[gt text="Inactive"]--> 
       </div>
       
       <div class="pn-adminformrow">
-        <label for="import_approval_status"><!--[pnml name="_NEWSLETTER_USERS"]--> <!--[pnml name="_NEWSLETTER_APPROVED"]--> :</label>
+        <label for="import_approval_status"><!--[gt text="Users"]--> <!--[gt text="Approved"]--> :</label>
         <input id="import_approval_status" name="import[import_approval_status]" type="text" value="<!--[$import_approval_status]-->" size="3" maxlength="1" /> 
-        1=<!--[pnml name="_NEWSLETTER_APPROVED"]-->  | 0=<!--[pnml name="_NEWSLETTER_UNAPPROVED"]--> 
+        1=<!--[gt text="Approved"]-->  | 0=<!--[gt text="Unapproved"]--> 
       </div>
     
-      <input type="submit" name="submit" value="<!--[pnml name="_NEWSLETTER_UPDATE_CONFIGURATION"]-->" />
+      <input type="submit" name="submit" value="<!--[gt text="Update Configuration"]-->" />
     </fieldset>
   </form>
 
   <fieldset>
-    <legend>2.) <!--[pnml name="_NEWSLETTER_IMPORT"]--></legend>  
+    <legend>2.) <!--[gt text="Import"]--></legend>  
     <div class="pn-adminformrow"> 
-      <a href="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit" ot="import_users" otTarget="userimport" authKey=$admin_key authid=$authid ]-->" title="<!--[pnml name="_NEWSLETTER_USERIMPORT"]-->"><img src="images/icons/small/button_ok.gif" alt="" /></a>
+      <a href="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit" ot="import_users" otTarget="userimport" authKey=$admin_key authid=$authid]-->" title="<!--[gt text="Import"]-->"><img src="images/icons/small/button_ok.gif" alt="" /></a>
     </div>
   </fieldset>
 
 </div>
 
-<!--[ include file="newsletter_std_footer.html" ]-->
+<!--[include file="newsletter_std_footer.html"]-->

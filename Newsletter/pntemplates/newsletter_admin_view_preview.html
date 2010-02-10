@@ -1,49 +1,49 @@
 <!--[include file="newsletter_admin_std_header.html"]-->
 
-<!--[ pnml assign="pageTitle" name="_NEWSLETTER_PREVIEW_TITLE"]-->
-<!--[ pnpagesetvar name="title" value=$pageTitle ]-->
+<!--[pnml assign="pageTitle" name="Preview your Newsletter"]-->
+<!--[pnpagesetvar name="title" value=$pageTitle]-->
 
 
 <div class="pn-admincontainer">
   <br />
   <h2><!--[$pageTitle]--></h2>
 
-  <form name="show_template" action="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot="show_preview" ]-->" target="_blank" method="post" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+  <form name="show_template" action="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot="show_preview"]-->" target="_blank" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
     <fieldset>
-      <legend><!--[pnml name="_NEWSLETTER_PREVIEW_TEMPLATES"]--></legend>
+      <legend><!--[gt text="Preview Templates"]--></legend>
 
       <!--[pnmodgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual" default=0]-->
       <!--[if ($enable_multilingual)]-->
         <div class="pn-adminformrow">
-          <label for="language"><!--[pnml name="_NEWSLETTER_LANGUAGE"]-->:</label>
+          <label for="language"><!--[gt text="Language"]-->:</label>
           <!--[pnsessiongetvar assign="currLang" name="lang"]-->
           <!--[pnconfiggetvar assign="defaultLang" name="language"]-->
-          <!--[html_select_languages id="user_lang" name="language" installed=true selected=$currLang|default:$defaultlang ]-->
+          <!--[html_select_languages id="user_lang" name="language" installed=true selected=$currLang|default:$defaultlang]-->
         </div>
       <!--[/if]-->
 
       <div class="pn-adminformrow">
-          <!--[ pnusergetvar assign="email" name="email" ]-->
-          <label for="testsend"><!--[pnml name="_NEWSLETTER_TESTSEND"]-->:</label>
+          <!--[pnusergetvar assign="email" name="email"]-->
+          <label for="testsend"><!--[gt text="Mail this preview to the following email address"]-->:</label>
           <input id="testsend" name="testsend" type="checkbox" value="1" />
-          <input id="testsend_email" name="testsend_email" type="text" value="<!--[ $email ]-->" size="20" maxlength="64"  />
+          <input id="testsend_email" name="testsend_email" type="text" value="<!--[$email]-->" size="20" maxlength="64"  />
       </div>
 
       <div class="pn-adminformrow">
-        <label for="format"><!--[pnml name="_NEWSLETTER_FORMAT"]-->:</label>
+        <label for="format"><!--[gt text="Format"]-->:</label>
         <select name="format" onchange="this.form.submit();javascript:location.reload(true);" >                                        
-          <option><!--[pnml name="_NEWSLETTER_SELECT"]--></option>
-          <option value="1"><!--[pnml name="_NEWSLETTER_FORMAT_TEXT"]--></option>
-          <option value="2"><!--[pnml name="_NEWSLETTER_FORMAT_HTML"]--></option>
-          <option value="3"><!--[pnml name="_NEWSLETTER_FORMAT_TEXTWLINK"]--></option>
+          <option><!--[gt text="- Choose One -"]--></option>
+          <option value="1"><!--[gt text="Text"]--></option>
+          <option value="2"><!--[gt text="HTML"]--></option>
+          <option value="3"><!--[gt text="Text with Link to Archive"]--></option>
         </select>
-        <a href="#" onclick="Effect.toggle('hint-3','BLIND'); return false;" title="<!--[pnml name="_HELP"]-->">(?)</a>
+        <a href="#" onclick="Effect.toggle('hint-3','BLIND'); return false;" title="<!--[gt text="Help"]-->">(?)</a>
         <br />
         <br />
-        <span id="help_preview_form" style="display:none"><!--[pnml name="_NEWSLETTER_HELP"]--></span>
+        <span id="help_preview_form" style="display:none"><!--[gt text="Help"]--></span>
         <div id="hint-3" class="nl-hint" style="display:none;">
-          <p><!--[pnml name="_NEWSLETTER_FIND_TEMPLATES"]--> /modules/Newsletter/pntemplates/</p>
+          <p><!--[gt text="You can find the templates in"]--> /modules/Newsletter/pntemplates/</p>
           <ul>
             <li>newsletter_template_html.html</li>
             <li>newsletter_template_text.html</li>

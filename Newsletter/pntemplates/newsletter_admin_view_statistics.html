@@ -1,72 +1,72 @@
 <!--[include file="newsletter_admin_std_header.html"]-->
 
-<!--[ pnml assign="pageTitle" name="_NEWSLETTER_STATISTICS"]-->
-<!--[ pnpagesetvar name="title" value=$pageTitle ]-->
+<!--[pnml assign="pageTitle" name="Statistics"]-->
+<!--[pnpagesetvar name="title" value=$pageTitle]-->
 
 <div class="pn-admincontainer">
   <br />
   <h2><!--[$pageTitle]--></h2>
 
   <fieldset>
-    <legend><!--[pnml name="_NEWSLETTER_STATISTICS_TITLE"]--></legend>
+    <legend><!--[gt text="Newsletter Module Statistics"]--></legend>
 
     <div class="pn-adminformrow">
-      <label for="users"><!--[pnml name="_NEWSLETTER_STATISTICS_USERS"]-->:</label>
+      <label for="users"><!--[gt text="Total # of Users"]-->:</label>
       <span id="users"><!--[$objectArray.users]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_active"><!--[pnml name="_NEWSLETTER_STATISTICS_ACTIVE"]-->:</label>
+      <label for="users_active"><!--[gt text="Active Subscribers"]-->:</label>
       <span id="users_active"><!--[$objectArray.users_active]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_approved"><!--[pnml name="_NEWSLETTER_STATISTICS_APPROVED"]-->:</label>
+      <label for="users_approved"><!--[gt text="Approved Subscribers"]-->:</label>
       <span id="users_approved"><!--[$objectArray.users_approved]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_activeapproved"><!--[pnml name="_NEWSLETTER_STATISTICS_ACTIVEAPPROVED"]-->:</label>
+      <label for="users_activeapproved"><!--[gt text="Active and approved Subscribers"]-->:</label>
       <span id="users_activeapproved"><!--[$objectArray.users_approved_and_active]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_registered"><!--[pnml name="_NEWSLETTER_STATISTICS_REGISTERED"]-->:</label>
-      <span id="users_registered"><!--[$objectArray.users_registered ]--></span>
+      <label for="users_registered"><!--[gt text="Subscribers which are registered Users"]-->:</label>
+      <span id="users_registered"><!--[$objectArray.users_registered]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_html"><!--[pnml name="_NEWSLETTER_STATISTICS_HTML"]-->:</label>
+      <label for="users_html"><!--[gt text="# of Subscribers for Html Format"]-->:</label>
       <span id="users_html"><!--[$objectArray.users_html]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_text"><!--[pnml name="_NEWSLETTER_STATISTICS_TEXT"]-->:</label>
+      <label for="users_text"><!--[gt text="# of Subscribers for Text Format"]-->:</label>
       <span id="users_text"><!--[$objectArray.users_text]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_textwithlinks"><!--[pnml name="_NEWSLETTER_STATISTICS_TEXTWITHLINKS"]-->:</label>
+      <label for="users_textwithlinks"><!--[gt text="# of Subscribers for Text with Links Format"]-->:</label>
       <span id="users_textwithlinks"><!--[$objectArray.users_textwithlinks]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_weekly"><!--[pnml name="_NEWSLETTER_STATISTICS_WEEKLY"]-->:</label>
+      <label for="users_weekly"><!--[gt text="# of Subscribers for Weekly Delivery"]-->:</label>
       <span id="users_weekly"><!--[$objectArray.users_weekly]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_monthly"><!--[pnml name="_NEWSLETTER_STATISTICS_MONTHLY"]-->:</label>
+      <label for="users_monthly"><!--[gt text="# of Subscribers for Monthly Delivery"]-->:</label>
       <span div id="users_monthly"><!--[$objectArray.users_monthly]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_yearly"><!--[pnml name="_NEWSLETTER_STATISTICS_YEARLY"]-->:</label>
+      <label for="users_yearly"><!--[gt text="# of Subscribers for Yearly Delivery"]-->:</label>
       <span id="users_yearly"><!--[$objectArray.users_yearly]--></span>
     </div>
 
     <div class="pn-adminformrow">
-      <label for="users_archives"><!--[pnml name="_NEWSLETTER_STATISTICS_ARCHIVES"]-->:</label>
+      <label for="users_archives"><!--[gt text="# of Archives"]-->:</label>
       <span id="users_archives"><!--[$objectArray.archives]--></span>
     </div>
 

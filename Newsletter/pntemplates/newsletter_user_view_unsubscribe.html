@@ -2,29 +2,29 @@
 
 <!--[pnuserloggedin assign="loggedin"]-->
 
-<!--[if ($user || !$loggdin) ]-->
-  <h3><!--[pnml name="_NEWSLETTER_UNSUBSCRIBE"]--></h3>
+<!--[if ($user || !$loggdin)]-->
+  <h3><!--[gt text="Unsubscribe"]--></h3>
   <!--[include file="newsletter_user_inc_info.html"]-->
   <fieldset>
-    <legend><!--[pnml name="_NEWSLETTER_INFO"]--></legend>
+    <legend><!--[gt text="Information"]--></legend>
     <form action="<!--[pnmodurl modname="Newsletter" type="userform" func="edit" ot="user_delete"]-->" method="post" enctype="application/x-www-form-urlencoded" onsubmit="if(this.user_email.value==''){this.user_email.focus(); return false;}">
-      <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter" ]-->" />
+      <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
 
-      <h4><!--[pnml name="_NEWSLETTER_UNSUBSCRIBE_MESSAGE"]--></h4>
+      <h4><!--[gt text="Here you can unsubscribe from our Newsletter"]--></h4>
       <br />
 
-      <!--[if (!$loggedin) ]-->
+      <!--[if (!$loggedin)]-->
         <div class="nl-userformrow">
-          <label for="user_email"><!--[pnml name="_NEWSLETTER_YOUR_EMAIL"]--></label>
+          <label for="user_email"><!--[gt text="Your E-Mail Address"]--></label>
           <span id="user_email"> <input name="user[email]" type="text" size="30" maxlength="128" /></span>
         </div>
       <!--[/if]-->
 
       <div class="nl-userformrow">
-        <input type="submit" name="submit" value="<!--[pnml name="_NEWSLETTER_UNSUBSCRIBE"]-->" onclick="return confirm('<!--[pnml name="_NEWSLETTER_UNSUBSCRIBE_CONFIRM"]-->');" />
+        <input type="submit" name="submit" value="<!--[gt text="Unsubscribe"]-->" onclick="return confirm('<!--[gt text="Are you sure that you want to unsubscribe?"]-->');" />
       </div>
     </form>
  </fieldset>
 <!--[/if]-->
 
-<!--[ include file="newsletter_std_footer.html" ]-->
+<!--[include file="newsletter_std_footer.html"]-->
