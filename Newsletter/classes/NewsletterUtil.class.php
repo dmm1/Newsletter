@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Newletter Module for Zikula
  *
@@ -65,7 +65,7 @@ class NewsletterUtil
 
         $array = array();
         if ($all) {
-          $array[-1] = pnML('_ALL');
+          $array[-1] = __('All', $dom);
         }
         $array[0] = __('Inactive', $dom);
         $array[1] = __('Active', $dom);

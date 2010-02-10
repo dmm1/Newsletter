@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zikula component\n"
+"Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-10 18:31+0545\n"
-"PO-Revision-Date: 2010-02-10 16:13+0100\n"
+"POT-Creation-Date: 2010-02-10 16:11+0000\n"
+"PO-Revision-Date: 2010-02-10 16:57+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,45 +26,32 @@ msgstr ""
 #: pnadminform.php:96
 #: pnadminform.php:138
 msgid "You don't have Admin rights for this module"
-msgstr ""
+msgstr "Sie haben keine Administrator-Rechte für dieses Modul!"
+
+#: pnadmin.php:21
+#: pnadmin.php:46
+msgid "Unable to load class [newsletter_util]"
+msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
 
 #: pnadmin.php:198
 msgid "Your test email was not sent since you did not enter an email address"
-msgstr ""
+msgstr "Ihre Testnachricht konnte nicht gesendet werden, da keine E-Mail Adresse eingegeben worden ist."
 
 #: pnadmin.php:201
 #: pnuserform.php:47
 msgid "The email address you entered does not seem to be valid"
-msgstr ""
+msgstr "Die eingegebene E-Mail Adresse scheint nicht gültig zu sein."
 
 #: pnadmin.php:212
 msgid "Failure sending the test email"
-msgstr ""
-
-#: pnuserapi.php:19
-#: pnuserapi.php:35
-#: classes/PNUser.class.php:41
-#: classes/PNUser.class.php:60
-#: classes/PNUser.class.php:149
-#: classes/PNUser.class.php:164
-msgid "Error! Could not do what you wanted. Please check your input."
-msgstr ""
-
-#: pnuser.php:18
-#: pnuser.php:69
-#: pnuserform.php:25
-msgid "You don't have Overview rights for this module."
-msgstr ""
-
-#: pnuser.php:97
-msgid "You don't have Read rights for this module."
-msgstr ""
+msgstr "Ein Fehler beim Senden der Testnachricht ist aufgetreten."
 
 #: pnversion.php:15
-#: classes/PNNewsletterDataArray.class.php:46
 #: pnaccountapi.php:21
+#: classes/PNNewsletterDataArray.class.php:46
 #: pntemplates/newsletter_user_std_header.html:11
-#: pntemplates/newsletter_admin_std_header.html:9
+#: pntemplates/newsletter_admin_std_header.html:1
+#: pntemplates/newsletter_admin_std_header.html:10
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -77,16 +64,78 @@ msgstr "Newsletter Modul"
 msgid "newsletter"
 msgstr "Newsletter"
 
-#: classes/PNNewsletterDataArray.class.php:41
-msgid "Please use the language selector in the Filter section to select the language you with to send your newsletter for"
+#: pnuserapi.php:19
+#: pnuserapi.php:35
+#: classes/PNUser.class.php:41
+#: classes/PNUser.class.php:60
+#: classes/PNUser.class.php:149
+#: classes/PNUser.class.php:164
+msgid "Error! Could not do what you wanted. Please check your input."
+msgstr "Fehler, die Eingabe konnte nicht verarbeitet werden, bitte überprüfen!"
+
+#: pnuser.php:18
+#: pnuser.php:69
+#: pnuserform.php:25
+msgid "You don't have Overview rights for this module."
+msgstr "Sie besitzen keine Rechte, um das Modul aufrufen zu können."
+
+#: pnuser.php:97
+msgid "You don't have Read rights for this module."
 msgstr ""
 
-#: classes/PNUserActive.class.php:36
-msgid "The user's approved status has been changed"
+#: pnadminform.php:30
+#: pnadminform.php:151
+msgid "You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!"
 msgstr ""
 
-#: classes/PNUserOptions.class.php:30
-msgid "Your subscription newsletter options have been updated"
+#: pnadminapi.php:20
+msgid "Start"
+msgstr ""
+
+#: pnadminapi.php:21
+msgid "Newsletter Settings"
+msgstr "Einstellungen"
+
+#: pnadminapi.php:22
+msgid "View Archives"
+msgstr "Archiv anzeigen"
+
+#: pnadminapi.php:23
+msgid "Statistics"
+msgstr "Statistiken"
+
+#: pnadminapi.php:24
+msgid "Intro Message"
+msgstr ""
+
+#: pnadminapi.php:25
+msgid "Preview"
+msgstr "Vorschau"
+
+#: pnadminapi.php:26
+msgid "Subscribers"
+msgstr "Abonenten"
+
+#: pnadminapi.php:27
+msgid "Plugins"
+msgstr "Plugins"
+
+#: pnadminapi.php:28
+#: pntemplates/newsletter_admin_view_userimport.html:56
+#: pntemplates/newsletter_admin_view_userimport.html:58
+msgid "Import"
+msgstr "Import"
+
+#: pnuserform.php:42
+msgid "Please enter your name"
+msgstr ""
+
+#: pnuserform.php:45
+msgid "Please enter your email address"
+msgstr ""
+
+#: pnuserform.php:51
+msgid "You must accept the terms of service in order to be subscribed!"
 msgstr ""
 
 #: classes/PNUser.class.php:54
@@ -123,10 +172,6 @@ msgstr ""
 msgid "Newsletter Subscription"
 msgstr ""
 
-#: classes/PNUserApproved.class.php:36
-msgid "The user's active status has been changed"
-msgstr ""
-
 #: classes/PNImportUsers.class.php:29
 #: classes/PNNewsletterSend.class.php:140
 msgid "Invalid admin_key received"
@@ -139,19 +184,27 @@ msgid_plural "Import finished %s users were imported."
 msgstr[0] ""
 msgstr[1] ""
 
+#: classes/PNUserOptions.class.php:30
+msgid "Your subscription newsletter options have been updated"
+msgstr ""
+
+#: classes/PNUserApproved.class.php:36
+msgid "The user's active status has been changed"
+msgstr ""
+
 #: classes/NewsletterUtil.class.php:70
 #: pntemplates/newsletter_admin_view_userimport.html:42
 msgid "Inactive"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:71
-#: pntemplates/newsletter_admin_view_user.html:97
-#: pntemplates/newsletter_admin_view_user.html:153
-#: pntemplates/newsletter_admin_view_plugin.html:18
-#: pntemplates/newsletter_user_view_options.html:51
-#: pntemplates/newsletter_admin_form_user.html:77
 #: pntemplates/newsletter_admin_view_userimport.html:40
 #: pntemplates/newsletter_admin_view_userimport.html:42
+#: pntemplates/newsletter_admin_view_plugin.html:14
+#: pntemplates/newsletter_admin_view_user.html:97
+#: pntemplates/newsletter_admin_view_user.html:153
+#: pntemplates/newsletter_user_view_options.html:51
+#: pntemplates/newsletter_admin_form_user.html:77
 msgid "Active"
 msgstr ""
 
@@ -169,12 +222,12 @@ msgid "Not Approved"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:86
-#: pntemplates/newsletter_admin_view_user.html:101
-#: pntemplates/newsletter_admin_view_user.html:157
-#: pntemplates/newsletter_admin_form_user.html:72
-#: pntemplates/newsletter_user_inc_info.html:54
 #: pntemplates/newsletter_admin_view_userimport.html:46
 #: pntemplates/newsletter_admin_view_userimport.html:48
+#: pntemplates/newsletter_admin_view_user.html:101
+#: pntemplates/newsletter_admin_view_user.html:157
+#: pntemplates/newsletter_user_inc_info.html:54
+#: pntemplates/newsletter_admin_form_user.html:72
 msgid "Approved"
 msgstr ""
 
@@ -246,22 +299,22 @@ msgid "Yearly"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:148
-#: pntemplates/newsletter_admin_view_user.html:185
 #: pntemplates/newsletter_admin_view_preview.html:37
+#: pntemplates/newsletter_admin_view_user.html:185
 #: pntemplates/newsletter_user_inc_info.html:18
 msgid "Text"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:149
-#: pntemplates/newsletter_admin_view_user.html:186
 #: pntemplates/newsletter_admin_view_preview.html:38
+#: pntemplates/newsletter_admin_view_user.html:186
 #: pntemplates/newsletter_user_inc_info.html:20
 msgid "HTML"
 msgstr "HTML"
 
 #: classes/NewsletterUtil.class.php:150
-#: pntemplates/newsletter_admin_view_user.html:187
 #: pntemplates/newsletter_admin_view_preview.html:39
+#: pntemplates/newsletter_admin_view_user.html:187
 #: pntemplates/newsletter_user_inc_info.html:22
 msgid "Text with Link to Archive"
 msgstr ""
@@ -324,348 +377,38 @@ msgstr ""
 msgid "Unable to load array class [archive]"
 msgstr ""
 
-#: pnadminform.php:30
-#: pnadminform.php:151
-msgid "You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!"
+#: classes/PNNewsletterDataArray.class.php:41
+msgid "Please use the language selector in the Filter section to select the language you with to send your newsletter for"
 msgstr ""
 
-#: pnadminapi.php:20
-msgid "Start"
+#: classes/PNUserActive.class.php:36
+msgid "The user's approved status has been changed"
 msgstr ""
 
-#: pnadminapi.php:21
-msgid "Newsletter Settings"
-msgstr "Einstellungen"
-
-#: pnadminapi.php:22
-msgid "View Archives"
-msgstr "Archiv anzeigen"
-
-#: pnadminapi.php:23
-msgid "Statistics"
-msgstr "Statistiken"
-
-#: pnadminapi.php:24
-msgid "Intro Message"
+#: pntemplates/newsletter_email_user_notify.html:3
+#: pntemplates/newsletter_template_text.html:7
+msgid "Hello"
 msgstr ""
 
-#: pnadminapi.php:25
-msgid "Preview"
-msgstr "Vorschau"
-
-#: pnadminapi.php:26
-msgid "Subscribers"
-msgstr "Abonenten"
-
-#: pnadminapi.php:27
-msgid "Plugins"
-msgstr "Plugins"
-
-#: pnadminapi.php:28
-#: pntemplates/newsletter_admin_view_userimport.html:56
-#: pntemplates/newsletter_admin_view_userimport.html:58
-msgid "Import"
-msgstr "Import"
-
-#: pnuserform.php:42
-msgid "Please enter your name"
+#: pntemplates/newsletter_email_user_notify.html:4
+msgid "Thank you for your Newsletter Subscription"
 msgstr ""
 
-#: pnuserform.php:45
-msgid "Please enter your email address"
+#: pntemplates/newsletter_email_user_notify.html:6
+msgid "Your"
 msgstr ""
 
-#: pnuserform.php:51
-msgid "You must accept the terms of service in order to be subscribed!"
-msgstr ""
-
-#: pntemplates/newsletter_email_user_unsubscribe.html:3
-msgid "Your newsletter subscription has been cancelled."
-msgstr ""
-
-#: pntemplates/newsletter_email_user_unsubscribe.html:4
-msgid "Please feel free to re-subscribe in the future."
-msgstr ""
-
-#: pntemplates/newsletter_email_user_unsubscribe.html:5
-msgid "Thank you,"
-msgstr ""
-
-#: pntemplates/newsletter_email_user_unsubscribe.html:6
 #: pntemplates/newsletter_email_user_notify.html:7
+#: pntemplates/newsletter_email_user_unsubscribe.html:6
 msgid "Staff"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:37
-msgid "Filter"
-msgstr "Filter"
-
-#: pntemplates/newsletter_admin_view_user.html:40
-msgid "Usersearch"
-msgstr "Benutzersuche"
-
-#: pntemplates/newsletter_admin_view_user.html:44
-msgid "Search"
-msgstr "Suche"
-
-#: pntemplates/newsletter_admin_view_user.html:66
-#: pntemplates/newsletter_admin_view_user.html:227
-msgid "Display # of users per page:"
-msgstr "Anzahl von Abonenten pro Seite:"
-
-#: pntemplates/newsletter_admin_view_user.html:84
-#: pntemplates/newsletter_admin_view_user.html:141
-#: pntemplates/newsletter_admin_view_preview.html:19
-#: pntemplates/newsletter_user_view_options.html:25
-#: pntemplates/newsletter_user_view_archive.html:26
-#: pntemplates/newsletter_user_view_main.html:42
-#: pntemplates/newsletter_admin_form_user.html:48
-msgid "Language"
-msgstr "Sprache"
-
-#: pntemplates/newsletter_admin_view_user.html:89
-#: pntemplates/newsletter_admin_view_user.html:145
-#: pntemplates/newsletter_user_view_options.html:32
-#: pntemplates/newsletter_user_view_main.html:49
-#: pntemplates/newsletter_admin_form_user.html:54
-#: pntemplates/newsletter_admin_view_userimport.html:32
-msgid "Type"
-msgstr "Typ"
-
-#: pntemplates/newsletter_admin_view_user.html:93
-#: pntemplates/newsletter_admin_view_user.html:149
-#: pntemplates/newsletter_user_view_options.html:40
-#: pntemplates/newsletter_user_view_options.html:45
-#: pntemplates/newsletter_user_view_main.html:56
-#: pntemplates/newsletter_admin_form_user.html:61
-#: pntemplates/newsletter_admin_form_user.html:66
-#: pntemplates/newsletter_user_inc_info.html:29
-#: pntemplates/newsletter_admin_view_userimport.html:36
-msgid "Frequency"
-msgstr "Frequenz"
-
-#: pntemplates/newsletter_admin_view_user.html:129
-msgid "User ID"
-msgstr "Benutzer ID"
-
-#: pntemplates/newsletter_admin_view_user.html:133
-#: pntemplates/newsletter_admin_form_user.html:31
-#: pntemplates/newsletter_admin_form_user.html:36
-#: pntemplates/newsletter_user_inc_info.html:6
-#: pntemplates/newsletter_email_admin_notify.html:5
-msgid "Username"
-msgstr "Benutzername"
-
-#: pntemplates/newsletter_admin_view_user.html:137
-#: pntemplates/newsletter_admin_form_user.html:42
-#: pntemplates/newsletter_user_inc_info.html:11
-#: pntemplates/newsletter_email_admin_notify.html:9
-msgid "Email"
-msgstr "E-Mail"
-
-#: pntemplates/newsletter_admin_view_user.html:161
-msgid "Last sent"
+#: pntemplates/newsletter_email_user_notify.html:12
+msgid "If you didn`t subsribe yourself, please visit"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:165
-msgid "Joindate"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:166
-#: pntemplates/newsletter_user_view_archive.html:40
-msgid "Action"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:215
-msgid "Update last sent date?"
-msgstr "Sendedatum aktualisieren?"
-
-#: pntemplates/newsletter_admin_view_user.html:217
-#: pntemplates/newsletter_admin_form_modifyarchive.html:16
-#: pntemplates/newsletter_admin_form_modifyarchive.html:20
-#: pntemplates/newsletter_admin_form_modifyarchive.html:24
-#: pntemplates/newsletter_admin_form_modifyarchive.html:28
-#: pntemplates/newsletter_admin_form_modifyarchive.html:32
-#: pntemplates/newsletter_admin_form_modifyarchive.html:36
-#: pntemplates/newsletter_admin_form_modifyarchive.html:40
-#: pntemplates/newsletter_admin_form_modifyarchive.html:61
-#: pntemplates/newsletter_admin_form_modifyconfig.html:48
-#: pntemplates/newsletter_admin_form_modifyconfig.html:84
-#: pntemplates/newsletter_admin_form_modifyconfig.html:93
-#: pntemplates/newsletter_admin_form_modifyconfig.html:98
-#: pntemplates/newsletter_admin_form_modifyconfig.html:103
-#: pntemplates/newsletter_admin_form_modifyconfig.html:109
-#: pntemplates/newsletter_admin_form_modifyconfig.html:114
-#: pntemplates/newsletter_admin_form_modifyconfig.html:119
-#: pntemplates/newsletter_admin_form_modifyconfig.html:124
-msgid "(checked=yes)"
-msgstr "(angeklickt = ja)"
-
-#: pntemplates/newsletter_admin_view_user.html:221
-msgid "Send to"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:221
-#: pntemplates/newsletter_admin_view_userimport.html:46
-msgid "Users"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:224
-msgid "Add a user"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_preview.html:14
-msgid "Preview Templates"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_preview.html:28
-msgid "Mail this preview to the following email address"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_preview.html:34
-#: pntemplates/newsletter_user_inc_info.html:16
-msgid "Format"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_preview.html:36
-msgid "- Choose One -"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_preview.html:41
-#: pntemplates/newsletter_admin_view_preview.html:44
-#: pntemplates/newsletter_admin_view_Mediashare.html:7
-#: pntemplates/newsletter_admin_view_Mediashare.html:8
-#: pntemplates/newsletter_admin_form_modifyconfig.html:31
-#: pntemplates/newsletter_admin_form_modifyconfig.html:32
-#: pntemplates/newsletter_admin_form_modifyconfig.html:40
-#: pntemplates/newsletter_admin_form_modifyconfig.html:41
-#: pntemplates/newsletter_admin_form_modifyconfig.html:49
-#: pntemplates/newsletter_admin_form_modifyconfig.html:50
-#: pntemplates/newsletter_admin_form_modifyconfig.html:85
-#: pntemplates/newsletter_admin_form_modifyconfig.html:86
-msgid "Help"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_preview.html:46
-msgid "You can find the templates in"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_plugin.html:16
-msgid "Plugin"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_plugin.html:17
-#: pntemplates/newsletter_user_view_archive.html:34
-msgid "# of Items"
-msgstr ""
-
-#: pntemplates/newsletter_user_std_header.html:13
-msgid "Welcome to our Newsletter, here you can manage, or delete your Subscription."
-msgstr ""
-
-#: pntemplates/newsletter_user_view_options.html:12
-msgid "Change your subscription settings"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_options.html:21
-#: pntemplates/newsletter_admin_form_user.html:27
-#: pntemplates/newsletter_admin_form_modifyconfig.html:20
-msgid "Newsletter Configuration"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_options.html:46
-#: pntemplates/newsletter_admin_form_user.html:67
-msgid "User-based frequency changes have been disabled by the site administrator"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_options.html:56
-#: pntemplates/newsletter_user_view_options.html:57
-#: pntemplates/newsletter_user_view_main.html:62
-#: pntemplates/newsletter_user_view_tos.html:4
-msgid "Terms of Service"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_Mediashare.html:3
-msgid "Activate Mediashare Plugin"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_Mediashare.html:4
-msgid "Albums only"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_Mediashare.html:9
-msgid "Define the Path of your Mediashare images path e.g. mediashare/, pnTemp/mediashare/ etc."
-msgstr ""
-
-#: pntemplates/newsletter_user_view_archive.html:11
-msgid "Past Archives"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_archive.html:18
-msgid "ID"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_archive.html:22
-msgid "Date"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_archive.html:30
-msgid "# of Plugins"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_archive.html:38
-msgid "Length"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_main.html:18
-#: pntemplates/newsletter_block_signup_display.html:19
-msgid "Subscribe"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_main.html:21
-#: pntemplates/newsletter_user_view_unsubscribe.html:9
-#: pntemplates/newsletter_user_inc_info.html:4
-#: pntemplates/newsletter_admin_form_modifyconfig.html:150
-msgid "Information"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_main.html:30
-#: pntemplates/newsletter_block_signup_display.html:6
-#: pntemplates/newsletter_block_signup_display.html:7
-msgid "Your Name"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_main.html:35
-#: pntemplates/newsletter_user_view_unsubscribe.html:18
-#: pntemplates/newsletter_block_signup_display.html:8
-#: pntemplates/newsletter_block_signup_display.html:9
-msgid "Your E-Mail Address"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_main.html:63
-#: pntemplates/newsletter_block_signup_display.html:14
-msgid "Yes, I agree to the <a href="
-msgstr ""
-
-#: pntemplates/newsletter_user_view_main.html:75
-msgid "* subscriptions subject to approval."
-msgstr ""
-
-#: pntemplates/newsletter_user_view_main.html:83
-msgid "Sorry, but you must be a site member to subscribe to our newsletter."
-msgstr ""
-
-#: pntemplates/newsletter_user_view_unsubscribe.html:6
-#: pntemplates/newsletter_user_view_unsubscribe.html:24
-msgid "Unsubscribe"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_unsubscribe.html:13
-msgid "Here you can unsubscribe from our Newsletter"
-msgstr ""
-
-#: pntemplates/newsletter_user_view_unsubscribe.html:24
-msgid "Are you sure that you want to unsubscribe?"
+#: pntemplates/newsletter_email_user_notify.html:14
+msgid "to delete this Subscription"
 msgstr ""
 
 #: pntemplates/newsletter_template_text_with_link.html:4
@@ -692,49 +435,34 @@ msgstr ""
 msgid "here!"
 msgstr ""
 
-#: pntemplates/newsletter_user_inc_info.html:52
-msgid "Approval Status"
-msgstr ""
-
-#: pntemplates/newsletter_user_inc_info.html:62
-msgid "Subscription Status"
-msgstr ""
-
-#: pntemplates/newsletter_user_inc_info.html:64
-msgid "Your Subscription is currently active!"
-msgstr ""
-
-#: pntemplates/newsletter_user_inc_info.html:66
-msgid "Your Subscription is currently inactive!"
-msgstr ""
-
-#: pntemplates/newsletter_user_inc_info.html:71
-msgid "Last newsletter was sent to you on"
-msgstr ""
-
-#: pntemplates/newsletter_email_user_notify.html:3
-#: pntemplates/newsletter_template_text.html:7
-msgid "Hello"
-msgstr ""
-
-#: pntemplates/newsletter_email_user_notify.html:4
-msgid "Thank you for your Newsletter Subscription"
-msgstr ""
-
-#: pntemplates/newsletter_email_user_notify.html:6
-msgid "Your"
-msgstr ""
-
-#: pntemplates/newsletter_email_user_notify.html:12
-msgid "If you didn`t subsribe yourself, please visit"
-msgstr ""
-
-#: pntemplates/newsletter_email_user_notify.html:14
-msgid "to delete this Subscription"
-msgstr ""
-
 #: pntemplates/newsletter_admin_view_userimport.html:30
 msgid "Zikula User Import Configuration"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_userimport.html:32
+#: pntemplates/newsletter_admin_view_user.html:89
+#: pntemplates/newsletter_admin_view_user.html:145
+#: pntemplates/newsletter_user_view_main.html:49
+#: pntemplates/newsletter_user_view_options.html:32
+#: pntemplates/newsletter_admin_form_user.html:54
+msgid "Type"
+msgstr "Typ"
+
+#: pntemplates/newsletter_admin_view_userimport.html:36
+#: pntemplates/newsletter_admin_view_user.html:93
+#: pntemplates/newsletter_admin_view_user.html:149
+#: pntemplates/newsletter_user_inc_info.html:29
+#: pntemplates/newsletter_user_view_main.html:56
+#: pntemplates/newsletter_user_view_options.html:40
+#: pntemplates/newsletter_user_view_options.html:45
+#: pntemplates/newsletter_admin_form_user.html:61
+#: pntemplates/newsletter_admin_form_user.html:66
+msgid "Frequency"
+msgstr "Frequenz"
+
+#: pntemplates/newsletter_admin_view_userimport.html:46
+#: pntemplates/newsletter_admin_view_user.html:221
+msgid "Users"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_userimport.html:48
@@ -745,180 +473,120 @@ msgstr ""
 msgid "Update Configuration"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:11
-msgid "Newsletter Module Statistics"
+#: pntemplates/newsletter_user_std_header.html:13
+msgid "Welcome to our Newsletter, here you can manage, or delete your Subscription."
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:14
-msgid "Total # of Users"
+#: pntemplates/newsletter_admin_view_Mediashare.html:3
+msgid "Activate Mediashare Plugin"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:19
-msgid "Active Subscribers"
+#: pntemplates/newsletter_admin_view_Mediashare.html:4
+msgid "Albums only"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:24
-msgid "Approved Subscribers"
+#: pntemplates/newsletter_admin_view_Mediashare.html:7
+#: pntemplates/newsletter_admin_view_Mediashare.html:8
+#: pntemplates/newsletter_admin_form_modifyconfig.html:31
+#: pntemplates/newsletter_admin_form_modifyconfig.html:32
+#: pntemplates/newsletter_admin_form_modifyconfig.html:40
+#: pntemplates/newsletter_admin_form_modifyconfig.html:41
+#: pntemplates/newsletter_admin_form_modifyconfig.html:49
+#: pntemplates/newsletter_admin_form_modifyconfig.html:50
+#: pntemplates/newsletter_admin_form_modifyconfig.html:85
+#: pntemplates/newsletter_admin_form_modifyconfig.html:86
+#: pntemplates/newsletter_admin_view_preview.html:41
+#: pntemplates/newsletter_admin_view_preview.html:44
+msgid "Help"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:29
-msgid "Active and approved Subscribers"
+#: pntemplates/newsletter_admin_view_Mediashare.html:9
+msgid "Define the Path of your Mediashare images path e.g. mediashare/, pnTemp/mediashare/ etc."
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:34
-msgid "Subscribers which are registered Users"
+#: pntemplates/newsletter_admin_view_plugin.html:2
+#: pntemplates/newsletter_admin_view_plugin.html:4
+msgid "Available Plugins"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:39
-msgid "# of Subscribers for Html Format"
+#: pntemplates/newsletter_admin_view_plugin.html:12
+msgid "Plugin"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:44
-msgid "# of Subscribers for Text Format"
+#: pntemplates/newsletter_admin_view_plugin.html:13
+#: pntemplates/newsletter_user_view_archive.html:34
+msgid "# of Items"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:49
-msgid "# of Subscribers for Text with Links Format"
+#: pntemplates/newsletter_admin_view_plugin.html:18
+msgid "Yes"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:54
-msgid "# of Subscribers for Weekly Delivery"
+#: pntemplates/newsletter_admin_view_plugin.html:19
+msgid "No"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:59
-msgid "# of Subscribers for Monthly Delivery"
+#: pntemplates/newsletter_email_user_unsubscribe.html:3
+msgid "Your newsletter subscription has been cancelled."
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:64
-msgid "# of Subscribers for Yearly Delivery"
+#: pntemplates/newsletter_email_user_unsubscribe.html:4
+msgid "Please feel free to re-subscribe in the future."
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_statistics.html:69
-msgid "# of Archives"
+#: pntemplates/newsletter_email_user_unsubscribe.html:5
+msgid "Thank you,"
 msgstr ""
 
-#: pntemplates/newsletter_block_signup_modify.html:7
-#: pntemplates/newsletter_admin_form_modifyconfig.html:60
-msgid "Default Newsletter Type"
+#: pntemplates/newsletter_inc_form_actions.html:26
+msgid "Cancel"
 msgstr ""
 
-#: pntemplates/newsletter_block_signup_modify.html:14
-#: pntemplates/newsletter_admin_form_modifyconfig.html:65
-msgid "Default Frequency"
+#: pntemplates/newsletter_inc_form_actions.html:28
+msgid "Update"
 msgstr ""
 
-#: pntemplates/newsletter_template_text.html:11
-msgid "Message from the Site Administrators"
+#: pntemplates/newsletter_admin_view_Pagemaster.html:2
+msgid "Activate Pagemaster Plugin"
 msgstr ""
 
-#: pntemplates/newsletter_template_text.html:17
-msgid "Special Announcements"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:26
-msgid "News"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:35
-msgid "Recently Added Products"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:44
-msgid "New Vidos"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:52
-msgid "New Events"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:63
-msgid "Welcome New Members"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:71
-msgid "Recently Added Publications"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:79
-msgid "New Content Items"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:87
-msgid "Recently Added Documents"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:95
-msgid "Recently Added Reviews"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:105
-msgid "Latest Media Items"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:113
-msgid "Latest Downloads"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:121
-msgid "Recently Added Links"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:129
-msgid "Recently Added Questions"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:139
-msgid "Recently Added Quotes"
-msgstr ""
-
-#: pntemplates/newsletter_template_text.html:147
-msgid "Latest Forum Posts"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_start.html:4
-msgid "Welcome to Newsletter!"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_start.html:5
-msgid "Please visit our project-page"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_start.html:6
-msgid "Please report errors or requests for future versions of the Tracker!"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_start.html:13
-#: pntemplates/newsletter_admin_form_modifyarchive.html:56
-msgid "Attention"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_start.html:13
-msgid "Zikula Version 1.1.2 and up: To ensure html-mails are sent correctly, you have to look that in the Core-Mailer Module (Settings->Mailer) the butten "
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_Pagesetter.html:4
-msgid "Activate Pagesetter Plugin"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_Pagesetter.html:6
-msgid "Use Pagesetter API"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_Pagesetter.html:6
-msgid "(slower but fetches entire publication)"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_Pagesetter.html:9
 #: pntemplates/newsletter_admin_view_Pagemaster.html:3
+#: pntemplates/newsletter_admin_view_Pagesetter.html:9
 msgid "Either a selection or all if no selection"
 msgstr ""
 
-#: pntemplates/newsletter_email_admin_notify.html:1
-msgid "New subscriber Info"
+#: pntemplates/newsletter_user_view_unsubscribe.html:6
+#: pntemplates/newsletter_user_view_unsubscribe.html:24
+msgid "Unsubscribe"
 msgstr ""
 
-#: pntemplates/newsletter_email_admin_notify.html:17
-msgid "Auto-approve is currently disabled. You will need to login, go to the newsletter admin area and approve this user."
+#: pntemplates/newsletter_user_view_unsubscribe.html:9
+#: pntemplates/newsletter_admin_form_modifyconfig.html:150
+#: pntemplates/newsletter_user_inc_info.html:4
+#: pntemplates/newsletter_user_view_main.html:21
+msgid "Information"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_unsubscribe.html:13
+msgid "Here you can unsubscribe from our Newsletter"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_unsubscribe.html:18
+#: pntemplates/newsletter_user_view_main.html:35
+#: pntemplates/newsletter_block_signup_display.html:8
+#: pntemplates/newsletter_block_signup_display.html:9
+msgid "Your E-Mail Address"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_unsubscribe.html:24
+msgid "Are you sure that you want to unsubscribe?"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_tos.html:4
+#: pntemplates/newsletter_user_view_main.html:62
+#: pntemplates/newsletter_user_view_options.html:56
+#: pntemplates/newsletter_user_view_options.html:57
+msgid "Terms of Service"
 msgstr ""
 
 #: pntemplates/newsletter_user_view_tos.html:7
@@ -937,66 +605,50 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_message.html:19
-msgid "Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter."
+#: pntemplates/newsletter_user_view_archive.html:11
+msgid "Past Archives"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_message.html:29
-#: pntemplates/newsletter_admin_view_message.html:42
-msgid "Your message"
+#: pntemplates/newsletter_user_view_archive.html:18
+msgid "ID"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyarchive.html:7
+#: pntemplates/newsletter_user_view_archive.html:22
+msgid "Date"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_archive.html:26
+#: pntemplates/newsletter_admin_view_preview.html:19
+#: pntemplates/newsletter_admin_view_user.html:84
+#: pntemplates/newsletter_admin_view_user.html:141
+#: pntemplates/newsletter_user_view_main.html:42
+#: pntemplates/newsletter_user_view_options.html:25
+#: pntemplates/newsletter_admin_form_user.html:48
+msgid "Language"
+msgstr "Sprache"
+
+#: pntemplates/newsletter_user_view_archive.html:30
+msgid "# of Plugins"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_archive.html:38
+msgid "Length"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_archive.html:40
+#: pntemplates/newsletter_admin_view_user.html:166
+msgid "Action"
+msgstr ""
+
 #: pntemplates/newsletter_admin_form_modifyconfig.html:15
+#: pntemplates/newsletter_admin_form_modifyarchive.html:7
 msgid "Settings"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyarchive.html:12
-msgid "Archive Settings"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:15
-msgid "Show Archive in the user-menu?"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:19
-msgid "Show Newsletter ID ?"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:23
-msgid "Show date?"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:27
-msgid "Show Language?"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:31
-msgid "Show Plugins?"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:35
-msgid "Show Objects?"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:39
-msgid "Show Size?"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:48
-msgid "Please select an archive to flush"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:51
-msgid "Prune Archives"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:56
-msgid "The Archive cannot be restored"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:60
-msgid "Database"
+#: pntemplates/newsletter_admin_form_modifyconfig.html:20
+#: pntemplates/newsletter_user_view_options.html:21
+#: pntemplates/newsletter_admin_form_user.html:27
+msgid "Newsletter Configuration"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:23
@@ -1023,12 +675,43 @@ msgstr ""
 msgid "Disable automatic sending"
 msgstr ""
 
+#: pntemplates/newsletter_admin_form_modifyconfig.html:48
+#: pntemplates/newsletter_admin_form_modifyconfig.html:84
+#: pntemplates/newsletter_admin_form_modifyconfig.html:93
+#: pntemplates/newsletter_admin_form_modifyconfig.html:98
+#: pntemplates/newsletter_admin_form_modifyconfig.html:103
+#: pntemplates/newsletter_admin_form_modifyconfig.html:109
+#: pntemplates/newsletter_admin_form_modifyconfig.html:114
+#: pntemplates/newsletter_admin_form_modifyconfig.html:119
+#: pntemplates/newsletter_admin_form_modifyconfig.html:124
+#: pntemplates/newsletter_admin_view_user.html:217
+#: pntemplates/newsletter_admin_form_modifyarchive.html:16
+#: pntemplates/newsletter_admin_form_modifyarchive.html:20
+#: pntemplates/newsletter_admin_form_modifyarchive.html:24
+#: pntemplates/newsletter_admin_form_modifyarchive.html:28
+#: pntemplates/newsletter_admin_form_modifyarchive.html:32
+#: pntemplates/newsletter_admin_form_modifyarchive.html:36
+#: pntemplates/newsletter_admin_form_modifyarchive.html:40
+#: pntemplates/newsletter_admin_form_modifyarchive.html:61
+msgid "(checked=yes)"
+msgstr "(angeklickt = ja)"
+
 #: pntemplates/newsletter_admin_form_modifyconfig.html:51
 msgid "Newsletters now have to be sent out manually "
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:55
 msgid "Allow subscription of only this type"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyconfig.html:60
+#: pntemplates/newsletter_block_signup_modify.html:7
+msgid "Default Newsletter Type"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyconfig.html:65
+#: pntemplates/newsletter_block_signup_modify.html:14
+msgid "Default Frequency"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:70
@@ -1117,15 +800,351 @@ msgstr ""
 msgid "mails"
 msgstr ""
 
-#: pntemplates/newsletter_inc_form_actions.html:26
-msgid "Cancel"
+#: pntemplates/newsletter_admin_view_Pagesetter.html:4
+msgid "Activate Pagesetter Plugin"
 msgstr ""
 
-#: pntemplates/newsletter_inc_form_actions.html:28
-msgid "Update"
+#: pntemplates/newsletter_admin_view_Pagesetter.html:6
+msgid "Use Pagesetter API"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_Pagemaster.html:2
-msgid "Activate Pagemaster Plugin"
+#: pntemplates/newsletter_admin_view_Pagesetter.html:6
+msgid "(slower but fetches entire publication)"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:11
+msgid "Newsletter Module Statistics"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:14
+msgid "Total # of Users"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:19
+msgid "Active Subscribers"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:24
+msgid "Approved Subscribers"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:29
+msgid "Active and approved Subscribers"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:34
+msgid "Subscribers which are registered Users"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:39
+msgid "# of Subscribers for Html Format"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:44
+msgid "# of Subscribers for Text Format"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:49
+msgid "# of Subscribers for Text with Links Format"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:54
+msgid "# of Subscribers for Weekly Delivery"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:59
+msgid "# of Subscribers for Monthly Delivery"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:64
+msgid "# of Subscribers for Yearly Delivery"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_statistics.html:69
+msgid "# of Archives"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_message.html:19
+msgid "Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter."
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_message.html:29
+#: pntemplates/newsletter_admin_view_message.html:42
+msgid "Your message"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_preview.html:14
+msgid "Preview Templates"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_preview.html:28
+msgid "Mail this preview to the following email address"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_preview.html:34
+#: pntemplates/newsletter_user_inc_info.html:16
+msgid "Format"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_preview.html:36
+msgid "- Choose One -"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_preview.html:46
+msgid "You can find the templates in"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:37
+msgid "Filter"
+msgstr "Filter"
+
+#: pntemplates/newsletter_admin_view_user.html:40
+msgid "Usersearch"
+msgstr "Benutzersuche"
+
+#: pntemplates/newsletter_admin_view_user.html:44
+msgid "Search"
+msgstr "Suche"
+
+#: pntemplates/newsletter_admin_view_user.html:66
+#: pntemplates/newsletter_admin_view_user.html:227
+msgid "Display # of users per page:"
+msgstr "Anzahl von Abonenten pro Seite:"
+
+#: pntemplates/newsletter_admin_view_user.html:129
+msgid "User ID"
+msgstr "Benutzer ID"
+
+#: pntemplates/newsletter_admin_view_user.html:133
+#: pntemplates/newsletter_user_inc_info.html:6
+#: pntemplates/newsletter_email_admin_notify.html:5
+#: pntemplates/newsletter_admin_form_user.html:31
+#: pntemplates/newsletter_admin_form_user.html:36
+msgid "Username"
+msgstr "Benutzername"
+
+#: pntemplates/newsletter_admin_view_user.html:137
+#: pntemplates/newsletter_user_inc_info.html:11
+#: pntemplates/newsletter_email_admin_notify.html:9
+#: pntemplates/newsletter_admin_form_user.html:42
+msgid "Email"
+msgstr "E-Mail"
+
+#: pntemplates/newsletter_admin_view_user.html:161
+msgid "Last sent"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:165
+msgid "Joindate"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:215
+msgid "Update last sent date?"
+msgstr "Sendedatum aktualisieren?"
+
+#: pntemplates/newsletter_admin_view_user.html:221
+msgid "Send to"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:224
+msgid "Add a user"
+msgstr ""
+
+#: pntemplates/newsletter_user_inc_info.html:52
+msgid "Approval Status"
+msgstr ""
+
+#: pntemplates/newsletter_user_inc_info.html:62
+msgid "Subscription Status"
+msgstr ""
+
+#: pntemplates/newsletter_user_inc_info.html:64
+msgid "Your Subscription is currently active!"
+msgstr ""
+
+#: pntemplates/newsletter_user_inc_info.html:66
+msgid "Your Subscription is currently inactive!"
+msgstr ""
+
+#: pntemplates/newsletter_user_inc_info.html:71
+msgid "Last newsletter was sent to you on"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:11
+msgid "Message from the Site Administrators"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:17
+msgid "Special Announcements"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:26
+msgid "News"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:35
+msgid "Recently Added Products"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:44
+msgid "New Vidos"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:52
+msgid "New Events"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:63
+msgid "Welcome New Members"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:71
+msgid "Recently Added Publications"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:79
+msgid "New Content Items"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:87
+msgid "Recently Added Documents"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:95
+msgid "Recently Added Reviews"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:105
+msgid "Latest Media Items"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:113
+msgid "Latest Downloads"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:121
+msgid "Recently Added Links"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:129
+msgid "Recently Added Questions"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:139
+msgid "Recently Added Quotes"
+msgstr ""
+
+#: pntemplates/newsletter_template_text.html:147
+msgid "Latest Forum Posts"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_main.html:18
+#: pntemplates/newsletter_block_signup_display.html:19
+msgid "Subscribe"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_main.html:30
+#: pntemplates/newsletter_block_signup_display.html:6
+#: pntemplates/newsletter_block_signup_display.html:7
+msgid "Your Name"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_main.html:63
+#: pntemplates/newsletter_block_signup_display.html:14
+msgid "Yes, I agree to the <a href="
+msgstr ""
+
+#: pntemplates/newsletter_user_view_main.html:75
+msgid "* subscriptions subject to approval."
+msgstr ""
+
+#: pntemplates/newsletter_user_view_main.html:83
+msgid "Sorry, but you must be a site member to subscribe to our newsletter."
+msgstr ""
+
+#: pntemplates/newsletter_email_admin_notify.html:1
+msgid "New subscriber Info"
+msgstr ""
+
+#: pntemplates/newsletter_email_admin_notify.html:17
+msgid "Auto-approve is currently disabled. You will need to login, go to the newsletter admin area and approve this user."
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_start.html:6
+msgid "Welcome to Newsletter!"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_start.html:7
+msgid "Please visit our project-page"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_start.html:8
+msgid "Please report errors or requests for future versions in the Tracker!"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_start.html:14
+#: pntemplates/newsletter_admin_form_modifyarchive.html:56
+msgid "Attention"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_start.html:15
+msgid "Zikula Version 1.1.2 and up: To ensure html-mails are sent correctly, you have to look that in the Core-Mailer Module (Settings->Mailer) the butten -send mails in html-format- is checked! "
+msgstr ""
+
+#: pntemplates/newsletter_user_view_options.html:12
+msgid "Change your subscription settings"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_options.html:46
+#: pntemplates/newsletter_admin_form_user.html:67
+msgid "User-based frequency changes have been disabled by the site administrator"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:12
+msgid "Archive Settings"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:15
+msgid "Show Archive in the user-menu?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:19
+msgid "Show Newsletter ID ?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:23
+msgid "Show date?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:27
+msgid "Show Language?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:31
+msgid "Show Plugins?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:35
+msgid "Show Objects?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:39
+msgid "Show Size?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:48
+msgid "Please select an archive to flush"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:51
+msgid "Prune Archives"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:56
+msgid "The Archive cannot be restored"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:60
+msgid "Database"
 msgstr ""
 
