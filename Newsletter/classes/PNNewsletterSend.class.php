@@ -43,8 +43,9 @@ class PNNewsletterSend extends PNObject
     // doesn't save use info but allows us to use the standard API through Newsletter_userform_edit()
     function save ($args=array())
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!pnModAvailable('Mailer')) {
-            return LogUtil::registerError (_NEWSLETTER_MAILER_NOT_AVAILABLE);
+            return LogUtil::registerError (__('The mailer module is not available', $dom));
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
@@ -99,9 +100,10 @@ class PNNewsletterSend extends PNObject
 
     function _sendManual ()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $data = $this->_objData;
         if (!$data) {
-            return LogUtil::registerError (_NEWSLETTER_NO_USERS_SELECTED);
+            return LogUtil::registerError (__('No users were selected to send the newsletter to', $dom));
         }
 
         $objectArray = new PNUserArray ();
@@ -109,7 +111,7 @@ class PNNewsletterSend extends PNObject
         $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
         $users       = $objectArray->get ($where, 'id');
         if (!$users) {
-            return LogUtil::registerError (_NEWSLETTER_NO_USERS);
+            return LogUtil::registerError (__('No users were available to send the newsletter to', $dom));
         }
 
         $nSent   = 0;
@@ -119,29 +121,30 @@ class PNNewsletterSend extends PNObject
             }
         }
 
-        LogUtil::registerStatus ("$nSent " . _NEWSLETTER_SENT_SUCCESSFULLY);
+        LogUtil::registerStatus ("$nSent " . __('Newsletter(s) were successfully sent.', $dom));
         return true;
     }
 
 
     function _sendAPI ($args=array()) // API
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
-            return LogUtil::registerError ('Unable to load class [archive]');
+            return LogUtil::registerError (__('Unable to load class [archive]', $dom));
         }
 
         // check auth key
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0));
         $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            return 'Invalid admin_key received';
+            return __('Invalid admin_key received', $dom);
         }
 
         // get elegible users
         $objectArray = new PNUserArray ();
         $users = $objectArray->getSendable ($this->_objLang, 'id');
         if (!$users) {
-            return _NEWSLETTER_NO_USERS;
+            return __('No users were available to send the newsletter to', $dom);
         }
 
         $thisDay   = date ('w', time());
@@ -204,7 +207,7 @@ class PNNewsletterSend extends PNObject
                 }
             }
         }
-        LogUtil::registerStatus ("$nSent " . _NEWSLETTER_SENT_SUCCESSFULLY);
+        LogUtil::registerStatus ("$nSent " . __('Newsletter(s) were successfully sent.', $dom));
         
         if ($maxPerHour) {
             pnModSetVar ('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));
@@ -272,8 +275,9 @@ class PNNewsletterSend extends PNObject
 
     function _archiveNewsletter ($newArchive, $newArchiveTime)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
-            return LogUtil::registerError ('Unable to load array class [archive]');
+            return LogUtil::registerError (__('Unable to load array class [archive]', $dom));
         }
 
         $message = $this->_getNewsletterMessage (array(), null, false);

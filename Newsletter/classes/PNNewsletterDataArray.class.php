@@ -21,6 +21,7 @@ class PNNewsletterDataArray extends PNObjectArray
 
     function getNewsletterData ($lang=null)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
             return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
         }
@@ -37,12 +38,12 @@ class PNNewsletterDataArray extends PNObjectArray
         }
 
         if ($enableML && !$language) {
-            return LogUtil::registerError (_NEWSLETTER_LANGUAGE_NOT_SELECTED);
+            return LogUtil::registerError (__('Please use the language selector in the Filter section to select the language you with to send your newsletter for', $dom));
         }
 
         $data['nItems']   = 0;
         $data['nPlugins'] = count($plugins);
-        $data['title']    = pnConfigGetVar('sitename') . ' ' . _NEWSLETTER;
+        $data['title']    = pnConfigGetVar('sitename') . ' ' . __('Newsletter', $dom);
         foreach ($plugins as $plugin) {
             $pluginClassName = 'plugin_' . $plugin;
             if (($class=Loader::loadArrayClassFromModule ('Newsletter', $pluginClassName))) {

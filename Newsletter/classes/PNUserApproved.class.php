@@ -25,6 +25,7 @@ class PNUserApproved extends PNUser
 
     function save ()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $id = FormUtil::getPassedValue ('id', null, 'GET');
 
         $data = $this->get ($id);
@@ -32,7 +33,7 @@ class PNUserApproved extends PNUser
 
         $this->_objData = $data;
         $this->update ();
-        return LogUtil::registerStatus (_NEWSLETTER_CHANGE_ACTIVE_STATUS_CHANGED);
+        return LogUtil::registerStatus (__("The user's active status has been changed", $dom));
     }
 }
 

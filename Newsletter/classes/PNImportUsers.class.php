@@ -22,10 +22,11 @@ class PNImportUsers extends PNObject
 
     function save ()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0, 'GET'), 'GET');
         $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            return LogUtil::registerError ('Invalid admin_key received');
+            return LogUtil::registerError (__('Invalid admin_key received', $dom));
         }
 
         $zkUsers = pnModAPIFunc ('Users', 'user', 'getall');
@@ -64,7 +65,7 @@ class PNImportUsers extends PNObject
             }
         }
 
-        LogUtil::registerStatus (_NEWSLETTER_USERIMPORT_FINISH . " $count " . _NEWSLETTER_USERIMPORT_IMPORTED);
+        LogUtil::registerStatus (_fn('Import finished %s user was imported.', 'Import finished %s users were imported.', $count, $dom));
         return true;
     }
 }

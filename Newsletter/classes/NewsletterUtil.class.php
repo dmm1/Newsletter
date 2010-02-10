@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright Â© 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -13,7 +13,7 @@ class NewsletterUtil
 {
     function encodeText ($string)
     {
-        $search  = array ('Ã„', 'Ä†', 'ÄŒ', 'Ä', 'Ã–', 'Å ', 'Ãœ', 'Å½', 'Ã¤', 'Ä‡', 'Ä', 'Ä‘', 'Ã¶', 'Å¡', 'Ã¼', 'Å¾', 'ÃŸ');
+        $search  = array ('Ä', 'C', 'C', 'Ð', 'Ö', 'Š', 'Ü', 'Ž', 'ä', 'c', 'c', 'd', 'ö', 'š', 'ü', 'ž', 'ß');
         $replace = array ('&Auml;', '&#262;', '&#268;', '&#272;', '&Ouml;', '&#352;', '&Uuml;', '&#381;', '&auml;', '&#263;', '&#269;', '&#273;', '&ouml;', '&#353;', '&uuml;', '&#382;', '&szlig;');
 
         return str_replace ($search, $replace, $string);
@@ -61,14 +61,14 @@ class NewsletterUtil
 
     function getSelectorDataActive ($all=true)
     {
-        pnModLangLoad ('Newsletter', 'common');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $array = array();
         if ($all) {
           $array[-1] = pnML('_ALL');
         }
-        $array[0] = _NEWSLETTER_INACTIVE;
-        $array[1] = _NEWSLETTER_ACTIVE;
+        $array[0] = __('Inactive', $dom);
+        $array[1] = __('Active', $dom);
 
         return $array;
     }
@@ -76,14 +76,14 @@ class NewsletterUtil
 
     function getSelectorDataApproved ($all=true)
     {
-        pnModLangLoad ('Newsletter', 'common');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $array = array();
         if ($all) {
-          $array[-1] = pnML('_ALL');
+          $array[-1] = __('All', $dom);
         }
-        $array[0] = _NEWSLETTER_NOT_APPROVED;
-        $array[1] = _NEWSLETTER_APPROVED;
+        $array[0] = __('Not Approved', $dom);
+        $array[1] = __('Approved', $dom);
 
         return $array;
     }
@@ -91,15 +91,15 @@ class NewsletterUtil
 
     function getSelectorDataArchiveExpire ()
     {
-        pnModLangLoad ('Newsletter', 'common');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $array = array();
-        $array[0] = _NEWSLETTER_NEVER;
-        $array[1] = _NEWSLETTER_1MONTH;
-        $array[2] = _NEWSLETTER_2MONTHS;
-        $array[3] = _NEWSLETTER_3MONTHS;
-        $array[6] = _NEWSLETTER_6MONTHS;
-        $array[12] = _NEWSLETTER_1YEAR;
+        $array[0] = __('Never', $dom);
+        $array[1] = __('1 Month', $dom);
+        $array[2] = __('2 Months', $dom);
+        $array[3] = __('3 Months', $dom);
+        $array[6] = __('6 Months', $dom);
+        $array[12] = __('1 Year', $dom);
 
         return $array;
     }
@@ -107,9 +107,10 @@ class NewsletterUtil
 
     function getSelectorDataLanguage ($all=false)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $languages = pnInstalledLanguages();
         if ($all) {
-            $languages = array_merge (array(''=>_ALL), $languages);
+            $languages = array_merge (array(''=>__('All', $dom)), $languages);
         }
 
         return $languages;
@@ -118,19 +119,19 @@ class NewsletterUtil
 
     function getSelectorDataNewsletterFrequency ($all=false)
     {
-        pnModLangLoad ('Newsletter', 'common');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $array = array();
         if ($all) {
-          $array[-1] = pnML('_ALL');
+          $array[-1] = __('All', $dom);
         }
-        $array[0]  = _NEWSLETTER_FREQUENCY_WEEKLY;
-        $array[1]  = _NEWSLETTER_FREQUENCY_MONTHLY;
-        $array[2]  = _NEWSLETTER_FREQUENCY_2MONTHS;
-        $array[3]  = _NEWSLETTER_FREQUENCY_3MONTHS;
-        $array[6]  = _NEWSLETTER_FREQUENCY_6MONTHS;
-        $array[9]  = _NEWSLETTER_FREQUENCY_9MONTHS;
-        $array[12] = _NEWSLETTER_FREQUENCY_YEARLY;
+        $array[0]  = __('Weekly', $dom);
+        $array[1]  = __('Monthly', $dom);
+        $array[2]  = __('Every 2 Months', $dom);
+        $array[3]  = __('Every 3 Months', $dom);
+        $array[6]  = __('Every 6 Months', $dom);
+        $array[9]  = __('Every 9 Months', $dom);
+        $array[12] = __('Yearly', $dom);
 
         return $array;
     }
@@ -138,15 +139,15 @@ class NewsletterUtil
 
     function getSelectorDataNewsletterType ($all=false)
     {
-        pnModLangLoad ('Newsletter', 'common');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $array = array();
         if ($all) {
-          $array[0] = pnML('_ALL');
+          $array[0] = __('All', $dom);
         }
-        $array[1] = _NEWSLETTER_FORMAT_TEXT;
-        $array[2] = _NEWSLETTER_FORMAT_HTML;
-        $array[3] = _NEWSLETTER_FORMAT_TEXTWLINK;
+        $array[1] = __('Text', $dom);
+        $array[2] = __('HTML', $dom);
+        $array[3] = __('Text with Link to Archive', $dom);
 
         return $array;
     }
@@ -154,33 +155,34 @@ class NewsletterUtil
 
     function getSelectorDataSendDay ()
     {
-        pnModLangLoad ('Newsletter', 'common');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         
-        return array('1' => pnML('_NEWSLETTER_DAY_MONDAY'),
-                     '2' => pnML('_NEWSLETTER_DAY_TUESDAY'), 
-                     '3' => pnML('_NEWSLETTER_DAY_WEDNESDAY'),
-                     '4' => pnML('_NEWSLETTER_DAY_THURSDAY'), 
-                     '5' => pnML('_NEWSLETTER_DAY_FRIDAY'), 
-                     '6' => pnML('_NEWSLETTER_DAY_SATURDAY'), 
-                     '0' => pnML('_NEWSLETTER_DAY_SUNDAY'));
+        return array('1' => __('_NEWSLETTER_DAY_MONDAY', $dom),
+                     '2' => __('_NEWSLETTER_DAY_TUESDAY', $dom),
+                     '3' => __('_NEWSLETTER_DAY_WEDNESDAY', $dom),
+                     '4' => __('_NEWSLETTER_DAY_THURSDAY', $dom),
+                     '5' => __('_NEWSLETTER_DAY_FRIDAY', $dom),
+                     '6' => __('_NEWSLETTER_DAY_SATURDAY', $dom),
+                     '0' => __('_NEWSLETTER_DAY_SUNDAY', $dom));
     }
 
 
     function scandir ($directory, $ignoreFiles=null, $matchString=null)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $files = array();
         if (!$directory) {
-            LogUtil::registerError ("Invalid [directory] received");
+            LogUtil::registerError (__("Invalid [directory] received", $dom));
             return $files;
         }
 
         if (!file_exists($directory)) {
-            LogUtil::registerError ("Directory [$directory] does not seem to exist");
+            LogUtil::registerError (__("Directory [$directory] does not seem to exist", $dom));
             return $files;
         }
 
         if (is_file($directory)) {
-            LogUtil::registerError ("Directory [$directory] seems to be a file and not a directory");
+            LogUtil::registerError (__("Directory [$directory] seems to be a file and not a directory", $dom));
             return $files;
         }
 

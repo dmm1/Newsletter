@@ -33,11 +33,12 @@ class PNUser extends PNObject
 
     function delete ()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $requestURI = $_SERVER['REQUEST_URI'];
         if (strpos($requestURI, 'adminform') !== false) {
             $id = (int)FormUtil::getPassedValue ('id', 0, 'GET');
             if (!$id) {
-                return LogUtil::registerError (_MODARGSERROR);
+                return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
             }
             $where = "nlu_id=$id";
             $ret = DBUtil::deleteWhere ($this->_objType, $where);
@@ -50,18 +51,18 @@ class PNUser extends PNObject
             $userObj  = new PNUser ();
             $data     = $userObj->getUser ($key, null, null);
             if (!$data) {
-                LogUtil::registerError (_NOSUCHITEM);
+                LogUtil::registerError (__('No such item found.', $dom));
                 return false;
             }
 
             $where = $this->genWhere ($key, null, null);
             if (!$where) {
-                return LogUtil::registerError (_MODARGSERROR);
+                return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
             }
 
             $ret = DBUtil::deleteWhere ($this->_objType, $where);
             if ($ret) {
-                LogUtil::registerStatus (_NEWSLETTER_USER_UNSUBSCRIBED);
+                LogUtil::registerStatus (__('Your have unsubscribed from our newsletter', $dom));
 
                 $pnRender = pnRender::getInstance('Newsletter', false);
                 $pnRender->assign ('user_name', $data['uid'] ? pnUserGetVar('uname', $data['uid']) : $data['name']);
@@ -71,7 +72,7 @@ class PNUser extends PNObject
                 $send_from_address = pnModGetVar ('Newsletter', 'send_from_address');
                 pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? pnUserGetVar('email', $data['uid']) : $data['email'],
                                                                     'fromaddress'=> $send_from_address,
-                                                                    'subject'    => _NEWSLETTER_EMAIL_UNSUBSCRIBE_SUBJECT,
+                                                                    'subject'    => __('Newsletter Subscription Cancelled', $dom),
                                                                     'body'       => $message,
                                                                     'html'       => 1));
             }
@@ -138,13 +139,14 @@ class PNUser extends PNObject
 
     function getSelectionKey ()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $key = false;
         if (pnUserLoggedIn()) {
             $key = pnUserGetVar ('uid');
         } else {
             $data = $this->_objData;
             if (!isset($data['email']) || !$data['email']) {
-                LogUtil::registerError (_MODARGSERROR);
+                LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
                 return false;
             }
             $key = $data['email'];
@@ -156,9 +158,10 @@ class PNUser extends PNObject
 
     function getUser ($key, $approved=null, $active=null)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $where = $this->genWhere ($key, $approved, $active);
         if (!$where) {
-            return LogUtil::registerError (_MODARGSERROR);
+            return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
         }
 
         return $this->getWhere ($where);
@@ -167,6 +170,7 @@ class PNUser extends PNObject
 
     function insertPreProcess ($data=null)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!$data) {
             $data = $this->_objData;
         }
@@ -193,6 +197,7 @@ class PNUser extends PNObject
 
     function insert ()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $requestURI = $_SERVER['REQUEST_URI'];
         if (strpos($requestURI, 'adminform') !== false) {
             $data     = $this->_objData;
@@ -200,7 +205,7 @@ class PNUser extends PNObject
             $userObj  = new PNUser ();
             $userData = $userObj->getWhere ($where);
             if ($userData) {
-                LogUtil::registerError (_NEWSLETTER_ALREADYSUBSCRIBED_ADMIN);
+                LogUtil::registerError (__('This email address is already subscribed to our newsletter!', $dom));
                 return false;
             }
             return (bool) DBUtil::insertObject ($data, $this->_objType);
@@ -212,14 +217,14 @@ class PNUser extends PNObject
             $userObj  = new PNUser ();
             $userData = $userObj->getUser ($key, null, null);
             if ($userData) {
-                LogUtil::registerError (_NEWSLETTER_ALREADYSUBSCRIBED);
+                LogUtil::registerError (__('You are already subscribed to our newsletter!', $dom));
                 return false;
             }
         }
 
         $data = parent::insert ();
         if ($data) {
-            LogUtil::registerStatus (_NEWSLETTER_USER_SUBSCRIBED);
+            LogUtil::registerStatus (__('Your have been subscribed to our newsletter', $dom));
 
             $pnRender = pnRender::getInstance('Newsletter', false);
             $pnRender->assign ('user_name', $data['uid'] ? pnUserGetVar('uname', $data['uid']) : $data['name']);
@@ -229,7 +234,7 @@ class PNUser extends PNObject
             $send_from_address = pnModGetVar ('Newsletter', 'send_from_address');
             pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? pnUserGetVar('email', $data['uid']) : $data['email'],
                                                                 'fromaddress'=> $send_from_address,
-                                                                'subject'    => _NEWSLETTER_NOTIFY_USER_SUBJECT,
+                                                                'subject'    => __('Newsletter Subscription Received', $dom),
                                                                 'body'       => $user_message,
                                                                 'html'       => 1));
 
@@ -237,7 +242,7 @@ class PNUser extends PNObject
                 $admin_message = $pnRender->fetch ('newsletter_email_admin_notify.html');
                 pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $send_from_address,
                                                                     'fromaddress'=> $send_from_address,
-                                                                    'subject'    => _NEWSLETTER_NOTIFY_ADMIN_SUBJECT,
+                                                                    'subject'    => __('Newsletter Subscription', $dom),
                                                                     'body'       => $admin_message,
                                                                     'html'       => 1));
             }
@@ -283,13 +288,14 @@ class PNUser extends PNObject
 
     function update ()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
         $requestURI = $_SERVER['REQUEST_URI'];
         if (strpos($requestURI, 'adminform') !== false) {
             $data     = $this->_objData;
             $userObj  = new PNUser ();
             $userData = $userObj->get ($data['id']);
             if (!$userData) {
-                LogUtil::registerError (_NOSUCHITEM);
+                LogUtil::registerError (__('No such item found.', $dom));
                 return false;
             }
         } else {
@@ -301,7 +307,7 @@ class PNUser extends PNObject
             $userObj  = new PNUser ();
             $userData = $userObj->getUser ($key, null, null);
             if (!$userData) {
-                LogUtil::registerError (_NOSUCHITEM);
+                LogUtil::registerError (__('No such item found.', $dom));
                 return false;
             }
         }
