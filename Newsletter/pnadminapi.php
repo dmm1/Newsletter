@@ -14,18 +14,18 @@ function Newsletter_adminapi_getlinks()
 {
     $links = array();
 
-    pnModLangLoad('Newsletter', 'admin');
+    $dom = ZLanguage::getModuleDomain('Newsletter');
 
     if (SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'main'),                             'text' => _NEWSLETTER_START);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'settings'),                         'text' => _NEWSLETTER_SETTINGS);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'archive'),                          'text' => _NEWSLETTER_VIEWARCHIVES);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'statistics')),  'text' => _NEWSLETTER_STATISTICS);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'message')),     'text' => _NEWSLETTER_MESSAGEADD);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'preview')),     'text' => _NEWSLETTER_PREVIEW);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'user')),        'text' => _NEWSLETTER_VIEW_SUBSCRIBERS);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'plugin')),      'text' => _NEWSLETTER_VIEW_PLUGINS);
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'userimport')),  'text' => _NEWSLETTER_USERIMPORT);
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'main'),                             'text' => __('Start', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'settings'),                         'text' => __('Newsletter Settings', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'archive'),                          'text' => __('View Archives', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'statistics')),  'text' => __('Statistics', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'message')),     'text' => __('Intro Message', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'preview')),     'text' => __('Preview', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'user')),        'text' => __('Subscribers', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'plugin')),      'text' => __('Plugins', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'userimport')),  'text' => __('Import', $dom));
     }
 
     return $links;

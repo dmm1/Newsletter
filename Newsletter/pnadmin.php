@@ -10,10 +10,11 @@
  */
 
 
-function Newsletter_admin_main() 
+function Newsletter_admin_main()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
-        return _PN_TEXT_NOAUTH_ADMIN;
+        return __("You don't have Admin rights for this module", $dom);
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
@@ -23,21 +24,22 @@ function Newsletter_admin_main()
     $preferences = pnModGetVar('Newsletter');
     $pnRender = pnRender::getInstance('Newsletter', false);
     $pnRender->assign ('preferences', $preferences);
-   
+
     return $pnRender->fetch('newsletter_admin_form_start.html');
 }
 
 
-function Newsletter_admin_settings() 
+function Newsletter_admin_settings()
 {
    return Newsletter_admin_modifyconfig ();
 }
 
 
-function Newsletter_admin_modifyconfig () 
+function Newsletter_admin_modifyconfig ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
-        return _PN_TEXT_NOAUTH_ADMIN;
+        return __("You don't have Admin rights for this module", $dom);
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
@@ -54,10 +56,11 @@ function Newsletter_admin_modifyconfig ()
 }
 
 
-function Newsletter_admin_edit () 
+function Newsletter_admin_edit ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerError (_PN_TEXT_NOAUTH_ADMIN, null, $url);
+        return LogUtil::registerError (__("You don't have Admin rights for this module", $dom), null, $url);
     }
 
     $ot  = 'user';
@@ -78,7 +81,7 @@ function Newsletter_admin_edit ()
         if (!$data) {
             $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
             return LogUtil::registerError ("Unable to retrieve object of type [$ot] with id [$id]", null, $url);
-        } 
+        }
     } else {
         $data = array();
     }
@@ -93,10 +96,11 @@ function Newsletter_admin_edit ()
 }
 
 
-function Newsletter_admin_view () 
+function Newsletter_admin_view ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerError (_PN_TEXT_NOAUTH_ADMIN, null, $url);
+        return LogUtil::registerError (__("You don't have Admin rights for this module", $dom), null, $url);
     }
 
     $dPagesize = pnModGetVar ('Newsletter', 'pagesize', 25);
@@ -183,7 +187,7 @@ function Newsletter_admin_view ()
                 $content = $pnRender->fetch('newsletter_template_text_with_link.html');
                 $content = str_replace(array("\n","\r"),'<br />',$content);
                 break;
-            default: 
+            default:
                 $content = "Invalid format [$format] specified ...";
         }
         $testsend = FormUtil::getPassedValue ('testsend', 0, 'POST');
@@ -191,43 +195,44 @@ function Newsletter_admin_view ()
         if ($testsend) {
             $rc = true;
             if (!$testsendEmail) {
-                $rc = LogUtil::registerError (_NEWSLETTER_EMAIL_EMPTY);
+                $rc = LogUtil::registerError (__('Your test email was not sent since you did not enter an email address', $dom));
             }
             if (!pnVarValidate($testsendEmail, 'email')) {
-                $rc = LogUtil::registerError (_NEWSLETTER_EMAIL_INVALID);
+                $rc = LogUtil::registerError (__('The email address you entered does not seem to be valid', $dom));
             }
             if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_send')) {
                 $rc = LogUtil::registerError ('Unable to load class [newsletter_send]', null, $url);
-            } 
-            
+            }
+
             if ($rc) {
                 $sendObj = new PNNewsletterSend ();
                 if ($sendObj->save ()) {
                     LogUtil::registerStatus (_NEWSLETTER_EMAIL_SUCCESS);
                 } else {
-                    LogUtil::registerError (_NEWSLETTER_EMAIL_FAILURE);
+                    LogUtil::registerError (__('Failure sending the test email', $dom));
                 }
            }
         }
         echo $content;
         exit;
-    } 
+    }
 
     $template = 'newsletter_admin_view_' . $ot . '.html';
     return $pnRender->fetch($template);
 }
 
 
-function Newsletter_admin_archive() 
+function Newsletter_admin_archive()
 {
    return Newsletter_admin_modifyarchive ();
 }
 
 
-function Newsletter_admin_modifyarchive () 
+function Newsletter_admin_modifyarchive ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::modifyarchive', '::', ACCESS_ADMIN)) {
-        return _PN_TEXT_NOAUTH_ADMIN;
+        return __("You don't have Admin rights for this module", $dom);
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
@@ -244,10 +249,11 @@ function Newsletter_admin_modifyarchive ()
 }
 
 
-function Newsletter_admin_archive_edit () 
+function Newsletter_admin_archive_edit ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerError (_PN_TEXT_NOAUTH_ADMIN, null, $url);
+        return LogUtil::registerError (__("You don't have Admin rights for this module", $dom), null, $url);
     }
 
     $ot  = 'user';
@@ -268,7 +274,7 @@ function Newsletter_admin_archive_edit ()
         if (!$data) {
             $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
             return LogUtil::registerError ("Unable to retrieve object of type [$ot] with id [$id]", null, $url);
-        } 
+        }
     } else {
         $data = array();
     }

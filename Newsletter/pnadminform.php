@@ -12,8 +12,9 @@
 
 function Newsletter_adminform_modifyconfig ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_ADMIN);
+        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
     }
 
     $url = pnModURL('Newsletter', 'admin', 'main');
@@ -26,7 +27,7 @@ function Newsletter_adminform_modifyconfig ()
 
     if ($prefs['limit_type'] && $prefs['default_type'] != $prefs['limit_type']) {
         $prefs['default_type'] = $prefs['limit_type'];
-        LogUtil::registerError (_NEWSLETTER_LIMIT_DEFAULT_TYPE_MISMATCH);
+        LogUtil::registerError (__('You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!', $dom));
     }
 
     pnModSetVar ('Newsletter', 'admin_key',                  $prefs['admin_key']                  ? $prefs['admin_key']         : substr(md5(time()),-10));
@@ -56,8 +57,9 @@ function Newsletter_adminform_modifyconfig ()
 
 function Newsletter_adminform_delete ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_ADMIN);
+        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
     }
 
     $ot  = 'user';
@@ -89,8 +91,9 @@ function Newsletter_adminform_delete ()
 
 function Newsletter_adminform_edit ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_ADMIN);
+        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
     }
 
     $ot       = FormUtil::getPassedValue ('ot', null, 'GETPOST');
@@ -130,8 +133,9 @@ function Newsletter_adminform_edit ()
 
 function Newsletter_adminform_modifyarchive ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_ADMIN);
+        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
     }
 
     $url = pnModURL('Newsletter', 'admin', 'archive');
@@ -144,7 +148,7 @@ function Newsletter_adminform_modifyarchive ()
 
     if ($prefs['limit_type'] && $prefs['default_type'] != $prefs['limit_type']) {
         $prefs['default_type'] = $prefs['limit_type'];
-        LogUtil::registerError (_NEWSLETTER_LIMIT_DEFAULT_TYPE_MISMATCH);
+        LogUtil::registerError (__('You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!', $dom));
     }
     pnModSetVar ('Newsletter', 'show_archive', $prefs['show_archive']  ? 1  : 0);
     pnModSetVar ('Newsletter', 'show_id',      $prefs['show_id']       ? 1  : 0);

@@ -12,6 +12,7 @@
 
 function Newsletter_userform_edit ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     $ot       = FormUtil::getPassedValue ('ot', 'user', 'GETPOST');
     $otTarget = FormUtil::getPassedValue ('otTarget', 'main', 'GETPOST');
     $url      = pnModURL('Newsletter', 'user', 'main', array('ot'=>$otTarget));
@@ -21,7 +22,7 @@ function Newsletter_userform_edit ()
     }
 
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_OVERVIEW);
+        return pnVarPrepHTMLDisplay(__("You don't have Overview rights for this module.", $dom));
     }
 
     if (!SecurityUtil::confirmAuthKey()) {
@@ -38,16 +39,16 @@ function Newsletter_userform_edit ()
     if ($ot == 'main' || $ot == 'user') {
         if (!pnUserLoggedIn()) {
             if (!$data['name']) {
-                return LogUtil::registerError (_NEWSLETTER_NAME_NOT_SUPPLIED, null, $url);
+                return LogUtil::registerError (__('Please enter your name', $dom), null, $url);
             }
             if (!$data['email']) {
-                return LogUtil::registerError (_NEWSLETTER_EMAIL_NOT_SUPPLIED, null, $url);
+                return LogUtil::registerError (__('Please enter your email address', $dom), null, $url);
             } elseif (!pnVarValidate($data['email'], 'email')) {
-                return LogUtil::registerError (_NEWSLETTER_EMAIL_INVALID, null, $url);
+                return LogUtil::registerError (__('The email address you entered does not seem to be valid', $dom), null, $url);
             }
         }
         if (!isset($data['tos']) || !$data['tos']) {
-            return LogUtil::registerError (_NEWSLETTER_TOS_NOT_SELECTED, null, $url);
+            return LogUtil::registerError (__('You must accept the terms of service in order to be subscribed!', $dom), null, $url);
         }
     }
 

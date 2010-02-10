@@ -12,9 +12,11 @@
 
 function Newsletter_user_main ()
 {
+
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_OVERVIEW);
-    } 
+        return pnVarPrepHTMLDisplay(__("You don't have Overview rights for this module.", $dom));
+    }
     $ot         = FormUtil::getPassedValue ('ot', 'main', 'GETPOST');
     $offset     = FormUtil::getPassedValue ('startnum', 0, 'GETPOST');
     $pagesize   = FormUtil::getPassedValue ('pagesize', pnModGetVar ('Newsletter', 'itemsperpage', 30), 'GETPOST');
@@ -43,7 +45,7 @@ function Newsletter_user_main ()
         $pnRender->assign ('pager', $pager);
     } //elseif ($debug) {
     //    return "Unable to load array class [$ot]";
-    //} 
+    //}
     $pnRender->assign ('objectArray', $data);
 
     if (Loader::loadClassFromModule ('Newsletter', 'user')) {
@@ -62,9 +64,10 @@ function Newsletter_user_main ()
 
 function Newsletter_user_detail () // hardcoded for archives
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_OVERVIEW);
-    } 
+        return pnVarPrepHTMLDisplay(__("You don't have Overview rights for this module.", $dom));
+    }
 
     $ot  = 'archive';
     $id  = (int)FormUtil::getPassedValue ('id', 0);
@@ -89,8 +92,9 @@ function Newsletter_user_detail () // hardcoded for archives
 
 function Newsletter_user_send ()
 {
+    $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
-        return pnVarPrepHTMLDisplay(_PN_TEXT_NOAUTH_READ);
+        return pnVarPrepHTMLDisplay(__("You don't have Read rights for this module.", $dom));
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {

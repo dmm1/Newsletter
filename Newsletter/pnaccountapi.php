@@ -12,13 +12,13 @@
 
 function Newsletter_accountapi_getall ($args)
 {
-    pnModLangLoad ('Newsletter');
+    $dom = ZLanguage::getModuleDomain('Newsletter');
 
     $items = array(
                  array('url'    => pnModURL('Newsletter', 'user', 'main'),
                        'module' => 'Newsletter',
                        'set'    => '',
-                       'title'  => _NEWSLETTER,
+                       'title'  => __('Newsletter', $dom),
                        'icon'   => 'admin.gif')
                  );
 

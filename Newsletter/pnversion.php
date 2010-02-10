@@ -9,10 +9,13 @@
  * Support: http://support.zikula.de, http://community.zikula.org
  */
 
+$dom = ZLanguage::getModuleDomain('Newsletter');
 $modversion['name'] = 'Newsletter';
 $modversion['version'] = '2.0.4';
-$modversion['displayname'] = _NEWSLETTER_DISPLAYNAME; 
-$modversion['description'] = _NEWSLETTER_DESCRIPTION; 
+$modversion['displayname'] = __('Newsletter', $dom);
+$modversion['description'] = __('Newsletter module', $dom);
+//! module URL must be in lowercase and different to displayname
+$modversion['url'] = __('newsletter', $dom);
 $modversion['changelog'] = 'pndocs/changelog.txt';
 $modversion['credits'] = 'pndocs/credits.txt';
 $modversion['help'] = 'pndocs/install.txt';
