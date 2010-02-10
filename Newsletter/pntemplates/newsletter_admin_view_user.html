@@ -4,10 +4,10 @@
 <!--[pnajaxheader modname="Newsletter"]-->
 
 <script type="text/javascript">
-	function disableSendChecked(){
-		send2users.sendChecked.disabled = true;
-	}
-	onload = disableSendChecked;
+    function disableSendChecked(){
+        send2users.sendChecked.disabled = true;
+    }
+    onload = disableSendChecked;
 </script>
 
 <!--[newsletter_selector_active assign="active_values" return_keys=true all=true]-->
@@ -38,11 +38,11 @@
 
     <fieldset>
       <legend><strong><!--[gt text="Usersearch"]--></strong></legend>
-        
+
       <div id="liveusersearch" class="pn-hide">
         <div>
           <!--[gt text="Search"]-->&nbsp;<input size="30" maxlength="30" name="filter[search]" id="filter_search" value="" />
-          <!--[pnimg id="ajax_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+          <!--[pnimg id="ajax_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" alt=""]-->
 
           <div id="filter_search_choices" class="nl_autocomplete_user"></div>
           <script type="text/javascript">
@@ -63,7 +63,7 @@
               $psArray[-1]   = All;
               $this->assign ('pagesizes', $psArray);
           <!--[/php]-->
-          <!--[gt text="Display # of users per page:"]--> 
+          <!--[gt text="Display # of users per page:"]-->
           <!--[foreach from=$pagesizes key="amount" item="label"]-->
             <!--[if ($amount == $currPagesize)]-->
               <!--[$label]-->&nbsp;
@@ -72,9 +72,9 @@
             <!--[/if]-->
           <!--[/foreach]-->
         </div>
-      </div>        
+      </div>
     </fieldset>
- 
+
     <fieldset>
       <legend><strong>&nbsp;<!--[$lblFilter]-->&nbsp;</strong></legend>
       <table width=90%>
@@ -101,7 +101,7 @@
             <!--[gt text="Approved"]-->&nbsp;
             <select id="filter_approved" name="filter[approved]" onchange="this.form.submit();"><!--[html_options values=$approved_values output=$approved_output selected=$filter.approved]--></select>
           </td>
-    
+
         </tr>
       </table>
     </fieldset>
@@ -187,7 +187,7 @@
               <!--[elseif ($user.type == 3)]--><!--[gt text="Text with Link to Archive"]-->
               <!--[else]-->??????<!--[$user.type]--><!--[/if]-->
             </td>
-	    <td>
+        <td>
               <!--[if ($user.frequency == 0)]--><!--[gt text="Weekly"]-->
               <!--[elseif ($user.frequency == 1)]--><!--[gt text="Monthly"]-->
               <!--[elseif ($user.frequency == 2)]--><!--[gt text="Every 2 Months"]-->
@@ -224,7 +224,7 @@
             <img src="images/icons/extrasmall/add_user.gif" alt="<!--[gt text="Add a user"]-->">&nbsp;<a href="<!--[pnmodurl modname="Newsletter" type="admin" func="edit" ot="user" authid=$authid]-->"><!--[gt text="Add a user"]--></a>
           </td>
           <td colspan="4" style="border:none; text-align:right;">
-            <!--[gt text="Display # of users per page:"]--> 
+            <!--[gt text="Display # of users per page:"]-->
             <!--[foreach from=$pagesizes key="amount" item="label"]-->
               <!--[if ($amount == $currPagesize)]-->
                 <!--[$label]-->&nbsp;

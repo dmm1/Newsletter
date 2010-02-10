@@ -18,7 +18,7 @@
 
     <fieldset>
     <legend><!--[gt text="Newsletter Configuration"]--></legend>
-	  
+
       <div class="pn-adminformrow">
         <label for="itemsperpage"><!--[gt text="Items per page"]-->:</label>
         <input id="itemsperpage" name="preferences[itemsperpage]" type="text" value="<!--[$preferences.itemsperpage|default:25]-->" size="3" maxlength="3" />
@@ -33,7 +33,7 @@
           <div id="hint" class="nl-hint" style="display:none;"><!--[gt text="This is the delivering adress of your newsletter e.g. newsletter@yourdomain.com"]--></div>
         </div>
       </div>
-	<div class="pn-adminformrow">
+    <div class="pn-adminformrow">
         <label for="newsletter_subject"><!--[gt text="Subject"]-->:</label>
         <div id="newsletter_subject">
           <input name="preferences[newsletter_subject]" type="text" value="<!--[$preferences.newsletter_subject]-->" size="40" maxlength="128" />
@@ -42,15 +42,15 @@
           <div id="hint-1" class="nl-hint" style="display:none;"><!--[gt text="This is the Subject of the generated Newsletter"]--></div>
         </div>
       </div>
-	  
-	  <div class="pn-adminformrow">
+
+      <div class="pn-adminformrow">
         <label for="disable_auto"><!--[gt text="Disable automatic sending"]-->:</label>
         <input id="disable_auto" name="preferences[disable_auto]" type="checkbox" value="1" <!--[if ($preferences.disable_auto)]-->checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
         <a href="#" title="<!--[gt text="Help"]-->" onclick="Effect.toggle('hint-2','BLIND'); return false;">(?)</a>
           <span id="help_subject" style="display:none"><!--[gt text="Help"]--></span>
           <div id="hint-2" class="nl-hint" style="display:none;"><!--[gt text="Newsletters now have to be sent out manually "]--></div>
         </div>
-	  
+
       <div class="pn-adminformrow">
         <label for="limit_type"><!--[gt text="Allow subscription of only this type"]-->:</label>
         <select id="limit_type" name="preferences[limit_type]"><!--[html_options values=$type_values2 output=$type_output2 selected=$preferences.limit_type]--></select>
@@ -85,7 +85,7 @@
          <a href="#" title="<!--[gt text="Help"]-->" onclick="Effect.toggle('hint-99','BLIND'); return false;">(?)</a>
           <span id="help_enable_multilingual" style="display:none"><!--[gt text="Help"]--></span>
           <div class="nl-hint" id="hint-99" style="display:none;"><!--[gt text="This enables the sending of Multilanguage Newsletters"]--></div>
-		</div>
+        </div>
       <!--[/if]-->
 
       <div class="pn-adminformrow">
@@ -97,18 +97,18 @@
         <label for="allow_anon_registration"><!--[gt text="Allow Anonymous Registrations"]-->:</label>
         <input id="allow_anon_registration" name="preferences[allow_anon_registration]" type="checkbox" value="1" <!--[if ($preferences.allow_anon_registration)]--> checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--> </em>
       </div>
-	  
-	   <div class="pn-adminformrow">
+
+       <div class="pn-adminformrow">
         <label for="show_approval_status"><!--[gt text="Show the Approvalstatus to the user? "]-->:</label>
         <input id="show_approval_status" name="preferences[show_approval_status]" type="checkbox" value="1" <!--[if ($preferences.show_approval_status)]--> checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--> </em>
       </div>
-	  
-	  
-	<div class="pn-adminformrow">
+
+
+    <div class="pn-adminformrow">
         <label for="require_tos"><!--[gt text="Require Terms of Service"]--></label>
         <input id="require_tos" name="preferences[require_tos]" type="checkbox" value="1" <!--[if ($preferences.require_tos)]-->checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
-	  </div>
-	  
+      </div>
+
       <div class="pn-adminformrow">
         <label for="auto_approve_registrations"><!--[gt text="Auto-approve Registrations"]-->:</label>
         <input id="auto_approve_registrations" name="preferences[auto_approve_registrations]" type="checkbox" value="1" <!--[if ($preferences.auto_approve_registrations)]-->checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
@@ -116,22 +116,22 @@
 
       <div class="pn-adminformrow">
         <label for="allow_frequency_change"><!--[gt text="Allow Frequency Changes"]-->:</label>
-        <input id="allow_frequency_changes" name="preferences[allow_frequency_change]" type="checkbox" value="1" <!--[if ($preferences.allow_frequency_change)]--> checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em> 
+        <input id="allow_frequency_changes" name="preferences[allow_frequency_change]" type="checkbox" value="1" <!--[if ($preferences.allow_frequency_change)]--> checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
       </div>
 
       <div class="pn-adminformrow">
         <label for="preferences[personalize_email]"><!--[gt text="Personalize EMail"]-->:</label>
-        <input id="personalize_email" name="preferences[personalize_email]" type="checkbox" value="1" <!--[if ($preferences.personalize_email)]--> checked="checked"<!--[/if]--> /> <em> <!--[gt text="(checked=yes)"]-->, <!--[gt text="disable to increase performance"]--></em> 
+        <input id="personalize_email" name="preferences[personalize_email]" type="checkbox" value="1" <!--[if ($preferences.personalize_email)]--> checked="checked"<!--[/if]--> /> <em> <!--[gt text="(checked=yes)"]-->, <!--[gt text="disable to increase performance"]--></em>
       </div>
 
       <div class="pn-adminformrow">
         <label for="send_per_request"><!--[gt text="Send per Request"]-->:</label>
-        <input id="send_per_request" name="preferences[send_per_request]" type="text" value="<!--[$preferences.send_per_request]-->" style="width:30px;" /> <em><!--[gt text=""x" number of emails"]--> <!--[gt text="(0 [Zero] = no Restriction)"]--></em>
+        <input id="send_per_request" name="preferences[send_per_request]" type="text" value="<!--[$preferences.send_per_request]-->" style="width:30px;" /> <em><!--[gt text="'x' number of emails"]--> <!--[gt text="(0 [Zero] = no Restriction)"]--></em>
       </div>
 
       <div class="pn-adminformrow">
         <label for="max_send_per_hour"><!--[gt text="Maximum Newsletters to send per hour"]--></label>
-        <input id="max_send_per_hour" name="preferences[max_send_per_hour]" type="text" value="<!--[$preferences.max_send_per_hour]-->" style="width:30px;" /> <em><!--[gt text=""x" number of emails"]--> <!--[gt text="(0 [Zero] = no Restriction)"]--> </em>
+        <input id="max_send_per_hour" name="preferences[max_send_per_hour]" type="text" value="<!--[$preferences.max_send_per_hour]-->" style="width:30px;" /> <em><!--[gt text="'x' number of emails"]--> <!--[gt text="(0 [Zero] = no Restriction)"]--> </em>
       </div>
 
       <div class="pn-adminformrow">
