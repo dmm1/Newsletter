@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-10 18:46+0000\n"
-"PO-Revision-Date: 2010-02-10 19:25+0100\n"
+"PO-Revision-Date: 2010-02-11 21:17+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr ""
 
 #: pnadminapi.php:20
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: pnadminapi.php:21
 msgid "Newsletter Settings"
@@ -106,7 +106,7 @@ msgstr "Statistiken"
 
 #: pnadminapi.php:24
 msgid "Intro Message"
-msgstr ""
+msgstr "Anhang"
 
 #: pnadminapi.php:25
 msgid "Preview"
@@ -128,11 +128,11 @@ msgstr "Import"
 
 #: pnuserform.php:42
 msgid "Please enter your name"
-msgstr ""
+msgstr "Bitte geben Sie Ihren Namen ein"
 
 #: pnuserform.php:45
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Bitte geben Sie Ihre E-Mail Adresse ein"
 
 #: pnuserform.php:51
 msgid "You must accept the terms of service in order to be subscribed!"
@@ -199,7 +199,7 @@ msgstr ""
 #: classes/NewsletterUtil.class.php:146
 #: pntemplates/newsletter_admin_view_user.html:36
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: classes/NewsletterUtil.class.php:70
 #: pntemplates/newsletter_admin_view_userimport.html:42
@@ -230,7 +230,7 @@ msgstr ""
 #: pntemplates/newsletter_user_inc_info.html:54
 #: pntemplates/newsletter_admin_form_user.html:72
 msgid "Approved"
-msgstr ""
+msgstr "genehmigt"
 
 #: classes/NewsletterUtil.class.php:97
 #: pntemplates/newsletter_user_inc_info.html:75
@@ -239,23 +239,23 @@ msgstr ""
 
 #: classes/NewsletterUtil.class.php:98
 msgid "1 Month"
-msgstr ""
+msgstr "1 Monat"
 
 #: classes/NewsletterUtil.class.php:99
 msgid "2 Months"
-msgstr ""
+msgstr "2 Monate"
 
 #: classes/NewsletterUtil.class.php:100
 msgid "3 Months"
-msgstr ""
+msgstr "3 Monate"
 
 #: classes/NewsletterUtil.class.php:101
 msgid "6 Months"
-msgstr ""
+msgstr "6 Monate"
 
 #: classes/NewsletterUtil.class.php:102
 msgid "1 Year"
-msgstr ""
+msgstr "1 Jahr"
 
 #: classes/NewsletterUtil.class.php:128
 #: pntemplates/newsletter_admin_view_user.html:191
