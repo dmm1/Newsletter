@@ -1,75 +1,58 @@
 <!--[include file="newsletter_admin_std_header.html"]-->
 
-<!--[pnml assign="pageTitle" name="Statistics"]-->
-<!--[pnpagesetvar name="title" value=$pageTitle]-->
-
-<div class="pn-admincontainer">
-  <br />
-  <h2><!--[$pageTitle]--></h2>
-
+<!--[gt text="Statistics" assign=templatetitle]-->
+<div class="z-adminpageicon"><!--[pnimg modname='core' src='info.gif' set='icons/large' __alt='Statistics' ]--></div>
   <fieldset>
     <legend><!--[gt text="Newsletter Module Statistics"]--></legend>
-
-    <div class="pn-adminformrow">
-      <label for="users"><!--[gt text="Total # of Users"]-->:</label>
-      <span id="users"><!--[$objectArray.users]--></span>
+	
+    <div class="z-formrow">
+      <label for="users"><i><!--[gt text="Total # of Users"]-->:</i></label>
+      <span id="users"><b><!--[$objectArray.users]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_active"><!--[gt text="Active Subscribers"]-->:</label>
-      <span id="users_active"><!--[$objectArray.users_active]--></span>
+    <div class="z-formrow">
+      <label for="users_active"><i><!--[gt text="Active Subscribers"]-->:</i></label>
+      <span id="users_active"><b><!--[$objectArray.users_active]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_approved"><!--[gt text="Approved Subscribers"]-->:</label>
-      <span id="users_approved"><!--[$objectArray.users_approved]--></span>
+    <div class="z-formrow">
+      <label for="users_approved"><i><!--[gt text="Approved Subscribers"]-->:</i></label>
+      <span id="users_approved"><b><!--[$objectArray.users_approved]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_activeapproved"><!--[gt text="Active and approved Subscribers"]-->:</label>
-      <span id="users_activeapproved"><!--[$objectArray.users_approved_and_active]--></span>
+    <div class="z-formrow">
+      <label for="users_activeapproved"><i><!--[gt text="Active and approved Subscribers"]-->:</i></label>
+      <span id="users_activeapproved"><b><!--[$objectArray.users_approved_and_active]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_registered"><!--[gt text="Subscribers which are registered Users"]-->:</label>
-      <span id="users_registered"><!--[$objectArray.users_registered]--></span>
+    <div class="z-formrow">
+      <label for="users_registered"><i><!--[gt text="Subscribers which are registered Users"]-->:</i></label>
+      <span id="users_registered"><b><!--[$objectArray.users_registered]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_html"><!--[gt text="# of Subscribers for Html Format"]-->:</label>
-      <span id="users_html"><!--[$objectArray.users_html]--></span>
+    <div class="z-formrow">
+      <label for="users_html"><i><!--[gt text="# of Subscribers for Html Format"]-->:</i></label>
+      <span id="users_html"><b><!--[$objectArray.users_html]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_text"><!--[gt text="# of Subscribers for Text Format"]-->:</label>
-      <span id="users_text"><!--[$objectArray.users_text]--></span>
+    <div class="z-formrow">
+      <label for="users_text"><i><!--[gt text="# of Subscribers for Text Format"]-->:</i></label>
+      <span id="users_text"><b><!--[$objectArray.users_text]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_textwithlinks"><!--[gt text="# of Subscribers for Text with Links Format"]-->:</label>
-      <span id="users_textwithlinks"><!--[$objectArray.users_textwithlinks]--></span>
+    <div class="z-formrow">
+      <label for="users_textwithlinks"><i><!--[gt text="# of Subscribers for Text with Links Format"]-->:</i></label>
+      <span id="users_textwithlinks"><b><!--[$objectArray.users_textwithlinks]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_weekly"><!--[gt text="# of Subscribers for Weekly Delivery"]-->:</label>
-      <span id="users_weekly"><!--[$objectArray.users_weekly]--></span>
+    <div class="z-formrow">
+      <label for="users_weekly"><i><!--[gt text="# of Subscribers for Weekly Delivery"]-->:</i></label>
+      <span id="users_weekly"><b><!--[$objectArray.users_weekly]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_monthly"><!--[gt text="# of Subscribers for Monthly Delivery"]-->:</label>
-      <span div id="users_monthly"><!--[$objectArray.users_monthly]--></span>
+    <div class="z-formrow">
+      <label for="users_monthly"><i><!--[gt text="# of Subscribers for Monthly Delivery"]-->:</i></label>
+      <span id="users_monthly"><b><!--[$objectArray.users_monthly]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_yearly"><!--[gt text="# of Subscribers for Yearly Delivery"]-->:</label>
-      <span id="users_yearly"><!--[$objectArray.users_yearly]--></span>
+    <div class="z-formrow">
+      <label for="users_yearly"><i><!--[gt text="# of Subscribers for Yearly Delivery"]-->:</i></label>
+      <span id="users_yearly"><b><!--[$objectArray.users_yearly]--></b></span>
     </div>
-
-    <div class="pn-adminformrow">
-      <label for="users_archives"><!--[gt text="# of Archives"]-->:</label>
-      <span id="users_archives"><!--[$objectArray.archives]--></span>
+    <div class="z-formrow">
+      <label for="users_archives"><i><!--[gt text="# of Archives"]-->:</i></label>
+      <span id="users_archives"><b><!--[$objectArray.archives]--></b></span>
     </div>
-
   </fieldset>
 </div>
 

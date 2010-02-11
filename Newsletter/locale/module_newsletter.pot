@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-10 18:46+0000\n"
+"POT-Creation-Date: 2010-02-11 21:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: pnversion.php:15 pnaccountapi.php:21
 #: classes/PNNewsletterDataArray.class.php:46
-#: pntemplates/newsletter_user_std_header.html:11
+#: pntemplates/newsletter_user_std_header.html:6
 #: pntemplates/newsletter_admin_std_header.html:1
 #: pntemplates/newsletter_admin_std_header.html:10
 msgid "Newsletter"
@@ -85,8 +85,8 @@ msgstr ""
 msgid "Newsletter Settings"
 msgstr ""
 
-#: pnadminapi.php:22
-msgid "View Archives"
+#: pnadminapi.php:22 pntemplates/newsletter_admin_form_modifyarchive.html:12
+msgid "Archive Settings"
 msgstr ""
 
 #: pnadminapi.php:23
@@ -462,9 +462,28 @@ msgstr ""
 msgid "Update Configuration"
 msgstr ""
 
-#: pntemplates/newsletter_user_std_header.html:13
+#: pntemplates/newsletter_user_std_header.html:8
 msgid ""
-"Welcome to our Newsletter, here you can manage, or delete your Subscription."
+"Welcome to our Newsletter, here you can manage or delete your Subscription."
+msgstr ""
+
+#: pntemplates/newsletter_user_std_header.html:12
+msgid "Newsletter Home"
+msgstr ""
+
+#: pntemplates/newsletter_user_std_header.html:17
+msgid "View Archives"
+msgstr ""
+
+#: pntemplates/newsletter_user_std_header.html:20
+#: pntemplates/newsletter_admin_form_modifyconfig.html:3
+#: pntemplates/newsletter_admin_form_modifyconfig.html:17
+#: pntemplates/newsletter_admin_form_modifyarchive.html:7
+msgid "Settings"
+msgstr ""
+
+#: pntemplates/newsletter_user_std_header.html:24
+msgid "unsubscribe"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_Mediashare.html:3
@@ -481,10 +500,10 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_modifyconfig.html:32
 #: pntemplates/newsletter_admin_form_modifyconfig.html:40
 #: pntemplates/newsletter_admin_form_modifyconfig.html:41
+#: pntemplates/newsletter_admin_form_modifyconfig.html:48
 #: pntemplates/newsletter_admin_form_modifyconfig.html:49
-#: pntemplates/newsletter_admin_form_modifyconfig.html:50
-#: pntemplates/newsletter_admin_form_modifyconfig.html:85
-#: pntemplates/newsletter_admin_form_modifyconfig.html:86
+#: pntemplates/newsletter_admin_form_modifyconfig.html:78
+#: pntemplates/newsletter_admin_form_modifyconfig.html:79
 #: pntemplates/newsletter_admin_view_preview.html:41
 #: pntemplates/newsletter_admin_view_preview.html:44
 msgid "Help"
@@ -553,7 +572,7 @@ msgid "Unsubscribe"
 msgstr ""
 
 #: pntemplates/newsletter_user_view_unsubscribe.html:9
-#: pntemplates/newsletter_admin_form_modifyconfig.html:150
+#: pntemplates/newsletter_admin_form_modifyconfig.html:130
 #: pntemplates/newsletter_user_inc_info.html:4
 #: pntemplates/newsletter_user_view_main.html:21
 msgid "Information"
@@ -576,6 +595,7 @@ msgstr ""
 
 #: pntemplates/newsletter_user_view_tos.html:4
 #: pntemplates/newsletter_user_view_main.html:62
+#: pntemplates/newsletter_user_view_main.html:64
 #: pntemplates/newsletter_user_view_options.html:56
 #: pntemplates/newsletter_user_view_options.html:57
 msgid "Terms of Service"
@@ -639,18 +659,13 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:15
-#: pntemplates/newsletter_admin_form_modifyarchive.html:7
-msgid "Settings"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyconfig.html:20
+#: pntemplates/newsletter_admin_form_modifyconfig.html:21
 #: pntemplates/newsletter_user_view_options.html:21
 #: pntemplates/newsletter_admin_form_user.html:27
 msgid "Newsletter Configuration"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:23
+#: pntemplates/newsletter_admin_form_modifyconfig.html:24
 msgid "Items per page"
 msgstr ""
 
@@ -672,19 +687,19 @@ msgstr ""
 msgid "This is the Subject of the generated Newsletter"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:47
+#: pntemplates/newsletter_admin_form_modifyconfig.html:46
 msgid "Disable automatic sending"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:48
-#: pntemplates/newsletter_admin_form_modifyconfig.html:84
+#: pntemplates/newsletter_admin_form_modifyconfig.html:47
+#: pntemplates/newsletter_admin_form_modifyconfig.html:77
+#: pntemplates/newsletter_admin_form_modifyconfig.html:85
+#: pntemplates/newsletter_admin_form_modifyconfig.html:89
 #: pntemplates/newsletter_admin_form_modifyconfig.html:93
-#: pntemplates/newsletter_admin_form_modifyconfig.html:98
-#: pntemplates/newsletter_admin_form_modifyconfig.html:103
+#: pntemplates/newsletter_admin_form_modifyconfig.html:97
+#: pntemplates/newsletter_admin_form_modifyconfig.html:101
+#: pntemplates/newsletter_admin_form_modifyconfig.html:105
 #: pntemplates/newsletter_admin_form_modifyconfig.html:109
-#: pntemplates/newsletter_admin_form_modifyconfig.html:114
-#: pntemplates/newsletter_admin_form_modifyconfig.html:119
-#: pntemplates/newsletter_admin_form_modifyconfig.html:124
 #: pntemplates/newsletter_admin_view_user.html:217
 #: pntemplates/newsletter_admin_form_modifyarchive.html:16
 #: pntemplates/newsletter_admin_form_modifyarchive.html:20
@@ -697,107 +712,107 @@ msgstr ""
 msgid "(checked=yes)"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:51
+#: pntemplates/newsletter_admin_form_modifyconfig.html:50
 msgid "Newsletters now have to be sent out manually "
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:55
+#: pntemplates/newsletter_admin_form_modifyconfig.html:53
 msgid "Allow subscription of only this type"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:60
+#: pntemplates/newsletter_admin_form_modifyconfig.html:57
 #: pntemplates/newsletter_block_signup_modify.html:7
 msgid "Default Newsletter Type"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:65
+#: pntemplates/newsletter_admin_form_modifyconfig.html:61
 #: pntemplates/newsletter_block_signup_modify.html:14
 msgid "Default Frequency"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:70
+#: pntemplates/newsletter_admin_form_modifyconfig.html:65
 msgid "Sendday"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:75
+#: pntemplates/newsletter_admin_form_modifyconfig.html:69
 msgid "Expire Archived Newsletters"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:83
+#: pntemplates/newsletter_admin_form_modifyconfig.html:76
 msgid "Enable Multilingual Features"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:87
+#: pntemplates/newsletter_admin_form_modifyconfig.html:80
 msgid "This enables the sending of Multilanguage Newsletters"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:92
+#: pntemplates/newsletter_admin_form_modifyconfig.html:84
 msgid "Receive Subscription Notices"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:97
+#: pntemplates/newsletter_admin_form_modifyconfig.html:88
 msgid "Allow Anonymous Registrations"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:102
+#: pntemplates/newsletter_admin_form_modifyconfig.html:92
 msgid "Show the Approvalstatus to the user? "
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:108
+#: pntemplates/newsletter_admin_form_modifyconfig.html:96
 msgid "Require Terms of Service"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:113
+#: pntemplates/newsletter_admin_form_modifyconfig.html:100
 msgid "Auto-approve Registrations"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:118
+#: pntemplates/newsletter_admin_form_modifyconfig.html:104
 msgid "Allow Frequency Changes"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:123
+#: pntemplates/newsletter_admin_form_modifyconfig.html:108
 msgid "Personalize EMail"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:124
+#: pntemplates/newsletter_admin_form_modifyconfig.html:109
 msgid "disable to increase performance"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:128
+#: pntemplates/newsletter_admin_form_modifyconfig.html:112
 msgid "Send per Request"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:129
-#: pntemplates/newsletter_admin_form_modifyconfig.html:134
+#: pntemplates/newsletter_admin_form_modifyconfig.html:113
+#: pntemplates/newsletter_admin_form_modifyconfig.html:117
 msgid "'x' number of emails"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:129
-#: pntemplates/newsletter_admin_form_modifyconfig.html:134
+#: pntemplates/newsletter_admin_form_modifyconfig.html:113
+#: pntemplates/newsletter_admin_form_modifyconfig.html:117
 msgid "(0 [Zero] = no Restriction)"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:133
+#: pntemplates/newsletter_admin_form_modifyconfig.html:116
 msgid "Maximum Newsletters to send per hour"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:138
+#: pntemplates/newsletter_admin_form_modifyconfig.html:120
 msgid "Adminkey"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:139
+#: pntemplates/newsletter_admin_form_modifyconfig.html:121
 msgid "used to authenticate cron/batchprocessing"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:152
+#: pntemplates/newsletter_admin_form_modifyconfig.html:132
 msgid "It took"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:152
+#: pntemplates/newsletter_admin_form_modifyconfig.html:132
 msgid "seconds to send the last batch of"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:152
+#: pntemplates/newsletter_admin_form_modifyconfig.html:132
 msgid "mails"
 msgstr ""
 
@@ -1052,16 +1067,15 @@ msgstr ""
 msgid "Your Name"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_main.html:63
-#: pntemplates/newsletter_block_signup_display.html:14
-msgid "Yes, I agree to the <a href="
+#: pntemplates/newsletter_user_view_main.html:65
+msgid "Yes, I agree to the terms of service."
 msgstr ""
 
-#: pntemplates/newsletter_user_view_main.html:75
+#: pntemplates/newsletter_user_view_main.html:78
 msgid "* subscriptions subject to approval."
 msgstr ""
 
-#: pntemplates/newsletter_user_view_main.html:83
+#: pntemplates/newsletter_user_view_main.html:88
 msgid "Sorry, but you must be a site member to subscribe to our newsletter."
 msgstr ""
 
@@ -1099,6 +1113,10 @@ msgid ""
 "send mails in html-format- is checked! "
 msgstr ""
 
+#: pntemplates/newsletter_block_signup_display.html:14
+msgid "Yes, I agree to the <a href="
+msgstr ""
+
 #: pntemplates/newsletter_user_view_options.html:12
 msgid "Change your subscription settings"
 msgstr ""
@@ -1107,10 +1125,6 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_user.html:67
 msgid ""
 "User-based frequency changes have been disabled by the site administrator"
-msgstr ""
-
-#: pntemplates/newsletter_admin_form_modifyarchive.html:12
-msgid "Archive Settings"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:15

@@ -19,7 +19,7 @@ function Newsletter_adminapi_getlinks()
     if (SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
         $links[] = array('url' => pnModURL('Newsletter', 'admin', 'main'),                             'text' => __('Start', $dom));
         $links[] = array('url' => pnModURL('Newsletter', 'admin', 'settings'),                         'text' => __('Newsletter Settings', $dom));
-        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'archive'),                          'text' => __('View Archives', $dom));
+        $links[] = array('url' => pnModURL('Newsletter', 'admin', 'archive'),                          'text' => __('Archive Settings', $dom));
         $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'statistics')),  'text' => __('Statistics', $dom));
         $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'message')),     'text' => __('Intro Message', $dom));
         $links[] = array('url' => pnModURL('Newsletter', 'admin', 'view', array('ot'=>'preview')),     'text' => __('Preview', $dom));
