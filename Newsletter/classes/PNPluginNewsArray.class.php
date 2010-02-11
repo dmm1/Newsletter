@@ -22,11 +22,11 @@ class PNPluginNewsArray extends PNPluginBaseArray
     {
         pnModDBInfoLoad ('News');
         $pntable = pnDBGetTables();
-        $column  = $pntable['stories_column'];
+        $column  = $pntable['news_column'];
         $where   = "$column[published_status] = 0";
         $sort    = "$column[cr_date] DESC";
         $nItems  = pnModGetVar ('Newsletter', 'plugin_News_nItems', 1);
-        return DBUtil::selectObjectArray ('stories', $where, $sort, 0, $nItems);
+        return DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
     }
 }
 
