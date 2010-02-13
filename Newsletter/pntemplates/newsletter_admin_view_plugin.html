@@ -1,49 +1,51 @@
+<!--[pnajaxheader modname='Newsletter' filename='newsletter.js']-->
 <!--[include file="newsletter_admin_std_header.html"]-->
 <!--[gt text="Available Plugins" assign=templatetitle]-->
 
-  <h2><!--[gt text="Available Plugins"]--></h2>
+  <h2><!--[$templatetitle]--></h2>
 
-  <form action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
+  <form class="z-adminform" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <div>
+	<input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
     <input type="hidden" name="ot" value="plugin" />
-    <table class="pn-admintable" summary="<!--[$pageTitle]-->" width="100%">
-      <thead>
-        <tr>
-          <th align="left"><!--[gt text="Plugin"]--></th>
-          <th align="left"><!--[gt text="# of Items"]--></th>
-          <th align="left"><!--[gt text="Active"]--></th>
-        </tr>
-      </thead>
-      <tbody>
+    <ol id="pluginlist" class="z-itemlist">
+		 <li class="z-itemheader z-clearfix">
+                    <span class="z-itemcell z-w25"><!--[gt text="Plugin"]--></span>
+                    <span class="z-itemcell z-w25"><!--[gt text="# of Items"]--></span>
+                    <span class="z-itemcell z-w15"><!--[gt text="Active"]--></span>
+         
+		 </li>
 		<!--[gt text="Yes" assign=yes]-->
 		<!--[gt text="No" assign=no]-->
         <!--[pnsecgenauthkey assign="authid" module="Newsletter"]-->
         <!--[foreach from=$objectArray item=plugin]-->
-          <tr class="<!--[cycle values="zk-odd,zk-even"]-->">
-            <td align="left" valign="top"><!--[$plugin|pnvarprephtmldisplay]--></td>
+          <li class="<!--[cycle values="z-odd,z-even"]--> z-clearfix">
+            <span class="z-itemcell z-w25"><!--[$plugin|pnvarprephtmldisplay]--></span>
 
 	    <!--[assign_concat name="inputName" 1="plugin[" 2=$plugin 3="_nItems" 4="]"]-->
 	    <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin 3="_nItems"]-->
 	    <!--[pnmodgetvar assign="pluginItems" module="Newsletter" name=$modvarName default=3]-->
             <!--[if ($plugin != 'NewsletterMessage')]-->
-	      <td align="left" valign="top"><input type="text" name=<!--[$inputName]--> value="<!--[$pluginItems]-->" size="3" maxlength="2" /></td>
+	      <span class="z-itemcell z-w25">
+		  <input type="text" name=<!--[$inputName]--> value="<!--[$pluginItems]-->" size="3" maxlength="2" /></span>
             <!--[else]-->
-	      <td align="left" valign="top"></td>
+	      <span class="z-itemcell z-w25">.</span>
             <!--[/if]-->
 
 	    <!--[assign_concat name="checkboxName" 1="plugin[" 2=$plugin 3="]"]-->
 	    <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin]-->
 	    <!--[pnmodgetvar assign="pluginActive" module="Newsletter" name=$modvarName default=0]-->
-            <td align="left" valign="top"><input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> />
+            <span class="z-itemcell z-w15">
+			<input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /></span>
               <!--[if ($plugin_parameters.$plugin.number ne 0)]-->
                 <!--[include file="newsletter_admin_view_$plugin.html"]-->
               <!--[/if]-->
-           </td>
-          </tr>
+          </li>
         <!--[/foreach]-->
-      </tbody>
-    </table>
+
     <!--[include file="newsletter_inc_form_actions.html"]-->
+	</ol>
+	</div>
   </form>
 
 

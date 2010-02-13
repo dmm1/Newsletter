@@ -1,21 +1,18 @@
 <!--[include file="newsletter_admin_std_header.html"]-->
 
-<!--[pnml assign="pageTitle" name="Preview your Newsletter"]-->
+<!--[gt text="Preview your Newsletter" assign=pageTitle]-->
 <!--[pnpagesetvar name="title" value=$pageTitle]-->
 
+  <h3><!--[$pageTitle]--></h3>
 
-<div class="pn-admincontainer">
-  <br />
-  <h2><!--[$pageTitle]--></h2>
-
-  <form name="show_template" action="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot="show_preview"]-->" target="_blank" method="post" enctype="application/x-www-form-urlencoded">
+  <form class="z-form" name="show_template" action="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot="show_preview"]-->" target="_blank" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
     <fieldset>
       <legend><!--[gt text="Preview Templates"]--></legend>
 
       <!--[pnmodgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual" default=0]-->
       <!--[if ($enable_multilingual)]-->
-        <div class="pn-adminformrow">
+        <div class="z-formrow">
           <label for="language"><!--[gt text="Language"]-->:</label>
           <!--[pnsessiongetvar assign="currLang" name="lang"]-->
           <!--[pnconfiggetvar assign="defaultLang" name="language"]-->
@@ -23,14 +20,14 @@
         </div>
       <!--[/if]-->
 
-      <div class="pn-adminformrow">
+      <div class="z-formrow">
           <!--[pnusergetvar assign="email" name="email"]-->
           <label for="testsend"><!--[gt text="Mail this preview to the following email address"]-->:</label>
           <input id="testsend" name="testsend" type="checkbox" value="1" />
           <input id="testsend_email" name="testsend_email" type="text" value="<!--[$email]-->" size="20" maxlength="64"  />
       </div>
 
-      <div class="pn-adminformrow">
+      <div class="z-formrow">
         <label for="format"><!--[gt text="Format"]-->:</label>
         <select name="format" onchange="this.form.submit();javascript:location.reload(true);" >                                        
           <option><!--[gt text="- Choose One -"]--></option>
@@ -42,7 +39,7 @@
         <br />
         <br />
         <span id="help_preview_form" style="display:none"><!--[gt text="Help"]--></span>
-        <div id="hint-3" class="nl-hint" style="display:none;">
+        <div id="hint-3" class="z-informationmsg" style="display:none;">
           <p><!--[gt text="You can find the templates in"]--> /modules/Newsletter/pntemplates/</p>
           <ul>
             <li>newsletter_template_html.html</li>
@@ -54,6 +51,6 @@
 
     </fieldset>
   </form>
+<!--[include file="newsletter_std_footer.html"]-->
 
-</div>
 

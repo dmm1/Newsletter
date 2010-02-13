@@ -1,10 +1,11 @@
 <!--[assign var="mediashareAlbumsOnly" value=$plugin_parameters.Mediashare.param.mediashareAlbumsOnly]-->
 <!--[assign var="mediasharePath" value=$plugin_parameters.Mediashare.param.mediasharePath]-->
-<!--[gt text="Activate Mediashare Plugin"]--><br /><hr />
-<em><!--[gt text="Albums only"]--></em><br />
+<!--[gt text="Activate Mediashare Plugin"]-->
+<br /><hr />
+<b><!--[gt text="Albums only"]--></b><br />
 <input type="checkbox" name="mediashareAlbumsOnly" value="1" <!--[if $mediashareAlbumsOnly == 1]-->checked="checked"<!--[/if]--> /> <br />
 <input name="mediasharePath" type="text" value="<!--[$mediasharePath]-->" size="30" maxlength="128" />          
 <a href="#" title="<!--[gt text="Help"]-->" onclick="Effect.toggle('hint-1','BLIND'); return false;">(?)</a>
 <span id="help_subject" style="display:none"><!--[gt text="Help"]--></span>
-<div id="hint-1" class="nl-hint" style="display:none;"><!--[gt text="Define the Path of your Mediashare images path e.g. mediashare/, pnTemp/mediashare/ etc."]--></div>
+<div id="hint-1" class="z-informationmsg" style="display:none;"><!--[gt text="Define the Path of your Mediashare images path e.g. mediashare/, pnTemp/mediashare/ etc."]--></div>
         
