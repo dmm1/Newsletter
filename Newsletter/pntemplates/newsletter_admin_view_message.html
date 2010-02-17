@@ -18,7 +18,7 @@
   <h4><!--[gt text="Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter."]--></h4>
 
   <!--[pnmodgetvar assign="newmessage" module="Newsletter" name="message"]-->
-  <form class="z-form" name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
+  <form class="z-adminform" name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
     <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" method="post" enctype="application/x-www-form-urlencoded" />
     <input type="hidden" name="ot" value="message" />
     <fieldset>

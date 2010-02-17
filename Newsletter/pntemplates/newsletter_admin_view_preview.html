@@ -23,8 +23,8 @@
       <div class="z-formrow">
           <!--[pnusergetvar assign="email" name="email"]-->
           <label for="testsend"><!--[gt text="Mail this preview to the following email address"]-->:</label>
-          <input id="testsend" name="testsend" type="checkbox" value="1" />
-          <input id="testsend_email" name="testsend_email" type="text" value="<!--[$email]-->" size="20" maxlength="64"  />
+          <input id="testsend" name="testsend" type="checkbox" value="1" />  
+		  <input id="testsend_email" name="testsend_email" type="text" value="<!--[$email]-->" size="20" maxlength="64"  />
       </div>
 
       <div class="z-formrow">
@@ -36,8 +36,6 @@
           <option value="3"><!--[gt text="Text with Link to Archive"]--></option>
         </select>
         <a href="#" onclick="Effect.toggle('hint-3','BLIND'); return false;" title="<!--[gt text="Help"]-->">(?)</a>
-        <br />
-        <br />
         <span id="help_preview_form" style="display:none"><!--[gt text="Help"]--></span>
         <div id="hint-3" class="z-informationmsg" style="display:none;">
           <p><!--[gt text="You can find the templates in"]--> /modules/Newsletter/pntemplates/</p>
@@ -48,7 +46,6 @@
           </ul>
         </div>
       </div>
-
     </fieldset>
   </form>
 <!--[include file="newsletter_std_footer.html"]-->

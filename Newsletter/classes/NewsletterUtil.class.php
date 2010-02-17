@@ -1,4 +1,4 @@
-ï»¿<?php
+<?php
 /**
  * Newletter Module for Zikula
  *
@@ -13,8 +13,8 @@ class NewsletterUtil
 {
     function encodeText ($string)
     {
-        $search  = array ('Ä', 'C', 'C', 'Ð', 'Ö', 'Š', 'Ü', 'Ž', 'ä', 'c', 'c', 'd', 'ö', 'š', 'ü', 'ž', 'ß');
-        $replace = array ('&Auml;', '&#262;', '&#268;', '&#272;', '&Ouml;', '&#352;', '&Uuml;', '&#381;', '&auml;', '&#263;', '&#269;', '&#273;', '&ouml;', '&#353;', '&uuml;', '&#382;', '&szlig;');
+        $search  = array ('Ä', 'ä', 'Ö', 'ö', 'Ü', 'ü' );
+        $replace = array ('&Auml;', '&auml;', '&Ouml;', '&ouml;', '&Uuml;', '&uuml;' );
 
         return str_replace ($search, $replace, $string);
     }

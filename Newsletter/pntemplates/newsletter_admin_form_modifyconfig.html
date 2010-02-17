@@ -1,4 +1,4 @@
-<!--[include file="newsletter_admin_std_header.html"]-->
+﻿<!--[include file="newsletter_admin_std_header.html"]-->
 
 <!--[gt text="Settings" assign=templatetitle]-->
 
@@ -15,10 +15,18 @@
 <!--[pnconfiggetvar assign="multilingual" name="multilingual" default=0]-->
 
 <div class="z-adminpageicon"><!--[pnimg modname='core' src='configure.gif' set='icons/large' __alt='Settings' ]--></div>
+	
+  <fieldset>
+    <legend><!--[gt text="Information"]--></legend>
+    <div class="z-formnote z-informationmsg">
+      <p><!--[gt text="It took"]--> <strong><!--[$last_execution_time]--></strong> <!--[gt text="seconds to send the last batch of"]--> <!--[$last_execution_count]--> <!--[gt text="mails"]-->.</p>
+    </div>
+  </fieldset>
+	
 	<form class="z-form" name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="modifyconfig"]-->" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
     <fieldset>
-    <legend><!--[gt text="Newsletter Configuration"]--></legend>
+    <legend><!--[gt text="Configuration"]--></legend>
 	
       <div class="z-formrow">
         <label for="itemsperpage"><!--[gt text="Items per page"]-->:</label>
@@ -66,7 +74,7 @@
         <select id="send_day" name="preferences[send_day]"><!--[html_options values=$send_days_values output=$send_days_output selected=$preferences.send_day]--></select>
       </div>
       <div class="z-formrow">
-        <label for="archive_expire"><!--[gt text="Expire Archived Newsletters"]-->:</label>
+        <label for="archive_expire"><!--[gt text="Expire Time of archived Newsletters"]-->:</label>
         <div id="archive_expire_values">
           <select name="preferences[archive_expire]"><!--[html_options values=$archive_expire_values output=$archive_expire_output selected=$preferences.archive_expire]--></select>
         </div>
@@ -81,35 +89,35 @@
        </div>
       <!--[/if]-->
       <div class="z-formrow">
-        <label for="notify_admin"><!--[gt text="Receive Subscription Notices"]-->:</label>
+        <label for="notify_admin"><!--[gt text="Receive Subscription Notices ?"]-->:</label>
         <input id="notify_admin" name="preferences[notify_admin]" type="checkbox" value="1" <!--[if ($preferences.notify_admin)]-->checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
       </div>
       <div class="z-formrow">
-        <label for="allow_anon_registration"><!--[gt text="Allow Anonymous Registrations"]-->:</label>
+        <label for="allow_anon_registration"><!--[gt text="Allow Anonymous Registrations ?"]-->:</label>
         <input id="allow_anon_registration" name="preferences[allow_anon_registration]" type="checkbox" value="1" <!--[if ($preferences.allow_anon_registration)]--> checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--> </em>
       </div>
       <div class="z-formrow">
-        <label for="show_approval_status"><!--[gt text="Show the Approvalstatus to the user? "]-->:</label>
+        <label for="show_approval_status"><!--[gt text="Show the Approvalstatus to the user ? "]-->:</label>
         <input id="show_approval_status" name="preferences[show_approval_status]" type="checkbox" value="1" <!--[if ($preferences.show_approval_status)]--> checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--> </em>
       </div>
 	  <div class="z-formrow">
-        <label for="require_tos"><!--[gt text="Require Terms of Service"]--></label>
+        <label for="require_tos"><!--[gt text="Require Terms of Service ?"]-->:</label>
         <input id="require_tos" name="preferences[require_tos]" type="checkbox" value="1" <!--[if ($preferences.require_tos)]-->checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
       </div>
       <div class="z-formrow">
-        <label for="auto_approve_registrations"><!--[gt text="Auto-approve Registrations"]-->:</label>
+        <label for="auto_approve_registrations"><!--[gt text="Auto-approve Registrations ?"]-->:</label>
         <input id="auto_approve_registrations" name="preferences[auto_approve_registrations]" type="checkbox" value="1" <!--[if ($preferences.auto_approve_registrations)]-->checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
       </div>
       <div class="z-formrow">
-        <label for="allow_frequency_change"><!--[gt text="Allow Frequency Changes"]-->:</label>
+        <label for="allow_frequency_change"><!--[gt text="Allow Frequency Changes ?"]-->:</label>
         <input id="allow_frequency_changes" name="preferences[allow_frequency_change]" type="checkbox" value="1" <!--[if ($preferences.allow_frequency_change)]--> checked="checked"<!--[/if]--> /> <em><!--[gt text="(checked=yes)"]--></em>
       </div>
       <div class="z-formrow">
-        <label for="preferences[personalize_email]"><!--[gt text="Personalize EMail"]-->:</label>
+        <label for="preferences[personalize_email]"><!--[gt text="Personalize EMail ?"]-->:</label>
         <input id="personalize_email" name="preferences[personalize_email]" type="checkbox" value="1" <!--[if ($preferences.personalize_email)]--> checked="checked"<!--[/if]--> /> <em> <!--[gt text="(checked=yes)"]-->, <!--[gt text="disable to increase performance"]--></em>
       </div>
       <div class="z-formrow">
-        <label for="send_per_request"><!--[gt text="Send per Request"]-->:</label>
+        <label for="send_per_request"><!--[gt text="Send per Request ?"]-->:</label>
         <input id="send_per_request" name="preferences[send_per_request]" type="text" value="<!--[$preferences.send_per_request]-->" style="width:30px;" /> <em><!--[gt text="'x' number of emails"]--> <!--[gt text="(0 [Zero] = no Restriction)"]--></em>
       </div>
       <div class="z-formrow">
@@ -123,14 +131,4 @@
       <!--[include file="newsletter_inc_form_actions.html"]-->
     </fieldset>
 	</form>
-
-
-
-  <fieldset>
-    <legend><!--[gt text="Information"]--></legend>
-    <div class="z-formnote z-informationmsg">
-      <p><!--[gt text="It took"]--> <strong><!--[$last_execution_time]--></strong> <!--[gt text="seconds to send the last batch of"]--> <!--[$last_execution_count]--> <!--[gt text="mails"]-->.</p>
-    </div>
-  </fieldset>
-
 <!--[include file="newsletter_std_footer.html"]-->

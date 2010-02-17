@@ -2,11 +2,8 @@
 
 <!--[pnmodgetvar assign="allow_anon_registration" module="Newsletter" name="allow_anon_registration"]-->
 <!--[pnuserloggedin assign="loggedin"]-->
-<div class="z-admincontainer">
+<div>
   <h3><!--[gt text="Newsletter"]--></h3>
-  <!--[if ($allow_anon_registration || $loggedin)]-->
-    <h4><!--[gt text="Welcome to our Newsletter, here you can manage or delete your Subscription."]--></h4>
-  <!--[/if]-->
   <div class="z-menu">
     <span class="z-menuitem-title">[
     <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main"]-->" title="<!--[gt text="Newsletter Home"]-->"><!--[gt text="Newsletter Home"]--></a>

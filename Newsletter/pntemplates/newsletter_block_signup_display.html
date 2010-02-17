@@ -11,7 +11,10 @@
 
 	<!--[pnmodgetvar assign="require_tos" module="Newsletter" name="require_tos" default="0"]-->
 	<!--[if ($require_tos)]-->
-      <label for="nl_tos"><!--[gt text="Yes, I agree to the <a href="index.php?module=Newsletter&amp;func=main&amp;ot=tos" title="Terms of Service">terms of service</a>."]--></label>
+      <label for="nl_tos">
+	  <a href="index.php?module=Newsletter&amp;func=main&amp;ot=tos" title="Terms of Service">
+	  <!--[gt text="Yes, I agree to the terms of service."]-->
+	  </a></label>
       <input type="checkbox" name="user[tos]" value="1" id="nl_tos" />
     <!--[else]-->
        <input type="hidden" name="user[tos]" value="1" />

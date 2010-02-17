@@ -13,7 +13,7 @@
 
 <!--[include file="newsletter_user_inc_info.html"]-->
 
-<form action="<!--[pnmodurl modname="Newsletter" type="userform" func="edit" ot="user_options"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-adminform" action="<!--[pnmodurl modname="Newsletter" type="userform" func="edit" ot="user_options"]-->" method="post" enctype="application/x-www-form-urlencoded">
   <input type="hidden" name="authid" value="<!--[pnsecgenauthkey module="Newsletter"]-->" />
   <input type="hidden" name="otTarget" value="options" />
 
@@ -21,14 +21,14 @@
     <legend><!--[gt text="Newsletter Configuration"]--></legend>
 
     <!--[if ($enable_multilingual)]-->
-      <div class="nl-userformrow">
+      <div class="z-formrow">
         <label for="user_lang"><!--[gt text="Language"]--></label>
         <!--[html_select_languages id="user_lang" name="user[lang]" installed=true selected=$user.lang|default:$defaultlang]-->
       </div>
     <!--[/if]-->
 
     <!--[if (!$limit_type)]-->
-      <div class="nl-userformrow">
+      <div class="z-formrow">
         <label for="user_type"><!--[gt text="Type"]--></label>
         <select id="user_type" name="user[type]"><!--[html_options values=$type_values output=$type_output selected=$user.type]--></select>
       </div>
@@ -36,23 +36,23 @@
 
     <!--[pnmodgetvar module="Newsletter" name="allow_frequency_change" assign="change_allowed"]-->
     <!--[if ($change_allowed)]-->
-      <div class="nl-userformrow">
+      <div class="z-formrow">
         <label for="user_frequency"><!--[gt text="Frequency"]--></label>
         <select id="user_frequency" name="user[frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$user.frequency]--></select>
       </div>
     <!--[else]-->
-      <div class="nl-userformrow">
+      <div class="z-formrow">
         <label for="user_frequency"><!--[gt text="Frequency"]--></label>
         <span id="user_frequency"><!--[gt text="User-based frequency changes have been disabled by the site administrator"]--></span>
       </div>
     <!--[/if]-->
 
-    <div class="nl-userformrow">
+    <div class="z-formrow">
       <label for="user_active"><b><!--[gt text="Active"]--></b></label>
       <input type="checkbox" id="user_active" name="user[active]" value="1" <!--[if ($user.active)]-->checked="checked"<!--[/if]--> />
     </div>
 
-    <div class="nl-userformrow">
+    <div class="z-formrow">
       <label for="user_tos"><!--[gt text="Terms of Service"]--></label>
       <a id="user_tos" href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="tos"]-->" title="<!--[gt text="Terms of Service"]-->"><!--[gt text="Terms of Service"]--></a>
     </div>

@@ -13,6 +13,8 @@
 <!--[pnconfiggetvar assign="defaultlang" name="language" default="eng"]-->
 <!--[pnuserloggedin assign="loggedin"]-->
 
+<h4><!--[gt text="Welcome to our Newsletter, here you can manage or delete your Subscription."]--></h4>
+  
 <!--[if (!$user)]-->
 
   <b><!--[gt text="Subscribe"]--></b>
@@ -21,8 +23,7 @@
     <legend><!--[gt text="Information"]--></legend>
 
       <!--[if ($allow_anon_registration || $loggedin)]-->    
-
-          <form class="z-form" action="<!--[pnmodurl modname="Newsletter" type="userform" func="edit" ot="user"]-->" method="post" enctype="application/x-www-form-urlencoded">
+          <form class="z-adminform" action="<!--[pnmodurl modname="Newsletter" type="userform" func="edit" ot="user"]-->" method="post" enctype="application/x-www-form-urlencoded">
             <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
 
             <!--[if (!$loggedin)]-->

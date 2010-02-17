@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=<!--[charset]-->" />
-  <title><!--[$objectArray.title]--></title>
+  <title><!--[gt text="Newsletter"]--></title>
 </head>
 <style>
 html,body { margin:0px; padding:0px; }
@@ -329,7 +329,7 @@ table.nl-calendar tbody tr th:hover {
                 <td class="nl-header" align="left">
                   <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/header.gif" width="600px" height="101px" />                 
                     <h2 id="nl-title-2"><!--[$objectArray.title]--></h2>
-                  </div>
+                 
                 </td>
               </tr>
               <tr>
@@ -339,19 +339,19 @@ table.nl-calendar tbody tr th:hover {
                       <td valign="top" class="nl-main-class" align="left">
   
                         <!--[if (isset($user_name) && $user_name)]-->
-                          <h2><!--[nl_pnml name="Hello" html=1]--> <!--[$user_name]--></h2>
+                          <h2><!--[gt text="Hello"]--> <!--[$user_name]--></h2>
                           <br />
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)]-->
-                          <h2><!--[nl_pnml name="Message from the Site Administrators" html=1]--></h2>
+                          <h2><!--[gt text="Message from the Site Administrators"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <p><!--[$objectArray.NewsletterMessage|pnvarprephtmldisplay|nl_encodetext]--></p>
                           <br />
                         <!--[/if]-->
  
                         <!--[if (isset($objectArray.AdminMessages) && $objectArray.AdminMessages)]-->
-                          <h2><!--[nl_pnml name="Special Announcements" html=1]--></h2>
+                          <h2><!--[gt text="Special Announcements"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.AdminMessages item="item" name="loop"]-->
                             <b><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></b>
@@ -362,7 +362,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]--> 
 
                         <!--[if (isset($objectArray.News) && $objectArray.News)]-->
-                          <h2><!--[nl_pnml name="News" html=1]--></h2>
+                          <h2><!--[gt text="News"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.News item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->" title="<!--[$item.title|pnvarprephtmldisplay|nl_encodetext]-->"><img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" /><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -375,7 +375,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]--> 
 
                         <!--[if (isset($objectArray.PageEd) && $objectArray.PagEd)]-->
-                          <h2><!--[nl_pnml name="News" html=1]--></h2>
+                          <h2><!--[gt text="News"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.PagEd item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="PagEd" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->" title="<!--[$item.title|pnvarprephtmldisplay|nl_encodetext]-->"><img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" /><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -388,7 +388,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]--> 
 
                         <!--[if (isset($objectArray.ZWebstore) && $objectArray.ZWebstore)]-->
-                          <h2><!--[nl_pnml name="Recently Added Products" html=1]--></h2>
+                          <h2><!--[gt text="Recently Added Products"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.ZWebstore item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="zWebstore" type="user" func="detail" id=$item.id newlang=$nllang fqurl=true]-->" title="<!--[$item.name|pnvarprephtmldisplay|nl_encodetext]-->"><!--[$item.name|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -399,12 +399,12 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.CrpVideo) && $objectArray.CrpVideo)]-->
-                          <h2><!--[nl_pnml name="New Vidos" html=1]--></h2>
+                          <h2><!--[gt text="New Vidos"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <table class="nl-crpvideo">
                             <tr>
-                              <th><!--[nl_pnml name="Title" html=1]--></th>
-                              <th><!--[nl_pnml name="Description" html=1]--></th>
+                              <th><!--[gt text="Title"]--></th>
+                              <th><!--[gt text="Description"]--></th>
                             </tr>
                             <!--[foreach from=$objectArray.CrpVideo item="item" name="loop"]-->
                               <tr>
@@ -417,14 +417,14 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.crpCalendar) && $objectArray.crpCalendar)]-->    
-                          <h2><!--[nl_pnml name="New Events" html=1]--></h2>
+                          <h2><!--[gt text="New Events"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <table class="nl-crpcalendar">
                             <tr>
-                              <th><!--[nl_pnml name="Title" html=1]--></th>
-                              <th><!--[nl_pnml name="Begin" html=1]--></th>
-                              <th><!--[nl_pnml name="Location" html=1]--></th>
-                              <th><!--[nl_pnml name="Description" html=1]--></th>
+                              <th><!--[gt text="Title"]--></th>
+                              <th><!--[gt text="Begin"]--></th>
+                              <th><!--[gt text="Location"]--></th>
+                              <th><!--[gt text="Description"]--></th>
                             </tr>
                             <!--[foreach from=$objectArray.crpCalendar item="item" name="loop"]-->
                               <tr>
@@ -439,12 +439,12 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.NewMembers) && $objectArray.NewMembers)]-->
-                          <h2><!--[nl_pnml name="Welcome New Members" html=1]--></h2>
+                          <h2><!--[gt text="Welcome New Members"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <table class="nl-new-members">
                             <tr>
-                              <th><!--[nl_pnml name="Username" html=1]--></th>
-                              <th><!--[nl_pnml name="Register Date" html=1]--></th>
+                              <th><!--[gt text="Username"]--></th>
+                              <th><!--[gt text="Register Date"]--></th>
                             </tr>
                             <!--[foreach from=$objectArray.NewMembers item="item" name="loop"]-->
                               <tr>
@@ -457,7 +457,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                        <!--[if (isset($objectArray.Pagesetter) && $objectArray.Pagesetter)]-->
-                          <h2><!--[nl_pnml name="Recently Added Publications" html=1]--></h2>
+                          <h2><!--[gt text="Recently Added Publications"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Pagesetter item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="Pagesetter" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -467,7 +467,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Content) && $objectArray.Content)]-->
-                          <h2><!--[nl_pnml name="New Content Items" html=1]--></h2>
+                          <h2><!--[gt text="New Content Items"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Content item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="Content" type="user" func="view" pid=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -477,7 +477,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Pages) && $objectArray.Pages)]-->
-                          <h2><!--[nl_pnml name="Recently Added Documents" html=1]--></h2>
+                          <h2><!--[gt text="Recently Added Documents"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Pages item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="Pages" type="user" func="display" pid=$item.pageid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -488,7 +488,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Reviews) && $objectArray.Reviews)]-->
-                          <h2><!--[nl_pnml name="Recently Added Reviews" html=1]--></h2>
+                          <h2><!--[gt text="Recently Added Reviews"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Reviews item="item"]-->
                             <h3><a href="<!--[pnmodurl modname="Reviews" type="user" func="display" id=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -498,7 +498,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                        <!--[if (isset($objectArray.Mediashare) && $objectArray.Mediashare)]-->
-                          <h2><!--[nl_pnml name="Latest Media Items" html=1]--></h2>
+                          <h2><!--[gt text="Latest Media Items"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Mediashare item="item" name="loop"]-->
                             <!--[if isset($item.album.title)]-->
@@ -514,7 +514,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Downloads) && $objectArray.Downloads)]-->
-                          <h2><!--[nl_pnml name="Latest Downloads" html=1]--></h2>
+                          <h2><!--[gt text="Latest Downloads"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Downloads item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="Downloads" type="user" func="sublevel" cid=$item.cid start=0 newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -525,7 +525,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Weblinks) && $objectArray.Weblinks)]-->        
-                          <h2><!--[nl_pnml name="NewsletterTitleWeb Links" html=1]--></h2>
+                          <h2><!--[gt text="NewsletterTitleWeb Links"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Webinks item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="Web_Links" type="user" func="category" cid=$item.cat_id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -536,7 +536,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
    
                         <!--[if (isset($objectArray.Faq) && $objectArray.Faq)]-->        
-                          <h2><!--[nl_pnml name="Recently Added Questions" html=1]--></h2>
+                          <h2><!--[gt text="Recently Added Questions"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Faq item="item"]-->
                             <h3><a href="<!--[pnmodurl modname="FAQ" newlang=$nllang fqurl=true]-->"><!--[$item.question|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -546,7 +546,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
    
                         <!--[if (isset($objectArray.Quotes) && $objectArray.Quotes)]-->        
-                          <h2><!--[nl_pnml name="Recently Added Quotes" html=1]--></h2>
+                          <h2><!--[gt text="Recently Added Quotes"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Quotes item="item"]-->
                             <p><!--[$item.quote|pnvarprephtmldisplay|nl_encodetext]-->: <i><!--[$item.author|pnvarprephtmldisplay|nl_encodetext]--></i></p>
@@ -555,7 +555,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
    
                         <!--[if (isset($objectArray.Dizkus) && $objectArray.Dizkus)]-->        
-                          <h2><!--[nl_pnml name="Latest Forum Posts" html=1]--></h2>
+                          <h2><!--[gt text="Latest Forum Posts"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Dizkus item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true]-->"><!--[$item.topic_title]--></a></h3>
@@ -565,14 +565,14 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.TimeIt) && $objectArray.TimeIt)]-->    
-                          <h2><!--[nl_pnml name="Recently Added Events" html=1]--></h2>
+                          <h2><!--[gt text="Recently Added Events"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <table class="nl-calendar">
                             <thead>
                               <tr>
-                                <th><!--[nl_pnml name="Title" html=1]--></th>
-                                <th><!--[nl_pnml name="Begin" html=1]--></th>
-                                <th><!--[nl_pnml name="Description" html=1]--></th>
+                                <th><!--[gt text="Title"]--></th>
+                                <th><!--[gt text="Begin"]--></th>
+                                <th><!--[gt text="Description"]--></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -589,14 +589,14 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Addressbook) && $objectArray.Addressbook)]-->    
-                          <h2><!--[nl_pnml name="Contacts" html=1]--></h2>
+                          <h2><!--[gt name="Contacts"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <table class="nl-calendar">
                             <thead>
                               <tr>
-                                <th><!--[nl_pnml name="Name" html=1]--></th>
-                                <th><!--[nl_pnml name="Company" html=1]--></th>
-                                <th><!--[nl_pnml name="Time" html=1]--></th>
+                                <th><!--[gt name="Name"]--></th>
+                                <th><!--[gt name="Company"]--></th>
+                                <th><!--[gt name="Time"]--></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -613,14 +613,14 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Locations) && $objectArray.Locations)]-->    
-                          <h2><!--[nl_pnml name="Locations" html=1]--></h2>
+                          <h2><!--[gt text="Locations"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <table class="nl-calendar">
                             <thead>
                               <tr>
-                                <th><!--[nl_pnml name="Name" html=1]--></th>
-                                <th><!--[nl_pnml name="City" html=1]--></th>
-                                <th><!--[nl_pnml name="Time" html=1]--></th>
+                                <th><!--[gt text="Name"]--></th>
+                                <th><!--[gt text="City"]--></th>
+                                <th><!--[gt text="Time"]--></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -637,7 +637,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Pagemaster) && $objectArray.Pagemaster)]-->
-                          <h2><!--[nl_pnml name="Neue Publikationen" html=1]--></h2>
+                          <h2><!--[gt text="Neue Publikationen"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Pagemaster item="item" name="loop"]-->
                             <h3><a href="<!--[pnmodurl modname="Pagemaster" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
@@ -654,10 +654,10 @@ table.nl-calendar tbody tr th:hover {
                 <td valign="middle" align="left" class="footer">
                   <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/footer-bg.gif" width="600px" height="61px" />                 
                   <p>
-                    <!--[gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"]--> <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true]-->"><strong><!--[nl_pnml name="here!" html=1]--></strong></a>
+                    <!--[gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"]--> <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true]-->"><strong><!--[nl_pnml name="here!"]--></strong></a>
                   </p>
                   <p align="center">
-                    <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true]-->"><strong><!--[nl_pnml name="Link to the Newsletter Archive" html=1]--></strong></a>
+                    <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true]-->"><strong><!--[nl_pnml name="Link to the Newsletter Archive"]--></strong></a>
                   </p>
                   
                </td>
