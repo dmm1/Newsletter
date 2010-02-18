@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -186,7 +186,7 @@ class PNUser extends PNObject
                 $data['name']  = pnUserGetVar ('uname', $data['uid']);
                 $data['email'] = pnUserGetVar ('email', $data['uid']);
             } else {
-                LogUtil::registerError ('Logic Error: logged-in user does not have his subscription UID set!');
+                LogUtil::registerError (__('Logic Error: logged-in user does not have his subscription UID set!', $dom));
             }
         }
 

@@ -1,14 +1,13 @@
 <?php
-/**
+ /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * Support: http://support.zikula.de, http://community.zikula.org
  */
-
 
 class PNNewsletterSend extends PNObject 
 {
@@ -49,15 +48,15 @@ class PNNewsletterSend extends PNObject
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-            return LogUtil::registerError ('Unable to load class [user]');
+            return LogUtil::registerError (__('Unable to load class [user]', $dom));
         }
 
         if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
-            return LogUtil::registerError ('Unable to load array class [user]');
+            return LogUtil::registerError (__('Unable to load array class [user]', $dom));
         }
 
         if (!Loader::loadArrayClassFromModule('Newsletter', 'newsletter_data')) {
-            return LogUtil::registerError ('Unable to load array class [newsletter_data]');
+            return LogUtil::registerError (__('Unable to load array class [newsletter_data]', $dom));
         }
 
         $enable_multilingual       = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
@@ -70,7 +69,7 @@ class PNNewsletterSend extends PNObject
         $testsend                 = FormUtil::getPassedValue ('testsend', 0, 'GETPOST');                           // from admin->preview
 
         if (!$this->_objNewsletterData) {
-            return LogUtil::registerError ('No newsletter data to send');
+            return LogUtil::registerError (__('No newsletter data to send', $dom));
         }
 
         if ($testsend) {
@@ -79,7 +78,7 @@ class PNNewsletterSend extends PNObject
         } 
 
         if ($this->_objSendType == 'manual') {
-            return $this->_sendManual ();
+            return $this->_sendManual ($args);
         } 
      
         $this->_objSendType = 'api';
@@ -121,7 +120,7 @@ class PNNewsletterSend extends PNObject
             }
         }
 
-        LogUtil::registerStatus ("$nSent " . __('Newsletter(s) were successfully sent.', $dom));
+        LogUtil::registerStatus ("$nSent " . (__('Newsletter(s) were successfully sent.', $dom)));
         return true;
     }
 
@@ -137,14 +136,14 @@ class PNNewsletterSend extends PNObject
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0));
         $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            return __('Invalid admin_key received', $dom);
+            return (__('Invalid admin_key received', $dom));
         }
 
         // get elegible users
         $objectArray = new PNUserArray ();
         $users = $objectArray->getSendable ($this->_objLang, 'id');
         if (!$users) {
-            return __('No users were available to send the newsletter to', $dom);
+            return (__('No users were available to send the newsletter to', $dom));
         }
 
         $thisDay   = date ('w', time());

@@ -11,7 +11,7 @@
 
 
 if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-    return LogUtil::registerError ('Unable to load class [user] ... ');
+    return LogUtil::registerError (__('Unable to load class [user] ... ', $dom));
 }
 
 

@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -23,7 +23,7 @@ class PNNewsletterDataArray extends PNObjectArray
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
-            return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
+            return LogUtil::registerError (__('Unable to load array class for [plugin_base]', $dom), null, $url);
         }
 
         $data     = array();
@@ -43,7 +43,7 @@ class PNNewsletterDataArray extends PNObjectArray
 
         $data['nItems']   = 0;
         $data['nPlugins'] = count($plugins);
-        $data['title']    = pnConfigGetVar('sitename') . ' ' . __('Newsletter', $dom);
+        $data['title']    = pnConfigGetVar('sitename') . ' ' . (__('Newsletter', $dom));
         foreach ($plugins as $plugin) {
             $pluginClassName = 'plugin_' . $plugin;
             if (($class=Loader::loadArrayClassFromModule ('Newsletter', $pluginClassName))) {

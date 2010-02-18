@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -10,7 +10,7 @@
  */
 
 if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
-    return LogUtil::registerError ('Unable to load array class [user]');
+    return LogUtil::registerError (__('Unable to load array class [user]', $dom));
 }
 
 class PNImportArray extends PNUserArray
@@ -44,16 +44,16 @@ class PNImportArray extends PNUserArray
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0, 'GET'), 'GET');
         $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            $rc = LogUtil::registerError ('Invalid admin_key received');
+            $rc = LogUtil::registerError (__('Invalid admin_key received', $dom));
         }
 
         // validate input file format
         if ($rc) {
             if ($this->_format == 'xml' && strtolower(substr($this->_filename, -4)) != '.xml') {
-                $rc = LogUtil::registerError ("Invalid filename [$this->_filename]. ImportGeneric with format=XML must export to a XML filename");
+                $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ImportGeneric with format=XML must export to a XML filename", $dom));
             }
             if ($this->_format == 'csv' && strtolower(substr($this->_filename, -4)) != '.csv') {
-                $rc = LogUtil::registerError ("Invalid filename [$this->_filename]. ImportGeneric with format=CSV must export to a CSV filename");
+                $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ImportGeneric with format=CSV must export to a CSV filename", $dom));
             }
         }
 
@@ -68,11 +68,11 @@ class PNImportArray extends PNUserArray
             } elseif ($this->_format == 'csv') {
                 $data = $this->_importCSV ();
             } else {
-                $rc = LogUtil::registerError ("Invalid format [$this->_format] received in ImportGeneric");
+                $rc = LogUtil::registerError (__("Invalid format [$this->_format] received in ImportGeneric", $dom));
             }
 
             $cnt = count ($data);
-            LogUtil::registerStatus ("Read $cnt records for [newsletter_users]");
+            LogUtil::registerStatus (__("Read $cnt records for [newsletter_users]", $dom));
 
             foreach ($data as $dat) {
                 if (!is_numeric($dat['id'])) {
@@ -144,21 +144,21 @@ class PNImportArray extends PNUserArray
     {
         $fName = "modules/Newsletter/import/$this->_filename";
         if (!file_exists($fName)) {
-            return LogUtil::registerError ("Import file [$fName] does not exist");
+            return LogUtil::registerError (__("Import file [$fName] does not exist", $dom));
         }
         if (!is_readable($fName)) {
-            return LogUtil::registerError ("Import file [$fName] can not be read");
+            return LogUtil::registerError (__("Import file [$fName] can not be read", $dom));
         }
 
         $data  = file_get_contents($fName);
         $lines = explode ("\n", $data);
         if (!$lines) {
-            return LogUtil::registerError ("Empty string read from import file [$fName]");
+            return LogUtil::registerError (__("Empty string read from import file [$fName]", $dom));
         }
 
         $colArray = DBUtil::getColumnsArray('newsletter_users');
         if (!$colArray) {
-            $rc = LogUtil::registerError ("Unable to load column array for [newsletter_users]");
+            $rc = LogUtil::registerError (__("Unable to load column array for [newsletter_users]", $dom));
         }
 
         $data       = array();
@@ -182,25 +182,25 @@ class PNImportArray extends PNUserArray
     {
         $fName = "modules/Newsletter/import/$this->_filename";
         if (!file_exists($fName)) {
-            return LogUtil::registerError ("Import file [$fName] does not exist");
+            return LogUtil::registerError (__("Import file [$fName] does not exist", $dom));
         }
         if (!is_readable($fName)) {
-            return LogUtil::registerError ("Import file [$fName] can not be read");
+            return LogUtil::registerError (__("Import file [$fName] can not be read", $dom));
         }
 
         $xmlString = file_get_contents ($fName);
         if (!$xmlString) {
-            return LogUtil::registerError ("Empty string read from import file [$this->_filename]");
+            return LogUtil::registerError (__("Empty string read from import file [$this->_filename]", $dom));
         }
 
         $xml = simplexml_load_string ($xmlString);
         if (!$xml) {
-            return LogUtil::registerError ("XML Parse failed from import file [$this->_filename]");
+            return LogUtil::registerError (__("XML Parse failed from import file [$this->_filename]", $dom));
         }
 
         $colArray = DBUtil::getColumnsArray('newsletter_users');
         if (!$colArray) {
-            $rc = LogUtil::registerError ("Unable to load column array for [newsletter_users]");
+            $rc = LogUtil::registerError (__("Unable to load column array for [newsletter_users]", $dom));
         }
 
         // try to get the root node

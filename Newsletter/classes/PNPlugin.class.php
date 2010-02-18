@@ -22,7 +22,7 @@ class PNPlugin extends PNObject
     function save ()
     {
         if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
-            return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
+            return LogUtil::registerError (__('Unable to load array class for [plugin_base]', $dom), null, $url);
         }
 
         $pluginClasses = NewsletterUtil::getPluginClasses();

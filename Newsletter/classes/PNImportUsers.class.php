@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -32,7 +32,7 @@ class PNImportUsers extends PNObject
         $zkUsers = pnModAPIFunc ('Users', 'user', 'getall');
 
         if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
-            return LogUtil::registerError ('Unable to load array class [user]');
+            return LogUtil::registerError (__('Unable to load array class [user]', $dom));
         }
 
         $objArray = new PNUserArray ();
@@ -65,7 +65,7 @@ class PNImportUsers extends PNObject
             }
         }
 
-        LogUtil::registerStatus (_fn('Import finished %s user was imported.', 'Import finished %s users were imported.', $count, $dom));
+        LogUtil::registerStatus (__('Import finished %s user was imported.', 'Import finished %s users were imported.', $count, $dom));
         return true;
     }
 }

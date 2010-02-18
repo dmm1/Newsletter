@@ -67,7 +67,7 @@ function Newsletter_adminform_delete ()
     $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
 
     if (!$id) {
-        return LogUtil::registerError ('Invalid [id] parameter received', null, $url);
+        return LogUtil::registerError (__('Invalid [id] parameter received', $dom), null, $url);
     }
 
     if (!SecurityUtil::confirmAuthKey('Newsletter')) {
@@ -75,13 +75,13 @@ function Newsletter_adminform_delete ()
     }
 
     if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
-        return LogUtil::registerError ("Unable to load class [$ot]", null, $url);
+        return LogUtil::registerError (__("Unable to load class [$ot]", $dom), null, $url);
     }
 
     $object = new $class ();
     $data   = $object->get ($id);
     if (!$data) {
-        return LogUtil::registerError ("Unable to retrieve object of type [$ot] with id [$id]", null, $url);
+        return LogUtil::registerError (__("Unable to retrieve object of type [$ot] with id [$id]", $dom), null, $url);
     }
 
     $object->delete ();
@@ -102,7 +102,7 @@ function Newsletter_adminform_edit ()
 
     if (!$ot) {
         $url = pnModURL('Newsletter', 'admin', 'main');
-        return LogUtil::registerError ('Invalid [ot] parameter received', null, $url);
+        return LogUtil::registerError (__('Invalid [ot] parameter received', $dom), null, $url);
     }
 
     $args = array();
@@ -117,11 +117,11 @@ function Newsletter_adminform_edit ()
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return LogUtil::registerError ('Unable to load class [newsletter_util]', null, $url);
+        return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom), null, $url);
     }
 
     if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
-        return LogUtil::registerError ("Unable to load class [$ot]", null, $url);
+        return LogUtil::registerError (__("Unable to load class [$ot]", $dom), null, $url);
     }
 
     $object = new $class ();

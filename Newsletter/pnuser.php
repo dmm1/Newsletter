@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -28,7 +28,7 @@ function Newsletter_user_main ()
     $pnRender->assign ('startpage', $startpage);
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return 'Unable to load class [newsletter_util]';
+        return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom));
     }
 
     $data = array();
@@ -74,11 +74,11 @@ function Newsletter_user_detail () // hardcoded for archives
     $url = pnModURL('Newsletter', 'user', 'main');
 
     if (!$id) {
-        return LogUtil::registerError ('Invalid [id] parameter received', null, $url);
+        return LogUtil::registerError (__('Invalid [id] parameter received', $dom), null, $url);
     }
 
     if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
-        return LogUtil::registerError ("Unable to load class [$ot]", null, $url);
+        return LogUtil::registerError (__("Unable to load class [$ot]", $dom), null, $url);
     }
 
     $obj  = new PNArchive ();
@@ -98,11 +98,11 @@ function Newsletter_user_send ()
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return 'Unable to load class [newsletter_util]';
+        return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom));
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_send')) {
-        return 'Unable to load class [newsletter_send]';
+        return LogUtil::registerError (__('Unable to load class [newsletter_send]', $dom));
     }
 
     $scheduled = (int)FormUtil::getPassedValue ('scheduled', 0);

@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -31,7 +31,7 @@ class PNArchive extends PNObject
         }
 
         DBUtil::truncateTable ($this->_objType);
-        LogUtil::setStatusMessage ('Archives flushed.');
+        LogUtil::setStatusMessage (__('Archives flushed.', $dom));
 
         $this->_objData = $data;
         return $this->_objData;

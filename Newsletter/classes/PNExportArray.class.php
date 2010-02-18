@@ -10,7 +10,7 @@
  */
 
 if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
-    return LogUtil::registerError ('Unable to load array class [user]');
+    return LogUtil::registerError (__('Unable to load array class [user]'), $dom);
 }
 
 class PNExportArray extends PNUserArray
@@ -45,17 +45,17 @@ class PNExportArray extends PNUserArray
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0), 'GETPOST');
         $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            $rc = LogUtil::registerError ('Invalid admin_key received');
+            $rc = LogUtil::registerError (__('Invalid admin_key received', $dom));
         }
 
         // validate output file format
         if ($rc) {
             if ($this->_outputToFile) {
                 if ($this->_format == 'xml' && strtolower(substr($this->_filename, -4)) != '.xml') {
-                    $rc = LogUtil::registerError ("Invalid filename [$this->_filename]. ExportGeneric with format=XML must export to a XML filename");
+                    $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ExportGeneric with format=XML must export to a XML filename", $dom));
                 }
                 if ($this->_format == 'csv' && strtolower(substr($this->_filename, -4)) != '.csv') {
-                    $rc = LogUtil::registerError ("Invalid filename [$this->_filename]. ExportGeneric with format=CSV must export to a CSV filename");
+                    $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ExportGeneric with format=CSV must export to a CSV filename", $dom));
                 }
             }
         }
@@ -64,7 +64,7 @@ class PNExportArray extends PNUserArray
         if ($rc) {
             $colArray = DBUtil::getColumnsArray('newsletter_users');
             if (!$colArray) {
-                $rc = LogUtil::registerError ("Unable to load column array for [newsletter_users]");
+                $rc = LogUtil::registerError __(("Unable to load column array for [newsletter_users]", $dom));
             }
         }
 
@@ -77,11 +77,11 @@ class PNExportArray extends PNUserArray
             } elseif ($this->_format == 'csv') {
                 $txt = $this->_exportCSV ($cnt);
             } else {
-                $rc = LogUtil::registerError ("Invalid format [$this->_format] received in ExportGeneric");
+                $rc = LogUtil::registerError (__("Invalid format [$this->_format] received in ExportGeneric", $dom));
             }
 
             $bytes = strlen($txt);
-            LogUtil::registerStatus ("Exported $cnt records ($bytes bytes) for ot [newsletter_users]");
+            LogUtil::registerStatus (__("Exported $cnt records ($bytes bytes) for ot [newsletter_users]", $dom));
             $filename = 'modules/Newsletter/export/NewsletterUsers.' . $this->_format;
 
 
@@ -95,17 +95,17 @@ class PNExportArray extends PNUserArray
                     header("Content-disposition: attachment; filename=data.csv");
                     print $txt;
                 } else {
-                    exit ("Invalid format [$format] recevied in saveResult ... exiting");
+                    exit (__("Invalid format [$format] recevied in saveResult ... exiting", $dom));
                 }
                 exit();
             } else {
                 $fp = fopen ($filename, 'w');
                 if (!$fp) {
-                    LogUtil::registerError ("Error opening file [$filename] for writing");
+                    LogUtil::registerError (__("Error opening file [$filename] for writing", $dom));
                 } else {
                     $rc = fwrite ($fp, $txt);
                     if (!$rc) {
-                        LogUtil::registerError ("Error writing to file [$filename]");
+                        LogUtil::registerError (__("Error writing to file [$filename]", $dom));
                     }
                 fclose ($fp);
                 }
@@ -167,7 +167,7 @@ class PNExportArray extends PNUserArray
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-            LogUtil::registerError ('Unable to load class [user] ... disabling input post-processing for array class');
+            LogUtil::registerError (__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
         } else {
             $obj = new PNUser ();
             foreach ($data as $k=>$v) {

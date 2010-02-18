@@ -22,7 +22,7 @@ class PNUserArray extends PNObjectArray
         $this->_objSort          = 'cr_date DESC';
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-            LogUtil::registerError ('Unable to load class [user] ... disabling auto-join for array class');
+            LogUtil::registerError (__('Unable to load class [user] ... disabling auto-join for array class', $dom));
         } else {
             $obj = new PNUser ();
             $this->_objJoin = $obj->_objJoin;
@@ -125,7 +125,7 @@ class PNUserArray extends PNObjectArray
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-            LogUtil::registerError ('Unable to load class [user] ... disabling input post-processing for array class');
+            LogUtil::registerError (__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
         } else {
             $obj = new PNUser ();
             foreach ($data as $k=>$v) {

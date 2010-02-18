@@ -18,7 +18,7 @@ function Newsletter_userform_edit ()
     $url      = pnModURL('Newsletter', 'user', 'main', array('ot'=>$otTarget));
 
     if (!$ot) {
-        return LogUtil::registerError ('Invalid [ot] parameter received', null, $url);
+        return LogUtil::registerError (__('Invalid [ot] parameter received', $dom), null, $url);
     }
 
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
@@ -30,7 +30,7 @@ function Newsletter_userform_edit ()
     }
 
     if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
-        return LogUtil::registerError ("Unable to load class [$ot]", null, $url);
+        return LogUtil::registerError (__("Unable to load class [$ot]", $dom), null, $url);
     }
 
     $object = new $class ();

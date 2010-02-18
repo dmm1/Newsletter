@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -68,11 +68,11 @@ function Newsletter_admin_edit ()
     $url = pnModURL('Newsletter', 'admin', 'main');
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return LogUtil::registerError ('Unable to load class [newsletter_util]', null, $url);
+        return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom), null, $url);
     }
 
     if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
-        return LogUtil::registerError ("Unable to load class for [$ot]", null, $url);
+        return LogUtil::registerError (__("Unable to load class for [$ot]", $dom), null, $url);
     }
 
     $object = new $class ();
@@ -80,7 +80,7 @@ function Newsletter_admin_edit ()
         $data = $object->get ($id);
         if (!$data) {
             $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
-            return LogUtil::registerError ("Unable to retrieve object of type [$ot] with id [$id]", null, $url);
+            return LogUtil::registerError (__("Unable to retrieve object of type [$ot] with id [$id]", $dom), null, $url);
         }
     } else {
         $data = array();
@@ -134,7 +134,7 @@ function Newsletter_admin_view ()
     SessionUtil::setVar ('pagesize', $pagesize, '/Newsletter');
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return LogUtil::registerError ('Unable to load class [newsletter_util]', null, $url);
+        return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom), null, $url);
     }
 
     $pnRender = pnRender::getInstance('Newsletter', false);
@@ -188,7 +188,7 @@ function Newsletter_admin_view ()
                 $content = str_replace(array("\n","\r"),'<br />',$content);
                 break;
             default:
-                $content = "Invalid format [$format] specified ...";
+                $content = 'Invalid format [$format] specified...';
         }
         $testsend = FormUtil::getPassedValue ('testsend', 0, 'POST');
         $testsendEmail = FormUtil::getPassedValue ('testsend_email', 0, 'POST');
@@ -201,7 +201,7 @@ function Newsletter_admin_view ()
                 $rc = LogUtil::registerError (__('The email address you entered does not seem to be valid', $dom));
             }
             if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_send')) {
-                $rc = LogUtil::registerError ('Unable to load class [newsletter_send]', null, $url);
+                $rc = LogUtil::registerError (__('Unable to load class [newsletter_send]', $dom), null, $url);
             }
 
             if ($rc) {
@@ -232,11 +232,11 @@ function Newsletter_admin_modifyarchive ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::modifyarchive', '::', ACCESS_ADMIN)) {
-        return __("You don't have Admin rights for this module", $dom);
+        return LogUtil::registerPermissionError();
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return 'Unable to load class [newsletter_util]';
+        return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom));
     }
 
     $preferences_archive = pnModGetVar('Newsletter');
@@ -253,7 +253,7 @@ function Newsletter_admin_archive_edit ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerError (__("You don't have Admin rights for this module", $dom), null, $url);
+        return LogUtil::registerPermissionError();
     }
 
     $ot  = 'user';
@@ -261,11 +261,11 @@ function Newsletter_admin_archive_edit ()
     $url = pnModURL('Newsletter', 'admin', 'main');
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return LogUtil::registerError ('Unable to load class [newsletter_util]', null, $url);
+        return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom), null, $url);
     }
 
     if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
-        return LogUtil::registerError ("Unable to load class for [$ot]", null, $url);
+        return LogUtil::registerError (__('Unable to load class for [$ot]', $dom), null, $url);
     }
 
     $object = new $class ();
@@ -273,7 +273,7 @@ function Newsletter_admin_archive_edit ()
         $data = $object->get ($id);
         if (!$data) {
             $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
-            return LogUtil::registerError ("Unable to retrieve object of type [$ot] with id [$id]", null, $url);
+            return LogUtil::registerError (__("Unable to retrieve object of type [$ot] with id [$id]", $dom), null, $url);
         }
     } else {
         $data = array();
