@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-17 09:39+0000\n"
+"POT-Creation-Date: 2010-02-18 11:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -196,10 +196,10 @@ msgstr ""
 #: pntemplates/newsletter_admin_view_userimport.html:40
 #: pntemplates/newsletter_admin_view_userimport.html:42
 #: pntemplates/newsletter_admin_view_plugin.html:15
-#: pntemplates/newsletter_admin_view_user.html:70
-#: pntemplates/newsletter_admin_view_user.html:161
-#: pntemplates/newsletter_user_view_options.html:51
-#: pntemplates/newsletter_admin_form_user.html:67
+#: pntemplates/newsletter_admin_view_user.html:75
+#: pntemplates/newsletter_admin_view_user.html:166
+#: pntemplates/newsletter_user_view_options.html:52
+#: pntemplates/newsletter_admin_form_user.html:68
 msgid "Active"
 msgstr ""
 
@@ -211,10 +211,10 @@ msgstr ""
 #: classes/NewsletterUtil.class.php:86
 #: pntemplates/newsletter_admin_view_userimport.html:46
 #: pntemplates/newsletter_admin_view_userimport.html:48
-#: pntemplates/newsletter_admin_view_user.html:71
-#: pntemplates/newsletter_admin_view_user.html:166
+#: pntemplates/newsletter_admin_view_user.html:76
+#: pntemplates/newsletter_admin_view_user.html:171
 #: pntemplates/newsletter_user_inc_info.html:54
-#: pntemplates/newsletter_admin_form_user.html:63
+#: pntemplates/newsletter_admin_form_user.html:64
 msgid "Approved"
 msgstr ""
 
@@ -244,64 +244,64 @@ msgid "1 Year"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:128
-#: pntemplates/newsletter_admin_view_user.html:206
+#: pntemplates/newsletter_admin_view_user.html:203
 #: pntemplates/newsletter_user_inc_info.html:31
 msgid "Weekly"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:129
-#: pntemplates/newsletter_admin_view_user.html:207
+#: pntemplates/newsletter_admin_view_user.html:204
 #: pntemplates/newsletter_user_inc_info.html:33
 msgid "Monthly"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:130
-#: pntemplates/newsletter_admin_view_user.html:208
+#: pntemplates/newsletter_admin_view_user.html:205
 #: pntemplates/newsletter_user_inc_info.html:35
 msgid "Every 2 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:131
-#: pntemplates/newsletter_admin_view_user.html:209
+#: pntemplates/newsletter_admin_view_user.html:206
 #: pntemplates/newsletter_user_inc_info.html:37
 msgid "Every 3 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:132
-#: pntemplates/newsletter_admin_view_user.html:210
+#: pntemplates/newsletter_admin_view_user.html:207
 #: pntemplates/newsletter_user_inc_info.html:39
 msgid "Every 6 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:133
-#: pntemplates/newsletter_admin_view_user.html:211
+#: pntemplates/newsletter_admin_view_user.html:208
 #: pntemplates/newsletter_user_inc_info.html:41
 msgid "Every 9 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:134
-#: pntemplates/newsletter_admin_view_user.html:212
+#: pntemplates/newsletter_admin_view_user.html:209
 #: pntemplates/newsletter_user_inc_info.html:43
 msgid "Yearly"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:148
 #: pntemplates/newsletter_admin_view_preview.html:34
-#: pntemplates/newsletter_admin_view_user.html:200
+#: pntemplates/newsletter_admin_view_user.html:197
 #: pntemplates/newsletter_user_inc_info.html:18
 msgid "Text"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:149
 #: pntemplates/newsletter_admin_view_preview.html:35
-#: pntemplates/newsletter_admin_view_user.html:201
+#: pntemplates/newsletter_admin_view_user.html:198
 #: pntemplates/newsletter_user_inc_info.html:20
 msgid "HTML"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:150
 #: pntemplates/newsletter_admin_view_preview.html:36
-#: pntemplates/newsletter_admin_view_user.html:202
+#: pntemplates/newsletter_admin_view_user.html:199
 #: pntemplates/newsletter_user_inc_info.html:22
 msgid "Text with Link to Archive"
 msgstr ""
@@ -432,28 +432,28 @@ msgid "Zikula User Import Configuration"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_userimport.html:32
-#: pntemplates/newsletter_admin_view_user.html:68
-#: pntemplates/newsletter_admin_view_user.html:151
+#: pntemplates/newsletter_admin_view_user.html:73
+#: pntemplates/newsletter_admin_view_user.html:156
 #: pntemplates/newsletter_user_view_main.html:50
 #: pntemplates/newsletter_user_view_options.html:32
-#: pntemplates/newsletter_admin_form_user.html:47
+#: pntemplates/newsletter_admin_form_user.html:48
 msgid "Type"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_userimport.html:36
-#: pntemplates/newsletter_admin_view_user.html:69
-#: pntemplates/newsletter_admin_view_user.html:156
+#: pntemplates/newsletter_admin_view_user.html:74
+#: pntemplates/newsletter_admin_view_user.html:161
 #: pntemplates/newsletter_user_inc_info.html:29
 #: pntemplates/newsletter_user_view_main.html:57
 #: pntemplates/newsletter_user_view_options.html:40
 #: pntemplates/newsletter_user_view_options.html:45
-#: pntemplates/newsletter_admin_form_user.html:53
-#: pntemplates/newsletter_admin_form_user.html:58
+#: pntemplates/newsletter_admin_form_user.html:54
+#: pntemplates/newsletter_admin_form_user.html:59
 msgid "Frequency"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_userimport.html:46
-#: pntemplates/newsletter_admin_view_user.html:237
+#: pntemplates/newsletter_admin_view_user.html:234
 msgid "Users"
 msgstr ""
 
@@ -504,6 +504,8 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_modifyconfig.html:87
 #: pntemplates/newsletter_admin_view_preview.html:38
 #: pntemplates/newsletter_admin_view_preview.html:39
+#: pntemplates/newsletter_user_view_options.html:54
+#: pntemplates/newsletter_user_view_options.html:55
 msgid "Help"
 msgstr ""
 
@@ -522,17 +524,17 @@ msgid "Plugin"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_plugin.html:14
-#: pntemplates/newsletter_user_view_archive.html:34
+#: pntemplates/newsletter_user_view_archive.html:41
 msgid "# of Items"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_plugin.html:18
-#: pntemplates/newsletter_admin_view_user.html:184
+#: pntemplates/newsletter_admin_view_user.html:40
 msgid "Yes"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_plugin.html:19
-#: pntemplates/newsletter_admin_view_user.html:185
+#: pntemplates/newsletter_admin_view_user.html:41
 msgid "No"
 msgstr ""
 
@@ -595,8 +597,8 @@ msgstr ""
 #: pntemplates/newsletter_user_view_tos.html:4
 #: pntemplates/newsletter_user_view_main.html:63
 #: pntemplates/newsletter_user_view_main.html:65
-#: pntemplates/newsletter_user_view_options.html:56
-#: pntemplates/newsletter_user_view_options.html:57
+#: pntemplates/newsletter_user_view_options.html:60
+#: pntemplates/newsletter_user_view_options.html:61
 msgid "Terms of Service"
 msgstr ""
 
@@ -632,35 +634,35 @@ msgstr ""
 msgid "Past Archives"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_archive.html:18
+#: pntemplates/newsletter_user_view_archive.html:17
 msgid "ID"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_archive.html:22
+#: pntemplates/newsletter_user_view_archive.html:23
 msgid "Date"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_archive.html:26
+#: pntemplates/newsletter_user_view_archive.html:29
 #: pntemplates/newsletter_admin_view_preview.html:16
-#: pntemplates/newsletter_admin_view_user.html:66
-#: pntemplates/newsletter_admin_view_user.html:146
+#: pntemplates/newsletter_admin_view_user.html:71
+#: pntemplates/newsletter_admin_view_user.html:151
 #: pntemplates/newsletter_user_view_main.html:43
 #: pntemplates/newsletter_user_view_options.html:25
-#: pntemplates/newsletter_admin_form_user.html:42
+#: pntemplates/newsletter_admin_form_user.html:43
 msgid "Language"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_archive.html:30
+#: pntemplates/newsletter_user_view_archive.html:35
 msgid "# of Plugins"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_archive.html:38
+#: pntemplates/newsletter_user_view_archive.html:47
 msgid "Length"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_archive.html:40
-#: pntemplates/newsletter_admin_view_user.html:179
-#: pntemplates/newsletter_admin_view_user.html:231
+#: pntemplates/newsletter_user_view_archive.html:51
+#: pntemplates/newsletter_admin_view_user.html:184
+#: pntemplates/newsletter_admin_view_user.html:228
 msgid "Action"
 msgstr ""
 
@@ -715,7 +717,7 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_modifyconfig.html:109
 #: pntemplates/newsletter_admin_form_modifyconfig.html:113
 #: pntemplates/newsletter_admin_form_modifyconfig.html:117
-#: pntemplates/newsletter_admin_view_user.html:235
+#: pntemplates/newsletter_admin_view_user.html:232
 #: pntemplates/newsletter_admin_form_modifyarchive.html:16
 #: pntemplates/newsletter_admin_form_modifyarchive.html:20
 #: pntemplates/newsletter_admin_form_modifyarchive.html:24
@@ -957,11 +959,11 @@ msgid "Welcome New Members"
 msgstr ""
 
 #: pntemplates/newsletter_template_html.html:446
-#: pntemplates/newsletter_admin_view_user.html:136
+#: pntemplates/newsletter_admin_view_user.html:141
 #: pntemplates/newsletter_user_inc_info.html:6
 #: pntemplates/newsletter_email_admin_notify.html:5
-#: pntemplates/newsletter_admin_form_user.html:27
-#: pntemplates/newsletter_admin_form_user.html:32
+#: pntemplates/newsletter_admin_form_user.html:28
+#: pntemplates/newsletter_admin_form_user.html:33
 msgid "Username"
 msgstr ""
 
@@ -970,6 +972,7 @@ msgid "Register Date"
 msgstr ""
 
 #: pntemplates/newsletter_template_html.html:460
+#: pntemplates/newsletter_template_html.html:640
 #: pntemplates/newsletter_template_text.html:71
 msgid "Recently Added Publications"
 msgstr ""
@@ -1038,10 +1041,6 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: pntemplates/newsletter_template_html.html:640
-msgid "Neue Publikationen"
-msgstr ""
-
 #: pntemplates/newsletter_admin_view_preview.html:3
 msgid "Preview your Newsletter"
 msgstr ""
@@ -1076,71 +1075,69 @@ msgid "Data"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_user.html:38
-#: pntemplates/newsletter_admin_view_user.html:189
 msgid "Edit"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_user.html:39
-#: pntemplates/newsletter_admin_view_user.html:190
 msgid "Delete"
 msgstr ""
 
 #: pntemplates/newsletter_admin_view_user.html:42
-msgid "Usersearch / Add a User"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:46
-msgid "Search"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:53
-msgid "Add a user"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:116
-msgid "Display # of users per page:"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:131
-msgid "User ID"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:141
-#: pntemplates/newsletter_user_inc_info.html:11
-#: pntemplates/newsletter_email_admin_notify.html:9
-#: pntemplates/newsletter_admin_form_user.html:37
-msgid "Email"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:171
-msgid "Last sent"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:176
-msgid "Joindate"
-msgstr ""
-
-#: pntemplates/newsletter_admin_view_user.html:186
 msgid "Not send yet"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:187
+#: pntemplates/newsletter_admin_view_user.html:43
 msgid "Are you sure you wish to change the active status for this user?"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:188
+#: pntemplates/newsletter_admin_view_user.html:44
 msgid "Are you sure you wish to change the approved status for this user?"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:195
+#: pntemplates/newsletter_admin_view_user.html:47
+msgid "Usersearch / Add a User"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:51
+msgid "Search"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:58
+msgid "Add a user"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:121
+msgid "Display # of users per page:"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:136
+msgid "User ID"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:146
+#: pntemplates/newsletter_user_inc_info.html:11
+#: pntemplates/newsletter_email_admin_notify.html:9
+#: pntemplates/newsletter_admin_form_user.html:38
+msgid "Email"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:176
+msgid "Last sent"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:181
+msgid "Joindate"
+msgstr ""
+
+#: pntemplates/newsletter_admin_view_user.html:192
 msgid "no User ID"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:233
+#: pntemplates/newsletter_admin_view_user.html:230
 msgid "Update last sent date?"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:237
+#: pntemplates/newsletter_admin_view_user.html:234
 msgid "Send to"
 msgstr ""
 
@@ -1236,14 +1233,18 @@ msgid "Change your subscription settings"
 msgstr ""
 
 #: pntemplates/newsletter_user_view_options.html:21
-#: pntemplates/newsletter_admin_form_user.html:24
+#: pntemplates/newsletter_admin_form_user.html:25
 msgid "Newsletter Configuration"
 msgstr ""
 
 #: pntemplates/newsletter_user_view_options.html:46
-#: pntemplates/newsletter_admin_form_user.html:59
+#: pntemplates/newsletter_admin_form_user.html:60
 msgid ""
 "User-based frequency changes have been disabled by the site administrator"
+msgstr ""
+
+#: pntemplates/newsletter_user_view_options.html:56
+msgid "Here you can activate or suspend yor subscription"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:15

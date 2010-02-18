@@ -1,5 +1,8 @@
 <!--[include file="newsletter_user_std_header.html"]-->
 
+<!--[add_additional_header header='<script type="text/javascript" src="javascript/ajax/prototype.js"></script>']-->
+<!--[add_additional_header header='<script type="text/javascript" src="javascript/ajax/scriptaculous.js?load=effects"></script>']-->
+
 <!--[newsletter_selector_frequency assign="frequency_values" return_keys=true]-->
 <!--[newsletter_selector_frequency assign="frequency_output" return_keys=false]-->
 <!--[newsletter_selector_type assign="type_values" return_keys=true]-->
@@ -42,15 +45,19 @@
       </div>
     <!--[else]-->
       <div class="z-formrow">
-        <label for="user_frequency"><!--[gt text="Frequency"]--></label>
-        <span id="user_frequency"><!--[gt text="User-based frequency changes have been disabled by the site administrator"]--></span>
-      </div>
+        <label for="user_frequency"><!--[gt text="Frequency"]-->:</label>
+        <span class="z-informationmsg" id="user_frequency"><!--[gt text="User-based frequency changes have been disabled by the site administrator"]--></span>
+      
+	  </div>
     <!--[/if]-->
 
     <div class="z-formrow">
       <label for="user_active"><b><!--[gt text="Active"]--></b></label>
       <input type="checkbox" id="user_active" name="user[active]" value="1" <!--[if ($user.active)]-->checked="checked"<!--[/if]--> />
-    </div>
+	  <a href="#" title="<!--[gt text="Help"]-->" onclick="Effect.toggle('hint-1','BLIND'); return false;">(?)</a>
+      <span id="help_subject" style="display:none"><!--[gt text="Help"]--></span>
+      <div id="hint-1" class="z-informationmsg" style="display:none;"><!--[gt text="Here you can activate or suspend yor subscription"]--></div>
+	</div>
 
     <div class="z-formrow">
       <label for="user_tos"><!--[gt text="Terms of Service"]--></label>
