@@ -7,7 +7,7 @@
 <!--[pnmodgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual"]-->
 <!--[pnconfiggetvar assign="defaultlang" name="language" default="eng"]-->
 
-<!--[pnml assign="pageTitle" name="Edit a User"]-->
+<!--[pnml assign="pageTitle" name="Edit a User / Add a User"]-->
 <!--[pnpagesetvar name="title" value=$pageTitle]-->
 
   <h2><!--[$pageTitle]--></h2>
@@ -19,6 +19,7 @@
       <input type="hidden" name="user[id]" value="<!--[$user.id]-->" />
     <!--[/if]-->
     <input type="hidden" name="user[uid]" value="<!--[$user.uid]-->" />
+
 
     <fieldset>
       <legend><!--[gt text="Newsletter Configuration"]--></legend>
@@ -68,7 +69,7 @@
         <input type="checkbox" id="user_active" name="user[active]" value="1" <!--[if ($user.active)]-->checked="checked"<!--[/if]--> />
       </div>
       <!--[include file="newsletter_inc_form_actions.html"]-->
-    </fieldset>
+	</fieldset>
   </form>
 
 <!--[include file="newsletter_std_footer.html"]-->
