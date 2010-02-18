@@ -123,7 +123,10 @@
       <div class="z-formrow">
         <label for="max_send_per_hour"><!--[gt text="Maximum Newsletters to send per hour"]--></label>
         <input id="max_send_per_hour" name="preferences[max_send_per_hour]" type="text" value="<!--[$preferences.max_send_per_hour]-->" style="width:30px;" /> <em><!--[gt text="'x' number of emails"]--> <!--[gt text="(0 [Zero] = no Restriction)"]--> </em>
-      </div>
+        <a href="#" title="<!--[gt text="Help"]-->" onclick="Effect.toggle('hint-9','BLIND'); return false;">(?)</a>
+        <span id="help_send_from" style="display:none"><!--[gt text="Help"]--></span>
+        <div id="hint-9" class="z-informationmsg" style="display:none;"><!--[gt text="Use this feature to avoid sending restrictions from your hoster!"]--></div>		
+	  </div>
       <div class="z-formrow">
         <label for="admin_key"><!--[gt text="Adminkey"]--></label>
         <input id="admin_key" name="preferences[admin_key]" type="text" value="<!--[$preferences.admin_key]-->" /> <em><!--[gt text="used to authenticate cron/batchprocessing"]--></em>

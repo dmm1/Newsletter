@@ -14,8 +14,13 @@
 
 <!--[pnmodgetvar assign="text" module="Newsletter" name="message" default=""]-->
 
-  <h3><!--[gt text="Message"]--></h3>
-  <h4><!--[gt text="Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter."]--></h4>
+  <h2><!--[gt text="Message"]--></h2>
+   <div class="z-formnote z-warningmsg">
+        <p>
+          <strong><!--[gt text="Attention"]-->:</strong><br />
+		   <!--[gt text="Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter!"]-->
+        </p>
+      </div>
 
   <!--[pnmodgetvar assign="newmessage" module="Newsletter" name="message"]-->
   <form class="z-adminform" name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
