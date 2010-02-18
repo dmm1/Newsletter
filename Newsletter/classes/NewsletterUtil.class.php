@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -13,8 +13,8 @@ class NewsletterUtil
 {
     function encodeText ($string)
     {
-        $search  = array ('Ä', 'ä', 'Ö', 'ö', 'Ü', 'ü' );
-        $replace = array ('&Auml;', '&auml;', '&Ouml;', '&ouml;', '&Uuml;', '&uuml;' );
+        $search  = array ('Ä', 'ä', 'Ö', 'ö', 'Ü', 'ü', 'À', 'Á', 'Â', 'Ã', 'Å', 'Æ' );
+        $replace = array ('&Auml;', '&auml;', '&Ouml;', '&ouml;', '&Uuml;', '&uuml;', '&Agrave;', '&Aacute;', '&Acirc;', '&Atilde;', '&Aring;', '&AElig;'  );
 
         return str_replace ($search, $replace, $string);
     }

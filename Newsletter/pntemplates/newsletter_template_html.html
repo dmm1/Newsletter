@@ -327,7 +327,7 @@ table.nl-calendar tbody tr th:hover {
             <table width="600" border="0" cellspacing="0" cellpadding="0" class="bg2">
               <tr>
                 <td class="nl-header" align="left">
-                  <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/header.gif" width="600px" height="101px" />                 
+                  <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/header.gif" width="600" height="101" />                 
                     <h2 id="nl-title-2"><!--[$objectArray.title]--></h2>
                  
                 </td>
@@ -346,7 +346,7 @@ table.nl-calendar tbody tr th:hover {
                         <!--[if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)]-->
                           <h2><!--[gt text="Message from the Site Administrators"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <p><!--[$objectArray.NewsletterMessage|pnvarprephtmldisplay|nl_encodetext]--></p>
+                          <p><!--[$objectArray.NewsletterMessage|pnvarprephtmldisplay]--></p>
                           <br />
                         <!--[/if]-->
  
@@ -354,8 +354,8 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Special Announcements"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.AdminMessages item="item" name="loop"]-->
-                            <b><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></b>
-                            <p><!--[$item.content|pnvarprephtmldisplay|nl_encodetext]--></p>
+                            <b><!--[$item.title|pnvarprephtmldisplay]--></b>
+                            <p><!--[$item.content|pnvarprephtmldisplay]--></p>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -365,9 +365,9 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="News"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.News item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->" title="<!--[$item.title|pnvarprephtmldisplay|nl_encodetext]-->"><img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" /><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
+                            <h3><a href="<!--[pnmodurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->" title="<!--[$item.title|pnvarprephtmldisplay]-->"><img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" /><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
                             <br />
-                            <p><!--[$item.hometext|pnvarprephtmldisplay|nl_encodetext|url_check]--></p>
+                            <p><!--[$item.hometext|pnvarprephtmldisplay|url_check]--></p>
                             <p class="more"><a href="<!--[pnmodurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->"><!--[nl_pnml name="read more"]--></a> <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
@@ -378,9 +378,9 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="News"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.PagEd item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="PagEd" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->" title="<!--[$item.title|pnvarprephtmldisplay|nl_encodetext]-->"><img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" /><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
+                            <h3><a href="<!--[pnmodurl modname="PagEd" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->" title="<!--[$item.title|pnvarprephtmldisplay]-->"><img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" /><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
                             <br />
-                            <p><!--[$item.hometext|pnvarprephtmldisplay|nl_encodetext|url_check]--></p>
+                            <p><!--[$item.hometext|pnvarprephtmldisplay|url_check]--></p>
                             <p class="more"><a href="<!--[pnmodurl modname="PagEd" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true]-->"><!--[nl_pnml name="read more"]--></a> <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
@@ -391,8 +391,8 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Recently Added Products"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.ZWebstore item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="zWebstore" type="user" func="detail" id=$item.id newlang=$nllang fqurl=true]-->" title="<!--[$item.name|pnvarprephtmldisplay|nl_encodetext]-->"><!--[$item.name|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
-                            <!--[$item.description|pnvarprephtmldisplay|nl_encodetext|url_check]-->
+                            <h3><a href="<!--[pnmodurl modname="zWebstore" type="user" func="detail" id=$item.id newlang=$nllang fqurl=true]-->" title="<!--[$item.name|pnvarprephtmldisplay]-->"><!--[$item.name|pnvarprephtmldisplay]--></a></h3>
+                            <!--[$item.description|pnvarprephtmldisplay|url_check]-->
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -408,8 +408,8 @@ table.nl-calendar tbody tr th:hover {
                             </tr>
                             <!--[foreach from=$objectArray.CrpVideo item="item" name="loop"]-->
                               <tr>
-                                <td><h3><a href="<!--[pnmodurl modname="crpVideo" type="user" func="display" videoid=$item.crpvideos_videoid newlang=$nllang fqurl=true]-->" title=$item.crpvideos_title><!--[$item.crpvideos_title|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
-                                <td><div><!--[$item.crpvideos_content|pnvarprephtmldisplay|nl_encodetext]--></div></td>
+                                <td><h3><a href="<!--[pnmodurl modname="crpVideo" type="user" func="display" videoid=$item.crpvideos_videoid newlang=$nllang fqurl=true]-->" title=$item.crpvideos_title><!--[$item.crpvideos_title|pnvarprephtmldisplay]--></a></h3></td>
+                                <td><div><!--[$item.crpvideos_content|pnvarprephtmldisplay]--></div></td>
                               </tr>
                             <!--[/foreach]-->
                           </table>
@@ -428,10 +428,10 @@ table.nl-calendar tbody tr th:hover {
                             </tr>
                             <!--[foreach from=$objectArray.crpCalendar item="item" name="loop"]-->
                               <tr>
-                                <td><h3><a href="<!--[pnmodurl modname="crpCalendar" type="user" func="display" eventid=$item.crpcalendar_enventid newlang=$nllang fqurl=true]-->" title=$item.crpcalendar_title><!--[$item.crpcalendar_title|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
-                                <td><div><!--[$item.crpcalendar_event_text|pnvarprephtmldisplay|nl_encodetext]--></div></td>
-                                <td><div><!--[$item.crpcalendar_location|pnvarprephtmldisplay|nl_encodetext]--></div></td>
-                                <td><div><!--[$item.crpcalendar_start_date|pnvarprephtmldisplay|nl_encodetext]--></div></td>
+                                <td><h3><a href="<!--[pnmodurl modname="crpCalendar" type="user" func="display" eventid=$item.crpcalendar_enventid newlang=$nllang fqurl=true]-->" title=$item.crpcalendar_title><!--[$item.crpcalendar_title|pnvarprephtmldisplay]--></a></h3></td>
+                                <td><div><!--[$item.crpcalendar_event_text|pnvarprephtmldisplay]--></div></td>
+                                <td><div><!--[$item.crpcalendar_location|pnvarprephtmldisplay]--></div></td>
+                                <td><div><!--[$item.crpcalendar_start_date|pnvarprephtmldisplay]--></div></td>
                               </tr>
                             <!--[/foreach]-->
                           </table>
@@ -448,7 +448,7 @@ table.nl-calendar tbody tr th:hover {
                             </tr>
                             <!--[foreach from=$objectArray.NewMembers item="item" name="loop"]-->
                               <tr>
-                                <td><h3><a href="<!--[pnmodurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true]-->"><!--[$item.uname|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
+                                <td><h3><a href="<!--[pnmodurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true]-->"><!--[$item.uname|pnvarprephtmldisplay]--></a></h3></td>
                                 <td><!--[$item.user_regdate]--></td>
                               </tr>
                             <!--[/foreach]-->
@@ -460,7 +460,7 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Recently Added Publications"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Pagesetter item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="Pagesetter" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
+                            <h3><a href="<!--[pnmodurl modname="Pagesetter" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -470,7 +470,7 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="New Content Items"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Content item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="Content" type="user" func="view" pid=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
+                            <h3><a href="<!--[pnmodurl modname="Content" type="user" func="view" pid=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -480,8 +480,8 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Recently Added Documents"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Pages item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="Pages" type="user" func="display" pid=$item.pageid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
-                            <div><!--[$item.content|pnvarprephtmldisplay|nl_encodetext]--></div>
+                            <h3><a href="<!--[pnmodurl modname="Pages" type="user" func="display" pid=$item.pageid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
+                            <div><!--[$item.content|pnvarprephtmldisplay]--></div>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -491,8 +491,8 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Recently Added Reviews"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Reviews item="item"]-->
-                            <h3><a href="<!--[pnmodurl modname="Reviews" type="user" func="display" id=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
-                            <div><!--[$item.text|pnvarprephtmldisplay|nl_encodetext]--></div>
+                            <h3><a href="<!--[pnmodurl modname="Reviews" type="user" func="display" id=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
+                            <div><!--[$item.text|pnvarprephtmldisplay]--></div>
                           <!--[/foreach]-->
                           <br />
                         <!--[/if]-->
@@ -502,12 +502,12 @@ table.nl-calendar tbody tr th:hover {
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Mediashare item="item" name="loop"]-->
                             <!--[if isset($item.album.title)]-->
-                              <h3><a href="<!--[pnmodurl modname="mediashare" type="user" func="view" aid=$item.album.id newlang=$nllang fqurl=true]-->"><!--[$item.album.title|pnvarprephtmldisplay|nl_encodetext]--></a>: <a href="<!--[pnmodurl modname="mediashare" type="user" func="browse" aid=$item.album.id mid=$item.media.id newlang=$nllang fqurl=true]-->"><!--[$item.media.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
+                              <h3><a href="<!--[pnmodurl modname="mediashare" type="user" func="view" aid=$item.album.id newlang=$nllang fqurl=true]-->"><!--[$item.album.title|pnvarprephtmldisplay]--></a>: <a href="<!--[pnmodurl modname="mediashare" type="user" func="browse" aid=$item.album.id mid=$item.media.id newlang=$nllang fqurl=true]-->"><!--[$item.media.title|pnvarprephtmldisplay]--></a></h3>
                               <!--[pnmodgetvar assign="get" module="Newsletter" name="mediasharePath"]-->                         
                               <img src="<!--[$get]--><!--[$item.mainMediaItem.thumbnailRef]-->" class="thumbnail" />
                             <!--[else]-->
                               <!--[pnmodgetvar assign="get" module="Newsletter" name="mediasharePath"]-->
-                              <h3><img src="<!--[$get]--><!--[$item.mainMediaItem.thumbnailRef]-->" class="thumbnail" /><a href="<!--[pnmodurl modname="mediashare" type="user" func="view" aid=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3><!--[if $item.summary]--> <!--[$item.summary]--><!--[/if]-->
+                              <h3><img src="<!--[$get]--><!--[$item.mainMediaItem.thumbnailRef]-->" class="thumbnail" /><a href="<!--[pnmodurl modname="mediashare" type="user" func="view" aid=$item.id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3><!--[if $item.summary]--> <!--[$item.summary]--><!--[/if]-->
                             <!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -517,8 +517,8 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Latest Downloads"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Downloads item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="Downloads" type="user" func="sublevel" cid=$item.cid start=0 newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
-                            <div><!--[$item.description|nl_encodetext]--></div>
+                            <h3><a href="<!--[pnmodurl modname="Downloads" type="user" func="sublevel" cid=$item.cid start=0 newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
+                            <div><!--[$item.description]--></div>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -528,8 +528,8 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="NewsletterTitleWeb Links"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Webinks item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="Web_Links" type="user" func="category" cid=$item.cat_id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
-                            <div><!--[$item.description|pnvarprephtmldisplay|nl_encodetext]--></div>
+                            <h3><a href="<!--[pnmodurl modname="Web_Links" type="user" func="category" cid=$item.cat_id newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
+                            <div><!--[$item.description|pnvarprephtmldisplay]--></div>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -539,8 +539,8 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Recently Added Questions"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Faq item="item"]-->
-                            <h3><a href="<!--[pnmodurl modname="FAQ" newlang=$nllang fqurl=true]-->"><!--[$item.question|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
-                            <p><!--[$item.answer|pnvarprephtmldisplay|nl_encodetext]--></i></p>
+                            <h3><a href="<!--[pnmodurl modname="FAQ" newlang=$nllang fqurl=true]-->"><!--[$item.question|pnvarprephtmldisplay]--></a></h3>
+                            <p><!--[$item.answer|pnvarprephtmldisplay]--></i></p>
                           <!--[/foreach]-->
                           <br />
                         <!--[/if]-->
@@ -549,7 +549,7 @@ table.nl-calendar tbody tr th:hover {
                           <h2><!--[gt text="Recently Added Quotes"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Quotes item="item"]-->
-                            <p><!--[$item.quote|pnvarprephtmldisplay|nl_encodetext]-->: <i><!--[$item.author|pnvarprephtmldisplay|nl_encodetext]--></i></p>
+                            <p><!--[$item.quote|pnvarprephtmldisplay]-->: <i><!--[$item.author|pnvarprephtmldisplay]--></i></p>
                           <!--[/foreach]-->
                           <br />
                         <!--[/if]-->
@@ -578,9 +578,9 @@ table.nl-calendar tbody tr th:hover {
                             <tbody>
                               <!--[foreach from=$objectArray.TimeIt item="item" name="loop"]-->
                                 <tr>
-                                  <td><h3><a href="<!--[pnmodurl modname="TimeIt" type="user" func="event" id=$item.id fqurl=true]-->" title=<!--[$item.title|pnvarprephtmldisplay|nl_encodetext]-->><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
-                                  <td><div><!--[$item.startDate|pnvarprephtmldisplay|nl_encodetext]--></div></td>
-                                  <td><div><!--[$item.text|pnvarprephtmldisplay|nl_encodetext]--></div></td>                        
+                                  <td><h3><a href="<!--[pnmodurl modname="TimeIt" type="user" func="event" id=$item.id fqurl=true]-->" title=<!--[$item.title|pnvarprephtmldisplay]-->><!--[$item.title|pnvarprephtmldisplay]--></a></h3></td>
+                                  <td><div><!--[$item.startDate|pnvarprephtmldisplay]--></div></td>
+                                  <td><div><!--[$item.text|pnvarprephtmldisplay]--></div></td>                        
                                 </tr>
                               <!--[/foreach]-->
                             </tbody>
@@ -602,9 +602,9 @@ table.nl-calendar tbody tr th:hover {
                             <tbody>
                               <!--[foreach from=$objectArray.Addressbook item="item" name="loop"]-->
                                 <tr>
-                                  <td><h3><a href="<!--[pnmodurl modname="Addressbook" type="user" func="detail" id=$item.id fqurl=true]-->" title=<!--[$item.name|pnvarprephtmldisplay|nl_encodetext]-->><!--[$item.sortname|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
-                                  <td><div><!--[$item.company|pnvarprephtmldisplay|nl_encodetext]--></div></td>
-                                  <td><div><!--[$item.lu_date|pnvarprephtmldisplay|nl_encodetext]--></div></td>                        
+                                  <td><h3><a href="<!--[pnmodurl modname="Addressbook" type="user" func="detail" id=$item.id fqurl=true]-->" title=<!--[$item.name|pnvarprephtmldisplay]-->><!--[$item.sortname|pnvarprephtmldisplay]--></a></h3></td>
+                                  <td><div><!--[$item.company|pnvarprephtmldisplay]--></div></td>
+                                  <td><div><!--[$item.lu_date|pnvarprephtmldisplay]--></div></td>                        
                                 </tr>
                               <!--[/foreach]-->
                             </tbody>
@@ -626,9 +626,9 @@ table.nl-calendar tbody tr th:hover {
                             <tbody>
                               <!--[foreach from=$objectArray.Locations item="item" name="loop"]-->
                                 <tr>
-                                  <td><h3><a href="<!--[pnmodurl modname="Locations" type="user" func="display" locationid=$item.locationid fqurl=true]-->" title=<!--[$item.name|pnvarprephtmldisplay|nl_encodetext]-->><!--[$item.name|pnvarprephtmldisplay|nl_encodetext]--></a></h3></td>
-                                  <td><div><!--[$item.city|pnvarprephtmldisplay|nl_encodetext]--></div></td>
-                                  <td><div><!--[$item.lu_date|pnvarprephtmldisplay|nl_encodetext]--></div></td>                        
+                                  <td><h3><a href="<!--[pnmodurl modname="Locations" type="user" func="display" locationid=$item.locationid fqurl=true]-->" title=<!--[$item.name|pnvarprephtmldisplay]-->><!--[$item.name|pnvarprephtmldisplay]--></a></h3></td>
+                                  <td><div><!--[$item.city|pnvarprephtmldisplay]--></div></td>
+                                  <td><div><!--[$item.lu_date|pnvarprephtmldisplay]--></div></td>                        
                                 </tr>
                               <!--[/foreach]-->
                             </tbody>
@@ -637,10 +637,10 @@ table.nl-calendar tbody tr th:hover {
                         <!--[/if]-->
 
                         <!--[if (isset($objectArray.Pagemaster) && $objectArray.Pagemaster)]-->
-                          <h2><!--[gt text="Neue Publikationen"]--></h2>
+                          <h2><!--[gt text="Recently Added Publications"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <!--[foreach from=$objectArray.Pagemaster item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="Pagemaster" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay|nl_encodetext]--></a></h3>
+                            <h3><a href="<!--[pnmodurl modname="Pagemaster" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
                             <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
@@ -652,7 +652,7 @@ table.nl-calendar tbody tr th:hover {
               </tr>
               <tr>
                 <td valign="middle" align="left" class="footer">
-                  <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/footer-bg.gif" width="600px" height="61px" />                 
+                  <img src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/footer-bg.gif" width="600" height="61" />                 
                   <p>
                     <!--[gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"]--> <a href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true]-->"><strong><!--[nl_pnml name="here!"]--></strong></a>
                   </p>
