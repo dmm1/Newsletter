@@ -39,7 +39,7 @@ class PNNewsletterSend extends PNObject
     }
 
 
-    // doesn't save use info but allows us to use the standard API through Newsletter_userform_edit()
+    // doesn't save user info but allows us to use the standard API through Newsletter_userform_edit()
     function save ($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
@@ -79,7 +79,11 @@ class PNNewsletterSend extends PNObject
 
         if ($this->_objSendType == 'manual') {
             return $this->_sendManual ($args);
-        } 
+        }
+		
+		if ($this->_objSendType == 'manual_archive') {
+            return $this->_sendManual_archive ($args);
+        }
      
         $this->_objSendType = 'api';
         return $this->_sendAPI ($args);
@@ -97,7 +101,7 @@ class PNNewsletterSend extends PNObject
     }
 
 
-    function _sendManual ()
+    function _sendManual ($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         $data = $this->_objData;
@@ -124,7 +128,49 @@ class PNNewsletterSend extends PNObject
         return true;
     }
 
-
+	function _sendManual_archive ($args=array()) // send Newsletter & make an archive
+    {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+        $data = $this->_objData;
+        if (!$data) {
+            return LogUtil::registerError (__('No users were selected to send the newsletter to', $dom));
+        }
+		if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
+            return LogUtil::registerError (__('Unable to load class [archive]', $dom));
+        }
+        $objectArray = new PNUserArray ();
+        $userIDs     = implode (',', $data);
+        $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
+        $users       = $objectArray->get ($where, 'id');
+        if (!$users) {
+            return LogUtil::registerError (__('No users were available to send the newsletter to', $dom));
+        }
+		$thisDay   = date ('w', time());
+		$sendPerRequest = pnModGetVar ('Newsletter', 'send_per_request', 5);
+        
+		// check archives for new archive time
+        $matched = false;
+        $archiveObj = new PNArchive ();
+        $archive    = $archiveObj->getRecent ();
+        if ($archive) {
+            $newArchiveTime = $archive['date'];                        
+            $matched = true;
+        } else {
+            $newArchiveTime = $today;
+            $matched = false;
+        }
+		
+        $nSent   = 0;
+        foreach ($users as $user) {
+            if ($this->_sendNewsletter ($user, $newArchive, $newArchiveTime)) {
+                $nSent++;
+            }
+        }
+		
+        LogUtil::registerStatus ("$nSent " . (__('Newsletter(s) were successfully sent.', $dom)));
+        return true;		
+    }
+	
     function _sendAPI ($args=array()) // API
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');

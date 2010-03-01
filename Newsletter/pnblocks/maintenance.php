@@ -41,7 +41,7 @@ function Newsletter_maintenanceblock_display($blockinfo)
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
         return 'Unable to load class [newsletter_util]';
     }
-
+	
 	$disable_auto = pnModGetVar ('Newsletter', 'disable_auto', 0);
 	if ($disable_auto) {
 	

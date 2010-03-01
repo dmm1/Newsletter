@@ -151,6 +151,7 @@ function Newsletter_adminform_modifyarchive ()
         LogUtil::registerError (__('You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!', $dom));
     }
     pnModSetVar ('Newsletter', 'show_archive', $prefs['show_archive']  ? 1  : 0);
+    pnModSetVar ('Newsletter', 'create_archive', $prefs['create_archive']  ? 1  : 0);
     pnModSetVar ('Newsletter', 'show_id',      $prefs['show_id']       ? 1  : 0);
     pnModSetVar ('Newsletter', 'show_lang',    $prefs['show_lang']     ? 1  : 0);
     pnModSetVar ('Newsletter', 'show_objects', $prefs['show_objects']  ? 1  : 0);
