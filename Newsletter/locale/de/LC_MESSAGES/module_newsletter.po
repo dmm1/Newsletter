@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-18 14:40+0000\n"
-"PO-Revision-Date: 2010-02-18 15:11+0100\n"
+"POT-Creation-Date: 2010-02-18 15:57+0000\n"
+"PO-Revision-Date: 2010-02-18 17:16+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,6 @@ msgstr ""
 #: pnadmin.php:42
 #: pnadmin.php:63
 #: pnadmin.php:103
-#: pnadmin.php:235
-#: pnadmin.php:256
 #: pnadminform.php:17
 #: pnadminform.php:62
 #: pnadminform.php:96
@@ -30,6 +28,10 @@ msgstr "Sie haben keine Administrator-Rechte für dieses Modul!"
 
 #: pnadmin.php:21
 #: pnadmin.php:46
+#: pnadmin.php:71
+#: pnadmin.php:137
+#: pnadmin.php:264
+#: pnadminform.php:120
 msgid "Unable to load class [newsletter_util]"
 msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
 
@@ -42,11 +44,23 @@ msgstr "Ihre Testnachricht konnte nicht gesendet werden, da keine E-Mail Adresse
 msgid "The email address you entered does not seem to be valid"
 msgstr "Die eingegebene E-Mail Adresse scheint nicht gültig zu sein."
 
+#: pnadmin.php:204
+#, fuzzy
+msgid "Unable to load class [newsletter_send]"
+msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
+
 #: pnadmin.php:212
 msgid "Failure sending the test email"
 msgstr "Ein Fehler beim Senden der Testnachricht ist aufgetreten."
 
+#: pnadmin.php:268
+#, fuzzy
+msgid "Unable to load class for [$ot]"
+msgstr "Klasse [userl] konnte nicht geladen werden!"
+
+#. ! module URL must be in lowercase and different to displayname
 #: pnversion.php:15
+#: pnversion.php:18
 #: pnaccountapi.php:21
 #: classes/PNNewsletterDataArray.class.php:46
 #: pntemplates/newsletter_user_std_header.html:6
@@ -59,11 +73,6 @@ msgstr "Newsletter"
 #: pnversion.php:16
 msgid "Newsletter module"
 msgstr "Newsletter Modul"
-
-#. ! module URL must be in lowercase and different to displayname
-#: pnversion.php:18
-msgid "newsletter"
-msgstr "Newsletter"
 
 #: pnuserapi.php:19
 #: pnuserapi.php:35
@@ -80,6 +89,11 @@ msgstr "Fehler, die Eingabe konnte nicht verarbeitet werden, bitte überprüfen!
 msgid "You don't have Overview rights for this module."
 msgstr "Sie besitzen keine Rechte, um das Modul aufrufen zu können."
 
+#: pnuser.php:77
+#: pnadminform.php:70
+msgid "Invalid [id] parameter received"
+msgstr ""
+
 #: pnuser.php:97
 msgid "You don't have Read rights for this module."
 msgstr ""
@@ -87,6 +101,11 @@ msgstr ""
 #: pnadminform.php:30
 #: pnadminform.php:151
 msgid "You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!"
+msgstr ""
+
+#: pnadminform.php:105
+#: pnuserform.php:21
+msgid "Invalid [ot] parameter received"
 msgstr ""
 
 #: pnadminapi.php:20
@@ -157,6 +176,10 @@ msgstr ""
 msgid "Newsletter Subscription Cancelled"
 msgstr ""
 
+#: classes/PNUser.class.php:189
+msgid "Logic Error: logged-in user does not have his subscription UID set!"
+msgstr ""
+
 #: classes/PNUser.class.php:208
 msgid "This email address is already subscribed to our newsletter!"
 msgstr ""
@@ -177,17 +200,37 @@ msgstr ""
 msgid "Newsletter Subscription"
 msgstr ""
 
+#: classes/PNShowPreviewArray.class.php:14
+#, fuzzy
+msgid "Unable to load class [newsletter_data] ... "
+msgstr "Array [newsletter_data] konnte nicht geladen werden!"
+
 #: classes/PNImportUsers.class.php:29
+#: classes/PNExportArray.class.php:48
+#: classes/PNImportArray.class.php:47
 #: classes/PNNewsletterSend.class.php:139
 msgid "Invalid admin_key received"
 msgstr ""
 
+#: classes/PNImportUsers.class.php:35
+#: classes/PNExportArray.class.php:13
+#: classes/PNImportArray.class.php:13
+#: classes/PNNewsletterSend.class.php:55
+msgid "Unable to load array class [user]"
+msgstr "Array [userl] konnte nicht geladen werden!"
+
 #: classes/PNImportUsers.class.php:68
 #, php-format
 msgid "Import finished %s user was imported."
-msgid_plural "Import finished %s users were imported."
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
+
+#: classes/PNUserOptions.class.php:14
+#: classes/PNUserApproved.class.php:14
+#: classes/PNUserDelete.class.php:14
+#: classes/PNUserActive.class.php:14
+#, fuzzy
+msgid "Unable to load class [user] ... "
+msgstr "Klasse [userl] konnte nicht geladen werden!"
 
 #: classes/PNUserOptions.class.php:30
 msgid "Your subscription newsletter options have been updated"
@@ -200,6 +243,17 @@ msgstr ""
 #: classes/PNArchive.class.php:34
 msgid "Archives flushed."
 msgstr ""
+
+#: classes/PNExportArray.class.php:170
+#: classes/PNUserArray.class.php:128
+msgid "Unable to load class [user] ... disabling input post-processing for array class"
+msgstr ""
+
+#: classes/PNImportArray.class.php:161
+#: classes/PNImportArray.class.php:203
+#, fuzzy
+msgid "Unable to load column array for [newsletter_users]"
+msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
 
 #: classes/NewsletterUtil.class.php:68
 #: classes/NewsletterUtil.class.php:83
@@ -369,10 +423,6 @@ msgstr ""
 msgid "Unable to load class [user]"
 msgstr "Klasse [userl] konnte nicht geladen werden!"
 
-#: classes/PNNewsletterSend.class.php:55
-msgid "Unable to load array class [user]"
-msgstr "Array [userl] konnte nicht geladen werden!"
-
 #: classes/PNNewsletterSend.class.php:59
 msgid "Unable to load array class [newsletter_data]"
 msgstr "Array [newsletter_data] konnte nicht geladen werden!"
@@ -403,8 +453,18 @@ msgstr ""
 msgid "Unable to load array class [archive]"
 msgstr ""
 
+#: classes/PNPlugin.class.php:25
+#: classes/PNNewsletterDataArray.class.php:26
+#, fuzzy
+msgid "Unable to load array class for [plugin_base]"
+msgstr "Array [userl] konnte nicht geladen werden!"
+
 #: classes/PNNewsletterDataArray.class.php:41
 msgid "Please use the language selector in the Filter section to select the language you with to send your newsletter for"
+msgstr ""
+
+#: classes/PNUserArray.class.php:25
+msgid "Unable to load class [user] ... disabling auto-join for array class"
 msgstr ""
 
 #: classes/PNUserActive.class.php:36
@@ -1315,3 +1375,5 @@ msgstr ""
 msgid "Database"
 msgstr ""
 
+#~ msgid "newsletter"
+#~ msgstr "Newsletter"
