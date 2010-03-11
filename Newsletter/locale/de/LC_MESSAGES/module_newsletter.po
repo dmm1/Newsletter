@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-18 15:57+0000\n"
-"PO-Revision-Date: 2010-02-18 17:16+0100\n"
+"POT-Creation-Date: 2010-03-11 13:08+0000\n"
+"PO-Revision-Date: 2010-03-11 13:46+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,10 @@ msgstr "Sie haben keine Administrator-Rechte für dieses Modul!"
 #: pnadmin.php:46
 #: pnadmin.php:71
 #: pnadmin.php:137
+#: pnadmin.php:239
 #: pnadmin.php:264
+#: pnuser.php:31
+#: pnuser.php:101
 #: pnadminform.php:120
 msgid "Unable to load class [newsletter_util]"
 msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
@@ -45,18 +48,17 @@ msgid "The email address you entered does not seem to be valid"
 msgstr "Die eingegebene E-Mail Adresse scheint nicht gültig zu sein."
 
 #: pnadmin.php:204
-#, fuzzy
+#: pnuser.php:105
 msgid "Unable to load class [newsletter_send]"
-msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
+msgstr "Klasse [newsletter_send] konnte nicht geladen werden!"
 
 #: pnadmin.php:212
 msgid "Failure sending the test email"
 msgstr "Ein Fehler beim Senden der Testnachricht ist aufgetreten."
 
 #: pnadmin.php:268
-#, fuzzy
 msgid "Unable to load class for [$ot]"
-msgstr "Klasse [userl] konnte nicht geladen werden!"
+msgstr "Klasse [$ot] konnte nicht geladen werden!"
 
 #. ! module URL must be in lowercase and different to displayname
 #: pnversion.php:15
@@ -201,14 +203,13 @@ msgid "Newsletter Subscription"
 msgstr ""
 
 #: classes/PNShowPreviewArray.class.php:14
-#, fuzzy
 msgid "Unable to load class [newsletter_data] ... "
-msgstr "Array [newsletter_data] konnte nicht geladen werden!"
+msgstr "Klasse [newsletter_data] konnte nicht geladen werden!"
 
 #: classes/PNImportUsers.class.php:29
 #: classes/PNExportArray.class.php:48
 #: classes/PNImportArray.class.php:47
-#: classes/PNNewsletterSend.class.php:139
+#: classes/PNNewsletterSend.class.php:185
 msgid "Invalid admin_key received"
 msgstr ""
 
@@ -228,9 +229,8 @@ msgstr ""
 #: classes/PNUserApproved.class.php:14
 #: classes/PNUserDelete.class.php:14
 #: classes/PNUserActive.class.php:14
-#, fuzzy
 msgid "Unable to load class [user] ... "
-msgstr "Klasse [userl] konnte nicht geladen werden!"
+msgstr "Klasse [user] konnte nicht geladen werden!"
 
 #: classes/PNUserOptions.class.php:30
 msgid "Your subscription newsletter options have been updated"
@@ -251,9 +251,8 @@ msgstr ""
 
 #: classes/PNImportArray.class.php:161
 #: classes/PNImportArray.class.php:203
-#, fuzzy
 msgid "Unable to load column array for [newsletter_users]"
-msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
+msgstr "Daten für [newsletter_users] konnte nicht geladen werden!"
 
 #: classes/NewsletterUtil.class.php:68
 #: classes/NewsletterUtil.class.php:83
@@ -274,7 +273,7 @@ msgstr ""
 #: pntemplates/newsletter_admin_view_userimport.html:42
 #: pntemplates/newsletter_admin_view_plugin.html:15
 #: pntemplates/newsletter_admin_view_user.html:75
-#: pntemplates/newsletter_admin_view_user.html:166
+#: pntemplates/newsletter_admin_view_user.html:170
 #: pntemplates/newsletter_user_view_options.html:55
 #: pntemplates/newsletter_admin_form_user.html:68
 msgid "Active"
@@ -289,7 +288,7 @@ msgstr ""
 #: pntemplates/newsletter_admin_view_userimport.html:46
 #: pntemplates/newsletter_admin_view_userimport.html:48
 #: pntemplates/newsletter_admin_view_user.html:76
-#: pntemplates/newsletter_admin_view_user.html:171
+#: pntemplates/newsletter_admin_view_user.html:175
 #: pntemplates/newsletter_user_inc_info.html:54
 #: pntemplates/newsletter_admin_form_user.html:64
 msgid "Approved"
@@ -321,64 +320,64 @@ msgid "1 Year"
 msgstr "1 Jahr"
 
 #: classes/NewsletterUtil.class.php:128
-#: pntemplates/newsletter_admin_view_user.html:203
+#: pntemplates/newsletter_admin_view_user.html:207
 #: pntemplates/newsletter_user_inc_info.html:31
 msgid "Weekly"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:129
-#: pntemplates/newsletter_admin_view_user.html:204
+#: pntemplates/newsletter_admin_view_user.html:208
 #: pntemplates/newsletter_user_inc_info.html:33
 msgid "Monthly"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:130
-#: pntemplates/newsletter_admin_view_user.html:205
+#: pntemplates/newsletter_admin_view_user.html:209
 #: pntemplates/newsletter_user_inc_info.html:35
 msgid "Every 2 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:131
-#: pntemplates/newsletter_admin_view_user.html:206
+#: pntemplates/newsletter_admin_view_user.html:210
 #: pntemplates/newsletter_user_inc_info.html:37
 msgid "Every 3 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:132
-#: pntemplates/newsletter_admin_view_user.html:207
+#: pntemplates/newsletter_admin_view_user.html:211
 #: pntemplates/newsletter_user_inc_info.html:39
 msgid "Every 6 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:133
-#: pntemplates/newsletter_admin_view_user.html:208
+#: pntemplates/newsletter_admin_view_user.html:212
 #: pntemplates/newsletter_user_inc_info.html:41
 msgid "Every 9 Months"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:134
-#: pntemplates/newsletter_admin_view_user.html:209
+#: pntemplates/newsletter_admin_view_user.html:213
 #: pntemplates/newsletter_user_inc_info.html:43
 msgid "Yearly"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:148
 #: pntemplates/newsletter_admin_view_preview.html:34
-#: pntemplates/newsletter_admin_view_user.html:197
+#: pntemplates/newsletter_admin_view_user.html:201
 #: pntemplates/newsletter_user_inc_info.html:18
 msgid "Text"
 msgstr ""
 
 #: classes/NewsletterUtil.class.php:149
 #: pntemplates/newsletter_admin_view_preview.html:35
-#: pntemplates/newsletter_admin_view_user.html:198
+#: pntemplates/newsletter_admin_view_user.html:202
 #: pntemplates/newsletter_user_inc_info.html:20
 msgid "HTML"
 msgstr "HTML"
 
 #: classes/NewsletterUtil.class.php:150
 #: pntemplates/newsletter_admin_view_preview.html:36
-#: pntemplates/newsletter_admin_view_user.html:199
+#: pntemplates/newsletter_admin_view_user.html:203
 #: pntemplates/newsletter_user_inc_info.html:22
 msgid "Text with Link to Archive"
 msgstr ""
@@ -431,33 +430,36 @@ msgstr "Array [newsletter_data] konnte nicht geladen werden!"
 msgid "No newsletter data to send"
 msgstr "Keine Daten zum senden vorhanden!"
 
-#: classes/PNNewsletterSend.class.php:105
+#: classes/PNNewsletterSend.class.php:109
+#: classes/PNNewsletterSend.class.php:136
 msgid "No users were selected to send the newsletter to"
 msgstr ""
 
-#: classes/PNNewsletterSend.class.php:113
+#: classes/PNNewsletterSend.class.php:117
 #: classes/PNNewsletterSend.class.php:146
+#: classes/PNNewsletterSend.class.php:192
 msgid "No users were available to send the newsletter to"
 msgstr ""
 
-#: classes/PNNewsletterSend.class.php:123
-#: classes/PNNewsletterSend.class.php:209
+#: classes/PNNewsletterSend.class.php:127
+#: classes/PNNewsletterSend.class.php:170
+#: classes/PNNewsletterSend.class.php:255
 msgid "Newsletter(s) were successfully sent."
 msgstr ""
 
-#: classes/PNNewsletterSend.class.php:132
+#: classes/PNNewsletterSend.class.php:139
+#: classes/PNNewsletterSend.class.php:178
 msgid "Unable to load class [archive]"
 msgstr ""
 
-#: classes/PNNewsletterSend.class.php:279
+#: classes/PNNewsletterSend.class.php:325
 msgid "Unable to load array class [archive]"
 msgstr ""
 
 #: classes/PNPlugin.class.php:25
 #: classes/PNNewsletterDataArray.class.php:26
-#, fuzzy
 msgid "Unable to load array class for [plugin_base]"
-msgstr "Array [userl] konnte nicht geladen werden!"
+msgstr "Array Klasse für [plugin_base] konnte nicht geladen werden!"
 
 #: classes/PNNewsletterDataArray.class.php:41
 msgid "Please use the language selector in the Filter section to select the language you with to send your newsletter for"
@@ -528,7 +530,7 @@ msgstr ""
 
 #: pntemplates/newsletter_admin_view_userimport.html:32
 #: pntemplates/newsletter_admin_view_user.html:73
-#: pntemplates/newsletter_admin_view_user.html:156
+#: pntemplates/newsletter_admin_view_user.html:160
 #: pntemplates/newsletter_user_view_main.html:50
 #: pntemplates/newsletter_user_view_options.html:35
 #: pntemplates/newsletter_admin_form_user.html:48
@@ -537,7 +539,7 @@ msgstr "Typ"
 
 #: pntemplates/newsletter_admin_view_userimport.html:36
 #: pntemplates/newsletter_admin_view_user.html:74
-#: pntemplates/newsletter_admin_view_user.html:161
+#: pntemplates/newsletter_admin_view_user.html:165
 #: pntemplates/newsletter_user_inc_info.html:29
 #: pntemplates/newsletter_user_view_main.html:57
 #: pntemplates/newsletter_user_view_options.html:43
@@ -548,7 +550,7 @@ msgid "Frequency"
 msgstr "Frequenz"
 
 #: pntemplates/newsletter_admin_view_userimport.html:46
-#: pntemplates/newsletter_admin_view_user.html:234
+#: pntemplates/newsletter_admin_view_user.html:238
 msgid "Users"
 msgstr ""
 
@@ -734,7 +736,7 @@ msgstr ""
 #: pntemplates/newsletter_user_view_archive.html:29
 #: pntemplates/newsletter_admin_view_preview.html:16
 #: pntemplates/newsletter_admin_view_user.html:71
-#: pntemplates/newsletter_admin_view_user.html:151
+#: pntemplates/newsletter_admin_view_user.html:155
 #: pntemplates/newsletter_user_view_main.html:43
 #: pntemplates/newsletter_user_view_options.html:28
 #: pntemplates/newsletter_admin_form_user.html:43
@@ -750,8 +752,8 @@ msgid "Length"
 msgstr ""
 
 #: pntemplates/newsletter_user_view_archive.html:51
-#: pntemplates/newsletter_admin_view_user.html:184
-#: pntemplates/newsletter_admin_view_user.html:228
+#: pntemplates/newsletter_admin_view_user.html:188
+#: pntemplates/newsletter_admin_view_user.html:232
 msgid "Action"
 msgstr ""
 
@@ -804,7 +806,7 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_modifyconfig.html:109
 #: pntemplates/newsletter_admin_form_modifyconfig.html:113
 #: pntemplates/newsletter_admin_form_modifyconfig.html:117
-#: pntemplates/newsletter_admin_view_user.html:232
+#: pntemplates/newsletter_admin_view_user.html:236
 #: pntemplates/newsletter_admin_form_modifyarchive.html:15
 #: pntemplates/newsletter_admin_form_modifyarchive.html:19
 #: pntemplates/newsletter_admin_form_modifyarchive.html:23
@@ -812,7 +814,8 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_modifyarchive.html:31
 #: pntemplates/newsletter_admin_form_modifyarchive.html:35
 #: pntemplates/newsletter_admin_form_modifyarchive.html:39
-#: pntemplates/newsletter_admin_form_modifyarchive.html:54
+#: pntemplates/newsletter_admin_form_modifyarchive.html:43
+#: pntemplates/newsletter_admin_form_modifyarchive.html:58
 msgid "(checked=yes)"
 msgstr "(angeklickt = ja)"
 
@@ -984,7 +987,7 @@ msgstr "Anhang"
 
 #: pntemplates/newsletter_admin_view_message.html:20
 #: pntemplates/newsletter_admin_form_start.html:14
-#: pntemplates/newsletter_admin_form_modifyarchive.html:50
+#: pntemplates/newsletter_admin_form_modifyarchive.html:54
 msgid "Attention"
 msgstr ""
 
@@ -1055,7 +1058,7 @@ msgid "Welcome New Members"
 msgstr ""
 
 #: pntemplates/newsletter_template_html.html:446
-#: pntemplates/newsletter_admin_view_user.html:141
+#: pntemplates/newsletter_admin_view_user.html:145
 #: pntemplates/newsletter_user_inc_info.html:6
 #: pntemplates/newsletter_email_admin_notify.html:5
 #: pntemplates/newsletter_admin_form_user.html:28
@@ -1202,38 +1205,38 @@ msgstr "Suche"
 msgid "Add a user"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:121
+#: pntemplates/newsletter_admin_view_user.html:125
 msgid "Display # of users per page:"
 msgstr "Anzahl von Abonenten pro Seite:"
 
-#: pntemplates/newsletter_admin_view_user.html:136
+#: pntemplates/newsletter_admin_view_user.html:140
 msgid "User ID"
 msgstr "Benutzer ID"
 
-#: pntemplates/newsletter_admin_view_user.html:146
+#: pntemplates/newsletter_admin_view_user.html:150
 #: pntemplates/newsletter_user_inc_info.html:11
 #: pntemplates/newsletter_email_admin_notify.html:9
 #: pntemplates/newsletter_admin_form_user.html:38
 msgid "Email"
 msgstr "E-Mail"
 
-#: pntemplates/newsletter_admin_view_user.html:176
+#: pntemplates/newsletter_admin_view_user.html:180
 msgid "Last sent"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:181
+#: pntemplates/newsletter_admin_view_user.html:185
 msgid "Joindate"
 msgstr ""
 
-#: pntemplates/newsletter_admin_view_user.html:192
+#: pntemplates/newsletter_admin_view_user.html:196
 msgid "no User ID"
 msgstr "kein Benutzer ID"
 
-#: pntemplates/newsletter_admin_view_user.html:230
+#: pntemplates/newsletter_admin_view_user.html:234
 msgid "Update last sent date?"
 msgstr "Sendedatum aktualisieren?"
 
-#: pntemplates/newsletter_admin_view_user.html:234
+#: pntemplates/newsletter_admin_view_user.html:238
 msgid "Send to"
 msgstr ""
 
@@ -1332,48 +1335,52 @@ msgid "Here you can activate or suspend yor subscription"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:14
-msgid "Show Archive in the user-menu?"
+msgid "Create Archive when sending out the Newsletter manual?"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:18
-msgid "Show Newsletter ID ?"
+msgid "Show Archive in the user-menu?"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:22
-msgid "Show date?"
+msgid "Show Newsletter ID ?"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:26
-msgid "Show Language?"
+msgid "Show date?"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:30
-msgid "Show Plugins?"
+msgid "Show Language?"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:34
-msgid "Show Objects?"
+msgid "Show Plugins?"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:38
+msgid "Show Objects?"
+msgstr ""
+
+#: pntemplates/newsletter_admin_form_modifyarchive.html:42
 msgid "Show Size?"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyarchive.html:45
+#: pntemplates/newsletter_admin_form_modifyarchive.html:49
 msgid "Please select an archive to flush"
-msgstr ""
+msgstr "Bitte wählen Sie ein Archiv zum löschen aus"
 
-#: pntemplates/newsletter_admin_form_modifyarchive.html:48
+#: pntemplates/newsletter_admin_form_modifyarchive.html:52
 msgid "Prune Archives"
-msgstr ""
+msgstr "Archiv löschen"
 
-#: pntemplates/newsletter_admin_form_modifyarchive.html:50
+#: pntemplates/newsletter_admin_form_modifyarchive.html:54
 msgid "The Archive cannot be restored"
-msgstr ""
+msgstr "Das Archiv kann nicht wiederhergestellt werden"
 
-#: pntemplates/newsletter_admin_form_modifyarchive.html:53
+#: pntemplates/newsletter_admin_form_modifyarchive.html:57
 msgid "Database"
-msgstr ""
+msgstr "Datenbank"
 
 #~ msgid "newsletter"
 #~ msgstr "Newsletter"
