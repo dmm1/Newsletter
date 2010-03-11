@@ -9,7 +9,6 @@
  * Support: http://support.zikula.de, http://community.zikula.org
  */
 
-
 function Newsletter_user_main ()
 {
 
