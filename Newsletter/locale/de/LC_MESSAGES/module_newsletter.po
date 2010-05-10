@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-11 13:08+0000\n"
-"PO-Revision-Date: 2010-03-11 13:46+0100\n"
+"PO-Revision-Date: 2010-04-28 21:16+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: pnuser.php:97
 msgid "You don't have Read rights for this module."
-msgstr ""
+msgstr "Sie besitzen keine Rechte zum Anzeigen dieser Seite!"
 
 #: pnadminform.php:30
 #: pnadminform.php:151
@@ -121,7 +121,7 @@ msgstr "Einstellungen"
 #: pnadminapi.php:22
 #: pntemplates/newsletter_admin_form_modifyarchive.html:12
 msgid "Archive Settings"
-msgstr ""
+msgstr "Archiv Einstellungen"
 
 #: pnadminapi.php:23
 #: pntemplates/newsletter_admin_view_statistics.html:3
@@ -162,7 +162,7 @@ msgstr "Bitte geben Sie Ihre E-Mail Adresse ein"
 
 #: pnuserform.php:51
 msgid "You must accept the terms of service in order to be subscribed!"
-msgstr ""
+msgstr "Sie müssen den Nutzungsbedingungen zustimmen, um den Newsletter abonnieren zu können!"
 
 #: classes/PNUser.class.php:54
 #: classes/PNUser.class.php:298
@@ -172,11 +172,11 @@ msgstr ""
 
 #: classes/PNUser.class.php:65
 msgid "Your have unsubscribed from our newsletter"
-msgstr ""
+msgstr "Sie wurden erfolgreich von unserem Newsletter abgemeldet."
 
 #: classes/PNUser.class.php:75
 msgid "Newsletter Subscription Cancelled"
-msgstr ""
+msgstr "Newsletter Abo gelöscht"
 
 #: classes/PNUser.class.php:189
 msgid "Logic Error: logged-in user does not have his subscription UID set!"
@@ -184,23 +184,23 @@ msgstr ""
 
 #: classes/PNUser.class.php:208
 msgid "This email address is already subscribed to our newsletter!"
-msgstr ""
+msgstr "Diese E-Mailadresse ist bereits registriert!"
 
 #: classes/PNUser.class.php:220
 msgid "You are already subscribed to our newsletter!"
-msgstr ""
+msgstr "Sie sind bereits angemeldet!"
 
 #: classes/PNUser.class.php:227
 msgid "Your have been subscribed to our newsletter"
-msgstr ""
+msgstr "Sie wurden erfolgreich bei unserem Newsletter angemeldet!"
 
 #: classes/PNUser.class.php:237
 msgid "Newsletter Subscription Received"
-msgstr ""
+msgstr "Newsletter Abo empfangen!"
 
 #: classes/PNUser.class.php:245
 msgid "Newsletter Subscription"
-msgstr ""
+msgstr "Newsletter Anmeldung"
 
 #: classes/PNShowPreviewArray.class.php:14
 msgid "Unable to load class [newsletter_data] ... "
@@ -234,7 +234,7 @@ msgstr "Klasse [user] konnte nicht geladen werden!"
 
 #: classes/PNUserOptions.class.php:30
 msgid "Your subscription newsletter options have been updated"
-msgstr ""
+msgstr "Optionen wurden aktualisiert"
 
 #: classes/PNUserApproved.class.php:36
 msgid "The user's active status has been changed"
@@ -266,7 +266,7 @@ msgstr "Alle"
 #: classes/NewsletterUtil.class.php:70
 #: pntemplates/newsletter_admin_view_userimport.html:42
 msgid "Inactive"
-msgstr ""
+msgstr "inaktiv"
 
 #: classes/NewsletterUtil.class.php:71
 #: pntemplates/newsletter_admin_view_userimport.html:40
@@ -277,12 +277,12 @@ msgstr ""
 #: pntemplates/newsletter_user_view_options.html:55
 #: pntemplates/newsletter_admin_form_user.html:68
 msgid "Active"
-msgstr ""
+msgstr "aktiv"
 
 #: classes/NewsletterUtil.class.php:85
 #: pntemplates/newsletter_user_inc_info.html:56
 msgid "Not Approved"
-msgstr ""
+msgstr "nicht genehmigt"
 
 #: classes/NewsletterUtil.class.php:86
 #: pntemplates/newsletter_admin_view_userimport.html:46
@@ -297,7 +297,7 @@ msgstr "genehmigt"
 #: classes/NewsletterUtil.class.php:97
 #: pntemplates/newsletter_user_inc_info.html:75
 msgid "Never"
-msgstr ""
+msgstr "nie"
 
 #: classes/NewsletterUtil.class.php:98
 msgid "1 Month"
@@ -323,50 +323,50 @@ msgstr "1 Jahr"
 #: pntemplates/newsletter_admin_view_user.html:207
 #: pntemplates/newsletter_user_inc_info.html:31
 msgid "Weekly"
-msgstr ""
+msgstr "wöchentlich"
 
 #: classes/NewsletterUtil.class.php:129
 #: pntemplates/newsletter_admin_view_user.html:208
 #: pntemplates/newsletter_user_inc_info.html:33
 msgid "Monthly"
-msgstr ""
+msgstr "monatlich"
 
 #: classes/NewsletterUtil.class.php:130
 #: pntemplates/newsletter_admin_view_user.html:209
 #: pntemplates/newsletter_user_inc_info.html:35
 msgid "Every 2 Months"
-msgstr ""
+msgstr "alle 2 Monate"
 
 #: classes/NewsletterUtil.class.php:131
 #: pntemplates/newsletter_admin_view_user.html:210
 #: pntemplates/newsletter_user_inc_info.html:37
 msgid "Every 3 Months"
-msgstr ""
+msgstr "alle 3 Monate"
 
 #: classes/NewsletterUtil.class.php:132
 #: pntemplates/newsletter_admin_view_user.html:211
 #: pntemplates/newsletter_user_inc_info.html:39
 msgid "Every 6 Months"
-msgstr ""
+msgstr "alle 6 Monate"
 
 #: classes/NewsletterUtil.class.php:133
 #: pntemplates/newsletter_admin_view_user.html:212
 #: pntemplates/newsletter_user_inc_info.html:41
 msgid "Every 9 Months"
-msgstr ""
+msgstr "alle 9 Monate"
 
 #: classes/NewsletterUtil.class.php:134
 #: pntemplates/newsletter_admin_view_user.html:213
 #: pntemplates/newsletter_user_inc_info.html:43
 msgid "Yearly"
-msgstr ""
+msgstr "jährlich"
 
 #: classes/NewsletterUtil.class.php:148
 #: pntemplates/newsletter_admin_view_preview.html:34
 #: pntemplates/newsletter_admin_view_user.html:201
 #: pntemplates/newsletter_user_inc_info.html:18
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: classes/NewsletterUtil.class.php:149
 #: pntemplates/newsletter_admin_view_preview.html:35
@@ -380,35 +380,35 @@ msgstr "HTML"
 #: pntemplates/newsletter_admin_view_user.html:203
 #: pntemplates/newsletter_user_inc_info.html:22
 msgid "Text with Link to Archive"
-msgstr ""
+msgstr "Text mit Link zum Archiv"
 
 #: classes/NewsletterUtil.class.php:160
 msgid "Monday"
-msgstr ""
+msgstr "Montag"
 
 #: classes/NewsletterUtil.class.php:161
 msgid "Tuesday"
-msgstr ""
+msgstr "Dienstag"
 
 #: classes/NewsletterUtil.class.php:162
 msgid "Wednesday"
-msgstr ""
+msgstr "Mittwoch"
 
 #: classes/NewsletterUtil.class.php:163
 msgid "Thursday"
-msgstr ""
+msgstr "Donnerstag"
 
 #: classes/NewsletterUtil.class.php:164
 msgid "Firday"
-msgstr ""
+msgstr "Freitag"
 
 #: classes/NewsletterUtil.class.php:165
 msgid "Saturday"
-msgstr ""
+msgstr "Samstag"
 
 #: classes/NewsletterUtil.class.php:166
 msgid "Sunday"
-msgstr ""
+msgstr "Sonntag"
 
 #: classes/NewsletterUtil.class.php:175
 msgid "Invalid [directory] received"
@@ -445,7 +445,7 @@ msgstr ""
 #: classes/PNNewsletterSend.class.php:170
 #: classes/PNNewsletterSend.class.php:255
 msgid "Newsletter(s) were successfully sent."
-msgstr ""
+msgstr "Newsletter wurden erfolgreich gesendet!"
 
 #: classes/PNNewsletterSend.class.php:139
 #: classes/PNNewsletterSend.class.php:178
@@ -477,52 +477,52 @@ msgstr ""
 #: pntemplates/newsletter_template_html.html:342
 #: pntemplates/newsletter_template_text.html:7
 msgid "Hello"
-msgstr ""
+msgstr "Hallo"
 
 #: pntemplates/newsletter_email_user_notify.html:4
 msgid "Thank you for your Newsletter Subscription"
-msgstr ""
+msgstr "Vielen Dank für Ihre Anmeldung"
 
 #: pntemplates/newsletter_email_user_notify.html:6
 msgid "Your"
-msgstr ""
+msgstr "Ihr"
 
 #: pntemplates/newsletter_email_user_notify.html:7
 #: pntemplates/newsletter_email_user_unsubscribe.html:6
 msgid "Staff"
-msgstr ""
+msgstr "Team"
 
 #: pntemplates/newsletter_email_user_notify.html:12
 msgid "If you didn`t subsribe yourself, please visit"
-msgstr ""
+msgstr "Haben Sie sich nicht selbst angemeldet, besuchen Sie bitte"
 
 #: pntemplates/newsletter_email_user_notify.html:14
 msgid "to delete this Subscription"
-msgstr ""
+msgstr "um diese Anmeldung zu löschen"
 
 #: pntemplates/newsletter_template_text_with_link.html:4
 #: pntemplates/newsletter_template_text.html:160
 msgid "Link to the Newsletter Archive"
-msgstr ""
+msgstr "Link zum Archiv"
 
 #: pntemplates/newsletter_template_text_with_link.html:7
 msgid "Thank you"
-msgstr ""
+msgstr "Vielen Dank"
 
 #: pntemplates/newsletter_template_text_with_link.html:7
 msgid "for suscribing to our newsletter!"
-msgstr ""
+msgstr "dass Sie sich zu unserem Newsletter angemeldet haben!"
 
 #: pntemplates/newsletter_template_text_with_link.html:12
 #: pntemplates/newsletter_template_html.html:657
 #: pntemplates/newsletter_template_text.html:157
 msgid "You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"
-msgstr ""
+msgstr "Sie empfangen diesen Newsletter, weil Ihre E-Mailadresse registriert wurde. Möchten Sie keine Zusendungen mehr können Sie sich "
 
 #: pntemplates/newsletter_template_text_with_link.html:12
 #: pntemplates/newsletter_template_text.html:157
 msgid "here!"
-msgstr ""
+msgstr "hier abmelden!"
 
 #: pntemplates/newsletter_admin_view_userimport.html:30
 msgid "Zikula User Import Configuration"
@@ -606,7 +606,7 @@ msgstr ""
 #: pntemplates/newsletter_user_view_options.html:57
 #: pntemplates/newsletter_user_view_options.html:58
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #: pntemplates/newsletter_admin_view_Mediashare.html:10
 msgid "Define the Path of your Mediashare images path e.g. mediashare/, pnTemp/mediashare/ etc."
@@ -628,32 +628,32 @@ msgstr ""
 #: pntemplates/newsletter_admin_view_plugin.html:18
 #: pntemplates/newsletter_admin_view_user.html:40
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: pntemplates/newsletter_admin_view_plugin.html:19
 #: pntemplates/newsletter_admin_view_user.html:41
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: pntemplates/newsletter_email_user_unsubscribe.html:3
 msgid "Your newsletter subscription has been cancelled."
-msgstr ""
+msgstr "Ihre Anmeldung wurde ausgesetzt"
 
 #: pntemplates/newsletter_email_user_unsubscribe.html:4
 msgid "Please feel free to re-subscribe in the future."
-msgstr ""
+msgstr "Wir würden uns freuen, wenn Sie in Zukunft wieder unseren Newsletter abonnieren."
 
 #: pntemplates/newsletter_email_user_unsubscribe.html:5
 msgid "Thank you,"
-msgstr ""
+msgstr "Vielen Dank"
 
 #: pntemplates/newsletter_inc_form_actions.html:26
 msgid "Cancel"
-msgstr ""
+msgstr "abbrechen"
 
 #: pntemplates/newsletter_inc_form_actions.html:28
 msgid "Update"
-msgstr ""
+msgstr "aktualisieren"
 
 #: pntemplates/newsletter_admin_view_Pagemaster.html:2
 msgid "Activate Pagemaster Plugin"
@@ -667,29 +667,29 @@ msgstr ""
 #: pntemplates/newsletter_user_view_unsubscribe.html:6
 #: pntemplates/newsletter_user_view_unsubscribe.html:24
 msgid "Unsubscribe"
-msgstr ""
+msgstr "abmelden"
 
 #: pntemplates/newsletter_user_view_unsubscribe.html:9
 #: pntemplates/newsletter_admin_form_modifyconfig.html:20
 #: pntemplates/newsletter_user_inc_info.html:4
 #: pntemplates/newsletter_user_view_main.html:23
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: pntemplates/newsletter_user_view_unsubscribe.html:13
 msgid "Here you can unsubscribe from our Newsletter"
-msgstr ""
+msgstr "Hier können Sie sich von unserem Newsletter abmelden"
 
 #: pntemplates/newsletter_user_view_unsubscribe.html:18
 #: pntemplates/newsletter_user_view_main.html:36
 #: pntemplates/newsletter_block_signup_display.html:8
 #: pntemplates/newsletter_block_signup_display.html:9
 msgid "Your E-Mail Address"
-msgstr ""
+msgstr "Ihre E-Mailadresse"
 
 #: pntemplates/newsletter_user_view_unsubscribe.html:24
 msgid "Are you sure that you want to unsubscribe?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie sich abmelden möchten?"
 
 #: pntemplates/newsletter_user_view_tos.html:4
 #: pntemplates/newsletter_user_view_main.html:63
@@ -697,7 +697,7 @@ msgstr ""
 #: pntemplates/newsletter_user_view_options.html:63
 #: pntemplates/newsletter_user_view_options.html:64
 msgid "Terms of Service"
-msgstr ""
+msgstr "Nutzungsbedingungen"
 
 #: pntemplates/newsletter_user_view_tos.html:7
 msgid "will not distribute, sell or disclose your personal information to any parties, public or private."
@@ -713,7 +713,7 @@ msgstr ""
 
 #: pntemplates/newsletter_user_view_tos.html:17
 msgid "Back"
-msgstr ""
+msgstr "zurück"
 
 #: pntemplates/newsletter_user_view_archive.html:3
 #: pntemplates/newsletter_user_view_archive.html:6
@@ -723,15 +723,15 @@ msgstr "Archiv anzeigen"
 
 #: pntemplates/newsletter_user_view_archive.html:11
 msgid "Past Archives"
-msgstr ""
+msgstr "vergangene Archive"
 
 #: pntemplates/newsletter_user_view_archive.html:17
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: pntemplates/newsletter_user_view_archive.html:23
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: pntemplates/newsletter_user_view_archive.html:29
 #: pntemplates/newsletter_admin_view_preview.html:16
@@ -771,7 +771,7 @@ msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:29
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:32
 msgid "Items per page"
@@ -1014,7 +1014,7 @@ msgstr ""
 #: pntemplates/newsletter_template_html.html:378
 #: pntemplates/newsletter_template_text.html:26
 msgid "News"
-msgstr ""
+msgstr "News"
 
 #: pntemplates/newsletter_template_html.html:391
 #: pntemplates/newsletter_template_text.html:35
@@ -1266,12 +1266,12 @@ msgstr ""
 
 #: pntemplates/newsletter_user_view_main.html:16
 msgid "Welcome to our Newsletter, here you can manage or delete your Subscription."
-msgstr ""
+msgstr "Willkommen! Hier können Sie sich an- oder abmelden."
 
 #: pntemplates/newsletter_user_view_main.html:20
 #: pntemplates/newsletter_block_signup_display.html:22
 msgid "Subscribe"
-msgstr ""
+msgstr "anmelden"
 
 #: pntemplates/newsletter_user_view_main.html:31
 #: pntemplates/newsletter_block_signup_display.html:6
