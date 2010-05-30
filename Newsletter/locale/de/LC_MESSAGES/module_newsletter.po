@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-11 13:08+0000\n"
-"PO-Revision-Date: 2010-04-28 21:16+0100\n"
+"PO-Revision-Date: 2010-05-30 13:28+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1262,7 +1262,7 @@ msgstr ""
 
 #: pntemplates/newsletter_template_text.html:121
 msgid "Recently Added Links"
-msgstr ""
+msgstr "aktuell hinzugefügte Links"
 
 #: pntemplates/newsletter_user_view_main.html:16
 msgid "Welcome to our Newsletter, here you can manage or delete your Subscription."
@@ -1277,7 +1277,7 @@ msgstr "anmelden"
 #: pntemplates/newsletter_block_signup_display.html:6
 #: pntemplates/newsletter_block_signup_display.html:7
 msgid "Your Name"
-msgstr ""
+msgstr "Name"
 
 #: pntemplates/newsletter_user_view_main.html:66
 #: pntemplates/newsletter_block_signup_display.html:16
@@ -1294,7 +1294,7 @@ msgstr ""
 
 #: pntemplates/newsletter_email_admin_notify.html:1
 msgid "New subscriber Info"
-msgstr ""
+msgstr "Neuer Benutzer"
 
 #: pntemplates/newsletter_email_admin_notify.html:17
 msgid "Auto-approve is currently disabled. You will need to login, go to the newsletter admin area and approve this user."
@@ -1302,7 +1302,7 @@ msgstr ""
 
 #: pntemplates/newsletter_admin_form_start.html:6
 msgid "Welcome to Newsletter!"
-msgstr ""
+msgstr "Willkommen bei Newsletter!"
 
 #: pntemplates/newsletter_admin_form_start.html:7
 msgid "Please visit our project-page"
@@ -1318,12 +1318,12 @@ msgstr ""
 
 #: pntemplates/newsletter_user_view_options.html:15
 msgid "Change your subscription settings"
-msgstr ""
+msgstr "Einstellungen ändern"
 
 #: pntemplates/newsletter_user_view_options.html:24
 #: pntemplates/newsletter_admin_form_user.html:25
 msgid "Newsletter Configuration"
-msgstr ""
+msgstr "Newsletter Einstellungen"
 
 #: pntemplates/newsletter_user_view_options.html:49
 #: pntemplates/newsletter_admin_form_user.html:60
@@ -1348,23 +1348,23 @@ msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:26
 msgid "Show date?"
-msgstr ""
+msgstr "Zeige Datum?"
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:30
 msgid "Show Language?"
-msgstr ""
+msgstr "Zeige Sprache?"
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:34
 msgid "Show Plugins?"
-msgstr ""
+msgstr "Zeige Plugins?"
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:38
 msgid "Show Objects?"
-msgstr ""
+msgstr "Zeige Objekte?"
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:42
 msgid "Show Size?"
-msgstr ""
+msgstr "Zeige Größe?"
 
 #: pntemplates/newsletter_admin_form_modifyarchive.html:49
 msgid "Please select an archive to flush"
