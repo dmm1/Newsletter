@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-11 13:08+0000\n"
-"PO-Revision-Date: 2010-05-30 13:28+0100\n"
+"POT-Creation-Date: 2010-06-01 20:04+0000\n"
+"PO-Revision-Date: 2010-06-01 21:36+0100\n"
 "Last-Translator: Dominik Mayer <dmm@dmm.at>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,9 @@ msgstr ""
 #: pnadmin.php:63
 #: pnadmin.php:103
 #: pnadminform.php:17
-#: pnadminform.php:62
-#: pnadminform.php:96
-#: pnadminform.php:138
+#: pnadminform.php:63
+#: pnadminform.php:97
+#: pnadminform.php:139
 msgid "You don't have Admin rights for this module"
 msgstr "Sie haben keine Administrator-Rechte für dieses Modul!"
 
@@ -32,9 +32,9 @@ msgstr "Sie haben keine Administrator-Rechte für dieses Modul!"
 #: pnadmin.php:137
 #: pnadmin.php:239
 #: pnadmin.php:264
-#: pnuser.php:31
-#: pnuser.php:101
-#: pnadminform.php:120
+#: pnuser.php:30
+#: pnuser.php:100
+#: pnadminform.php:121
 msgid "Unable to load class [newsletter_util]"
 msgstr "Klasse [newsletter_util] konnte nicht geladen werden!"
 
@@ -48,7 +48,7 @@ msgid "The email address you entered does not seem to be valid"
 msgstr "Die eingegebene E-Mail Adresse scheint nicht gültig zu sein."
 
 #: pnadmin.php:204
-#: pnuser.php:105
+#: pnuser.php:104
 msgid "Unable to load class [newsletter_send]"
 msgstr "Klasse [newsletter_send] konnte nicht geladen werden!"
 
@@ -85,27 +85,27 @@ msgstr "Newsletter Modul"
 msgid "Error! Could not do what you wanted. Please check your input."
 msgstr "Fehler, die Eingabe konnte nicht verarbeitet werden, bitte überprüfen!"
 
-#: pnuser.php:18
-#: pnuser.php:69
+#: pnuser.php:17
+#: pnuser.php:68
 #: pnuserform.php:25
 msgid "You don't have Overview rights for this module."
 msgstr "Sie besitzen keine Rechte, um das Modul aufrufen zu können."
 
-#: pnuser.php:77
-#: pnadminform.php:70
+#: pnuser.php:76
+#: pnadminform.php:71
 msgid "Invalid [id] parameter received"
 msgstr ""
 
-#: pnuser.php:97
+#: pnuser.php:96
 msgid "You don't have Read rights for this module."
 msgstr "Sie besitzen keine Rechte zum Anzeigen dieser Seite!"
 
 #: pnadminform.php:30
-#: pnadminform.php:151
+#: pnadminform.php:152
 msgid "You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!"
 msgstr ""
 
-#: pnadminform.php:105
+#: pnadminform.php:106
 #: pnuserform.php:21
 msgid "Invalid [ot] parameter received"
 msgstr ""
@@ -274,7 +274,7 @@ msgstr "inaktiv"
 #: pntemplates/newsletter_admin_view_plugin.html:15
 #: pntemplates/newsletter_admin_view_user.html:75
 #: pntemplates/newsletter_admin_view_user.html:170
-#: pntemplates/newsletter_user_view_options.html:55
+#: pntemplates/newsletter_user_view_options.html:65
 #: pntemplates/newsletter_admin_form_user.html:68
 msgid "Active"
 msgstr "aktiv"
@@ -531,8 +531,8 @@ msgstr ""
 #: pntemplates/newsletter_admin_view_userimport.html:32
 #: pntemplates/newsletter_admin_view_user.html:73
 #: pntemplates/newsletter_admin_view_user.html:160
-#: pntemplates/newsletter_user_view_main.html:50
-#: pntemplates/newsletter_user_view_options.html:35
+#: pntemplates/newsletter_user_view_main.html:51
+#: pntemplates/newsletter_user_view_options.html:39
 #: pntemplates/newsletter_admin_form_user.html:48
 msgid "Type"
 msgstr "Typ"
@@ -541,9 +541,9 @@ msgstr "Typ"
 #: pntemplates/newsletter_admin_view_user.html:74
 #: pntemplates/newsletter_admin_view_user.html:165
 #: pntemplates/newsletter_user_inc_info.html:29
-#: pntemplates/newsletter_user_view_main.html:57
-#: pntemplates/newsletter_user_view_options.html:43
-#: pntemplates/newsletter_user_view_options.html:48
+#: pntemplates/newsletter_user_view_main.html:58
+#: pntemplates/newsletter_user_view_options.html:49
+#: pntemplates/newsletter_user_view_options.html:55
 #: pntemplates/newsletter_admin_form_user.html:54
 #: pntemplates/newsletter_admin_form_user.html:59
 msgid "Frequency"
@@ -599,12 +599,12 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_modifyconfig.html:57
 #: pntemplates/newsletter_admin_form_modifyconfig.html:86
 #: pntemplates/newsletter_admin_form_modifyconfig.html:87
-#: pntemplates/newsletter_admin_form_modifyconfig.html:126
-#: pntemplates/newsletter_admin_form_modifyconfig.html:127
+#: pntemplates/newsletter_admin_form_modifyconfig.html:130
+#: pntemplates/newsletter_admin_form_modifyconfig.html:131
 #: pntemplates/newsletter_admin_view_preview.html:38
 #: pntemplates/newsletter_admin_view_preview.html:39
-#: pntemplates/newsletter_user_view_options.html:57
-#: pntemplates/newsletter_user_view_options.html:58
+#: pntemplates/newsletter_user_view_options.html:67
+#: pntemplates/newsletter_user_view_options.html:68
 msgid "Help"
 msgstr "Hilfe"
 
@@ -672,7 +672,7 @@ msgstr "abmelden"
 #: pntemplates/newsletter_user_view_unsubscribe.html:9
 #: pntemplates/newsletter_admin_form_modifyconfig.html:20
 #: pntemplates/newsletter_user_inc_info.html:4
-#: pntemplates/newsletter_user_view_main.html:23
+#: pntemplates/newsletter_user_view_main.html:24
 msgid "Information"
 msgstr "Information"
 
@@ -681,7 +681,7 @@ msgid "Here you can unsubscribe from our Newsletter"
 msgstr "Hier können Sie sich von unserem Newsletter abmelden"
 
 #: pntemplates/newsletter_user_view_unsubscribe.html:18
-#: pntemplates/newsletter_user_view_main.html:36
+#: pntemplates/newsletter_user_view_main.html:37
 #: pntemplates/newsletter_block_signup_display.html:8
 #: pntemplates/newsletter_block_signup_display.html:9
 msgid "Your E-Mail Address"
@@ -692,10 +692,10 @@ msgid "Are you sure that you want to unsubscribe?"
 msgstr "Sind Sie sicher, dass Sie sich abmelden möchten?"
 
 #: pntemplates/newsletter_user_view_tos.html:4
-#: pntemplates/newsletter_user_view_main.html:63
-#: pntemplates/newsletter_user_view_main.html:65
-#: pntemplates/newsletter_user_view_options.html:63
-#: pntemplates/newsletter_user_view_options.html:64
+#: pntemplates/newsletter_user_view_main.html:64
+#: pntemplates/newsletter_user_view_main.html:66
+#: pntemplates/newsletter_user_view_options.html:76
+#: pntemplates/newsletter_user_view_options.html:77
 msgid "Terms of Service"
 msgstr "Nutzungsbedingungen"
 
@@ -737,8 +737,8 @@ msgstr "Datum"
 #: pntemplates/newsletter_admin_view_preview.html:16
 #: pntemplates/newsletter_admin_view_user.html:71
 #: pntemplates/newsletter_admin_view_user.html:155
-#: pntemplates/newsletter_user_view_main.html:43
-#: pntemplates/newsletter_user_view_options.html:28
+#: pntemplates/newsletter_user_view_main.html:44
+#: pntemplates/newsletter_user_view_options.html:31
 #: pntemplates/newsletter_admin_form_user.html:43
 msgid "Language"
 msgstr "Sprache"
@@ -759,7 +759,7 @@ msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:22
 msgid "It took"
-msgstr ""
+msgstr "Es dauerte"
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:22
 msgid "seconds to send the last batch of"
@@ -806,6 +806,7 @@ msgstr ""
 #: pntemplates/newsletter_admin_form_modifyconfig.html:109
 #: pntemplates/newsletter_admin_form_modifyconfig.html:113
 #: pntemplates/newsletter_admin_form_modifyconfig.html:117
+#: pntemplates/newsletter_admin_form_modifyconfig.html:121
 #: pntemplates/newsletter_admin_view_user.html:236
 #: pntemplates/newsletter_admin_form_modifyarchive.html:15
 #: pntemplates/newsletter_admin_form_modifyarchive.html:19
@@ -825,7 +826,7 @@ msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:61
 msgid "Allow subscription of only this type"
-msgstr ""
+msgstr "Nur Abo von folgendem Sendetyp erlauben:"
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:65
 #: pntemplates/newsletter_block_signup_modify.html:7
@@ -878,40 +879,44 @@ msgid "Allow Frequency Changes ?"
 msgstr ""
 
 #: pntemplates/newsletter_admin_form_modifyconfig.html:116
+msgid "Allow Subscription Changes ?"
+msgstr "Erlaube das aussetzen des Abos?"
+
+#: pntemplates/newsletter_admin_form_modifyconfig.html:120
 msgid "Personalize EMail ?"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:117
+#: pntemplates/newsletter_admin_form_modifyconfig.html:121
 msgid "disable to increase performance"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:120
+#: pntemplates/newsletter_admin_form_modifyconfig.html:124
 msgid "Send per Request ?"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:121
 #: pntemplates/newsletter_admin_form_modifyconfig.html:125
+#: pntemplates/newsletter_admin_form_modifyconfig.html:129
 msgid "'x' number of emails"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:121
 #: pntemplates/newsletter_admin_form_modifyconfig.html:125
+#: pntemplates/newsletter_admin_form_modifyconfig.html:129
 msgid "(0 [Zero] = no Restriction)"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:124
+#: pntemplates/newsletter_admin_form_modifyconfig.html:128
 msgid "Maximum Newsletters to send per hour"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:128
+#: pntemplates/newsletter_admin_form_modifyconfig.html:132
 msgid "Use this feature to avoid sending restrictions from your hoster!"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:131
+#: pntemplates/newsletter_admin_form_modifyconfig.html:135
 msgid "Adminkey"
 msgstr ""
 
-#: pntemplates/newsletter_admin_form_modifyconfig.html:132
+#: pntemplates/newsletter_admin_form_modifyconfig.html:136
 msgid "used to authenticate cron/batchprocessing"
 msgstr ""
 
@@ -1264,27 +1269,27 @@ msgstr ""
 msgid "Recently Added Links"
 msgstr "aktuell hinzugefügte Links"
 
-#: pntemplates/newsletter_user_view_main.html:16
+#: pntemplates/newsletter_user_view_main.html:17
 msgid "Welcome to our Newsletter, here you can manage or delete your Subscription."
 msgstr "Willkommen! Hier können Sie sich an- oder abmelden."
 
-#: pntemplates/newsletter_user_view_main.html:20
+#: pntemplates/newsletter_user_view_main.html:21
 #: pntemplates/newsletter_block_signup_display.html:22
 msgid "Subscribe"
 msgstr "anmelden"
 
-#: pntemplates/newsletter_user_view_main.html:31
+#: pntemplates/newsletter_user_view_main.html:32
 #: pntemplates/newsletter_block_signup_display.html:6
 #: pntemplates/newsletter_block_signup_display.html:7
 msgid "Your Name"
 msgstr "Name"
 
-#: pntemplates/newsletter_user_view_main.html:66
+#: pntemplates/newsletter_user_view_main.html:67
 #: pntemplates/newsletter_block_signup_display.html:16
 msgid "Yes, I agree to the terms of service."
 msgstr ""
 
-#: pntemplates/newsletter_user_view_main.html:79
+#: pntemplates/newsletter_user_view_main.html:80
 msgid "* subscriptions subject to approval."
 msgstr ""
 
@@ -1316,21 +1321,21 @@ msgstr ""
 msgid "Zikula Version 1.1.2 and up: To ensure html-mails are sent correctly, you have to look that in the Core-Mailer Module (Settings->Mailer) the butten -send mails in html-format- is checked! "
 msgstr ""
 
-#: pntemplates/newsletter_user_view_options.html:15
+#: pntemplates/newsletter_user_view_options.html:17
 msgid "Change your subscription settings"
 msgstr "Einstellungen ändern"
 
-#: pntemplates/newsletter_user_view_options.html:24
+#: pntemplates/newsletter_user_view_options.html:27
 #: pntemplates/newsletter_admin_form_user.html:25
 msgid "Newsletter Configuration"
 msgstr "Newsletter Einstellungen"
 
-#: pntemplates/newsletter_user_view_options.html:49
+#: pntemplates/newsletter_user_view_options.html:56
 #: pntemplates/newsletter_admin_form_user.html:60
 msgid "User-based frequency changes have been disabled by the site administrator"
 msgstr ""
 
-#: pntemplates/newsletter_user_view_options.html:59
+#: pntemplates/newsletter_user_view_options.html:69
 msgid "Here you can activate or suspend yor subscription"
 msgstr ""
 

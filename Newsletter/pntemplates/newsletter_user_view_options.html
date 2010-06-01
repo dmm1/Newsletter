@@ -57,6 +57,9 @@
       
 	  </div>
     <!--[/if]-->
+		
+	<!--[pnmodgetvar module="Newsletter" name="allow_subscription_change" assign="change_sup_allowed"]-->
+    <!--[if ($change_sup_allowed)]-->
 	<!--[nocache]-->
     <div class="z-formrow">
       <label for="user_active"><b><!--[gt text="Active"]--></b></label>       
@@ -66,6 +69,9 @@
       <div id="hint-1" class="z-informationmsg" style="display:none;"><!--[gt text="Here you can activate or suspend yor subscription"]--></div>
 	</div>
 	<!--[/nocache]-->
+	<!--[else]-->     
+    <!--[/if]-->
+	
     <div class="z-formrow">
       <label for="user_tos"><!--[gt text="Terms of Service"]--></label>
       <a id="user_tos" href="<!--[pnmodurl modname="Newsletter" type="user" func="main" ot="tos"]-->" title="<!--[gt text="Terms of Service"]-->"><!--[gt text="Terms of Service"]--></a>

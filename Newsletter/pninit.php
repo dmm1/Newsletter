@@ -20,6 +20,7 @@ function Newsletter_init()
     pnModSetVar('Newsletter', 'admin_key', substr(md5(time()),-10));
     pnModSetVar('Newsletter', 'allow_anon_registration', '0');
     pnModSetVar('Newsletter', 'allow_frequency_change', '0');
+	pnModSetVar('Newsletter', 'allow_subscription_change', '0');		
     pnModSetVar('Newsletter', 'archive_expire', '0'); // never
     pnModSetVar('Newsletter', 'auto_approve_registrations', '1');
     pnModSetVar('Newsletter', 'default_frequency', '0');

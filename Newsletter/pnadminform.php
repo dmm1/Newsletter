@@ -17,7 +17,7 @@ function Newsletter_adminform_modifyconfig ()
         return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
     }
 
-    $url = pnModURL('Newsletter', 'admin', 'main');
+    $url = pnModURL('Newsletter', 'admin', 'settings');
 
     if (!SecurityUtil::confirmAuthKey('Newsletter')) {
         return LogUtil::registerAuthidError ($url);
@@ -33,7 +33,8 @@ function Newsletter_adminform_modifyconfig ()
     pnModSetVar ('Newsletter', 'admin_key',                  $prefs['admin_key']                  ? $prefs['admin_key']         : substr(md5(time()),-10));
     pnModSetVar ('Newsletter', 'allow_anon_registration',    $prefs['allow_anon_registration']    ? 1                           : 0);
     pnModSetVar ('Newsletter', 'allow_frequency_change',     $prefs['allow_frequency_change']     ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire']    : 0);
+    pnModSetVar ('Newsletter', 'allow_subscription_change',  $prefs['allow_subscription_change']  ? 1                        : 0);	
+	pnModSetVar ('Newsletter', 'archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire']    : 0);
     pnModSetVar ('Newsletter', 'auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1                           : 0);
     pnModSetVar ('Newsletter', 'default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
     pnModSetVar ('Newsletter', 'default_type',               $prefs['default_type']               ? $prefs['default_type']      : 1);
