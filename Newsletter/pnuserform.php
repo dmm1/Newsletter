@@ -12,7 +12,7 @@
 
 function Newsletter_userform_edit ()
 {
-    $dom = ZLanguage::getModuleDomain('Newsletter');
+    $dom 	  = ZLanguage::getModuleDomain('Newsletter');
     $ot       = FormUtil::getPassedValue ('ot', 'user', 'GETPOST');
     $otTarget = FormUtil::getPassedValue ('otTarget', 'main', 'GETPOST');
     $url      = pnModURL('Newsletter', 'user', 'main', array('ot'=>$otTarget));
@@ -23,7 +23,7 @@ function Newsletter_userform_edit ()
 
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
         return __("You don't have Overview rights for this module.", $dom);
-   }
+    }
 
     if (!SecurityUtil::confirmAuthKey()) {
         return LogUtil::registerAuthidError ($url);
@@ -43,7 +43,7 @@ function Newsletter_userform_edit ()
             }
             if (!$data['email']) {
                 return LogUtil::registerError (__('Please enter your email address', $dom), null, $url);
-            } elseif (!pnVarValidate($data['email'], 'email')) {
+        } elseif (!pnVarValidate($data['email'], 'email')) {
                 return LogUtil::registerError (__('The email address you entered does not seem to be valid', $dom), null, $url);
             }
         }
