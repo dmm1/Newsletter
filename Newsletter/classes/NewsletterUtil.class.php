@@ -108,7 +108,7 @@ class NewsletterUtil
     function getSelectorDataLanguage ($all=false)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
-        $languages = pnInstalledLanguages();
+        $languages = Compat_LanguageUtil_getLanguages();
         if ($all) {
             $languages = array_merge (array(''=>__('All', $dom)), $languages);
         }
