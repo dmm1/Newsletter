@@ -2,7 +2,7 @@
 
 <!--[php]-->
     $defaultLang  = pnConfigGetVar ('language');
-    $alternateLanguages = pnInstalledLanguages ();
+    $alternateLanguages = Compat_LanguageUtil_getLanguages();
     unset ($alternateLanguages[$defaultLang]);
     $this->assign ('defaultLang', $defaultLang);
     $this->assign ('alternateLanguages', $alternateLanguages);

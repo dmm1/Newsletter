@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -31,7 +31,7 @@ class PNMessage extends PNObject
         pnModSetVar ('Newsletter', 'message', $data['text']);
 
         $defaultLang  = pnConfigGetVar ('language');
-        $alternateLanguages = pnInstalledLanguages ();
+        $alternateLanguages = Compat_LanguageUtil_getLanguages();
         unset ($alternateLanguages[$defaultLang]);
         foreach ($alternateLanguages as $k=>$v) {
             $fName = 'text_' . $k;
