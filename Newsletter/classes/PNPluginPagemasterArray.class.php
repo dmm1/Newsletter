@@ -1,107 +1,106 @@
 <?php
 /**
- * Newletter Module for Zikula
+ * PageMaster plugin for Newsletter module
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright © 2010, Mateo Tibaquirá
  * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
  */
-
-function getPagemasterPubs($args, $title, $type) {
-
-	$title = $title;
-	$output = '';
-	if ($args['tid'] == 3){
-		$args['template'] = 'eventnewsletter';
-		$args['orderby'] = 'event_date';
-	}
-	if ($args['tid'] == 7)
-	$args['template'] = 'newsnewletter';
-	if ($args['tid'] == 9)
-	$args['template'] = 'verlosungennewsletter';
-		
-	$args['handlePluginFields'] = 1;
-	if ($type == 'getPubFormatted')
-	$pubList = pnModFunc('pagemaster', 'user', 'main', $args);
-	else
-	$pubList = pnModAPIFunc('pagemaster', 'user', 'pubList', $args);
-	return $pubList;
-}
-
 
 class PNPluginPagemasterArray extends PNPluginBaseArray
 {
-    function PNPluginPagemasterArray ($init=null, $where='')
+    function PNPluginPagemasterArray($init=null, $where='')
     {
-        $this->PNPluginBaseArray ();
+        $this->PNPluginBaseArray();
     }
 
-
-    function getPluginData ($lang=null)
+    function getPluginData($lang=null)
     {
-        if (!pnModAvailable('pagemaster')) {
+        if (!pnModAvailable('PageMaster') || !pnModDBInfoLoad('PageMaster')) {
             return array();
         }
 
-        if (!pnModDBInfoLoad('pagemaster')) {
-            return array();
-        }
-
-        return $this->_getpagemasterItems ($lang);
+        return $this->_getpagemasterItems($lang);
     }
 
-
-    function setPluginParameters ()
+    function setPluginParameters()
     {
-        // pagemaster TIDs
-        $tids = FormUtil::getPassedValue ('pagemasterTIDs', null, 'POST');
-        if ($tids) {
-            pnModSetVar ('Newsletter', 'pagemasterTIDs', implode(',', array_keys($tids)));
-        } else {
-            pnModSetVar ('Newsletter', 'pagemasterTIDs', '');
-        }
+        // PageMaster TIDs
+        $tids = FormUtil::getPassedValue('PagemasterTIDs', array(), 'POST');
+
+        pnModSetVar('Newsletter', 'pagemasterTIDs', array_keys($tids));
+
+        // Additional arguments
+        $args = FormUtil::getPassedValue('PagemasterArgs', array(), 'POST');
+
+        pnModSetVar('Newsletter', 'pagemasterArgs', $args);
     }
 
-
-    function getPluginParameters ()
+    function getPluginParameters()
     {
-        if (pnModAvailable ('pagemaster')) {
-            pnModDBInfoLoad('pagemaster');
-            $pagemasterPubTypes = DBUtil::selectObjectArray('pagemaster_pubtypes');
-        } else {
-            $pagemasterPubTypes = null;
+        $pubtypes = null;
+        if (pnModAvailable('pagemaster') && pnModDBInfoLoad('pagemaster')) {
+			Loader::includeOnce('modules/PageMaster/common.php');
+            $pubtypes = PMgetPubType(-1);
         }
 
-        $pagemasterTIDs = pnModGetVar ('Newsletter', 'pagemasterTIDs', '');
-        $activepagemasterPlugins = explode(',', $pagemasterTIDs);
-        foreach ($pagemasterPubTypes as $k=>$v) {
-            $pagemasterPubTypes[$k]['active'] = in_array($v['id'], $activepagemasterPlugins);
+        $active = pnModGetVar ('Newsletter', 'pagemasterTIDs', array());
+        foreach ($pubtypes as $k => $v) {
+            $pubtypes[$k]['nwactive'] = in_array($k, $active);
         }
 
-        return array ('number'             => 1,
-                      'param'              => array('pagemasterPubTypes'=> $pagemasterPubTypes));
+        $args = pnModGetVar('Newsletter', 'pagemasterArgs', array());
+
+        return array('number' => 1,
+                     'param'  => array(
+                                       'pmPubTypes'=> $pubtypes,
+                                       'pmArgs' => $args
+                                      )
+                    );
     }
-
 
     function _getPagemasterItems($lang)
     {
+        $tids = pnModGetVar('Newsletter', 'pagemasterTIDs', array());
+        $args = pnModGetVar('Newsletter', 'pagemasterArgs', array());
+        $types = array('txt', 'htm');
 
-        $rc = true;
-        $tids     = pnModGetVar ('Newsletter', 'pagemasterTIDs', '');
-        $nItems   = pnModGetVar ('Newsletter', 'plugin_pagemaster_nItems', 1);
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-	$args = array ('tid' => 7,'filter' => 'in_newsletter:eq:1');
-	$output['tid7']['htm'] = getPagemasterPubs($args, 'news', 'getPubFormatted');
-	$output['tid7']['txt'] = getPagemasterPubs($args, 'news', 'getPubTxt');
-	$args = array('tid' => 9, 'filter' => 'sys_expire_date:gt:now');
-	$output['tid9']['htm'] .= getPagemasterPubs($args, 'verlosungen', 'getPubFormatted');
-	$output['tid9']['txt'] .= getPagemasterPubs($args, 'verlosungen', 'getPubTxt');
-	$args = array('tid' => 3, 'orderByStr' => 'event_date', 'filter' => 'event_date:gt:now');
-	$output['tid3']['htm'] .= getPagemasterPubs($args, 'events', 'getPubFormatted');
-	$output['tid3']['txt'] .= getPagemasterPubs($args, 'events', 'getPubTxt');
-	return $output;
+        $output = array();
+        foreach ($tids as $tid) {
+			$pubtypeargs = isset($args[$tid]) ? $args[$tid] : array();
+			$pubtypeargs['tid'] = $tid;
+			$pubtypeargs['countmode'] = 'no';
+			foreach ($types as $type) {
+			    $output[$type][$tid] = $this->getPagemasterList($pubtypeargs, $type);
+			}
+		}
+
+        return $output;
     }
-}
 
+	function getPagemasterList($args, $type)
+	{
+		$args['handlePluginFields'] = 1;
+
+		$list = array();
+		switch ($type) {
+			case 'txt':
+				Loader::includeOnce('modules/PageMaster/common.php');
+				$core_title = PMgetPubtypeTitleField($args['tid']);
+				$core_title = $core_title ? $core_title : 'id';
+
+				$list = pnModAPIFunc('PageMaster', 'user', 'pubList', $args);
+				$list = $list['publist'];
+				// fills the core_title for 0.4.2 and pre
+				foreach ($list as $k => $v) {
+					$list[$k]['core_title'] = $list[$k][$core_title];
+				}
+				break;
+			case 'htm':
+				$list = pnModFunc('PageMaster', 'user', 'main', $args);
+				break;
+		}
+
+		return $list;
+	}
+}

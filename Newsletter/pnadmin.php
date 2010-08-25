@@ -190,6 +190,7 @@ function Newsletter_admin_view ()
             default:
                 $content = 'Invalid format [$format] specified...';
         }
+
         $testsend = FormUtil::getPassedValue ('testsend', 0, 'POST');
         $testsendEmail = FormUtil::getPassedValue ('testsend_email', 0, 'POST');
         if ($testsend) {

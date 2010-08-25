@@ -1,5 +1,5 @@
 <!--[pnusergetlang assign="currLang"]-->
-<!--[formutil_getpassedvalue assign="nllang" name="language" default="currLang"]-->
+<!--[formutil_getpassedvalue assign="nllang" name="language" default=$currLang]-->
 
 <!--[$objectArray.title]-->
 ===========================
@@ -151,6 +151,15 @@
 <!--[/foreach]-->
 <!--[/if]-->
 
+<!--[if (isset($objectArray.Pagemaster) && $objectArray.Pagemaster)]-->        
+<!--[gt text="Recently Added Publications"]-->
+===========================
+<!--[foreach from=$objectArray.Pagemaster.txt key='tid' item='publist']-->
+<!--[foreach from=$publist item="item"]-->
+<!--[$item.core_title]-->
+<!--[/foreach]-->
+<!--[/foreach]-->
+<!--[/if]-->
 
 
 <!--[pnmodurl assign="nlurl" modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true]-->

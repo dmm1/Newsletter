@@ -318,7 +318,7 @@ table.nl-calendar tbody tr th:hover {
 </style>
 
   <!--[pnusergetlang assign="currLang"]-->
-  <!--[formutil_getpassedvalue assign="nllang" name="language" default="currLang"]-->
+  <!--[formutil_getpassedvalue assign="nllang" name="language" default=$currLang]-->
   <body id="nl-body">
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bg1">
         <tr>
@@ -639,9 +639,20 @@ table.nl-calendar tbody tr th:hover {
                         <!--[if (isset($objectArray.Pagemaster) && $objectArray.Pagemaster)]-->
                           <h2><!--[gt text="Recently Added Publications"]--></h2>
                           <img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <!--[foreach from=$objectArray.Pagemaster item="item" name="loop"]-->
-                            <h3><a href="<!--[pnmodurl modname="Pagemaster" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true]-->"><!--[$item.title|pnvarprephtmldisplay]--></a></h3>
-                            <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
+                          <!--[* TXT BASED LIST *]-->
+                          <!--[*
+                          <!--[foreach from=$objectArray.Pagemaster.txt key='tid' item="publist" name="loop"]-->
+                            <!--[foreach from=$publist item="item"]-->
+                            <h3><a href="<!--[pnmodurl modname="Pagemaster" type="user" func="viewpub" tid=$tid pid=$item.core_pid newlang=$nllang fqurl=true]-->"><!--[$item.core_title|pnvarprephtmldisplay]--></a></h3>
+                            <!--[/foreach]-->
+                          <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
+                          <!--[/foreach]-->
+                          *]-->
+
+                          <!--[* HTML OUTPUT LIST *]-->
+                          <!--[foreach from=$objectArray.Pagemaster.htm key='tid' item="output" name="loop"]-->
+                            <!--[$output]-->
+                          <!--[if (!$smarty.foreach.loop.last)]--><img class="hr" src="<!--[$site_url]-->modules/Newsletter/pnimages/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" /><!--[/if]-->
                           <!--[/foreach]-->
                           <br />
                         <!--[/if]-->

@@ -1,10 +1,24 @@
-<!--[assign var="PagemasterPubTypes" value=$plugin_parameters.Pagemaster.param.pagemasterPubTypes]-->
-<!--[gt text="Activate Pagemaster Plugin"]--><br /><hr />
-<b><!--[gt text="Either a selection or all if no selection"]--></b><br />
+<!--[assign var='PubTypes' value=$plugin_parameters.Pagemaster.param.pmPubTypes]-->
+<!--[assign var='PageArgs' value=$plugin_parameters.Pagemaster.param.pmArgs]-->
 
-<!--[foreach from=$PagemasterPubTypes item=pgPubType]-->
-	<!--[assign_concat name="checkboxName" 1="PagemasterTIDs[" 2=$pgPubType.id 3="]"]-->
-	<!--[assign_concat name="modvarName" 1="PagemasterTID_" 2=$pgPubType.id]-->
-	<input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pgPubType.active)]-->checked="checked"<!--[/if]--> /> <!--[$pgPubType.title|pnvarprephtmldisplay]--><br />
+<!--[gt text='Activate Pagemaster Plugin']-->
+<hr />
+<em><!--[gt text='Either a selection or all if no selection']--></em>
+
+<!--[foreach from=$PubTypes key='Tid' item='PubType']-->
+    <hr />
+    <input type="checkbox" name="PagemasterTIDs[<!--[$Tid]-->]" id="PagemasterTIDs_<!--[$Tid]-->" value="1" <!--[if ($PubType.nwactive)]-->checked="checked"<!--[/if]--> />
+    <label for="PagemasterTIDs_<!--[$Tid]-->"><!--[$PubType.title|pnvarprephtmldisplay]--></label>
+    <br />
+        <input type="text" value="<!--[$PageArgs.$Tid.itemsperpage|default:'']-->" name="PagemasterArgs[<!--[$Tid]-->][itemsperpage]" id="PagemasterArgs_<!--[$Tid]-->_itemsperpage" maxlength="5" size="5">
+        <label for="PagemasterArgs_<!--[$Tid]-->_itemsperpage"><!--[gt text='Number of publications']--></label>
+    <br />
+        <input type="text" value="<!--[$PageArgs.$Tid.template|default:'']-->" name="PagemasterArgs[<!--[$Tid]-->][template]" id="PagemasterArgs_<!--[$Tid]-->_template" maxlength="100" size="30">
+        <label for="PagemasterArgs_<!--[$Tid]-->_template"><!--[gt text='Template']--></label>
+    <br />
+        <input type="text" value="<!--[$PageArgs.$Tid.orderby|default:'']-->" name="PagemasterArgs[<!--[$Tid]-->][orderby]" id="PagemasterArgs_<!--[$Tid]-->_orderby" maxlength="255" size="30">
+        <label for="PagemasterArgs_<!--[$Tid]-->_orderby"><!--[gt text='Order by']--></label>
+    <br />
+        <input type="text" value="<!--[$PageArgs.$Tid.filter|default:'']-->" name="PagemasterArgs[<!--[$Tid]-->][filter]" id="PagemasterArgs_<!--[$Tid]-->_filter" maxlength="512" size="30">
+        <label for="PagemasterArgs_<!--[$Tid]-->_filter"><!--[gt text='Filter string']--></label>
 <!--[/foreach]-->
-
