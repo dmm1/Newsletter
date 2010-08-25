@@ -1,7 +1,8 @@
-<!--[include file="newsletter_admin_std_header.html"]-->
-<!--[add_additional_header header='<script type="text/javascript" src="modules/Newsletter/pnjavascript/checkall.js"></script>']-->
-<!--[pnajaxheader modname="Newsletter" filename="newsletter.js"]-->
-<!--[pnajaxheader modname="Newsletter"]-->
+
+<!--[include file='newsletter_admin_std_header.html']-->
+
+<!--[pnajaxheader modname='Newsletter' filename='newsletter.js']-->
+<!--[pnpageaddvar name='javascript' value='modules/Newsletter/pnjavascript/checkall.js']-->
 
 <script type="text/javascript">
     function disableSendChecked(){
@@ -28,21 +29,24 @@
 
 <!--[pnsessiongetvar assign="currPagesize" name="pagesize" default="25" path="/Newsletter"]-->
 
-  <h2><!--[$templatetitle]--></h2>
+<div class="z-admincontainer">
+    <div class="z-adminpageicon"><!--[pnimg modname='Newsletter' src='admin.gif' alt='']--></div>
+
+    <h2><!--[gt text="Subscribers"]--></h2>
 
   <form class="z-adminform" action="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot]-->" name="langfilter" method="post" enctype="application/x-www-form-urlencoded">
     <div>
-	<!--[gt text="All" assign=lblAll]-->
+    <!--[gt text="All" assign=lblAll]-->
     <!--[gt text="Filter" assign=lblFilter]-->
-	<!--[gt text="Data" assign=lblData]-->
-	<!--[gt text="Edit" assign=lblEdit]-->
-	<!--[gt text="Delete" assign=lblDelete]-->
-	<!--[gt text="Yes" assign=lblyes]-->
-	<!--[gt text="No" assign=lblno]-->
-	<!--[gt text="Not send yet" assign=lblnotsendyet]-->
-	<!--[gt text="Are you sure you wish to change the active status for this user?" assign=qActive]-->
-	<!--[gt text="Are you sure you wish to change the approved status for this user?" assign=qApproved]-->
-		
+    <!--[gt text="Data" assign=lblData]-->
+    <!--[gt text="Edit" assign=lblEdit]-->
+    <!--[gt text="Delete" assign=lblDelete]-->
+    <!--[gt text="Yes" assign=lblyes]-->
+    <!--[gt text="No" assign=lblno]-->
+    <!--[gt text="Not send yet" assign=lblnotsendyet]-->
+    <!--[gt text="Are you sure you wish to change the active status for this user?" assign=qActive]-->
+    <!--[gt text="Are you sure you wish to change the approved status for this user?" assign=qApproved]-->
+
     <fieldset>
       <legend><strong><!--[gt text="Usersearch / Add a User"]--></strong></legend>
 
@@ -55,11 +59,11 @@
           <script type="text/javascript">
             liveusersearch();
           </script>
-		  <img src="images/icons/extrasmall/add_user.gif" alt="<!--[gt text="Add a user"]-->" />&nbsp;<a href="<!--[pnmodurl modname="Newsletter" type="admin" func="edit" ot="user" authid=$authid]-->"><!--[gt text="Add a user"]--></a>
+          <img src="images/icons/extrasmall/add_user.gif" alt="<!--[gt text="Add a user"]-->" />&nbsp;<a href="<!--[pnmodurl modname="Newsletter" type="admin" func="edit" ot="user" authid=$authid]-->"><!--[gt text="Add a user"]--></a>
 
         </div>
-		
-		
+
+
       </div>
     </fieldset>
 
@@ -68,47 +72,47 @@
        <ol id="filterlist" class="z-itemlist">
         <li class="z-itemheader z-clearfix">
             <!--[if ($enable_multilingual)]-->
-			<span class="z-itemcell z-w25">   <!--[gt text="Language"]-->&nbsp;</span>
-			<!--[/if]-->
+            <span class="z-itemcell z-w25">   <!--[gt text="Language"]-->&nbsp;</span>
+            <!--[/if]-->
             <span class="z-itemcell z-w25">  <!--[gt text="Type"]-->&nbsp;</span>
             <span class="z-itemcell z-w25">  <!--[gt text="Frequency"]-->&nbsp;</span>
             <span class="z-itemcell z-w15">  <!--[gt text="Active"]-->&nbsp;</span>
             <span class="z-itemcell z-w15">   <!--[gt text="Approved"]-->&nbsp;</span>         
-		 </li>
-		 <li class="<!--[cycle values="z-odd,z-even"]--> z-clearfix">
-		 <!--[if ($enable_multilingual)]-->
-		 <span class="z-itemcell z-w25"><select id="filter_lang" name="filter[lang]" onchange="this.form.submit();"><!--[html_options values=$language_values output=$language_output selected=$filter.lang]--></select></span>
-		 <!--[/if]-->
-		 <span class="z-itemcell z-w25"><select id="filter_type" name="filter[type]" onchange="this.form.submit();"><!--[html_options values=$type_values output=$type_output selected=$filter.type]--></select></span>
-		 <span class="z-itemcell z-w25"><select id="filter_frequency" name="filter[frequency]" onchange="this.form.submit();"><!--[html_options values=$frequency_values output=$frequency_output selected=$filter.frequency|default:-1]--></select></span>
-		 <span class="z-itemcell z-w15"><select id="filter_active" name="filter[active]" onchange="this.form.submit();"><!--[html_options values=$active_values output=$active_output selected=$filter.active]--></select></span>
-		 <span class="z-itemcell z-w15"><select id="filter_approved" name="filter[approved]" onchange="this.form.submit();"><!--[html_options values=$approved_values output=$approved_output selected=$filter.approved]--></select></span> 
-		 </li>
-		</ol>
+         </li>
+         <li class="<!--[cycle values="z-odd,z-even"]--> z-clearfix">
+         <!--[if ($enable_multilingual)]-->
+         <span class="z-itemcell z-w25"><select id="filter_lang" name="filter[lang]" onchange="this.form.submit();"><!--[html_options values=$language_values output=$language_output selected=$filter.lang]--></select></span>
+         <!--[/if]-->
+         <span class="z-itemcell z-w25"><select id="filter_type" name="filter[type]" onchange="this.form.submit();"><!--[html_options values=$type_values output=$type_output selected=$filter.type]--></select></span>
+         <span class="z-itemcell z-w25"><select id="filter_frequency" name="filter[frequency]" onchange="this.form.submit();"><!--[html_options values=$frequency_values output=$frequency_output selected=$filter.frequency|default:-1]--></select></span>
+         <span class="z-itemcell z-w15"><select id="filter_active" name="filter[active]" onchange="this.form.submit();"><!--[html_options values=$active_values output=$active_output selected=$filter.active]--></select></span>
+         <span class="z-itemcell z-w15"><select id="filter_approved" name="filter[approved]" onchange="this.form.submit();"><!--[html_options values=$approved_values output=$approved_output selected=$filter.approved]--></select></span>
+         </li>
+        </ol>
     </fieldset>
-	</div>
+    </div>
   </form>
   
   
   
   <form class="z-adminform" name="send2users" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
-	<fieldset>	
-	<legend><strong>&nbsp;<!--[$lblData]-->&nbsp;</strong></legend>
-	<input type="hidden" name="authid" value="<!--[$authid]-->" />
+    <fieldset>
+    <legend><strong>&nbsp;<!--[$lblData]-->&nbsp;</strong></legend>
+    <input type="hidden" name="authid" value="<!--[$authid]-->" />
     <input type="hidden" name="ot" value="newsletter_send" />    
-	<input type="hidden" name="otTarget" value="user" />
-	<!--[if ($create_archive)]-->
-	<input type="hidden" name="sendType" value="manual" />
-	<!--[else]-->
+    <input type="hidden" name="otTarget" value="user" />
+    <!--[if ($create_archive)]-->
+    <input type="hidden" name="sendType" value="manual" />
+    <!--[else]-->
     <input type="hidden" name="sendType" value="manual_archive" />
-	<!--[/if]-->	
+    <!--[/if]-->
     <!--[if ($enable_multilingual)]-->
         <input type="hidden" name="language" value="<!--[$filter.lang]-->" />
     <!--[else]-->
         <!--[pnconfiggetvar assign="defaultlang" name="language" default="eng"]-->
         <input type="hidden" name="language" value="<!--[$defaultlang]-->" />
     <!--[/if]-->
-	<div style="text-align:right;">
+    <div style="text-align:right;">
           <!--[php]-->
               $psArray = array();
               $psArray[25]   = 25;
@@ -133,61 +137,61 @@
         </div>
     <ol id="datalist" class="z-itemlist">
         <li class="z-itemheader z-clearfix">
-		<span class="z-itemcell z-w05"><input type="checkbox" onclick="checkAllFields(1);" id="checkAll" /></span>
-		<span class="z-itemcell z-w10">    <!--[php]-->
+        <span class="z-itemcell z-w05"><input type="checkbox" onclick="checkAllFields(1);" id="checkAll" /></span>
+        <span class="z-itemcell z-w10">    <!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'uid';
           <!--[/php]-->
         <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="User ID"]--></a>
-		</span>
-		<span class="z-itemcell z-w10"><!--[php]-->
+        </span>
+        <span class="z-itemcell z-w10"><!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'name';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Username"]--></a>
         </span>
-		<span class="z-itemcell z-w10"> <!--[php]-->
+        <span class="z-itemcell z-w10"> <!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'email';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Email"]--></a>
         </span>
-		<span class="z-itemcell z-w08"><!--[php]-->
+        <span class="z-itemcell z-w08"><!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'lang';
           <!--[/php]-->
          <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Language"]--></a>
         </span>
-		<span class="z-itemcell z-w05"> <!--[php]-->
+        <span class="z-itemcell z-w05"> <!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'type';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Type"]--></a>
         </span>
-		<span class="z-itemcell z-w10"><!--[php]-->
+        <span class="z-itemcell z-w10"><!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'frequency';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Frequency"]--></a>
         </span>
-		<span class="z-itemcell z-w10"><!--[php]-->
+        <span class="z-itemcell z-w10"><!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'active DESC';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Active"]--></a>
         </span>
-		<span class="z-itemcell z-w08"><!--[php]-->
+        <span class="z-itemcell z-w08"><!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'approved DESC';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Approved"]--></a>
         </span>
-		<span class="z-itemcell z-w10"><!--[php]-->
+        <span class="z-itemcell z-w10"><!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'last_send_date DESC';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Last sent"]--></a>
         </span>
-		<span class="z-itemcell z-w08">  <!--[php]-->
+        <span class="z-itemcell z-w08">  <!--[php]-->
              $this->_tpl_vars['filter']['sort'] = 'cr_date DESC';
           <!--[/php]-->
           <a href="<!--[pnmodurl modname="Newsletter" type="admin" func="view" ot=$ot filter=$filter]-->"><!--[gt text="Joindate"]--></a>
         </span>
-		<span class="z-itemcell z-w06">
-		<!--[gt text="Action"]-->
-		</span>
-		</li>
+        <span class="z-itemcell z-w06">
+        <!--[gt text="Action"]-->
+        </span>
+        </li>
     
         <!--[securityutil_checkpermission assign="adminAuth" component="Newsletter::" instance="::" level="ACCESS_ADMIN"]-->       
         <!--[foreach from=$objectArray item=user]-->
@@ -225,21 +229,19 @@
             </span>
           </li>
         <!--[/foreach]-->
-		</ol>
-		</fieldset>
+        </ol>
+        </fieldset>
     
-	<fieldset>		
-	<legend><strong>&nbsp;<!--[gt text="Action"]-->&nbsp;</strong></legend>
+    <fieldset>
+    <legend><strong>&nbsp;<!--[gt text="Action"]-->&nbsp;</strong></legend>
            <div style="float:left;">
             <!--[gt text="Update last sent date?"]-->
             <input type="checkbox" name="updateSendDate" value="1" />
-            <b><!--[gt text="(checked=yes)"]--></b>
-			<input type="hidden" name="authid" value="<!--[$authid]-->" />
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
             <input class="z-button" type="submit" value="<!--[gt text="Send to"]--> [0] <!--[gt text="Users"]-->" name="sendChecked" id="sendChecked" />
            </div>
     </fieldset>
-  </form>
+    </form>
 
-<!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar=startnum shift=1 img_prev=images/icons/extrasmall/previous.gif img_next=images/icons/extrasmall/next.gif]-->
-
-<!--[include file="newsletter_std_footer.html"]-->
+    <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='startnum' shift=1]-->
+</div>

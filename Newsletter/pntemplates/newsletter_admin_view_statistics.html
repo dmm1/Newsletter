@@ -1,58 +1,63 @@
-<!--[include file="newsletter_admin_std_header.html"]-->
 
-<!--[gt text="Statistics" assign=templatetitle]-->
-<div class="z-adminpageicon"><!--[pnimg modname='core' src='info.gif' set='icons/large' __alt='Statistics' ]--></div>
-  <fieldset>
-    <legend><!--[gt text="Newsletter Module Statistics"]--></legend>
-	
-    <div class="z-formrow">
-      <label for="users"><i><!--[gt text="Total # of Users"]-->:</i></label>
-      <span id="users"><b><!--[$objectArray.users]--></b></span>
+<!--[include file='newsletter_admin_std_header.html']-->
+
+<div class="z-admincontainer">
+    <div class="z-adminpageicon"><!--[pnimg modname='core' src='info.gif' set='icons/large' __alt='Statistics']--></div>
+
+    <h2><!--[gt text='Statistics']--></h2>
+
+    <div class="z-form">
+        <fieldset>
+            <legend><!--[gt text="Newsletter Module Statistics"]--></legend>
+
+            <div class="z-formrow">
+                <label for="users"><em><!--[gt text="Total number of Users"]-->:</em></label>
+                <span id="users"><strong><!--[$objectArray.users]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_active"><em><!--[gt text="Active subscribers"]-->:</em></label>
+                <span id="users_active"><strong><!--[$objectArray.users_active]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_approved"><em><!--[gt text="Approved subscribers"]-->:</em></label>
+                <span id="users_approved"><strong><!--[$objectArray.users_approved]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_activeapproved"><em><!--[gt text="Active and approved subscribers"]-->:</em></label>
+                <span id="users_activeapproved"><strong><!--[$objectArray.users_approved_and_active]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_registered"><em><!--[gt text="Subscribers which are registered Users"]-->:</em></label>
+                <span id="users_registered"><strong><!--[$objectArray.users_registered]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_html"><em><!--[gt text="Number of subscribers for HTML format"]-->:</em></label>
+                <span id="users_html"><strong><!--[$objectArray.users_html]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_text"><em><!--[gt text="Numer of subscribers for text format"]-->:</em></label>
+                <span id="users_text"><strong><!--[$objectArray.users_text]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_textwithlinks"><em><!--[gt text="Number of subscribers for text with links format"]-->:</em></label>
+                <span id="users_textwithlinks"><strong><!--[$objectArray.users_textwithlinks]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_weekly"><em><!--[gt text="Number of subscribers for weekly delivery"]-->:</em></label>
+                <span id="users_weekly"><strong><!--[$objectArray.users_weekly]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_monthly"><em><!--[gt text="Number of subscribers for monthly delivery"]-->:</em></label>
+                <span id="users_monthly"><strong><!--[$objectArray.users_monthly]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_yearly"><em><!--[gt text="Number of subscribers for yearly delivery"]-->:</em></label>
+                <span id="users_yearly"><strong><!--[$objectArray.users_yearly]--></strong></span>
+            </div>
+            <div class="z-formrow">
+                <label for="users_archives"><em><!--[gt text="Number of archives"]-->:</em></label>
+                <span id="users_archives"><strong><!--[$objectArray.archives]--></strong></span>
+            </div>
+        </fieldset>
     </div>
-    <div class="z-formrow">
-      <label for="users_active"><i><!--[gt text="Active Subscribers"]-->:</i></label>
-      <span id="users_active"><b><!--[$objectArray.users_active]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_approved"><i><!--[gt text="Approved Subscribers"]-->:</i></label>
-      <span id="users_approved"><b><!--[$objectArray.users_approved]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_activeapproved"><i><!--[gt text="Active and approved Subscribers"]-->:</i></label>
-      <span id="users_activeapproved"><b><!--[$objectArray.users_approved_and_active]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_registered"><i><!--[gt text="Subscribers which are registered Users"]-->:</i></label>
-      <span id="users_registered"><b><!--[$objectArray.users_registered]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_html"><i><!--[gt text="# of Subscribers for Html Format"]-->:</i></label>
-      <span id="users_html"><b><!--[$objectArray.users_html]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_text"><i><!--[gt text="# of Subscribers for Text Format"]-->:</i></label>
-      <span id="users_text"><b><!--[$objectArray.users_text]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_textwithlinks"><i><!--[gt text="# of Subscribers for Text with Links Format"]-->:</i></label>
-      <span id="users_textwithlinks"><b><!--[$objectArray.users_textwithlinks]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_weekly"><i><!--[gt text="# of Subscribers for Weekly Delivery"]-->:</i></label>
-      <span id="users_weekly"><b><!--[$objectArray.users_weekly]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_monthly"><i><!--[gt text="# of Subscribers for Monthly Delivery"]-->:</i></label>
-      <span id="users_monthly"><b><!--[$objectArray.users_monthly]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_yearly"><i><!--[gt text="# of Subscribers for Yearly Delivery"]-->:</i></label>
-      <span id="users_yearly"><b><!--[$objectArray.users_yearly]--></b></span>
-    </div>
-    <div class="z-formrow">
-      <label for="users_archives"><i><!--[gt text="# of Archives"]-->:</i></label>
-      <span id="users_archives"><b><!--[$objectArray.archives]--></b></span>
-    </div>
-  </fieldset>
 </div>
-

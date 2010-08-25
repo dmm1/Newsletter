@@ -1,4 +1,5 @@
-<!--[include file="newsletter_admin_std_header.html"]-->
+
+<!--[include file='newsletter_admin_std_header.html']-->
 
 <!--[newsletter_selector_frequency assign="frequency_values" return_keys=true]-->
 <!--[newsletter_selector_frequency assign="frequency_output" return_keys=false]-->
@@ -15,14 +16,12 @@
 <!--[pnuserloggedin assign="loggedin"]-->
 <!--[pnsecgenauthkey assign="authid" module="Newsletter"]-->
 
-<!--[pnml assign="pageTitle" name="Import Zikula Users"]-->
-<!--[pnpagesetvar name="title" value=$pageTitle]-->
+<div class="z-admincontainer">
+    <div class="z-adminpageicon"><!--[pnimg modname='Newsletter' src='admin.gif' alt='']--></div>
 
-<div class="pn-admincontainer">
+    <h2><!--[gt text='Import Zikula Users']--></h2>
 
-  <br />
-  <h2><!--[$pageTitle]--></h2>
-  <form name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
+    <form name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
     <input type="hidden" name="authid" value="<!--[$authid]-->" />
     <input type="hidden" name="ot" value="import_config" />
     <input type="hidden" name="otTarget" value="userimport" />
@@ -30,11 +29,11 @@
       <legend>1.) <!--[gt text="Zikula User Import Configuration"]--></legend>
       <div class="pn-adminformrow">
         <label for="import_type"><!--[gt text="Type"]--> :</label>
-	<select id="import_type" name="import[import_type]"><!--[html_options values=$type_values output=$type_output selected=$import_type]--></select>
+    <select id="import_type" name="import[import_type]"><!--[html_options values=$type_values output=$type_output selected=$import_type]--></select>
       </div>
       <div class="pn-adminformrow">
         <label for="import_frequency"><!--[gt text="Frequency"]-->: </label>
-	<select id="import_frequency" name="import[import_frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$import_frequency]--></select>
+    <select id="import_frequency" name="import[import_frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$import_frequency]--></select>
       </div>
         <div class="pn-adminformrow">
         <label for="import_active_status"><!--[gt text="Active"]-->:</label>
@@ -60,5 +59,3 @@
   </fieldset>
 
 </div>
-
-<!--[include file="newsletter_std_footer.html"]-->

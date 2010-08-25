@@ -1,42 +1,46 @@
-<!--[pnajaxheader modname='Newsletter' filename='newsletter.js']-->
+
 <!--[include file="newsletter_admin_std_header.html"]-->
-<!--[gt text="Available Plugins" assign=templatetitle]-->
 
-  <h2><!--[$templatetitle]--></h2>
+<!--[pnajaxheader modname='Newsletter' filename='newsletter.js']-->
 
-  <form class="z-adminform" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<div class="z-admincontainer">
+    <div class="z-adminpageicon"><!--[pnimg modname='Newsletter' src='admin.gif' alt='']--></div>
+
+    <h2><!--[gt text='Available Plugins']--></h2>
+
+    <form class="z-adminform" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
     <div>
-	<input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
+    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
     <input type="hidden" name="ot" value="plugin" />
     <ol id="pluginlist" class="z-itemlist">
-		 <li class="z-itemheader z-clearfix">
+         <li class="z-itemheader z-clearfix">
                     <span class="z-itemcell z-w25"><!--[gt text="Plugin"]--></span>
                     <span class="z-itemcell z-w25"><!--[gt text="# of Items"]--></span>
                     <span class="z-itemcell z-w15"><!--[gt text="Active"]--></span>
          
-		 </li>
-		<!--[gt text="Yes" assign=yes]-->
-		<!--[gt text="No" assign=no]-->
+         </li>
+        <!--[gt text="Yes" assign=yes]-->
+        <!--[gt text="No" assign=no]-->
         <!--[pnsecgenauthkey assign="authid" module="Newsletter"]-->
         <!--[foreach from=$objectArray item=plugin]-->
           <li class="<!--[cycle values="z-odd,z-even"]--> z-clearfix">
             <span class="z-itemcell z-w25"><!--[$plugin|pnvarprephtmldisplay]--></span>
 
-	    <!--[assign_concat name="inputName" 1="plugin[" 2=$plugin 3="_nItems" 4="]"]-->
-	    <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin 3="_nItems"]-->
-	    <!--[pnmodgetvar assign="pluginItems" module="Newsletter" name=$modvarName default=3]-->
+        <!--[assign_concat name="inputName" 1="plugin[" 2=$plugin 3="_nItems" 4="]"]-->
+        <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin 3="_nItems"]-->
+        <!--[pnmodgetvar assign="pluginItems" module="Newsletter" name=$modvarName default=3]-->
             <!--[if ($plugin != 'NewsletterMessage')]-->
-	      <span class="z-itemcell z-w25">
-		  <input type="text" name=<!--[$inputName]--> value="<!--[$pluginItems]-->" size="3" maxlength="2" /></span>
+          <span class="z-itemcell z-w25">
+          <input type="text" name=<!--[$inputName]--> value="<!--[$pluginItems]-->" size="3" maxlength="2" /></span>
             <!--[else]-->
-	      <span class="z-itemcell z-w25">.</span>
+          <span class="z-itemcell z-w25">.</span>
             <!--[/if]-->
 
-	    <!--[assign_concat name="checkboxName" 1="plugin[" 2=$plugin 3="]"]-->
-	    <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin]-->
-	    <!--[pnmodgetvar assign="pluginActive" module="Newsletter" name=$modvarName default=0]-->
+        <!--[assign_concat name="checkboxName" 1="plugin[" 2=$plugin 3="]"]-->
+        <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin]-->
+        <!--[pnmodgetvar assign="pluginActive" module="Newsletter" name=$modvarName default=0]-->
             <span class="z-itemcell z-w15">
-			<input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /></span>
+            <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /></span>
               <!--[if ($plugin_parameters.$plugin.number ne 0)]-->
                 <!--[include file="newsletter_admin_view_$plugin.html"]-->
               <!--[/if]-->
@@ -44,9 +48,7 @@
         <!--[/foreach]-->
 
     <!--[include file="newsletter_inc_form_actions.html"]-->
-	</ol>
-	</div>
-  </form>
-
-
-<!--[include file="newsletter_std_footer.html"]-->
+    </ol>
+    </div>
+    </form>
+</div>

@@ -13,6 +13,7 @@
 function Newsletter_admin_main()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
+
     if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
         return __("You don't have Admin rights for this module", $dom);
     }
@@ -21,9 +22,9 @@ function Newsletter_admin_main()
         return __("Unable to load class [newsletter_util]", $dom);
     }
 
-    $preferences = pnModGetVar('Newsletter');
     $render = pnRender::getInstance('Newsletter', false);
-    $render->assign ('preferences', $preferences);
+
+    $render->assign('preferences', pnModGetVar('Newsletter'));
 
     return $render->fetch('newsletter_admin_form_start.html');
 }
@@ -31,13 +32,14 @@ function Newsletter_admin_main()
 
 function Newsletter_admin_settings()
 {
-   return Newsletter_admin_modifyconfig ();
+   return Newsletter_admin_modifyconfig();
 }
 
 
 function Newsletter_admin_modifyconfig ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
+
     if (!SecurityUtil::checkPermission('Newsletter::modifyconfig', '::', ACCESS_ADMIN)) {
         return __("You don't have Admin rights for this module", $dom);
     }
@@ -47,7 +49,9 @@ function Newsletter_admin_modifyconfig ()
     }
 
     $preferences = pnModGetVar('Newsletter');
+
     $pnRender = pnRender::getInstance('Newsletter', false);
+
     $pnRender->assign ('preferences', $preferences);
     $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
     $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
@@ -56,9 +60,10 @@ function Newsletter_admin_modifyconfig ()
 }
 
 
-function Newsletter_admin_edit ()
+function Newsletter_admin_edit()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
+
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerError (__("You don't have Admin rights for this module", $dom), null, $url);
     }
@@ -96,10 +101,11 @@ function Newsletter_admin_edit ()
 }
 
 
-function Newsletter_admin_view ()
+function Newsletter_admin_view()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
-    if (!pnSecAuthAction(0, 'Newsletter::', '::', ACCESS_ADMIN)) {
+
+    if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerError (__("You don't have Admin rights for this module", $dom), null, $url);
     }
 
@@ -225,13 +231,14 @@ function Newsletter_admin_view ()
 
 function Newsletter_admin_archive()
 {
-   return Newsletter_admin_modifyarchive ();
+   return Newsletter_admin_modifyarchive();
 }
 
 
-function Newsletter_admin_modifyarchive ()
+function Newsletter_admin_modifyarchive()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
+
     if (!SecurityUtil::checkPermission('Newsletter::modifyarchive', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -241,7 +248,9 @@ function Newsletter_admin_modifyarchive ()
     }
 
     $preferences_archive = pnModGetVar('Newsletter');
+
     $pnRender = pnRender::getInstance('Newsletter', false);
+
     $pnRender->assign ('preferences_archive', $preferences_archive);
     $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
     $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
@@ -250,9 +259,10 @@ function Newsletter_admin_modifyarchive ()
 }
 
 
-function Newsletter_admin_archive_edit ()
+function Newsletter_admin_archive_edit()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
+
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError();
     }
@@ -281,10 +291,10 @@ function Newsletter_admin_archive_edit ()
     }
 
     $pnRender = pnRender::getInstance('Newsletter', false);
+
     $pnRender->assign ('ot', $ot);
     $pnRender->assign ($ot, $data);
     $pnRender->assign ('validation', $object->getValidation());
 
-    $tpl = 'newsletter_admin_form_' . $ot . '.html';
-    return $pnRender->fetch($tpl);
+    return $pnRender->fetch("newsletter_admin_form_{$ot}.html");
 }

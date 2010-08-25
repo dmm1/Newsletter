@@ -1,14 +1,13 @@
-﻿<!--[gt text="Newsletter" assign=templatetitle]-->
 
-<!--[add_additional_header header='<link rel="stylesheet" href="modules/Newsletter/pnstyle/admin_style.css" type="text/css" />']-->
-<!--[pnpageaddvar name="javascript" value="javascript/ajax/prototype.js"]-->
-<!--[pnpageaddvar name="javascript" value="javascript/ajax/scriptaculous.js"]-->
-<!--[pnpageaddvar name="css" value="modules/Newsletter/pnstyle/style.css"]-->
+<!--[gt text='Newsletter' assign='templatetitle']-->
+
+<!--[pnpageaddvar name='stylesheet' value='modules/Newsletter/pnstyle/admin_style.css']-->
+<!--[pnpageaddvar name='javascript' value='javascript/ajax/prototype.js']-->
+<!--[pnpageaddvar name='javascript' value='javascript/ajax/scriptaculous.js']-->
 
 <!--[admincategorymenu]-->
-<div class="z-admincontainer">
-  <h2><!--[gt text="Newsletter"]--></h2>
-  <div class="z-menu"><!--[moduleadminlinks modname=Newsletter]--></div>
 
-
-<!--[pngetstatusmsg class="status-message"]-->
+<div class="z-adminbox">
+    <h1><!--[pnmodgetinfo modname='Newsletter' info='displayname']--></h1>
+    <div class="z-menu"><!--[moduleadminlinks modname='Newsletter']--></div>
+</div>
