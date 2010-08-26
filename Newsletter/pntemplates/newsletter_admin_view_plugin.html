@@ -1,5 +1,5 @@
 
-<!--[include file="newsletter_admin_std_header.html"]-->
+<!--[include file='newsletter_admin_header.html']-->
 
 <!--[pnajaxheader modname='Newsletter' filename='newsletter.js']-->
 
@@ -8,47 +8,36 @@
 
     <h2><!--[gt text='Available Plugins']--></h2>
 
-    <form class="z-adminform" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post" enctype="application/x-www-form-urlencoded">
-    <div>
-    <input type="hidden" id="authid" name="authid" value="<!--[insert name="generateauthkey" module="Newsletter"]-->" />
-    <input type="hidden" name="ot" value="plugin" />
-    <ol id="pluginlist" class="z-itemlist">
-         <li class="z-itemheader z-clearfix">
-                    <span class="z-itemcell z-w25"><!--[gt text="Plugin"]--></span>
-                    <span class="z-itemcell z-w25"><!--[gt text="# of Items"]--></span>
-                    <span class="z-itemcell z-w15"><!--[gt text="Active"]--></span>
-         
-         </li>
-        <!--[gt text="Yes" assign=yes]-->
-        <!--[gt text="No" assign=no]-->
-        <!--[pnsecgenauthkey assign="authid" module="Newsletter"]-->
-        <!--[foreach from=$objectArray item=plugin]-->
-          <li class="<!--[cycle values="z-odd,z-even"]--> z-clearfix">
-            <span class="z-itemcell z-w25"><!--[$plugin|pnvarprephtmldisplay]--></span>
+    <form id="nwplugins" class="z-form" action="<!--[pnmodurl modname='Newsletter' type='adminform' func='edit']-->" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="authid" name="authid" value="<!--[insert name='generateauthkey' module='Newsletter']-->" />
+        <input type="hidden" name="ot" value="plugin" />
 
-        <!--[assign_concat name="inputName" 1="plugin[" 2=$plugin 3="_nItems" 4="]"]-->
-        <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin 3="_nItems"]-->
-        <!--[pnmodgetvar assign="pluginItems" module="Newsletter" name=$modvarName default=3]-->
-            <!--[if ($plugin != 'NewsletterMessage')]-->
-          <span class="z-itemcell z-w25">
-          <input type="text" name=<!--[$inputName]--> value="<!--[$pluginItems]-->" size="3" maxlength="2" /></span>
-            <!--[else]-->
-          <span class="z-itemcell z-w25">.</span>
-            <!--[/if]-->
-
-        <!--[assign_concat name="checkboxName" 1="plugin[" 2=$plugin 3="]"]-->
-        <!--[assign_concat name="modvarName" 1="plugin_" 2=$plugin]-->
-        <!--[pnmodgetvar assign="pluginActive" module="Newsletter" name=$modvarName default=0]-->
-            <span class="z-itemcell z-w15">
-            <input type="checkbox" name=<!--[$checkboxName]--> value="1" <!--[if ($pluginActive)]-->checked="checked"<!--[/if]--> /></span>
-              <!--[if ($plugin_parameters.$plugin.number ne 0)]-->
-                <!--[include file="newsletter_admin_view_$plugin.html"]-->
-              <!--[/if]-->
-          </li>
+        <!--[assign var='i' value=1]-->
+        <!--[foreach from=$objectArray item='plugin']-->
+        <!--[pnmodgetvar assign="pluginActive" module="Newsletter" name="plugin_`$plugin`" default=0]-->
+        <fieldset>
+            <legend>
+                <!--[$plugin|pnvarprephtmldisplay]-->
+                <input type="checkbox" id="enable_<!--[$i]-->" name="plugin[<!--[$plugin]-->]" value="1" <!--[if $pluginActive]-->checked="checked"<!--[/if]--> />
+            </legend>
+            <div id="plugin_<!--[$i]-->">
+                <!--[if $plugin neq 'NewsletterMessage']-->
+                <div class="z-formrow z-nw-numitemsrow">
+                    <label for="plugin<!--[$i]-->_numitems"><!--[gt text='Number of items']--></label>
+                    <div>
+                        <!--[pnmodgetvar assign='pluginItems' module='Newsletter' name="plugin_`$plugin`_nItems" default=3]-->
+                        <input id="plugin<!--[$i]-->_numitems" name="plugin[<!--[$plugin]-->_nItems]" type="text" value="<!--[$pluginItems]-->" size="3" maxlength="2" />
+                    </div>
+                </div>
+                <!--[/if]-->
+                <!--[if $plugin_parameters.$plugin.number ne 0]-->
+                    <!--[include file="newsletter_plugin_`$plugin`_config.html"]-->
+                <!--[/if]-->
+            </div>
+        </fieldset>
+        <!--[assign var='i' value=$i+1]-->
         <!--[/foreach]-->
 
-    <!--[include file="newsletter_inc_form_actions.html"]-->
-    </ol>
-    </div>
+        <!--[include file='newsletter_inc_form_actions.html']-->
     </form>
 </div>

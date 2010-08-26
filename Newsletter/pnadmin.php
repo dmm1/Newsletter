@@ -26,7 +26,7 @@ function Newsletter_admin_main()
 
     $render->assign('preferences', pnModGetVar('Newsletter'));
 
-    return $render->fetch('newsletter_admin_form_start.html');
+    return $render->fetch('newsletter_admin_main.html');
 }
 
 
@@ -36,7 +36,7 @@ function Newsletter_admin_settings()
 }
 
 
-function Newsletter_admin_modifyconfig ()
+function Newsletter_admin_modifyconfig()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -56,7 +56,7 @@ function Newsletter_admin_modifyconfig ()
     $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
     $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
 
-    return $pnRender->fetch('newsletter_admin_form_modifyconfig.html');
+    return $pnRender->fetch('newsletter_admin_modifyconfig.html');
 }
 
 
@@ -133,7 +133,7 @@ function Newsletter_admin_view()
         }
     }
     if (!$sort) {
-        'cr_date DESC';
+        $sort = 'cr_date DESC';
     }
     SessionUtil::setVar ('oldSort', $sort, '/Newsletter');
     SessionUtil::setVar ('oldOt', $ot, '/Newsletter');
@@ -255,7 +255,7 @@ function Newsletter_admin_modifyarchive()
     $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
     $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
 
-    return $pnRender->fetch('newsletter_admin_form_modifyarchive.html');
+    return $pnRender->fetch('newsletter_admin_modifyarchive.html');
 }
 
 

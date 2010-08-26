@@ -1,5 +1,5 @@
 
-<!--[include file='newsletter_admin_std_header.html']-->
+<!--[include file='newsletter_admin_header.html']-->
 
 <!--[newsletter_selector_frequency assign="frequency_values" return_keys=true]-->
 <!--[newsletter_selector_frequency assign="frequency_output" return_keys=false]-->
@@ -21,41 +21,49 @@
 
     <h2><!--[gt text='Import Zikula Users']--></h2>
 
-    <form name="config" action="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit"]-->" method="post">
-    <input type="hidden" name="authid" value="<!--[$authid]-->" />
-    <input type="hidden" name="ot" value="import_config" />
-    <input type="hidden" name="otTarget" value="userimport" />
-    <fieldset>
-      <legend>1.) <!--[gt text="Zikula User Import Configuration"]--></legend>
-      <div class="pn-adminformrow">
-        <label for="import_type"><!--[gt text="Type"]--> :</label>
-    <select id="import_type" name="import[import_type]"><!--[html_options values=$type_values output=$type_output selected=$import_type]--></select>
-      </div>
-      <div class="pn-adminformrow">
-        <label for="import_frequency"><!--[gt text="Frequency"]-->: </label>
-    <select id="import_frequency" name="import[import_frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$import_frequency]--></select>
-      </div>
-        <div class="pn-adminformrow">
-        <label for="import_active_status"><!--[gt text="Active"]-->:</label>
-        <input id="import_active_status" name="import[import_active_status]" type="text" value="<!--[$import_active_status]-->" size="3" maxlength="1"  /> 
-        1=<!--[gt text="Active"]-->  | 0=<!--[gt text="Inactive"]--> 
-      </div>
-      
-      <div class="pn-adminformrow">
-        <label for="import_approval_status"><!--[gt text="Users"]--> <!--[gt text="Approved"]--> :</label>
-        <input id="import_approval_status" name="import[import_approval_status]" type="text" value="<!--[$import_approval_status]-->" size="3" maxlength="1" /> 
-        1=<!--[gt text="Approved"]-->  | 0=<!--[gt text="Unapproved"]--> 
-      </div>
-    
-      <input type="submit" name="submit" value="<!--[gt text="Update Configuration"]-->" />
-    </fieldset>
-  </form>
+    <form class="z-form" name="config" action="<!--[pnmodurl modname='Newsletter' type='adminform' func='edit']-->" method="post">
+        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+        <input type="hidden" name="ot" value="import_config" />
+        <input type="hidden" name="otTarget" value="userimport" />
 
-  <fieldset>
-    <legend>2.) <!--[gt text="Import"]--></legend>  
-    <div class="pn-adminformrow"> 
-      <a href="<!--[pnmodurl modname="Newsletter" type="adminform" func="edit" ot="import_users" otTarget="userimport" authKey=$admin_key authid=$authid]-->" title="<!--[gt text="Import"]-->"><img src="images/icons/small/button_ok.gif" alt="" /></a>
-    </div>
-  </fieldset>
+        <fieldset>
+            <legend>1. <!--[gt text="Zikula user import configuration"]--></legend>
+            <div class="z-formrow">
+                <label for="import_type"><!--[gt text='Type']-->:</label>
+                <select id="import_type" name="import[import_type]"><!--[html_options values=$type_values output=$type_output selected=$import_type]--></select>
+            </div>
+            <div class="z-formrow">
+                <label for="import_frequency"><!--[gt text='Frequency']-->:</label>
+                <select id="import_frequency" name="import[import_frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$import_frequency]--></select>
+            </div>
+            <div class="z-formrow">
+                <label for="import_active_status"><!--[gt text='Active']-->:</label>
+                <select id="import_active_status" name="import[import_active_status]">
+                    <option value="1"<!--[if $import_active_status eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="Active"]--></option>
+                    <option value="0"<!--[if $import_active_status eq 0]--> selected="selected"<!--[/if]-->><!--[gt text="Inactive"]--></option>
+                </select>
+            </div>
+            <div class="z-formrow">
+                <label for="import_approval_status"><!--[gt text='Users approved']-->:</label>
+                <select id="import_approval_status" name="import[import_approval_status]">
+                    <option value="1"<!--[if $import_approval_status eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="Approved"]--></option>
+                    <option value="0"<!--[if $import_approval_status eq 0]--> selected="selected"<!--[/if]-->><!--[gt text="Unapproved"]--></option>
+                </select>
+            </div>
+        </fieldset>
+
+        <div class="z-formbuttons">
+            <input type="submit" name="submit" value="<!--[gt text='Update Configuration']-->" />
+        </div>
+
+        <fieldset>
+            <legend>2. <!--[gt text='Import']--></legend>
+            <div class="z-formrow">
+                <a href="<!--[pnmodurl modname='Newsletter' type='adminform' func='edit' ot='import_users' otTarget='userimport' authKey=$admin_key authid=$authid]-->" title="<!--[gt text='Import']-->">
+                    <img src="images/icons/small/button_ok.gif" alt="" />
+                </a>
+            </div>
+        </fieldset>
+    </form>
 
 </div>

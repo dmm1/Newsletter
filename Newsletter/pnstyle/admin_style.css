@@ -1,7 +1,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright ï¿½ 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
  * @link http://www.zikula.org
  * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
@@ -16,27 +16,27 @@ this is important to avoid conflict with your (or others) default stylesheet.
 
 */
 #nladmin-subscribers {
-	width:100%;
-	border:1px solid #ccc;
-	/*border-collapse:collapse;*/
+    width:100%;
+    border:1px solid #ccc;
+    /*border-collapse:collapse;*/
 }
 #nladmin-subscribers th { 
-	padding:5px; 
+    padding:5px;
 }
 #nladmin-subscribers tr, #nladmin-subscribers td { 
-	border:1px solid #bbb; 
+    border:1px solid #bbb;
 }
 #nladmin-subscribers td { 
-	padding:2px; 
+    padding:2px;
 }
 #status-message {
-	font:bold 12px arial;
+    font:bold 12px arial;
 }
 #status-message-green { 
-	font:bold 12px arial; 
+    font:bold 12px arial;
 }
 #status-message-red { 
-	font:bold 12px arial; 
+    font:bold 12px arial;
 }
 .nl_autocomplete_user {
     position: absolute;
@@ -44,7 +44,7 @@ this is important to avoid conflict with your (or others) default stylesheet.
     background-color: white;
     border: 1px solid #888;
     margin: 0;
-    padding: 5;
+    padding: 5px;
 }
 .nl_autocomplete_user ul {
     list-style-image: url("../../../images/icons/extrasmall/edit_user.gif");
@@ -52,7 +52,7 @@ this is important to avoid conflict with your (or others) default stylesheet.
     padding: 0;
 }
 .nl_autocomplete_user ul li.selected { 
-	background-color: #ffb;
+    background-color: #ffb;
 }
 .nl_autocomplete_user ul li {
     margin: 0;
@@ -61,12 +61,14 @@ this is important to avoid conflict with your (or others) default stylesheet.
     cursor: pointer;
 }
 
+div.z-nw-numitemsrow,
+div.z-nw-numitemsrow div{
+    padding-top: 0 !important;
+}
+
 #liveusersearch {
-    margin: 0.5em 0 0.5em 0;
+    padding: 0;
 }
-.pn-hide {
-    display: none;
-}
-.pn-show {
-    display: inherit;
+#filterlist {
+    margin: 0 !important;
 }

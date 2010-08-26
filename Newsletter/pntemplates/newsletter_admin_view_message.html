@@ -1,5 +1,5 @@
 
-<!--[include file='newsletter_admin_std_header.html']-->
+<!--[include file='newsletter_admin_header.html']-->
 
 <!--[php]-->
     $defaultLang = pnConfigGetVar('language_i18n');
@@ -10,7 +10,7 @@
     $this->assign('alternateLanguages', $alternateLanguages);
     $this->assign('coremultilingual', pnConfigGetVar('multilingual', 0));
 <!--[/php]-->
-<!--[pndebug]-->
+
 <!--[pnmodgetvar module='Newsletter' name='message'  assign='text' default=""]-->
 
 <div class="z-admincontainer">
