@@ -1,4 +1,4 @@
-{include file="newsletter_user_std_header.html"} 
+{include file="newsletter_user_std_header.tpl"} 
 
 <div id="nl-content-container">
   <h2>{gt text="Terms of Service"}</h2> 
@@ -18,4 +18,4 @@
   </p>
 </div>
 
-{include file="newsletter_std_footer.html"}
+{include file="newsletter_std_footer.tpl"}

@@ -1,4 +1,4 @@
-﻿{include file="newsletter_user_std_header.html"}
+﻿{include file="newsletter_user_std_header.tpl"}
 
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
@@ -16,7 +16,7 @@
 {secgenauthkey assign="authid" module="Newsletter"}
 <h3>{gt text="Change your subscription settings"}</h3>
 
-{include file="newsletter_user_inc_info.html"}
+{include file="newsletter_user_inc_info.tpl"}
 
 <form class="z-userform" action="{modurl modname="Newsletter" type="userform" func="edit" ot="user_options"}" method="post" enctype="application/x-www-form-urlencoded">
   <input type="hidden" name="authid" value="{secgenauthkey module=Newsletter}" />         
@@ -76,9 +76,9 @@
       <a id="user_tos" href="{modurl modname="Newsletter" type="user" func="main" ot="tos"}" title="{gt text="Terms of Service"}">{gt text="Terms of Service"}</a>
     </div>
 
-    {include file="newsletter_inc_form_actions.html"}
+    {include file="newsletter_inc_form_actions.tpl"}
 
   </fieldset>
 </form>
 
-{include file="newsletter_std_footer.html"}
+{include file="newsletter_std_footer.tpl"}

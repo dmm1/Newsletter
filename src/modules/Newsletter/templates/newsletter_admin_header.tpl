@@ -1,4 +1,4 @@
-{pageaddvar name='stylesheet' value='modules/Newsletter/pnstyle/admin_style.css'}
+{pageaddvar name='stylesheet' value='modules/Newsletter/style/admin_style.css'}
 
 {admincategorymenu}
 

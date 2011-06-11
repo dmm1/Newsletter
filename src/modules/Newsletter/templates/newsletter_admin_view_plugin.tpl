@@ -1,10 +1,10 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 {ajaxheader modname='Newsletter' filename='newsletter.js'}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.gif' alt='' height='22'}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt='' height='22'}</div>
 
     <h3>{gt text='Available Plugins'}</h3>
 
@@ -31,13 +31,13 @@
                 </div>
                 {/if}
                 {if $plugin_parameters.$plugin.number ne 0}
-                    {include file="newsletter_plugin_`$plugin`_config.html"}
+                    {include file="newsletter_plugin_`$plugin`_config.tpl"}
                 {/if}
             </div>
         </fieldset>
         {assign var='i' value=$i+1}
         {/foreach}
 
-        {include file='newsletter_inc_form_actions.html'}
+        {include file='newsletter_inc_form_actions.tpl'}
     </form>
 </div>

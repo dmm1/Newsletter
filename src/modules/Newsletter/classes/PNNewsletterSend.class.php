@@ -275,10 +275,10 @@ class PNNewsletterSend extends PNObject
     function _getNewsletterMessage ($user, $cacheID=null, $personalize=false, &$html=0) 
     {
         switch ($user['type']) {
-            case 1:  $tpl = 'newsletter_template_text.html'; $html = 0; break;
-            case 2:  $tpl = 'newsletter_template_html.html'; $html = 1; break;
-            case 3:  $tpl = 'newsletter_template_text_with_link.html'; $html = 0; break; 
-            default: $tpl = 'newsletter_template_html.html'; $html = 1; break;
+            case 1:  $tpl = 'newsletter_template_text.tpl'; $html = 0; break;
+            case 2:  $tpl = 'newsletter_template_html.tpl'; $html = 1; break;
+            case 3:  $tpl = 'newsletter_template_text_with_link.tpl'; $html = 0; break; 
+            default: $tpl = 'newsletter_template_html.tpl'; $html = 1; break;
         }
 
         $personalize = ModUtil::getVar('Newsletter','personalize_email', false);

@@ -68,7 +68,7 @@ class PNUser extends PNObject
                 $view->assign ('user_name', $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
                 $view->assign ('user_email', $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email']);
                 $view->assign ('site_url', System::getCurrentUrl());
-                $message = $view->fetch ('newsletter_email_user_unsubscribe.html');
+                $message = $view->fetch ('newsletter_email_user_unsubscribe.tpl');
                 $send_from_address = ModUtil::getVar ('Newsletter', 'send_from_address');
                 ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
                                                                     'fromaddress'=> $send_from_address,
@@ -230,7 +230,7 @@ class PNUser extends PNObject
             $view->assign ('user_name', $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
             $view->assign ('user_email', $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email']);
             $view->assign ('site_url', System::getCurrentUrl());
-            $user_message = $view->fetch ('newsletter_email_user_notify.html');
+            $user_message = $view->fetch ('newsletter_email_user_notify.tpl');
             $send_from_address = ModUtil::getVar ('Newsletter', 'send_from_address');
             ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
                                                                 'fromaddress'=> $send_from_address,
@@ -239,7 +239,7 @@ class PNUser extends PNObject
                                                                 'html'       => 1));
 
             if (ModUtil::getVar('Newsletter', 'notify_admin', 0)) {
-                $admin_message = $view->fetch ('newsletter_email_admin_notify.html');
+                $admin_message = $view->fetch ('newsletter_email_admin_notify.tpl');
                 ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $send_from_address,
                                                                     'fromaddress'=> $send_from_address,
                                                                     'subject'    => __('Newsletter Subscription', $dom),

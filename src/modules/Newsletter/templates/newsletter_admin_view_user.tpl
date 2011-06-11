@@ -1,8 +1,8 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 {ajaxheader modname='Newsletter' filename='newsletter.js'}
-{pageaddvar name='javascript' value='modules/Newsletter/pnjavascript/checkall.js'}
+{pageaddvar name='javascript' value='modules/Newsletter/javascript/checkall.js'}
 
 <script type="text/javascript">
     function disableSendChecked(){
@@ -28,7 +28,7 @@
 {sessiongetvar assign="currPagesize" name="pagesize" default="25" path="/Newsletter"}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.gif' alt=''}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
 
     <h3>{gt text='Subscribers'}</h3>
 

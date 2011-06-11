@@ -1,4 +1,4 @@
-{include file="newsletter_user_std_header.html"}
+{include file="newsletter_user_std_header.tpl"}
 
 {userloggedin assign="loggedin"}
 
@@ -27,4 +27,4 @@
  </fieldset>
 {/if}
 
-{include file="newsletter_std_footer.html"}
+{include file="newsletter_std_footer.tpl"}

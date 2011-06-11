@@ -1,8 +1,8 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.gif' alt=''}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
 
     <h3>{gt text="Preview your Newsletter"}</h3>
 
@@ -40,11 +40,11 @@
                     </select>
                     <a href="#" onclick="Effect.toggle('hint-1','BLIND'); return false;" title="{gt text='Help'}">(?)</a>
                     <div id="hint-1" class="z-informationmsg" style="display:none;">
-                        {gt text="You can find the templates in"} /modules/Newsletter/pntemplates/
+                        {gt text="You can find the templates in"} /modules/Newsletter/templates/
                         <ul>
-                            <li>newsletter_template_html.html</li>
-                            <li>newsletter_template_text.html</li>
-                            <li>newsletter_template_text_with_link.html</li>
+                            <li>newsletter_template_html.tpl</li>
+                            <li>newsletter_template_text.tpl</li>
+                            <li>newsletter_template_text_with_link.tpl</li>
                        </ul>
                     </div>
                 </div>

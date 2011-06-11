@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='core' src='info.gif' set='icons/small' __alt='Statistics'}</div>

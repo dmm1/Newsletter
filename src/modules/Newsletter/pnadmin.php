@@ -22,7 +22,7 @@ function Newsletter_admin_main()
 
     $render->assign('preferences', ModUtil::getVar('Newsletter'));
 
-    return $render->fetch('newsletter_admin_main.html');
+    return $render->fetch('newsletter_admin_main.tpl');
 }
 
 function Newsletter_admin_settings()
@@ -50,7 +50,7 @@ function Newsletter_admin_modifyconfig()
     $view->assign ('last_execution_time', ModUtil::getVar('Newsletter','end_execution_time') - ModUtil::getVar('Newsletter','start_execution_time'));
     $view->assign ('last_execution_count', ModUtil::getVar('Newsletter','end_execution_count', 0));
 
-    return $view->fetch('newsletter_admin_modifyconfig.html');
+    return $view->fetch('newsletter_admin_modifyconfig.tpl');
 }
 
 function Newsletter_admin_edit()
@@ -89,7 +89,7 @@ function Newsletter_admin_edit()
     $view->assign ($ot, $data);
     $view->assign ('validation', $object->getValidation());
 
-    $tpl = 'newsletter_admin_form_' . $ot . '.html';
+    $tpl = 'newsletter_admin_form_' . $ot . '.tpl';
     return $view->fetch($tpl);
 }
 
@@ -175,14 +175,14 @@ function Newsletter_admin_view()
     if ($ot == 'show_preview') {
         switch ($format){
             case 1:
-                $content = $view->fetch('newsletter_template_text.html');
+                $content = $view->fetch('newsletter_template_text.tpl');
                 $content = str_replace(array("\n","\r"),'<br />',$content);
                 break;
             case 2:
-                $content = $view->fetch('newsletter_template_html.html');
+                $content = $view->fetch('newsletter_template_html.tpl');
                 break;
             case 3:
-                $content = $view->fetch('newsletter_template_text_with_link.html');
+                $content = $view->fetch('newsletter_template_text_with_link.tpl');
                 $content = str_replace(array("\n","\r"),'<br />',$content);
                 break;
             default:
@@ -216,7 +216,7 @@ function Newsletter_admin_view()
         exit;
     }
 
-    $template = 'newsletter_admin_view_' . $ot . '.html';
+    $template = 'newsletter_admin_view_' . $ot . '.tpl';
     return $view->fetch($template);
 }
 
@@ -245,7 +245,7 @@ function Newsletter_admin_modifyarchive()
     $view->assign ('last_execution_time', ModUtil::getVar('Newsletter','end_execution_time') - ModUtil::getVar('Newsletter','start_execution_time'));
     $view->assign ('last_execution_count', ModUtil::getVar('Newsletter','end_execution_count', 0));
 
-    return $view->fetch('newsletter_admin_modifyarchive.html');
+    return $view->fetch('newsletter_admin_modifyarchive.tpl');
 }
 
 function Newsletter_admin_archive_edit()
@@ -285,5 +285,5 @@ function Newsletter_admin_archive_edit()
     $view->assign ($ot, $data);
     $view->assign ('validation', $object->getValidation());
 
-    return $view->fetch("newsletter_admin_form_{$ot}.html");
+    return $view->fetch("newsletter_admin_form_{$ot}.tpl");
 }

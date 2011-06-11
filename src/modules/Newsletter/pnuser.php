@@ -52,7 +52,7 @@ function Newsletter_user_main ()
     }
     $view->assign ('user', $user);
 
-    $tpl = 'newsletter_user_view_' . $ot . '.html';
+    $tpl = 'newsletter_user_view_' . $ot . '.tpl';
     return $view->fetch($tpl);
 }
 

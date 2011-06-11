@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 {php}
     $defaultLang = pnConfigGetVar('language_i18n');
@@ -14,7 +14,7 @@
 {modgetvar module='Newsletter' name='message'  assign='text' default=""}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.gif' alt=''}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
 
     <h3>{gt text="Message"}</h3>
 
@@ -49,6 +49,6 @@
                 {/foreach}
             {/if}
         </fieldset>
-        {include file='newsletter_inc_form_actions.html'}
+        {include file='newsletter_inc_form_actions.tpl'}
     </form>
 </div>

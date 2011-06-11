@@ -64,7 +64,7 @@ function Newsletter_signupblock_display($blockinfo)
     $view->assign('nl_frequency', $vars['nl_frequency']);
     $view->assign('nl_type', $vars['nl_type']);
 	
-    $blockinfo['content'] = $view->fetch ('newsletter_block_signup_display.html');
+    $blockinfo['content'] = $view->fetch ('newsletter_block_signup_display.tpl');
     return BlockUtil::themesideblock($blockinfo);
 }
 
@@ -81,7 +81,7 @@ function Newsletter_signupblock_modify($blockinfo)
     $view->assign('nl_frequency_sel', isset($vars['nl_frequency']) ? $vars['nl_frequency'] : ModUtil::getVar('Newsletter','default_frequency'));
     $view->assign('nl_type_sel', isset($vars['nl_type']) ? $vars['nl_type'] : ModUtil::getVar('Newsletter','default_type'));
 
-     return $view->fetch('newsletter_block_signup_modify.html');
+     return $view->fetch('newsletter_block_signup_modify.tpl');
 }
 
 

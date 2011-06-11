@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 {newsletter_selector_archive_expire assign="archive_expire_values" return_keys=true}
 {newsletter_selector_archive_expire assign="archive_expire_output" return_keys=false}
@@ -146,6 +146,6 @@
                 <em class="z-formnote">{gt text='Used to authenticate cron/batchprocessing.'}</em>
             </div>
         </fieldset>
-        {include file='newsletter_inc_form_actions.html'}
+        {include file='newsletter_inc_form_actions.tpl'}
     </form>
 </div>

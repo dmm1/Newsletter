@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
 {newsletter_selector_frequency assign="frequency_output" return_keys=false}
@@ -17,7 +17,7 @@
 {secgenauthkey assign="authid" module="Newsletter"}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.gif' alt=''}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
 
     <h3>{gt text='Import Zikula Users'}</h3>
 

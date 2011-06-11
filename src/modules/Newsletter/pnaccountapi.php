@@ -15,7 +15,7 @@ function Newsletter_accountapi_getall ($args)
                        'module' => 'Newsletter',
                        'set'    => '',
                        'title'  => __('Newsletter', $dom),
-                       'icon'   => 'admin.gif')
+                       'icon'   => 'admin.png')
                  );
 
     return $items;

@@ -1,8 +1,8 @@
 
-{include file='newsletter_admin_header.html'}
+{include file='newsletter_admin_header.tpl'}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.gif' alt='' height='22'}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin-icon.png' alt='' height='48'}</div>
 
     <h3>{gt text="Welcome to Newsletter!"}</h3>
 
