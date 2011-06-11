@@ -14,11 +14,12 @@
 {configgetvar assign="multilingual" name="multilingual" default=0}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='core' src='configure.gif' set='icons/large' __alt='Settings' }</div>
+    <div class="z-adminpageicon">{img modname='core' src='configure.gif' set='icons/small' __alt='Settings' }</div>
 
-    <br />
+    <h3>{gt text='Settings'}</h3>
+
     <div class="z-informationmsg">
-        {gt text="It took %1$s seconds to send the last batch of %2$s mails." tag1=$last_execution_time tag2=$last_execution_count}
+        {gt text='It took %1$s seconds to send the last batch of %2$s mails.' tag1=$last_execution_time tag2=$last_execution_count}
     </div>
 
     <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='adminform' func='modifyconfig'}" enctype="application/x-www-form-urlencoded">

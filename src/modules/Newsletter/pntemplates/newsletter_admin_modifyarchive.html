@@ -5,9 +5,9 @@
 {newsletter_selector_archive_expire assign='archive_expire_output' return_keys=false}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='core' src='configure.gif' set='icons/large' __alt='Archive Settings'}</div>
+    <div class="z-adminpageicon">{img modname='core' src='configure.gif' set='icons/small' __alt='Archive Settings'}</div>
 
-    <h2>{gt text='Archive Settings'}</h2>
+    <h3>{gt text='Archive Settings'}</h3>
 
     <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='adminform' func='modifyarchive'}" enctype="application/x-www-form-urlencoded">
         <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
