@@ -5,7 +5,7 @@
 {newsletter_selector_archive_expire assign='archive_expire_output' return_keys=false}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='core' src='configure.gif' set='icons/small' __alt='Archive Settings'}</div>
+    <div class="z-adminpageicon">{img modname='core' src='configure.png' set='icons/small' __alt='Archive Settings'}</div>
 
     <h3>{gt text='Archive Settings'}</h3>
 

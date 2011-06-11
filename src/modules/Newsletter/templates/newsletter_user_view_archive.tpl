@@ -83,7 +83,7 @@
 			</span>
 			{/if} 
 			<span class="z-itemcell z-w10"> 
-			<a href="{modurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id}" target="_blank">{img src='demo.gif' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
+			<a href="{modurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id}" target="_blank">{img src='demo.png' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
 			</span>
 		</li>
 		{/foreach}

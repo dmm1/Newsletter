@@ -14,7 +14,7 @@
 {configgetvar assign="multilingual" name="multilingual" default=0}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='core' src='configure.gif' set='icons/small' __alt='Settings' }</div>
+    <div class="z-adminpageicon">{img modname='core' src='configure.png' set='icons/small' __alt='Settings' }</div>
 
     <h3>{gt text='Settings'}</h3>
 

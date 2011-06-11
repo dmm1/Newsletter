@@ -50,10 +50,10 @@
             <div id="liveusersearch" class="z-hide z-formrow">
                 <div>
                 {gt text='Search'}&nbsp;<input size="30" maxlength="30" name="filter[search]" id="filter_search" value="" />
-                {img id='ajax_indicator' style='display: none;' modname='core' set='icons/extrasmall' src='indicator_circle.gif' alt=''}
+                {img id='ajax_indicator' style='display: none;' modname='core' set='icons/extrasmall' src='indicator_circle.png' alt=''}
 
                 <div id="filter_search_choices" class="nl_autocomplete_user"></div>
-                <img src="images/icons/extrasmall/add_user.gif" alt="{gt text='Add a user'}" />&nbsp;<a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user' authid=$authid}">{gt text='Add a user'}</a>
+                <img src="images/icons/extrasmall/add_user.png" alt="{gt text='Add a user'}" />&nbsp;<a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user' authid=$authid}">{gt text='Add a user'}</a>
                 </div>
             </div>
         </fieldset>
@@ -242,8 +242,8 @@
                     </span>
                     <span class="z-itemcell z-w06">
                       {if $adminAuth}
-                        <a href="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot id=$user.id authid=$authid}">{img src='xedit.gif' modname='core' set='icons/extrasmall' alt='$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
-                        <a href="{modurl modname='Newsletter' type='adminform' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='cancel.gif' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
+                        <a href="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot id=$user.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt='$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
+                        <a href="{modurl modname='Newsletter' type='adminform' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
                       {/if}
                     </span>
                 </li>

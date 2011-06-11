@@ -11,7 +11,7 @@
 {formutil_getpassedvalue assign="func_" name="func" default="main"}
 
 <div class="z-formbuttons">
-    {button src='button_ok.gif' set='icons/small' id='submit' name='submit' value='submit' __alt='Update' __title='Update'}
+    {button src='button_ok.png' set='icons/small' id='submit' name='submit' value='submit' __alt='Update' __title='Update'}
     {if ($type_=='user')}
         {if ($func_ =='main')}
         <a href="{modurl modname="Newsletter" type=$type_ func="main"}">
@@ -25,6 +25,6 @@
         <a href="{modurl modname="Newsletter" type=$type_ func="view" ot=$ot_}">
         {/if}
     {/if}
-    {img modname='core' src='button_cancel.gif' set='icons/small' __alt='Cancel' __title='Cancel'}
+    {img modname='core' src='button_cancel.png' set='icons/small' __alt='Cancel' __title='Cancel'}
     </a>
 </div>

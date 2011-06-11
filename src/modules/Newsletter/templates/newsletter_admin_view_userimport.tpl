@@ -60,7 +60,7 @@
             <legend>2. {gt text='Import'}</legend>
             <div class="z-formrow">
                 <a href="{modurl modname='Newsletter' type='adminform' func='edit' ot='import_users' otTarget='userimport' authKey=$admin_key authid=$authid}" title="{gt text='Import'}">
-                    <img src="images/icons/small/button_ok.gif" alt="" />
+                    <img src="images/icons/small/button_ok.png" alt="" />
                 </a>
             </div>
         </fieldset>
