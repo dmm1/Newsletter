@@ -24,12 +24,12 @@ class PNImportUsers extends PNObject
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0, 'GET'), 'GET');
-        $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
+        $masterKey = (string)ModUtil::getVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
             return LogUtil::registerError (__('Invalid admin_key received', $dom));
         }
 
-        $zkUsers = pnModAPIFunc ('Users', 'user', 'getall');
+        $zkUsers = ModUtil::apiFunc ('Users', 'user', 'getall');
 
         if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
             return LogUtil::registerError (__('Unable to load array class [user]', $dom));
@@ -41,10 +41,10 @@ class PNImportUsers extends PNObject
 
         $count                = 0;
         $joinDate             = DateUtil::getDatetime ();
-        $importType           = pnModGetVar ('Newsletter', 'import_type', 1);
-        $importFrequency      = pnModGetVar ('Newsletter', 'import_frequency', 1);
-        $importActiveStatus   = pnModGetVar ('Newsletter', 'import_active_status', 1);
-        $importApprovalStatus = pnModGetVar ('Newsletter', 'import_approval_status', 1);
+        $importType           = ModUtil::getVar ('Newsletter', 'import_type', 1);
+        $importFrequency      = ModUtil::getVar ('Newsletter', 'import_frequency', 1);
+        $importActiveStatus   = ModUtil::getVar ('Newsletter', 'import_active_status', 1);
+        $importApprovalStatus = ModUtil::getVar ('Newsletter', 'import_approval_status', 1);
 
         foreach ($zkUsers as $user) {
             if ($user['uid'] < 2 || !$user['activated']) {
@@ -55,7 +55,7 @@ class PNImportUsers extends PNObject
                 $newUser['uid']       = $user['uid'];
                 $newUser['name']      = $user['name'];
                 $newUser['email']     = $user['email'];
-                $newUser['lang']      = pnConfigGetVar('language');
+                $newUser['lang']      = System::getVar('language');
                 $newUser['type']      = $importType;
                 $newUser['frequency'] = $importFrequency;
                 $newUser['active']    = $importActiveStatus;

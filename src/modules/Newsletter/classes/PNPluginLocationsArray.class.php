@@ -20,12 +20,12 @@ class PNPluginLocationsArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
       {
-        pnModDBInfoLoad ('Locations');
-        $pntable = pnDBGetTables();
+        ModUtil::dbInfoLoad ('Locations');
+        $pntable = DBUtil::getTables();
         $column  = $pntable['locations_location_column'];
        
         $sort    = "$column[locationid] DESC";
-        $nItems  = pnModGetVar ('Newsletter', 'plugin_Locations_nItems', 1);
+        $nItems  = ModUtil::getVar ('Newsletter', 'plugin_Locations_nItems', 1);
         return DBUtil::selectObjectArray ('locations_location', $where, $sort, 0, $nItems);
     }
 }

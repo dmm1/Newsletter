@@ -1,93 +1,93 @@
-﻿<!--[include file="newsletter_user_std_header.html"]-->
+﻿{include file="newsletter_user_std_header.html"}
 
-<!--[gt text="View Archive" assign=pageTitle]-->
-<!--[pnpagesetvar name="title" value=$pageTitle]-->
+{gt text="View Archive" assign=pageTitle}
+{pagesetvar name="title" value=$pageTitle}
 
-<!--[gt text="View Archive" assign=lblDetail]-->
+{gt text="View Archive" assign=lblDetail}
 
-<h3><!--[$pageTitle]--></h3>
+<h3>{$pageTitle}</h3>
 
 <fieldset>
-  <legend><!--[gt text="Past Archives"]--></legend>
+  <legend>{gt text="Past Archives"}</legend>
 	<ol id="filterlist" class="z-itemlist">
         <li class="z-itemheader z-clearfix">			
-			<!--[pnmodgetvar assign="show_id" module="Newsletter" name="show_id" default="0"]-->
-			<!--[if ($show_id)]-->
+			{modgetvar assign="show_id" module="Newsletter" name="show_id" default="0"}
+			{if ($show_id)}
 			<span class="z-itemcell z-w05">	
-			<!--[gt text="ID"]-->
+			{gt text="ID"}
 			</span>
-			<!--[/if]--> 
-			<!--[pnmodgetvar assign="show_date" module="Newsletter" name="show_date" default="0"]-->
-			<!--[if ($show_date)]-->
+			{/if} 
+			{modgetvar assign="show_date" module="Newsletter" name="show_date" default="0"}
+			{if ($show_date)}
 			<span class="z-itemcell z-w15">			
-			<!--[gt text="Date"]-->
+			{gt text="Date"}
 			</span>
-			<!--[/if]--> 
-			<!--[pnmodgetvar assign="show_lang" module="Newsletter" name="show_lang" default="0"]-->
-			<!--[if ($show_lang)]-->
+			{/if} 
+			{modgetvar assign="show_lang" module="Newsletter" name="show_lang" default="0"}
+			{if ($show_lang)}
 			<span class="z-itemcell z-w15">			
-			<!--[gt text="Language"]-->
+			{gt text="Language"}
 			</span>
-			<!--[/if]-->
-			<!--[pnmodgetvar assign="show_plugins" module="Newsletter" name="show_plugins" default="0"]-->
-			<!--[if ($show_plugins)]--> 
+			{/if}
+			{modgetvar assign="show_plugins" module="Newsletter" name="show_plugins" default="0"}
+			{if ($show_plugins)} 
 			<span class="z-itemcell z-w15">				 
-			<!--[gt text="# of Plugins"]-->
+			{gt text="# of Plugins"}
 			</span>
-			<!--[/if]-->			
+			{/if}			
 			<span class="z-itemcell z-w15">		  
-			<!--[pnmodgetvar assign="show_objects" module="Newsletter" name="show_objects" default="0"]-->
-			<!--[if ($show_objects )]-->		 
-			<!--[gt text="# of Items"]-->
+			{modgetvar assign="show_objects" module="Newsletter" name="show_objects" default="0"}
+			{if ($show_objects )}		 
+			{gt text="# of Items"}
 			</span>
-			<!--[/if]--> 
+			{/if} 
 			<span class="z-itemcell z-w10">		
-			<!--[pnmodgetvar assign="show_size" module="Newsletter" name="show_size" default="0"]-->
-			<!--[if ($show_size)]-->
-			<!--[gt text="Length"]-->	
-			<!--[/if]-->
+			{modgetvar assign="show_size" module="Newsletter" name="show_size" default="0"}
+			{if ($show_size)}
+			{gt text="Length"}	
+			{/if}
 			</span>
 			<span class="z-itemcell z-w10">	
-			<!--[gt text="Action"]-->
+			{gt text="Action"}
 			</span>
-		<li class="<!--[cycle values='z-odd,z-even']--> z-clearfix">
-		<!--[foreach from=$objectArray key="key" item="archive"]-->
-			<!--[if ($show_id)]-->
+		<li class="{cycle values='z-odd,z-even'} z-clearfix">
+		{foreach from=$objectArray key="key" item="archive"}
+			{if ($show_id)}
 			<span class="z-itemcell z-w05">        			
-			<!--[$archive.id]-->
+			{$archive.id}
 			</span>
-			<!--[/if]--> 
-			<!--[if ($show_date)]-->
+			{/if} 
+			{if ($show_date)}
 			<span class="z-itemcell z-w15"> 
-			<!--[$archive.date_display]-->
+			{$archive.date_display}
 			</span>
-			<!--[/if]--> 		   
-			<!--[if ($show_lang)]-->
+			{/if} 		   
+			{if ($show_lang)}
 			<span class="z-itemcell z-w15"> 
-			<!--[$archive.lang]-->	
+			{$archive.lang}	
 			</span>
-			<!--[/if]--> 
-			<!--[if ($show_plugins)]-->
+			{/if} 
+			{if ($show_plugins)}
 			<span class="z-itemcell z-w15"> 
-			<!--[$archive.n_plugins]-->	
+			{$archive.n_plugins}	
 			</span>
-			<!--[/if]--> 
-			<!--[if ($show_objects)]-->
+			{/if} 
+			{if ($show_objects)}
 			<span class="z-itemcell z-w15"> 
-			<!--[$archive.n_items]-->
+			{$archive.n_items}
 			</span>
-		    <!--[/if]--> 
-			<!--[if ($show_size)]-->
+		    {/if} 
+			{if ($show_size)}
 			<span class="z-itemcell z-w10"> 
-			<!--[$archive.text|strlen]-->
+			{$archive.text|strlen}
 			</span>
-			<!--[/if]--> 
+			{/if} 
 			<span class="z-itemcell z-w10"> 
-			<a href="<!--[pnmodurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id]-->" target="_blank"><!--[pnimg src='demo.gif' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false']--></a>
+			<a href="{modurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id}" target="_blank">{img src='demo.gif' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
 			</span>
 		</li>
-		<!--[/foreach]-->
+		{/foreach}
 	</ol>
       
 </fieldset>
-<!--[include file="newsletter_std_footer.html"]-->
+{include file="newsletter_std_footer.html"}

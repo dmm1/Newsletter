@@ -20,13 +20,13 @@ class PNPluginNewMembersArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        pnModDBInfoLoad ('Users');
-        $pntable  = pnDBGetTables();
+        ModUtil::dbInfoLoad ('Users');
+        $pntable  = DBUtil::getTables();
         $column   = $pntable['users_column'];
         $where    = "$column[uid] > 1";
         $sort     = "$column[user_regdate] DESC";
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-        $nItems   = pnModGetVar ('Newsletter', 'plugin_NewMembers_nItems', 1);
+        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
+        $nItems   = ModUtil::getVar ('Newsletter', 'plugin_NewMembers_nItems', 1);
         return DBUtil::selectObjectArray ('users', $where, $sort, 0, $nItems);
     }
 }

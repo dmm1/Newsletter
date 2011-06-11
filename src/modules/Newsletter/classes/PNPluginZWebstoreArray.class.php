@@ -20,11 +20,11 @@ class PNPluginZWebstoreArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('ZWebstore')) {
+        if (!ModUtil::available('ZWebstore')) {
             return array();
         }
 
-        pnModDBInfoLoad ('zWebstore');
+        ModUtil::dbInfoLoad ('zWebstore');
 
         if (!Loader::loadClassFromModule('zWebstore', 'webstore_util', false, false, '')) {
             return LogUtil::registerError ('Unable to load class [webstore_util]', null, $url);
@@ -38,7 +38,7 @@ class PNPluginZWebstoreArray extends PNPluginBaseArray
             return LogUtil::registerError ('Unable to load array class for [product_newest]', null, $url);
         }
 
-        $nItems = pnModGetVar ('Newsletter', 'plugin_ZWebstore_nItems', 1);
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_ZWebstore_nItems', 1);
         $objectArray = new PNProductNewestArray ();
         return $objectArray->get (null, null, 0, $nItems);
     }

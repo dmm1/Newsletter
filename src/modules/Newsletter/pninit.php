@@ -17,26 +17,26 @@ function Newsletter_init()
         return false;
     }
 
-    pnModSetVar('Newsletter', 'admin_key', substr(md5(time()),-10));
-    pnModSetVar('Newsletter', 'allow_anon_registration', '0');
-    pnModSetVar('Newsletter', 'allow_frequency_change', '0');
-	pnModSetVar('Newsletter', 'allow_subscription_change', '0');		
-    pnModSetVar('Newsletter', 'archive_expire', '0'); // never
-    pnModSetVar('Newsletter', 'auto_approve_registrations', '1');
-    pnModSetVar('Newsletter', 'default_frequency', '0');
-    pnModSetVar('Newsletter', 'default_type', '1'); //text/html/web
-    pnModSetVar('Newsletter', 'enable_multilingual', '0'); 
-    pnModSetVar('Newsletter', 'import_active_status', '1');
-    pnModSetVar('Newsletter', 'import_approval_status', '1');
-    pnModSetVar('Newsletter', 'import_frequency', '0');
-    pnModSetVar('Newsletter', 'import_type', '2');
-    pnModSetVar('Newsletter', 'itemsperpage', '25');
-    pnModSetVar('Newsletter', 'max_send_per_hour', 0);
-    pnModSetVar('Newsletter', 'notify_admin', '1');
-    pnModSetVar('Newsletter', 'personalize_email', '0');
-    pnModSetVar('Newsletter', 'send_day', '5'); 
-    pnModSetVar('Newsletter', 'send_per_request', '5');  
-    pnModSetVar('Newsletter', 'send_from_address', pnConfigGetVar('adminmail'));
+    ModUtil::setVar('Newsletter', 'admin_key', substr(md5(time()),-10));
+    ModUtil::setVar('Newsletter', 'allow_anon_registration', '0');
+    ModUtil::setVar('Newsletter', 'allow_frequency_change', '0');
+	ModUtil::setVar('Newsletter', 'allow_subscription_change', '0');		
+    ModUtil::setVar('Newsletter', 'archive_expire', '0'); // never
+    ModUtil::setVar('Newsletter', 'auto_approve_registrations', '1');
+    ModUtil::setVar('Newsletter', 'default_frequency', '0');
+    ModUtil::setVar('Newsletter', 'default_type', '1'); //text/html/web
+    ModUtil::setVar('Newsletter', 'enable_multilingual', '0'); 
+    ModUtil::setVar('Newsletter', 'import_active_status', '1');
+    ModUtil::setVar('Newsletter', 'import_approval_status', '1');
+    ModUtil::setVar('Newsletter', 'import_frequency', '0');
+    ModUtil::setVar('Newsletter', 'import_type', '2');
+    ModUtil::setVar('Newsletter', 'itemsperpage', '25');
+    ModUtil::setVar('Newsletter', 'max_send_per_hour', 0);
+    ModUtil::setVar('Newsletter', 'notify_admin', '1');
+    ModUtil::setVar('Newsletter', 'personalize_email', '0');
+    ModUtil::setVar('Newsletter', 'send_day', '5'); 
+    ModUtil::setVar('Newsletter', 'send_per_request', '5');  
+    ModUtil::setVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
 
     return true;
 }
@@ -47,31 +47,31 @@ function Newsletter_upgrade($oldversion)
     switch($oldversion) {
         case '1.0': break;
         case '1.1':
-            pnModSetVar('Newsletter', 'personalize_email', 0);
-            pnModSetVar('Newsletter', 'admin_key', substr(md5(time()),-10));
+            ModUtil::setVar('Newsletter', 'personalize_email', 0);
+            ModUtil::setVar('Newsletter', 'admin_key', substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
             _Newsletter_upgrade_to_201 ();
             break;
         case '1.2':
-            pnModSetVar('Newsletter', 'max_send_per_hour', 0);
-            pnModSetVar('Newsletter', 'personalize_email', 0);
-            pnModSetVar('Newsletter', 'admin_key',substr(md5(time()),-10));
+            ModUtil::setVar('Newsletter', 'max_send_per_hour', 0);
+            ModUtil::setVar('Newsletter', 'personalize_email', 0);
+            ModUtil::setVar('Newsletter', 'admin_key',substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
             _Newsletter_upgrade_to_201 ();
             break;
         case '1.5':
-            pnModSetVar ('Newsletter', 'max_send_per_hour', 0);
-            pnModSetVar ('Newsletter', 'personalize_email', 0);
-            pnModSetVar ('Newsletter', 'admin_key',substr(md5(time()),-10));
+            ModUtil::setVar ('Newsletter', 'max_send_per_hour', 0);
+            ModUtil::setVar ('Newsletter', 'personalize_email', 0);
+            ModUtil::setVar ('Newsletter', 'admin_key',substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
             _Newsletter_upgrade_to_201 ();
             break;
         case '1.6':
         case '1.61':
         case '1.6.1':
-            pnModSetVar ('Newsletter', 'max_send_per_hour', 0);
-            pnModSetVar ('Newsletter', 'personalize_email', 0);
-            pnModSetVar ('Newsletter', 'admin_key',substr(md5(time()),-10));
+            ModUtil::setVar ('Newsletter', 'max_send_per_hour', 0);
+            ModUtil::setVar ('Newsletter', 'personalize_email', 0);
+            ModUtil::setVar ('Newsletter', 'admin_key',substr(md5(time()),-10));
             _Newsletter_upgrade_to_20 ();
             _Newsletter_upgrade_to_201 ();
             break;
@@ -86,10 +86,10 @@ function Newsletter_upgrade($oldversion)
 
 function _Newsletter_upgrade_to_20 ()
 {
-    pnModSetVar ('Newsletter', 'itemsperpage', '25');
-    pnModSetVar ('Newsletter', 'enable_multilingual', 0); 
+    ModUtil::setVar ('Newsletter', 'itemsperpage', '25');
+    ModUtil::setVar ('Newsletter', 'enable_multilingual', 0); 
 
-    $pnTables = pnDBGetTables();
+    $pnTables = DBUtil::getTables();
     $table    = $pnTables['newsletter_users'];
 
     $sqls = array();
@@ -133,7 +133,7 @@ function _Newsletter_upgrade_to_20 ()
         $tUser['id']             = $user['id'];
         $tUser['last_send_date'] = DateUtil::getDatetime($oldUser['last_send_date']);
         $tUser['cr_date']        = DateUtil::getDatetime();
-        $tUser['lang']           = pnConfigGetVar('language');
+        $tUser['lang']           = System::getVar('language');
         DBUtil::updateObject ($tUser, 'newsletter_users');
     }
 
@@ -156,7 +156,7 @@ function _Newsletter_upgrade_to_20 ()
 
 function _Newsletter_upgrade_to_201 ()
 {
-    $pnTables = pnDBGetTables();
+    $pnTables = DBUtil::getTables();
     $table    = $pnTables['newsletter_archives'];
 
     $sqls[] = "ALTER TABLE $table ADD COLUMN nla_n_plugins INT(3) NOT NULL DEFAULT 0 AFTER nla_lang";
@@ -175,7 +175,7 @@ function Newsletter_delete()
         return false;
     }
 
-    pnModDelVar ('Newsletter');
+    ModUtil::delVar ('Newsletter');
 
     return true;   
 }

@@ -20,12 +20,12 @@ class PNPluginNewsArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        pnModDBInfoLoad ('News');
-        $pntable = pnDBGetTables();
+        ModUtil::dbInfoLoad ('News');
+        $pntable = DBUtil::getTables();
         $column  = $pntable['news_column'];
         $where   = "$column[published_status] = 0";
         $sort    = "$column[cr_date] DESC";
-        $nItems  = pnModGetVar ('Newsletter', 'plugin_News_nItems', 1);
+        $nItems  = ModUtil::getVar ('Newsletter', 'plugin_News_nItems', 1);
         return DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
     }
 }

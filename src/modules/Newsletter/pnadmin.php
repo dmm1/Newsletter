@@ -22,9 +22,9 @@ function Newsletter_admin_main()
         return __("Unable to load class [newsletter_util]", $dom);
     }
 
-    $render = pnRender::getInstance('Newsletter', false);
+    $render = Zikula_View::getInstance('Newsletter', false);
 
-    $render->assign('preferences', pnModGetVar('Newsletter'));
+    $render->assign('preferences', ModUtil::getVar('Newsletter'));
 
     return $render->fetch('newsletter_admin_main.html');
 }
@@ -48,15 +48,15 @@ function Newsletter_admin_modifyconfig()
         return __("Unable to load class [newsletter_util]", $dom);
     }
 
-    $preferences = pnModGetVar('Newsletter');
+    $preferences = ModUtil::getVar('Newsletter');
 
-    $pnRender = pnRender::getInstance('Newsletter', false);
+    $view = Zikula_View::getInstance('Newsletter', false);
 
-    $pnRender->assign ('preferences', $preferences);
-    $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
-    $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
+    $view->assign ('preferences', $preferences);
+    $view->assign ('last_execution_time', ModUtil::getVar('Newsletter','end_execution_time') - ModUtil::getVar('Newsletter','start_execution_time'));
+    $view->assign ('last_execution_count', ModUtil::getVar('Newsletter','end_execution_count', 0));
 
-    return $pnRender->fetch('newsletter_admin_modifyconfig.html');
+    return $view->fetch('newsletter_admin_modifyconfig.html');
 }
 
 
@@ -70,7 +70,7 @@ function Newsletter_admin_edit()
 
     $ot  = 'user';
     $id  = (int)FormUtil::getPassedValue ('id', 0, 'GETPOST');
-    $url = pnModURL('Newsletter', 'admin', 'main');
+    $url = ModUtil::url('Newsletter', 'admin', 'main');
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
         return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom), null, $url);
@@ -84,20 +84,20 @@ function Newsletter_admin_edit()
     if ($id) {
         $data = $object->get ($id);
         if (!$data) {
-            $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
+            $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot));
             return LogUtil::registerError (__("Unable to retrieve object of type [$ot] with id [$id]", $dom), null, $url);
         }
     } else {
         $data = array();
     }
 
-    $pnRender = pnRender::getInstance('Newsletter', false);
-    $pnRender->assign ('ot', $ot);
-    $pnRender->assign ($ot, $data);
-    $pnRender->assign ('validation', $object->getValidation());
+    $view = Zikula_View::getInstance('Newsletter', false);
+    $view->assign ('ot', $ot);
+    $view->assign ($ot, $data);
+    $view->assign ('validation', $object->getValidation());
 
     $tpl = 'newsletter_admin_form_' . $ot . '.html';
-    return $pnRender->fetch($tpl);
+    return $view->fetch($tpl);
 }
 
 
@@ -109,14 +109,14 @@ function Newsletter_admin_view()
         return LogUtil::registerError (__("You don't have Admin rights for this module", $dom), null, $url);
     }
 
-    $dPagesize = pnModGetVar ('Newsletter', 'pagesize', 25);
+    $dPagesize = ModUtil::getVar ('Newsletter', 'pagesize', 25);
     $filter    = FormUtil::getPassedValue ('filter', array(), 'GETPOST');
     $format    = FormUtil::getPassedValue ('format', null, 'GETPOST');
     $ot        = FormUtil::getPassedValue ('ot', null, 'GETPOST');
     $otTarget  = FormUtil::getPassedValue ('otTarget', null, 'GETPOST');
     $offset    = FormUtil::getPassedValue ('startnum', 0, 'GETPOST');
     $sort      = FormUtil::getPassedValue ('sort', null, 'GETPOST');
-    $url       = pnModURL('Newsletter', 'user', 'view', array('ot' => $ot));
+    $url       = ModUtil::url('Newsletter', 'user', 'view', array('ot' => $ot));
     $pagesize  = FormUtil::getPassedValue ('pagesize', SessionUtil::getVar('pagesize', $dPagesize, '/Newsletter'));
 
     if ($sort) {
@@ -143,8 +143,8 @@ function Newsletter_admin_view()
         return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom), null, $url);
     }
 
-    $pnRender = pnRender::getInstance('Newsletter', false);
-    $pnRender->assign ('ot', $ot);
+    $view = Zikula_View::getInstance('Newsletter', false);
+    $view->assign ('ot', $ot);
 
     $data  = array();
     if ($ot) {
@@ -160,22 +160,22 @@ function Newsletter_admin_view()
           $pager = array();
           $pager['numitems']     = $objectArray->getCount ($where, true);
           $pager['itemsperpage'] = $pagesize;
-          $pnRender->assign ('startnum', $offset);
-          $pnRender->assign ('pager', $pager);
-          $pnRender->assign ('startpage', false);
+          $view->assign ('startnum', $offset);
+          $view->assign ('pager', $pager);
+          $view->assign ('startpage', false);
        }
     }
 
-    $pnRender->assign ('objectArray', $data);
+    $view->assign ('objectArray', $data);
 
     if ($ot == 'user') {
-        $pnRender->assign ('filter', $filter);
+        $view->assign ('filter', $filter);
     }
 
     //EM Start
     if ($ot == 'plugin') {
           if (method_exists($objectArray, 'getPluginsParameters')) {
-              $pnRender->assign ('plugin_parameters', $objectArray->getPluginsParameters());
+              $view->assign ('plugin_parameters', $objectArray->getPluginsParameters());
           }
     }
     //EM End
@@ -183,14 +183,14 @@ function Newsletter_admin_view()
     if ($ot == 'show_preview') {
         switch ($format){
             case 1:
-                $content = $pnRender->fetch('newsletter_template_text.html');
+                $content = $view->fetch('newsletter_template_text.html');
                 $content = str_replace(array("\n","\r"),'<br />',$content);
                 break;
             case 2:
-                $content = $pnRender->fetch('newsletter_template_html.html');
+                $content = $view->fetch('newsletter_template_html.html');
                 break;
             case 3:
-                $content = $pnRender->fetch('newsletter_template_text_with_link.html');
+                $content = $view->fetch('newsletter_template_text_with_link.html');
                 $content = str_replace(array("\n","\r"),'<br />',$content);
                 break;
             default:
@@ -204,7 +204,7 @@ function Newsletter_admin_view()
             if (!$testsendEmail) {
                 $rc = LogUtil::registerError (__('Your test email was not sent since you did not enter an email address', $dom));
             }
-            if (!pnVarValidate($testsendEmail, 'email')) {
+            if (!System::varValidate($testsendEmail, 'email')) {
                 $rc = LogUtil::registerError (__('The email address you entered does not seem to be valid', $dom));
             }
             if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_send')) {
@@ -225,7 +225,7 @@ function Newsletter_admin_view()
     }
 
     $template = 'newsletter_admin_view_' . $ot . '.html';
-    return $pnRender->fetch($template);
+    return $view->fetch($template);
 }
 
 
@@ -247,15 +247,15 @@ function Newsletter_admin_modifyarchive()
         return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom));
     }
 
-    $preferences_archive = pnModGetVar('Newsletter');
+    $preferences_archive = ModUtil::getVar('Newsletter');
 
-    $pnRender = pnRender::getInstance('Newsletter', false);
+    $view = Zikula_View::getInstance('Newsletter', false);
 
-    $pnRender->assign ('preferences_archive', $preferences_archive);
-    $pnRender->assign ('last_execution_time', pnModGetVar('Newsletter','end_execution_time') - pnModGetVar('Newsletter','start_execution_time'));
-    $pnRender->assign ('last_execution_count', pnModGetVar('Newsletter','end_execution_count', 0));
+    $view->assign ('preferences_archive', $preferences_archive);
+    $view->assign ('last_execution_time', ModUtil::getVar('Newsletter','end_execution_time') - ModUtil::getVar('Newsletter','start_execution_time'));
+    $view->assign ('last_execution_count', ModUtil::getVar('Newsletter','end_execution_count', 0));
 
-    return $pnRender->fetch('newsletter_admin_modifyarchive.html');
+    return $view->fetch('newsletter_admin_modifyarchive.html');
 }
 
 
@@ -269,7 +269,7 @@ function Newsletter_admin_archive_edit()
 
     $ot  = 'user';
     $id  = (int)FormUtil::getPassedValue ('id', 0, 'GETPOST');
-    $url = pnModURL('Newsletter', 'admin', 'main');
+    $url = ModUtil::url('Newsletter', 'admin', 'main');
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
         return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom), null, $url);
@@ -283,18 +283,18 @@ function Newsletter_admin_archive_edit()
     if ($id) {
         $data = $object->get ($id);
         if (!$data) {
-            $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
+            $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot));
             return LogUtil::registerError (__("Unable to retrieve object of type [$ot] with id [$id]", $dom), null, $url);
         }
     } else {
         $data = array();
     }
 
-    $pnRender = pnRender::getInstance('Newsletter', false);
+    $view = Zikula_View::getInstance('Newsletter', false);
 
-    $pnRender->assign ('ot', $ot);
-    $pnRender->assign ($ot, $data);
-    $pnRender->assign ('validation', $object->getValidation());
+    $view->assign ('ot', $ot);
+    $view->assign ($ot, $data);
+    $view->assign ('validation', $object->getValidation());
 
-    return $pnRender->fetch("newsletter_admin_form_{$ot}.html");
+    return $view->fetch("newsletter_admin_form_{$ot}.html");
 }

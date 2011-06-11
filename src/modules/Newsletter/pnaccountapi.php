@@ -15,7 +15,7 @@ function Newsletter_accountapi_getall ($args)
     $dom = ZLanguage::getModuleDomain('Newsletter');
 
     $items = array(
-                 array('url'    => pnModURL('Newsletter', 'user', 'main'),
+                 array('url'    => ModUtil::url('Newsletter', 'user', 'main'),
                        'module' => 'Newsletter',
                        'set'    => '',
                        'title'  => __('Newsletter', $dom),

@@ -76,8 +76,8 @@ class PNUserArray extends PNObjectArray
 
     function getSendable ($language='')
     {
-        $allow_frequency_change = pnModGetVar ('Newsletter', 'allow_frequency_change', 0);
-        $default_frequency = pnModGetVar ('Newsletter', 'default_frequency', 1);
+        $allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
+        $default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
 
         $where = "(nlu_active=1 AND nlu_approved=1)";
         if ($language) {

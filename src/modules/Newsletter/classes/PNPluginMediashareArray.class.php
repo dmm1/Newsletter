@@ -20,22 +20,22 @@ class PNPluginMediashareArray extends PNPluginBaseArray
 
     function getPluginData($lang = null) 
     {
-        if (!pnModAvailable('Mediashare')) {
+        if (!ModUtil::available('Mediashare')) {
             return array ();
         }
 
-        $nItems = pnModGetVar('Newsletter', 'plugin_Mediashare_nItems', 1);
-        $mediashareAlbumsOnly = pnModGetVar('Newsletter', 'mediashareAlbumsOnly', 0);
-        $mediasharePath = pnModGetVar('Newsletter', 'mediasharePath', 1);
+        $nItems = ModUtil::getVar('Newsletter', 'plugin_Mediashare_nItems', 1);
+        $mediashareAlbumsOnly = ModUtil::getVar('Newsletter', 'mediashareAlbumsOnly', 0);
+        $mediasharePath = ModUtil::getVar('Newsletter', 'mediasharePath', 1);
         if ($mediashareAlbumsOnly == 1) {
-            return pnModAPIFunc('Mediashare', 'user', 'getAlbumList', 
+            return ModUtil::apiFunc('Mediashare', 'user', 'getAlbumList', 
                                  array ( 'order'     => 'id',
                                          'orderDir'  => 'DESC',
                                          'recordPos' => 0,
                                          'pageSize'  => $nItems )
             );
         } else {
-            return pnModAPIFunc('Mediashare', 'user', 'getLatestMediaItems', 
+            return ModUtil::apiFunc('Mediashare', 'user', 'getLatestMediaItems', 
                                  array ( 'order'     => 'id',
                                          'orderDir'  => 'DESC',
                                          'recordPos' => 0,
@@ -48,16 +48,16 @@ class PNPluginMediashareArray extends PNPluginBaseArray
     function setPluginParameters() 
     {
         $albumonly = FormUtil :: getPassedValue('mediashareAlbumsOnly', 0, 'POST');
-        pnModSetVar('Newsletter', 'mediashareAlbumsOnly', $albumonly);
+        ModUtil::setVar('Newsletter', 'mediashareAlbumsOnly', $albumonly);
         $path = FormUtil :: getPassedValue('mediasharePath', 1, 'POST');
-        pnModSetVar('Newsletter', 'mediasharePath', $path);
+        ModUtil::setVar('Newsletter', 'mediasharePath', $path);
     }
 
 
     function getPluginParameters() 
     {
-        $mediashareAlbumsOnly = pnModGetVar('Newsletter', 'mediashareAlbumsOnly', 0);
-        $mediasharePath = pnModGetVar('Newsletter', 'mediasharePath', 1);
+        $mediashareAlbumsOnly = ModUtil::getVar('Newsletter', 'mediashareAlbumsOnly', 0);
+        $mediasharePath = ModUtil::getVar('Newsletter', 'mediasharePath', 1);
         return array ( 'number'               => 1,
                        'param'                => array ('mediashareAlbumsOnly' => $mediashareAlbumsOnly,
                                                          'mediasharePath'      => $mediasharePath)

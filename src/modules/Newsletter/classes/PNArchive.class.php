@@ -48,7 +48,7 @@ class PNArchive extends PNObject
 
     function prune ($data=null)
     {
-        $archive_expire = pnModGetVar('Newsletter','archive_expire', 0);
+        $archive_expire = ModUtil::getVar('Newsletter','archive_expire', 0);
         if (!$archive_expire) {
             return true;
         }

@@ -1,65 +1,65 @@
 
-<!--[include file='newsletter_admin_header.html']-->
+{include file='newsletter_admin_header.html'}
 
-<!--[newsletter_selector_frequency assign="frequency_values" return_keys=true]-->
-<!--[newsletter_selector_frequency assign="frequency_output" return_keys=false]-->
-<!--[newsletter_selector_type assign="type_values" return_keys=true]-->
-<!--[newsletter_selector_type assign="type_output" return_keys=false]-->
+{newsletter_selector_frequency assign="frequency_values" return_keys=true}
+{newsletter_selector_frequency assign="frequency_output" return_keys=false}
+{newsletter_selector_type assign="type_values" return_keys=true}
+{newsletter_selector_type assign="type_output" return_keys=false}
 
-<!--[pnmodgetvar assign="import_type" module="Newsletter" name="import_type" default="1"]-->
-<!--[pnmodgetvar assign="import_frequency" module="Newsletter" name="import_frequency" default="1"]-->
-<!--[pnmodgetvar assign="import_active_status" module="Newsletter" name="import_active_status" default="1"]-->
-<!--[pnmodgetvar assign="import_approval_status" module="Newsletter" name="import_approval_status" default="1"]-->
+{modgetvar assign="import_type" module="Newsletter" name="import_type" default="1"}
+{modgetvar assign="import_frequency" module="Newsletter" name="import_frequency" default="1"}
+{modgetvar assign="import_active_status" module="Newsletter" name="import_active_status" default="1"}
+{modgetvar assign="import_approval_status" module="Newsletter" name="import_approval_status" default="1"}
 
-<!--[pnmodgetvar assign="admin_key" module="Newsletter" name="admin_key"]-->
+{modgetvar assign="admin_key" module="Newsletter" name="admin_key"}
 
-<!--[pnuserloggedin assign="loggedin"]-->
-<!--[pnsecgenauthkey assign="authid" module="Newsletter"]-->
+{userloggedin assign="loggedin"}
+{secgenauthkey assign="authid" module="Newsletter"}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon"><!--[pnimg modname='Newsletter' src='admin.gif' alt='']--></div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.gif' alt=''}</div>
 
-    <h2><!--[gt text='Import Zikula Users']--></h2>
+    <h2>{gt text='Import Zikula Users'}</h2>
 
-    <form class="z-form" name="config" action="<!--[pnmodurl modname='Newsletter' type='adminform' func='edit']-->" method="post">
-        <input type="hidden" name="authid" value="<!--[$authid]-->" />
+    <form class="z-form" name="config" action="{modurl modname='Newsletter' type='adminform' func='edit'}" method="post">
+        <input type="hidden" name="authid" value="{$authid}" />
         <input type="hidden" name="ot" value="import_config" />
         <input type="hidden" name="otTarget" value="userimport" />
 
         <fieldset>
-            <legend>1. <!--[gt text="Zikula user import configuration"]--></legend>
+            <legend>1. {gt text="Zikula user import configuration"}</legend>
             <div class="z-formrow">
-                <label for="import_type"><!--[gt text='Type']-->:</label>
-                <select id="import_type" name="import[import_type]"><!--[html_options values=$type_values output=$type_output selected=$import_type]--></select>
+                <label for="import_type">{gt text='Type'}:</label>
+                <select id="import_type" name="import[import_type]">{html_options values=$type_values output=$type_output selected=$import_type}</select>
             </div>
             <div class="z-formrow">
-                <label for="import_frequency"><!--[gt text='Frequency']-->:</label>
-                <select id="import_frequency" name="import[import_frequency]"><!--[html_options values=$frequency_values output=$frequency_output selected=$import_frequency]--></select>
+                <label for="import_frequency">{gt text='Frequency'}:</label>
+                <select id="import_frequency" name="import[import_frequency]">{html_options values=$frequency_values output=$frequency_output selected=$import_frequency}</select>
             </div>
             <div class="z-formrow">
-                <label for="import_active_status"><!--[gt text='Active']-->:</label>
+                <label for="import_active_status">{gt text='Active'}:</label>
                 <select id="import_active_status" name="import[import_active_status]">
-                    <option value="1"<!--[if $import_active_status eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="Active"]--></option>
-                    <option value="0"<!--[if $import_active_status eq 0]--> selected="selected"<!--[/if]-->><!--[gt text="Inactive"]--></option>
+                    <option value="1"{if $import_active_status eq 1} selected="selected"{/if}>{gt text="Active"}</option>
+                    <option value="0"{if $import_active_status eq 0} selected="selected"{/if}>{gt text="Inactive"}</option>
                 </select>
             </div>
             <div class="z-formrow">
-                <label for="import_approval_status"><!--[gt text='Users approved']-->:</label>
+                <label for="import_approval_status">{gt text='Users approved'}:</label>
                 <select id="import_approval_status" name="import[import_approval_status]">
-                    <option value="1"<!--[if $import_approval_status eq 1]--> selected="selected"<!--[/if]-->><!--[gt text="Approved"]--></option>
-                    <option value="0"<!--[if $import_approval_status eq 0]--> selected="selected"<!--[/if]-->><!--[gt text="Unapproved"]--></option>
+                    <option value="1"{if $import_approval_status eq 1} selected="selected"{/if}>{gt text="Approved"}</option>
+                    <option value="0"{if $import_approval_status eq 0} selected="selected"{/if}>{gt text="Unapproved"}</option>
                 </select>
             </div>
         </fieldset>
 
         <div class="z-formbuttons">
-            <input type="submit" name="submit" value="<!--[gt text='Update Configuration']-->" />
+            <input type="submit" name="submit" value="{gt text='Update Configuration'}" />
         </div>
 
         <fieldset>
-            <legend>2. <!--[gt text='Import']--></legend>
+            <legend>2. {gt text='Import'}</legend>
             <div class="z-formrow">
-                <a href="<!--[pnmodurl modname='Newsletter' type='adminform' func='edit' ot='import_users' otTarget='userimport' authKey=$admin_key authid=$authid]-->" title="<!--[gt text='Import']-->">
+                <a href="{modurl modname='Newsletter' type='adminform' func='edit' ot='import_users' otTarget='userimport' authKey=$admin_key authid=$authid}" title="{gt text='Import'}">
                     <img src="images/icons/small/button_ok.gif" alt="" />
                 </a>
             </div>

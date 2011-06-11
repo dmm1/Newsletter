@@ -20,12 +20,12 @@ class PNPluginAdminMessagesArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Admin_Messages')) {
+        if (!ModUtil::available('Admin_Messages')) {
             return array();
         }
 
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-        $nItems   = pnModGetVar ('Newsletter', 'plugin_AdminMessages_nItems', 1);
+        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
+        $nItems   = ModUtil::getVar ('Newsletter', 'plugin_AdminMessages_nItems', 1);
         $params   = array();
         $params['startnum'] = 0;
         $params['numitems'] = $nItems;
@@ -34,7 +34,7 @@ class PNPluginAdminMessagesArray extends PNPluginBaseArray
             $params['ignoreml'] = false;
             $params['language'] = $lang;
         }
-        return pnModAPIFunc('Admin_Messages', 'user', 'getactive', $params);
+        return ModUtil::apiFunc('Admin_Messages', 'user', 'getactive', $params);
     }
 }
 

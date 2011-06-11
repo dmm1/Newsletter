@@ -43,7 +43,7 @@ class PNExportArray extends PNUserArray
 
         // check auth key
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0), 'GETPOST');
-        $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
+        $masterKey = (string)ModUtil::getVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
             $rc = LogUtil::registerError (__('Invalid admin_key received', $dom));
         }
@@ -129,8 +129,8 @@ class PNExportArray extends PNUserArray
         }
         if ($filename) {
             $xml    .= "  <filename>$filename</filename>\n";
-            $host    = pnServerGetVar('HTTP_HOST');
-            $baseuri = pnGetBaseURI();
+            $host    = System::serverGetVar('HTTP_HOST');
+            $baseuri = System::getBaseUri();
             $xml    .= "  <filenameURL>http://$host/$baseuri/$filename</filenameURL>\n";
         }
 

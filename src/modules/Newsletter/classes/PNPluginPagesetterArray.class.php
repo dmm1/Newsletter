@@ -20,11 +20,11 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Pagesetter')) {
+        if (!ModUtil::available('Pagesetter')) {
             return array();
         }
 
-        if (!pnModDBInfoLoad('Pagesetter')) {
+        if (!ModUtil::dbInfoLoad('Pagesetter')) {
             return array();
         }
 
@@ -37,25 +37,25 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
         // pagesetter TIDs
         $tids = FormUtil::getPassedValue ('pagesetterTIDs', null, 'POST');
         if ($tids) {
-            pnModSetVar ('Newsletter', 'pagesetterTIDs', implode(',', array_keys($tids)));
+            ModUtil::setVar ('Newsletter', 'pagesetterTIDs', implode(',', array_keys($tids)));
         } else {
-            pnModSetVar ('Newsletter', 'pagesetterTIDs', '');
+            ModUtil::setVar ('Newsletter', 'pagesetterTIDs', '');
         }
 
         $useAPI = FormUtil::getPassedValue ('pagesetter_useAPI', 0, 'POST');
-        pnModSetVar ('Newsletter', 'pagesetter_useAPI', $useAPI);
+        ModUtil::setVar ('Newsletter', 'pagesetter_useAPI', $useAPI);
     }
 
 
     function getPluginParameters ()
     {
-        if (pnModAvailable ('Pagesetter')) {
-            $pagesetterPubTypes = pnModAPIFunc ('Pagesetter', 'admin', getPublicationTypes);
+        if (ModUtil::available ('Pagesetter')) {
+            $pagesetterPubTypes = ModUtil::apiFunc ('Pagesetter', 'admin', getPublicationTypes);
         } else {
             $pagesetterPubTypes = null;
         }
 
-        $pagesetterTIDs = pnModGetVar ('Newsletter', 'pagesetterTIDs', '');
+        $pagesetterTIDs = ModUtil::getVar ('Newsletter', 'pagesetterTIDs', '');
         $activePagesetterPlugins = explode(',', $pagesetterTIDs);
         foreach ($pagesetterPubTypes as $k=>$v) {
             $pagesetterPubTypes[$k]['active'] = in_array($v['id'], $activePagesetterPlugins);
@@ -72,7 +72,7 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
         $rc = true;
 
         // for some reason (that I don't quite understand) the table prefix can cause problems so we strip it here 
-        $prefix = pnConfigGetVar('prefix');
+        $prefix = System::getVar('prefix');
         $pnTables = $GLOBALS['pntables'];
         $tbl = $pnTables['pagesetter_pubtypes'];
         $col = $pnTables['pagesetter_pubtypes_column'];
@@ -83,9 +83,9 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
         $pnTables['pagesetter_pubtypes_column'] = $t;
         $GLOBALS['pntables'] = $pnTables;
 
-        $tids     = pnModGetVar ('Newsletter', 'pagesetterTIDs', '');
-        $nItems   = pnModGetVar ('Newsletter', 'plugin_Pagesetter_nItems', 1);
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $tids     = ModUtil::getVar ('Newsletter', 'pagesetterTIDs', '');
+        $nItems   = ModUtil::getVar ('Newsletter', 'plugin_Pagesetter_nItems', 1);
+        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
         $where  = '';
         if ($tids) {
             $where = "pg_id in ($tids)";
@@ -95,7 +95,7 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
             return array();
         }
 
-        $pagesetter_useAPI = pnModGetVar ('Newsletter', 'pagesetter_useAPI', 0);
+        $pagesetter_useAPI = ModUtil::getVar ('Newsletter', 'pagesetter_useAPI', 0);
         $pagesetterPublications = array();
         if ($pagesetter_useAPI) {
             if (true) {
@@ -123,7 +123,7 @@ class PNPluginPagesetterArray extends PNPluginBaseArray
                     }
                     $pids = DBUtil::selectObjectArray ($pagesetterTable, $where, 'pg_created DESC', 0, $nItems);
                     foreach ($pids as $pid) {
-                        $pub = pnModAPIFunc( 'pagesetter', 'user', 'getPub',
+                        $pub = ModUtil::apiFunc( 'pagesetter', 'user', 'getPub',
                                               array('tid' => $tid['id'],
                                                     'pid' => $pid['pid']));
                         $pagesetterPublications[$pub['core_publishDate']] = $pub;

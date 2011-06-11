@@ -23,7 +23,7 @@ class PNImportConfig extends PNObject
     function save ()
     {
         foreach ($this->_objData as $k=>$v) {
-            pnModSetVar ('Newsletter', $k, $v);
+            ModUtil::setVar ('Newsletter', $k, $v);
         }
 
         return true;

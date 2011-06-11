@@ -20,12 +20,12 @@ class PNPluginPagesArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Pages')) {
+        if (!ModUtil::available('Pages')) {
             return array();
         }
 
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-        $nItems   = pnModGetVar ('Newsletter', 'plugin_Pages_nItems', 1);
+        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
+        $nItems   = ModUtil::getVar ('Newsletter', 'plugin_Pages_nItems', 1);
         $params   = array();
         $params['order']    = 'pageid DESC';
         $params['numitems'] = $nItems;
@@ -35,7 +35,7 @@ class PNPluginPagesArray extends PNPluginBaseArray
             $params['ignoreml'] = false;
             $params['language'] = $lang;
         }
-        return pnModAPIFunc('Pages', 'user', 'getall', $params);
+        return ModUtil::apiFunc('Pages', 'user', 'getall', $params);
     }
 }
 

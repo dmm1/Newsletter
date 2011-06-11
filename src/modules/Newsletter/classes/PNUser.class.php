@@ -64,13 +64,13 @@ class PNUser extends PNObject
             if ($ret) {
                 LogUtil::registerStatus (__('Your have unsubscribed from our newsletter', $dom));
 
-                $pnRender = pnRender::getInstance('Newsletter', false);
-                $pnRender->assign ('user_name', $data['uid'] ? pnUserGetVar('uname', $data['uid']) : $data['name']);
-                $pnRender->assign ('user_email', $data['uid'] ? pnUserGetVar('email', $data['uid']) : $data['email']);
-                $pnRender->assign ('site_url', pnGetCurrentURL());
-                $message = $pnRender->fetch ('newsletter_email_user_unsubscribe.html');
-                $send_from_address = pnModGetVar ('Newsletter', 'send_from_address');
-                pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? pnUserGetVar('email', $data['uid']) : $data['email'],
+                $view = Zikula_View::getInstance('Newsletter', false);
+                $view->assign ('user_name', $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
+                $view->assign ('user_email', $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email']);
+                $view->assign ('site_url', System::getCurrentUrl());
+                $message = $view->fetch ('newsletter_email_user_unsubscribe.html');
+                $send_from_address = ModUtil::getVar ('Newsletter', 'send_from_address');
+                ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
                                                                     'fromaddress'=> $send_from_address,
                                                                     'subject'    => __('Newsletter Subscription Cancelled', $dom),
                                                                     'body'       => $message,
@@ -118,16 +118,16 @@ class PNUser extends PNObject
             $data['approved'] = 0;
         }
 
-        if (!isset($data['uid']) && pnUserLoggedIn()) {
-            $data['uid'] = pnUserGetVar ('uid');
+        if (!isset($data['uid']) && UserUtil::isLoggedIn()) {
+            $data['uid'] = UserUtil::getVar ('uid');
         }
 
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
         if (!$enableML && !$data['lang']) {
-            $data['lang'] = pnConfigGetVar('language');
+            $data['lang'] = System::getVar('language');
         }
 
-        $limitType = pnModGetVar ('Newsletter', 'limit_type', 0);
+        $limitType = ModUtil::getVar ('Newsletter', 'limit_type', 0);
         if ($limitType) {
             $data['type'] = $limitType;
         }
@@ -141,8 +141,8 @@ class PNUser extends PNObject
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         $key = false;
-        if (pnUserLoggedIn()) {
-            $key = pnUserGetVar ('uid');
+        if (UserUtil::isLoggedIn()) {
+            $key = UserUtil::getVar ('uid');
         } else {
             $data = $this->_objData;
             if (!isset($data['email']) || !$data['email']) {
@@ -175,16 +175,16 @@ class PNUser extends PNObject
             $data = $this->_objData;
         }
 
-        $auto_approve_registrations = pnModGetVar ('Newsletter', 'auto_approve_registrations', 0);
+        $auto_approve_registrations = ModUtil::getVar ('Newsletter', 'auto_approve_registrations', 0);
         if ($auto_approve_registrations) {
             $data['approved'] = 1;
         }
         $data['active'] = 1;
 
-        if (pnUserLoggedIn()) {
+        if (UserUtil::isLoggedIn()) {
             if ($data['uid']) {
-                $data['name']  = pnUserGetVar ('uname', $data['uid']);
-                $data['email'] = pnUserGetVar ('email', $data['uid']);
+                $data['name']  = UserUtil::getVar ('uname', $data['uid']);
+                $data['email'] = UserUtil::getVar ('email', $data['uid']);
             } else {
                 LogUtil::registerError (__('Logic Error: logged-in user does not have his subscription UID set!', $dom));
             }
@@ -226,21 +226,21 @@ class PNUser extends PNObject
         if ($data) {
             LogUtil::registerStatus (__('Your have been subscribed to our newsletter', $dom));
 
-            $pnRender = pnRender::getInstance('Newsletter', false);
-            $pnRender->assign ('user_name', $data['uid'] ? pnUserGetVar('uname', $data['uid']) : $data['name']);
-            $pnRender->assign ('user_email', $data['uid'] ? pnUserGetVar('email', $data['uid']) : $data['email']);
-            $pnRender->assign ('site_url', pnGetCurrentURL());
-            $user_message = $pnRender->fetch ('newsletter_email_user_notify.html');
-            $send_from_address = pnModGetVar ('Newsletter', 'send_from_address');
-            pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? pnUserGetVar('email', $data['uid']) : $data['email'],
+            $view = Zikula_View::getInstance('Newsletter', false);
+            $view->assign ('user_name', $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
+            $view->assign ('user_email', $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email']);
+            $view->assign ('site_url', System::getCurrentUrl());
+            $user_message = $view->fetch ('newsletter_email_user_notify.html');
+            $send_from_address = ModUtil::getVar ('Newsletter', 'send_from_address');
+            ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
                                                                 'fromaddress'=> $send_from_address,
                                                                 'subject'    => __('Newsletter Subscription Received', $dom),
                                                                 'body'       => $user_message,
                                                                 'html'       => 1));
 
-            if (pnModGetVar('Newsletter', 'notify_admin', 0)) {
-                $admin_message = $pnRender->fetch ('newsletter_email_admin_notify.html');
-                pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $send_from_address,
+            if (ModUtil::getVar('Newsletter', 'notify_admin', 0)) {
+                $admin_message = $view->fetch ('newsletter_email_admin_notify.html');
+                ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $send_from_address,
                                                                     'fromaddress'=> $send_from_address,
                                                                     'subject'    => __('Newsletter Subscription', $dom),
                                                                     'body'       => $admin_message,
@@ -276,9 +276,9 @@ class PNUser extends PNObject
             $data = $this->_objData;
         }
 
-        if (pnUserLoggedIn() && $data['uid']) {
-            $data['name']  = pnUserGetVar ('uname', $data['uid']);
-            $data['email'] = pnUserGetVar ('email', $data['uid']);
+        if (UserUtil::isLoggedIn() && $data['uid']) {
+            $data['name']  = UserUtil::getVar ('uname', $data['uid']);
+            $data['email'] = UserUtil::getVar ('email', $data['uid']);
         }
 
         $this->_objData = $data;

@@ -20,12 +20,12 @@ class PNPluginQuotesArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Quotes')) {
+        if (!ModUtil::available('Quotes')) {
             return array();
         }
 
-        $nItems = pnModGetVar ('Newsletter', 'plugin_Quotes_nItems', 1);
-        return pnModAPIFunc('Quotes', 'user', 'getall', array('order' => 'qid DESC', 
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_Quotes_nItems', 1);
+        return ModUtil::apiFunc('Quotes', 'user', 'getall', array('order' => 'qid DESC', 
                                                               'startnum' => 0, 
                                                               'numitems' => $nItems));
     }

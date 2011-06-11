@@ -14,10 +14,10 @@ function Newsletter_adminform_modifyconfig ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
+        return DataUtil::formatForDisplayHTML(__("You don't have Admin rights for this module", $dom));
     }
 
-    $url = pnModURL('Newsletter', 'admin', 'settings');
+    $url = ModUtil::url('Newsletter', 'admin', 'settings');
 
     if (!SecurityUtil::confirmAuthKey('Newsletter')) {
         return LogUtil::registerAuthidError ($url);
@@ -30,29 +30,29 @@ function Newsletter_adminform_modifyconfig ()
         LogUtil::registerError (__('You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!', $dom));
     }
 
-    pnModSetVar ('Newsletter', 'admin_key',                  $prefs['admin_key']                  ? $prefs['admin_key']         : substr(md5(time()),-10));
-    pnModSetVar ('Newsletter', 'allow_anon_registration',    $prefs['allow_anon_registration']    ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'allow_frequency_change',     $prefs['allow_frequency_change']     ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'allow_subscription_change',  $prefs['allow_subscription_change']  ? 1                        : 0);	
-	pnModSetVar ('Newsletter', 'archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire']    : 0);
-    pnModSetVar ('Newsletter', 'auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
-    pnModSetVar ('Newsletter', 'default_type',               $prefs['default_type']               ? $prefs['default_type']      : 1);
-    pnModSetVar ('Newsletter', 'enable_multilingual',        $prefs['enable_multilingual']        ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'itemsperpage',               $prefs['itemsperpage']               ? $prefs['itemsperpage']      : 25);
-    pnModSetVar ('Newsletter', 'limit_type',                 $prefs['limit_type']);
-    pnModSetVar ('Newsletter', 'max_send_per_hour',          $prefs['max_send_per_hour'] >= 0     ? $prefs['max_send_per_hour'] : 0);
-    pnModSetVar ('Newsletter', 'notify_admin',               $prefs['notify_admin']               ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'require_tos',                $prefs['require_tos']                ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'show_approval_status',       $prefs['show_approval_status']       ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'disable_auto',               $prefs['disable_auto']               ? 1                          : 0);
-    pnModSetVar ('Newsletter', 'activate_archive',           $prefs['activate_archive']           ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
-    pnModSetVar ('Newsletter', 'send_day',                   $prefs['send_day']                   ? $prefs['send_day']          : 5);
-    pnModSetVar ('Newsletter', 'send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address'] : pnConfigGetVar('adminmail'));
-    pnModSetVar ('Newsletter', 'newsletter_subject',         $prefs['newsletter_subject']         ? $prefs['newsletter_subject'] : 0);
-    pnModSetVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);
-    return pnRedirect($url);
+    ModUtil::setVar ('Newsletter', 'admin_key',                  $prefs['admin_key']                  ? $prefs['admin_key']         : substr(md5(time()),-10));
+    ModUtil::setVar ('Newsletter', 'allow_anon_registration',    $prefs['allow_anon_registration']    ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'allow_frequency_change',     $prefs['allow_frequency_change']     ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'allow_subscription_change',  $prefs['allow_subscription_change']  ? 1                        : 0);	
+	ModUtil::setVar ('Newsletter', 'archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire']    : 0);
+    ModUtil::setVar ('Newsletter', 'auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
+    ModUtil::setVar ('Newsletter', 'default_type',               $prefs['default_type']               ? $prefs['default_type']      : 1);
+    ModUtil::setVar ('Newsletter', 'enable_multilingual',        $prefs['enable_multilingual']        ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'itemsperpage',               $prefs['itemsperpage']               ? $prefs['itemsperpage']      : 25);
+    ModUtil::setVar ('Newsletter', 'limit_type',                 $prefs['limit_type']);
+    ModUtil::setVar ('Newsletter', 'max_send_per_hour',          $prefs['max_send_per_hour'] >= 0     ? $prefs['max_send_per_hour'] : 0);
+    ModUtil::setVar ('Newsletter', 'notify_admin',               $prefs['notify_admin']               ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'require_tos',                $prefs['require_tos']                ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'show_approval_status',       $prefs['show_approval_status']       ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'disable_auto',               $prefs['disable_auto']               ? 1                          : 0);
+    ModUtil::setVar ('Newsletter', 'activate_archive',           $prefs['activate_archive']           ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'personalize_email',          $prefs['personalize_email']          ? 1                           : 0);
+    ModUtil::setVar ('Newsletter', 'send_day',                   $prefs['send_day']                   ? $prefs['send_day']          : 5);
+    ModUtil::setVar ('Newsletter', 'send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address'] : System::getVar('adminmail'));
+    ModUtil::setVar ('Newsletter', 'newsletter_subject',         $prefs['newsletter_subject']         ? $prefs['newsletter_subject'] : 0);
+    ModUtil::setVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);
+    return System::redirect($url);
 }
 
 
@@ -60,12 +60,12 @@ function Newsletter_adminform_delete ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
+        return DataUtil::formatForDisplayHTML(__("You don't have Admin rights for this module", $dom));
     }
 
     $ot  = 'user';
     $id  = (int)FormUtil::getPassedValue ('id', null, 'GETPOST');
-    $url = pnModURL('Newsletter', 'admin', 'view', array('ot' => $ot));
+    $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot));
 
     if (!$id) {
         return LogUtil::registerError (__('Invalid [id] parameter received', $dom), null, $url);
@@ -86,7 +86,7 @@ function Newsletter_adminform_delete ()
     }
 
     $object->delete ();
-    return pnRedirect($url);
+    return System::redirect($url);
 }
 
 
@@ -94,7 +94,7 @@ function Newsletter_adminform_edit ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
+        return DataUtil::formatForDisplayHTML(__("You don't have Admin rights for this module", $dom));
     }
 
     $ot       = FormUtil::getPassedValue ('ot', null, 'GETPOST');
@@ -102,7 +102,7 @@ function Newsletter_adminform_edit ()
     $filter   = FormUtil::getPassedValue ('filter', null, 'GETPOST');
 
     if (!$ot) {
-        $url = pnModURL('Newsletter', 'admin', 'main');
+        $url = ModUtil::url('Newsletter', 'admin', 'main');
         return LogUtil::registerError (__('Invalid [ot] parameter received', $dom), null, $url);
     }
 
@@ -111,7 +111,7 @@ function Newsletter_adminform_edit ()
     if ($filter) {
         $args['filter'] = $filter;
     }
-    $url = pnModURL('Newsletter', 'admin', 'view', $args);
+    $url = ModUtil::url('Newsletter', 'admin', 'view', $args);
 
     if (!SecurityUtil::confirmAuthKey('Newsletter')) {
         return LogUtil::registerAuthidError ($url);
@@ -128,7 +128,7 @@ function Newsletter_adminform_edit ()
     $object = new $class ();
     $object->getDataFromInput ();
     $object->save ();
-    return pnRedirect($url);
+    return System::redirect($url);
 }
 
 
@@ -136,10 +136,10 @@ function Newsletter_adminform_modifyarchive ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Admin rights for this module", $dom));
+        return DataUtil::formatForDisplayHTML(__("You don't have Admin rights for this module", $dom));
     }
 
-    $url = pnModURL('Newsletter', 'admin', 'archive');
+    $url = ModUtil::url('Newsletter', 'admin', 'archive');
 
     if (!SecurityUtil::confirmAuthKey('Newsletter')) {
         return LogUtil::registerAuthidError ($url);
@@ -151,15 +151,15 @@ function Newsletter_adminform_modifyarchive ()
         $prefs['default_type'] = $prefs['limit_type'];
         LogUtil::registerError (__('You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!', $dom));
     }
-    pnModSetVar ('Newsletter', 'show_archive', $prefs['show_archive']  ? 1  : 0);
-    pnModSetVar ('Newsletter', 'create_archive', $prefs['create_archive']  ? 1  : 0);
-    pnModSetVar ('Newsletter', 'show_id',      $prefs['show_id']       ? 1  : 0);
-    pnModSetVar ('Newsletter', 'show_lang',    $prefs['show_lang']     ? 1  : 0);
-    pnModSetVar ('Newsletter', 'show_objects', $prefs['show_objects']  ? 1  : 0);
-    pnModSetVar ('Newsletter', 'show_plugins', $prefs['show_plugins']  ? 1  : 0);
-    pnModSetVar ('Newsletter', 'show_size',    $prefs['show_size']     ? 1  : 0);
-    pnModSetVar ('Newsletter', 'show_date',    $prefs['show_date']     ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'show_archive', $prefs['show_archive']  ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'create_archive', $prefs['create_archive']  ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'show_id',      $prefs['show_id']       ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'show_lang',    $prefs['show_lang']     ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'show_objects', $prefs['show_objects']  ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'show_plugins', $prefs['show_plugins']  ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'show_size',    $prefs['show_size']     ? 1  : 0);
+    ModUtil::setVar ('Newsletter', 'show_date',    $prefs['show_date']     ? 1  : 0);
 
-    return pnRedirect($url);
+    return System::redirect($url);
 }
 

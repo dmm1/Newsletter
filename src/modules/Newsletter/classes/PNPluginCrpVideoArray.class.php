@@ -20,12 +20,12 @@ class PNPluginCrpVideoArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('crpVideo')) {
+        if (!ModUtil::available('crpVideo')) {
             return array();
         }
 
-        $nItems = pnModGetVar ('Newsletter', 'plugin_CrpVideo_nItems', 1);
-        return pnModAPIFunc('Admin_Messages', 'user', 'getall', array('orderBy' => 'videoid DESC', 
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_CrpVideo_nItems', 1);
+        return ModUtil::apiFunc('Admin_Messages', 'user', 'getall', array('orderBy' => 'videoid DESC', 
                                                                       'startnum' => 0, 
                                                                       'itemsperpage' => $nItems ));
     }

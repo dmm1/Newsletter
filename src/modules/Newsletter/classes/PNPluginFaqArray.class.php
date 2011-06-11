@@ -20,12 +20,12 @@ class PNPluginFaqArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Faq')) {
+        if (!ModUtil::available('Faq')) {
             return array();
         }
 
-        $nItems = pnModGetVar ('Newsletter', 'plugin_FAQ_nItems', 1);
-        return pnModAPIFunc('Faq', 'user', 'getall', array('order'    => 'faqid DESC', 
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_FAQ_nItems', 1);
+        return ModUtil::apiFunc('Faq', 'user', 'getall', array('order'    => 'faqid DESC', 
                                                            'startnum' => 0, 
                                                            'numitems' => $nItems));
     }

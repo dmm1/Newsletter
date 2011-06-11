@@ -16,7 +16,7 @@
  */
 function smarty_modifier_url_check($data)
 {
-    $domain = pnGetBaseURL();
+    $domain = System::getBaseUrl();
 	
     $changed = false;
     $tagcount = preg_match_all("/<a(.*)>(.*)<\/a>/si", $data, $tags);

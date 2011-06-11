@@ -20,12 +20,12 @@ class PNPluginDownloadsArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Downloads')) {
+        if (!ModUtil::available('Downloads')) {
             return array();
         }
 
-        $nItems = pnModGetVar ('Newsletter', 'plugin_Downloads_nItems', 1);
-        return pnModAPIFunc('Downloads', 'user', 'get_download_info', array ('sortby'      => 'date', 
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_Downloads_nItems', 1);
+        return ModUtil::apiFunc('Downloads', 'user', 'get_download_info', array ('sortby'      => 'date', 
                                                                              'cclause'     => 'DESC',
                                                                              'sort_active' => true,
                                                                              'cid'         => 0,

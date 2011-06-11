@@ -27,7 +27,7 @@ class PNNewsletterDataArray extends PNObjectArray
         }
 
         $data     = array();
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
         $plugins  = NewsletterUtil::getActivePlugins ();
         $language = FormUtil::getPassedValue ('language', $lang, 'GETPOST');
 
@@ -43,7 +43,7 @@ class PNNewsletterDataArray extends PNObjectArray
 
         $data['nItems']   = 0;
         $data['nPlugins'] = count($plugins);
-        $data['title']    = pnConfigGetVar('sitename') . ' ' . (__('Newsletter', $dom));
+        $data['title']    = System::getVar('sitename') . ' ' . (__('Newsletter', $dom));
         foreach ($plugins as $plugin) {
             $pluginClassName = 'plugin_' . $plugin;
             if (($class=Loader::loadArrayClassFromModule ('Newsletter', $pluginClassName))) {

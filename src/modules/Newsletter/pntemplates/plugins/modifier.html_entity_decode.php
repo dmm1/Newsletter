@@ -5,7 +5,7 @@
  *
  *
  * Example
- *  <!--[$content|html_entity_decode]-->
+ *  {$content|html_entity_decode}
  *
  * 
  * @author       Devin Hayes

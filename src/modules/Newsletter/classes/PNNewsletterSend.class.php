@@ -43,7 +43,7 @@ class PNNewsletterSend extends PNObject
     function save ($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
-        if (!pnModAvailable('Mailer')) {
+        if (!ModUtil::available('Mailer')) {
             return LogUtil::registerError (__('The mailer module is not available', $dom));
         }
 
@@ -59,7 +59,7 @@ class PNNewsletterSend extends PNObject
             return LogUtil::registerError (__('Unable to load array class [newsletter_data]', $dom));
         }
 
-        $enable_multilingual       = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $enable_multilingual       = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
         $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue ('language', '', 'GETPOST') : SessionUtil::getVar('lang'); // custom var
         $newsletterDataObjectArray = new PNNewsletterDataArray ();
         $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);              // custom var
@@ -146,7 +146,7 @@ class PNNewsletterSend extends PNObject
             return LogUtil::registerError (__('No users were available to send the newsletter to', $dom));
         }
 		$thisDay   = date ('w', time());
-		$sendPerRequest = pnModGetVar ('Newsletter', 'send_per_request', 5);
+		$sendPerRequest = ModUtil::getVar ('Newsletter', 'send_per_request', 5);
         
 		// check archives for new archive time
         $matched = false;
@@ -180,7 +180,7 @@ class PNNewsletterSend extends PNObject
 
         // check auth key
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0));
-        $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
+        $masterKey = (string)ModUtil::getVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
             return (__('Invalid admin_key received', $dom));
         }
@@ -201,16 +201,16 @@ class PNNewsletterSend extends PNObject
 
         // ensure non-scheduled execution happens on the correct day
         if (!$scheduled){
-            $sendDay = pnModGetVar ('Newsletter', 'send_day', 0);
+            $sendDay = ModUtil::getVar ('Newsletter', 'send_day', 0);
             if ($sendDay != $thisDay){        
                 return 'Wrong day';
             }
         }
         
         // keep a record of how many mails were sent today
-        $maxPerHour = pnModGetVar ('Newsletter', 'max_send_per_hour', 0);
+        $maxPerHour = ModUtil::getVar ('Newsletter', 'max_send_per_hour', 0);
         if ($maxPerHour) {
-            $spamData  = pnModGetVar ('Newsletter', 'spam_count', '');
+            $spamData  = ModUtil::getVar ('Newsletter', 'spam_count', '');
             if ($spamData) {
                 $spamArray = explode ('-', $spamData);
                 $now       = time ();
@@ -219,15 +219,15 @@ class PNNewsletterSend extends PNObject
                 if ($now-$spamArray['0'] >= 3600 && $spamArray['1'] >= $maxPerHour && date('G')==date('G', $spamArray['0'])) {
                     return 'spam limits encountered';
                 } else if (date('G') > date('G', $spamArray['0'])) {
-                    pnModSetVar ('Newsletter', 'spam_count', time().'-0');
+                    ModUtil::setVar ('Newsletter', 'spam_count', time().'-0');
                     $spamArray = array(time(),'0');
                 }
             }
         }
 
-        pnModSetVar ('Newsletter', 'start_execution_time', (float)array_sum(explode(' ', microtime())));
+        ModUtil::setVar ('Newsletter', 'start_execution_time', (float)array_sum(explode(' ', microtime())));
         $today          = date ('w', time()); 
-        $sendPerRequest = pnModGetVar ('Newsletter', 'send_per_request', 5);
+        $sendPerRequest = ModUtil::getVar ('Newsletter', 'send_per_request', 5);
         
         // check archives for new archive time
         $matched = false;
@@ -242,7 +242,7 @@ class PNNewsletterSend extends PNObject
         }
 
         $nSent = 0;
-        $allowFrequencyChange = pnModGetVar ('Newsletter', 'allow_frequency_change', 0);
+        $allowFrequencyChange = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
         foreach ($users as $user) {
             if (!$allowFrequencyChange || (isset($user['send_now']) && $user['send_now'])) {        
                 if ($this->_sendNewsletter ($user, $newArchiveTime)) {
@@ -255,15 +255,15 @@ class PNNewsletterSend extends PNObject
         LogUtil::registerStatus ("$nSent " . __('Newsletter(s) were successfully sent.', $dom));
         
         if ($maxPerHour) {
-            pnModSetVar ('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));
+            ModUtil::setVar ('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));
         }
 
         if (!$matched) {
             $this->_archiveNewsletter ($newArchive, $newArchiveTime);
         }
 
-        pnModSetVar ('Newsletter', 'end_execution_time', (float)array_sum(explode(' ', microtime())));
-        pnModSetVar ('Newsletter', 'end_execution_count', $nSent);
+        ModUtil::setVar ('Newsletter', 'end_execution_time', (float)array_sum(explode(' ', microtime())));
+        ModUtil::setVar ('Newsletter', 'end_execution_count', $nSent);
         if (isset($args['respond']) && $args['respond']) {
             return " $nSent ";
         }
@@ -281,15 +281,15 @@ class PNNewsletterSend extends PNObject
             default: $tpl = 'newsletter_template_html.html'; $html = 1; break;
         }
 
-        $personalize = pnModGetVar('Newsletter','personalize_email', false);
-        $pnRender    = pnRender::getInstance('Newsletter', $personalize ? false : true, $personalize ? null : $cacheID);
-        $pnRender->assign ('show_header', '1');
-        $pnRender->assign ('site_url', pnGetBaseURL());
-        $pnRender->assign ('site_name', pnConfigGetVar('sitename'));
-        $pnRender->assign ('user_name', $personalize ? $user['name'] : '');
-        $pnRender->assign ('user_email', $personalize ? $user['email'] : '');
-        $pnRender->assign ('objectArray', $this->_objNewsletterData);
-        return $pnRender->fetch ($tpl);
+        $personalize = ModUtil::getVar('Newsletter','personalize_email', false);
+        $view    = Zikula_View::getInstance('Newsletter', $personalize ? false : true, $personalize ? null : $cacheID);
+        $view->assign ('show_header', '1');
+        $view->assign ('site_url', System::getBaseUrl());
+        $view->assign ('site_name', System::getVar('sitename'));
+        $view->assign ('user_name', $personalize ? $user['name'] : '');
+        $view->assign ('user_email', $personalize ? $user['email'] : '');
+        $view->assign ('objectArray', $this->_objNewsletterData);
+        return $view->fetch ($tpl);
     }
 
 
@@ -297,9 +297,9 @@ class PNNewsletterSend extends PNObject
     {
         $html    = false;
         $message = $this->_getNewsletterMessage ($user, $cacheID, false, $html); // defaults to html
-        $from    = pnModGetVar ('Newsletter', 'send_from_address', pnConfigGetVar('adminmail'));        
-        $subject = pnModGetVar ('Newsletter', 'newsletter_subject') ;
-        $sent    = pnModAPIFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $user['email'],
+        $from    = ModUtil::getVar ('Newsletter', 'send_from_address', System::getVar('adminmail'));        
+        $subject = ModUtil::getVar ('Newsletter', 'newsletter_subject') ;
+        $sent    = ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $user['email'],
                                                                        'fromaddress'=> $from,
                                                                        'subject'    => $subject,
                                                                        'body'       => $message,

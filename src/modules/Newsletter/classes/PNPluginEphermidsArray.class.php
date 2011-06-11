@@ -20,12 +20,12 @@ class PNPluginEphermidsArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Ephermids')) {
+        if (!ModUtil::available('Ephermids')) {
             return array();
         }
 
-        $nItems = pnModGetVar ('Newsletter', 'plugin_Ephermids_nItems', 1);
-        return pnModAPIFunc('Ephermids', 'user', 'getall', array('order' => 'mid DESC', 
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_Ephermids_nItems', 1);
+        return ModUtil::apiFunc('Ephermids', 'user', 'getall', array('order' => 'mid DESC', 
                                                                  'startnum' => 0, 
                                                                  'numitems' => $nItems));
     }

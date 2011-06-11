@@ -19,8 +19,8 @@ function Newsletter_ajax_getusers()
 
     $fragment = FormUtil::getpassedValue('fragment');
 
-    pnModDBInfoLoad('Newsletter');
-    $pntable = pnDBGetTables();
+    ModUtil::dbInfoLoad('Newsletter');
+    $pntable = DBUtil::getTables();
 
     $userscolumn = $pntable['newsletter_users_column'];
 

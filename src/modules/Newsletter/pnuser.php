@@ -14,17 +14,17 @@ function Newsletter_user_main ()
 
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Overview rights for this module.", $dom));
+        return DataUtil::formatForDisplayHTML(__("You don't have Overview rights for this module.", $dom));
     }
     $ot         = FormUtil::getPassedValue ('ot', 'main', 'GETPOST');
     $offset     = FormUtil::getPassedValue ('startnum', 0, 'GETPOST');
-    $pagesize   = FormUtil::getPassedValue ('pagesize', pnModGetVar ('Newsletter', 'itemsperpage', 30), 'GETPOST');
+    $pagesize   = FormUtil::getPassedValue ('pagesize', ModUtil::getVar ('Newsletter', 'itemsperpage', 30), 'GETPOST');
     $startpage  = isset($args['startpage']) ? 1 : 0;
     $sort       = null;
 
-    $pnRender = pnRender::getInstance('Newsletter', false);
-    $pnRender->assign ('ot', $ot);
-    $pnRender->assign ('startpage', $startpage);
+    $view = Zikula_View::getInstance('Newsletter', false);
+    $view->assign ('ot', $ot);
+    $view->assign ('startpage', $startpage);
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
         return LogUtil::registerError (__('Unable to load class [newsletter_util]', $dom));
@@ -40,24 +40,24 @@ function Newsletter_user_main ()
         $pager = array();
         $pager['numitems']     = $objectArray->getCount ($where);
         $pager['itemsperpage'] = $pagesize;
-        $pnRender->assign ('startnum', $offset);
-        $pnRender->assign ('pager', $pager);
+        $view->assign ('startnum', $offset);
+        $view->assign ('pager', $pager);
     } //elseif ($debug) {
     //    return "Unable to load array class [$ot]";
     //}
-    $pnRender->assign ('objectArray', $data);
+    $view->assign ('objectArray', $data);
 
     if (Loader::loadClassFromModule ('Newsletter', 'user')) {
         $object = new PNUser ();
-        if (pnUserLoggedIn()) {
-            $user = $object->getUser (pnUserGetVar('uid'));
+        if (UserUtil::isLoggedIn()) {
+            $user = $object->getUser (UserUtil::getVar('uid'));
         }
         $validation = $object->getValidation();
     }
-    $pnRender->assign ('user', $user);
+    $view->assign ('user', $user);
 
     $tpl = 'newsletter_user_view_' . $ot . '.html';
-    return $pnRender->fetch($tpl);
+    return $view->fetch($tpl);
 }
 
 
@@ -65,12 +65,12 @@ function Newsletter_user_detail () // hardcoded for archives
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Overview rights for this module.", $dom));
+        return DataUtil::formatForDisplayHTML(__("You don't have Overview rights for this module.", $dom));
     }
 
     $ot  = 'archive';
     $id  = (int)FormUtil::getPassedValue ('id', 0);
-    $url = pnModURL('Newsletter', 'user', 'main');
+    $url = ModUtil::url('Newsletter', 'user', 'main');
 
     if (!$id) {
         return LogUtil::registerError (__('Invalid [id] parameter received', $dom), null, $url);
@@ -93,7 +93,7 @@ function Newsletter_user_send ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ)) {
-        return pnVarPrepHTMLDisplay(__("You don't have Read rights for this module.", $dom));
+        return DataUtil::formatForDisplayHTML(__("You don't have Read rights for this module.", $dom));
     }
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {

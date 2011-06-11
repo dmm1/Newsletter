@@ -12,7 +12,7 @@
 
 function Newsletter_maintenanceblock_init()
 {
-    pnSecAddSchema('Newsletter:maintenanceblock:', 'Block title::');
+    SecurityUtil::registerPermissionSchema('Newsletter:maintenanceblock:', 'Block title::');
 }
 
 function Newsletter_maintenanceblock_info()
@@ -28,40 +28,40 @@ function Newsletter_maintenanceblock_info()
 
 function Newsletter_maintenanceblock_display($blockinfo)
 {
-    if (!pnSecAuthAction(0, 'Newsletter:maintenanceblock:', "$blockinfo[title]::", ACCESS_ADMIN)) {
+    if (!SecurityUtil::checkPermission*(0, 'Newsletter:maintenanceblock:', "$blockinfo[title]::", ACCESS_ADMIN)) {
         return;
     }
 
-    if (!pnModAvailable('Newsletter')) {
+    if (!ModUtil::available('Newsletter')) {
         return;
     }
 
-    pnModDBInfoLoad ('Newsletter');
+    ModUtil::dbInfoLoad ('Newsletter');
 
     if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
         return 'Unable to load class [newsletter_util]';
     }
 	
-	$disable_auto = pnModGetVar ('Newsletter', 'disable_auto', 0);
+	$disable_auto = ModUtil::getVar ('Newsletter', 'disable_auto', 0);
 	if ($disable_auto) {
 	
 	$blockinfo=array();
-    return themesideblock($blockinfo);
+    return BlockUtil::themesideblock($blockinfo);
 	
 	 } else {
 	
     $today = date('w');
-    $send_day = pnModGetVar('Newsletter','send_day');
+    $send_day = ModUtil::getVar('Newsletter','send_day');
     if ($send_day == $today) {
         if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_send')) {
             return 'Unable to load class [newsletter_send]';
 	}
 
-        $enable_multilingual = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
+        $enable_multilingual = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
         if ($enable_multilingual) {
             $_POST['language'] = SessionUtil::getVar ('lang'); // hack, to ensure that language can be retrieved from $_POST
 	}
-        $_POST['authKey'] = pnModGetVar ('Newsletter', 'admin_key');
+        $_POST['authKey'] = ModUtil::getVar ('Newsletter', 'admin_key');
 
         $object = new PNNewsletterSend ();
         $object->save ();
@@ -77,6 +77,6 @@ function Newsletter_maintenanceblock_display($blockinfo)
     }
 	}
     $blockinfo=array();
-    return themesideblock($blockinfo);
+    return BlockUtil::themesideblock($blockinfo);
 }
 

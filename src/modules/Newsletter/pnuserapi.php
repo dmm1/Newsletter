@@ -37,10 +37,10 @@ function Newsletter_userapi_decodeurl($args)
 
     $args['vars'] = array_slice($args['vars'], 1);
 
-    pnQueryStringSetVar ('func', 'main');
+    System::queryStringSetVar ('func', 'main');
 
     if (isset($args['vars'][1])) {
-        pnQueryStringSetVar ('ot', $args['vars'][1]);
+        System::queryStringSetVar ('ot', $args['vars'][1]);
     }
 
     return true;

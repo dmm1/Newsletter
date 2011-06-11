@@ -10,7 +10,7 @@
  */
 
 
-function Newsletter_pntables()
+function Newsletter_tables()
 {
     $pntables = array();
 

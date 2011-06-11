@@ -20,14 +20,14 @@ class PNPluginCrpCalendarArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('crpCalendar')) {
+        if (!ModUtil::available('crpCalendar')) {
             return array();
         }
 
-        $nItems  = pnModGetVar ('Newsletter', 'plugin_CrpCalendar_nItems', 1);
+        $nItems  = ModUtil::getVar ('Newsletter', 'plugin_CrpCalendar_nItems', 1);
         $modvars = array();
         $modvars['itemsperpage'] = $nItems;
-        return pnModAPIFunc('CrpCalendar', 'user', 'getall', array('sortOrder' => 'videoid DESC', 
+        return ModUtil::apiFunc('CrpCalendar', 'user', 'getall', array('sortOrder' => 'videoid DESC', 
                                                                    'startnum'  => 0, 
                                                                    'modvars'   => $modvars));
     }

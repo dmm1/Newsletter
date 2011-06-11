@@ -15,7 +15,7 @@ function Newsletter_userform_edit ()
     $dom 	  = ZLanguage::getModuleDomain('Newsletter');
     $ot       = FormUtil::getPassedValue ('ot', 'user', 'GETPOST');
     $otTarget = FormUtil::getPassedValue ('otTarget', 'main', 'GETPOST');
-    $url      = pnModURL('Newsletter', 'user', 'main', array('ot'=>$otTarget));
+    $url      = ModUtil::url('Newsletter', 'user', 'main', array('ot'=>$otTarget));
 
     if (!$ot) {
         return LogUtil::registerError (__('Invalid [ot] parameter received', $dom), null, $url);
@@ -37,13 +37,13 @@ function Newsletter_userform_edit ()
     $data = $object->getDataFromInput ();
 
     if ($ot == 'main' || $ot == 'user') {
-        if (!pnUserLoggedIn()) {
+        if (!UserUtil::isLoggedIn()) {
             if (!$data['name']) {
                 return LogUtil::registerError (__('Please enter your name', $dom), null, $url);
             }
             if (!$data['email']) {
                 return LogUtil::registerError (__('Please enter your email address', $dom), null, $url);
-        } elseif (!pnVarValidate($data['email'], 'email')) {
+        } elseif (!System::varValidate($data['email'], 'email')) {
                 return LogUtil::registerError (__('The email address you entered does not seem to be valid', $dom), null, $url);
             }
         }
@@ -54,6 +54,6 @@ function Newsletter_userform_edit ()
 
     $object->save ();
 
-    return pnRedirect($url);
+    return System::redirect($url);
 }
 

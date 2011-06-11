@@ -40,20 +40,20 @@ class PNPlugin extends PNObject
         // active plugins
         foreach ($this->_objData as $k=>$dat) {
             if (strpos ($k, '_nItems') === false) {
-                pnModSetVar ('Newsletter', 'plugin_'.$k, 1);
+                ModUtil::setVar ('Newsletter', 'plugin_'.$k, 1);
             }
             unset ($pluginClasses[$k]);
         }
 
         // inactive plugins
         foreach ($pluginClasses as $k=>$plugin) {
-            pnModSetVar ('Newsletter', 'plugin_'.$k, 0);
+            ModUtil::setVar ('Newsletter', 'plugin_'.$k, 0);
         }
 
         // number of items settings
         foreach ($this->_objData as $k=>$dat) {
             if (strpos ($k, '_nItems') !== false) {
-                pnModSetVar ('Newsletter', 'plugin_'.$k, $dat);
+                ModUtil::setVar ('Newsletter', 'plugin_'.$k, $dat);
             }
         }
 

@@ -18,15 +18,15 @@
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('Dizkus')) {
+        if (!ModUtil::available('Dizkus')) {
             return array();
         }
 
-        pnModDBInfoLoad ('Dizkus');
-        $nItems = pnModGetVar ('Newsletter', 'plugin_Dizkus_nItems', 1);
+        ModUtil::dbInfoLoad ('Dizkus');
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_Dizkus_nItems', 1);
 
         // get all forums the user is allowed to read
-        $userforums = pnModAPIFunc('Dizkus', 'user', 'readuserforums');
+        $userforums = ModUtil::apiFunc('Dizkus', 'user', 'readuserforums');
         if(!is_array($userforums) || count($userforums)==0) {
             // error or user is not allowed to read any forum at all
             // return empty result set without even doing a db access
@@ -39,7 +39,7 @@
         for($i=0; $i<count($userforums); $i++) {
             array_push($allowedforums, $userforums[$i]['forum_id']);
         }
-        $whereforum = ' forum_id IN (' . pnVarPrepForStore(implode($allowedforums, ',')) . ') ';
+        $whereforum = ' forum_id IN (' . DataUtil::formatForStore(implode($allowedforums, ',')) . ') ';
         return DBUtil::selectObjectArray('dizkus_topics', $whereforum, 'topic_id DESC', 0, $nItems);
     }
 }

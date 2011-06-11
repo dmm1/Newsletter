@@ -19,12 +19,12 @@ class PNPluginEZCommentsArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        if (!pnModAvailable('EZComments')) {
+        if (!ModUtil::available('EZComments')) {
             return array();
         }
 
-        $enableML = pnModGetVar ('Newsletter', 'enable_multilingual', 0);
-        $nItems   = pnModGetVar ('Newsletter', 'plugin_EZComments_nItems', 1);
+        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
+        $nItems   = ModUtil::getVar ('Newsletter', 'plugin_EZComments_nItems', 1);
         $params   = array();
         $params['order']    = 'items DESC';
         $params['numitems'] = $nItems;
@@ -34,7 +34,7 @@ class PNPluginEZCommentsArray extends PNPluginBaseArray
             $params['ignoreml'] = false;
             $params['language'] = $lang;
         }
-        return pnModAPIFunc('EZComments', 'user', 'getall', $params);
+        return ModUtil::apiFunc('EZComments', 'user', 'getall', $params);
     }
 }
 

@@ -42,7 +42,7 @@ class PNImportArray extends PNUserArray
 
         // check auth key
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0, 'GET'), 'GET');
-        $masterKey = (string)pnModGetVar ('Newsletter', 'admin_key', -1);
+        $masterKey = (string)ModUtil::getVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
             $rc = LogUtil::registerError (__('Invalid admin_key received', $dom));
         }

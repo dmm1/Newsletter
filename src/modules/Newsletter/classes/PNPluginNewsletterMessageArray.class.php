@@ -20,14 +20,14 @@ class PNPluginNewsletterMessageArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        $defaultLang = pnConfigGetVar ('language');
+        $defaultLang = System::getVar ('language');
         $lang = FormUtil::getPassedValue ('language', $defaultLang, 'POST');
         $vName = 'message';
         if ($lang != $defaultLang) {
             $vName = 'message_' . $lang;
         }
 
-        return pnModGetVar ('Newsletter', $vName, '');
+        return ModUtil::getVar ('Newsletter', $vName, '');
     }
 }
 

@@ -20,12 +20,12 @@ class PNPluginTimeItArray extends PNPluginBaseArray
 
     function getPluginData ($lang=null)
     {
-        pnModDBInfoLoad ('TimeIt');
-        $pntable = pnDBGetTables();
+        ModUtil::dbInfoLoad ('TimeIt');
+        $pntable = DBUtil::getTables();
         $column  = $pntable['TimeIt_events_column'];
         $where   = "$column[status] = 1 AND ($column[sharing] = 2 OR $column[sharing] = 3 OR $column[sharing] = 4)"; // FIXME!! is this correct???
         $sort    = "$column[id] DESC";
-        $nItems  = pnModGetVar ('Newsletter', 'plugin_TimeIt_nItems', 1);
+        $nItems  = ModUtil::getVar ('Newsletter', 'plugin_TimeIt_nItems', 1);
         return DBUtil::selectObjectArray ('TimeIt_events', $where, $sort, 0, $nItems);
     }
 }

@@ -16,7 +16,7 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
 
     function getPluginData($lang=null)
     {
-        if (!pnModAvailable('PageMaster') || !pnModDBInfoLoad('PageMaster')) {
+        if (!ModUtil::available('PageMaster') || !ModUtil::dbInfoLoad('PageMaster')) {
             return array();
         }
 
@@ -28,28 +28,28 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
         // PageMaster TIDs
         $tids = FormUtil::getPassedValue('PagemasterTIDs', array(), 'POST');
 
-        pnModSetVar('Newsletter', 'pagemasterTIDs', array_keys($tids));
+        ModUtil::setVar('Newsletter', 'pagemasterTIDs', array_keys($tids));
 
         // Additional arguments
         $args = FormUtil::getPassedValue('PagemasterArgs', array(), 'POST');
 
-        pnModSetVar('Newsletter', 'pagemasterArgs', $args);
+        ModUtil::setVar('Newsletter', 'pagemasterArgs', $args);
     }
 
     function getPluginParameters()
     {
         $pubtypes = null;
-        if (pnModAvailable('pagemaster') && pnModDBInfoLoad('pagemaster')) {
+        if (ModUtil::available('pagemaster') && ModUtil::dbInfoLoad('pagemaster')) {
 			Loader::includeOnce('modules/PageMaster/common.php');
             $pubtypes = PMgetPubType(-1);
         }
 
-        $active = pnModGetVar ('Newsletter', 'pagemasterTIDs', array());
+        $active = ModUtil::getVar ('Newsletter', 'pagemasterTIDs', array());
         foreach ($pubtypes as $k => $v) {
             $pubtypes[$k]['nwactive'] = in_array($k, $active);
         }
 
-        $args = pnModGetVar('Newsletter', 'pagemasterArgs', array());
+        $args = ModUtil::getVar('Newsletter', 'pagemasterArgs', array());
 
         return array('number' => 1,
                      'param'  => array(
@@ -61,8 +61,8 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
 
     function _getPagemasterItems($lang)
     {
-        $tids = pnModGetVar('Newsletter', 'pagemasterTIDs', array());
-        $args = pnModGetVar('Newsletter', 'pagemasterArgs', array());
+        $tids = ModUtil::getVar('Newsletter', 'pagemasterTIDs', array());
+        $args = ModUtil::getVar('Newsletter', 'pagemasterArgs', array());
         $types = array('txt', 'htm');
 
         $output = array();
@@ -89,7 +89,7 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
 				$core_title = PMgetPubtypeTitleField($args['tid']);
 				$core_title = $core_title ? $core_title : 'id';
 
-				$list = pnModAPIFunc('PageMaster', 'user', 'pubList', $args);
+				$list = ModUtil::apiFunc('PageMaster', 'user', 'pubList', $args);
 				$list = $list['publist'];
 				// fills the core_title for 0.4.2 and pre
 				foreach ($list as $k => $v) {
@@ -97,7 +97,7 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
 				}
 				break;
 			case 'htm':
-				$list = pnModFunc('PageMaster', 'user', 'main', $args);
+				$list = ModUtil::func('PageMaster', 'user', 'main', $args);
 				break;
 		}
 

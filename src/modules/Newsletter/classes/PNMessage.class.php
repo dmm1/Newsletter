@@ -28,15 +28,15 @@ class PNMessage extends PNObject
     function save ()
     {
         $data = $this->_objData;
-        pnModSetVar ('Newsletter', 'message', $data['text']);
+        ModUtil::setVar ('Newsletter', 'message', $data['text']);
 
-        $defaultLang  = pnConfigGetVar ('language');
+        $defaultLang  = System::getVar ('language');
         $alternateLanguages = Compat_LanguageUtil_getLanguages();
         unset ($alternateLanguages[$defaultLang]);
         foreach ($alternateLanguages as $k=>$v) {
             $fName = 'text_' . $k;
             $vName = 'message_' . $k;
-            pnModSetVar ('Newsletter', $vName, $data[$fName]);
+            ModUtil::setVar ('Newsletter', $vName, $data[$fName]);
         }
     }
 }
