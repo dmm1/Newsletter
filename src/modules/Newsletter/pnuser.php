@@ -3,15 +3,11 @@
  * Newletter Module for Zikula
  *
  * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
  */
 
 function Newsletter_user_main ()
 {
-
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW)) {
         return DataUtil::formatForDisplayHTML(__("You don't have Overview rights for this module.", $dom));
@@ -60,7 +56,6 @@ function Newsletter_user_main ()
     return $view->fetch($tpl);
 }
 
-
 function Newsletter_user_detail () // hardcoded for archives
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
@@ -88,7 +83,6 @@ function Newsletter_user_detail () // hardcoded for archives
     exit ();
 }
 
-
 function Newsletter_user_send ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
@@ -109,4 +103,3 @@ function Newsletter_user_send ()
     $obj = new PNNewsletterSend ();
     return $obj->save (array('respond' => 1, 'scheduled' => $scheduled));
 }
-

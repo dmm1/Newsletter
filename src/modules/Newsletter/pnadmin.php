@@ -3,12 +3,8 @@
  * Newletter Module for Zikula
  *
  * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
  */
-
 
 function Newsletter_admin_main()
 {
@@ -29,12 +25,10 @@ function Newsletter_admin_main()
     return $render->fetch('newsletter_admin_main.html');
 }
 
-
 function Newsletter_admin_settings()
 {
    return Newsletter_admin_modifyconfig();
 }
-
 
 function Newsletter_admin_modifyconfig()
 {
@@ -58,7 +52,6 @@ function Newsletter_admin_modifyconfig()
 
     return $view->fetch('newsletter_admin_modifyconfig.html');
 }
-
 
 function Newsletter_admin_edit()
 {
@@ -99,7 +92,6 @@ function Newsletter_admin_edit()
     $tpl = 'newsletter_admin_form_' . $ot . '.html';
     return $view->fetch($tpl);
 }
-
 
 function Newsletter_admin_view()
 {
@@ -228,12 +220,10 @@ function Newsletter_admin_view()
     return $view->fetch($template);
 }
 
-
 function Newsletter_admin_archive()
 {
    return Newsletter_admin_modifyarchive();
 }
-
 
 function Newsletter_admin_modifyarchive()
 {
@@ -257,7 +247,6 @@ function Newsletter_admin_modifyarchive()
 
     return $view->fetch('newsletter_admin_modifyarchive.html');
 }
-
 
 function Newsletter_admin_archive_edit()
 {

@@ -3,12 +3,8 @@
  * Newletter Module for Zikula
  *
  * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
  */
-
 
 function Newsletter_adminform_modifyconfig ()
 {
@@ -33,8 +29,8 @@ function Newsletter_adminform_modifyconfig ()
     ModUtil::setVar ('Newsletter', 'admin_key',                  $prefs['admin_key']                  ? $prefs['admin_key']         : substr(md5(time()),-10));
     ModUtil::setVar ('Newsletter', 'allow_anon_registration',    $prefs['allow_anon_registration']    ? 1                           : 0);
     ModUtil::setVar ('Newsletter', 'allow_frequency_change',     $prefs['allow_frequency_change']     ? 1                           : 0);
-    ModUtil::setVar ('Newsletter', 'allow_subscription_change',  $prefs['allow_subscription_change']  ? 1                        : 0);	
-	ModUtil::setVar ('Newsletter', 'archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire']    : 0);
+    ModUtil::setVar ('Newsletter', 'allow_subscription_change',  $prefs['allow_subscription_change']  ? 1                        : 0);
+    ModUtil::setVar ('Newsletter', 'archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire']    : 0);
     ModUtil::setVar ('Newsletter', 'auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1                           : 0);
     ModUtil::setVar ('Newsletter', 'default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
     ModUtil::setVar ('Newsletter', 'default_type',               $prefs['default_type']               ? $prefs['default_type']      : 1);
@@ -52,9 +48,9 @@ function Newsletter_adminform_modifyconfig ()
     ModUtil::setVar ('Newsletter', 'send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address'] : System::getVar('adminmail'));
     ModUtil::setVar ('Newsletter', 'newsletter_subject',         $prefs['newsletter_subject']         ? $prefs['newsletter_subject'] : 0);
     ModUtil::setVar ('Newsletter', 'send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']  : 5);
+
     return System::redirect($url);
 }
-
 
 function Newsletter_adminform_delete ()
 {
@@ -89,8 +85,7 @@ function Newsletter_adminform_delete ()
     return System::redirect($url);
 }
 
-
-function Newsletter_adminform_edit ()
+function Newsletter_adminform_edit()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
@@ -131,7 +126,6 @@ function Newsletter_adminform_edit ()
     return System::redirect($url);
 }
 
-
 function Newsletter_adminform_modifyarchive ()
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
@@ -162,4 +156,3 @@ function Newsletter_adminform_modifyarchive ()
 
     return System::redirect($url);
 }
-
