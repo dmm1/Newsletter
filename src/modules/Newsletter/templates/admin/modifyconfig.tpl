@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.tpl'}
+{include file='admin/header.tpl'}
 
 {newsletter_selector_archive_expire assign="archive_expire_values" return_keys=true}
 {newsletter_selector_archive_expire assign="archive_expire_output" return_keys=false}
@@ -69,9 +69,9 @@
             </div>
             <div class="z-formrow">
                 <label for="default_frequency">{gt text='Default frequency'}:</label>
-				{literal}
+			
                 <select id="default_frequency" name="preferences[default_frequency]" onchange="if(this.options[selectedIndex].value=='0'){document.forms[0].allow_frequency_change.checked=false; document.forms[0].allow_frequency_change.disabled = true; } else { document.forms[0].allow_frequency_change.disabled = false;}">{html_options values=$frequency_values output=$frequency_output selected=$preferences.default_frequency}</select>
-				{/literal}
+		
 			</div>
             <div class="z-formrow">
                 <label for="send_day">{gt text='Sendday'}:</label>
@@ -148,6 +148,6 @@
                 <em class="z-formnote">{gt text='Used to authenticate cron/batchprocessing.'}</em>
             </div>
         </fieldset>
-        {include file='newsletter_inc_form_actions.tpl'}
+        {include file='forms/actions.tpl'}
     </form>
 </div>

@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.tpl'}
+{include file='admin/header.tpl'}
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
 {newsletter_selector_frequency assign="frequency_output" return_keys=false}

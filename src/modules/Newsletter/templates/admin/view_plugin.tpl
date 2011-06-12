@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.tpl'}
+{include file='admin/header.tpl'}
 
 {ajaxheader modname='Newsletter' filename='newsletter.js'}
 
@@ -31,13 +31,13 @@
                 </div>
                 {/if}
                 {if $plugin_parameters.$plugin.number ne 0}
-                    {include file="newsletter_plugin_`$plugin`_config.tpl"}
+                    {include file="plugin_configs/`$plugin`_config.tpl"}
                 {/if}
             </div>
         </fieldset>
         {assign var='i' value=$i+1}
         {/foreach}
 
-        {include file='newsletter_inc_form_actions.tpl'}
+        {include file='forms/actions.tpl'}
     </form>
 </div>

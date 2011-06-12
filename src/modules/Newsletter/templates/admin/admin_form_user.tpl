@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.tpl'}
+{include file='admin/header.tpl'}
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
 {newsletter_selector_frequency assign="frequency_output" return_keys=false}
@@ -69,8 +69,8 @@
         <label for="user_active"><b>{gt text="Active"}</b></label>
         <input type="checkbox" id="user_active" name="user[active]" value="1" {if ($user.active)}checked="checked"{/if} />
       </div>
-      {include file="newsletter_inc_form_actions.tpl"}
+      {include file="forms/actions.tpl"}
 	</fieldset>
   </form>
 
-{include file="newsletter_std_footer.tpl"}
+{include file="admin/footer.tpl"}

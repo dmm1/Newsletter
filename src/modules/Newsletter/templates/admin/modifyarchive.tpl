@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.tpl'}
+{include file='admin/header.tpl'}
 
 {newsletter_selector_archive_expire assign='archive_expire_values' return_keys=true}
 {newsletter_selector_archive_expire assign='archive_expire_output' return_keys=false}
@@ -47,7 +47,7 @@
                 <input id="show_size" name="preferences_archive[show_size]" type="checkbox" value="1" {if ($preferences_archive.show_size)}checked="checked"{/if} />
             </div>
         </fieldset>
-        {include file='newsletter_inc_form_actions.tpl'}
+        {include file='forms/actions.tpl'}
     </form>
 	{literal}
     <form class="z-form" action="{modurl modname='Newsletter' type='admin' func='delete' ot='archive'}" method="post" onsubmit="if(!this.file_archive.checked &amp;&amp; !this.db_archive.checked){alert('{gt text="Please select an archive to flush"}.'); return false;}">
@@ -64,6 +64,6 @@
                 <input id="db_archive" type="checkbox" name="archive[database]" value="1" />
             </div>
         </fieldset>
-        {include file='newsletter_inc_form_actions.tpl'}
+        {include file='forms/actions.tpl'}
     </form>
 </div>

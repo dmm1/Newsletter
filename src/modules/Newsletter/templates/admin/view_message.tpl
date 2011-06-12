@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.tpl'}
+{include file='admin/header.tpl'}
 
 {php}
     $defaultLang = pnConfigGetVar('language_i18n');
@@ -49,6 +49,6 @@
                 {/foreach}
             {/if}
         </fieldset>
-        {include file='newsletter_inc_form_actions.tpl'}
+        {include file='forms/actions.tpl'}
     </form>
 </div>

@@ -1,4 +1,4 @@
-﻿{include file="newsletter_user_std_header.tpl"}
+﻿{include file="user/header.tpl"}
 
 {gt text="View Archive" assign=pageTitle}
 {pagesetvar name="title" value=$pageTitle}
@@ -90,4 +90,4 @@
 	</ol>
       
 </fieldset>
-{include file="newsletter_std_footer.tpl"}
+{include file="admin/footer.tpl"}

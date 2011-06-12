@@ -1,4 +1,4 @@
-﻿{include file="newsletter_user_std_header.tpl"}
+﻿{include file="user/header.tpl"}
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
 {newsletter_selector_frequency assign="frequency_output" return_keys=false}
@@ -73,7 +73,7 @@
 			</div>
 			{/if}
 			
-            {include file="newsletter_inc_form_actions.tpl"}
+            {include file="forms/actions.tpl"}
 			
             {if (!$auto_approve_registrations)}
               <div class="z-formrow">
@@ -93,7 +93,7 @@
   
 
 {elseif ($loggedin)}
-  {include file="newsletter_user_inc_info.tpl"}
+  {include file="user/info.tpl"}
 {/if}
 
-{include file="newsletter_std_footer.tpl"}
+{include file="admin/footer.tpl"}

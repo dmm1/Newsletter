@@ -1,5 +1,5 @@
 
-{include file='newsletter_admin_header.tpl'}
+{include file='admin/header.tpl'}
 
 {ajaxheader modname='Newsletter' filename='newsletter.js'}
 {pageaddvar name='javascript' value='modules/Newsletter/javascript/checkall.js'}
