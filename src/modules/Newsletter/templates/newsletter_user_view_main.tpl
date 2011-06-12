@@ -24,7 +24,7 @@
     <legend>{gt text="Information"}</legend>
 
       {if ($allow_anon_registration || $loggedin)}    
-          <form class="z-adminform" action="{modurl modname="Newsletter" type="userform" func="edit" ot="user"}" method="post" enctype="application/x-www-form-urlencoded">
+          <form class="z-adminform" action="{modurl modname="Newsletter" type="user" func="edit" ot="user"}" method="post" enctype="application/x-www-form-urlencoded">
             <input type="hidden" id="authid" name="authid" value="{insert name="generateauthkey" module="Newsletter"}" />
 
             

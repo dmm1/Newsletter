@@ -18,7 +18,7 @@
 
 {include file="newsletter_user_inc_info.tpl"}
 
-<form class="z-userform" action="{modurl modname="Newsletter" type="userform" func="edit" ot="user_options"}" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-userform" action="{modurl modname="Newsletter" type="user" func="edit" ot="user_options"}" method="post" enctype="application/x-www-form-urlencoded">
   <input type="hidden" name="authid" value="{secgenauthkey module=Newsletter}" />         
   <input type="hidden" name="otTarget" value="options" />
 

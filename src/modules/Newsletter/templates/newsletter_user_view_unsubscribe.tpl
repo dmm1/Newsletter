@@ -7,7 +7,7 @@
   
   <fieldset>
     <legend>{gt text="Information"}</legend>
-    <form class="z-adminform" action="{modurl modname="Newsletter" type="userform" func="edit" ot="user_delete"}" method="post" enctype="application/x-www-form-urlencoded" onsubmit="if(this.user_email.value==''){this.user_email.focus(); return false;}">
+    <form class="z-adminform" action="{modurl modname="Newsletter" type="user" func="edit" ot="user_delete"}" method="post" enctype="application/x-www-form-urlencoded" onsubmit="if(this.user_email.value==''){this.user_email.focus(); return false;}">
       <input type="hidden" id="authid" name="authid" value="{insert name="generateauthkey" module="Newsletter"}" />
 
       <h4>{gt text="Here you can unsubscribe from our Newsletter"}</h4>

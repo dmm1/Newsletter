@@ -1,4 +1,4 @@
-<form action="{modurl modname="Newsletter" type="userform" func="edit" ot="user"}" method="post" enctype="application/x-www-form-urlencoded">
+<form action="{modurl modname="Newsletter" type="user" func="edit" ot="user"}" method="post" enctype="application/x-www-form-urlencoded">
   <input type="hidden" name="authid" value="{insert name="generateauthkey" module="Newsletter"}" />
   <input type="hidden" name="nl_frequency" value="{$nl_frequency}" />
   <input type="hidden" name="nl_type" value="{$nl_type}" />

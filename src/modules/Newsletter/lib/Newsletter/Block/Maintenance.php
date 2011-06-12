@@ -2,21 +2,21 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
  * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * Support: http://support.zikula.de, http://community.zikula.org
  */
 
-
-function Newsletter_maintenanceblock_init()
+class Newsletter_Block_Maintenance extends Zikula_Controller_AbstractBlock
 {
-    SecurityUtil::registerPermissionSchema('Newsletter:maintenanceblock:', 'Block title::');
-}
+	public function init()
+	{
+	SecurityUtil::registerPermissionSchema('Maintenanceblock::', 'Block ID::');
+	}
 
-function Newsletter_maintenanceblock_info()
-{
+	public function info()
+	{
     return array('text_type' => 'maintenance',
                  'module' => 'Newsletter',
                  'text_type_long' => 'Newsletter Maintenance Block',
@@ -24,13 +24,13 @@ function Newsletter_maintenanceblock_info()
                  'form_content' => false,
                  'form_refresh' => false,
                  'show_preview' => true);
-}
+	}
 
-function Newsletter_maintenanceblock_display($blockinfo)
-{
-    if (!SecurityUtil::checkPermission*(0, 'Newsletter:maintenanceblock:', "$blockinfo[title]::", ACCESS_ADMIN)) {
-        return;
-    }
+	public function display($blockinfo)
+	{
+	if (!SecurityUtil::checkPermission('Maintenanceblock::', "$blockinfo[bid]::", ACCESS_READ)) {
+            return;
+        }
 
     if (!ModUtil::available('Newsletter')) {
         return;
@@ -77,6 +77,7 @@ function Newsletter_maintenanceblock_display($blockinfo)
     }
 	}
     $blockinfo=array();
-    return BlockUtil::themesideblock($blockinfo);
+	return BlockUtil::themeBlock($blockinfo);
 }
 
+}
