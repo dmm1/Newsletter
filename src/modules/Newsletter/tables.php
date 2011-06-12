@@ -2,10 +2,12 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
+ * @link http://www.zikula.org
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * Support: http://support.zikula.de, http://community.zikula.org
  */
-
+ 
 function Newsletter_tables()
 {
     $tables = array();

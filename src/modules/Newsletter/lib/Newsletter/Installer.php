@@ -2,12 +2,16 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright Â© 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
+ * @link http://www.zikula.org
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
-*/
+ * Support: http://support.zikula.de, http://community.zikula.org
+ */
 
-function Newsletter_init()
+class Newsletter_Installer extends Zikula_AbstractInstaller
 {
+	public function install()
+	{
     if (!DBUtil::createTable('newsletter_users') || !DBUtil::createTable('newsletter_archives')) {
         return false;
     }
@@ -34,22 +38,21 @@ function Newsletter_init()
     ModUtil::setVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
 
     return true;
-}
-
-function Newsletter_upgrade($oldversion) 
-{
+	}
+	
+	public function upgrade($oldversion) 
+	{
     switch($oldversion)
     {
         case '2.1.0':
             // do something
             break;
     }
-
     return true;
-}
+	}
 
-function Newsletter_delete()
-{
+	public function uninstall()
+	{
     if (!DBUtil::dropTable('newsletter_users')  || !DBUtil::dropTable('newsletter_archives')) {
         return false;
     }
@@ -57,4 +60,6 @@ function Newsletter_delete()
     ModUtil::delVar('Newsletter');
 
     return true;   
+	}
+
 }

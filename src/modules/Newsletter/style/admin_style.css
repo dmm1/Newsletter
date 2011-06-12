@@ -65,13 +65,9 @@ div.z-nw-numitemsrow div{
     padding-top: 0 !important;
 }
 
-#liveusersearch {
-    padding: 0;
-}
-#filterlist {
-    margin: 0 !important;
-}
+#liveusersearch {padding: 0;}
+#filterlist {margin: 0 !important;}
+
 .nl-round {-moz-border-radius: 4px; border-radius: 4px;}
-.nl-glow{
--webkit-box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
--moz-box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+.nl-glow{-webkit-box-shadow: 2px 2px 6px rgba(0,0,0,0.6);-moz-box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+

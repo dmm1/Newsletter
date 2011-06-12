@@ -1,13 +1,11 @@
 <?php
 /**
- * Zikula Application Framework
+ * Newletter Module for Zikula
  *
- * @copyright (c) 2004, Zikula Development Team
+ * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
  * @link http://www.zikula.org
- * @version $Id: function.pnml.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @package Zikula_Template_Plugins
- * @subpackage Functions
+ * Support: http://support.zikula.de, http://community.zikula.org
  */
 
 /**
@@ -42,7 +40,8 @@
  */
 function smarty_function_nl_pnml ($params, &$smarty)
 {
-    $assign          = isset($params['assign'])          ? $params['assign']          : null;
+	$dom = ZLanguage::getModuleDomain('Newsletter');
+	$assign          = isset($params['assign'])          ? $params['assign']          : null;
     $html            = isset($params['html'])            ? (bool)$params['html']            : false;
     $name            = isset($params['name'])            ? $params['name']            : null;
     $noprocess       = isset($params['noprocess'])       ? (bool)$params['noprocess']       : false;

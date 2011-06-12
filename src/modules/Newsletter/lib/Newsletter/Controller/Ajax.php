@@ -1,13 +1,18 @@
 <?php
+
 /**
  * Newletter Module for Zikula
  *
- * @copyright 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
+ * @link http://www.zikula.org
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * Support: http://support.zikula.de, http://community.zikula.org
  */
-
-function Newsletter_ajax_getusers()
+ 
+class Newsletter_Controller_Ajax extends Zikula_Controller_AbstractAjax
 {
+	public functiongetusers()
+	{
     $dom = ZLanguage::getModuleDomain('Newsletter');
     if (!SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
         return true;
@@ -32,4 +37,5 @@ function Newsletter_ajax_getusers()
     $out .= '</ul>';
     echo DataUtil::convertToUTF8($out);
     return true;
+}
 }
