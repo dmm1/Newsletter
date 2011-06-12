@@ -22,7 +22,7 @@
         <strong>{gt text='Attention'}:</strong> {gt text="Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter."}
     </div>
 
-    <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='adminform' func='edit'}">
+    <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='admin' func='edit'}">
         <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
         <input type="hidden" name="ot" value="message" />
 

@@ -35,7 +35,7 @@ class PNUser extends PNObject
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         $requestURI = $_SERVER['REQUEST_URI'];
-        if (strpos($requestURI, 'adminform') !== false) {
+        if (strpos($requestURI, 'admin') !== false) {
             $id = (int)FormUtil::getPassedValue ('id', 0, 'GET');
             if (!$id) {
                 return LogUtil::registerError (__('Error! Could not do what you wanted. Please check your input.', $dom));
@@ -199,7 +199,7 @@ class PNUser extends PNObject
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         $requestURI = $_SERVER['REQUEST_URI'];
-        if (strpos($requestURI, 'adminform') !== false) {
+        if (strpos($requestURI, 'admin') !== false) {
             $data     = $this->_objData;
             $where    = 'nlu_email=\'' . DataUtil::formatForStore($data['email']) . '\'';
             $userObj  = new PNUser ();
@@ -290,7 +290,7 @@ class PNUser extends PNObject
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         $requestURI = $_SERVER['REQUEST_URI'];
-        if (strpos($requestURI, 'adminform') !== false) {
+        if (strpos($requestURI, 'admin') !== false) {
             $data     = $this->_objData;
             $userObj  = new PNUser ();
             $userData = $userObj->get ($data['id']);

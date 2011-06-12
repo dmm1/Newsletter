@@ -22,7 +22,7 @@
         {gt text='It took %1$s seconds to send the last batch of %2$s mails.' tag1=$last_execution_time tag2=$last_execution_count}
     </div>
 
-    <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='adminform' func='modifyconfig'}" enctype="application/x-www-form-urlencoded">
+    <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='admin' func='modifyconfig'}" enctype="application/x-www-form-urlencoded">
         <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
 
         <fieldset>

@@ -83,7 +83,7 @@
         </fieldset>
     </form>
 
-    <form class="z-form" name="send2users" action="{modurl modname='Newsletter' type='adminform' func='edit'}" method="post" enctype="application/x-www-form-urlencoded">
+    <form class="z-form" name="send2users" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post" enctype="application/x-www-form-urlencoded">
         <input type="hidden" name="authid" value="{$authid}" />
         <input type="hidden" name="ot" value="newsletter_send" />
         <input type="hidden" name="otTarget" value="user" />
@@ -221,12 +221,12 @@
                         {/if}
                     </span>
                     <span class="z-itemcell z-w10">
-                        <a href="{modurl modname='Newsletter' type='adminform' func='edit' ot='user_active' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qActive}');">
+                        <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user_active' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qActive}');">
                             {$user.active|yesno}
                         </a>
                     </span>
                     <span class="z-itemcell z-w08">
-                        <a href="{modurl modname='Newsletter' type='adminform' func='edit' ot='user_approved' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qApproved}');">
+                        <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user_approved' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qApproved}');">
                             {$user.approved|yesno}
                         </a>
                     </span>
@@ -243,7 +243,7 @@
                     <span class="z-itemcell z-w06">
                       {if $adminAuth}
                         <a href="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot id=$user.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt='$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
-                        <a href="{modurl modname='Newsletter' type='adminform' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
+                        <a href="{modurl modname='Newsletter' type='admin' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
                       {/if}
                     </span>
                 </li>

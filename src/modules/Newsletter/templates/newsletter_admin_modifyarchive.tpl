@@ -9,7 +9,7 @@
 
     <h3>{gt text='Archive Settings'}</h3>
 
-    <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='adminform' func='modifyarchive'}" enctype="application/x-www-form-urlencoded">
+    <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='admin' func='modifyarchive'}" enctype="application/x-www-form-urlencoded">
         <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
 
         <fieldset>
@@ -50,7 +50,7 @@
         {include file='newsletter_inc_form_actions.tpl'}
     </form>
 	{literal}
-    <form class="z-form" action="{modurl modname='Newsletter' type='adminform' func='delete' ot='archive'}" method="post" onsubmit="if(!this.file_archive.checked &amp;&amp; !this.db_archive.checked){alert('{gt text="Please select an archive to flush"}.'); return false;}">
+    <form class="z-form" action="{modurl modname='Newsletter' type='admin' func='delete' ot='archive'}" method="post" onsubmit="if(!this.file_archive.checked &amp;&amp; !this.db_archive.checked){alert('{gt text="Please select an archive to flush"}.'); return false;}">
     {/literal}    
 		<input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
 

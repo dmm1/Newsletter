@@ -21,7 +21,7 @@
 
     <h3>{gt text='Import Zikula Users'}</h3>
 
-    <form class="z-form" name="config" action="{modurl modname='Newsletter' type='adminform' func='edit'}" method="post">
+    <form class="z-form" name="config" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post">
         <input type="hidden" name="authid" value="{$authid}" />
         <input type="hidden" name="ot" value="import_config" />
         <input type="hidden" name="otTarget" value="userimport" />
@@ -59,7 +59,7 @@
         <fieldset>
             <legend>2. {gt text='Import'}</legend>
             <div class="z-formrow">
-                <a href="{modurl modname='Newsletter' type='adminform' func='edit' ot='import_users' otTarget='userimport' authKey=$admin_key authid=$authid}" title="{gt text='Import'}">
+                <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='import_users' otTarget='userimport' authKey=$admin_key authid=$authid}" title="{gt text='Import'}">
                     <img src="images/icons/small/button_ok.png" alt="" />
                 </a>
             </div>

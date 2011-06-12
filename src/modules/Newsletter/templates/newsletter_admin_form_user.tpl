@@ -13,7 +13,7 @@
 
   <h2>{$pageTitle}</h2>
 
-  <form class="z-adminform" action="{modurl modname="Newsletter" type="adminform" func="edit"}" method="post" enctype="application/x-www-form-urlencoded">
+  <form class="z-adminform" action="{modurl modname="Newsletter" type="admin" func="edit"}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="authid" value="{secgenauthkey module="Newsletter"}" />
     <input type="hidden" name="ot" value="user" />
     {if ($user.id)}
