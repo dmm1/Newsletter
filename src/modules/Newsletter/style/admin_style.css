@@ -1,9 +1,8 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
+ * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
  * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * Support: http://support.zikula.de, http://community.zikula.org
  */
@@ -73,3 +72,6 @@ div.z-nw-numitemsrow div{
     margin: 0 !important;
 }
 .nl-round {-moz-border-radius: 4px; border-radius: 4px;}
+.nl-glow{
+-webkit-box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+-moz-box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
