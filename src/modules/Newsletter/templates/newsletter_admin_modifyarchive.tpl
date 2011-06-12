@@ -49,13 +49,14 @@
         </fieldset>
         {include file='newsletter_inc_form_actions.tpl'}
     </form>
-
+	{literal}
     <form class="z-form" action="{modurl modname='Newsletter' type='adminform' func='delete' ot='archive'}" method="post" onsubmit="if(!this.file_archive.checked &amp;&amp; !this.db_archive.checked){alert('{gt text="Please select an archive to flush"}.'); return false;}">
-        <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    {/literal}    
+		<input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
 
         <fieldset>
             <legend>{gt text='Prune Archives'}</legend>
-            <div class="z-warningmsg">
+            <div class="z-warningmsg nl-round">
                 <strong>{gt text='Attention'}:</strong> {gt text='The archive cannot be restored.'}
             </div>
             <div class="z-formrow">

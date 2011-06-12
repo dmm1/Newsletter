@@ -17,8 +17,8 @@
     <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
 
     <h3>{gt text="Message"}</h3>
-
-    <div class="z-formnote z-warningmsg">
+	<br />
+    <div class="z-formnote z-warningmsg nl-round">
         <strong>{gt text='Attention'}:</strong> {gt text="Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter."}
     </div>
 

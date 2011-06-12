@@ -18,7 +18,7 @@
 
     <h3>{gt text='Settings'}</h3>
 
-    <div class="z-informationmsg">
+    <div class="z-informationmsg nl-round">
         {gt text='It took %1$s seconds to send the last batch of %2$s mails.' tag1=$last_execution_time tag2=$last_execution_count}
     </div>
 
@@ -36,7 +36,7 @@
                 <div id="send_from_address">
                     <input name="preferences[send_from_address]" type="text" value="{$preferences.send_from_address}" size="30" maxlength="128" />
                     <a href="#" title="{gt text='Help'}" onclick="Effect.toggle('hint-1', 'BLIND'); return false;">(?)</a>
-                    <div id="hint-1" class="z-informationmsg z-formnote" style="display:none;">
+                    <div id="hint-1" class="z-informationmsg z-formnote nl-round" style="display:none;">
                         {gt text='This is the delivering address of your newsletter e.g. newsletter@yourdomain.com.'}
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div id="newsletter_subject">
                     <input name="preferences[newsletter_subject]" type="text" value="{$preferences.newsletter_subject}" size="40" maxlength="128" />
                     <a href="#" title="{gt text='Help'}" onclick="Effect.toggle('hint-2', 'BLIND'); return false;">(?)</a>
-                    <div id="hint-2" class="z-informationmsg z-formnote" style="display:none;">
+                    <div id="hint-2" class="z-informationmsg z-formnote nl-round" style="display:none;">
                         {gt text='This is the subject of the generated Newsletter.'}
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 <label for="disable_auto">{gt text='Disable automatic sending'}:</label>
                 <input id="disable_auto" name="preferences[disable_auto]" type="checkbox" value="1" {if ($preferences.disable_auto)}checked="checked"{/if} />
                 <a href="#" title="{gt text='Help'}" onclick="Effect.toggle('hint-3', 'BLIND'); return false;">(?)</a>
-                <div id="hint-3" class="z-informationmsg z-formnote" style="display:none;">
+                <div id="hint-3" class="z-informationmsg z-formnote nl-round" style="display:none;">
                     {gt text='Newsletters now have to be sent out manually.'}
                 </div>
             </div>
@@ -69,8 +69,10 @@
             </div>
             <div class="z-formrow">
                 <label for="default_frequency">{gt text='Default frequency'}:</label>
+				{literal}
                 <select id="default_frequency" name="preferences[default_frequency]" onchange="if(this.options[selectedIndex].value=='0'){document.forms[0].allow_frequency_change.checked=false; document.forms[0].allow_frequency_change.disabled = true; } else { document.forms[0].allow_frequency_change.disabled = false;}">{html_options values=$frequency_values output=$frequency_output selected=$preferences.default_frequency}</select>
-            </div>
+				{/literal}
+			</div>
             <div class="z-formrow">
                 <label for="send_day">{gt text='Sendday'}:</label>
                 <select id="send_day" name="preferences[send_day]">{html_options values=$send_days_values output=$send_days_output selected=$preferences.send_day}</select>
@@ -86,7 +88,7 @@
                 <label for="enable_multilingual">{gt text='Enable multilingual features'}:</label>
                 <input id="enable_multilingual" name="preferences[enable_multilingual]" type="checkbox" value="1" {if ($preferences.enable_multilingual)}checked="checked"{/if} />
                 <a href="#" title="{gt text='Help'}" onclick="Effect.toggle('hint-4', 'BLIND'); return false;">(?)</a>
-                <div id="hint-4" class="z-informationmsg z-formnote" style="display:none;">
+                <div id="hint-4" class="z-informationmsg z-formnote nl-round" style="display:none;">
                     {gt text="This enables the sending of multilanguage newsletters."}
                 </div>
             </div>
@@ -135,7 +137,7 @@
                     <input id="max_send_per_hour" name="preferences[max_send_per_hour]" type="text" value="{$preferences.max_send_per_hour}" style="width:30px;" />
                     <a href="#" title="{gt text='Help'}" onclick="Effect.toggle('hint-5', 'BLIND'); return false;">(?)</a>
                     <em class="z-formnote">{gt text='Number of emails (0 = no restriction).'}</em>
-                    <div id="hint-5" class="z-informationmsg z-formnote" style="display:none;">
+                    <div id="hint-5" class="z-informationmsg z-formnote nl-round" style="display:none;">
                         {gt text="Use this feature to avoid sending restrictions from your hoster!"}
                     </div>
                 </div>

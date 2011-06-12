@@ -243,7 +243,7 @@
                     <span class="z-itemcell z-w06">
                       {if $adminAuth}
                         <a href="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot id=$user.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt='$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
-                        <a href="{modurl modname='Newsletter' type='adminform' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
+                        <a href="{modurl modname='Newsletter' type='adminform' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
                       {/if}
                     </span>
                 </li>
