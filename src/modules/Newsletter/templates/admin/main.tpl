@@ -9,7 +9,7 @@
 			<p>
 				{gt text="Please report errors or requests features for future versions in the Tracker!"}
 			<br /><br />
-				<a href="http://code.zikula.org/newsletter" target="_blank"><b>{gt text="Visit our project-page"}</b></a>        
+				<a href="https://github.com/dmm1/Newsletter/wiki" target="_blank"><b>{gt text="Visit our project-page"}</b></a>        
 			</p>
 	<br />
     <div class="z-warningmsg nl-round">
