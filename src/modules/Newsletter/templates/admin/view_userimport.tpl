@@ -1,4 +1,4 @@
-
+{gt text='Import Zikula Users' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
@@ -19,7 +19,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
 
-    <h3>{gt text='Import Zikula Users'}</h3>
+    <h2>{$templatetitle}</h2>
 
     <form class="z-form" name="config" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post">
         <input type="hidden" name="authid" value="{$authid}" />

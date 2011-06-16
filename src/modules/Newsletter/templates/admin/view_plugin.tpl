@@ -1,13 +1,45 @@
-
+{gt text='Manage Plugins' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
-{ajaxheader modname='Newsletter' filename='newsletter.js'}
+<script type="text/javascript">
 
+function initializeplugins()
+{
+    var i = 1;
+    var j = 1;
+
+    while ($('plugin_'+i)) {
+        // enable checkbox + container
+        checkboxswitchdisplaystate('enable_'+i, 'plugin_'+i, true);
+        Event.observe('enable_'+i, 'click', function() {
+            checkboxswitchdisplaystate(this.id, this.id.replace('enable', 'plugin'), true);
+        }, false);
+        // plugin suboptions checkboxes
+        j = 1;
+        while ($('plugin_'+i+'_suboption_'+j)) {
+            checkboxswitchdisplaystate('plugin_'+i+'_enable_'+j, 'plugin_'+i+'_suboption_'+j, true);
+            Event.observe('plugin_'+i+'_enable_'+j, 'click', function() {
+                checkboxswitchdisplaystate(this.id, this.id.replace('enable', 'suboption'), true);
+            }, false);
+            // next suboption
+            j++;
+        }
+        // next plugin
+        i++;
+    }
+}
+
+Event.observe(window, 'load', function() {
+    if ($('nwplugins')) {
+        initializeplugins();
+    }
+}, false);
+</script>
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt='' height='22'}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt='' height='48'}</div>
 
-    <h3>{gt text='Available Plugins'}</h3>
-
+    <h2>{$templatetitle}</h2>
+	<br />
     <form id="nwplugins" class="z-form" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post" enctype="application/x-www-form-urlencoded">
         <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
         <input type="hidden" name="ot" value="plugin" />

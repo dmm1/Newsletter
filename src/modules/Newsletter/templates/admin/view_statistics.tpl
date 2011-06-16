@@ -1,10 +1,10 @@
-
+{gt text='Statistics' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='core' src='info.png' set='icons/small' __alt='Statistics'}</div>
 
-    <h3>{gt text='Statistics'}</h3>
+    <h2>{$templatetitle}</h2>
 
     <div class="z-form z-nw-statistics">
         <fieldset>

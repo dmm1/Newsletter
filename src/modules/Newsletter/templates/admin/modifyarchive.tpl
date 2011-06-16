@@ -1,4 +1,4 @@
-
+{gt text='Archive Settings' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
 {newsletter_selector_archive_expire assign='archive_expire_values' return_keys=true}
@@ -7,7 +7,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='core' src='configure.png' set='icons/small' __alt='Archive Settings'}</div>
 
-    <h3>{gt text='Archive Settings'}</h3>
+    <h2>{$templatetitle}</h2>
 
     <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='admin' func='modifyarchive'}" enctype="application/x-www-form-urlencoded">
         <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />

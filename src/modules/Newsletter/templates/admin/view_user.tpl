@@ -1,8 +1,8 @@
-
+{gt text='Subscribers' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
-{ajaxheader modname='Newsletter' filename='newsletter.js'}
-{pageaddvar name='javascript' value='modules/Newsletter/javascript/checkall.js'}
+{ajaxheader modname='Newsletter' filename='newsletter.js' ui=true}
+{ajaxheader modname='Newsletter' filename='checkall.js'}
 
 <script type="text/javascript">
     function disableSendChecked(){
@@ -28,11 +28,11 @@
 {sessiongetvar assign="currPagesize" name="pagesize" default="25" path="/Newsletter"}
 
 <div class="z-admincontainer">
-    <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
+    <div class="z-adminpageicon">{img modname='Newsletter' src='users.png' alt=''}</div>
 
-    <h3>{gt text='Subscribers'}</h3>
+    <h2>{$templatetitle}</h2>
 
-    <form class="z-form" method="post" action="{modurl modname='Newsletter' type='admin' func='view' ot=$ot}" name="langfilter" enctype="application/x-www-form-urlencoded">
+    <form class="z-form" style="width:100%;" method="post" action="{modurl modname='Newsletter' type='admin' func='view' ot=$ot}" name="langfilter" enctype="application/x-www-form-urlencoded">
         {gt text="All" assign=lblAll}
         {gt text="Filter" assign=lblFilter}
         {gt text="Data" assign=lblData}
@@ -43,14 +43,15 @@
         {gt text="Not send yet" assign=lblnotsendyet}
         {gt text="Are you sure you wish to change the active status for this user?" assign=qActive}
         {gt text="Are you sure you wish to change the approved status for this user?" assign=qApproved}
-
+		<br />
         <fieldset>
             <legend>{gt text='User search / Add a user'}</legend>
 
             <div id="liveusersearch" class="z-hide z-formrow">
+				<br />
                 <div>
                 {gt text='Search'}&nbsp;<input size="30" maxlength="30" name="filter[search]" id="filter_search" value="" />
-                {img id='ajax_indicator' style='display: none;' modname='core' set='icons/extrasmall' src='indicator_circle.png' alt=''}
+                {img id='ajax_indicator' style='display: none;' modname='Newsletter' src='ajax.gif' alt=''}
 
                 <div id="filter_search_choices" class="nl_autocomplete_user"></div>
                 <img src="images/icons/extrasmall/add_user.png" alt="{gt text='Add a user'}" />&nbsp;<a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user' authid=$authid}">{gt text='Add a user'}</a>
@@ -63,18 +64,18 @@
             <ol id="filterlist" class="z-itemlist">
                 <li class="z-itemheader z-clearfix">
                     {if ($enable_multilingual)}
-                    <span class="z-itemcell z-w25">   {gt text="Language"}&nbsp;</span>
+                    <span class="z-itemcell z-w15">   {gt text="Language"}&nbsp;</span>
                     {/if}
-                    <span class="z-itemcell z-w25">  {gt text="Type"}&nbsp;</span>
+                    <span class="z-itemcell z-w15">  {gt text="Type"}&nbsp;</span>
                     <span class="z-itemcell z-w25">  {gt text="Frequency"}&nbsp;</span>
                     <span class="z-itemcell z-w15">  {gt text="Active"}&nbsp;</span>
                     <span class="z-itemcell z-w15">   {gt text="Approved"}&nbsp;</span>
                 </li>
                 <li class="{cycle values="z-odd,z-even"} z-clearfix">
                     {if ($enable_multilingual)}
-                    <span class="z-itemcell z-w25"><select id="filter_lang" name="filter[lang]" onchange="this.form.submit();">{html_options values=$language_values output=$language_output selected=$filter.lang}</select></span>
+                    <span class="z-itemcell z-w15"><select id="filter_lang" name="filter[lang]" onchange="this.form.submit();">{html_options values=$language_values output=$language_output selected=$filter.lang}</select></span>
                     {/if}
-                    <span class="z-itemcell z-w25"><select id="filter_type" name="filter[type]" onchange="this.form.submit();">{html_options values=$type_values output=$type_output selected=$filter.type}</select></span>
+                    <span class="z-itemcell z-w15"><select id="filter_type" name="filter[type]" onchange="this.form.submit();">{html_options values=$type_values output=$type_output selected=$filter.type}</select></span>
                     <span class="z-itemcell z-w25"><select id="filter_frequency" name="filter[frequency]" onchange="this.form.submit();">{html_options values=$frequency_values output=$frequency_output selected=$filter.frequency|default:-1}</select></span>
                     <span class="z-itemcell z-w15"><select id="filter_active" name="filter[active]" onchange="this.form.submit();">{html_options values=$active_values output=$active_output selected=$filter.active}</select></span>
                     <span class="z-itemcell z-w15"><select id="filter_approved" name="filter[approved]" onchange="this.form.submit();">{html_options values=$approved_values output=$approved_output selected=$filter.approved}</select></span>
@@ -129,9 +130,9 @@
                     <span class="z-itemcell z-w05">
                         &nbsp;<input type="checkbox" onclick="checkAllFields(1);" id="checkAll" />
                     </span>
-                    <span class="z-itemcell z-w10">
+                    <span class="z-itemcell z-w05">
                         {php}$this->_tpl_vars['filter']['sort'] = 'uid';{/php}
-                        <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='User ID'}</a>
+                        <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='UID'}</a>
                     </span>
                     <span class="z-itemcell z-w10">
                         {php}$this->_tpl_vars['filter']['sort'] = 'name';{/php}
@@ -141,7 +142,7 @@
                         {php}$this->_tpl_vars['filter']['sort'] = 'email';{/php}
                         <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Email'}</a>
                     </span>
-                    <span class="z-itemcell z-w08">
+                    <span class="z-itemcell z-w10">
                         {php}$this->_tpl_vars['filter']['sort'] = 'lang';{/php}
                         <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Language'}</a>
                     </span>
@@ -153,11 +154,11 @@
                         {php}$this->_tpl_vars['filter']['sort'] = 'frequency';{/php}
                         <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Frequency'}</a>
                     </span>
-                    <span class="z-itemcell z-w10">
+                    <span class="z-itemcell z-w05">
                         {php}$this->_tpl_vars['filter']['sort'] = 'active DESC';{/php}
                         <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Active'}</a>
                     </span>
-                    <span class="z-itemcell z-w08">
+                    <span class="z-itemcell z-w10">
                         {php}$this->_tpl_vars['filter']['sort'] = 'approved DESC';{/php}
                         <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Approved'}</a>
                     </span>
@@ -165,11 +166,11 @@
                         {php}$this->_tpl_vars['filter']['sort'] = 'last_send_date DESC';{/php}
                         <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Last sent'}</a>
                     </span>
-                    <span class="z-itemcell z-w08">
+                    <span class="z-itemcell z-w10">
                         {php}$this->_tpl_vars['filter']['sort'] = 'cr_date DESC';{/php}
                         <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Joindate'}</a>
                     </span>
-                    <span class="z-itemcell z-w06">
+                    <span class="z-itemcell z-w10">
                         {gt text='Action'}
                     </span>
                 </li>
@@ -180,23 +181,23 @@
                     <span class="z-itemcell z-w05">
                         &nbsp;<input type="checkbox" name="user_array[]" value="{$user.id|safehtml}" onclick="checkAllFields(2);" />
                     </span>
-                    <span class="z-itemcell z-w10">
+                    <span class="z-itemcell z-w05">
                         {if $user.uid gt 1}
                             <a href="{modurl modname='Profile' type='user' func='view' uid=$user.uid}">{$user.uid}</a>
                         {else}
-                            {gt text='No user ID'}
+                            {gt text='No'}
                         {/if}
                     </span>
                     <span class="z-itemcell z-w10">
                         {$user.name|safehtml}
                     </span>
-                    <span class="z-itemcell z-w10">
+                    <span class="z-itemcell z-w15">
                         {$user.email|safehtml}
                     </span>
-                    <span class="z-itemcell z-w05">
+                    <span class="z-itemcell z-w10">
                         {$user.lang|safehtml}
                     </span>
-                    <span class="z-itemcell z-w08">
+                    <span class="z-itemcell z-w05">
                         {if $user.type eq 1}
                             {gt text='Text'}
                         {elseif $user.type eq 2}
@@ -220,12 +221,12 @@
                             {$user.frequency} (?)
                         {/if}
                     </span>
-                    <span class="z-itemcell z-w10">
+                    <span class="z-itemcell z-w05">
                         <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user_active' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qActive}');">
                             {$user.active|yesno}
                         </a>
                     </span>
-                    <span class="z-itemcell z-w08">
+                    <span class="z-itemcell z-w10">
                         <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user_approved' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qApproved}');">
                             {$user.approved|yesno}
                         </a>
@@ -237,10 +238,10 @@
                             {$lblnotsendyet}
                         {/if}
                     </span>
-                    <span class="z-itemcell z-w08">
+                    <span class="z-itemcell z-w10">
                         {$user.cr_date|safehtml}
                     </span>
-                    <span class="z-itemcell z-w06">
+                    <span class="z-itemcell z-w10">
                       {if $adminAuth}
                         <a href="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot id=$user.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt='$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
                         <a href="{modurl modname='Newsletter' type='admin' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
@@ -266,3 +267,10 @@
 
     {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='startnum' shift=1}
 </div>
+<script type="text/javascript">
+Event.observe(window, 'load', function() {
+    if ($('liveusersearch')) {
+        liveusersearch();
+    }
+}, false);
+</script>

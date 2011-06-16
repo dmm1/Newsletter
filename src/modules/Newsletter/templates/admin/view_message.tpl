@@ -1,4 +1,4 @@
-
+{gt text='Header Message' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
 {php}
@@ -16,7 +16,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='Newsletter' src='admin.png' alt=''}</div>
 
-    <h3>{gt text="Message"}</h3>
+    <h2>{$templatetitle}</h2>
 	<br />
     <div class="z-formnote z-warningmsg nl-round">
         <strong>{gt text='Attention'}:</strong> {gt text="Please ensure that you have enabled the NewsletterMessage plugin if you wish to add this message to your newsletter."}

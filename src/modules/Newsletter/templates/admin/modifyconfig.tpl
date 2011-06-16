@@ -1,4 +1,4 @@
-
+{gt text='Settings' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
 {newsletter_selector_archive_expire assign="archive_expire_values" return_keys=true}
@@ -16,7 +16,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon">{img modname='core' src='configure.png' set='icons/small' __alt='Settings' }</div>
 
-    <h3>{gt text='Settings'}</h3>
+    <h2>{$templatetitle}</h2>
 
     <div class="z-informationmsg nl-round">
         {gt text='It took %1$s seconds to send the last batch of %2$s mails.' tag1=$last_execution_time tag2=$last_execution_count}

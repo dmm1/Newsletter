@@ -1,4 +1,4 @@
-
+{gt text='Newsletter' assign='templatetitle'}
 {include file='admin/header.tpl'}
 
 <div class="z-admincontainer">
