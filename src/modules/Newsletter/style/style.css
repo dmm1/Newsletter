@@ -86,4 +86,4 @@ legend {
 	color: #0074B0;
 	background-color: inherit;
 }
-
+.nl-round {-moz-border-radius: 4px; border-radius: 4px;}

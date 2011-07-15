@@ -16,7 +16,7 @@
 {secgenauthkey assign="authid" module="Newsletter"}
 <h3>{gt text="Change your subscription settings"}</h3>
 
-{include file="user/info.tpl"}
+<!-- {include file="user/info.tpl"} -->
 
 <form class="z-userform" action="{modurl modname="Newsletter" type="user" func="edit" ot="user_options"}" method="post" enctype="application/x-www-form-urlencoded">
   <input type="hidden" name="authid" value="{secgenauthkey module=Newsletter}" />         
@@ -52,7 +52,7 @@
     {else}
       <div class="z-formrow">
         <label for="user_frequency_non_allowed">{gt text="Frequency"}:</label>
-        <span class="z-informationmsg" id="user_frequency_non_allowed">{gt text="User-based frequency changes have been disabled by the site administrator"}</span>
+        <span class="z-informationmsg nl-round" id="user_frequency_non_allowed">{gt text="User-based frequency changes have been disabled by the site administrator"}</span>
       
 	  </div>
     {/if}
@@ -72,7 +72,7 @@
     {/if}
 	
     <div class="z-formrow">
-      <label for="user_tos">{gt text="Terms of Service"}</label>
+      <label for="user_tos">{gt text="View our"}</label>
       <a id="user_tos" href="{modurl modname="Newsletter" type="user" func="main" ot="tos"}" title="{gt text="Terms of Service"}">{gt text="Terms of Service"}</a>
     </div>
 

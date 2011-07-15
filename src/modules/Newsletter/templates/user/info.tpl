@@ -3,17 +3,17 @@
   <fieldset>
     <legend>{gt text="Information"}</legend>
     <div class="nl-userformrow">
-      <label for="user_name">{gt text="Username"}</label>
+      <label for="user_name">{gt text="Username"}:</label>
       <span id="user_name"><strong>{usergetvar name="uname"}</strong></span>
     </div>
 
     <div class="nl-userformrow">
-      <label for="user_email">{gt text="Email"}</label>
+      <label for="user_email">{gt text="Email"}:</label>
       <span id="user_email"><strong>{usergetvar name="email"}</strong></span>
     </div>
 
     <div class="nl-userformrow">
-      <label for="user_format">{gt text="Format"}</label>
+      <label for="user_format">{gt text="Format"}:</label>
       {if ($user.type == 1)}
         <span id="user_format"><strong>{gt text="Text"}</strong></span>
       {elseif ($user.type == 2)}
@@ -26,7 +26,7 @@
     </div>
 
     <div class="nl-userformrow">
-      <label for="user_frequency">{gt text="Frequency"}</label>
+      <label for="user_frequency">{gt text="Frequency"}:</label>
       {if ($user.frequency == 0)}
         <span id="user_frequency"><strong>{gt text="Weekly"}</strong></span>
       {elseif ($user.frequency == 1)}
@@ -49,7 +49,7 @@
 	{modgetvar assign="show_approval_status" module="Newsletter" name="show_approval_status" default="0"}
 	{if ($show_approval_status)}
     <div class="nl-userformrow">
-      <label for="user_approved">{gt text="Approval Status"}</label>
+      <label for="user_approved">{gt text="Approval Status"}:</label>
       {if ($user.approved)}
         <span id="user_approved" style="color:green">{gt text="Approved"}</span>
       {else}
@@ -59,7 +59,7 @@
 	{/if}
 	
     <div class="nl-userformrow">
-      <label for="user_status">{gt text="Subscription Status"}</label>
+      <label for="user_status">{gt text="Subscription Status"}:</label>
       {if ($user.active)}
         <span id="user_status" style="color:green">{gt text="Your Subscription is currently active!"}</span>
       {else}
@@ -68,7 +68,7 @@
     </div>
 
     <div class="nl-userformrow">
-      <label for="user_sent">{gt text="Last newsletter was sent to you on"}</label>
+      <label for="user_sent">{gt text="Last newsletter was sent to you on"}:</label>
       {if ($user.last_send_date)}
         <span id="user_sent" style="color:green">{$user.last_send_date}</span>
       {else}

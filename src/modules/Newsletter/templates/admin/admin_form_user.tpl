@@ -1,4 +1,4 @@
-
+﻿
 {include file='admin/header.tpl'}
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
@@ -8,7 +8,7 @@
 {modgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual"}
 {configgetvar assign="defaultlang" name="language" default="eng"}
 
-{ml assign="pageTitle" name="Edit a User / Add a User"}
+{gt assign="pageTitle" text="Edit a User / Add a User"}
 {pagesetvar name="title" value=$pageTitle}
 
   <h2>{$pageTitle}</h2>
