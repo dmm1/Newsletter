@@ -2,11 +2,13 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
 
 if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
@@ -36,7 +38,6 @@ class PNExportArray extends PNUserArray
         $this->_init($init, $where);
     }
 
-    
     function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         $rc = true;
@@ -159,7 +160,6 @@ class PNExportArray extends PNUserArray
         exit();
     }
 
-
     function selectPostProcess ($data=null) 
     {
         if (!$data) {
@@ -242,7 +242,6 @@ class PNExportArray extends PNUserArray
         return $xml;
     }
 
-
     /* The CSV format generated is as follows: 
 
        col1|col2|col3|col4|...|coln\n
@@ -287,4 +286,3 @@ class PNExportArray extends PNUserArray
         return $txt;
     }
 }
-

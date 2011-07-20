@@ -2,13 +2,14 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
-
 
 class PNUserArray extends PNObjectArray 
 {
@@ -22,17 +23,16 @@ class PNUserArray extends PNObjectArray
         $this->_objSort          = 'cr_date DESC';
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-            LogUtil::registerError (__('Unable to load class [user] ... disabling auto-join for array class', $dom));
+            LogUtil::registerError(__('Unable to load class [user] ... disabling auto-join for array class', $dom));
         } else {
-            $obj = new PNUser ();
+            $obj = new PNUser();
             $this->_objJoin = $obj->_objJoin;
         }
         
         $this->_init($init, $where);
     }
 
-
-    function cleanFilter ($filter=array())
+    function cleanFilter($filter=array())
     {
         $filter['active']    =      (isset($filter['active'])    ? $filter['active']    : -1);
         $filter['approved']  =      (isset($filter['approved'])  ? $filter['approved']  : -1);
@@ -44,8 +44,7 @@ class PNUserArray extends PNObjectArray
         return $filter;
     }
 
-
-    function genFilter ($filter=array())
+    function genFilter($filter=array())
     {
         $wheres = array();
 
@@ -73,8 +72,7 @@ class PNUserArray extends PNObjectArray
         return implode (' AND ', $wheres);
     }
 
-
-    function getSendable ($language='')
+    function getSendable($language='')
     {
         $allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
         $default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
@@ -85,7 +83,7 @@ class PNUserArray extends PNObjectArray
         }
 
         if (!$allow_frequency_change) {
-            switch($default_frequency) {
+            switch ($default_frequency) {
                 case 0: 
                     $checkDate = DateUtil::getDatetime_NextWeek (-1);
                     break;
@@ -99,16 +97,16 @@ class PNUserArray extends PNObjectArray
         $users = $this->get ($where, 'id');
 
         if ($allow_frequency_change) {
-            foreach ($users as $k=>$user) {
-                switch($user['frequency']) {
+            foreach ($users as $k => $user) {
+                switch ($user['frequency']) {
                     case 0: 
-                        $checkDate = DateUtil::getDatetime_NextWeek (-1);
+                        $checkDate = DateUtil::getDatetime_NextWeek(-1);
                         break;
                     default:
-                        $checkDate = DateUtil::getDatetime_NextMonth ($user['frequency']*-1);
+                        $checkDate = DateUtil::getDatetime_NextMonth($user['frequency']*-1);
                         break;
                 }
-                $diff = DateUtil::getDatetimeDiff_AsField ($user['last_send_date'], $checkDate);
+                $diff = DateUtil::getDatetimeDiff_AsField($user['last_send_date'], $checkDate);
                 $users[$k]['send_now'] = (int)($diff > 0);
             }
         }
@@ -117,20 +115,19 @@ class PNUserArray extends PNObjectArray
         return $this->objData;
     }
 
-
-    function selectPostProcess ($data=null) 
+    function selectPostProcess($data=null) 
     {
         if (!$data) {
             $data = $this->_objData;
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-            LogUtil::registerError (__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
+            LogUtil::registerError(__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
         } else {
-            $obj = new PNUser ();
-            foreach ($data as $k=>$v) {
-                $obj->setData ($v);
-                $data[$k] = $obj->selectPostProcess ($v);
+            $obj = new PNUser();
+            foreach ($data as $k => $v) {
+                $obj->setData($v);
+                $data[$k] = $obj->selectPostProcess($v);
             }
         }
 
@@ -138,4 +135,3 @@ class PNUserArray extends PNObjectArray
         return $this->_objData;
     }
 }
-

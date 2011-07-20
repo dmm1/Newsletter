@@ -2,21 +2,23 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
- * Security fix: thx @mumuri from community.zikula.org 
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
- class PNPluginDizkusArray extends PNPluginBaseArray
+
+class PNPluginDizkusArray extends PNPluginBaseArray
 {
-    function PNPluginDizkusArray ($init=null, $where='')
+    function PNPluginDizkusArray($init=null, $where='')
     {
         $this->PNPluginBaseArray ();
     }
 
-    function getPluginData ($lang=null)
+    function getPluginData($lang=null)
     {
         if (!ModUtil::available('Dizkus')) {
             return array();
@@ -27,7 +29,7 @@
 
         // get all forums the user is allowed to read
         $userforums = ModUtil::apiFunc('Dizkus', 'user', 'readuserforums');
-        if(!is_array($userforums) || count($userforums)==0) {
+        if (!is_array($userforums) || count($userforums)==0) {
             // error or user is not allowed to read any forum at all
             // return empty result set without even doing a db access
             return array($posts, $m2fposts, $rssposts, $text);
@@ -36,11 +38,11 @@
         // now create a very simple array of forum_ids only. we do not need
         // all the other stuff in the $userforums array entries
         $allowedforums = array();
-        for($i=0; $i<count($userforums); $i++) {
+        for ($i=0; $i<count($userforums); $i++) {
             array_push($allowedforums, $userforums[$i]['forum_id']);
         }
         $whereforum = ' forum_id IN (' . DataUtil::formatForStore(implode($allowedforums, ',')) . ') ';
+
         return DBUtil::selectObjectArray('dizkus_topics', $whereforum, 'topic_id DESC', 0, $nItems);
     }
 }
-

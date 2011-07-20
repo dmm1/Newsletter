@@ -2,13 +2,14 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
-
 
 class PNArchive extends PNObject 
 {
@@ -23,7 +24,6 @@ class PNArchive extends PNObject
         $this->_init ($init, $key, $field);
     }
 
-
     function delete ($data=null)
     {
         if (!$data) {
@@ -37,14 +37,12 @@ class PNArchive extends PNObject
         return $this->_objData;
     }
 
-
     function getRecent ()
     {
         $checkDate = DateUtil::getDatetime_NextWeek (-1);
         $where     = "DATEDIFF(nla_date, '$checkDate') > 0";
         return $this->getWhere ($where);
     }
-
 
     function prune ($data=null)
     {
@@ -58,4 +56,3 @@ class PNArchive extends PNObject
         return DBUtil::deleteWhere ($this->_objType, $where);
     }
 }
-

@@ -2,23 +2,23 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
-
 
 class PNPluginAdminMessagesArray extends PNPluginBaseArray 
 {
-    function PNPluginAdminMessagesArray ($init=null, $where='')
+    function PNPluginAdminMessagesArray($init=null, $where='')
     {
-        $this->PNPluginBaseArray ();
+        $this->PNPluginBaseArray();
     }
 
-
-    function getPluginData ($lang=null)
+    function getPluginData($lang=null)
     {
         if (!ModUtil::available('Admin_Messages')) {
             return array();
@@ -30,11 +30,12 @@ class PNPluginAdminMessagesArray extends PNPluginBaseArray
         $params['startnum'] = 0;
         $params['numitems'] = $nItems;
         $params['ignoreml'] = true;
+
         if ($enableML && $lang) {
             $params['ignoreml'] = false;
             $params['language'] = $lang;
         }
+
         return ModUtil::apiFunc('Admin_Messages', 'user', 'getactive', $params);
     }
 }
-

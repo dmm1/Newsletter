@@ -2,13 +2,14 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
-
 
 class PNStatisticsArray extends PNObjectArray 
 {
@@ -17,8 +18,7 @@ class PNStatisticsArray extends PNObjectArray
         $this->PNObjectArray();
     }
 
-
-    function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         $data = array();
         $data['users']                     = DBUtil::selectObjectCount ('newsletter_users');
@@ -38,10 +38,8 @@ class PNStatisticsArray extends PNObjectArray
         return $this->_objData;
     }
 
-
-    function getCount ($where='', $doJoin=false)
+    function getCount($where='', $doJoin=false)
     {
         return count($this->_objData);
     }
 }
-

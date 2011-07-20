@@ -2,109 +2,108 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
- * @link http://www.zikula.org
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
 
 class Newsletter_Block_Signup extends Zikula_Controller_AbstractBlock
 {
+    public function init()
+    {
+        SecurityUtil::registerPermissionSchema('Signupblock::', 'Block ID::');
+    }
 
-	public function init()
-	{
-    SecurityUtil::registerPermissionSchema('Signupblock::', 'Block ID::');
-	}
+    public function info()
+    {
+        return array('text_type'      => 'signup',
+                     'module'         => 'Newsletter',
+                     'text_type_long' => 'Display a newsletter signup form',
+                     'allow_multiple' => true,
+                     'form_content'   => false,
+                     'form_refresh'   => false,
+                     'show_preview'   => true,
+                     'admin_tableless' => true);
+    }
 
-
-	public function info()
-	{
-    return array('text_type'      => 'signup',
-                 'module'         => 'Newsletter',
-                 'text_type_long' => 'Display a newsletter signup form',
-                 'allow_multiple' => true,
-                 'form_content'   => false,
-                 'form_refresh'   => false,
-                 'show_preview'   => true,
-				 'admin_tableless' => true);
-	}
-
-	public function display($blockinfo)
-	{
-	if (!SecurityUtil::checkPermission('Signupblock::', "$blockinfo[bid]::", ACCESS_READ)) {
+    public function display($blockinfo)
+    {
+        if (!SecurityUtil::checkPermission('Signupblock::', "$blockinfo[bid]::", ACCESS_READ)) {
             return;
         }
 
-
-    if (!ModUtil::available('Newsletter') || !ModUtil::loadApi('Newsletter', 'user')) {
-        return;
-    }
-	
-    $loggedin = UserUtil::isLoggedIn();
-    $allow_anon = ModUtil::getVar('Newsletter','allow_anon_registration');
-	
-    if (!$allow_anon && !$loggedin) {
-        return;
-    }
-	
-    if ($loggedin) {
-        if (Loader::loadClassFromModule ('Newsletter', 'user')) {
-            $object = new PNUser();
-            $data   = $object->getUser (UserUtil::getVar('uid'));
-            if ($data) {
-                return;
-	    }
-        } else {
+        if (!ModUtil::available('Newsletter') || !ModUtil::loadApi('Newsletter', 'user')) {
             return;
-	}
+        }
+
+        $loggedin = UserUtil::isLoggedIn();
+        $allow_anon = ModUtil::getVar('Newsletter','allow_anon_registration');
+
+        if (!$allow_anon && !$loggedin) {
+            return;
+        }
+
+        if ($loggedin) {
+            if (Loader::loadClassFromModule ('Newsletter', 'user')) {
+                $object = new PNUser();
+                $data   = $object->getUser (UserUtil::getVar('uid'));
+                if ($data) {
+                    return;
+                }
+            } else {
+                return;
+            }
+        }
+
+        $vars = BlockUtil::varsFromContent($blockinfo['content']);
+
+        $this->view->assign('require_tos', $vars['require_tos']);
+        $this->view->assign('nl_frequency', $vars['nl_frequency']);
+        $this->view->assign('nl_type', $vars['nl_type']);
+
+        $blockinfo['content'] = $this->view->fetch('block/Signup.tpl');
+
+        return BlockUtil::themeBlock($blockinfo);
     }
-	
-    $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
-    $this->view->assign('require_tos', $vars['require_tos']);
-    $this->view->assign('nl_frequency', $vars['nl_frequency']);
-    $this->view->assign('nl_type', $vars['nl_type']);
-	
-	$blockinfo['content'] = $this->view->fetch('block/Signup.tpl');
+    public function modify($blockinfo)
+    {
+        $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
-    return BlockUtil::themeBlock($blockinfo);
-	}
+        if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
+            return 'Unable to load class [newsletter_util]';
+        }
 
-	public function modify($blockinfo)
-	{
-    $vars = BlockUtil::varsFromContent($blockinfo['content']);
+        $this->view->setCaching(false);
 
-    if (!Loader::loadClassFromModule ('Newsletter', 'newsletter_util', false, false, '')) {
-        return 'Unable to load class [newsletter_util]';
-    }
-	$this->view->setCaching(false);
-	
-    $this->view->assign('require_tos', $vars['require_tos']);
-    $this->view->assign('nl_frequency_sel', isset($vars['nl_frequency']) ? $vars['nl_frequency'] : ModUtil::getVar('Newsletter','default_frequency'));
-    $this->view->assign('nl_type_sel', isset($vars['nl_type']) ? $vars['nl_type'] : ModUtil::getVar('Newsletter','default_type'));
-	/* $this->view->assign(ModUtil::getVar('Newsletter'));
-    $this->view->assign($vars); */ /* not needed atm */
-	$this->view->assign('dom');
+        $this->view->assign('require_tos', $vars['require_tos']);
+        $this->view->assign('nl_frequency_sel', isset($vars['nl_frequency']) ? $vars['nl_frequency'] : ModUtil::getVar('Newsletter','default_frequency'));
+        $this->view->assign('nl_type_sel', isset($vars['nl_type']) ? $vars['nl_type'] : ModUtil::getVar('Newsletter','default_type'));
+        /* $this->view->assign(ModUtil::getVar('Newsletter'));
+        $this->view->assign($vars); */ /* not needed atm */
+        $this->view->assign('dom');
 
         // Return the output that has been generated by this function
         return $this->view->fetch('block/Signup_modify.tpl');
-	}
+    }
 
+    function Newsletter_signupblock_update($blockinfo)
+    {
+        $vars = BlockUtil::varsFromContent($blockinfo['content']);
 
-function Newsletter_signupblock_update($blockinfo)
-{
-    $vars = BlockUtil::varsFromContent($blockinfo['content']);
-	
-    $vars['nl_frequency'] = (int)FormUtil::getPassedValue ('nl_frequency', 1, 'POST');
-    $vars['require_tos']  = (int)FormUtil::getPassedValue ('require_tos', 1, 'POST');
-    $vars['nl_type']      = (int)FormUtil::getPassedValue ('nl_type', 1, 'POST');
-	
-    $blockinfo['content'] = BlockUtil::varsToContent($vars);
+        $vars['nl_frequency'] = (int)FormUtil::getPassedValue ('nl_frequency', 1, 'POST');
+        $vars['require_tos']  = (int)FormUtil::getPassedValue ('require_tos', 1, 'POST');
+        $vars['nl_type']      = (int)FormUtil::getPassedValue ('nl_type', 1, 'POST');
 
-    $view = Zikula_View::getInstance('Newsletter', false);
-    $view->clear_cache('newsletter_block_signup_display.htm');
-	
-    return $blockinfo;
+        $blockinfo['content'] = BlockUtil::varsToContent($vars);
+
+        $view = Zikula_View::getInstance('Newsletter', false);
+        $view->clear_cache('newsletter_block_signup_display.htm');
+
+        return $blockinfo;
+    }
 }
-}
-

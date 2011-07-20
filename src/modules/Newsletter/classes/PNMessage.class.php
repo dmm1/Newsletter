@@ -9,35 +9,31 @@
  * Support: http://support.zikula.de, http://community.zikula.org
  */
 
-
 class PNMessage extends PNObject 
 {
-    function PNMessage ($init=null, $key=null, $field=null)
+    function PNMessage($init=null, $key=null, $field=null)
     {
-        $this->PNObject ();
+        $this->PNObject();
         $this->_objPath = 'message';
     }
 
-
-    function get ($key=0, $field='id', $force=false)
+    function get($key=0, $field='id', $force=false)
     {
         return array();
     }
 
-
-    function save ()
+    function save()
     {
         $data = $this->_objData;
-        ModUtil::setVar ('Newsletter', 'message', $data['text']);
+        ModUtil::setVar('Newsletter', 'message', $data['text']);
 
-        $defaultLang  = System::getVar ('language');
+        $defaultLang = System::getVar ('language');
         $alternateLanguages = Compat_LanguageUtil_getLanguages();
         unset ($alternateLanguages[$defaultLang]);
-        foreach ($alternateLanguages as $k=>$v) {
+        foreach ($alternateLanguages as $k => $v) {
             $fName = 'text_' . $k;
             $vName = 'message_' . $k;
-            ModUtil::setVar ('Newsletter', $vName, $data[$fName]);
+            ModUtil::setVar('Newsletter', $vName, $data[$fName]);
         }
     }
 }
-

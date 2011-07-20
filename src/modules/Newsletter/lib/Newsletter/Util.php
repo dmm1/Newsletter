@@ -39,8 +39,7 @@ class Newsletter_Util
         $plugins = self::getPluginClasses();
 
         foreach ($plugins as $k=>$plugin) {
-            $modvarName = 'plugin_' . $plugin;
-            $active = ModUtil::getVar('Newsletter', $modvarName, false);
+            $active = ModUtil::getVar('Newsletter', "plugin_$plugin", false);
             if (!$active) {
                 unset($plugins[$k]);
             }

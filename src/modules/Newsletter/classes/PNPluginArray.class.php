@@ -2,13 +2,14 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2009, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
-
 
 class PNPluginArray extends PNObjectArray 
 {
@@ -17,21 +18,19 @@ class PNPluginArray extends PNObjectArray
         $this->PNObjectArray();
     }
 
-
-    function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         $this->_objData = Newsletter_Util::getPluginClasses();
         return $this->_objData;
     }
 
-
-    function getCount ($where='', $doJoin=false)
+    function getCount($where='', $doJoin=false)
     {
         return count($this->_objData);
     }
 
     //EM Start
-    function getPluginsParameters ()
+    function getPluginsParameters()
     {
         if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
             return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
@@ -50,7 +49,5 @@ class PNPluginArray extends PNObjectArray
         }
         return $parameters;
     }
-//EM End
-
+    //EM End
 }
-

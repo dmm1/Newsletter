@@ -16,9 +16,9 @@ class PNNewsletterSend extends PNObject
     var $_objSendType;
     var $_objUpdateSendDate;
 
-    function PNNewsletterSend ($init=null, $key=null, $field=null)
+    function PNNewsletterSend($init=null, $key=null, $field=null)
     {
-        $this->PNObject ();
+        $this->PNObject();
 
         $this->_objType           = 'generic';
         $this->_objColumnPrefix   = 'nlu';
@@ -38,11 +38,11 @@ class PNNewsletterSend extends PNObject
         $this->_init ($init, $key, $field);
     }
 
-
     // doesn't save user info but allows us to use the standard API through Newsletter_userform_edit()
-    function save ($args=array())
+    function save($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!ModUtil::available('Mailer')) {
             return LogUtil::registerError (__('The mailer module is not available', $dom));
         }
@@ -80,8 +80,8 @@ class PNNewsletterSend extends PNObject
         if ($this->_objSendType == 'manual') {
             return $this->_sendManual ($args);
         }
-		
-		if ($this->_objSendType == 'manual_archive') {
+
+        if ($this->_objSendType == 'manual_archive') {
             return $this->_sendManual_archive ($args);
         }
      
@@ -89,8 +89,7 @@ class PNNewsletterSend extends PNObject
         return $this->_sendAPI ($args);
     }
 
-
-    function _sendTest ()
+    function _sendTest()
     {
         $testsendEmail = FormUtil::getPassedValue ('testsend_email', 0, 'GETPOST');
         $format        = FormUtil::getPassedValue ('format', 1, 'GETPOST');
@@ -100,10 +99,10 @@ class PNNewsletterSend extends PNObject
         return $this->_sendNewsletter ($user);
     }
 
-
-    function _sendManual ($args=array())
+    function _sendManual($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $data = $this->_objData;
         if (!$data) {
             return LogUtil::registerError (__('No users were selected to send the newsletter to', $dom));
@@ -128,14 +127,15 @@ class PNNewsletterSend extends PNObject
         return true;
     }
 
-	function _sendManual_archive ($args=array()) // send Newsletter & make an archive
+    function _sendManual_archive($args=array()) // send Newsletter & make an archive
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $data = $this->_objData;
         if (!$data) {
             return LogUtil::registerError (__('No users were selected to send the newsletter to', $dom));
         }
-		if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
+        if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
             return LogUtil::registerError (__('Unable to load class [archive]', $dom));
         }
         $objectArray = new PNUserArray ();
@@ -145,13 +145,13 @@ class PNNewsletterSend extends PNObject
         if (!$users) {
             return LogUtil::registerError (__('No users were available to send the newsletter to', $dom));
         }
-		$thisDay   = date ('w', time());
-		$sendPerRequest = ModUtil::getVar ('Newsletter', 'send_per_request', 5);
+        $thisDay = date ('w', time());
+        $sendPerRequest = ModUtil::getVar('Newsletter', 'send_per_request', 5);
         
-		// check archives for new archive time
+        // check archives for new archive time
         $matched = false;
-        $archiveObj = new PNArchive ();
-        $archive    = $archiveObj->getRecent ();
+        $archiveObj = new PNArchive();
+        $archive    = $archiveObj->getRecent();
         if ($archive) {
             $newArchiveTime = $archive['date'];                        
             $matched = true;
@@ -159,19 +159,19 @@ class PNNewsletterSend extends PNObject
             $newArchiveTime = $today;
             $matched = false;
         }
-		
-        $nSent   = 0;
+
+        $nSent = 0;
         foreach ($users as $user) {
-            if ($this->_sendNewsletter ($user, $newArchive, $newArchiveTime)) {
+            if ($this->_sendNewsletter($user, $newArchive, $newArchiveTime)) {
                 $nSent++;
             }
         }
-		
-        LogUtil::registerStatus ("$nSent " . (__('Newsletter(s) were successfully sent.', $dom)));
-        return true;		
+
+        LogUtil::registerStatus("$nSent " . (__('Newsletter(s) were successfully sent.', $dom)));
+        return true;
     }
-	
-    function _sendAPI ($args=array()) // API
+
+    function _sendAPI($args=array()) // API
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
@@ -271,8 +271,7 @@ class PNNewsletterSend extends PNObject
         return true;
     }
 
-
-    function _getNewsletterMessage ($user, $cacheID=null, $personalize=false, &$html=0) 
+    function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=0) 
     {
         switch ($user['type']) {
             case 1:  $tpl = 'newsletter_template_text.tpl'; $html = 0; break;
@@ -292,8 +291,7 @@ class PNNewsletterSend extends PNObject
         return $view->fetch ($tpl);
     }
 
-
-    function _sendNewsletter ($user, $cacheID=null)
+    function _sendNewsletter($user, $cacheID=null)
     {
         $html    = false;
         $message = $this->_getNewsletterMessage ($user, $cacheID, false, $html); // defaults to html
@@ -317,8 +315,7 @@ class PNNewsletterSend extends PNObject
         return $sent;
     }
 
-
-    function _archiveNewsletter ($newArchive, $newArchiveTime)
+    function _archiveNewsletter($newArchive, $newArchiveTime)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
         if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
@@ -339,4 +336,3 @@ class PNNewsletterSend extends PNObject
         $archiveObj->save ($archiveData);
     }
 }
-

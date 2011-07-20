@@ -2,11 +2,13 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
 
 class PNUser extends PNObject 
@@ -195,7 +197,6 @@ class PNUser extends PNObject
         return $this->_objData;
     }
 
-
     function insert()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
@@ -254,7 +255,6 @@ class PNUser extends PNObject
         return true;
     }
 
-
     function selectPostProcess ($data=null)
     {
         if (!$data) {
@@ -272,7 +272,6 @@ class PNUser extends PNObject
         return $this->_objData;
     }
 
-
     function updatePreProcess($data=null)
     {
         if (!$data) {
@@ -287,7 +286,6 @@ class PNUser extends PNObject
         $this->_objData = $data;
         return $this->_objData;
     }
-
 
     function update()
     {

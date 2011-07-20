@@ -1,10 +1,14 @@
 <?php
 /**
- * Clip plugin for Newsletter module
+ * Newletter Module for Zikula
  *
- * @copyright © 2011, Mateo Tibaquirá
- * @link http://www.zikula.org
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
 
 class PNPluginClipArray extends PNPluginBaseArray
