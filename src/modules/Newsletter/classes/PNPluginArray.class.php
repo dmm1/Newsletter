@@ -20,7 +20,7 @@ class PNPluginArray extends PNObjectArray
 
     function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
-        $this->_objData = NewsletterUtil::getPluginClasses ();
+        $this->_objData = Newsletter_Util::getPluginClasses();
         return $this->_objData;
     }
 
@@ -30,14 +30,15 @@ class PNPluginArray extends PNObjectArray
         return count($this->_objData);
     }
 
-//EM Start
+    //EM Start
     function getPluginsParameters ()
     {
         if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
             return LogUtil::registerError ('Unable to load array class for [plugin_base]', null, $url);
         }
 
-        $pluginClasses = NewsletterUtil::getPluginClasses();
+        $pluginClasses = Newsletter_Util::getPluginClasses();
+
         $parameters = array();
         // get plugins parameters
         foreach ($pluginClasses as $plugin) {

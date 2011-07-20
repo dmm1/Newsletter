@@ -1,10 +1,10 @@
 <?php
 
-function smarty_function_newsletter_selector_active ($params, &$smarty) 
+function smarty_function_newsletter_selector_active($params, &$smarty) 
 {
     $returnKeys = isset($params['return_keys']) ? $params['return_keys'] : false;
 
-    $array = NewsletterUtil::getSelectorDataActive ();
+    $array = Newsletter_Util::getSelectorDataActive();
     if ($returnKeys) {
         $result = array_keys ($array);
     } else {
@@ -17,4 +17,3 @@ function smarty_function_newsletter_selector_active ($params, &$smarty)
         return $result;
     }
 }
-

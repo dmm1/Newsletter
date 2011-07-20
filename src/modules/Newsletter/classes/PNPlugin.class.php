@@ -25,7 +25,7 @@ class PNPlugin extends PNObject
             return LogUtil::registerError(__('Unable to load array class for [plugin_base]', $dom), null, $url);
         }
 
-        $pluginClasses = NewsletterUtil::getPluginClasses();
+        $pluginClasses = Newsletter_Util::getPluginClasses();
 
         // save plugins parameters
         foreach ($pluginClasses as $plugin) {

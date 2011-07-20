@@ -2,7 +2,7 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirá Palacios (aka: matheo)
+ * @copyright 2001-2011, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch), Mateo Tibaquirï¿½ Palacios (aka: matheo)
  * @link http://www.zikula.org
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * Support: http://support.zikula.de, http://community.zikula.org
@@ -38,10 +38,11 @@
  * @param        string      noprocess    If set the resulting string constant is not processed
  * @return       string      the language constant
  */
-function smarty_function_nl_pnml ($params, &$smarty)
+function smarty_function_nl_pnml($params, &$smarty)
 {
-	$dom = ZLanguage::getModuleDomain('Newsletter');
-	$assign          = isset($params['assign'])          ? $params['assign']          : null;
+    $dom = ZLanguage::getModuleDomain('Newsletter');
+
+    $assign          = isset($params['assign'])          ? $params['assign']          : null;
     $html            = isset($params['html'])            ? (bool)$params['html']            : false;
     $name            = isset($params['name'])            ? $params['name']            : null;
     $noprocess       = isset($params['noprocess'])       ? (bool)$params['noprocess']       : false;
@@ -59,7 +60,7 @@ function smarty_function_nl_pnml ($params, &$smarty)
         return false;
     }
 
-    $result = NewsletterUtil::encodeText(pnML($name, $params, $html, $noprocess, $escapeForScript));
+    $result = Newsletter_Util::encodeText(pnML($name, $params, $html, $noprocess, $escapeForScript));
 
     if ($assign) {
         $smarty->assign($assign, $result);

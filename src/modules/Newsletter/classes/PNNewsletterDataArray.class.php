@@ -27,7 +27,7 @@ class PNNewsletterDataArray extends PNObjectArray
 
         $data     = array();
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
-        $plugins  = NewsletterUtil::getActivePlugins();
+        $plugins  = Newsletter_Util::getActivePlugins();
         $language = FormUtil::getPassedValue('language', $lang, 'GETPOST');
 
         /*
