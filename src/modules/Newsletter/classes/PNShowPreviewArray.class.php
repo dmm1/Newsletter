@@ -9,17 +9,14 @@
  * Support: http://support.zikula.de, http://community.zikula.org
  */
 
-
 if (!Loader::loadArrayClassFromModule('Newsletter', 'newsletter_data')) {
-    return LogUtil::registerError (__('Unable to load class [newsletter_data] ... ', $dom));
+    return LogUtil::registerError(__('Unable to load class [newsletter_data] ... '));
 }
-
 
 class PNShowPreviewArray extends PNNewsletterDataArray
 {
     function PNShowPreviewArray($init=null, $where='')
     {
-        $this->PNNewsletterDataArray ();
+        $this->PNNewsletterDataArray();
     }
 }
-

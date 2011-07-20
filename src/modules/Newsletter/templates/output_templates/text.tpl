@@ -41,7 +41,7 @@
 {/if}
 
 {if (isset($objectArray.CrpVideo) && $objectArray.CrpVideo)}
-{gt text="New Vidos"}
+{gt text="New Videos"}
 ===========================
 {foreach from=$objectArray.CrpVideo item=item}
 {$item.crpvideos_title|html_entity_decode}: {$item.crpvideos_content|html_entity_decode}
@@ -161,6 +161,15 @@
 {/foreach}
 {/if}
 
+{if (isset($objectArray.Clip) && $objectArray.Clip)}
+{gt text="Recently Added Publications"}
+===========================
+{foreach from=$objectArray.Clip.txt key='tid' item='publist'}
+{foreach from=$publist item="item"}
+{$item.core_title}
+{/foreach}
+{/foreach}
+{/if}
 
 {modurl assign="nlurl" modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}
 {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} {gt text="here!"}: {$nlurl}

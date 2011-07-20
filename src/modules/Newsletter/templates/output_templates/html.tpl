@@ -656,6 +656,27 @@ table.nl-calendar tbody tr th:hover {
                           {/foreach}
                           <br />
                         {/if}
+
+                        {if (isset($objectArray.Clip) && $objectArray.Clip)}
+                          <h2>{gt text="Recently Added Publications"}</h2>
+                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          {* TXT BASED LIST *}
+                          {*
+                          {foreach from=$objectArray.Pagemaster.txt key='tid' item="publist" name="loop"}
+                            {foreach from=$publist item="item"}
+                            <h3><a href="{modurl modname="Pagemaster" type="user" func="viewpub" tid=$tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h3>
+                            {/foreach}
+                          {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                          {/foreach}
+                          *}
+
+                          {* HTML OUTPUT LIST *}
+                          {foreach from=$objectArray.Clip.htm key='tid' item="output" name="loop"}
+                            {$output}
+                          {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                          {/foreach}
+                          <br />
+                        {/if}
                       </td>
                     </tr>
                   </table>
