@@ -40,7 +40,7 @@ Event.observe(window, 'load', function() {
 
     <h2>{$templatetitle}</h2>
 	<br />
-    <form id="nwplugins" class="z-form" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post" enctype="application/x-www-form-urlencoded">
+    <form id="nwplugins" class="z-form" action="{modurl modname='Newsletter' type='admin' func='save'}" method="post" enctype="application/x-www-form-urlencoded">
         <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
         <input type="hidden" name="ot" value="plugin" />
 

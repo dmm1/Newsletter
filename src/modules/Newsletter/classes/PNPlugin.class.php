@@ -12,17 +12,17 @@
 
 class PNPlugin extends PNObject 
 {
-    function PNPlugin ($init=null, $key=null, $field=null)
+    function PNPlugin($init='P', $key=null, $field=null)
     {
-        $this->PNObject ();
+        $this->PNObject();
         $this->_objPath = 'plugin';
-        $this->_init ($init, $key, $field);
+        $this->_init($init, $key, $field);
     }
 
-    function save ()
+    function save()
     {
         if (!Loader::loadArrayClassFromModule ('Newsletter', 'plugin_base')) {
-            return LogUtil::registerError (__('Unable to load array class for [plugin_base]', $dom), null, $url);
+            return LogUtil::registerError(__('Unable to load array class for [plugin_base]', $dom), null, $url);
         }
 
         $pluginClasses = NewsletterUtil::getPluginClasses();
@@ -30,34 +30,33 @@ class PNPlugin extends PNObject
         // save plugins parameters
         foreach ($pluginClasses as $plugin) {
             $pluginClassName = 'plugin_' . $plugin;
-            if (($class=Loader::loadArrayClassFromModule ('Newsletter', $pluginClassName))) {
-                $objArray        = new $class();
-                $objArray->setPluginParameters ();
+            if ($class = Loader::loadArrayClassFromModule('Newsletter', $pluginClassName)) {
+                $objArray = new $class();
+                $objArray->setPluginParameters();
             }
         }
-         $pluginClasses = array_flip($pluginClasses);
+        $pluginClasses = array_flip($pluginClasses);
 
         // active plugins
-        foreach ($this->_objData as $k=>$dat) {
-            if (strpos ($k, '_nItems') === false) {
-                ModUtil::setVar ('Newsletter', 'plugin_'.$k, 1);
+        foreach ($this->_objData as $k => $dat) {
+            if (strpos($k, '_nItems') === false) {
+                ModUtil::setVar('Newsletter', 'plugin_'.$k, 1);
             }
-            unset ($pluginClasses[$k]);
+            unset($pluginClasses[$k]);
         }
 
         // inactive plugins
-        foreach ($pluginClasses as $k=>$plugin) {
-            ModUtil::setVar ('Newsletter', 'plugin_'.$k, 0);
+        foreach ($pluginClasses as $k => $plugin) {
+            ModUtil::setVar('Newsletter', 'plugin_'.$k, 0);
         }
 
         // number of items settings
-        foreach ($this->_objData as $k=>$dat) {
-            if (strpos ($k, '_nItems') !== false) {
-                ModUtil::setVar ('Newsletter', 'plugin_'.$k, $dat);
+        foreach ($this->_objData as $k => $dat) {
+            if (strpos($k, '_nItems') !== false) {
+                ModUtil::setVar('Newsletter', 'plugin_'.$k, $dat);
             }
         }
 
         return true;
     }
 }
-
