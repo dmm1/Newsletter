@@ -38,9 +38,9 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
 
     function getPluginParameters()
     {
-        $pubtypes = null;
-        if (ModUtil::available('pagemaster') && ModUtil::dbInfoLoad('pagemaster')) {
-			Loader::includeOnce('modules/PageMaster/common.php');
+        $pubtypes = array();
+        if (ModUtil::available('PageMaster') && ModUtil::dbInfoLoad('PageMaster')) {
+            Loader::includeOnce('modules/PageMaster/common.php');
             $pubtypes = PMgetPubType(-1);
         }
 
@@ -67,40 +67,40 @@ class PNPluginPagemasterArray extends PNPluginBaseArray
 
         $output = array();
         foreach ($tids as $tid) {
-			$pubtypeargs = isset($args[$tid]) ? $args[$tid] : array();
-			$pubtypeargs['tid'] = $tid;
-			$pubtypeargs['countmode'] = 'no';
-			foreach ($types as $type) {
-			    $output[$type][$tid] = $this->getPagemasterList($pubtypeargs, $type);
-			}
-		}
+            $pubtypeargs = isset($args[$tid]) ? $args[$tid] : array();
+            $pubtypeargs['tid'] = $tid;
+            $pubtypeargs['countmode'] = 'no';
+            foreach ($types as $type) {
+                $output[$type][$tid] = $this->getPagemasterList($pubtypeargs, $type);
+            }
+        }
 
         return $output;
     }
 
-	function getPagemasterList($args, $type)
-	{
-		$args['handlePluginFields'] = 1;
+    function getPagemasterList($args, $type)
+    {
+        $args['handlePluginFields'] = 1;
 
-		$list = array();
-		switch ($type) {
-			case 'txt':
-				Loader::includeOnce('modules/PageMaster/common.php');
-				$core_title = PMgetPubtypeTitleField($args['tid']);
-				$core_title = $core_title ? $core_title : 'id';
+        $list = array();
+        switch ($type) {
+            case 'txt':
+                Loader::includeOnce('modules/PageMaster/common.php');
+                $core_title = PMgetPubtypeTitleField($args['tid']);
+                $core_title = $core_title ? $core_title : 'id';
 
-				$list = ModUtil::apiFunc('PageMaster', 'user', 'pubList', $args);
-				$list = $list['publist'];
-				// fills the core_title for 0.4.2 and pre
-				foreach ($list as $k => $v) {
-					$list[$k]['core_title'] = $list[$k][$core_title];
-				}
-				break;
-			case 'htm':
-				$list = ModUtil::func('PageMaster', 'user', 'main', $args);
-				break;
-		}
+                $list = ModUtil::apiFunc('PageMaster', 'user', 'pubList', $args);
+                $list = $list['publist'];
+                // fills the core_title for 0.4.2 and pre
+                foreach ($list as $k => $v) {
+                    $list[$k]['core_title'] = $list[$k][$core_title];
+                }
+                break;
+            case 'htm':
+                $list = ModUtil::func('PageMaster', 'user', 'main', $args);
+                break;
+        }
 
-		return $list;
-	}
+        return $list;
+    }
 }
