@@ -1,3 +1,2 @@
-see 
 
-http://code.zikula.org/newsletter/wiki
+  Visit https://github.com/dmm1/Newsletter/wiki
