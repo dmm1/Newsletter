@@ -69,10 +69,8 @@
             </div>
             <div class="z-formrow">
                 <label for="default_frequency">{gt text='Default frequency'}:</label>
-				
                 <select id="default_frequency" name="preferences[default_frequency]" onchange="if(this.options[selectedIndex].value=='0')(document.forms[0].allow_frequency_change.checked=false; document.forms[0].allow_frequency_change.disabled = true; ) else ( document.forms[0].allow_frequency_change.disabled = false;)">{html_options values=$frequency_values output=$frequency_output selected=$preferences.default_frequency}</select>
-				
-			</div>
+            </div>
             <div class="z-formrow">
                 <label for="send_day">{gt text='Sendday'}:</label>
                 <select id="send_day" name="preferences[send_day]">{html_options values=$send_days_values output=$send_days_output selected=$preferences.send_day}</select>
