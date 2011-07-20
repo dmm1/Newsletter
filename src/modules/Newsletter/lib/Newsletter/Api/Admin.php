@@ -17,18 +17,16 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
     {
         $links = array();
 
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         if (SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'main'),                             'text' => __('Start', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'settings'),                         'text' => __('Newsletter Settings', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'archive'),                          'text' => __('Archive Settings', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'statistics')),  'text' => __('Statistics', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'message')),     'text' => __('Intro Message', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'preview')),     'text' => __('Preview', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'user')),        'text' => __('Subscribers', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'plugin')),      'text' => __('Plugins', $dom));
-            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'userimport')),  'text' => __('Import', $dom));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'main'),                             'text' => $this->__('Start'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'settings'),                         'text' => $this->__('Newsletter Settings'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'archive'),                          'text' => $this->__('Archive Settings'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'statistics')),  'text' => $this->__('Statistics'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'message')),     'text' => $this->__('Intro Message'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'preview')),     'text' => $this->__('Preview'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'user')),        'text' => $this->__('Subscribers'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'plugin')),      'text' => $this->__('Plugins'));
+            $links[] = array('url' => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'userimport')),  'text' => $this->__('Import'));
         }
 
         return $links;

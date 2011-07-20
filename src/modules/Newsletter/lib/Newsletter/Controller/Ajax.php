@@ -35,6 +35,7 @@ class Newsletter_Controller_Ajax extends Zikula_Controller_AbstractAjax
         }
         $out .= '</ul>';
 
+        // FIXME not already in UTF-8?
         echo DataUtil::convertToUTF8($out);
 
         // FIXME use Zikula_Response_Ajax_Plain
