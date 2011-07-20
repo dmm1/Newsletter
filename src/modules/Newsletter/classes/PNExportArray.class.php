@@ -64,7 +64,7 @@ class PNExportArray extends PNUserArray
         if ($rc) {
             $colArray = DBUtil::getColumnsArray('newsletter_users');
             if (!$colArray) {
-                $rc = LogUtil::registerError __(("Unable to load column array for [newsletter_users]", $dom));
+                $rc = LogUtil::registerError(__("Unable to load column array for [newsletter_users]", $dom));
             }
         }
 
