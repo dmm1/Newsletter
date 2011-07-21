@@ -44,7 +44,7 @@ class PNNewsletterSend extends PNObject
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
         if (!ModUtil::available('Mailer')) {
-            return LogUtil::registerError (__('The mailer module is not available', $dom));
+            return LogUtil::registerError (__('The Mailer module is not available.', $dom));
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {

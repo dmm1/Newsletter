@@ -42,7 +42,7 @@ class PNUser extends PNObject
         if (strpos($requestURI, 'admin') !== false) {
             $id = (int)FormUtil::getPassedValue('id', 0, 'GET');
             if (!$id) {
-                return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
+                return LogUtil::registerArgsError();
             }
             $where = "nlu_id=$id";
             $ret = DBUtil::deleteWhere($this->_objType, $where);
@@ -61,7 +61,7 @@ class PNUser extends PNObject
 
             $where = $this->genWhere($key, null, null);
             if (!$where) {
-                return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
+                return LogUtil::registerArgsError();
             }
 
             $ret = DBUtil::deleteWhere($this->_objType, $where);
@@ -140,15 +140,13 @@ class PNUser extends PNObject
 
     function getSelectionKey()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $key = false;
         if (UserUtil::isLoggedIn()) {
             $key = UserUtil::getVar('uid');
         } else {
             $data = $this->_objData;
             if (!isset($data['email']) || !$data['email']) {
-                LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
+                return LogUtil::registerArgsError();
                 return false;
             }
             $key = $data['email'];
@@ -159,11 +157,9 @@ class PNUser extends PNObject
 
     function getUser($key, $approved=null, $active=null)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $where = $this->genWhere($key, $approved, $active);
         if (!$where) {
-            return LogUtil::registerError(__('Error! Could not do what you wanted. Please check your input.', $dom));
+            return LogUtil::registerArgsError();
         }
 
         return $this->getWhere($where);

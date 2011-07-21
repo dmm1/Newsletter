@@ -188,17 +188,17 @@ class Newsletter_Util
         $files = array();
 
         if (!$directory) {
-            LogUtil::registerError(__("Invalid [directory] received", $dom));
+            LogUtil::registerError(__f("Empty [%s] received.", 'directory', $dom));
             return $files;
         }
 
         if (!file_exists($directory)) {
-            LogUtil::registerError (__f("Directory [%s] does not seem to exist", $directory, $dom));
+            LogUtil::registerError (__f("Directory [%s] does not seem to exist.", $directory, $dom));
             return $files;
         }
 
         if (is_file($directory)) {
-            LogUtil::registerError (__f("Directory [%s] seems to be a file and not a directory", $directory, $dom));
+            LogUtil::registerError (__f("Directory [%s] seems to be a file nor a directory.", $directory, $dom));
             return $files;
         }
 

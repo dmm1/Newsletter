@@ -167,7 +167,7 @@
                 </span>
                 <span class="z-itemcell z-w10">
                     {php}$this->_tpl_vars['filter']['sort'] = 'cr_date DESC';{/php}
-                    <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Joindate'}</a>
+                    <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Join date'}</a>
                 </span>
                 <span class="z-itemcell z-w10">
                     {gt text='Action'}

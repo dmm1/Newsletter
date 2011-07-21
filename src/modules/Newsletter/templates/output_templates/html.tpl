@@ -399,7 +399,7 @@ table.nl-calendar tbody tr th:hover {
                         {/if}
 
                         {if (isset($objectArray.CrpVideo) && $objectArray.CrpVideo)}
-                          <h2>{gt text="New Vidos"}</h2>
+                          <h2>{gt text="New Videos"}</h2>
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           <table class="nl-crpvideo">
                             <tr>
