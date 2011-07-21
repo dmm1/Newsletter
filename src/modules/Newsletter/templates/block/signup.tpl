@@ -14,6 +14,11 @@
             <label for="user_email">{gt text='Your E-Mail Address'}:</label>
             <input id="user_email" name="user[email]" type="text" size="10" maxlength="128" alt="{gt text='Your E-Mail Address'}" />
         </div>
+        {else}
+        <div class="z-formrow">
+            <span class="z-label">{gt text='Your E-Mail Address'}:</span>
+            <span class="z-formnote">{$coredata.user.email}</span>
+        </div>
         {/if}
 
 	{if $modvars.Newsletter.require_tos}
