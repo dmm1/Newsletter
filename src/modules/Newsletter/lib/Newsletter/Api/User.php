@@ -13,11 +13,14 @@
 
 class Newsletter_Api_User extends Zikula_AbstractApi
 {
+    /*
+    FIXME: build the shortURLs correctly
+
     public function encodeurl($args)
     {
         // check we have the required input
         if (!isset($args['modname'])) {
-            return LogUtil::registerError($this->__('Error! Could not do what you wanted. Please check your input.'));
+            return LogUtil::registerArgsError();
         }
 
         if (isset($args['args']['ot'])) {
@@ -31,7 +34,7 @@ class Newsletter_Api_User extends Zikula_AbstractApi
     {
         // check we actually have some vars to work with...
         if (!isset($args['vars'])) {
-            return LogUtil::registerError($this->__('Error! Could not do what you wanted. Please check your input.'));
+            return LogUtil::registerArgsError();
         }
 
         $args['vars'] = array_slice($args['vars'], 1);
@@ -44,4 +47,5 @@ class Newsletter_Api_User extends Zikula_AbstractApi
 
         return true;
     }
+    */
 }

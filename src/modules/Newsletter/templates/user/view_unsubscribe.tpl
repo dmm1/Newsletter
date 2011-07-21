@@ -1,30 +1,28 @@
-{include file="user/header.tpl"}
+{include file='user/generic_header.tpl'}
 
-{userloggedin assign="loggedin"}
+{if $user or !$coredata.logged_in}
+<h3>{gt text="Unsubscribe"}</h3>
 
-{if ($user || !$loggdin)}
-  <h2>{gt text="Unsubscribe"}</h2>
-  
-  <fieldset>
-    <legend>{gt text="Information"}</legend>
-    <form class="z-adminform" action="{modurl modname="Newsletter" type="user" func="edit" ot="user_delete"}" method="post" enctype="application/x-www-form-urlencoded" onsubmit="if(this.user_email.value=='')(this.user_email.focus(); return false;)">
-      <input type="hidden" id="authid" name="authid" value="{insert name="generateauthkey" module="Newsletter"}" />
+<form class="z-form" action="{modurl modname='Newsletter' type='user' func='edit' ot='user_delete'}" method="post" enctype="application/x-www-form-urlencoded" onsubmit="if (this.user_email.value == '') {ldelim} this.user_email.focus(); return false; {rdelim}">
+    <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
 
-      <h4>{gt text="Here you can unsubscribe from our Newsletter"}</h4>
-      <br />
+    <fieldset>
+        <legend>{gt text='Confirmation'}</legend>
 
-      {if (!$loggedin)}
-         <div class="z-formrow">
-          <label for="user_email">{gt text="Your E-Mail Address"}</label>
-          <span id="user_email"> <input name="user[email]" type="text" size="30" maxlength="128" /></span>
+        <div class="z-warningmsg">{gt text='Are you sure you want to unsubscribe from the newsletter?'}</div>
+
+        {if !$coredata.logged_in}
+        <div class="z-formrow">
+            <label for="user_email">{gt text="Your E-Mail Address"}</label>
+            <span id="user_email"><input name="user[email]" type="text" size="30" maxlength="128" value="{$user.email|default:''}" /></span>
         </div>
-      {/if}
+        {/if}
 
-       <div class="z-formrow">
-        <input type="submit" name="submit" value="{gt text="Unsubscribe"}" onclick="return confirm('{gt text="Are you sure that you want to unsubscribe?"}');" />
-      </div>
-    </form>
- </fieldset>
+        <div class="z-formbuttons z-buttons">
+            <input type="submit" name="submit" value="{gt text='Unsubscribe'}" />
+        </div>
+    </fieldset>
+</form>
 {/if}
 
-{include file="admin/footer.tpl"}
+{include file='user/generic_footer.tpl'}

@@ -1,93 +1,83 @@
-﻿{include file="user/header.tpl"}
-
-{gt text="View Archive" assign=pageTitle}
-{pagesetvar name="title" value=$pageTitle}
-
+{pagesetvar name='title' __value='View Archive'}
 {gt text="View Archive" assign=lblDetail}
 
-<h3>{$pageTitle}</h3>
+{include file='user/generic_header.tpl'}
 
-<fieldset>
-  <legend>{gt text="Past Archives"}</legend>
-	<ol id="filterlist" class="z-itemlist">
-        <li class="z-itemheader z-clearfix">			
-			{modgetvar assign="show_id" module="Newsletter" name="show_id" default="0"}
-			{if ($show_id)}
-			<span class="z-itemcell z-w05">	
-			{gt text="ID"}
-			</span>
-			{/if} 
-			{modgetvar assign="show_date" module="Newsletter" name="show_date" default="0"}
-			{if ($show_date)}
-			<span class="z-itemcell z-w15">			
-			{gt text="Date"}
-			</span>
-			{/if} 
-			{modgetvar assign="show_lang" module="Newsletter" name="show_lang" default="0"}
-			{if ($show_lang)}
-			<span class="z-itemcell z-w15">			
-			{gt text="Language"}
-			</span>
-			{/if}
-			{modgetvar assign="show_plugins" module="Newsletter" name="show_plugins" default="0"}
-			{if ($show_plugins)} 
-			<span class="z-itemcell z-w15">				 
-			{gt text="# of Plugins"}
-			</span>
-			{/if}			
-			<span class="z-itemcell z-w15">		  
-			{modgetvar assign="show_objects" module="Newsletter" name="show_objects" default="0"}
-			{if ($show_objects )}		 
-			{gt text="# of Items"}
-			</span>
-			{/if} 
-			<span class="z-itemcell z-w10">		
-			{modgetvar assign="show_size" module="Newsletter" name="show_size" default="0"}
-			{if ($show_size)}
-			{gt text="Length"}	
-			{/if}
-			</span>
-			<span class="z-itemcell z-w10">	
-			{gt text="Action"}
-			</span>
-		<li class="{cycle values='z-odd,z-even'} z-clearfix">
-		{foreach from=$objectArray key="key" item="archive"}
-			{if ($show_id)}
-			<span class="z-itemcell z-w05">        			
-			{$archive.id}
-			</span>
-			{/if} 
-			{if ($show_date)}
-			<span class="z-itemcell z-w15"> 
-			{$archive.date_display}
-			</span>
-			{/if} 		   
-			{if ($show_lang)}
-			<span class="z-itemcell z-w15"> 
-			{$archive.lang}	
-			</span>
-			{/if} 
-			{if ($show_plugins)}
-			<span class="z-itemcell z-w15"> 
-			{$archive.n_plugins}	
-			</span>
-			{/if} 
-			{if ($show_objects)}
-			<span class="z-itemcell z-w15"> 
-			{$archive.n_items}
-			</span>
-		    {/if} 
-			{if ($show_size)}
-			<span class="z-itemcell z-w10"> 
-			{$archive.text|strlen}
-			</span>
-			{/if} 
-			<span class="z-itemcell z-w10"> 
-			<a href="{modurl modname="Newsletter" type="user" func="detail" ot="archive" id=$archive.id}" target="_blank">{img src='demo.png' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
-			</span>
-		</li>
-		{/foreach}
-	</ol>
-      
-</fieldset>
-{include file="admin/footer.tpl"}
+<h3>{gt text='View Archive'}</h3>
+
+<ol id="filterlist" class="z-itemlist">
+    <li class="z-itemheader z-clearfix">
+        {if $modvars.Newsletter.show_id|default:false}
+        <span class="z-itemcell z-w05">
+            {gt text='ID'}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_date|default:false}
+        <span class="z-itemcell z-w15">
+            {gt text='Date'}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_lang|default:false}
+        <span class="z-itemcell z-w15">
+            {gt text='Language'}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_plugins|default:false}
+        <span class="z-itemcell z-w15">
+            {gt text='# of Plugins'}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_objects|default:false}
+        <span class="z-itemcell z-w15">
+            {gt text='# of Items'}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_size|default:false}
+        <span class="z-itemcell z-w10">
+            {gt text='Length'}
+        </span>
+        {/if}
+        <span class="z-itemcell z-w10">
+            {gt text="Action"}
+        </span>
+    </li>
+    {foreach from=$objectArray key="key" item="archive"}
+    <li class="{cycle values='z-odd,z-even'} z-clearfix">
+        {if $modvars.Newsletter.show_id|default:false}
+        <span class="z-itemcell z-w05">
+            {$archive.id|safetext}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_date|default:false}
+        <span class="z-itemcell z-w15">
+            {$archive.date_display}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_lang|default:false}
+        <span class="z-itemcell z-w15">
+            {$archive.lang|safetext}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_plugins|default:false}
+        <span class="z-itemcell z-w15">
+            {$archive.n_plugins|safetext}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_objects|default:false}
+        <span class="z-itemcell z-w15">
+            {$archive.n_items|safetext}
+        </span>
+        {/if}
+        {if $modvars.Newsletter.show_size|default:false}
+        <span class="z-itemcell z-w10">
+            {$archive.text|strlen}
+        </span>
+        {/if}
+        <span class="z-itemcell z-w10">
+            <a href="{modurl modname='Newsletter' type='user' func='detail' ot='archive' id=$archive.id}" target="_blank">{img src='demo.png' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
+        </span>
+    </li>
+    {/foreach}
+</ol>
+
+{include file='user/generic_footer.tpl'}
