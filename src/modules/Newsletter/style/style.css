@@ -15,3 +15,13 @@
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
+
+.nl-block-signup {
+  margin-right: 1em;
+}
+.nl-block-signup div.z-formrow {
+  padding: 0;
+}
+.nl-block-signup div.z-buttons {
+  padding-top: 1em;
+}

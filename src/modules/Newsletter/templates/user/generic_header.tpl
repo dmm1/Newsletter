@@ -4,15 +4,15 @@
 
     <h2>{gt text='Newsletter'}</h2>
 
-    {if $user or !$coredata.logged_in}
+    {if $user or $modvars.Newsletter.allow_anon_registration}
     <div class="z-menu">
         <span class="z-menuitem-title">
             {strip}
-            <a href="{modurl modname='Newsletter' type='user' func='main'}" title="{gt text='Your Information'}">
-                {gt text='Your Information'}
-            </a>
-
             {if $user}
+                <a href="{modurl modname='Newsletter' type='user' func='main'}" title="{gt text='Your Information'}">
+                    {gt text='Your Information'}
+                </a>
+
                 {if $modvars.Newsletter.show_archive|default:0}
                 &nbsp;|&nbsp;
                 <a href="{modurl modname='Newsletter' type='user' func='main' ot='archive'}" title="{gt text='View Archives'}">
@@ -23,6 +23,10 @@
                 &nbsp;|&nbsp;
                 <a href="{modurl modname='Newsletter' type='user' func='main' ot='options'}" title="{gt text='Settings'}">
                     {gt text='Settings'}
+                </a>
+            {else}
+                <a href="{modurl modname='Newsletter' type='user' func='main'}" title="{gt text='Subscribe'}">
+                    {gt text='Subscribe'}
                 </a>
             {/if}
 

@@ -27,7 +27,7 @@
 
             <div class="z-formrow">
                 <label for="user_email">{gt text='Your E-Mail Address'}</label>
-                <input id="user_email" name="user[email]" type="text" size="30" maxlength="128" />
+                <input id="user_email" name="user[email]" type="text" size="30" maxlength="128" value="{$coredata.user.email|default:''}" />
             </div>
 
             {if $modvars.Newsletter.enable_multilingual}
