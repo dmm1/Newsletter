@@ -4,7 +4,7 @@
 
     <h2>{gt text='Newsletter'}</h2>
 
-    {if $user or $modvars.Newsletter.allow_anon_registration}
+    {if $user or $modvars.Newsletter.allow_anon_registration and !$coredata.logged_in}
     <div class="z-menu">
         <span class="z-menuitem-title">
             {strip}
