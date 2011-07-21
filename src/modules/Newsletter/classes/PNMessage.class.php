@@ -2,19 +2,22 @@
 /**
  * Newletter Module for Zikula
  *
- * @copyright © 2001-2010, Devin Hayes (aka: InvalidReponse), Dominik Mayer (aka: dmm), Robert Gasch (aka: rgasch)
- * @link http://www.zikula.org
- * @version $Id: pnuser.php 24342 2008-06-06 12:03:14Z markwest $
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * Support: http://support.zikula.de, http://community.zikula.org
+ * @copyright  Newsletter Team
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package    Newsletter
+ * @subpackage User
+ *
+ * Please see the CREDITS.txt file distributed with this source code for further
+ * information regarding copyright.
  */
 
 class PNMessage extends PNObject 
 {
-    function PNMessage($init=null, $key=null, $field=null)
+    function PNMessage($init='P', $key=null, $field=null)
     {
         $this->PNObject();
         $this->_objPath = 'message';
+        $this->_init($init, $key, $field);
     }
 
     function get($key=0, $field='id', $force=false)
@@ -27,13 +30,11 @@ class PNMessage extends PNObject
         $data = $this->_objData;
         ModUtil::setVar('Newsletter', 'message', $data['text']);
 
-        $defaultLang = System::getVar ('language');
-        $alternateLanguages = Compat_LanguageUtil_getLanguages();
-        unset ($alternateLanguages[$defaultLang]);
-        foreach ($alternateLanguages as $k => $v) {
-            $fName = 'text_' . $k;
-            $vName = 'message_' . $k;
-            ModUtil::setVar('Newsletter', $vName, $data[$fName]);
+        $defaultLang = System::getVar('language');
+        $alternateLanguages = ZLanguage::getInstalledLanguageNames();
+        unset($alternateLanguages[$defaultLang]);
+        foreach ($alternateLanguages as $lang => $v) {
+            ModUtil::setVar('Newsletter', "message_$lang", $data["text_$lang"]);
         }
     }
 }
