@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula component\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 00:16-0500\n"
+"POT-Creation-Date: 2011-07-21 02:50-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -567,30 +567,37 @@ msgstr ""
 msgid "Recently Added Links"
 msgstr ""
 
-#: templates/block/Signup.tpl:6 templates/block/Signup.tpl:7
+#: templates/block/signup.tpl:10 templates/block/signup.tpl:11
 #: templates/user/view_main.tpl:24
 msgid "Your Name"
 msgstr ""
 
-#: templates/block/Signup.tpl:8 templates/block/Signup.tpl:9
+#: templates/block/signup.tpl:14 templates/block/signup.tpl:15
 #: templates/user/view_unsubscribe.tpl:16 templates/user/view_main.tpl:29
 msgid "Your E-Mail Address"
 msgstr ""
 
-#: templates/block/Signup.tpl:16 templates/user/view_main.tpl:59
+#: templates/block/signup.tpl:22 templates/user/view_options.tpl:59
+#: templates/user/view_tos.tpl:4 templates/user/view_main.tpl:56
+#: templates/user/view_main.tpl:58
+msgid "Terms of Service"
+msgstr ""
+
+#: templates/block/signup.tpl:23 templates/user/view_main.tpl:59
 msgid "Yes, I agree to the terms of service."
 msgstr ""
 
-#: templates/block/Signup.tpl:22 templates/user/view_main.tpl:11
+#: templates/block/signup.tpl:33 templates/user/generic_header.tpl:28
+#: templates/user/generic_header.tpl:29 templates/user/view_main.tpl:11
 #: templates/user/view_main.tpl:67
 msgid "Subscribe"
 msgstr ""
 
-#: templates/block/Signup_modify.tpl:7
+#: templates/block/signup_modify.tpl:4
 msgid "Default Newsletter Type"
 msgstr ""
 
-#: templates/block/Signup_modify.tpl:14
+#: templates/block/signup_modify.tpl:13
 msgid "Default Frequency"
 msgstr ""
 
@@ -686,14 +693,9 @@ msgstr ""
 msgid "View our"
 msgstr ""
 
-#: templates/user/view_options.tpl:59 templates/user/view_tos.tpl:4
-#: templates/user/view_main.tpl:56 templates/user/view_main.tpl:58
-msgid "Terms of Service"
-msgstr ""
-
 #: templates/user/view_unsubscribe.tpl:4
-#: templates/user/view_unsubscribe.tpl:22 templates/user/generic_header.tpl:31
-#: templates/user/generic_header.tpl:32
+#: templates/user/view_unsubscribe.tpl:22 templates/user/generic_header.tpl:35
+#: templates/user/generic_header.tpl:36
 msgid "Unsubscribe"
 msgstr ""
 
@@ -756,7 +758,7 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: templates/user/generic_header.tpl:11 templates/user/generic_header.tpl:12
+#: templates/user/generic_header.tpl:12 templates/user/generic_header.tpl:13
 #: templates/user/view_main.tpl:17 templates/user/view_main.tpl:78
 msgid "Your Information"
 msgstr ""
