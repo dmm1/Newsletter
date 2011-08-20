@@ -31,7 +31,7 @@
 
 {sessiongetvar assign='currPagesize' name='pagesize' default=25 path='/Newsletter'}
 
-<form class="z-form" style="width: 100%;" method="post" action="{modurl modname='Newsletter' type='admin' func='view' ot=$ot}" name="langfilter" enctype="application/x-www-form-urlencoded">
+<form class="z-form" style="width: 100%;" method="post" action="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot}" name="langfilter" enctype="application/x-www-form-urlencoded">
     {gt text="All" assign=lblAll}
     {gt text="Filter" assign=lblFilter}
     {gt text="Data" assign=lblData}
@@ -82,7 +82,7 @@
     </fieldset>
 </form>
 
-<form class="z-form" name="send2users" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post" enctype="application/x-www-form-urlencoded">
+<form class="z-form" name="send2users" action="{modurl modname='Newsletter' type='admin' func='save'}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="authid" value="{$authid}" />
     <input type="hidden" name="ot" value="newsletter_send" />
     <input type="hidden" name="otTarget" value="user" />
@@ -257,7 +257,6 @@
             <label for="updateSendDate">{gt text='Update last sent date?'}</label>
             <div>
                 <input type="checkbox" id="updateSendDate" name="updateSendDate" value="1" />
-                <input type="hidden" name="authid" value="{$authid}" />
                 <input class="z-button" type="submit" value="{gt text='Send to [%s] users' tag1=0}" name="sendChecked" id="sendChecked" />
             </div>
         </div>

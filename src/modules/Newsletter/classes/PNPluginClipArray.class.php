@@ -91,7 +91,7 @@ class PNPluginClipArray extends PNPluginBaseArray
             case 'txt':
                 $args['handleplugins'] = 1;
                 $list = ModUtil::apiFunc('Clip', 'user', 'getall', $args);
-                $list = $list['publist']->toArray();
+                $list = $list ? $list['publist']->toArray() : array();
                 break;
 
             case 'htm':

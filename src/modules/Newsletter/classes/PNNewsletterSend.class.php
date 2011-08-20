@@ -39,54 +39,55 @@ class PNNewsletterSend extends PNObject
     }
 
     // doesn't save user info but allows us to use the standard API through Newsletter_userform_edit()
-    function save($args=array())
+    function insert($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
         if (!ModUtil::available('Mailer')) {
-            return LogUtil::registerError (__('The Mailer module is not available.', $dom));
+            return LogUtil::registerError(__('The Mailer module is not available.', $dom));
         }
 
         if (!Loader::loadClassFromModule('Newsletter', 'user')) {
-            return LogUtil::registerError (__('Unable to load class [user]', $dom));
+            return LogUtil::registerError(__('Unable to load class [user]', $dom));
         }
 
         if (!Loader::loadArrayClassFromModule('Newsletter', 'user')) {
-            return LogUtil::registerError (__('Unable to load array class [user]', $dom));
+            return LogUtil::registerError(__('Unable to load array class [user]', $dom));
         }
 
         if (!Loader::loadArrayClassFromModule('Newsletter', 'newsletter_data')) {
-            return LogUtil::registerError (__('Unable to load array class [newsletter_data]', $dom));
+            return LogUtil::registerError(__('Unable to load array class [newsletter_data]', $dom));
         }
 
-        $enable_multilingual       = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
-        $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue ('language', '', 'GETPOST') : SessionUtil::getVar('lang'); // custom var
-        $newsletterDataObjectArray = new PNNewsletterDataArray ();
-        $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData ($this->_objLang);              // custom var
+        $enable_multilingual       = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
+        $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue('language', '', 'GETPOST') : SessionUtil::getVar('lang'); // custom var
+        $newsletterDataObjectArray = new PNNewsletterDataArray();
+        $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData($this->_objLang);              // custom var
 
-        $this->_objSendType       = FormUtil::getPassedValue ('sendType', '', 'GETPOST');                          // custom var
-        $this->_objUpdateSendDate = FormUtil::getPassedValue ('updateSendDate', '', 'GETPOST');                    // custom var
-        $testsend                 = FormUtil::getPassedValue ('testsend', 0, 'GETPOST');                           // from admin->preview
+        $this->_objSendType       = FormUtil::getPassedValue('sendType', '', 'GETPOST');                          // custom var
+        $this->_objUpdateSendDate = FormUtil::getPassedValue('updateSendDate', '', 'GETPOST');                    // custom var
+        $testsend                 = FormUtil::getPassedValue('testsend', 0, 'GETPOST');                           // from admin->preview
 
         if (!$this->_objNewsletterData) {
-            return LogUtil::registerError (__('No newsletter data to send', $dom));
+            return LogUtil::registerError(__('No newsletter data to send', $dom));
         }
 
         if ($testsend) {
             $this->_objSendType = 'test';
-            return $this->_sendTest ();
+            return $this->_sendTest();
         } 
 
         if ($this->_objSendType == 'manual') {
-            return $this->_sendManual ($args);
+            return $this->_sendManual($args);
         }
 
         if ($this->_objSendType == 'manual_archive') {
-            return $this->_sendManual_archive ($args);
+            return $this->_sendManual_archive($args);
         }
      
         $this->_objSendType = 'api';
-        return $this->_sendAPI ($args);
+
+        return $this->_sendAPI($args);
     }
 
     function _sendTest()
@@ -133,21 +134,21 @@ class PNNewsletterSend extends PNObject
 
         $data = $this->_objData;
         if (!$data) {
-            return LogUtil::registerError (__('No users were selected to send the newsletter to', $dom));
+            return LogUtil::registerError(__('No users were selected to send the newsletter to', $dom));
         }
         if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
-            return LogUtil::registerError (__('Unable to load class [archive]', $dom));
+            return LogUtil::registerError(__('Unable to load class [archive]', $dom));
         }
-        $objectArray = new PNUserArray ();
-        $userIDs     = implode (',', $data);
+        $objectArray = new PNUserArray();
+        $userIDs     = implode(',', $data);
         $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
-        $users       = $objectArray->get ($where, 'id');
+        $users       = $objectArray->get($where, 'id');
         if (!$users) {
             return LogUtil::registerError (__('No users were available to send the newsletter to', $dom));
         }
         $thisDay = date ('w', time());
         $sendPerRequest = ModUtil::getVar('Newsletter', 'send_per_request', 5);
-        
+
         // check archives for new archive time
         $matched = false;
         $archiveObj = new PNArchive();
@@ -306,10 +307,12 @@ class PNNewsletterSend extends PNObject
         if ($sent && ($this->_objSendType == 'api' || $this->_objUpdateSendDate)) {
             $userData = array();
             $userData['id'] = $user['id'];
-            $userData['last_send_date'] = DateUtil::getDatetime ();
-            $object = new PNUser ();
-            $object->setData ($userData);
-            $object->update ();
+            $userData['last_send_date'] = DateUtil::getDatetime();
+            $object = new PNUser();
+            $object->setData($userData);
+            $object->update();
+
+            return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => 'user')));
         }
 
         return $sent;
