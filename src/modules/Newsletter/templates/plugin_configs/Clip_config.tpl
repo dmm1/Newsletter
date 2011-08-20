@@ -6,7 +6,7 @@
 <hr />
 <div class="z-formrow">
     <label for="plugin_{$i}_enable_{$j}">{$pubtype.title|safehtml}</label>
-    <input id="plugin_{$i}_enable_{$j}" type="checkbox" name="ClipTIDs[{$tid}]" value="1" {if isset($pubtype.nwactive)}checked="checked"{/if} />
+    <input id="plugin_{$i}_enable_{$j}" type="checkbox" name="ClipTIDs[{$tid}]" value="1" {if $pubtype.nwactive}checked="checked"{/if} />
 </div>
 <div id="plugin_{$i}_suboption_{$j}">
     <div class="z-formrow">
