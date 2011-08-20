@@ -42,11 +42,11 @@
                 </select>
                 <a href="#" onclick="Effect.toggle('hint-1','BLIND'); return false;" title="{gt text='Help'}">(?)</a>
                 <div id="hint-1" class="z-informationmsg nl-hint" style="display:none;">
-                    {gt text='You can find the templates in' tag1='/modules/Newsletter/templates/'}
+                    {gt text='You can find the templates in %s' tag1='/modules/Newsletter/templates/output'}
                     <ul>
-                        <li>newsletter_template_html.tpl</li>
-                        <li>newsletter_template_text.tpl</li>
-                        <li>newsletter_template_text_with_link.tpl</li>
+                        <li>html.tpl</li>
+                        <li>text.tpl</li>
+                        <li>text_with_link.tpl</li>
                    </ul>
                 </div>
             </div>
