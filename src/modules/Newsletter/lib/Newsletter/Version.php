@@ -21,6 +21,7 @@ class Newsletter_Version extends Zikula_AbstractVersion
         $meta['url']            = $this->__('newsletter');
         $meta['version']        = '2.1.0';
         $meta['core_min']       = '1.3.0';
+		$meta['core_max']       = '1.3.99';
         $meta['securityschema'] = array('Newsletter::' => '::');
         return $meta;
     }
