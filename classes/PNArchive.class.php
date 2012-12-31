@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNArchive extends PNObject 
+class PNArchive extends DBObject 
 {
     function PNArchive ($init=null, $key=null, $field=null)
     {
-        $this->PNObject ();
+        
 
         $this->_objType          = 'newsletter_archives';
         $this->_objColumnPrefix  = 'nla';

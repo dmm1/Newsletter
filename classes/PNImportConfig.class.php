@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNImportConfig extends PNObject 
+class PNImportConfig extends DBObject 
 {
     function PNImportConfig($init=null, $key=null, $field=null)
     {
-        $this->PNObject ();
+        
         $this->_objPath = 'import';
         $this->_init ($init, $key, $field);
     }

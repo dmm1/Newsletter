@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNPluginArray extends PNObjectArray 
+class PNPluginArray extends DBObjectArray 
 {
     function PNPluginArray($init=null, $where='')
     {
-        $this->PNObjectArray();
+        
     }
 
     function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)

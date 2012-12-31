@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNMessage extends PNObject 
+class PNMessage extends DBObject 
 {
     function PNMessage($init='P', $key=null, $field=null)
     {
-        $this->PNObject();
+        
         $this->_objPath = 'message';
         $this->_init($init, $key, $field);
     }

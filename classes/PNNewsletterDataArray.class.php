@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNNewsletterDataArray extends PNObjectArray 
+class PNNewsletterDataArray extends DBObjectArray 
 {
     function PNNewsletterDataArray($init=null, $where='')
     {
-        $this->PNObjectArray();
+        
         $this->_init($init, $where);
     }
 

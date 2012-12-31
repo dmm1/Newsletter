@@ -9,7 +9,7 @@
  * Support: http://support.zikula.de, http://community.zikula.org
  */
 
-class PNNewsletterSend extends PNObject 
+class PNNewsletterSend extends DBObject 
 {
     var $_objLang;
     var $_objNewsletterData;
@@ -18,7 +18,7 @@ class PNNewsletterSend extends PNObject
 
     function PNNewsletterSend($init=null, $key=null, $field=null)
     {
-        $this->PNObject();
+        
 
         $this->_objType           = 'generic';
         $this->_objColumnPrefix   = 'nlu';

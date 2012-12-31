@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNUser extends PNObject 
+class PNUser extends DBObject 
 {
     function PNUser($init=null, $key=null, $field=null)
     {
-        $this->PNObject();
+        
 
         $this->_objType         = 'newsletter_users';
         $this->_objColumnPrefix = 'nlu';

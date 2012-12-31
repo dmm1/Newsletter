@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNImportUsers extends PNObject 
+class PNImportUsers extends DBObject 
 {
     function PNImportUsers ($init=null, $key=null, $field=null)
     {
-        $this->PNObject ();
+        
         $this->_objPath = 'import';
         $this->_init ($init, $key, $field);
     }

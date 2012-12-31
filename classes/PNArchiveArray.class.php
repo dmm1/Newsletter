@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNArchiveArray extends PNObjectArray 
+class PNArchiveArray extends DBObjectArray 
 {
     function PNArchiveArray($init=null, $where='')
     {
-        $this->PNObjectArray();
+        
 
         $this->_objType          = 'newsletter_archives';
         $this->_objColumnPrefix  = 'nla';

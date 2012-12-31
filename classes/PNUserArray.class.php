@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNUserArray extends PNObjectArray 
+class PNUserArray extends DBObjectArray 
 {
     function PNUserArray($init=null, $where='')
     {
-        $this->PNObjectArray();
+        
 
         $this->_objType          = 'newsletter_users';
         $this->_objColumnPrefix  = 'nlu';

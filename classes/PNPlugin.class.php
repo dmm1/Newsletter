@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNPlugin extends PNObject 
+class PNPlugin extends DBObject 
 {
     function PNPlugin($init='P', $key=null, $field=null)
     {
-        $this->PNObject();
+        
         $this->_objPath = 'plugin';
         $this->_init($init, $key, $field);
     }

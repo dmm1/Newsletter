@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNPluginBaseArray extends PNObjectArray 
+class PNPluginBaseArray extends DBObjectArray 
 {
     function PNPluginBaseArray($init=null, $where='')
     {
-        $this->PNObjectArray();
+        
     }
 
     // to be implenented by derived classes

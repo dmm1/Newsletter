@@ -11,11 +11,11 @@
  * information regarding copyright.
  */
 
-class PNManage extends PNObject 
+class PNManage extends DBObject 
 {
     function PNManage($init=null, $key=null, $field=null)
     {
-        $this->PNObject();
+        
         $this->_init ($init, $key, $field);
     }
 
