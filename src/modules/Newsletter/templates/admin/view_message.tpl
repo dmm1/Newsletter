@@ -2,13 +2,13 @@
 {adminheader}
 
 {php}
-    $defaultLang = pnConfigGetVar('language_i18n');
+    $defaultLang = System::getVar('language_i18n');
     $alternateLanguages = ZLanguage::getInstalledLanguageNames();
     $defaultLangName = $alternateLanguages[$defaultLang];
     unset($alternateLanguages[$defaultLang]);
     $this->assign('defaultLang', $defaultLangName);
     $this->assign('alternateLanguages', $alternateLanguages);
-    $this->assign('coremultilingual', pnConfigGetVar('multilingual', 0));
+    $this->assign('coremultilingual', System::getVar('multilingual', 0));
 {/php}
 
 {modgetvar module='Newsletter' name='message'  assign='text' default=''}
