@@ -15,7 +15,7 @@
     <h3>{$pageTitle}</h3>
 </div>
 <form class="z-form" action="{modurl modname='Newsletter' type='admin' func='save'}" method="post" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
     <input type="hidden" name="ot" value="user" />
     {if ($user.id)}
     <input type="hidden" name="user[id]" value="{$user.id}" />

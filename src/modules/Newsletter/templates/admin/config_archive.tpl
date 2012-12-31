@@ -10,7 +10,7 @@
 </div>
 
 <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='admin' func='modifyarchive'}" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
     <fieldset>
         <legend>{gt text='Archive Settings'}</legend>
@@ -51,7 +51,7 @@
 </form>
 
 <form class="z-form" action="{modurl modname='Newsletter' type='admin' func='delete' ot='archive'}" method="post" onsubmit="if (!this.db_archive.checked) {ldelim} alert('{gt text="Please select an archive to flush"}.'); return false; {rdelim}">
-    <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
     <fieldset>
         <legend>{gt text='Prune Archives'}</legend>
