@@ -12,7 +12,7 @@
 <h3>{gt text='Change your subscription settings'}</h3>
 
 <form class="z-form" action="{modurl modname='Newsletter' type='user' func='edit' ot='user_options'}" method="post" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
     <input type="hidden" name="otTarget" value="options" />
 
     <fieldset>

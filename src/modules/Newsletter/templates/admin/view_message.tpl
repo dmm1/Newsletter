@@ -23,7 +23,7 @@
 </div>
 
 <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='admin' func='save'}">
-    <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
     <input type="hidden" name="ot" value="message" />
 
     <fieldset class="z-linear">

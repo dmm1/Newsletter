@@ -11,7 +11,7 @@
     <h3>{gt text='Subscribe'}</h3>
 
     <form class="z-form" action="{modurl modname='Newsletter' type='user' func='edit' ot='user'}" method="post" enctype="application/x-www-form-urlencoded">
-        <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+        <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
         <fieldset>
             <legend>{gt text='Your Information'}</legend>
