@@ -4,7 +4,7 @@
 <h3>{gt text="Unsubscribe"}</h3>
 
 <form class="z-form" action="{modurl modname='Newsletter' type='user' func='edit' ot='user_delete'}" method="post" enctype="application/x-www-form-urlencoded" onsubmit="if (this.user_email.value == '') {ldelim} this.user_email.focus(); return false; {rdelim}">
-    <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
     <fieldset>
         <legend>{gt text='Confirmation'}</legend>

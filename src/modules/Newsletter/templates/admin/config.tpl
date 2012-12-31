@@ -23,7 +23,7 @@
 </div>
 
 <form class="z-form" method="post" name="config" action="{modurl modname='Newsletter' type='admin' func='modifyconfig'}" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
     <fieldset>
         <legend>{gt text='Configuration'}</legend>

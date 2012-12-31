@@ -7,7 +7,7 @@
 </div>
 
 <form class="z-form" method="post" name="show_template" action="{modurl modname='Newsletter' type='admin' func='view' ot='show_preview'}" target="_blank" enctype="application/x-www-form-urlencoded">
-    <input type="hidden" id="authid" name="authid" value="{insert name='generateauthkey' module='Newsletter'}" />
+    <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
     <fieldset class="z-linear">
         <legend>{gt text='Preview Templates'}</legend>
