@@ -257,8 +257,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $url = ModUtil::url('Newsletter', 'admin', 'settings');
 
-        if (!SecurityUtil::confirmAuthKey('Newsletter')) {
-            return LogUtil::registerAuthidError($url);
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
         }
 
         $prefs = FormUtil::getPassedValue('preferences', array(), 'POST');
@@ -306,8 +305,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             return LogUtil::registerError($this->__('Invalid [id] parameter received.'), null, $url);
         }
 
-        if (!SecurityUtil::confirmAuthKey('Newsletter')) {
-            return LogUtil::registerAuthidError($url);
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
         }
 
         if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
@@ -330,8 +328,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $url = ModUtil::url('Newsletter', 'admin', 'archive');
 
-        if (!SecurityUtil::confirmAuthKey('Newsletter')) {
-            return LogUtil::registerAuthidError($url);
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
         }
 
         $prefs = FormUtil::getPassedValue('preferences_archive', array(), 'POST');

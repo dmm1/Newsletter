@@ -107,8 +107,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
             return LogUtil::registerError($this->__('Invalid [ot] parameter received'), null, $url);
         }
 
-        if (!SecurityUtil::confirmAuthKey()) {
-            return LogUtil::registerAuthidError($url);
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
         }
 
         if (!($class = Loader::loadClassFromModule('Newsletter', $ot))) {
