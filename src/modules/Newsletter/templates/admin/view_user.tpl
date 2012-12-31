@@ -26,7 +26,7 @@
 {newsletter_selector_type assign="type_values" return_keys=true all=true}
 {newsletter_selector_type assign="type_output" return_keys=false all=true}
 
-{secgenauthkey assign='authid' module='Newsletter'}
+{insert name='csrftoken' assign="authid"}
 {modgetvar assign='enable_multilingual' module='Newsletter' name='enable_multilingual' default=0}
 
 {sessiongetvar assign='currPagesize' name='pagesize' default=25 path='/Newsletter'}

@@ -19,7 +19,7 @@
 {modgetvar assign="admin_key" module="Newsletter" name="admin_key"}
 
 {userloggedin assign="loggedin"}
-{secgenauthkey assign="authid" module="Newsletter"}
+{insert name='csrftoken' assign="authid"}
 
 <form class="z-form" name="config" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post">
     <input type="hidden" name="authid" value="{$authid}" />
