@@ -174,7 +174,7 @@
                 </span>
             </li>
 
-            {securityutil_checkpermission assign="adminAuth" component="Newsletter::" instance="::" level="ACCESS_ADMIN"}
+            {checkpermission assign="adminAuth" component="Newsletter::" instance="::" level="ACCESS_ADMIN"}
             {foreach from=$objectArray item=user}
             <li class="{cycle values='z-odd,z-even'} z-clearfix">
                 <span class="z-itemcell z-w05">
