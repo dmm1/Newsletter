@@ -4,7 +4,6 @@
 {newsletter_selector_frequency assign='frequency_output' return_keys=false}
 {newsletter_selector_type assign='type_values' return_keys=true}
 {newsletter_selector_type assign='type_output' return_keys=false}
-{configgetvar assign='defaultlang' name='language' default='eng'}
 
 {if !$user}
     {if $modvars.Newsletter.allow_anon_registration or $coredata.logged_in}
@@ -33,7 +32,7 @@
             {if $modvars.Newsletter.enable_multilingual}
               <div class="z-formrow">
                 <label for="user_lang">{gt text='Language'}</label>
-                {html_select_languages id="user_lang" name="user[lang]" installed=true selected=$user.lang|default:$defaultlang}
+                {html_select_languages id="user_lang" name="user[lang]" installed=true selected=$user.lang}
               </div>
             {/if}
 
