@@ -1,6 +1,6 @@
 <?php
 
-function smarty_function_newsletter_selector_active($params, &$smarty) 
+function smarty_function_newsletter_selector_active($params, Zikula_View $view) 
 {
     $returnKeys = isset($params['return_keys']) ? $params['return_keys'] : false;
 
@@ -12,7 +12,7 @@ function smarty_function_newsletter_selector_active($params, &$smarty)
     }
     
     if (isset($params['assign'])) {
-    	$smarty->assign ($params['assign'], $result);
+    	$view->assign ($params['assign'], $result);
     } else {	
         return $result;
     }

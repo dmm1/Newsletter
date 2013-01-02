@@ -38,7 +38,7 @@
  * @param        string      noprocess    If set the resulting string constant is not processed
  * @return       string      the language constant
  */
-function smarty_function_nl_pnml($params, &$smarty)
+function smarty_function_nl_pnml($params, Zikula_View $view)
 {
     $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -56,14 +56,14 @@ function smarty_function_nl_pnml($params, &$smarty)
     unset($params['escapeForScript']);
 
     if (!$name) {
-        $smarty->trigger_error('pnml: parameter [name] required');
+        $view->trigger_error('pnml: parameter [name] required');
         return false;
     }
 
     $result = Newsletter_Util::encodeText(pnML($name, $params, $html, $noprocess, $escapeForScript));
 
     if ($assign) {
-        $smarty->assign($assign, $result);
+        $view->assign($assign, $result);
     } else {
         return $result;
     }

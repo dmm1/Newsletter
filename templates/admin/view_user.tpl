@@ -84,7 +84,7 @@
 
 <form class="z-form" name="send2users" action="{modurl modname='Newsletter' type='admin' func='save'}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="authid" value="{$authid}" />
-    <input type="hidden" name="ot" value="newsletter_send" />
+    <input type="hidden" name="ot" value="NewsletterSend" />
     <input type="hidden" name="otTarget" value="user" />
     {if $create_archive}
     <input type="hidden" name="sendType" value="manual" />
@@ -94,8 +94,7 @@
     {if $enable_multilingual}
         <input type="hidden" name="language" value="{$filter.lang}" />
     {else}
-        {configgetvar assign="defaultlang" name="language" default="eng"}
-        <input type="hidden" name="language" value="{$defaultlang}" />
+        <input type="hidden" name="language" value="{defaultlang}" />
     {/if}
 
     <fieldset>
