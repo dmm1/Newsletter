@@ -14,7 +14,7 @@
 class Newsletter_Util
 {
     // FIXME this is really needed with UTF-8 database?
-    function encodeText ($string)
+    public static function encodeText ($string)
     {
         $replace = array(
             'Ä' => '&Auml;',
@@ -34,7 +34,7 @@ class Newsletter_Util
         return str_replace(array_keys($replace), array_values($replace), $string);
     }
 
-    function getActivePlugins ()
+    public static function getActivePlugins ()
     {
         $plugins = self::getPluginClasses();
 
@@ -48,7 +48,7 @@ class Newsletter_Util
         return $plugins;
     }
 
-    function getPluginClasses()
+    public static function getPluginClasses()
     {
         $ignoreFiles = array();
         $ignoreFiles[] = 'Plugin.php';
@@ -72,7 +72,7 @@ class Newsletter_Util
         return $plugins;
     }
 
-    function getSelectorDataActive($all=true)
+    public static function getSelectorDataActive($all=true)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -86,7 +86,7 @@ class Newsletter_Util
         return $selector;
     }
 
-    function getSelectorDataApproved($all=true)
+    public static function getSelectorDataApproved($all=true)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -100,7 +100,7 @@ class Newsletter_Util
         return $selector;
     }
 
-    function getSelectorDataArchiveExpire()
+    public static function getSelectorDataArchiveExpire()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -117,7 +117,7 @@ class Newsletter_Util
     }
 
 
-    function getSelectorDataLanguage($all=false)
+    public static function getSelectorDataLanguage($all=false)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -130,7 +130,7 @@ class Newsletter_Util
     }
 
 
-    function getSelectorDataNewsletterFrequency($all=false)
+    public static function getSelectorDataNewsletterFrequency($all=false)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -149,7 +149,7 @@ class Newsletter_Util
         return $array;
     }
 
-    function getSelectorDataNewsletterType($all=false)
+    public static function getSelectorDataNewsletterType($all=false)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -164,7 +164,7 @@ class Newsletter_Util
         return $array;
     }
 
-    function getSelectorDataSendDay()
+    public static function getSelectorDataSendDay()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -181,7 +181,7 @@ class Newsletter_Util
         return $selector;
     }
 
-    function scandir($directory, $ignoreFiles=null, $matchString=null)
+    public static function scandir($directory, $ignoreFiles=null, $matchString=null)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
