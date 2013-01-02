@@ -7,7 +7,7 @@
 {newsletter_selector_active assign="active_values" return_keys=true all=true}
 {newsletter_selector_active assign="active_output" return_keys=false all=true}
 
-{configgetvar assign="defaultlang" name="language" default="eng"}
+{defaultlang assign="defaultlang"}
 
 <h3>{gt text='Change your subscription settings'}</h3>
 

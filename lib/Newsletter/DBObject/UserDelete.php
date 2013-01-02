@@ -11,7 +11,7 @@
  * information regarding copyright.
  */
 
-if (!class_exists('Newsletter_DBObject_User'')) {
+if (!class_exists('Newsletter_DBObject_User')) {
     return LogUtil::registerError(__('Unable to load class [user] ... ', $dom));
 }
 
