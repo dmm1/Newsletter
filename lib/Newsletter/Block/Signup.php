@@ -48,7 +48,8 @@ class Newsletter_Block_Signup extends Zikula_Controller_AbstractBlock
         }
 
         if ($loggedin) {
-            if (Loader::loadClassFromModule('Newsletter', 'user')) {
+            $class = 'Newsletter_DBObject_User';
+            if (class_exists($class)) {
                 $object = new Newsletter_DBObject_User();
                 $data   = $object->getUser(UserUtil::getVar('uid'));
                 if ($data) {

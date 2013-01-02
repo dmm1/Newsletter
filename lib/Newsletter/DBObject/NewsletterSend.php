@@ -234,7 +234,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         
         // check archives for new archive time
         $matched = false;
-        $archiveObj = new PNArchive();
+        $archiveObj = new Newsletter_DBObject_Archive();
         $archive    = $archiveObj->getRecent ();
         if ($archive) {
             $newArchiveTime = $archive['date'];                        
@@ -341,7 +341,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $archiveData['n_plugins'] = $this->_objNewsletterData['nPlugins'];
         $archiveData['n_items']   = $this->_objNewsletterData['nItems'];
         $archiveData['text']      = $message;
-        $archiveObj = new PNArchive();
+        $archiveObj = new Newsletter_DBObject_Archive();
         $archiveObj->setData ($archiveData);
         $archiveObj->save ($archiveData);
     }

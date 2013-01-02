@@ -220,12 +220,12 @@
                     {/if}
                 </span>
                 <span class="z-itemcell z-w05">
-                    <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user_active' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qActive}');">
+                    <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='UserActive' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qActive}');">
                         {$user.active|yesno}
                     </a>
                 </span>
                 <span class="z-itemcell z-w10">
-                    <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='user_approved' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qApproved}');">
+                    <a href="{modurl modname='Newsletter' type='admin' func='edit' ot='UserApproved' otTarget='user' id=$user.id authid=$authid filter=$filter}" onclick="return confirm('{$qApproved}');">
                         {$user.approved|yesno}
                     </a>
                 </span>
