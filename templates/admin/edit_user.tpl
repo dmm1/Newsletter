@@ -3,7 +3,7 @@
 {newsletter_selector_type assign="type_values" return_keys=true}
 {newsletter_selector_type assign="type_output" return_keys=false}
 {modgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual"}
-{lang assign="defaultlang"}
+{defaultlang assign="defaultlang"}
 
 {pageaddvar name='stylesheet' value='modules/Newsletter/style/admin_style.css'}
 {gt assign='pageTitle' text='Edit a User / Add a User'}
