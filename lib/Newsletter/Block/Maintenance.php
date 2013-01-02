@@ -49,7 +49,8 @@ class Newsletter_Block_Maintenance extends Zikula_Controller_AbstractBlock
             $today = date('w');
             $send_day = ModUtil::getVar('Newsletter','send_day');
             if ($send_day == $today) {
-                if (!Loader::loadClassFromModule('Newsletter', 'newsletter_send')) {
+                $class = 'Newsletter_DBObject_NewsletterSend';
+                if (!class_exists($class)) {
                     return 'Unable to load class [newsletter_send]';
                 }
 
@@ -59,7 +60,7 @@ class Newsletter_Block_Maintenance extends Zikula_Controller_AbstractBlock
                 }
                 $_POST['authKey'] = ModUtil::getVar('Newsletter', 'admin_key');
 
-                $object = new PNNewsletterSend();
+                $object = new Newsletter_DBObject_NewsletterSend();
                 $object->save();
 
                 // prune on send day before noon
