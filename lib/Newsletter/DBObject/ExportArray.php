@@ -166,7 +166,8 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
         $data = $this->_objData;
         }
 
-        if (!Loader::loadClassFromModule('Newsletter', 'user')) {
+        $class = 'Newsletter_DBObject_User';
+        if (!class_exists($class)) {
             LogUtil::registerError (__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
         } else {
             $obj = new Newsletter_DBObject_User ();
