@@ -25,7 +25,8 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         $data = array();
 
-        if (($ot && $class = Loader::loadArrayClassFromModule('Newsletter', $ot))) {
+        $class = 'Newsletter_DBObject_'. ucfirst($ot) . 'Array';
+        if (class_exists($class)) {
             $objectArray = new $class ();
             $where       = $objectArray->genFilter ();
             $sort        = $sort ? $sort : $objectArray->_objSort;
@@ -39,7 +40,9 @@ class Newsletter_Controller_User extends Zikula_AbstractController
         }
 
         $user = null;
-        if (Loader::loadClassFromModule('Newsletter', 'user')) {
+
+        $class = 'Newsletter_DBObject_User';
+        if (class_exists($class)) {
             $object = new Newsletter_DBObject_User();
             if (UserUtil::isLoggedIn()) {
                 $user = $object->getUser(UserUtil::getVar('uid'));
@@ -84,7 +87,8 @@ class Newsletter_Controller_User extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ));
 
-        if (!Loader::loadClassFromModule('Newsletter', 'newsletter_send')) {
+        $class = 'Newsletter_DBObject_NewsletterSend';
+        if (!class_exists($class)) {
             return LogUtil::registerError($this->__('Unable to load class [newsletter_send].'));
         }
 
@@ -110,7 +114,8 @@ class Newsletter_Controller_User extends Zikula_AbstractController
         if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
         }
 
-        if (!($class = Loader::loadClassFromModule('Newsletter', $ot))) {
+        $class = 'Newsletter_DBObject_'. ucfirst($ot);
+        if (!class_exists($class)) {
             return LogUtil::registerError($this->__('Unable to load class [%s].', $ot), null, $url);
         }
 
