@@ -34,7 +34,7 @@
         <div class="z-formrow">
             <label for="format">{gt text='Format'}:</label>
             <div>
-                <select name="format" onchange="this.form.submit();javascript:location.reload(true);" >
+                <select name="format" onchange="this.form.submit();" >
                     <option>{gt text='- Choose One -'}</option>
                     <option value="1">{gt text='Text'}</option>
                     <option value="2">{gt text='HTML'}</option>
