@@ -144,7 +144,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                 if ($rc) {
                     $sendObj = new Newsletter_DBObject_NewsletterSend();
                     if ($sendObj->save()) {
-                        LogUtil::registerStatus(_NEWSLETTER_EMAIL_SUCCESS);
+                        LogUtil::registerStatus('Test email successfully sent');
                     } else {
                         LogUtil::registerError($this->__('Failure sending the test email'));
                     }
