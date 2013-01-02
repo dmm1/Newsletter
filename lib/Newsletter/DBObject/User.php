@@ -69,7 +69,7 @@ class Newsletter_DBObject_User extends DBObject
                 $view = Zikula_View::getInstance('Newsletter', false);
                 $view->assign('user_name',  $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
                 $view->assign('user_email', $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email']);
-                $view->assign('site_url',   System::getCurrentUrl());
+                $view->assign('site_url',   System::getBaseUrl());
                 $message = $view->fetch('email/user_unsubscribe.tpl');
                 $send_from_address = ModUtil::getVar('Newsletter', 'send_from_address');
                 ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
@@ -227,7 +227,7 @@ class Newsletter_DBObject_User extends DBObject
             $view = Zikula_View::getInstance('Newsletter', false);
             $view->assign ('user_name', $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
             $view->assign ('user_email', $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email']);
-            $view->assign ('site_url', System::getCurrentUrl());
+            $view->assign ('site_url', ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'unsubscribe'), null, '', true));
             $user_message = $view->fetch('email/user_notify.tpl');
             $send_from_address = ModUtil::getVar ('Newsletter', 'send_from_address');
             ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
