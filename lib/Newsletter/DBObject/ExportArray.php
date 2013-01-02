@@ -197,7 +197,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
        </users>
 
       where the order of the fields in the individual object entries corresponds 
-      to the order in which these fields are listed in pntables.php
+      to the order in which these fields are listed in tables.php
     */
     // this function uses text to build the xml because it seems that XMLWriter truncates output on large files
     function _exportXML (&$cnt)
@@ -250,7 +250,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
        ...
        val1|val2|val3|val4|...|valn\n
 
-      where the order of the fields on each line to the order in which these fields are listed in pntables.php
+      where the order of the fields on each line to the order in which these fields are listed in tables.php
     */
     function _exportCSV (&$cnt)
     {

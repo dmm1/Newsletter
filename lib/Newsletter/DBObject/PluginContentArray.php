@@ -25,8 +25,8 @@ class Newsletter_DBObject_PluginContentArray extends Newsletter_DBObject_PluginB
         }
         
         ModUtil::dbInfoLoad ('content');
-        $pntable = DBUtil::getTables();
-        $column  = $pntable['content_page_column'];
+        $table = DBUtil::getTables();
+        $column  = $table['content_page_column'];
         $where   = "$column[active] = 1";
         $sort    = "$column[id] DESC";
         $nItems  = ModUtil::getVar ('Newsletter', 'plugin_Content_nItems', 1);
