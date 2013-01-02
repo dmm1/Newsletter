@@ -110,7 +110,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->view->assign('ot', $ot)
                    ->assign('objectArray', $data);
 
-        if ($ot == 'show_preview') {
+        if ($ot == 'ShowPreview') {
             switch ($format) {
                 case 1:
                     $content = $this->view->fetch('output/text.tpl');
