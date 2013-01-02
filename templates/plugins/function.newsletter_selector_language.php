@@ -1,6 +1,6 @@
 <?php
 
-function smarty_function_newsletter_selector_language($params, &$smarty) 
+function smarty_function_newsletter_selector_language($params, Zikula_View $view) 
 {
     $all        = isset($params['all']) ? $params['all'] : false;
     $returnKeys = isset($params['return_keys']) ? $params['return_keys'] : false;
@@ -13,7 +13,7 @@ function smarty_function_newsletter_selector_language($params, &$smarty)
     }
     
     if (isset($params['assign'])) {
-    	$smarty->assign($params['assign'], $result);
+    	$view->assign($params['assign'], $result);
     } else {	
         return $result;
     }
