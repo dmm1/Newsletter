@@ -162,6 +162,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
         $ot  = FormUtil::getPassedValue('ot', 'user', 'GETPOST');
+        $otTarget  = FormUtil::getPassedValue('otTarget', $ot, 'GETPOST');
         $id  = (int)FormUtil::getPassedValue('id', 0, 'GETPOST');
         $url = ModUtil::url('Newsletter', 'admin', 'main');
 
@@ -174,7 +175,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         if ($id) {
             $data = $object->get($id);
             if (!$data) {
-                $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot));
+                $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $otTarget));
                 return LogUtil::registerError($this->__f('Unable to retrieve object of type [%1$s] with id [%2$s].', array($ot, $id)), null, $url);
             }
         } else {
@@ -182,12 +183,15 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         }
 
         $view = Zikula_View::getInstance('Newsletter', false);
-        $view->assign('ot', $ot);
-        $view->assign($ot, $data);
+        $view->assign('ot', $otTarget);
+        $view->assign($otTarget, $data);
         $view->assign('validation', $object->getValidation());
 
-        $tpl = 'admin/edit_' . $ot . '.tpl';
-
+        if($otTarget != 'userimport') {
+            $tpl = 'admin/edit_' . $otTarget . '.tpl';
+        } else {
+         $tpl = 'admin/view_' . $otTarget . '.tpl';
+        }
         return $view->fetch($tpl);
     }
 
@@ -196,6 +200,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
         $ot  = FormUtil::getPassedValue('ot', 'user', 'GETPOST');
+        $otTarget  = FormUtil::getPassedValue('otTarget', $ot, 'GETPOST');
         $id  = (int)FormUtil::getPassedValue('id', 0, 'GETPOST');
         $url = ModUtil::url('Newsletter', 'admin', 'main');
 
@@ -210,7 +215,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             LogUtil::registerStatus($this->__('Done! Item saved.'));
         }
 
-        return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot)));
+        return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $otTarget)));
     }
 
     public function archive()
