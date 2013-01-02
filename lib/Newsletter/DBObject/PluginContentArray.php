@@ -20,6 +20,10 @@ class Newsletter_DBObject_PluginContentArray extends Newsletter_DBObject_PluginB
 
     function getPluginData($lang=null)
     {
+        if (!ModUtil::available('content')) {
+            return array();
+        }
+        
         ModUtil::dbInfoLoad ('content');
         $pntable = DBUtil::getTables();
         $column  = $pntable['content_page_column'];

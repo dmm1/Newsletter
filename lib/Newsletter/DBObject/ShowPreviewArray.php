@@ -11,8 +11,8 @@
  * information regarding copyright.
  */
 
-if (!class_exists('Newsletter_DBObject_NewsletterData')) {
-    return LogUtil::registerError(__('Unable to load class [newsletter_data] ... '));
+if (!class_exists('Newsletter_DBObject_NewsletterDataArray')) {
+    return LogUtil::registerError(__('Unable to load array class [newsletter_data] ... '));
 }
 
 class Newsletter_DBObject_ShowPreviewArray extends Newsletter_DBObject_NewsletterDataArray
