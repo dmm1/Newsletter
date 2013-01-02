@@ -40,7 +40,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         $user = null;
         if (Loader::loadClassFromModule('Newsletter', 'user')) {
-            $object = new PNUser();
+            $object = new Newsletter_DBObject_User();
             if (UserUtil::isLoggedIn()) {
                 $user = $object->getUser(UserUtil::getVar('uid'));
             }
@@ -67,12 +67,12 @@ class Newsletter_Controller_User extends Zikula_AbstractController
         if (!$id) {
             return LogUtil::registerError($this->__('Invalid [id] parameter received.'), null, $url);
         }
-
-        if (!($class = Loader::loadClassFromModule('Newsletter', $ot))) {
+        $class = 'Newsletter_DBObject_'. ucfirst($ot);
+        if (!class_exists($class)) {
             return LogUtil::registerError($this->__f('Unable to load class [%s]', $ot), null, $url);
         }
 
-        $obj  = new PNArchive();
+        $obj  = new Newsletter_DBObject_Archive();
         $data = $obj->get($id);
 
         // just echo text and exit; no need to use template
@@ -90,7 +90,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         $scheduled = (int)FormUtil::getPassedValue('scheduled', 0);
 
-        $obj = new PNNewsletterSend();
+        $obj = new Newsletter_DBObject_NewsletterSend();
 
         return $obj->save(array('respond' => 1, 'scheduled' => $scheduled));
     }

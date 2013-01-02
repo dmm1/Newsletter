@@ -51,11 +51,11 @@ class Newsletter_Util
     function getPluginClasses()
     {
         $ignoreFiles = array();
-        $ignoreFiles[] = 'PNPlugin.class.php';
-        $ignoreFiles[] = 'PNPluginArray.class.php';
-        $ignoreFiles[] = 'PNPluginBaseArray.class.php';
+        $ignoreFiles[] = 'Plugin.php';
+        $ignoreFiles[] = 'PluginArray.php';
+        $ignoreFiles[] = 'PluginBaseArray.php';
 
-        $files = self::scandir('modules/Newsletter/classes', $ignoreFiles, 'Plugin');
+        $files = self::scandir('modules/Newsletter/lib/Newsletter/DBObject', $ignoreFiles, 'Plugin');
 
         // get plugin module base names
         $plugins = array();
@@ -64,8 +64,8 @@ class Newsletter_Util
             if (strpos($file, '.') === 0) {
                 continue;
             }
-            $t = str_replace('PNPlugin', '', $file);
-            $t = str_replace('Array.class.php', '', $t);
+            $t = str_replace('Plugin', '', $file);
+            $t = str_replace('Array.php', '', $t);
             $plugins[$file] = $t;
         }
 

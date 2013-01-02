@@ -50,7 +50,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             $filter['sort'] = $sort;
         }
         // do not handle these $ot lists
-        if ($ot == 'newsletter_send') {
+        if ($ot == 'NewsletterSend') {
             $ot = 'user';
         }
 
@@ -76,7 +76,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $data = array();
 
         if ($ot) {
-            if (($class = Loader::loadArrayClassFromModule('Newsletter', $ot))) {
+            $class = 'Newsletter_DBObject_'. ucfirst($ot) . 'Array';
+            if (class_exists($class)) {
                 $objectArray = new $class();
                 if (method_exists($objectArray, 'cleanFilter')) {
                     $filter = $objectArray->cleanFilter($filter);
@@ -84,7 +85,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                 $where = $objectArray->genFilter($filter);
                 $sort  = $sort ? $sort : $objectArray->_objSort;
                 $data  = $objectArray->get($where, $sort, $offset, $pagesize);
-
+                
                 $pager = array();
                 $pager['numitems']     = $objectArray->getCount($where, true);
                 $pager['itemsperpage'] = $pagesize;
@@ -109,7 +110,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->view->assign('ot', $ot)
                    ->assign('objectArray', $data);
 
-        if ($ot == 'show_preview') {
+        if ($ot == 'ShowPreview') {
             switch ($format) {
                 case 1:
                     $content = $this->view->fetch('output/text.tpl');
@@ -136,14 +137,14 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                 if (!System::varValidate($testsendEmail, 'email')) {
                     $rc = LogUtil::registerError($this->__('The email address you entered does not seem to be valid'));
                 }
-                if (!Loader::loadClassFromModule('Newsletter', 'newsletter_send')) {
+                if (!class_exists('Newsletter_DBObject_NewsletterSend')) {
                     $rc = LogUtil::registerError($this->__('Unable to load class [newsletter_send]'), null, $url);
                 }
 
                 if ($rc) {
-                    $sendObj = new PNNewsletterSend();
+                    $sendObj = new Newsletter_DBObject_NewsletterSend();
                     if ($sendObj->save()) {
-                        LogUtil::registerStatus(_NEWSLETTER_EMAIL_SUCCESS);
+                        LogUtil::registerStatus('Test email successfully sent');
                     } else {
                         LogUtil::registerError($this->__('Failure sending the test email'));
                     }
@@ -161,10 +162,12 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
         $ot  = FormUtil::getPassedValue('ot', 'user', 'GETPOST');
+        $otTarget  = FormUtil::getPassedValue('otTarget', $ot, 'GETPOST');
         $id  = (int)FormUtil::getPassedValue('id', 0, 'GETPOST');
         $url = ModUtil::url('Newsletter', 'admin', 'main');
 
-        if (!($class = Loader::loadClassFromModule('Newsletter', $ot))) {
+        $class = 'Newsletter_DBObject_'. ucfirst($ot);
+        if (!class_exists($class)) {
             return LogUtil::registerError($this->__f('Unable to load class for [%s].', $ot), null, $url);
         }
 
@@ -172,7 +175,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         if ($id) {
             $data = $object->get($id);
             if (!$data) {
-                $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot));
+                $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $otTarget));
                 return LogUtil::registerError($this->__f('Unable to retrieve object of type [%1$s] with id [%2$s].', array($ot, $id)), null, $url);
             }
         } else {
@@ -180,12 +183,15 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         }
 
         $view = Zikula_View::getInstance('Newsletter', false);
-        $view->assign('ot', $ot);
-        $view->assign($ot, $data);
+        $view->assign('ot', $otTarget);
+        $view->assign($otTarget, $data);
         $view->assign('validation', $object->getValidation());
 
-        $tpl = 'admin/edit_' . $ot . '.tpl';
-
+        if($otTarget != 'userimport') {
+            $tpl = 'admin/edit_' . $otTarget . '.tpl';
+        } else {
+         $tpl = 'admin/view_' . $otTarget . '.tpl';
+        }
         return $view->fetch($tpl);
     }
 
@@ -194,11 +200,13 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
         $ot  = FormUtil::getPassedValue('ot', 'user', 'GETPOST');
+        $otTarget  = FormUtil::getPassedValue('otTarget', $ot, 'GETPOST');
         $id  = (int)FormUtil::getPassedValue('id', 0, 'GETPOST');
         $url = ModUtil::url('Newsletter', 'admin', 'main');
 
-        if (!($class = Loader::loadClassFromModule('Newsletter', $ot))) {
-            return LogUtil::registerError($this->__('Unable to load class for [%s].', $ot), null, $url);
+        $class = 'Newsletter_DBObject_'. ucfirst($ot);
+        if (!class_exists($class)) {
+            return LogUtil::registerError($this->__f('Unable to load class for [%s].', $ot), null, $url);
         }
 
         $object = new $class(DBObject::GET_FROM_POST);
@@ -207,7 +215,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             LogUtil::registerStatus($this->__('Done! Item saved.'));
         }
 
-        return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot)));
+        return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $otTarget)));
     }
 
     public function archive()
@@ -229,8 +237,9 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $id  = (int)FormUtil::getPassedValue ('id', 0, 'GETPOST');
         $url = ModUtil::url('Newsletter', 'admin', 'main');
 
-        if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
-            return LogUtil::registerError($this->__('Unable to load class for [%s].', $ot), null, $url);
+        $class = 'Newsletter_DBObject_'. ucfirst($ot);
+        if (!class_exists($class)) {
+            return LogUtil::registerError($this->__f('Unable to load class for [%s].', $ot), null, $url);
         }
 
         $object = new $class();
@@ -257,7 +266,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $url = ModUtil::url('Newsletter', 'admin', 'settings');
 
-        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {
+            return LogUtil::registerAuthidError($url);
         }
 
         $prefs = FormUtil::getPassedValue('preferences', array(), 'POST');
@@ -305,10 +315,12 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             return LogUtil::registerError($this->__('Invalid [id] parameter received.'), null, $url);
         }
 
-        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {
+            return LogUtil::registerAuthidError($url);
         }
 
-        if (!($class = Loader::loadClassFromModule ('Newsletter', $ot))) {
+        $class = 'Newsletter_DBObject_'. ucfirst($ot);
+        if (!class_exists($class)) {
             return LogUtil::registerError($this->__('Unable to load class [%s].', $ot), null, $url);
         }
 
@@ -328,7 +340,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $url = ModUtil::url('Newsletter', 'admin', 'archive');
 
-        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {            return LogUtil::registerAuthidError($url);
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {
+            return LogUtil::registerAuthidError($url);
         }
 
         $prefs = FormUtil::getPassedValue('preferences_archive', array(), 'POST');

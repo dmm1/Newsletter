@@ -1,4 +1,4 @@
-{usergetlang assign="currLang"}
+{lang assign="currLang"}
 {formutil_getpassedvalue assign="nllang" name="language" default=$currLang}
 
 {$objectArray.title}

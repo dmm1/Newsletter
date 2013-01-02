@@ -6,7 +6,7 @@
     <h3>{gt text='Preview your Newsletter'}</h3>
 </div>
 
-<form class="z-form" method="post" name="show_template" action="{modurl modname='Newsletter' type='admin' func='view' ot='show_preview'}" target="_blank" enctype="application/x-www-form-urlencoded">
+<form class="z-form" method="post" name="show_template" action="{modurl modname='Newsletter' type='admin' func='view' ot='ShowPreview'}" target="_blank" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
     <fieldset class="z-linear">
@@ -17,7 +17,7 @@
         <div class="z-formrow">
             <label for="language">{gt text="Language"}:</label>
             {sessiongetvar assign="currLang" name="lang"}
-            {configgetvar assign="defaultLang" name="language"}
+            {defaultlang assign="defaultLang"}
             {html_select_languages id="user_lang" name="language" installed=true selected=$currLang|default:$defaultlang}
         </div>
         {/if}
@@ -34,7 +34,7 @@
         <div class="z-formrow">
             <label for="format">{gt text='Format'}:</label>
             <div>
-                <select name="format" onchange="this.form.submit();javascript:location.reload(true);" >
+                <select name="format" onchange="this.form.submit();" >
                     <option>{gt text='- Choose One -'}</option>
                     <option value="1">{gt text='Text'}</option>
                     <option value="2">{gt text='HTML'}</option>

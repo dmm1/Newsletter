@@ -23,7 +23,7 @@
 
 <form class="z-form" name="config" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post">
     <input type="hidden" name="authid" value="{$authid}" />
-    <input type="hidden" name="ot" value="import_config" />
+    <input type="hidden" name="ot" value="ImportConfig" />
     <input type="hidden" name="otTarget" value="userimport" />
 
     <fieldset>
@@ -59,7 +59,7 @@
     <fieldset>
         <legend>2. {gt text='Import'}</legend>
         <div class="z-formrow z-buttons">
-            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='edit' ot='import_users' otTarget='userimport' authKey=$admin_key authid=$authid}" title="{gt text='Import'}">
+            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='save' ot='ImportUsers' otTarget='userimport' authKey=$admin_key authid=$authid}" title="{gt text='Import'}">
                 {gt text='Perform the Import'}
             </a>
         </div>
