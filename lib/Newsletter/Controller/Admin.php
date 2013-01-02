@@ -90,8 +90,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                 $pager['numitems']     = $objectArray->getCount($where, true);
                 $pager['itemsperpage'] = $pagesize;
                 $this->view->assign('startnum', $offset)
-                    ->assign('pager', $pager)
-                    ->assign('startpage', false);
+                           ->assign('pager', $pager)
+                           ->assign('startpage', false);
             }
         }
 
