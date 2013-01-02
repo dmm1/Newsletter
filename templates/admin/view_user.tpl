@@ -84,7 +84,7 @@
 
 <form class="z-form" name="send2users" action="{modurl modname='Newsletter' type='admin' func='save'}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="authid" value="{$authid}" />
-    <input type="hidden" name="ot" value="newsletter_send" />
+    <input type="hidden" name="ot" value="NewsletterSend" />
     <input type="hidden" name="otTarget" value="user" />
     {if $create_archive}
     <input type="hidden" name="sendType" value="manual" />
