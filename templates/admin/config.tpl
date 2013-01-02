@@ -11,7 +11,7 @@
 {newsletter_selector_type assign="type_output" return_keys=false}
 {newsletter_selector_type assign="type_values2" all=true return_keys=true}
 {newsletter_selector_type assign="type_output2" all=true return_keys=false}
-{configgetvar assign="multilingual" name="multilingual" default=0}
+{multilingual assign="multilingual"}
 
 <div class="z-admin-content-pagetitle">
     {icon type='config' size='small'}
