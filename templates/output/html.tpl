@@ -317,7 +317,7 @@ table.nl-calendar tbody tr th:hover {
 }
 </style>
 
-  {usergetlang assign="currLang"}
+  {lang assign="currLang"}
   {formutil_getpassedvalue assign="nllang" name="language" default=$currLang}
   <body id="nl-body">
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bg1">
