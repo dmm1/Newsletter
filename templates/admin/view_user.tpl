@@ -94,8 +94,7 @@
     {if $enable_multilingual}
         <input type="hidden" name="language" value="{$filter.lang}" />
     {else}
-        {configgetvar assign="defaultlang" name="language" default="eng"}
-        <input type="hidden" name="language" value="{$defaultlang}" />
+        <input type="hidden" name="language" value="{lang}" />
     {/if}
 
     <fieldset>

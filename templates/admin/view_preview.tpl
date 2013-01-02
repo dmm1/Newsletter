@@ -17,7 +17,7 @@
         <div class="z-formrow">
             <label for="language">{gt text="Language"}:</label>
             {sessiongetvar assign="currLang" name="lang"}
-            {configgetvar assign="defaultLang" name="language"}
+            {lang assign="defaultLang"}
             {html_select_languages id="user_lang" name="language" installed=true selected=$currLang|default:$defaultlang}
         </div>
         {/if}
