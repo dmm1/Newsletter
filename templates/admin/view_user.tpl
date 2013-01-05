@@ -31,15 +31,9 @@
 
 {sessiongetvar assign='currPagesize' name='pagesize' default=25 path='/Newsletter'}
 
-<form class="z-form" style="width: 100%;" method="post" action="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot}" name="langfilter" enctype="application/x-www-form-urlencoded">
-    {gt text="All" assign=lblAll}
-    {gt text="Filter" assign=lblFilter}
-    {gt text="Data" assign=lblData}
+<form class="z-form" style="width: 100%;" method="post" action="{modurl modname='Newsletter' type='admin' func='view' ot=$ot}" name="langfilter" enctype="application/x-www-form-urlencoded">
     {gt text="Edit" assign=lblEdit}
     {gt text="Delete" assign=lblDelete}
-    {gt text="Yes" assign=lblyes}
-    {gt text="No" assign=lblno}
-    {gt text="Not send yet" assign=lblnotsendyet}
     {gt text="Are you sure you wish to change the active status for this user?" assign=qActive}
     {gt text="Are you sure you wish to change the approved status for this user?" assign=qApproved}
 
@@ -58,7 +52,7 @@
     </fieldset>
 
     <fieldset>
-        <legend>{$lblFilter}</legend>
+        <legend>{gt text="Filter"}</legend>
         <ol id="filterlist" class="z-itemlist">
             <li class="z-itemheader z-clearfix">
                 {if ($enable_multilingual)}
@@ -98,7 +92,7 @@
     {/if}
 
     <fieldset>
-        <legend>{$lblData}</legend>
+        <legend>{gt text="Data"}</legend>
         <div class="z-right">
             {php}
                 $psArray = array();
@@ -233,7 +227,7 @@
                     {if $user.last_send_date}
                         {$user.last_send_date|safehtml}
                     {else}
-                        {$lblnotsendyet}
+                        {gt text="Not send yet"}
                     {/if}
                 </span>
                 <span class="z-itemcell z-w10">
