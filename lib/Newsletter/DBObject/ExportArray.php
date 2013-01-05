@@ -12,7 +12,7 @@
  */
 
 if (!is_class('Newsletter_DBObject_User')) {
-    return LogUtil::registerError (__('Unable to load array class [user]'), $dom);
+    return LogUtil::registerError (__f('Unable to load array class [%s]', 'user'), $dom);
 }
 
 class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray

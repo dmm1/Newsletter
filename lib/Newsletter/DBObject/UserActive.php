@@ -12,7 +12,7 @@
  */
 
 if (!class_exists('Newsletter_DBObject_User')) {
-    return LogUtil::registerError (__('Unable to load class [user] ... ', $dom));
+    return LogUtil::registerError (__f('Unable to load class [%s]', 'user', $dom));
 }
 
 class Newsletter_DBObject_UserActive extends Newsletter_DBObject_User 
