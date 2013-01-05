@@ -17,7 +17,7 @@
 function smarty_modifier_url_check($data)
 {
     $domain = System::getBaseUrl();
-	
+    
     $changed = false;
     $tagcount = preg_match_all("/<a(.*)>(.*)<\/a>/si", $data, $tags);
     for ($i=0; $i<$tagcount; $i++) {
@@ -27,12 +27,12 @@ function smarty_modifier_url_check($data)
             '<a href=$1'.$domain.'$2$3>$4</a>',
             strtolower($tags['0'][$i]));
         }
-    }	
+    }    
 
     if ($changed) {
         $data = preg_replace(array("/<a(.*)>(.*)<\/a>/si"), $linkstring, $data);
     }
-	
+    
     $changed = false;
     $tagcount = preg_match_all("/<img(.*)>/si", $data, $imgtags);
     for ($i=0; $i<$tagcount; $i++) {
@@ -40,12 +40,12 @@ function smarty_modifier_url_check($data)
             $changed = true;
             $imgstring[$i] = preg_replace("/\<img src=(.)(.*?)(.)(.*?)>/", '<img src=$1'.$domain.'$2$3$4>', strtolower($imgtags['0'][$i]));
         }
-    }	
+    }    
 
     if ($changed) {
         $data = preg_replace(array("/<img(.*)>/si"), $imgstring, $data);
     }
-	
+    
     return $data;
 }
 
