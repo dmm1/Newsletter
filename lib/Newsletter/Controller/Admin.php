@@ -138,7 +138,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     $rc = LogUtil::registerError($this->__('The email address you entered does not seem to be valid'));
                 }
                 if (!class_exists('Newsletter_DBObject_NewsletterSend')) {
-                    $rc = LogUtil::registerError($this->__('Unable to load class [newsletter_send]'), null, $url);
+                    $rc = LogUtil::registerError($this->__f('Unable to load class [%s]', 'newsletter_send'), null, $url);
                 }
 
                 if ($rc) {
@@ -168,7 +168,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $class = 'Newsletter_DBObject_'. ucfirst($ot);
         if (!class_exists($class)) {
-            return LogUtil::registerError($this->__f('Unable to load class for [%s].', $ot), null, $url);
+            return LogUtil::registerError($this->__f('Unable to load class for [%s]', $ot), null, $url);
         }
 
         $object = new $class();
@@ -206,7 +206,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $class = 'Newsletter_DBObject_'. ucfirst($ot);
         if (!class_exists($class)) {
-            return LogUtil::registerError($this->__f('Unable to load class for [%s].', $ot), null, $url);
+            return LogUtil::registerError($this->__f('Unable to load class for [%s]', $ot), null, $url);
         }
 
         $object = new $class(DBObject::GET_FROM_POST);
@@ -239,7 +239,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $class = 'Newsletter_DBObject_'. ucfirst($ot);
         if (!class_exists($class)) {
-            return LogUtil::registerError($this->__f('Unable to load class for [%s].', $ot), null, $url);
+            return LogUtil::registerError($this->__f('Unable to load class for [%s]', $ot), null, $url);
         }
 
         $object = new $class();
@@ -321,7 +321,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $class = 'Newsletter_DBObject_'. ucfirst($ot);
         if (!class_exists($class)) {
-            return LogUtil::registerError($this->__('Unable to load class [%s].', $ot), null, $url);
+            return LogUtil::registerError($this->__('Unable to load class [%s]', $ot), null, $url);
         }
 
         $object = new $class();
