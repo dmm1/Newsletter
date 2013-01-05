@@ -1,8 +1,8 @@
 
 <form class="z-form" action="{modurl modname='Newsletter' type='user' func='edit' ot='user'}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="authid" value="{insert name="csrftoken" module="Newsletter"}" />
-    <input type="hidden" name="nl_frequency" value="{$nl_frequency}" />
-    <input type="hidden" name="nl_type" value="{$nl_type}" />
+    <input type="hidden" name="user[frequency]" value="{$modvars.Newsletter.default_frequency}" />
+    <input type="hidden" name="user[type]" value="{$nl_type}" />
 
     <div class="z-linear nl-block-signup">
         {if !$coredata.logged_in}
@@ -20,8 +20,16 @@
             <span class="z-formnote">{$coredata.user.email}</span>
         </div>
         {/if}
+        {if $modvars.Newsletter.enable_multilingual}
+          <div class="z-formrow">
+            <label for="user_lang">{gt text='Language'}</label>
+            {html_select_languages id="user_lang" name="user[lang]" installed=true selected=$coredata.language}
+          </div>
+        {else}
+          <input type="hidden" name="user[lang]" value="{lang}" />
+        {/if}
 
-	{if $modvars.Newsletter.require_tos}
+        {if $modvars.Newsletter.require_tos}
         <div class="z-formrow">
             <label for="nl_tos">
             <a href="{modurl modname='Newsletter' type='user' func='main' ot='tos'}" title="{gt text='Terms of Service'}">

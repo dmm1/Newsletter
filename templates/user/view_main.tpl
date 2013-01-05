@@ -34,6 +34,8 @@
                 <label for="user_lang">{gt text='Language'}</label>
                 {html_select_languages id="user_lang" name="user[lang]" installed=true selected=$user.lang}
               </div>
+            {else}
+              <input type="hidden" name="user[lang]" value="{lang}" />
             {/if}
 
             {if !$modvars.Newsletter.limit_type}
@@ -46,8 +48,10 @@
             {if $modvars.Newsletter.allow_frequency_change}
               <div class="z-formrow">
                 <label for="user_frequency">{gt text='Frequency'}</label>
-                <select id="user_frequency" name="user[frequency]">{html_options values=$frequency_values output=$frequency_output selected=1}</select>
+                <select id="user_frequency" name="user[frequency]">{html_options values=$frequency_values output=$frequency_output selected=$modvars.Newsletter.default_frequency}</select>
               </div>
+            {else}
+              <input type="hidden" name="user[frequency]" value="{$modvars.Newsletter.default_frequency}" />
             {/if}
 
             {if $modvars.Newsletter.require_tos|default:0}
