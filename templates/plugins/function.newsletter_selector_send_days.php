@@ -12,8 +12,8 @@ function smarty_function_newsletter_selector_send_days($params, Zikula_View $vie
     }
     
     if (isset($params['assign'])) {
-    	$view->assign($params['assign'], $result);
-    } else {	
+        $view->assign($params['assign'], $result);
+    } else {    
         return $result;
     }
 }

@@ -9,52 +9,52 @@ html,body { margin:0px; padding:0px; }
 
 body#nl-body, div#nl-body
 {
-	font: normal 11px arial;
-	color: #222;
-	background-color:#eeeeee;
+    font: normal 11px arial;
+    color: #222;
+    background-color:#eeeeee;
 }
 
 .border {border: 2px solid grey;}
 
 #nl-wrapper
 {
-	margin:0px auto;
-	font: normal 12px  arial;
-	color: #444;
-	width:600px;
+    margin:0px auto;
+    font: normal 12px  arial;
+    color: #444;
+    width:600px;
 }
 #nl-wrapper a {
-	font-size:12px; 
+    font-size:12px; 
 }
 h1#nl-title {
-	margin:0px; padding:7px 0px 0px;
-	font-size:18px;
-	color:#fff;
-	display:block;
-	text-align:center;
+    margin:0px; padding:7px 0px 0px;
+    font-size:18px;
+    color:#fff;
+    display:block;
+    text-align:center;
 }
 h2#nl-title-2 {
-	margin:0px; 
-	padding:20px 0px 0px;
-	font-size:16px;
-	color:#fff;
-	display:block;
-	text-align:center;
+    margin:0px; 
+    padding:20px 0px 0px;
+    font-size:16px;
+    color:#fff;
+    display:block;
+    text-align:center;
 }
 h4 {
-	margin:0px; 
-	padding:20px 0px 0px;
-	font-size:12px;
-	color:#fff;
-	display:block;
-	text-align:center;
+    margin:0px; 
+    padding:20px 0px 0px;
+    font-size:12px;
+    color:#fff;
+    display:block;
+    text-align:center;
 }
 #nl-wrapper p {
-	padding:0px 5px;
+    padding:0px 5px;
 }
 .nl-content-wrapper
 {
-	padding: 5px 5px;
+    padding: 5px 5px;
 }
 .nl-content-wrapper h1,
 .nl-content-wrapper h2,
@@ -73,247 +73,247 @@ table.nl-new-subscribers,
 
 #nl-content-container
 {
-	width: 70%;
-	margin: 30px auto;
+    width: 70%;
+    margin: 30px auto;
 }
 .nl-content-wrapper a, 
 #nl-wrapper a
 {
-	color: #7f0000;
-	text-decoration: none;
+    color: #7f0000;
+    text-decoration: none;
 }
 
 table.nl-new-members, table.nl-new-subscribers { width: 100%; border-collapse:collapse; }
 table.nl-new-members th, table.nl-new-subscribers th
 {
-	border-bottom: 1px solid #000;
-	color: #000;
+    border-bottom: 1px solid #000;
+    color: #000;
 }
 .nl-new-members, .nl-new-subscribers td { text-align: left; font:normal 12px arial; }
 
 a img {
-	border: none;
+    border: none;
 }
 
 table.bg1 {
-	background-color: #eeeeee;
+    background-color: #eeeeee;
 }
 
 table.bg2 {
-	background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 td.footer {
-	background-color: #eeeeee;
-	padding: 10px 20px 10px 20px;
+    background-color: #eeeeee;
+    padding: 10px 20px 10px 20px;
 }
 
 td.footer p {
-	font-family: Arial;
-	font-size: 11px;
-	font-weight: normal;
-	color: #333333;
-	margin: 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 11px;
+    font-weight: normal;
+    color: #333333;
+    margin: 0;
+    padding: 0;
 }
 
 td.footer p a {
-	font-family: Arial;
-	font-size: 11px;
-	font-weight: normal;
-	color: red;
+    font-family: Arial;
+    font-size: 11px;
+    font-weight: normal;
+    color: red;
 }
 
 td.body {
-	padding: 0 20px 20px 20px;
-	background-color: #ffffff;
+    padding: 0 20px 20px 20px;
+    background-color: #ffffff;
 }
 
 td.buttons {
-	padding: 20px 0 0 0; 
+    padding: 20px 0 0 0; 
 }
 
 td.nl-main-class h2 {
-	font-family: Arial;
-	font-size: 16px;
-	font-weight: bold;
-	color: #812323;
-	margin: 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: bold;
+    color: #812323;
+    margin: 0;
+    padding: 0;
 }
 
 td.nl-main-class h2 a {
-	font-family: Arial;
-	font-size: 16px;
-	font-weight: bold;
-	color: #812323;
-	text-decoration: none;
-	margin: 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: bold;
+    color: #812323;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
 }
 
 td.nl-main-class h3 {
-	font-family: Arial;
-	font-size: 14px;
-	font-weight: bold;
-	color: #813939;
-	margin: 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: #813939;
+    margin: 0;
+    padding: 0;
 }
 
 td.nl-main-class h3 a {
-	font-family: Arial;
-	font-size: 14px;
-	font-weight: bold;
-	color: #813939;
-	text-decoration: none;
-	margin: 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: #813939;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
 }
 
 td.nl-main-class img.hr {
-	margin: 0;
-	padding: 0 0 10px 0;
+    margin: 0;
+    padding: 0 0 10px 0;
 }
 
 td.nl-main-class img.hr-small {
-	margin: 0;
-	padding: 0 0 10px 0;
+    margin: 0;
+    padding: 0 0 10px 0;
 }
 
 td.nl-main-class p {
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	color: #333333;
-	margin: 0 0 14px 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    color: #333333;
+    margin: 0 0 14px 0;
+    padding: 0;
 }
 
 td.nl-main-class p a {
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	color: #680606;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    color: #680606;
 }
 
 td.nl-main-class p.more a {
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	color: #680606;
-	text-decoration: none;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    color: #680606;
+    text-decoration: none;
 }
 
 td.nl-main-class ul {
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	color: #333333;
-	margin: 0 0 14px 24px;
-	padding: 0;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    color: #333333;
+    margin: 0 0 14px 24px;
+    padding: 0;
 }
 
 td.nl-main-class ul li a {
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: normal;
-	color: #680606;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: normal;
+    color: #680606;
 }
 
 td.footer {
-	padding: 0 20px 0 20px;
-	height: 61px;
-	vertical-align: middle;
+    padding: 0 20px 0 20px;
+    height: 61px;
+    vertical-align: middle;
 }
 
 td.footer p {
-	font-family: Arial;
-	font-size: 12px;
-	font-weight: bold;
-	color: #ffffff;
-	line-height: 16px;
-	margin: 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 td.footer a {
-	font-family: Arial;
-	font-size: 12px;
-	font-weight: bold;
-	color: #680606;
-	line-height: 16px;
-	margin: 0;
-	padding: 0;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    color: #680606;
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 table.nl-calendar {
-	width:100%;
-	line-height:1.2em;
-	background-color:#fff;
-	border-collapse:collapse;
-	text-align:left;
-	letter-spacing:.1em;
-	margin-bottom:1em;
+    width:100%;
+    line-height:1.2em;
+    background-color:#fff;
+    border-collapse:collapse;
+    text-align:left;
+    letter-spacing:.1em;
+    margin-bottom:1em;
 }
 
 table.nl-calendar caption {
-	padding-bottom:1em;
-	text-align: center;
-	font-size: 1.4em;
-	font-weight: normal;
-	text-transform: uppercase;
-	letter-spacing:.6em;
-	color: #333;
-	background: transparent;
+    padding-bottom:1em;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing:.6em;
+    color: #333;
+    background: transparent;
 }
 
 table.nl-calendar thead th, table.nl-calendar tfoot th, table.nl-calendar tfoot td {
-	border-right: 1px solid #fff;
-	padding-left:5px;
-	font-variant:small-caps;
-	letter-spacing:0.1em;
-	color: #fff;
-	background: #a0a0a0;
+    border-right: 1px solid #fff;
+    padding-left:5px;
+    font-variant:small-caps;
+    letter-spacing:0.1em;
+    color: #fff;
+    background: #a0a0a0;
 }
 
 table.nl-calendar tfoot th, table.nl-calendar tfoot td {
-	border-top: 2pt double #009;
+    border-top: 2pt double #009;
 }
 
 table.nl-calendar td, table.nl-calendar th {
-	padding:4px;
+    padding:4px;
 }
 
 table.nl-calendar tbody tr th, table.nl-calendar tbody tr td {
-	border-bottom: 1px dotted #467aa7;
+    border-bottom: 1px dotted #467aa7;
 }
 
 table.nl-calendar tbody tr:hover td, table.nl-calendar tbody tr:hover th {
-	border-bottom: 1px solid #467aa7;
+    border-bottom: 1px solid #467aa7;
 }
 
 table.nl-calendar tbody td a, table.nl-calendar tbody th a {
-	background: transparent;
-	text-decoration: none;
-	border:none;
+    background: transparent;
+    text-decoration: none;
+    border:none;
 }
 
 table.nl-calendar tbody td a:hover, table.nl-calendar tbody th a:hover {
-	background: transparent;
+    background: transparent;
 }
 
 table.nl-calendar .odd {
-	background: #e3e3f4;
+    background: #e3e3f4;
 }
 
 table.nl-calendar tbody tr:hover {
-	color: #333;
-	background: #e8eaec;
+    color: #333;
+    background: #e8eaec;
 }
 
 table.nl-calendar tbody tr th:hover {
-	background:#fff;
+    background:#fff;
 }
 </style>
 

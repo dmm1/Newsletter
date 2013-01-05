@@ -21,7 +21,7 @@
         </div>
         {/if}
 
-	{if $modvars.Newsletter.require_tos}
+    {if $modvars.Newsletter.require_tos}
         <div class="z-formrow">
             <label for="nl_tos">
             <a href="{modurl modname='Newsletter' type='user' func='main' ot='tos'}" title="{gt text='Terms of Service'}">
