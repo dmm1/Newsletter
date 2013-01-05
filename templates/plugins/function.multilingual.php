@@ -6,7 +6,7 @@ function smarty_function_multilingual($params, Zikula_View $view)
 
     if (isset($params['assign'])) {
         $view->assign ($params['assign'], $result);
-    } else {	
+    } else {    
         return $result;
     }
 }
