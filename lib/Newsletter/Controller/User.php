@@ -117,7 +117,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         $class = 'Newsletter_DBObject_'. ucfirst($ot);
         if (!class_exists($class)) {
-            return LogUtil::registerError($this->__('Unable to load class [%s].', $ot), null, $url);
+            return LogUtil::registerError($this->__('Unable to load class [%s]', $ot), null, $url);
         }
 
         $object = new $class();
