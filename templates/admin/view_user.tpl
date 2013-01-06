@@ -119,7 +119,7 @@
 
         <ol id="datalist" class="z-itemlist">
             <li class="z-itemheader z-clearfix">
-                <span class="z-itemcell z-w05">
+                <span class="z-itemcell z-w02">
                     &nbsp;<input type="checkbox" onclick="checkAllFields(1);" id="checkAll" />
                 </span>
                 <span class="z-itemcell z-w05">
@@ -130,7 +130,7 @@
                     {php}$this->_tpl_vars['filter']['sort'] = 'name';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Username'}</a>
                 </span>
-                <span class="z-itemcell z-w10">
+                <span class="z-itemcell z-w15">
                     {php}$this->_tpl_vars['filter']['sort'] = 'email';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Email'}</a>
                 </span>
@@ -162,7 +162,7 @@
                     {php}$this->_tpl_vars['filter']['sort'] = 'cr_date DESC';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Join date'}</a>
                 </span>
-                <span class="z-itemcell z-w10">
+                <span class="z-itemcell z-w05">
                     {gt text='Action'}
                 </span>
             </li>
@@ -170,7 +170,7 @@
             {checkpermission assign="adminAuth" component="Newsletter::" instance="::" level="ACCESS_ADMIN"}
             {foreach from=$objectArray item=user}
             <li class="{cycle values='z-odd,z-even'} z-clearfix">
-                <span class="z-itemcell z-w05">
+                <span class="z-itemcell z-w02">
                     &nbsp;<input type="checkbox" name="user_array[]" value="{$user.id|safehtml}" onclick="checkAllFields(2);" />
                 </span>
                 <span class="z-itemcell z-w05">
@@ -233,7 +233,7 @@
                 <span class="z-itemcell z-w10">
                     {$user.cr_date|safehtml}
                 </span>
-                <span class="z-itemcell z-w10">
+                <span class="z-itemcell z-w05">
                   {if $adminAuth}
                     <a href="{modurl modname='Newsletter' type='admin' func='edit' ot=$ot id=$user.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt='$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
                     <a href="{modurl modname='Newsletter' type='admin' func='delete' ot=$ot id=$user.id authid=$authid}" onclick="return confirm('{$lblDelete}');">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>

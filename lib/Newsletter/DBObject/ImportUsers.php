@@ -31,7 +31,7 @@ class Newsletter_DBObject_ImportUsers extends DBObject
 
         $zkUsers = ModUtil::apiFunc('Users', 'user', 'getall');
 
-        if (!is_class('Newsletter_DBObject_User')) {
+        if (!class_exists('Newsletter_DBObject_User')) {
             return LogUtil::registerError(__('Unable to load array class [user]', $dom));
         }
 
@@ -65,7 +65,6 @@ class Newsletter_DBObject_ImportUsers extends DBObject
             }
         }
 
-        LogUtil::registerStatus(__('Import finished %s user was imported.', 'Import finished %s users were imported.', $count, $dom));
-        return true;
+        return LogUtil::registerStatus(_fn('Import finished. %s user was imported.', 'Import finished. %s users were imported.', $count, $count, $dom));
     }
 }
