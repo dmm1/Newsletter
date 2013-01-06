@@ -21,7 +21,7 @@
 {userloggedin assign="loggedin"}
 {insert name='csrftoken' assign="authid"}
 
-<form class="z-form" name="config" action="{modurl modname='Newsletter' type='admin' func='edit'}" method="post">
+<form class="z-form" name="config" action="{modurl modname='Newsletter' type='admin' func='save'}" method="post">
     <input type="hidden" name="authid" value="{$authid}" />
     <input type="hidden" name="ot" value="ImportConfig" />
     <input type="hidden" name="otTarget" value="userimport" />
