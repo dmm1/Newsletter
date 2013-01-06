@@ -11,7 +11,7 @@
  * information regarding copyright.
  */
 
-if (!is_class('Newsletter_DBObject_User')) {
+if (!class_exists('Newsletter_DBObject_User')) {
     return LogUtil::registerError (__f('Unable to load array class [%s]', 'user'), $dom);
 }
 

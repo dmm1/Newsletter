@@ -11,8 +11,8 @@
  * information regarding copyright.
  */
 
-if (!is_class('Newsletter_DBObject_User')) {
-    return LogUtil::registerError (__('Unable to load array class [user]', $dom));
+if (!class_exists('Newsletter_DBObject_User')) {
+    return LogUtil::registerError (__('Unable to load array class [%s]', $dom));
 }
 
 class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
@@ -179,7 +179,7 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
 
     function _importXML ()
     {
-        $fName = "modules/Newsletter/import/$this->_filename";
+        $fName = "modules/Newsletter/import/{$this->_filename}";
         if (!file_exists($fName)) {
             return LogUtil::registerError (__("Import file [$fName] does not exist", $dom));
         }
