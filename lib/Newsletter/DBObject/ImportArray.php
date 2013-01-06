@@ -51,10 +51,10 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
         // validate input file format
         if ($rc) {
             if ($this->_format == 'xml' && strtolower(substr($this->_filename, -4)) != '.xml') {
-                $rc = LogUtil::registerError (__('Invalid filename [$this->_filename]. ImportGeneric with format=XML must export to a XML filename', $dom));
+                $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ImportGeneric with format=XML must export to a XML filename", $dom));
             }
             if ($this->_format == 'csv' && strtolower(substr($this->_filename, -4)) != '.csv') {
-                $rc = LogUtil::registerError (__('Invalid filename [$this->_filename]. ImportGeneric with format=CSV must export to a CSV filename', $dom));
+                $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ImportGeneric with format=CSV must export to a CSV filename", $dom));
             }
         }
 
@@ -69,7 +69,7 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
             } elseif ($this->_format == 'csv') {
                 $data = $this->_importCSV ();
             } else {
-                $rc = LogUtil::registerError (__('Invalid format [$this->_format] received in ImportGeneric', $dom));
+                $rc = LogUtil::registerError (__("Invalid format [$this->_format] received in ImportGeneric", $dom));
             }
 
             $cnt = count ($data);
@@ -142,7 +142,7 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
 
     function _importCSV ()
     {
-        $fName = "modules/Newsletter/import/{$this->_filename}";
+        $fName = "modules/Newsletter/import/$this->_filename";
         if (!file_exists($fName)) {
             return LogUtil::registerError (__("Import file [$fName] does not exist", $dom));
         }
@@ -189,12 +189,12 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
 
         $xmlString = file_get_contents ($fName);
         if (!$xmlString) {
-            return LogUtil::registerError (__('Empty string read from import file [$this->_filename]', $dom));
+            return LogUtil::registerError (__("Empty string read from import file [$this->_filename]", $dom));
         }
 
         $xml = simplexml_load_string ($xmlString);
         if (!$xml) {
-            return LogUtil::registerError (__('XML Parse failed from import file [$this->_filename]', $dom));
+            return LogUtil::registerError (__("XML Parse failed from import file [$this->_filename]", $dom));
         }
 
         $colArray = DBUtil::getColumnsArray('newsletter_users');
