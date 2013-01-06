@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset={charset}" />
-  <title>{gt text="Newsletter"}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset={charset}" />
+    <title>{gt text="Newsletter"}</title>
 </head>
 <style>
 html,body { margin:0px; padding:0px; }
@@ -372,70 +372,6 @@ table.nl-calendar tbody tr th:hover {
                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
                           <br />
-                        {/if} 
-
-                        {if (isset($objectArray.PageEd) && $objectArray.PagEd)}
-                          <h2>{gt text="News"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.PagEd item="item" name="loop"}
-                            <h3><a href="{modurl modname="PagEd" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}"><img src="{$site_url}modules/Newsletter/images/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" />{$item.title|safehtml}</a></h3>
-                            <br />
-                            <p>{$item.hometext|safehtml|url_check}</p>
-                            <p class="more"><a href="{modurl modname="PagEd" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
-                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          <br />
-                        {/if} 
-
-                        {if (isset($objectArray.ZWebstore) && $objectArray.ZWebstore)}
-                          <h2>{gt text="Recently Added Products"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.ZWebstore item="item" name="loop"}
-                            <h3><a href="{modurl modname="zWebstore" type="user" func="detail" id=$item.id newlang=$nllang fqurl=true}" title="{$item.name|safehtml}">{$item.name|safehtml}</a></h3>
-                            {$item.description|safehtml|url_check}
-                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.CrpVideo) && $objectArray.CrpVideo)}
-                          <h2>{gt text="New Videos"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <table class="nl-crpvideo">
-                            <tr>
-                              <th>{gt text="Title"}</th>
-                              <th>{gt text="Description"}</th>
-                            </tr>
-                            {foreach from=$objectArray.CrpVideo item="item" name="loop"}
-                              <tr>
-                                <td><h3><a href="{modurl modname="crpVideo" type="user" func="display" videoid=$item.crpvideos_videoid newlang=$nllang fqurl=true}" title=$item.crpvideos_title>{$item.crpvideos_title|safehtml}</a></h3></td>
-                                <td><div>{$item.crpvideos_content|safehtml}</div></td>
-                              </tr>
-                            {/foreach}
-                          </table>
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.crpCalendar) && $objectArray.crpCalendar)}    
-                          <h2>{gt text="New Events"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <table class="nl-crpcalendar">
-                            <tr>
-                              <th>{gt text="Title"}</th>
-                              <th>{gt text="Begin"}</th>
-                              <th>{gt text="Location"}</th>
-                              <th>{gt text="Description"}</th>
-                            </tr>
-                            {foreach from=$objectArray.crpCalendar item="item" name="loop"}
-                              <tr>
-                                <td><h3><a href="{modurl modname="crpCalendar" type="user" func="display" eventid=$item.crpcalendar_enventid newlang=$nllang fqurl=true}" title=$item.crpcalendar_title>{$item.crpcalendar_title|safehtml}</a></h3></td>
-                                <td><div>{$item.crpcalendar_event_text|safehtml}</div></td>
-                                <td><div>{$item.crpcalendar_location|safehtml}</div></td>
-                                <td><div>{$item.crpcalendar_start_date|safehtml}</div></td>
-                              </tr>
-                            {/foreach}
-                          </table>
-                          <br />
                         {/if}
 
                         {if (isset($objectArray.NewMembers) && $objectArray.NewMembers)}
@@ -453,16 +389,6 @@ table.nl-calendar tbody tr th:hover {
                               </tr>
                             {/foreach}
                           </table>
-                          <br />
-                        {/if}
-
-                       {if (isset($objectArray.Pagesetter) && $objectArray.Pagesetter)}
-                          <h2>{gt text="Recently Added Publications"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.Pagesetter item="item" name="loop"}
-                            <h3><a href="{modurl modname="Pagesetter" type="user" func="viewpub" tid=$item.tid pid=$item.pid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
                           <br />
                         {/if}
 
@@ -486,73 +412,6 @@ table.nl-calendar tbody tr th:hover {
                           {/foreach}
                           <br />
                         {/if}
-
-                        {if (isset($objectArray.Reviews) && $objectArray.Reviews)}
-                          <h2>{gt text="Recently Added Reviews"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.Reviews item="item"}
-                            <h3><a href="{modurl modname="Reviews" type="user" func="display" id=$item.id newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                            <div>{$item.text|safehtml}</div>
-                          {/foreach}
-                          <br />
-                        {/if}
-
-                       {if (isset($objectArray.Mediashare) && $objectArray.Mediashare)}
-                          <h2>{gt text="Latest Media Items"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.Mediashare item="item" name="loop"}
-                            {if isset($item.album.title)}
-                              <h3><a href="{modurl modname="mediashare" type="user" func="view" aid=$item.album.id newlang=$nllang fqurl=true}">{$item.album.title|safehtml}</a>: <a href="{modurl modname="mediashare" type="user" func="browse" aid=$item.album.id mid=$item.media.id newlang=$nllang fqurl=true}">{$item.media.title|safehtml}</a></h3>
-                              {modgetvar assign="get" module="Newsletter" name="mediasharePath"}                         
-                              <img src="{$get}{$item.mainMediaItem.thumbnailRef}" class="thumbnail" />
-                            {else}
-                              {modgetvar assign="get" module="Newsletter" name="mediasharePath"}
-                              <h3><img src="{$get}{$item.mainMediaItem.thumbnailRef}" class="thumbnail" /><a href="{modurl modname="mediashare" type="user" func="view" aid=$item.id newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>{if $item.summary} {$item.summary}{/if}
-                            {/if}
-                          {/foreach}
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.Downloads) && $objectArray.Downloads)}
-                          <h2>{gt text="Latest Downloads"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.Downloads item="item" name="loop"}
-                            <h3><a href="{modurl modname="Downloads" type="user" func="sublevel" cid=$item.cid start=0 newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                            <div>{$item.description}</div>
-                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.Weblinks) && $objectArray.Weblinks)}        
-                          <h2>{gt text="NewsletterTitleWeb Links"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.Webinks item="item" name="loop"}
-                            <h3><a href="{modurl modname="Web_Links" type="user" func="category" cid=$item.cat_id newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                            <div>{$item.description|safehtml}</div>
-                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          <br />
-                        {/if}
-   
-                        {if (isset($objectArray.Faq) && $objectArray.Faq)}        
-                          <h2>{gt text="Recently Added Questions"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.Faq item="item"}
-                            <h3><a href="{modurl modname="FAQ" newlang=$nllang fqurl=true}">{$item.question|safehtml}</a></h3>
-                            <p>{$item.answer|safehtml}</i></p>
-                          {/foreach}
-                          <br />
-                        {/if}
-   
-                        {if (isset($objectArray.Quotes) && $objectArray.Quotes)}        
-                          <h2>{gt text="Recently Added Quotes"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.Quotes item="item"}
-                            <p>{$item.quote|safehtml}: <i>{$item.author|safehtml}</i></p>
-                          {/foreach}
-                          <br />
-                        {/if}
    
                         {if (isset($objectArray.Dizkus) && $objectArray.Dizkus)}        
                           <h2>{gt text="Latest Forum Posts"}</h2>
@@ -560,99 +419,6 @@ table.nl-calendar tbody tr th:hover {
                           {foreach from=$objectArray.Dizkus item="item" name="loop"}
                             <h3><a href="{modurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true}">{$item.topic_title}</a></h3>
                              {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.TimeIt) && $objectArray.TimeIt)}    
-                          <h2>{gt text="Recently Added Events"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <table class="nl-calendar">
-                            <thead>
-                              <tr>
-                                <th>{gt text="Title"}</th>
-                                <th>{gt text="Begin"}</th>
-                                <th>{gt text="Description"}</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {foreach from=$objectArray.TimeIt item="item" name="loop"}
-                                <tr>
-                                  <td><h3><a href="{modurl modname="TimeIt" type="user" func="event" id=$item.id fqurl=true}" title={$item.title|safehtml}>{$item.title|safehtml}</a></h3></td>
-                                  <td><div>{$item.startDate|safehtml}</div></td>
-                                  <td><div>{$item.text|safehtml}</div></td>                        
-                                </tr>
-                              {/foreach}
-                            </tbody>
-                          </table>
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.Addressbook) && $objectArray.Addressbook)}    
-                          <h2>{gt text="Contacts"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <table class="nl-calendar">
-                            <thead>
-                              <tr>
-                                <th>{gt text="Name"}</th>
-                                <th>{gt text="Company"}</th>
-                                <th>{gt text="Time"}</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {foreach from=$objectArray.Addressbook item="item" name="loop"}
-                                <tr>
-                                  <td><h3><a href="{modurl modname="Addressbook" type="user" func="detail" id=$item.id fqurl=true}" title={$item.name|safehtml}>{$item.sortname|safehtml}</a></h3></td>
-                                  <td><div>{$item.company|safehtml}</div></td>
-                                  <td><div>{$item.lu_date|safehtml}</div></td>                        
-                                </tr>
-                              {/foreach}
-                            </tbody>
-                          </table>
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.Locations) && $objectArray.Locations)}    
-                          <h2>{gt text="Locations"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <table class="nl-calendar">
-                            <thead>
-                              <tr>
-                                <th>{gt text="Name"}</th>
-                                <th>{gt text="City"}</th>
-                                <th>{gt text="Time"}</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {foreach from=$objectArray.Locations item="item" name="loop"}
-                                <tr>
-                                  <td><h3><a href="{modurl modname="Locations" type="user" func="display" locationid=$item.locationid fqurl=true}" title={$item.name|safehtml}>{$item.name|safehtml}</a></h3></td>
-                                  <td><div>{$item.city|safehtml}</div></td>
-                                  <td><div>{$item.lu_date|safehtml}</div></td>                        
-                                </tr>
-                              {/foreach}
-                            </tbody>
-                          </table>
-                          <br />
-                        {/if}
-
-                        {if (isset($objectArray.Pagemaster) && $objectArray.Pagemaster)}
-                          <h2>{gt text="Recently Added Publications"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {* TXT BASED LIST *}
-                          {*
-                          {foreach from=$objectArray.Pagemaster.txt key='tid' item="publist" name="loop"}
-                            {foreach from=$publist item="item"}
-                            <h3><a href="{modurl modname="Pagemaster" type="user" func="viewpub" tid=$tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h3>
-                            {/foreach}
-                          {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          *}
-
-                          {* HTML OUTPUT LIST *}
-                          {foreach from=$objectArray.Pagemaster.htm key='tid' item="output" name="loop"}
-                            {$output}
-                          {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
                           <br />
                         {/if}
