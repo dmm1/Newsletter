@@ -23,9 +23,7 @@ function smarty_modifier_url_check($data)
     for ($i=0; $i<$tagcount; $i++) {
         if (!preg_match('/^(http:\/\/)?([^\/]+)/i',$tags['0'][$i])) {
             $changed = true;
-            $linkstring[$i] = preg_replace("/\<a href=(.)(.*?)(.)>(.*?)<\/a>/", 
-            '<a href=$1'.$domain.'$2$3>$4</a>',
-            strtolower($tags['0'][$i]));
+            $linkstring[$i] = preg_replace("/\<a href=(.)(.*?)(.)>(.*?)<\/a>/", '<a href=$1'.$domain.'$2$3>$4</a>', $tags['0'][$i]);
         }
     }    
 
@@ -38,7 +36,7 @@ function smarty_modifier_url_check($data)
     for ($i=0; $i<$tagcount; $i++) {
         if (!preg_match('/^(http:\/\/)?([^\/]+)/i',$tags['0'][$i])) {
             $changed = true;
-            $imgstring[$i] = preg_replace("/\<img src=(.)(.*?)(.)(.*?)>/", '<img src=$1'.$domain.'$2$3$4>', strtolower($imgtags['0'][$i]));
+            $imgstring[$i] = preg_replace("/\<img src=(.)(.*?)(.)(.*?)>/", '<img src=$1'.$domain.'$2$3$4>', $imgtags['0'][$i]);
         }
     }    
 
