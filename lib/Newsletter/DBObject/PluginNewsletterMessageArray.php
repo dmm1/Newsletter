@@ -20,7 +20,7 @@ class Newsletter_DBObject_PluginNewsletterMessageArray extends Newsletter_DBObje
 
     function getPluginData($lang=null)
     {
-        $defaultLang = System::getVar ('language');
+        $defaultLang = System::getVar('language_i18n', 'en');
         $lang = FormUtil::getPassedValue ('language', $defaultLang, 'POST');
         $vName = 'message';
 

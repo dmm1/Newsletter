@@ -28,7 +28,19 @@ class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBase
         $tables = DBUtil::getTables();
         $column = $tables['news_column'];
         $where  = "$column[published_status] = 0";
-        $sort   = "$column[cr_date] DESC";
+        $storyorder = ModUtil::getVar('News', 'storyorder');
+        switch ($storyorder)
+        {
+            case 0:
+                $sort = "$column[sid] DESC";
+                break;
+            case 2:
+                $sort = "$column[weight] ASC";
+                break;
+            case 1:
+            default:
+                $sort = "$column[from] DESC";
+        }
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_News_nItems', 1);
 
         return DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
