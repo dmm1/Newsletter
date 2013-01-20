@@ -1,4 +1,3 @@
-
 <form class="z-form" action="{modurl modname='Newsletter' type='user' func='edit' ot='user'}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="authid" value="{insert name="csrftoken" module="Newsletter"}" />
     <input type="hidden" name="user[frequency]" value="{$modvars.Newsletter.default_frequency}" />
@@ -8,11 +7,11 @@
         {if !$coredata.logged_in}
         <div class="z-formrow">
             <label for="user_name">{gt text='Your Name'}:</label>
-            <input id="user_name" name="user[name]" type="text" size="10" maxlength="64" alt="{gt text='Your Name'}" />
+            <input id="user_name" name="user[name]" type="text" size="10" maxlength="64" />
         </div>
         <div class="z-formrow">
             <label for="user_email">{gt text='Your E-Mail Address'}:</label>
-            <input id="user_email" name="user[email]" type="text" size="10" maxlength="128" alt="{gt text='Your E-Mail Address'}" />
+            <input id="user_email" name="user[email]" type="text" size="10" maxlength="128" />
         </div>
         {else}
         <div class="z-formrow">
