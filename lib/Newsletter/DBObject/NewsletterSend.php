@@ -274,13 +274,13 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return true;
     }
 
-    function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=0) 
+    function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=false) 
     {
         switch ($user['type']) {
-            case 1:  $tpl = 'output/text.tpl'; $html = 0; break;
-            case 2:  $tpl = 'output/html.tpl'; $html = 1; break;
-            case 3:  $tpl = 'output/text_with_link.tpl'; $html = 0; break;
-            default: $tpl = 'output/html.tpl'; $html = 1; break;
+            case 1:  $tpl = 'output/text.tpl'; $html = false; break;
+            case 2:  $tpl = 'output/html.tpl'; $html = true; break;
+            case 3:  $tpl = 'output/text_with_link.tpl'; $html = false; break;
+            default: $tpl = 'output/html.tpl'; $html = true; break;
         }
 
         $personalize = ModUtil::getVar('Newsletter','personalize_email', false);
@@ -303,6 +303,20 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $message = $this->_getNewsletterMessage($user, $cacheID, false, $html); // defaults to html
         $from    = ModUtil::getVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
         $subject = ModUtil::getVar('Newsletter', 'newsletter_subject') ;
+        // ModUtil::apiFunc('Mailer', 'user', 'sendmessage') requires boolean html parameter!
+        if ($html) {
+            $html = true;
+        } else {
+            $html = false;
+        }
+        if (!$html) {
+            // convert new lines, if exist in message
+            $message = str_replace('<br />',"\n",$message);
+            // strip tags to prevent spam, exept <a> tag
+            $message = strip_tags($message, '<a>');
+            // remove unwanted parts from <a> tag
+            $message = preg_replace("#\<a.+href\=[\"|\'](.+)[\"|\'].*\>.*\<\/a\>#U","$1", $message);
+        }
         $sent    = ModUtil::apiFunc('Mailer', 'user', 'sendmessage',
                                     array('toaddress'  => $user['email'],
                                           'fromaddress'=> $from,

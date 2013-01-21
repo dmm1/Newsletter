@@ -76,7 +76,7 @@ class Newsletter_DBObject_User extends DBObject
                                                                         'fromaddress'=> $send_from_address,
                                                                         'subject'    => __('Newsletter Subscription Cancelled', $dom),
                                                                         'body'       => $message,
-                                                                        'html'       => 1));
+                                                                        'html'       => true));
             }
         }
 
@@ -234,7 +234,7 @@ class Newsletter_DBObject_User extends DBObject
                                                                 'fromaddress'=> $send_from_address,
                                                                 'subject'    => __('Newsletter Subscription Received', $dom),
                                                                 'body'       => $user_message,
-                                                                'html'       => 1));
+                                                                'html'       => true));
 
             if (ModUtil::getVar('Newsletter', 'notify_admin', 0)) {
                 $admin_message = $view->fetch ('email/admin_notify.tpl');
@@ -242,7 +242,7 @@ class Newsletter_DBObject_User extends DBObject
                                                                     'fromaddress'=> $send_from_address,
                                                                     'subject'    => __('Newsletter Subscription', $dom),
                                                                     'body'       => $admin_message,
-                                                                    'html'       => 1));
+                                                                    'html'       => true));
             }
         }
 
