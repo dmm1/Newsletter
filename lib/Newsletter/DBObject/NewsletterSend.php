@@ -159,7 +159,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             $newArchiveTime = $archive['date'];                        
             $matched = true;
         } else {
-            $newArchiveTime = $today;
+            $newArchiveTime = DateUtil::getDatetime();
             $matched = false;
         }
 
@@ -229,7 +229,6 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         }
 
         ModUtil::setVar('Newsletter', 'start_execution_time', (float)array_sum(explode(' ', microtime())));
-        $today          = date('w', time());
         $sendPerRequest = ModUtil::getVar('Newsletter', 'send_per_request', 5);
         
         // check archives for new archive time
@@ -240,7 +239,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             $newArchiveTime = $archive['date'];                        
             $matched = true;
         } else {
-            $newArchiveTime = $today;
+            $newArchiveTime = DateUtil::getDatetime();
             $matched = false;
         }
 
