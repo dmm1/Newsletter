@@ -165,7 +165,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
         $nSent = 0;
         foreach ($users as $user) {
-            if ($this->_sendNewsletter($user, $newArchive, $newArchiveTime)) {
+            if ($this->_sendNewsletter($user)) {
                 $nSent++;
             }
         }
@@ -248,7 +248,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $allowFrequencyChange = ModUtil::getVar('Newsletter', 'allow_frequency_change', 0);
         foreach ($users as $user) {
             if (!$allowFrequencyChange || (isset($user['send_now']) && $user['send_now'])) {        
-                if ($this->_sendNewsletter($user, $newArchiveTime)) {
+                if ($this->_sendNewsletter($user)) {
                     if (++$nSent == $sendPerRequest) {
                         break;
                     }
