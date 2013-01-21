@@ -135,20 +135,20 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $data = $this->_objData;
-        if (!$data) {
-            return LogUtil::registerError(__('No users were selected to send the newsletter to', $dom));
+        if ($data) {
+            if (!class_exists('Newsletter_DBObject_Archive')) {
+                return LogUtil::registerError(__f('Unable to load class [%s]', 'archive', $dom));
+            }
+
+            $objectArray = new Newsletter_DBObject_UserArray();
+            $userIDs     = implode(',', $data);
+            $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
+            $users       = $objectArray->get($where, 'id');
+            if (!$users) {
+                //return LogUtil::registerError(__('No users were available to send the newsletter to', $dom));
+            }
         }
-        if (!class_exists('Newsletter_DBObject_Archive')) {
-            return LogUtil::registerError(__f('Unable to load class [%s]', 'archive', $dom));
-        }
-        $objectArray = new Newsletter_DBObject_UserArray();
-        $userIDs     = implode(',', $data);
-        $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
-        $users       = $objectArray->get($where, 'id');
-        if (!$users) {
-            return LogUtil::registerError(__('No users were available to send the newsletter to', $dom));
-        }
-        $thisDay = date('w', time());
+
         $sendPerRequest = ModUtil::getVar('Newsletter', 'send_per_request', 5);
 
         // check archives for new archive time
@@ -163,14 +163,25 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             $matched = false;
         }
 
-        $nSent = 0;
-        foreach ($users as $user) {
-            if ($this->_sendNewsletter($user)) {
-                $nSent++;
+        if ($users) {
+            $nSent = 0;
+            foreach ($users as $user) {
+                if ($this->_sendNewsletter($user)) {
+                    $nSent++;
+                }
+            }
+
+            LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
+        }
+
+        if ($matched) {
+            LogUtil::registerStatus(__('Newsletter is not saved to archive, as last saved is within 1 week ('.$newArchiveTime.').', $dom));
+        } else {
+            if ($this->_archiveNewsletter($newArchive, $newArchiveTime)) {
+                LogUtil::registerStatus(__('The new newsletter is added to archive.', $dom));
             }
         }
 
-        LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
         return true;
     }
 
@@ -357,5 +368,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $archiveObj = new Newsletter_DBObject_Archive();
         $archiveObj->setData ($archiveData);
         $archiveObj->save ($archiveData);
+
+        return true;
     }
 }
