@@ -80,11 +80,6 @@
     <input type="hidden" name="authid" value="{$authid}" />
     <input type="hidden" name="ot" value="NewsletterSend" />
     <input type="hidden" name="otTarget" value="user" />
-    {if $create_archive}
-    <input type="hidden" name="sendType" value="manual" />
-    {else}
-    <input type="hidden" name="sendType" value="manual_archive" />
-    {/if}
     {if $enable_multilingual}
         <input type="hidden" name="language" value="{$filter.lang}" />
     {else}
@@ -248,10 +243,18 @@
         <legend>{gt text='Action'}</legend>
         <div class="z-formrow">
             <label for="updateSendDate">{gt text='Update last sent date?'}</label>
-            <div>
-                <input type="checkbox" id="updateSendDate" name="updateSendDate" value="1" />
-                <input class="z-button" type="submit" value="{gt text='Send to [%s] users' tag1=0}" name="sendChecked" id="sendChecked" />
-            </div>
+            <input type="checkbox" id="updateSendDate" name="updateSendDate" value="1" />
+        </div>
+        <div class="z-formrow">
+            <label for="sendType">{gt text='Save newsletter in archive?'}</label>
+            <select id="sendType" name="sendType">
+                <option value="manual_archive"{if $create_archive} selected="selected"{/if}>{gt text='Save'}</option>
+                <option value="manual"{if !$create_archive} selected="selected"{/if}>{gt text="Don't save"}</option>
+            </select>
+            <p id="advice-sendType" class="z-formnote custom-advice">{gt text='This happens once per week only (for now).'}</p>
+        </div>
+        <div class="z-formbuttons z-buttons">
+            <input class="z-button" type="submit" value="{gt text='Send to [%s] users' tag1=0}" name="sendChecked" id="sendChecked" />
         </div>
     </fieldset>
 </form>
