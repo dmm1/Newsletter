@@ -12,15 +12,6 @@
 ===========================
 {$objectArray.NewsletterMessage|html_entity_decode}
 {/if}
- 
-{if (isset($objectArray.AdminMessages) && $objectArray.AdminMessages)}
-{gt text="Special Announcements"}
-===========================
-{foreach from=$objectArray.AdminMessages item="item"}
-{$item.title|html_entity_decode}
-{$item.content|html_entity_decode}
-{/foreach}
-{/if} 
 
 {if (isset($objectArray.News) && $objectArray.News)}
 {gt text="News"}

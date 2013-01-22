@@ -351,17 +351,6 @@ table.nl-calendar tbody tr th:hover {
                           <p>{$objectArray.NewsletterMessage|safehtml}</p>
                           <br />
                         {/if}
- 
-                        {if (isset($objectArray.AdminMessages) && $objectArray.AdminMessages)}
-                          <h2>{gt text="Special Announcements"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.AdminMessages item="item" name="loop"}
-                            <b>{$item.title|safehtml}</b>
-                            <p>{$item.content|safehtml}</p>
-                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          <br />
-                        {/if} 
 
                         {if (isset($objectArray.News) && $objectArray.News)}
                           <h2>{gt text="News"}</h2>
