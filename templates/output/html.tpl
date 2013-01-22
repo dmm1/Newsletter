@@ -404,6 +404,18 @@ table.nl-calendar tbody tr th:hover {
                           <br />
                         {/if}
    
+                        {if (isset($objectArray.EZComments) && $objectArray.EZComments)}        
+                          <h2>{gt text="Latest Comments"}</h2>
+                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          {foreach from=$objectArray.EZComments item="item" name="loop"}
+                            <h3><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h3>
+                            <p>{$item.comment|safehtml|url_check|truncate:400}</p>
+                            <p class="more"><a href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                          {/foreach}
+                          <br />
+                        {/if}
+   
                         {if (isset($objectArray.Dizkus) && $objectArray.Dizkus)}        
                           <h2>{gt text="Latest Forum Posts"}</h2>
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
