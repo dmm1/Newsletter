@@ -2,8 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset={charset}" />
+    <base href="{getbaseurl}" />
     <title>{gt text="Newsletter"}</title>
 </head>
+{if !$site_url}{getbaseurl assign='site_url'}{/if}
 <style>
 html,body { margin:0px; padding:0px; }
 
