@@ -2,8 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset={charset}" />
+    <base href="{getbaseurl}" />
     <title>{gt text="Newsletter"}</title>
 </head>
+{if !$site_url}{getbaseurl assign='site_url'}{/if}
 <style>
 html,body { margin:0px; padding:0px; }
 
@@ -349,17 +351,6 @@ table.nl-calendar tbody tr th:hover {
                           <p>{$objectArray.NewsletterMessage|safehtml}</p>
                           <br />
                         {/if}
- 
-                        {if (isset($objectArray.AdminMessages) && $objectArray.AdminMessages)}
-                          <h2>{gt text="Special Announcements"}</h2>
-                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          {foreach from=$objectArray.AdminMessages item="item" name="loop"}
-                            <b>{$item.title|safehtml}</b>
-                            <p>{$item.content|safehtml}</p>
-                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
-                          {/foreach}
-                          <br />
-                        {/if} 
 
                         {if (isset($objectArray.News) && $objectArray.News)}
                           <h2>{gt text="News"}</h2>
@@ -409,6 +400,18 @@ table.nl-calendar tbody tr th:hover {
                             <h3><a href="{modurl modname="Pages" type="user" func="display" pid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
                             <div>{$item.content|safehtml}</div>
                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                          {/foreach}
+                          <br />
+                        {/if}
+   
+                        {if (isset($objectArray.EZComments) && $objectArray.EZComments)}        
+                          <h2>{gt text="Latest Comments"}</h2>
+                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          {foreach from=$objectArray.EZComments item="item" name="loop"}
+                            <h3><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h3>
+                            <p>{$item.comment|safehtml|url_check|truncate:400}</p>
+                            <p class="more"><a href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
                           <br />
                         {/if}
