@@ -29,6 +29,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         $this->setVar('Newsletter', 'default_type', '1'); //text/html/web
         $this->setVar('Newsletter', 'enable_multilingual', '0');
         $this->setVar('Newsletter', 'import_active_status', '1');
+        $this->setVar('Newsletter', 'import_activelastdays', '0');
         $this->setVar('Newsletter', 'import_approval_status', '1');
         $this->setVar('Newsletter', 'import_frequency', '0');
         $this->setVar('Newsletter', 'import_type', '2');

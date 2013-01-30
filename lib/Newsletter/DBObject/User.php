@@ -124,7 +124,7 @@ class Newsletter_DBObject_User extends DBObject
 
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         if (!$enableML && !$data['lang']) {
-            $data['lang'] = System::getVar('language');
+            $data['lang'] = System::getVar('language_i18n', 'en');
         }
 
         $limitType = ModUtil::getVar('Newsletter', 'limit_type', 0);

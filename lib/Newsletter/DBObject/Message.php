@@ -29,7 +29,7 @@ class Newsletter_DBObject_Message extends DBObject
         $data = $this->_objData;
         ModUtil::setVar('Newsletter', 'message', $data['text']);
 
-        $defaultLang = System::getVar('language');
+        $defaultLang = System::getVar('language_i18n', 'en');
         $alternateLanguages = ZLanguage::getInstalledLanguageNames();
         unset($alternateLanguages[$defaultLang]);
         foreach ($alternateLanguages as $lang => $v) {
