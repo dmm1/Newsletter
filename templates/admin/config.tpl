@@ -29,7 +29,7 @@
         <legend>{gt text='Configuration'}</legend>
         <div class="z-formrow">
             <label for="itemsperpage">{gt text='Items per page'}:</label>
-            <input id="itemsperpage" name="preferences[itemsperpage]" type="text" value="{$preferences.itemsperpage|default:25}" size="3" maxlength="3" />
+            <input id="itemsperpage" name="preferences[itemsperpage]" type="text" value="{$preferences.itemsperpage|default:25}" size="5" maxlength="5" />
         </div>
         <div class="z-formrow">
             <label for="send_from_address">{gt text='Send newsletters from'}:</label>
