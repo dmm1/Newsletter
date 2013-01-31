@@ -19,7 +19,7 @@ class Newsletter_Version extends Zikula_AbstractVersion
         $meta['displayname']    = $this->__('Newsletter');
         $meta['description']    = $this->__('Provides a configurable and automated Newsletter for your Zikula site.');
         $meta['url']            = $this->__('newsletter');
-        $meta['version']        = '2.2.0';
+        $meta['version']        = '2.2.1';
         $meta['core_min']       = '1.3.0';
         $meta['core_max']       = '1.3.99';
         $meta['securityschema'] = array('Newsletter::' => '::');

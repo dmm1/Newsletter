@@ -78,8 +78,8 @@ class Newsletter_Controller_User extends Zikula_AbstractController
         $obj  = new Newsletter_DBObject_Archive();
         $data = $obj->get($id);
 
-        // just echo text and exit; no need to use template
-        print $data['text'];
+        // just echo content and exit; no need to use template
+        print $data['html'];
         exit;
     }
 

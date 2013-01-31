@@ -11,9 +11,5 @@
 </p>
 
 <br />
-<div class="z-warningmsg nl-round">
-    <strong>{gt text='Attention'}:</strong><br />
-    <a href="{modurl modname='Mailer' type='admin' func='main'}">{gt text="Zikula Version 1.3 and up: To ensure html-mails are sent correctly, you have to look that in the Core-Mailer Module (Settings->Mailer) the butten -send mails in html-format- is checked!"}</a>
-</div>
 
 {adminfooter}
