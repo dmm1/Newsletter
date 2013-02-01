@@ -49,7 +49,51 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         switch ($oldversion)
         {
             case '2.1.0':
-                // do something
+            case '2.2.0':
+                $connection = Doctrine_Manager::getInstance()->getConnection('default');
+                // drop table prefix
+                $prefix = $this->serviceManager['prefix'];
+                if ($prefix) {
+                    $sqlStatements = array();
+                    $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_newsletter_users TO `newsletter_users`';
+                    $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_newsletter_archives TO `newsletter_archives`';
+                    foreach ($sqlStatements as $sql) {
+                        $stmt = $connection->prepare($sql);
+                        try {
+                            $stmt->execute();
+                        } catch (Exception $e) {
+                        }   
+                    }
+                }
+                // update table structure according to table defenition
+                if (!DBUtil::changeTable('newsletter_users') || !DBUtil::changeTable('newsletter_archives')) {
+                    return "2.2.0";
+                }
+                // handle new columns and missing data
+                $sqlStatements = array();
+                $sqlStatements[] = 'UPDATE `newsletter_archives` SET `nla_lang`="'.ZLanguage::getLanguageCode().'" WHERE `nla_lang`=""';
+                $sqlStatements[] = 'UPDATE `newsletter_archives` SET `nla_html`=`nla_text` WHERE `nla_html`=""';
+                foreach ($sqlStatements as $sql) {
+                    $stmt = $connection->prepare($sql);
+                    try {
+                        $stmt->execute();
+                    } catch (Exception $e) {
+                    }   
+                }
+                // strip tags for text archives
+                $archives = DBUtil::selectObjectArray('newsletter_archives');
+                foreach (array_keys($archives) as $k) {
+                    $pos = strpos($archives[$k]['html'], '<body');
+                    if ($pos > 0) {
+                        $archives[$k]['text'] = substr($archives[$k]['html'], $pos);
+                        //$archives[$k]['text'] = str_replace('<br />', "\n", $archives[$k]['text']);
+                        $archives[$k]['text'] = strip_tags($archives[$k]['text']);
+                    }
+                }
+                DBUtil::updateObjectArray($archives, 'newsletter_archives', 'id');
+
+            case '2.2.1':
+                // future upgrade routines
                 break;
         }
 

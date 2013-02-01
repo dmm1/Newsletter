@@ -12,7 +12,7 @@
  */
 
 if (!class_exists('Newsletter_DBObject_User')) {
-    return LogUtil::registerError(__f('Unable to load class [%s]', 'user', $dom));
+    return LogUtil::registerError(__f('Unable to load class [%s]', 'user'));
 }
 
 class Newsletter_DBObject_UserOptions extends Newsletter_DBObject_User 
@@ -26,7 +26,7 @@ class Newsletter_DBObject_UserOptions extends Newsletter_DBObject_User
     function save()
     {
         parent::save();
-        LogUtil::registerStatus(__('Your subscription newsletter options have been updated', $dom));
+        LogUtil::registerStatus(__('Your subscription newsletter options have been updated'));
         return true;
     }
 }

@@ -117,6 +117,10 @@
                 <span class="z-itemcell z-w02">
                     &nbsp;<input type="checkbox" onclick="checkAllFields(1);" id="checkAll" />
                 </span>
+                <span class="z-itemcell z-w02">
+                    {php}$this->_tpl_vars['filter']['sort'] = 'id';{/php}
+                    <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='ID'}</a>
+                </span>
                 <span class="z-itemcell z-w05">
                     {php}$this->_tpl_vars['filter']['sort'] = 'uid';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='UID'}</a>
@@ -167,6 +171,9 @@
             <li class="{cycle values='z-odd,z-even'} z-clearfix">
                 <span class="z-itemcell z-w02">
                     &nbsp;<input type="checkbox" name="user_array[]" value="{$user.id|safehtml}" onclick="checkAllFields(2);" />
+                </span>
+                <span class="z-itemcell z-w02">
+                    {$user.id}
                 </span>
                 <span class="z-itemcell z-w05">
                     {if $user.uid gt 1}

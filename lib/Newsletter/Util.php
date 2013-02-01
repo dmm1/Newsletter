@@ -74,43 +74,37 @@ class Newsletter_Util
 
     public static function getSelectorDataActive($all=true)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $selector = array();
         if ($all) {
-          $selector[-1] = __('All', $dom);
+          $selector[-1] = __('All');
         }
-        $selector[0] = __('Inactive', $dom);
-        $selector[1] = __('Active', $dom);
+        $selector[0] = __('Inactive');
+        $selector[1] = __('Active');
 
         return $selector;
     }
 
     public static function getSelectorDataApproved($all=true)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $selector = array();
         if ($all) {
-          $selector[-1] = __('All', $dom);
+          $selector[-1] = __('All');
         }
-        $selector[0] = __('Not Approved', $dom);
-        $selector[1] = __('Approved', $dom);
+        $selector[0] = __('Not Approved');
+        $selector[1] = __('Approved');
 
         return $selector;
     }
 
     public static function getSelectorDataArchiveExpire()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $selector = array(
-            0  => __('Never', $dom),
-            1  => __('1 Month', $dom),
-            2  => __('2 Months', $dom),
-            3  => __('3 Months', $dom),
-            6  => __('6 Months', $dom),
-            12 => __('1 Year', $dom)
+            0  => __('Never'),
+            1  => __('1 Month'),
+            2  => __('2 Months'),
+            3  => __('3 Months'),
+            6  => __('6 Months'),
+            12 => __('1 Year')
         );
 
         return $selector;
@@ -119,11 +113,9 @@ class Newsletter_Util
 
     public static function getSelectorDataLanguage($all=false)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $languages = ZLanguage::getInstalledLanguageNames();
         if ($all) {
-            $languages = array_merge(array('' => __('All', $dom)), $languages);
+            $languages = array_merge(array('' => __('All')), $languages);
         }
 
         return $languages;
@@ -132,50 +124,44 @@ class Newsletter_Util
 
     public static function getSelectorDataNewsletterFrequency($all=false)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $array = array();
         if ($all) {
-          $array[-1] = __('All', $dom);
+          $array[-1] = __('All');
         }
-        $array[0]  = __('Weekly', $dom);
-        $array[1]  = __('Monthly', $dom);
-        $array[2]  = __('Every 2 Months', $dom);
-        $array[3]  = __('Every 3 Months', $dom);
-        $array[6]  = __('Every 6 Months', $dom);
-        $array[9]  = __('Every 9 Months', $dom);
-        $array[12] = __('Yearly', $dom);
+        $array[0]  = __('Weekly');
+        $array[1]  = __('Monthly');
+        $array[2]  = __('Every 2 Months');
+        $array[3]  = __('Every 3 Months');
+        $array[6]  = __('Every 6 Months');
+        $array[9]  = __('Every 9 Months');
+        $array[12] = __('Yearly');
 
         return $array;
     }
 
     public static function getSelectorDataNewsletterType($all=false)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $array = array();
         if ($all) {
-          $array[0] = __('All', $dom);
+          $array[0] = __('All');
         }
-        $array[1] = __('Text', $dom);
-        $array[2] = __('HTML', $dom);
-        $array[3] = __('Text with Link to Archive', $dom);
+        $array[1] = __('Text');
+        $array[2] = __('HTML');
+        $array[3] = __('Text with Link to Archive');
 
         return $array;
     }
 
     public static function getSelectorDataSendDay()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $selector = array(
-            '1' => __('Monday', $dom),
-            '2' => __('Tuesday', $dom),
-            '3' => __('Wednesday', $dom),
-            '4' => __('Thursday', $dom),
-            '5' => __('Firday', $dom),
-            '6' => __('Saturday', $dom),
-            '0' => __('Sunday', $dom)
+            '1' => __('Monday'),
+            '2' => __('Tuesday'),
+            '3' => __('Wednesday'),
+            '4' => __('Thursday'),
+            '5' => __('Firday'),
+            '6' => __('Saturday'),
+            '0' => __('Sunday')
         );
 
         return $selector;
@@ -183,22 +169,20 @@ class Newsletter_Util
 
     public static function scandir($directory, $ignoreFiles=null, $matchString=null)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $files = array();
 
         if (!$directory) {
-            LogUtil::registerError(__f("Empty [%s] received.", 'directory', $dom));
+            LogUtil::registerError(__f("Empty [%s] received.", 'directory'));
             return $files;
         }
 
         if (!file_exists($directory)) {
-            LogUtil::registerError (__f("Directory [%s] does not seem to exist.", $directory, $dom));
+            LogUtil::registerError (__f("Directory [%s] does not seem to exist.", $directory));
             return $files;
         }
 
         if (is_file($directory)) {
-            LogUtil::registerError (__f("Directory [%s] seems to be a file nor a directory.", $directory, $dom));
+            LogUtil::registerError (__f("Directory [%s] seems to be a file nor a directory.", $directory));
             return $files;
         }
 

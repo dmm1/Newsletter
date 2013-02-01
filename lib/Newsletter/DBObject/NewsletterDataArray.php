@@ -20,10 +20,8 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
 
     function getNewsletterData($lang=null)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError(__('Unable to load array class for [plugin_base]', $dom), null, $url);
+            return LogUtil::registerError(__('Unable to load array class for [plugin_base]'), null, $url);
         }
 
         $data     = array();
@@ -40,13 +38,13 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
         }
 
         if ($enableML && !$language) {
-            return LogUtil::registerError(__('Please use the language selector in the Filter section to select the language you with to send your newsletter for', $dom));
+            return LogUtil::registerError(__('Please use the language selector in the Filter section to select the language you with to send your newsletter for'));
         }
         */
 
         $data['nItems']   = 0;
         $data['nPlugins'] = count($plugins);
-        $data['title']    = System::getVar('sitename') . ' ' . (__('Newsletter', $dom));
+        $data['title']    = System::getVar('sitename') . ' ' . (__('Newsletter'));
         foreach ($plugins as $plugin) {
             $class = 'Newsletter_DBObject_Plugin' . $plugin . 'Array';
             if (class_exists($class)) {

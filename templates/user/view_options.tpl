@@ -25,7 +25,7 @@
         </div>
         {/if}
 
-        {if $modvars.Newsletter.limit_type}
+        {if !$modvars.Newsletter.limit_type}
         {nocache}
         <div class="z-formrow">
             <label for="user_type">{gt text='Type'}</label>

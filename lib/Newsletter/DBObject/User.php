@@ -33,8 +33,6 @@ class Newsletter_DBObject_User extends DBObject
 
     function delete()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $requestURI = $_SERVER['REQUEST_URI'];
 
         if (strpos($requestURI, 'admin') !== false) {
@@ -53,7 +51,7 @@ class Newsletter_DBObject_User extends DBObject
             $userObj = new Newsletter_DBObject_User();
             $data    = $userObj->getUser($key, null, null);
             if (!$data) {
-                LogUtil::registerError(__('No such item found.', $dom));
+                LogUtil::registerError(__('No such item found.'));
                 return false;
             }
 
@@ -64,7 +62,7 @@ class Newsletter_DBObject_User extends DBObject
 
             $ret = DBUtil::deleteWhere($this->_objType, $where);
             if ($ret) {
-                LogUtil::registerStatus(__('Your have unsubscribed from our newsletter', $dom));
+                LogUtil::registerStatus(__('Your have unsubscribed from our newsletter'));
 
                 $view = Zikula_View::getInstance('Newsletter', false);
                 $view->assign('user_name',  $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
@@ -74,7 +72,7 @@ class Newsletter_DBObject_User extends DBObject
                 $send_from_address = ModUtil::getVar('Newsletter', 'send_from_address');
                 ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
                                                                         'fromaddress'=> $send_from_address,
-                                                                        'subject'    => __('Newsletter Subscription Cancelled', $dom),
+                                                                        'subject'    => __('Newsletter Subscription Cancelled'),
                                                                         'body'       => $message,
                                                                         'html'       => true));
             }
@@ -166,8 +164,6 @@ class Newsletter_DBObject_User extends DBObject
 
     function insertPreProcess($data=null)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         if (!$data) {
             $data = $this->_objData;
         }
@@ -183,7 +179,7 @@ class Newsletter_DBObject_User extends DBObject
                 $data['name']  = UserUtil::getVar ('uname', $data['uid']);
                 $data['email'] = UserUtil::getVar ('email', $data['uid']);
             } else {
-                LogUtil::registerError(__('Logic Error: logged-in user does not have his subscription UID set!', $dom));
+                LogUtil::registerError(__('Logic Error: logged-in user does not have his subscription UID set!'));
             }
         }
 
@@ -193,8 +189,6 @@ class Newsletter_DBObject_User extends DBObject
 
     function insert()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $requestURI = $_SERVER['REQUEST_URI'];
 
         if (strpos($requestURI, 'admin') !== false) {
@@ -203,7 +197,7 @@ class Newsletter_DBObject_User extends DBObject
             $userObj  = new Newsletter_DBObject_User ();
             $userData = $userObj->getWhere($where);
             if ($userData) {
-                LogUtil::registerError(__('This email address is already subscribed to our newsletter!', $dom));
+                LogUtil::registerError(__('This email address is already subscribed to our newsletter!'));
                 return false;
             }
             return (bool) DBUtil::insertObject($data, $this->_objType);
@@ -215,14 +209,14 @@ class Newsletter_DBObject_User extends DBObject
             $userObj  = new Newsletter_DBObject_User();
             $userData = $userObj->getUser($key, null, null);
             if ($userData) {
-                LogUtil::registerError(__('You are already subscribed to our newsletter!', $dom));
+                LogUtil::registerError(__('You are already subscribed to our newsletter!'));
                 return false;
             }
         }
 
         $data = parent::insert();
         if ($data) {
-            LogUtil::registerStatus(__('Your have been subscribed to our newsletter', $dom));
+            LogUtil::registerStatus(__('Your have been subscribed to our newsletter'));
 
             $view = Zikula_View::getInstance('Newsletter', false);
             $view->assign ('user_name', $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
@@ -232,7 +226,7 @@ class Newsletter_DBObject_User extends DBObject
             $send_from_address = ModUtil::getVar ('Newsletter', 'send_from_address');
             ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $data['uid'] ? UserUtil::getVar('email', $data['uid']) : $data['email'],
                                                                 'fromaddress'=> $send_from_address,
-                                                                'subject'    => __('Newsletter Subscription Received', $dom),
+                                                                'subject'    => __('Newsletter Subscription Received'),
                                                                 'body'       => $user_message,
                                                                 'html'       => true));
 
@@ -240,7 +234,7 @@ class Newsletter_DBObject_User extends DBObject
                 $admin_message = $view->fetch ('email/admin_notify.tpl');
                 ModUtil::apiFunc('Mailer', 'user', 'sendmessage', array('toaddress'  => $send_from_address,
                                                                     'fromaddress'=> $send_from_address,
-                                                                    'subject'    => __('Newsletter Subscription', $dom),
+                                                                    'subject'    => __('Newsletter Subscription'),
                                                                     'body'       => $admin_message,
                                                                     'html'       => true));
             }
@@ -283,8 +277,6 @@ class Newsletter_DBObject_User extends DBObject
 
     function update()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $requestURI = $_SERVER['REQUEST_URI'];
 
         if (strpos($requestURI, 'admin') !== false) {
@@ -292,7 +284,7 @@ class Newsletter_DBObject_User extends DBObject
             $userObj  = new Newsletter_DBObject_User();
             $userData = $userObj->get($data['id']);
             if (!$userData) {
-                LogUtil::registerError(__('No such item found.', $dom));
+                LogUtil::registerError(__('No such item found.'));
                 return false;
             }
         } else {
@@ -304,7 +296,7 @@ class Newsletter_DBObject_User extends DBObject
             $userObj  = new Newsletter_DBObject_User();
             $userData = $userObj->getUser($key, null, null);
             if (!$userData) {
-                LogUtil::registerError(__('No such item found.', $dom));
+                LogUtil::registerError(__('No such item found.'));
                 return false;
             }
         }

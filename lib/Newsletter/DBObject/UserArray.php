@@ -21,7 +21,7 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
         $this->_objSort          = 'cr_date DESC';
 
         if (!class_exists('Newsletter_DBObject_User')) {
-            LogUtil::registerError(__('Unable to load class [user] ... disabling auto-join for array class', $dom));
+            LogUtil::registerError(__('Unable to load class [user] ... disabling auto-join for array class'));
         } else {
             $obj = new Newsletter_DBObject_User();
             $this->_objJoin = $obj->_objJoin;
@@ -120,7 +120,7 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
         }
 
         if (!class_exists('Newsletter_DBObject_User')) {
-            LogUtil::registerError(__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
+            LogUtil::registerError(__('Unable to load class [user] ... disabling input post-processing for array class'));
         } else {
             $obj = new Newsletter_DBObject_User();
             foreach ($data as $k => $v) {
