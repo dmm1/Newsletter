@@ -51,7 +51,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
             case '2.1.0':
             case '2.2.0':
                 $connection = Doctrine_Manager::getInstance()->getConnection('default');
-				// drop table prefix
+                // drop table prefix
                 $sqlStatements = array();
                 $prefix = $this->serviceManager['prefix'];
                 $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_newsletter_users TO `newsletter_users`';
@@ -63,11 +63,11 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                     } catch (Exception $e) {
                     }   
                 }
-				// update table structure according to tabe defenition
-				if (!DBUtil::changeTable('newsletter_users') || !DBUtil::changeTable('newsletter_archives')) {
-					return "2.2.0";
-				}
-				// handle new columns and missing data
+                // update table structure according to table defenition
+                if (!DBUtil::changeTable('newsletter_users') || !DBUtil::changeTable('newsletter_archives')) {
+                    return "2.2.0";
+                }
+                // handle new columns and missing data
                 $sqlStatements = array();
                 $sqlStatements[] = 'UPDATE `newsletter_archives` SET `nla_lang`="'.ZLanguage::getLanguageCode().'" WHERE `nla_lang`=""';
                 $sqlStatements[] = 'UPDATE `newsletter_archives` SET `nla_html`=`nla_text`';
