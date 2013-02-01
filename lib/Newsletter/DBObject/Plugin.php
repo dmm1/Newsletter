@@ -22,7 +22,7 @@ class Newsletter_DBObject_Plugin extends DBObject
     function save()
     {
         if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError(__('Unable to load array class for [plugin_base]', $dom), null, $url);
+            return LogUtil::registerError(__('Unable to load array class for [plugin_base]'), null, $url);
         }
 
         $pluginClasses = Newsletter_Util::getPluginClasses();

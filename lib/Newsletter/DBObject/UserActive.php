@@ -12,7 +12,7 @@
  */
 
 if (!class_exists('Newsletter_DBObject_User')) {
-    return LogUtil::registerError (__f('Unable to load class [%s]', 'user', $dom));
+    return LogUtil::registerError (__f('Unable to load class [%s]', 'user'));
 }
 
 class Newsletter_DBObject_UserActive extends Newsletter_DBObject_User 
@@ -24,8 +24,6 @@ class Newsletter_DBObject_UserActive extends Newsletter_DBObject_User
 
     function save()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $id = FormUtil::getPassedValue ('id', null, 'GET');
 
         $data = $this->get ($id);
@@ -33,6 +31,6 @@ class Newsletter_DBObject_UserActive extends Newsletter_DBObject_User
 
         $this->_objData = $data;
         $this->update ();
-        return LogUtil::registerStatus (__("The user's approved status has been changed", $dom));
+        return LogUtil::registerStatus (__("The user's approved status has been changed"));
     }
 }

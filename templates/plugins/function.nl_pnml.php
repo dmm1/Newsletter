@@ -40,8 +40,6 @@
  */
 function smarty_function_nl_pnml($params, Zikula_View $view)
 {
-    $dom = ZLanguage::getModuleDomain('Newsletter');
-
     $assign          = isset($params['assign'])          ? $params['assign']          : null;
     $html            = isset($params['html'])            ? (bool)$params['html']            : false;
     $name            = isset($params['name'])            ? $params['name']            : null;
