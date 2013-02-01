@@ -15,13 +15,15 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
 {
     function Newsletter_DBObject_UserArray($init=null, $where='')
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $this->_objType          = 'newsletter_users';
         $this->_objColumnPrefix  = 'nlu';
         $this->_objPath          = 'user';
         $this->_objSort          = 'cr_date DESC';
 
         if (!class_exists('Newsletter_DBObject_User')) {
-            LogUtil::registerError(__('Unable to load class [user] ... disabling auto-join for array class'));
+            LogUtil::registerError(__('Unable to load class [user] ... disabling auto-join for array class', $dom));
         } else {
             $obj = new Newsletter_DBObject_User();
             $this->_objJoin = $obj->_objJoin;
@@ -115,12 +117,14 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
 
     function selectPostProcess($data=null) 
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!$data) {
             $data = $this->_objData;
         }
 
         if (!class_exists('Newsletter_DBObject_User')) {
-            LogUtil::registerError(__('Unable to load class [user] ... disabling input post-processing for array class'));
+            LogUtil::registerError(__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
         } else {
             $obj = new Newsletter_DBObject_User();
             foreach ($data as $k => $v) {
