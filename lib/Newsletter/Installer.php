@@ -52,16 +52,18 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
             case '2.2.0':
                 $connection = Doctrine_Manager::getInstance()->getConnection('default');
                 // drop table prefix
-                $sqlStatements = array();
                 $prefix = $this->serviceManager['prefix'];
-                $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_newsletter_users TO `newsletter_users`';
-                $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_newsletter_archives TO `newsletter_archives`';
-                foreach ($sqlStatements as $sql) {
-                    $stmt = $connection->prepare($sql);
-                    try {
-                        $stmt->execute();
-                    } catch (Exception $e) {
-                    }   
+                if ($prefix) {
+                    $sqlStatements = array();
+                    $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_newsletter_users TO `newsletter_users`';
+                    $sqlStatements[] = 'RENAME TABLE ' . $prefix . '_newsletter_archives TO `newsletter_archives`';
+                    foreach ($sqlStatements as $sql) {
+                        $stmt = $connection->prepare($sql);
+                        try {
+                            $stmt->execute();
+                        } catch (Exception $e) {
+                        }   
+                    }
                 }
                 // update table structure according to table defenition
                 if (!DBUtil::changeTable('newsletter_users') || !DBUtil::changeTable('newsletter_archives')) {
@@ -70,7 +72,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 // handle new columns and missing data
                 $sqlStatements = array();
                 $sqlStatements[] = 'UPDATE `newsletter_archives` SET `nla_lang`="'.ZLanguage::getLanguageCode().'" WHERE `nla_lang`=""';
-                $sqlStatements[] = 'UPDATE `newsletter_archives` SET `nla_html`=`nla_text`';
+                $sqlStatements[] = 'UPDATE `newsletter_archives` SET `nla_html`=`nla_text` WHERE `nla_html`=""';
                 foreach ($sqlStatements as $sql) {
                     $stmt = $connection->prepare($sql);
                     try {
