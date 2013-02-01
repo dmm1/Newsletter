@@ -158,13 +158,13 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             $matched = false;
         }
         $newArchiveId = 0;
-        //if ($matched) {
-            //LogUtil::registerStatus(__('Newsletter is not saved to archive, as last saved is within 1 week ('.$newArchiveTime.').'));
-        //} else {
+        if ($matched) {
+            LogUtil::registerStatus(__('Newsletter is not saved to archive, as last saved is within 1 week ('.$newArchiveTime.').'));
+        } else {
             if ($this->_archiveNewsletter($newArchive, $newArchiveTime, $newArchiveId)) {
                 LogUtil::registerStatus(__('The new newsletter is added to archive.'));
             }
-        //}
+        }
 
         if ($users) {
             $nSent = 0;
