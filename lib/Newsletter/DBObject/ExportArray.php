@@ -11,8 +11,10 @@
  * information regarding copyright.
  */
 
+ $dom = ZLanguage::getModuleDomain('Newsletter');
+
 if (!class_exists('Newsletter_DBObject_User')) {
-    return LogUtil::registerError (__f('Unable to load array class [%s]', 'user'));
+    return LogUtil::registerError (__f('Unable to load array class [%s]', 'user',  $dom));
 }
 
 class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
@@ -40,23 +42,25 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
 
     function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $rc = true;
 
         // check auth key
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0), 'GETPOST');
         $masterKey = (string)ModUtil::getVar ('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            $rc = LogUtil::registerError (__('Invalid admin_key received'));
+            $rc = LogUtil::registerError (__('Invalid admin_key received', $dom));
         }
 
         // validate output file format
         if ($rc) {
             if ($this->_outputToFile) {
                 if ($this->_format == 'xml' && strtolower(substr($this->_filename, -4)) != '.xml') {
-                    $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ExportGeneric with format=XML must export to a XML filename"));
+                    $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ExportGeneric with format=XML must export to a XML filename", $dom));
                 }
                 if ($this->_format == 'csv' && strtolower(substr($this->_filename, -4)) != '.csv') {
-                    $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ExportGeneric with format=CSV must export to a CSV filename"));
+                    $rc = LogUtil::registerError (__("Invalid filename [$this->_filename]. ExportGeneric with format=CSV must export to a CSV filename", $dom));
                 }
             }
         }
@@ -65,7 +69,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
         if ($rc) {
             $colArray = DBUtil::getColumnsArray('newsletter_users');
             if (!$colArray) {
-                $rc = LogUtil::registerError(__("Unable to load column array for [newsletter_users]"));
+                $rc = LogUtil::registerError(__("Unable to load column array for [newsletter_users]", $dom));
             }
         }
 
@@ -78,11 +82,11 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
             } elseif ($this->_format == 'csv') {
                 $txt = $this->_exportCSV ($cnt);
             } else {
-                $rc = LogUtil::registerError (__("Invalid format [$this->_format] received in ExportGeneric"));
+                $rc = LogUtil::registerError (__("Invalid format [$this->_format] received in ExportGeneric", $dom));
             }
 
             $bytes = strlen($txt);
-            LogUtil::registerStatus (__("Exported $cnt records ($bytes bytes) for ot [newsletter_users]"));
+            LogUtil::registerStatus (__("Exported $cnt records ($bytes bytes) for ot [newsletter_users]", $dom));
             $filename = 'modules/Newsletter/export/NewsletterUsers.' . $this->_format;
 
 
@@ -96,17 +100,17 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
                     header("Content-disposition: attachment; filename=data.csv");
                     print $txt;
                 } else {
-                    exit (__("Invalid format [$format] recevied in saveResult ... exiting"));
+                    exit (__("Invalid format [$format] recevied in saveResult ... exiting", $dom));
                 }
                 exit();
             } else {
                 $fp = fopen ($filename, 'w');
                 if (!$fp) {
-                    LogUtil::registerError (__("Error opening file [$filename] for writing"));
+                    LogUtil::registerError (__("Error opening file [$filename] for writing", $dom));
                 } else {
                     $rc = fwrite ($fp, $txt);
                     if (!$rc) {
-                        LogUtil::registerError (__("Error writing to file [$filename]"));
+                        LogUtil::registerError (__("Error writing to file [$filename]", $dom));
                     }
                 fclose ($fp);
                 }
@@ -162,13 +166,15 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
 
     function selectPostProcess ($data=null) 
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!$data) {
         $data = $this->_objData;
         }
 
         $class = 'Newsletter_DBObject_User';
         if (!class_exists($class)) {
-            LogUtil::registerError (__('Unable to load class [user] ... disabling input post-processing for array class'));
+            LogUtil::registerError (__('Unable to load class [user] ... disabling input post-processing for array class', $dom));
         } else {
             $obj = new Newsletter_DBObject_User ();
             foreach ($data as $k=>$v) {

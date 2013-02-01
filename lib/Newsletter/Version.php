@@ -22,7 +22,16 @@ class Newsletter_Version extends Zikula_AbstractVersion
         $meta['version']        = '2.2.1';
         $meta['core_min']       = '1.3.0';
         $meta['core_max']       = '1.3.99';
+        $meta['capabilities']   = array(HookUtil::SUBSCRIBER_CAPABLE => array('enabled' => true));
         $meta['securityschema'] = array('Newsletter::' => '::');
         return $meta;
+    }
+
+    protected function setupHookBundles()
+    {
+        // Register hooks
+        $bundle = new Zikula_HookManager_SubscriberBundle($this->name, 'subscriber.newsletter.ui_hooks.items', 'ui_hooks', $this->__('Newsletter Hooks'));
+        $bundle->addEvent('form_edit', 'newsletter.ui_hooks.items.form_edit');
+        $this->registerHookSubscriberBundle($bundle);
     }
 }

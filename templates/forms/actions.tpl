@@ -10,6 +10,8 @@
 {formutil_getpassedvalue assign='type_' name='type' default='user'}
 {formutil_getpassedvalue assign='func_' name='func' default='main'}
 
+{notifydisplayhooks eventname='newsletter.ui_hooks.items.form_edit'}
+
 <div class="z-buttons z-formbuttons">
     {button src='button_ok.png' set='icons/small' id='submit' name='submit' value='submit' __alt='Update' __title='Update' __text='Update'}
     {if ($type_=='user')}

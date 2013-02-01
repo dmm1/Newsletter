@@ -21,11 +21,13 @@ class Newsletter_DBObject_ImportUsers extends DBObject
 
     function save()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $otTest  = (int)FormUtil::getPassedValue ('otTest', FormUtil::getPassedValue('otTest', 0, 'GET'), 'GET');
         $adminKey  = (string)FormUtil::getPassedValue ('admin_key', FormUtil::getPassedValue('authKey', 0, 'GET'), 'GET');
         $masterKey = (string)ModUtil::getVar('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            return LogUtil::registerError(__('Invalid admin_key received'));
+            return LogUtil::registerError(__('Invalid admin_key received', $dom));
         }
 
         $importType           = ModUtil::getVar('Newsletter', 'import_type', 1);
@@ -45,7 +47,7 @@ class Newsletter_DBObject_ImportUsers extends DBObject
         $zkUsers = DBUtil::selectObjectArray('users', $where, $orderBy);
 
         if (!class_exists('Newsletter_DBObject_User')) {
-            return LogUtil::registerError(__('Unable to load array class [user]'));
+            return LogUtil::registerError(__('Unable to load array class [user]', $dom));
         }
 
         $objArray = new Newsletter_DBObject_UserArray ();
@@ -80,12 +82,12 @@ class Newsletter_DBObject_ImportUsers extends DBObject
         }
 
         if ($otTest) {
-            LogUtil::registerStatus(__f('Users to import: ' . $count));
+            LogUtil::registerStatus(__('Users to import: ', $dom) . $count);
         } else {
-            LogUtil::registerStatus(_fn('Import finished. %s user was imported.', 'Import finished. %s users were imported.', $count, $count));
+            LogUtil::registerStatus(_fn('Import finished. %s user was imported.', 'Import finished. %s users were imported.', $count, $count, $dom));
         }
         if ($countskiped > 0) {
-            LogUtil::registerStatus(__f('Users skipped (dublicate email): ' . $countskiped));
+            LogUtil::registerStatus(__('Users skipped (dublicate email): ', $dom) . $countskiped);
         }
         return;
     }
