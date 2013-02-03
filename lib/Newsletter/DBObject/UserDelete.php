@@ -11,8 +11,10 @@
  * information regarding copyright.
  */
 
+$dom = ZLanguage::getModuleDomain('Newsletter');
+
 if (!class_exists('Newsletter_DBObject_User')) {
-    return LogUtil::registerError(__f('Unable to load class [%s]', 'user'));
+    return LogUtil::registerError(__f('Unable to load class [%s]', 'user', $dom));
 }
 
 class Newsletter_DBObject_UserDelete extends Newsletter_DBObject_User 

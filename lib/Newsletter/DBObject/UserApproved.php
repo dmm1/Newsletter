@@ -11,8 +11,10 @@
  * information regarding copyright.
  */
 
+$dom = ZLanguage::getModuleDomain('Newsletter');
+
 if (!class_exists('Newsletter_DBObject_User')) {
-    return LogUtil::registerError(__f('Unable to load class [%s]', 'user'));
+    return LogUtil::registerError(__f('Unable to load class [%s]', 'user', $dom));
 }
 
 class Newsletter_DBObject_UserApproved extends Newsletter_DBObject_User 
@@ -24,6 +26,8 @@ class Newsletter_DBObject_UserApproved extends Newsletter_DBObject_User
 
     function save()
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $id = FormUtil::getPassedValue('id', null, 'GET');
 
         $data = $this->get($id);
@@ -31,6 +35,6 @@ class Newsletter_DBObject_UserApproved extends Newsletter_DBObject_User
 
         $this->_objData = $data;
         $this->update();
-        return LogUtil::registerStatus(__("The user's active status has been changed"));
+        return LogUtil::registerStatus(__("The user's active status has been changed", $dom));
     }
 }

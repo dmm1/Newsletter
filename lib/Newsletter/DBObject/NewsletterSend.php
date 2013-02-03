@@ -41,21 +41,22 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
     // doesn't save user info but allows us to use the standard API through Newsletter_userform_edit()
     function insert($args=array())
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         if (!ModUtil::available('Mailer')) {
-            return LogUtil::registerError(__('The Mailer module is not available.'));
+            return LogUtil::registerError(__('The Mailer module is not available.', $dom));
         }
 
         if (!class_exists('Newsletter_DBObject_User')) {
-            return LogUtil::registerError(__f('Unable to load class [%s]', 'user'));
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'user', $dom));
         }
 
         if (!class_exists('Newsletter_DBObject_UserArray')) {
-            return LogUtil::registerError(__('Unable to load array class [user]'));
+            return LogUtil::registerError(__('Unable to load array class [user]', $dom));
         }
 
         if (!class_exists('Newsletter_DBObject_NewsletterDataArray')) {
-            return LogUtil::registerError(__('Unable to load array class [newsletter_data]'));
+            return LogUtil::registerError(__('Unable to load array class [newsletter_data]', $dom));
         }
 
         $enable_multilingual       = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
@@ -68,7 +69,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $testsend                 = FormUtil::getPassedValue('testsend', 0, 'GETPOST');                           // from admin->preview
 
         if (!$this->_objNewsletterData) {
-            return LogUtil::registerError(__('No newsletter data to send'));
+            return LogUtil::registerError(__('No newsletter data to send', $dom));
         }
 
         if ($testsend) {
@@ -103,9 +104,11 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
     function _sendManual($args=array())
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $data = $this->_objData;
         if (!$data) {
-            return LogUtil::registerError(__('No users were selected to send the newsletter to'));
+            return LogUtil::registerError(__('No users were selected to send the newsletter to', $dom));
         }
 
         $objectArray = new Newsletter_DBObject_UserArray();
@@ -113,7 +116,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
         $users       = $objectArray->get($where, 'id');
         if (!$users) {
-            return LogUtil::registerError(__('No users were available to send the newsletter to'));
+            return LogUtil::registerError(__('No users were available to send the newsletter to', $dom));
         }
 
         $nSent   = 0;
@@ -123,16 +126,18 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             }
         }
 
-        LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.'));
+        LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
         return true;
     }
 
     function _sendManual_archive($args=array()) // send Newsletter & make an archive
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $data = $this->_objData;
         if ($data) {
             if (!class_exists('Newsletter_DBObject_Archive')) {
-                return LogUtil::registerError(__f('Unable to load class [%s]', 'archive'));
+                return LogUtil::registerError(__f('Unable to load class [%s]', 'archive', $dom));
             }
 
             $objectArray = new Newsletter_DBObject_UserArray();
@@ -140,7 +145,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
             $users       = $objectArray->get($where, 'id');
             if (!$users) {
-                //return LogUtil::registerError(__('No users were available to send the newsletter to'));
+                //return LogUtil::registerError(__('No users were available to send the newsletter to', $dom));
             }
         }
 
@@ -159,10 +164,10 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         }
         $newArchiveId = 0;
         if ($matched) {
-            LogUtil::registerStatus(__('Newsletter is not saved to archive, as last saved is within 1 week ('.$newArchiveTime.').'));
+            LogUtil::registerStatus(__('Newsletter is not saved to archive, as last saved is within 1 week ('.$newArchiveTime.').', $dom));
         } else {
             if ($this->_archiveNewsletter($newArchive, $newArchiveTime, $newArchiveId)) {
-                LogUtil::registerStatus(__('The new newsletter is added to archive.'));
+                LogUtil::registerStatus(__('The new newsletter is added to archive.', $dom));
             }
         }
 
@@ -177,7 +182,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                 }
             }
 
-            LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.'));
+            LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
         }
 
         return true;
@@ -185,22 +190,24 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
     function _sendAPI($args=array()) // API
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!class_exists('Newsletter_DBObject_Archive')) {
-            return LogUtil::registerError(__f('Unable to load class [%s]', 'archive'));
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'archive', $dom));
         }
 
         // check auth key
         $adminKey  = (string)FormUtil::getPassedValue('admin_key', FormUtil::getPassedValue('authKey', 0));
         $masterKey = (string)ModUtil::getVar('Newsletter', 'admin_key', -1);
         if ($adminKey != $masterKey) {
-            return (__('Invalid admin_key received'));
+            return (__('Invalid admin_key received', $dom));
         }
 
         // get elegible users
         $objectArray = new Newsletter_DBObject_UserArray();
         $users = $objectArray->getSendable($this->_objLang, 'id');
         if (!$users) {
-            return (__('No users were available to send the newsletter to'));
+            return (__('No users were available to send the newsletter to', $dom));
         }
 
         $thisDay   = date('w', time());
@@ -214,7 +221,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         if (!$scheduled){
             $sendDay = ModUtil::getVar('Newsletter', 'send_day', 0);
             if ($sendDay != $thisDay) {
-                return __('Wrong day');
+                return __('Wrong day', $dom);
             }
         }
         
@@ -265,7 +272,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                 }
             }
         }
-        LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.'));
+        LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
         
         if ($maxPerHour) {
             ModUtil::setVar('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));
@@ -353,8 +360,10 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
     // in $newArchiveId return new archive Id
     function _archiveNewsletter($newArchive, $newArchiveTime, &$newArchiveId = 0)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!class_exists('Newsletter_DBObject_Archive')) {
-            return LogUtil::registerError(__f('Unable to load class [%s]', 'archive'));
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'archive', $dom));
         }
 
         $message_text = $this->_getNewsletterMessage(array('type' => 1), null, false);

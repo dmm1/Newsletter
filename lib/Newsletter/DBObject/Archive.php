@@ -24,12 +24,14 @@ class Newsletter_DBObject_Archive extends DBObject
 
     function delete ($data=null)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!$data) {
             $data = $this->_objData;
         }
 
         DBUtil::truncateTable ($this->_objType);
-        LogUtil::setStatusMessage (__('Archives flushed.'));
+        LogUtil::setStatusMessage (__('Archives flushed.', $dom));
 
         $this->_objData = $data;
         return $this->_objData;

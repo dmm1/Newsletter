@@ -41,6 +41,9 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         $this->setVar('Newsletter', 'send_per_request', '5');
         $this->setVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
 
+        // Register for hooks subscribing
+        HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
+
         return true;
     }
 
@@ -92,6 +95,9 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 }
                 DBUtil::updateObjectArray($archives, 'newsletter_archives', 'id');
 
+                // Register for hook subscribing
+                HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
+
             case '2.2.1':
                 // future upgrade routines
                 break;
@@ -107,6 +113,9 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         }
 
         $this->delVars('Newsletter');
+
+        // unregister handlers
+        HookUtil::unregisterSubscriberBundles($this->version->getHookSubscriberBundles());
 
         return true;
     }
