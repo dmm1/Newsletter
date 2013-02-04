@@ -84,7 +84,11 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         if ($this->_objSendType == 'manual_archive') {
             return $this->_sendManual_archive($args);
         }
-     
+
+        if ($this->_objSendType == 'manual_archive_nocheck') {
+            return $this->_sendManual_archive($args, false);
+        }
+
         $this->_objSendType = 'api';
 
         return $this->_sendAPI($args);
@@ -130,7 +134,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return true;
     }
 
-    function _sendManual_archive($args=array()) // send Newsletter & make an archive
+    function _sendManual_archive($args=array(), $checkRecent = true) // send Newsletter & make an archive
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -153,14 +157,14 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
         // check archives for new archive time
         $matched = false;
-        $archiveObj = new Newsletter_DBObject_Archive();
-        $archive    = $archiveObj->getRecent();
-        if ($archive) {
-            $newArchiveTime = $archive['date'];                        
-            $matched = true;
-        } else {
-            $newArchiveTime = DateUtil::getDatetime();
-            $matched = false;
+        $newArchiveTime = DateUtil::getDatetime();
+        if ($checkRecent) {
+            $archiveObj = new Newsletter_DBObject_Archive();
+            $archive    = $archiveObj->getRecent();
+            if ($archive) {
+                $newArchiveTime = $archive['date'];                        
+                $matched = true;
+            }
         }
         $newArchiveId = 0;
         if ($matched) {
