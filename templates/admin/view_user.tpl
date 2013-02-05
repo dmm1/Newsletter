@@ -246,6 +246,8 @@
         </ol>
     </fieldset>
 
+    {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='startnum' shift=1}
+
     <fieldset>
         <legend>{gt text='Action'}</legend>
         <div class="z-formrow">
@@ -265,8 +267,6 @@
         </div>
     </fieldset>
 </form>
-
-{pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='startnum' shift=1}
 
 <script type="text/javascript">
 Event.observe(window, 'load', function() {
