@@ -9,7 +9,7 @@
 <form class="z-form" method="post" name="show_template" action="{modurl modname='Newsletter' type='admin' func='view' ot='ShowPreview'}" target="_blank" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
-    <fieldset class="z-linear">
+    <fieldset>
         <legend>{gt text='Preview Templates'}</legend>
 
         {modgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual" default=0}
@@ -32,15 +32,14 @@
         </div>
 
         <div class="z-formrow">
-            <label for="format">{gt text='Format'}:</label>
+            <label for="format">{gt text='Format'}: <a href="#" onclick="Effect.toggle('hint-1','BLIND'); return false;" title="{gt text='Help'}">(?)</a></label>
             <div>
-                <select name="format" onchange="this.form.submit();" >
-                    <option>{gt text='- Choose One -'}</option>
-                    <option value="1">{gt text='Text'}</option>
-                    <option value="2">{gt text='HTML'}</option>
-                    <option value="3">{gt text='Text with Link to Archive'}</option>
+                {modgetvar module='Newsletter' name='default_type'  assign='default_type' default='1'}
+                <select id="format" name="format" size="3" >
+                    <option value="1"{if $default_type eq '1'} selected="selected"{/if}>{gt text='Text'}</option>
+                    <option value="2"{if $default_type eq '2'} selected="selected"{/if}>{gt text='HTML'}</option>
+                    <option value="3"{if $default_type eq '3'} selected="selected"{/if}>{gt text='Text with Link to Archive'}</option>
                 </select>
-                <a href="#" onclick="Effect.toggle('hint-1','BLIND'); return false;" title="{gt text='Help'}">(?)</a>
                 <div id="hint-1" class="z-informationmsg nl-hint" style="display:none;">
                     {gt text='You can find the templates in %s' tag1='/modules/Newsletter/templates/output'}
                     <ul>
@@ -50,6 +49,10 @@
                    </ul>
                 </div>
             </div>
+        </div>
+
+        <div class="z-formbuttons z-buttons">
+            <input id="submit" class="z-button" type="submit" name="submit" value="{gt text='Preview'}" />
         </div>
     </fieldset>
 </form>
