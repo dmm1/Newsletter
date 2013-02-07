@@ -257,10 +257,10 @@
         <div class="z-formrow">
             <label for="sendType">{gt text='Save newsletter in archive?'}</label>
             <select id="sendType" name="sendType">
-                <option value="manual_archive"{if $create_archive} selected="selected"{/if}>{gt text='Save'}</option>
                 <option value="manual"{if !$create_archive} selected="selected"{/if}>{gt text="Don't save"}</option>
+                <option value="manual_archive"{if $create_archive} selected="selected"{/if}>{gt text='Save, but if not saved in one week'}</option>
+                <option value="manual_archive_nocheck">{gt text='Save without check'}</option>
             </select>
-            <p id="advice-sendType" class="z-formnote custom-advice">{gt text='This happens once per week only (for now).'}</p>
         </div>
         <div class="z-formbuttons z-buttons">
             <input class="z-button" type="submit" value="{gt text='Send to [%s] users' tag1=0}" name="sendChecked" id="sendChecked" />
