@@ -67,7 +67,11 @@ class Newsletter_DBObject_ImportUsers extends DBObject
             } else {
                 $newUser = array();
                 $newUser['uid']       = $user['uid'];
-                $newUser['name']      = $user['name'];
+                if ($user['realname']) {
+                    $newUser['name'] = $user['realname'];
+                } else {
+                    $newUser['name'] = $user['uname'];
+                }
                 $newUser['email']     = $user['email'];
                 $newUser['lang']      = System::getVar('language_i18n', 'en');
                 $newUser['type']      = $importType;

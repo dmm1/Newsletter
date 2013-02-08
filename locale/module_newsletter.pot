@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-01 09:00-0500\n"
+"POT-Creation-Date: 2013-02-07 22:23-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,8 @@ msgstr ""
 #: lib/Newsletter/Api/Account.php:36
 #: lib/Newsletter/DBObject/NewsletterDataArray.php:49
 #: lib/Newsletter/Version.php:19 templates/output/html.tpl:6
-#: templates/user/generic_header.tpl:5
+#: templates/user/generic_header.tpl:5 templates/user/hook_subscribe.tpl:5
+#: templates/user/hook_subscribe.tpl:13
 msgid "Newsletter"
 msgstr ""
 
@@ -44,7 +45,7 @@ msgstr ""
 msgid "Intro Message"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:26
+#: lib/Newsletter/Api/Admin.php:26 templates/admin/view_preview.tpl:55
 msgid "Preview"
 msgstr ""
 
@@ -87,13 +88,13 @@ msgid "The email address you entered does not seem to be valid"
 msgstr ""
 
 #: lib/Newsletter/Controller/Admin.php:141
-#: lib/Newsletter/Controller/Admin.php:324
+#: lib/Newsletter/Controller/Admin.php:326
 #: lib/Newsletter/Controller/User.php:75
 #: lib/Newsletter/Controller/User.php:120
 #: lib/Newsletter/DBObject/NewsletterSend.php:51
-#: lib/Newsletter/DBObject/NewsletterSend.php:140
-#: lib/Newsletter/DBObject/NewsletterSend.php:196
-#: lib/Newsletter/DBObject/NewsletterSend.php:366
+#: lib/Newsletter/DBObject/NewsletterSend.php:144
+#: lib/Newsletter/DBObject/NewsletterSend.php:200
+#: lib/Newsletter/DBObject/NewsletterSend.php:370
 #: lib/Newsletter/DBObject/UserActive.php:17
 #: lib/Newsletter/DBObject/UserApproved.php:17
 #: lib/Newsletter/DBObject/UserDelete.php:17
@@ -115,7 +116,7 @@ msgstr ""
 
 #: lib/Newsletter/Controller/Admin.php:179
 #: lib/Newsletter/Controller/Admin.php:250
-#: lib/Newsletter/Controller/Admin.php:330
+#: lib/Newsletter/Controller/Admin.php:332
 #, php-format
 msgid "Unable to retrieve object of type [%1$s] with id [%2$s]."
 msgstr ""
@@ -125,7 +126,7 @@ msgid "Done! Item saved."
 msgstr ""
 
 #: lib/Newsletter/Controller/Admin.php:277
-#: lib/Newsletter/Controller/Admin.php:351
+#: lib/Newsletter/Controller/Admin.php:353
 msgid ""
 "You have selected to limit the type of newsletter subscriptions but have "
 "chosen a different default newsletter type. Your default newsletter type has "
@@ -133,7 +134,7 @@ msgid ""
 "review your settings!"
 msgstr ""
 
-#: lib/Newsletter/Controller/Admin.php:315
+#: lib/Newsletter/Controller/Admin.php:317
 #: lib/Newsletter/Controller/User.php:71
 msgid "Invalid [id] parameter received."
 msgstr ""
@@ -170,7 +171,7 @@ msgstr ""
 #: lib/Newsletter/DBObject/ExportArray.php:53
 #: lib/Newsletter/DBObject/ImportArray.php:52
 #: lib/Newsletter/DBObject/ImportUsers.php:30
-#: lib/Newsletter/DBObject/NewsletterSend.php:203
+#: lib/Newsletter/DBObject/NewsletterSend.php:207
 msgid "Invalid admin_key received"
 msgstr ""
 
@@ -193,18 +194,18 @@ msgstr ""
 msgid "Unable to load array class [user]"
 msgstr ""
 
-#: lib/Newsletter/DBObject/ImportUsers.php:85
+#: lib/Newsletter/DBObject/ImportUsers.php:89
 msgid "Users to import: "
 msgstr ""
 
-#: lib/Newsletter/DBObject/ImportUsers.php:87
+#: lib/Newsletter/DBObject/ImportUsers.php:91
 #, php-format
 msgid "Import finished. %s user was imported."
 msgid_plural "Import finished. %s users were imported."
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/Newsletter/DBObject/ImportUsers.php:90
+#: lib/Newsletter/DBObject/ImportUsers.php:94
 msgid "Users skipped (dublicate email): "
 msgstr ""
 
@@ -225,30 +226,30 @@ msgstr ""
 msgid "No newsletter data to send"
 msgstr ""
 
-#: lib/Newsletter/DBObject/NewsletterSend.php:111
+#: lib/Newsletter/DBObject/NewsletterSend.php:115
 msgid "No users were selected to send the newsletter to"
 msgstr ""
 
-#: lib/Newsletter/DBObject/NewsletterSend.php:119
-#: lib/Newsletter/DBObject/NewsletterSend.php:210
+#: lib/Newsletter/DBObject/NewsletterSend.php:123
+#: lib/Newsletter/DBObject/NewsletterSend.php:214
 msgid "No users were available to send the newsletter to"
 msgstr ""
 
-#: lib/Newsletter/DBObject/NewsletterSend.php:129
-#: lib/Newsletter/DBObject/NewsletterSend.php:185
-#: lib/Newsletter/DBObject/NewsletterSend.php:275
+#: lib/Newsletter/DBObject/NewsletterSend.php:133
+#: lib/Newsletter/DBObject/NewsletterSend.php:189
+#: lib/Newsletter/DBObject/NewsletterSend.php:279
 msgid "Newsletter(s) were successfully sent."
 msgstr ""
 
-#: lib/Newsletter/DBObject/NewsletterSend.php:167
+#: lib/Newsletter/DBObject/NewsletterSend.php:171
 msgid "Newsletter is not saved to archive, as last saved is within 1 week ("
 msgstr ""
 
-#: lib/Newsletter/DBObject/NewsletterSend.php:170
+#: lib/Newsletter/DBObject/NewsletterSend.php:174
 msgid "The new newsletter is added to archive."
 msgstr ""
 
-#: lib/Newsletter/DBObject/NewsletterSend.php:224
+#: lib/Newsletter/DBObject/NewsletterSend.php:228
 msgid "Wrong day"
 msgstr ""
 
@@ -307,6 +308,12 @@ msgstr ""
 
 #: lib/Newsletter/DBObject/UserOptions.php:33
 msgid "Your subscription newsletter options have been updated"
+msgstr ""
+
+#: lib/Newsletter/HookHandlers.php:96
+msgid ""
+"You have been subscribed to our newsletter. You can manage your subscription "
+"from your profile."
 msgstr ""
 
 #: lib/Newsletter/Util.php:81 lib/Newsletter/Util.php:95
@@ -457,8 +464,12 @@ msgstr ""
 msgid "newsletter"
 msgstr ""
 
-#: lib/Newsletter/Version.php:33
+#: lib/Newsletter/Version.php:34
 msgid "Newsletter Hooks"
+msgstr ""
+
+#: lib/Newsletter/Version.php:38
+msgid "Subscrib to Newsletter"
 msgstr ""
 
 #: templates/admin/config.tpl:18 templates/user/generic_header.tpl:24
@@ -472,7 +483,7 @@ msgid "It took %1$s seconds to send the last batch of %2$s mails."
 msgstr ""
 
 #: templates/admin/config.tpl:29
-msgid "Configuration"
+msgid "General settings"
 msgstr ""
 
 #: templates/admin/config.tpl:31
@@ -485,7 +496,7 @@ msgstr ""
 
 #: templates/admin/config.tpl:38 templates/admin/config.tpl:48
 #: templates/admin/config.tpl:57 templates/admin/config.tpl:88
-#: templates/admin/config.tpl:136 templates/admin/view_preview.tpl:43
+#: templates/admin/config.tpl:164 templates/admin/view_preview.tpl:35
 #: templates/user/view_options.tpl:51
 msgid "Help"
 msgstr ""
@@ -544,59 +555,111 @@ msgstr ""
 msgid "Receive subscription notices?"
 msgstr ""
 
-#: templates/admin/config.tpl:99
+#: templates/admin/config.tpl:100
+msgid "Subscribing"
+msgstr ""
+
+#: templates/admin/config.tpl:102
 msgid "Allow anonymous registrations?"
 msgstr ""
 
-#: templates/admin/config.tpl:103
+#: templates/admin/config.tpl:106
 msgid "Show the approvalstatus to the user?"
 msgstr ""
 
-#: templates/admin/config.tpl:107
+#: templates/admin/config.tpl:110
 msgid "Require terms of service?"
 msgstr ""
 
-#: templates/admin/config.tpl:111
+#: templates/admin/config.tpl:114
 msgid "Auto-approve registrations?"
 msgstr ""
 
-#: templates/admin/config.tpl:115
+#: templates/admin/config.tpl:118
 msgid "Allow frequency changes?"
 msgstr ""
 
-#: templates/admin/config.tpl:119
+#: templates/admin/config.tpl:122
 msgid "Allow subscription changes?"
 msgstr ""
 
-#: templates/admin/config.tpl:123
-msgid "Personalize email?"
+#: templates/admin/config.tpl:127
+msgid "Subscribing in main user registration workflow"
 msgstr ""
 
-#: templates/admin/config.tpl:125
-msgid "Disable to increase performance."
+#: templates/admin/config.tpl:129
+msgid ""
+"To enable and newsletter subscribing in main user registration procedure, "
+"Newsletter provider hook have to be attached to user registration procedure "
+"(Module menu, Hooks, Provision, checkbox next to Users Registration "
+"management)."
 msgstr ""
 
-#: templates/admin/config.tpl:128
-msgid "Send per request?"
+#: templates/admin/config.tpl:132
+msgid "Display in user registration form"
 msgstr ""
 
-#: templates/admin/config.tpl:130 templates/admin/config.tpl:137
-msgid "Number of emails (0 = no restriction)."
+#: templates/admin/config.tpl:134
+msgid "Checkbox On by default"
 msgstr ""
 
-#: templates/admin/config.tpl:133
-msgid "Maximum newsletters to send per hour"
+#: templates/admin/config.tpl:135
+msgid "Checkbox Off by default"
 msgstr ""
 
-#: templates/admin/config.tpl:139
-msgid "Use this feature to avoid sending restrictions from your hoster!"
+#: templates/admin/config.tpl:136
+msgid "Info message only"
+msgstr ""
+
+#: templates/admin/config.tpl:137
+msgid "No special message"
+msgstr ""
+
+#: templates/admin/config.tpl:141
+msgid "Info message to user if subscribed"
+msgstr ""
+
+#: templates/admin/config.tpl:143
+msgid "No information added"
 msgstr ""
 
 #: templates/admin/config.tpl:144
+msgid "Log short information about subscription"
+msgstr ""
+
+#: templates/admin/config.tpl:149
+msgid "Sending"
+msgstr ""
+
+#: templates/admin/config.tpl:151
+msgid "Personalize email?"
+msgstr ""
+
+#: templates/admin/config.tpl:153
+msgid "Disable to increase performance."
+msgstr ""
+
+#: templates/admin/config.tpl:156
+msgid "Send per request?"
+msgstr ""
+
+#: templates/admin/config.tpl:158 templates/admin/config.tpl:165
+msgid "Number of emails (0 = no restriction)."
+msgstr ""
+
+#: templates/admin/config.tpl:161
+msgid "Maximum newsletters to send per hour"
+msgstr ""
+
+#: templates/admin/config.tpl:167
+msgid "Use this feature to avoid sending restrictions from your hoster!"
+msgstr ""
+
+#: templates/admin/config.tpl:172
 msgid "Admin key"
 msgstr ""
 
-#: templates/admin/config.tpl:146
+#: templates/admin/config.tpl:174
 msgid "Used to authenticate cron/batchprocessing."
 msgstr ""
 
@@ -748,11 +811,7 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
-#: templates/admin/view_preview.tpl:38
-msgid "- Choose One -"
-msgstr ""
-
-#: templates/admin/view_preview.tpl:45
+#: templates/admin/view_preview.tpl:44
 #, php-format
 msgid "You can find the templates in %s"
 msgstr ""
@@ -896,15 +955,15 @@ msgid "Save newsletter in archive?"
 msgstr ""
 
 #: templates/admin/view_user.tpl:256
-msgid "Save"
-msgstr ""
-
-#: templates/admin/view_user.tpl:257
 msgid "Don't save"
 msgstr ""
 
-#: templates/admin/view_user.tpl:259
-msgid "This happens once per week only (for now)."
+#: templates/admin/view_user.tpl:257
+msgid "Save, but if not saved in one week"
+msgstr ""
+
+#: templates/admin/view_user.tpl:258
+msgid "Save without check"
 msgstr ""
 
 #: templates/admin/view_user.tpl:262
@@ -1153,6 +1212,20 @@ msgstr ""
 #: templates/user/view_unsubscribe.tpl:4
 #: templates/user/view_unsubscribe.tpl:22
 msgid "Unsubscribe"
+msgstr ""
+
+#: templates/user/hook_subscribe.tpl:7 templates/user/hook_subscribe.tpl:15
+msgid "Subscribe to Newsletter"
+msgstr ""
+
+#: templates/user/hook_subscribe.tpl:8
+msgid ""
+"Automated, after registration you can manage easy your subscription status "
+"in your profile."
+msgstr ""
+
+#: templates/user/hook_subscribe.tpl:17
+msgid "You can manage easy your subscription status in your profile."
 msgstr ""
 
 #: templates/user/view_archive.tpl:1 templates/user/view_archive.tpl:2
