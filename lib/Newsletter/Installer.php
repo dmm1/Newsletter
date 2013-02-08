@@ -40,9 +40,12 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         $this->setVar('Newsletter', 'send_day', '5');
         $this->setVar('Newsletter', 'send_per_request', '5');
         $this->setVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
+        $this->setVar('Newsletter', 'hookuserreg_display', 'checkboxon');
+        $this->setVar('Newsletter', 'hookuserreg_inform', '1');
 
-        // Register for hooks subscribing
+        // Register hooks
         HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
+        HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
 
         return true;
     }
@@ -95,8 +98,22 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 }
                 DBUtil::updateObjectArray($archives, 'newsletter_archives', 'id');
 
-                // Register for hook subscribing
+                // Register hooks
+                $connection = Doctrine_Manager::getInstance()->getConnection('default');
+                $sqlQueries = array();
+                $sqlQueries[] = 'DELETE FROM `hook_area` WHERE `owner`="Newsletter"';
+                $sqlQueries[] = 'DELETE FROM `hook_subscriber` WHERE `owner`="Newsletter"';
+                $sqlQueries[] = 'DELETE FROM `hook_provider` WHERE `owner`="Newsletter"';
+                $sqlQueries[] = 'DELETE FROM `hook_runtime` WHERE `sowner`="Newsletter" OR `powner`="Newsletter"';
+                foreach ($sqlQueries as $sql) {
+                    $stmt = $connection->prepare($sql);
+                    try {
+                        $stmt->execute();
+                    } catch (Exception $e) {
+                    }   
+                }
                 HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
+                HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
 
             case '2.2.1':
                 // future upgrade routines
@@ -114,8 +131,9 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
 
         $this->delVars('Newsletter');
 
-        // unregister handlers
+        // Remove hooks
         HookUtil::unregisterSubscriberBundles($this->version->getHookSubscriberBundles());
+        HookUtil::unregisterProviderBundles($this->version->getHookProviderBundles());
 
         return true;
     }
