@@ -299,6 +299,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->setVar('send_from_address',          $prefs['send_from_address']          ? $prefs['send_from_address']  : System::getVar('adminmail'));
         $this->setVar('newsletter_subject',         $prefs['newsletter_subject']         ? $prefs['newsletter_subject'] : 0);
         $this->setVar('send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']   : 5);
+        $this->setVar('hookuserreg_display',        $prefs['hookuserreg_display']        ? $prefs['hookuserreg_display'] : 'checkboxon');
+        $this->setVar('hookuserreg_inform',         $prefs['hookuserreg_inform']);
 
         return System::redirect($url);
     }

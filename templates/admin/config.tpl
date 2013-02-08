@@ -26,7 +26,7 @@
     <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
     <fieldset>
-        <legend>{gt text='Configuration'}</legend>
+        <legend>{gt text='General settings'}</legend>
         <div class="z-formrow">
             <label for="itemsperpage">{gt text='Items per page'}:</label>
             <input id="itemsperpage" name="preferences[itemsperpage]" type="text" value="{$preferences.itemsperpage|default:25}" size="5" maxlength="5" />
@@ -95,6 +95,9 @@
             <label for="notify_admin">{gt text='Receive subscription notices?'}</label>
             <input id="notify_admin" name="preferences[notify_admin]" type="checkbox" value="1" {if ($preferences.notify_admin)}checked="checked"{/if} />
         </div>
+    </fieldset>
+    <fieldset>
+        <legend>{gt text='Subscribing'}</legend>
         <div class="z-formrow">
             <label for="allow_anon_registration">{gt text='Allow anonymous registrations?'}</label>
             <input id="allow_anon_registration" name="preferences[allow_anon_registration]" type="checkbox" value="1" {if ($preferences.allow_anon_registration)} checked="checked"{/if} />
@@ -119,6 +122,31 @@
             <label for="allow_subscription_change">{gt text='Allow subscription changes?'}</label>
             <input id="allow_subscription_change" name="preferences[allow_subscription_change]" type="checkbox" value="1" {if ($preferences.allow_subscription_change)} checked="checked"{/if} />
         </div>
+    </fieldset>
+    <fieldset>
+        <legend>{gt text='Subscribing in main user registration workflow'}</legend>
+        <div class="z-informationmsg z-formnote nl-round">
+            {gt text="To enable and newsletter subscribing in main user registration procedure, Newsletter provider hook have to be attached to user registration procedure (Module menu, Hooks, Provision, checkbox next to Users Registration management)."}
+        </div>
+        <div class="z-formrow">
+            <label for="hookuserreg_display">{gt text='Display in user registration form'}:</label>
+            <select id="hookuserreg_display" name="preferences[hookuserreg_display]" size="1" >
+                <option value="checkboxon"{if $preferences.hookuserreg_display eq 'checkboxon'} selected="selected"{/if}>{gt text='Checkbox On by default'}</option>
+                <option value="checkboxoff"{if $preferences.hookuserreg_display eq 'checkboxoff'} selected="selected"{/if}>{gt text='Checkbox Off by default'}</option>
+                <option value="infmessage"{if $preferences.hookuserreg_display eq 'infmessage'} selected="selected"{/if}>{gt text='Info message only'}</option>
+                <option value="nomessage"{if $preferences.hookuserreg_display eq 'nomessage'} selected="selected"{/if}>{gt text='No special message'}</option>
+            </select>
+        </div>
+        <div class="z-formrow">
+            <label for="hookuserreg_inform">{gt text='Info message to user if subscribed'}:</label>
+            <select id="hookuserreg_inform" name="preferences[hookuserreg_inform]" size="1" >
+                <option value="0"{if $preferences.hookuserreg_inform eq '0'} selected="selected"{/if}>{gt text='No information added'}</option>
+                <option value="1"{if $preferences.hookuserreg_inform eq '1'} selected="selected"{/if}>{gt text='Log short information about subscription'}</option>
+            </select>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>{gt text='Sending'}</legend>
         <div class="z-formrow">
             <label for="preferences[personalize_email]">{gt text='Personalize email?'}</label>
             <input id="personalize_email" name="preferences[personalize_email]" type="checkbox" value="1" {if ($preferences.personalize_email)} checked="checked"{/if} />
