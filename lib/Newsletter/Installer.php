@@ -47,6 +47,11 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
         HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
 
+        // Persistent event handler registration
+        EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
+        EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
+
+
         return true;
     }
 
@@ -116,6 +121,10 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
 
             case '2.2.1':
+                // Persistent event handler registration
+                EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
+                EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
+            case '2.2.2':
                 // future upgrade routines
                 break;
         }
@@ -135,6 +144,10 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         HookUtil::unregisterSubscriberBundles($this->version->getHookSubscriberBundles());
         HookUtil::unregisterProviderBundles($this->version->getHookProviderBundles());
 
+        // Persistent event handler unregistration
+        EventUtil::unregisterPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
+        EventUtil::unregisterPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
+        
         return true;
     }
 }

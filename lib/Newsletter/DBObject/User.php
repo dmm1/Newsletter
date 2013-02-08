@@ -64,7 +64,7 @@ class Newsletter_DBObject_User extends DBObject
 
             $ret = DBUtil::deleteWhere($this->_objType, $where);
             if ($ret) {
-                LogUtil::registerStatus(__('Your have unsubscribed from our newsletter', $dom));
+                LogUtil::registerStatus(__('You have unsubscribed from our newsletter', $dom));
 
                 $view = Zikula_View::getInstance('Newsletter', false);
                 $view->assign('user_name',  $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);
