@@ -1,0 +1,2 @@
+visit https://github.com/dmm1/Newsletter/wiki for more Informations 
+visit https://github.com/dmm1/Newsletter/graphs/contributors to see who works on this Extension
