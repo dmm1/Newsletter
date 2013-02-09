@@ -31,7 +31,7 @@ class Newsletter_HookHandlers extends Zikula_Hook_AbstractHandler
         //$view->assign('xyz', $xyz);
         $template = 'user/hook_subscribe.tpl';
 
-        $response = new Zikula_Response_DisplayHook('provider.newsletter.ui_hooks.subscrib', $view, $template);
+        $response = new Zikula_Response_DisplayHook('provider.newsletter.ui_hooks.subscribe', $view, $template);
         $hook->setResponse($response);
     }
 

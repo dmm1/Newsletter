@@ -103,6 +103,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 }
                 DBUtil::updateObjectArray($archives, 'newsletter_archives', 'id');
 
+            case '2.2.1':
                 // Register hooks
                 $connection = Doctrine_Manager::getInstance()->getConnection('default');
                 $sqlQueries = array();
@@ -120,11 +121,11 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
                 HookUtil::registerProviderBundles($this->version->getHookProviderBundles());
 
-            case '2.2.1':
                 // Persistent event handler registration
                 EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
                 EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
-            case '2.2.2':
+
+                case '2.2.2':
                 // future upgrade routines
                 break;
         }
