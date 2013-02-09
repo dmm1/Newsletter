@@ -590,7 +590,7 @@ msgstr ""
 
 #: templates/admin/config.tpl:129
 msgid ""
-"To enable and newsletter subscribing in main user registration procedure, "
+"To enable newsletter subscribing in main user registration procedure, "
 "Newsletter provider hook have to be attached to user registration procedure "
 "(Module menu, Hooks, Provision, checkbox next to Users Registration "
 "management)."

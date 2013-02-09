@@ -126,7 +126,7 @@
     <fieldset>
         <legend>{gt text='Subscribing in main user registration workflow'}</legend>
         <div class="z-informationmsg z-formnote nl-round">
-            {gt text="To enable and newsletter subscribing in main user registration procedure, Newsletter provider hook have to be attached to user registration procedure (Module menu, Hooks, Provision, checkbox next to Users Registration management)."}
+            {gt text="To enable newsletter subscribing in main user registration procedure, Newsletter provider hook have to be attached to user registration procedure (Module menu, Hooks, Provision, checkbox next to Users Registration management)."}
         </div>
         <div class="z-formrow">
             <label for="hookuserreg_display">{gt text='Display in user registration form'}:</label>
