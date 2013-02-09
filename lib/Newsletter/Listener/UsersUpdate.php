@@ -35,15 +35,19 @@ class Newsletter_Listener_UsersUpdate
             return;
 
         ModUtil::dbInfoLoad('Newsletter');
-        $user = new Newsletter_DBObject_User();
-        $user->select((int)$userObj['uid'], null, 'uid');
-        $user->_objField = 'id';
-
-        if($user->_objData != null) {
+        $tables = DBUtil::getTables();
+        $column   = $tables['newsletter_users_column'];
+        $where = "WHERE $column[uid]='" . $userObj['uid'] . "'";
+        $user = DBUtil::selectObject('newsletter_users', $where);
+        if(!empty($user)) {
             //User is a Newsletter subscriber
-            //We don't have to change the email adress to the new one. That is done in Newsletter_DBObject_User::updatePreProcess() automatically
-            $user->update();
-            LogUtil::registerStatus(__('Email adress for newsletter subscribtion changed.', $dom));
+            $user = array('email' => $userObj['email']);
+
+            if(DBUtil::updateObject($user, 'newsletter_users', $where)) {
+                LogUtil::registerStatus(__('Email adress for newsletter subscribtion changed.', $dom));
+            } else {
+                LogUtil::registerStatus(__('Email adress for newsletter subscribtion NOT changed.', $dom));
+            }
         }
     }
     
