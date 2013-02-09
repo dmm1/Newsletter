@@ -47,7 +47,7 @@ class Newsletter_DBObject_ImportUsers extends DBObject
         $zkUsers = DBUtil::selectObjectArray('users', $where, $orderBy);
 
         if (!class_exists('Newsletter_DBObject_User')) {
-            return LogUtil::registerError(__('Unable to load array class [user]', $dom));
+            return LogUtil::registerError(__f('Unable to load array class [%s]', 'user', $dom));
         }
 
         $objArray = new Newsletter_DBObject_UserArray ();
@@ -91,7 +91,7 @@ class Newsletter_DBObject_ImportUsers extends DBObject
             LogUtil::registerStatus(_fn('Import finished. %s user was imported.', 'Import finished. %s users were imported.', $count, $count, $dom));
         }
         if ($countskiped > 0) {
-            LogUtil::registerStatus(__('Users skipped (dublicate email): ', $dom) . $countskiped);
+            LogUtil::registerStatus(__('Users skipped (duplicate email): ', $dom) . $countskiped);
         }
         return;
     }

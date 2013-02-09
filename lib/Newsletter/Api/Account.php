@@ -31,7 +31,7 @@ class Newsletter_Api_Account extends Zikula_AbstractApi
 
         // Create an array of links to return
         if (SecurityUtil::checkPermission('News::', '::', ACCESS_COMMENT)) {
-            $items[] = array('url'     => ModUtil::url('Newsletter', 'user', 'main'),
+            $items[] = array('url' => ModUtil::url('Newsletter', 'user', 'main'),
                     'module'  => 'Newsletter',
                     'title'   => $this->__('Newsletter'),
                     'icon'    => 'admin.png');

@@ -52,11 +52,11 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         }
 
         if (!class_exists('Newsletter_DBObject_UserArray')) {
-            return LogUtil::registerError(__('Unable to load array class [user]', $dom));
+            return LogUtil::registerError(__f('Unable to load array class [%s]', 'user', $dom));
         }
 
         if (!class_exists('Newsletter_DBObject_NewsletterDataArray')) {
-            return LogUtil::registerError(__('Unable to load array class [newsletter_data]', $dom));
+            return LogUtil::registerError(__(f'Unable to load array class [%s]', 'newsletter_data', $dom));
         }
 
         $enable_multilingual       = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
@@ -130,7 +130,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             }
         }
 
-        LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
+        LogUtil::registerStatus(_fn('%s newsletter were successfully sent.', '%s newsletters were successfully sent.', $nSent, $nSent, $dom));
         return true;
     }
 
@@ -162,7 +162,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             $archiveObj = new Newsletter_DBObject_Archive();
             $archive    = $archiveObj->getRecent();
             if ($archive) {
-                $newArchiveTime = $archive['date'];                        
+                $newArchiveTime = $archive['date'];
                 $matched = true;
             }
         }
@@ -186,7 +186,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                 }
             }
 
-            LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
+            LogUtil::registerStatus(_fn('%s newsletter were successfully sent.', '%s newsletters were successfully sent.', $nSent, $nSent, $dom));
         }
 
         return true;
@@ -276,7 +276,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                 }
             }
         }
-        LogUtil::registerStatus($nSent.' '.__('Newsletter(s) were successfully sent.', $dom));
+        LogUtil::registerStatus(_fn('%s newsletter were successfully sent.', '%s newsletters were successfully sent.', $nSent, $nSent, $dom));
         
         if ($maxPerHour) {
             ModUtil::setVar('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));

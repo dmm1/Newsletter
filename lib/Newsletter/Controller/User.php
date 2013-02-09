@@ -89,7 +89,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         $class = 'Newsletter_DBObject_NewsletterSend';
         if (!class_exists($class)) {
-            return LogUtil::registerError($this->__('Unable to load class [newsletter_send].'));
+            return LogUtil::registerError($this->__f('Unable to load class [%s]', 'newsletter_send'));
         }
 
         $scheduled = (int)FormUtil::getPassedValue('scheduled', 0);
@@ -117,7 +117,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         $class = 'Newsletter_DBObject_'. ucfirst($ot);
         if (!class_exists($class)) {
-            return LogUtil::registerError($this->__('Unable to load class [%s]', $ot), null, $url);
+            return LogUtil::registerError($this->__f('Unable to load class [%s]', $ot), null, $url);
         }
 
         $object = new $class();
