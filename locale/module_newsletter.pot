@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-07 22:23-0500\n"
+"POT-Creation-Date: 2013-02-08 07:55-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -468,8 +468,9 @@ msgstr ""
 msgid "Newsletter Hooks"
 msgstr ""
 
-#: lib/Newsletter/Version.php:38
-msgid "Subscrib to Newsletter"
+#: lib/Newsletter/Version.php:38 templates/user/hook_subscribe.tpl:7
+#: templates/user/hook_subscribe.tpl:15
+msgid "Subscribe to Newsletter"
 msgstr ""
 
 #: templates/admin/config.tpl:18 templates/user/generic_header.tpl:24
@@ -589,7 +590,7 @@ msgstr ""
 
 #: templates/admin/config.tpl:129
 msgid ""
-"To enable and newsletter subscribing in main user registration procedure, "
+"To enable newsletter subscribing in main user registration procedure, "
 "Newsletter provider hook have to be attached to user registration procedure "
 "(Module menu, Hooks, Provision, checkbox next to Users Registration "
 "management)."
@@ -1212,10 +1213,6 @@ msgstr ""
 #: templates/user/view_unsubscribe.tpl:4
 #: templates/user/view_unsubscribe.tpl:22
 msgid "Unsubscribe"
-msgstr ""
-
-#: templates/user/hook_subscribe.tpl:7 templates/user/hook_subscribe.tpl:15
-msgid "Subscribe to Newsletter"
 msgstr ""
 
 #: templates/user/hook_subscribe.tpl:8
