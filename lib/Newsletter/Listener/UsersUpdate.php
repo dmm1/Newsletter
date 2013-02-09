@@ -25,9 +25,16 @@ class Newsletter_Listener_UsersUpdate
      */
     public static function updateAccountListener(Zikula_Event $event)
     {
-        $userObj = $event->getSubject();
-        ModUtil::dbInfoLoad('Newsletter');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
+        $userObj = $event->getSubject();
+        $args    = $event->getArgs();
+
+        //Filter UserUtil::setVar calls, which aren't change the email adress
+        if($args['action'] == 'setVar' && $args['field'] != 'email')
+            return;
+
+        ModUtil::dbInfoLoad('Newsletter');
         $user = new Newsletter_DBObject_User();
         $user->select((int)$userObj['uid'], null, 'uid');
         $user->_objField = 'id';
@@ -36,6 +43,7 @@ class Newsletter_Listener_UsersUpdate
             //User is a Newsletter subscriber
             //We don't have to change the email adress to the new one. That is done in Newsletter_DBObject_User::updatePreProcess() automatically
             $user->update();
+            LogUtil::registerStatus(__('Email adress for newsletter subscribtion changed.', $dom));
         }
     }
     
@@ -48,6 +56,8 @@ class Newsletter_Listener_UsersUpdate
      */
     public static function deleteAccountListener(Zikula_Event $event)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         $userObj = $event->getSubject();
         ModUtil::dbInfoLoad('Newsletter');
 
@@ -60,7 +70,7 @@ class Newsletter_Listener_UsersUpdate
             $where = $user->genWhere((int)$userObj['uid'], null, null);
 
             DBUtil::deleteWhere($user->_objType, $where);
+            LogUtil::registerStatus(__('Newsletter subscribtion canceled.', $dom));
         }
-
     }
 }
