@@ -21,7 +21,7 @@ class Newsletter_DBObject_PluginBaseArray extends DBObjectArray
     // to be implenented by derived classes
     function getPluginData($lang=null)
     {
-        exit('Base class implementation of getPluginData() should not be called ...');
+        exit('Base class implementation of getPluginData() should not be called!');
     }
 
     //EM Start
