@@ -19,29 +19,29 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
             return false;
         }
 
-        $this->setVar('Newsletter', 'admin_key', substr(md5(time()),-10));
-        $this->setVar('Newsletter', 'allow_anon_registration', '0');
-        $this->setVar('Newsletter', 'allow_frequency_change', '0');
-        $this->setVar('Newsletter', 'allow_subscription_change', '0');
-        $this->setVar('Newsletter', 'archive_expire', '0'); // never
-        $this->setVar('Newsletter', 'auto_approve_registrations', '1');
-        $this->setVar('Newsletter', 'default_frequency', '0');
-        $this->setVar('Newsletter', 'default_type', '1'); //text/html/web
-        $this->setVar('Newsletter', 'enable_multilingual', '0');
-        $this->setVar('Newsletter', 'import_active_status', '1');
-        $this->setVar('Newsletter', 'import_activelastdays', '0');
-        $this->setVar('Newsletter', 'import_approval_status', '1');
-        $this->setVar('Newsletter', 'import_frequency', '0');
-        $this->setVar('Newsletter', 'import_type', '2');
-        $this->setVar('Newsletter', 'itemsperpage', '25');
-        $this->setVar('Newsletter', 'max_send_per_hour', 0);
-        $this->setVar('Newsletter', 'notify_admin', '1');
-        $this->setVar('Newsletter', 'personalize_email', '0');
-        $this->setVar('Newsletter', 'send_day', '5');
-        $this->setVar('Newsletter', 'send_per_request', '5');
-        $this->setVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
-        $this->setVar('Newsletter', 'hookuserreg_display', 'checkboxon');
-        $this->setVar('Newsletter', 'hookuserreg_inform', '1');
+        $this->setVar('admin_key', substr(md5(time()),-10));
+        $this->setVar('allow_anon_registration', '0');
+        $this->setVar('allow_frequency_change', '0');
+        $this->setVar('allow_subscription_change', '0');
+        $this->setVar('archive_expire', '0'); // never
+        $this->setVar('auto_approve_registrations', '1');
+        $this->setVar('default_frequency', '0');
+        $this->setVar('default_type', '1'); //text/html/web
+        $this->setVar('enable_multilingual', '0');
+        $this->setVar('import_active_status', '1');
+        $this->setVar('import_activelastdays', '0');
+        $this->setVar('import_approval_status', '1');
+        $this->setVar('import_frequency', '0');
+        $this->setVar('import_type', '2');
+        $this->setVar('itemsperpage', '25');
+        $this->setVar('max_send_per_hour', 0);
+        $this->setVar('notify_admin', '1');
+        $this->setVar('personalize_email', '0');
+        $this->setVar('send_day', '5');
+        $this->setVar('send_per_request', '5');
+        $this->setVar('send_from_address', System::getVar('adminmail'));
+        $this->setVar('hookuserreg_display', 'checkboxon');
+        $this->setVar('hookuserreg_inform', '1');
 
         // Register hooks
         HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
@@ -124,8 +124,9 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 // Persistent event handler registration
                 EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
                 EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
-
-                case '2.2.2':
+                
+                $this->delVar('Newsletter');
+            case '2.2.2':
                 // future upgrade routines
                 break;
         }
