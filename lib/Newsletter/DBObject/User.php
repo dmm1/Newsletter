@@ -222,7 +222,7 @@ class Newsletter_DBObject_User extends DBObject
 
         $data = parent::insert();
         if ($data) {
-            LogUtil::registerStatus(__('Your have been subscribed to our newsletter', $dom));
+            LogUtil::registerStatus(__('You have been subscribed to our newsletter', $dom));
 
             $view = Zikula_View::getInstance('Newsletter', false);
             $view->assign ('user_name', $data['uid'] ? UserUtil::getVar('uname', $data['uid']) : $data['name']);

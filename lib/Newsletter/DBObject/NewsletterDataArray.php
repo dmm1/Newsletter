@@ -23,7 +23,7 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
         if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError(__('Unable to load array class for [plugin_base]', $dom), null, $url);
+            return LogUtil::registerError(__f('Unable to load array class for [%s]', 'plugin_base', $dom), null, $url);
         }
 
         $data     = array();

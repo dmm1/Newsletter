@@ -30,7 +30,7 @@ class Newsletter_DBObject_UserOptions extends Newsletter_DBObject_User
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
         parent::save();
-        LogUtil::registerStatus(__('Your subscription newsletter options have been updated', $dom));
+        LogUtil::registerStatus(__('Your newsletter subscription settings have been updated', $dom));
         return true;
     }
 }
