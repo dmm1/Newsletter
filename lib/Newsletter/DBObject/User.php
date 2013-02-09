@@ -266,9 +266,6 @@ class Newsletter_DBObject_User extends DBObject
         return $this->_objData;
     }
 
-    /**
-     * @note Be sure to have a look into Newsletter_Listener_UsersUpdate::updateAccountListener(), if you edit this method!
-     */
     function updatePreProcess($data=null)
     {
         if (!$data) {

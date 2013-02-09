@@ -35,9 +35,9 @@ class Newsletter_Version extends Zikula_AbstractVersion
         $bundle->addEvent('form_edit', 'newsletter.ui_hooks.items.form_edit');
         $this->registerHookSubscriberBundle($bundle);
 
-        $bundle = new Zikula_HookManager_ProviderBundle($this->name, 'provider.newsletter.ui_hooks.subscrib', 'ui_hooks', $this->__('Subscrib to Newsletter'));
-        $bundle->addServiceHandler('form_edit', 'Newsletter_HookHandlers', 'uiEdit', 'newsletter.subscrib');
-        $bundle->addServiceHandler('process_edit', 'Newsletter_HookHandlers', 'processEdit', 'newsletter.subscrib');
+        $bundle = new Zikula_HookManager_ProviderBundle($this->name, 'provider.newsletter.ui_hooks.subscribe', 'ui_hooks', $this->__('Subscribe to Newsletter'));
+        $bundle->addServiceHandler('form_edit', 'Newsletter_HookHandlers', 'uiEdit', 'newsletter.subscribe');
+        $bundle->addServiceHandler('process_edit', 'Newsletter_HookHandlers', 'processEdit', 'newsletter.subscribe');
         $this->registerHookProviderBundle($bundle);
     }
 }
