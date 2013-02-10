@@ -17,7 +17,7 @@ function liveusersearch()
     new Ajax.Autocompleter(
         'filter_search',
         'filter_search_choices',
-        document.location.pnbaseURL + 'ajax.php?module=Newsletter&func=getusers',
+        Zikula.Config.baseURL + 'ajax.php?module=Newsletter&type=ajax&func=getusers',
             {
              paramName: 'fragment',
              minChars: 3,
