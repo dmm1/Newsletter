@@ -23,7 +23,7 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                              'class' => 'z-icon-es-home');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'settings'),
-                             'text'  => $this->__('Newsletter Settings'),
+                             'text'  => $this->__('Settings'),
                              'class' => 'z-icon-es-config');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'archive'),
@@ -36,9 +36,13 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'message')),
                              'text'  => $this->__('Header Message'));
-
+            /* This functionality is in Newsletters yet
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'preview')),
                              'text'  => $this->__('Preview'),
+                             'class' => 'z-icon-es-preview');*/
+
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'newsletters'),
+                             'text'  => $this->__('Newsletters'),
                              'class' => 'z-icon-es-preview');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'user')),
