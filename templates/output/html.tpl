@@ -348,7 +348,7 @@ table.nl-calendar tbody tr th:hover {
                         {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
                           <h2>{gt text="Message from the Site Administrators"}</h2>
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <p>{$objectArray.NewsletterMessage|safehtml}</p>
+                          <p>{$objectArray.NewsletterMessage|safehtml|nl2br}</p>
                           <br />
                         {/if}
 
@@ -358,7 +358,7 @@ table.nl-calendar tbody tr th:hover {
                           {foreach from=$objectArray.News item="item" name="loop"}
                             <h3><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}"><img src="{$site_url}modules/Newsletter/images/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" />{$item.title|safehtml}</a></h3>
                             <br />
-                            <p>{$item.hometext|safehtml|url_check}</p>
+                            <p>{$item.hometext|safehtml|nl2br|url_check}</p>
                             <p class="more"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
@@ -373,9 +373,10 @@ table.nl-calendar tbody tr th:hover {
                               <th>{gt text="Username"}</th>
                               <th>{gt text="Register Date"}</th>
                             </tr>
+                            {modavailable modname="Profile" assign="profileAvailable"}
                             {foreach from=$objectArray.NewMembers item="item" name="loop"}
                               <tr>
-                                <td><h3><a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{$item.uname|safehtml}</a></h3></td>
+                                <td>{if $profileAvailable}<h3><a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></h3>{/if}</td>
                                 <td>{$item.user_regdate}</td>
                               </tr>
                             {/foreach}
@@ -409,7 +410,7 @@ table.nl-calendar tbody tr th:hover {
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           {foreach from=$objectArray.EZComments item="item" name="loop"}
                             <h3><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h3>
-                            <p>{$item.comment|safehtml|url_check|truncate:400}</p>
+                            <p>{$item.comment|safehtml|nl2br|url_check|truncate:400}</p>
                             <p class="more"><a href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                              {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
