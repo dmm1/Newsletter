@@ -136,21 +136,23 @@
             <span class="z-itemcell z-w05">
                 {gt text="View Archive HTML" assign=lblDetail}
                 <a href="{modurl modname='Newsletter' type='user' func='detail' ot='archive' format='2' id=$archive.id}" target="_blank">{img src='demo.png' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
-            </span>
-            <span class="z-itemcell z-w05">
                 {gt text="View Archive Text" assign=lblDetail}
                 <a href="{modurl modname='Newsletter' type='user' func='detail' ot='archive' format='1' id=$archive.id}" target="_blank">{img src='kview.png' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
+            </span>
+            <span class="z-itemcell z-w05">
+                {gt text="Edit" assign=lblEdit}
+                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$user.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt=$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
             </span>
             <span class="z-itemcell z-w10">
                 {gt text="Delete Archive" assign=lblDelete}
                 {gt text="Are you sure? This will delete this item forever." assign=lblConfirm}
-                <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id}" onclick="return confirm('{$lblConfirm}')">{img src='14_layer_deletelayer.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
+                <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id}" onclick="return confirm('{$lblConfirm}')">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
             </span>
             {if $key eq 0}
             <span class="z-itemcell z-w20">
                 {gt text="Delete/Preserve Id" assign=lblDelPreserve}
                 {gt text="Next newsletter Id will not be incremented." assign=lblConfPreserve}
-                <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id preserveid=1}" onclick="return confirm('{$lblConfirm} {$lblConfPreserve}')">{img src='14_layer_deletelayer.png' modname='core' set='icons/extrasmall' alt=$lblDelPreserve altml='false' title=$lblDelPreserve titleml='false'} {$lblDelPreserve}</a>
+                <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id preserveid=1}" onclick="return confirm('{$lblConfirm} {$lblConfPreserve}')">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelPreserve altml='false' title=$lblDelPreserve titleml='false'} {$lblDelPreserve}</a>
             </span>
             {/if}
         </li>
