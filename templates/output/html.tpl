@@ -373,9 +373,10 @@ table.nl-calendar tbody tr th:hover {
                               <th>{gt text="Username"}</th>
                               <th>{gt text="Register Date"}</th>
                             </tr>
+                            {modavailable modname="Profile" assign="profileAvailable"}
                             {foreach from=$objectArray.NewMembers item="item" name="loop"}
                               <tr>
-                                <td><h3><a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{$item.uname|safehtml}</a></h3></td>
+                                <td>{if $profileAvailable}<h3><a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></h3>{/if}</td>
                                 <td>{$item.user_regdate}</td>
                               </tr>
                             {/foreach}
