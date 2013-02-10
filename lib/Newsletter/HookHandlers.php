@@ -26,6 +26,9 @@ class Newsletter_HookHandlers extends Zikula_Hook_AbstractHandler
         $callermodname = $hook->getCaller();
         $callerobjectid = $hook->getId();
 
+        // Load module, otherwise translation is not working in template
+        ModUtil::load('Newsletter');
+
         // Create output object
         $view = Zikula_View::getInstance('Newsletter', false, null, true);
         //$view->assign('xyz', $xyz);
