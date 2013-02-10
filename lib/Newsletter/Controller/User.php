@@ -65,6 +65,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         $ot  = 'archive';
         $id  = (int)FormUtil::getPassedValue('id', 0);
+        $format = (int)FormUtil::getPassedValue('format', null, 'GETPOST');
         $url = ModUtil::url('Newsletter', 'user', 'main');
 
         if (!$id) {
@@ -79,7 +80,12 @@ class Newsletter_Controller_User extends Zikula_AbstractController
         $data = $obj->get($id);
 
         // just echo content and exit; no need to use template
-        print $data['html'];
+        if ($format == 1) {
+            $data['text'] = str_replace(array("\n", "\r"), '<br />', $data['text']);
+            print $data['text'];
+        } else {
+            print $data['html'];
+        }
         exit;
     }
 

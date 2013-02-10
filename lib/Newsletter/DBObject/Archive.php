@@ -55,4 +55,42 @@ class Newsletter_DBObject_Archive extends DBObject
         $where = "DATEDIFF(nla_date, '$expire_date') > 0";
         return DBUtil::deleteWhere ($this->_objType, $where);
     }
+
+    function deletebyid($id = 0)
+    {
+        if ($id > 0) {
+            $where = "nla_id = ".$id;
+            return DBUtil::deleteWhere($this->_objType, $where);
+        }
+
+        return false;
+    }
+
+    function getmaxid()
+    {
+        return (int)DBUtil::selectFieldMax('newsletter_archives', 'nla_id');
+    }
+
+    function getnextid()
+    {
+        $result = DBUtil::executeSQL("SHOW TABLE STATUS LIKE 'newsletter_archives'");
+        if ($result) {
+            $obj = DBUtil::marshallObjects($result);
+            if ($obj) {
+                return $obj[0]['Auto_increment'];
+            }
+        }
+        return false;
+    }
+
+    function setnextid($id = 0)
+    {
+        if ($id > 0) {
+            DBUtil::executeSQL("ALTER TABLE `newsletter_archives` AUTO_INCREMENT = ".$id);
+
+            return $this->getnextid();
+        }
+
+        return false;
+    }
 }
