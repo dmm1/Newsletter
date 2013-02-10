@@ -141,7 +141,7 @@
             </span>
             <span class="z-itemcell z-w05">
                 {gt text="Edit" assign=lblEdit}
-                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$user.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt=$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
+                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$archive.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt=$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
             </span>
             <span class="z-itemcell z-w10">
                 {gt text="Delete Archive" assign=lblDelete}

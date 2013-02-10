@@ -484,4 +484,55 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         return System::redirect($url);
     }
+
+    // Save a newsletter after edit
+    public function savenewsletter($args = array())
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+
+        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+
+        if ($id > 0) {
+            $objArchive  = new Newsletter_DBObject_Archive();
+            $data = $objArchive->get($id);
+            if ($data) {
+                $data['html'] = FormUtil::getPassedValue('html', $args['html'] ? $args['id'] : $data['html']);
+                $data['text'] = FormUtil::getPassedValue('text', $args['text'] ? $args['id'] : $data['text']);
+
+                $objArchive->setData($data);
+                if ($objArchive->save()) {
+                    LogUtil::registerStatus($this->__('Newsletter successfully saved, Id ').$id);
+                } else {
+                    LogUtil::registerError($this->__('Error saving newsletter Id ').$id);
+                }
+            }
+        }
+
+        return System::redirect($url);
+    }
+
+    // Edit a newsletter from archive
+    public function editnewsletter($args = array())
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+
+        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+
+        if ($id > 0) {
+            $objArchive  = new Newsletter_DBObject_Archive();
+            $data = $objArchive->get($id);
+            if ($data) {
+                $this->view->assign('newsletter', $data);
+
+                return $this->view->fetch("admin/edit_newsletter.tpl");
+            }
+        }
+
+        return System::redirect($url);
+    }
+
 }
