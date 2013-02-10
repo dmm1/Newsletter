@@ -56,7 +56,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         }
 
         if (!class_exists('Newsletter_DBObject_NewsletterDataArray')) {
-            return LogUtil::registerError(__(f'Unable to load array class [%s]', 'newsletter_data', $dom));
+            return LogUtil::registerError(__f('Unable to load array class [%s]', 'newsletter_data', $dom));
         }
 
         $enable_multilingual       = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
