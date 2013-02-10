@@ -25,14 +25,16 @@ class Newsletter_Listener_UsersUpdate
      */
     public static function updateAccountListener(Zikula_Event $event)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         $userObj = $event->getSubject();
         $args    = $event->getArgs();
 
         //Filter UserUtil::setVar calls, which aren't change the email adress
         if($args['action'] == 'setVar' && $args['field'] != 'email')
             return;
+
+        // Load module, otherwise translation is not working
+        ModUtil::load('Newsletter');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         ModUtil::dbInfoLoad('Newsletter');
         $tables = DBUtil::getTables();
@@ -41,12 +43,15 @@ class Newsletter_Listener_UsersUpdate
         $user = DBUtil::selectObject('newsletter_users', $where);
         if(!empty($user)) {
             //User is a Newsletter subscriber
-            $user = array('email' => $userObj['email']);
+            if ($user['email'] != $userObj['email']) {
+                // User email is changed, let's change in newsletter_users
+                $user = array('email' => $userObj['email']);
 
-            if(DBUtil::updateObject($user, 'newsletter_users', $where)) {
-                LogUtil::registerStatus(__('Email adress for newsletter subscribtion changed.', $dom));
-            } else {
-                LogUtil::registerStatus(__('Email adress for newsletter subscribtion NOT changed.', $dom));
+                if(DBUtil::updateObject($user, 'newsletter_users', $where)) {
+                    LogUtil::registerStatus(__('Email adress for newsletter subscribtion changed.', $dom));
+                } else {
+                    LogUtil::registerStatus(__('Email adress for newsletter subscribtion NOT changed.', $dom));
+                }
             }
         }
     }
@@ -60,6 +65,8 @@ class Newsletter_Listener_UsersUpdate
      */
     public static function deleteAccountListener(Zikula_Event $event)
     {
+        // Load module, otherwise translation is not working
+        ModUtil::load('Newsletter');
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $userObj = $event->getSubject();

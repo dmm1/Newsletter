@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 05:55-0500\n"
+"POT-Creation-Date: 2013-02-09 19:20-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,50 +78,29 @@ msgstr ""
 msgid "Display a newsletter signup form"
 msgstr ""
 
-#: lib/Newsletter/Controller/User.php:71
-#: lib/Newsletter/Controller/Admin.php:317
-msgid "Invalid [id] parameter received."
+#: lib/Newsletter/Controller/Admin.php:135
+msgid "Your test email was not sent since you did not enter an email address"
 msgstr ""
 
-#: lib/Newsletter/Controller/User.php:75 lib/Newsletter/Controller/User.php:92
-#: lib/Newsletter/Controller/User.php:120
+#: lib/Newsletter/Controller/Admin.php:138
+#: lib/Newsletter/Controller/User.php:134
+msgid "The email address you entered does not seem to be valid"
+msgstr ""
+
 #: lib/Newsletter/Controller/Admin.php:141
 #: lib/Newsletter/Controller/Admin.php:326
+#: lib/Newsletter/Controller/User.php:75 lib/Newsletter/Controller/User.php:92
+#: lib/Newsletter/Controller/User.php:120
 #: lib/Newsletter/DBObject/NewsletterSend.php:51
 #: lib/Newsletter/DBObject/NewsletterSend.php:144
 #: lib/Newsletter/DBObject/NewsletterSend.php:200
 #: lib/Newsletter/DBObject/NewsletterSend.php:370
-#: lib/Newsletter/DBObject/UserOptions.php:17
 #: lib/Newsletter/DBObject/UserActive.php:17
 #: lib/Newsletter/DBObject/UserApproved.php:17
 #: lib/Newsletter/DBObject/UserDelete.php:17
+#: lib/Newsletter/DBObject/UserOptions.php:17
 #, php-format
 msgid "Unable to load class [%s]"
-msgstr ""
-
-#: lib/Newsletter/Controller/User.php:111
-msgid "Invalid [ot] parameter received"
-msgstr ""
-
-#: lib/Newsletter/Controller/User.php:129
-msgid "Please enter your name"
-msgstr ""
-
-#: lib/Newsletter/Controller/User.php:132
-msgid "Please enter your email address"
-msgstr ""
-
-#: lib/Newsletter/Controller/User.php:134
-#: lib/Newsletter/Controller/Admin.php:138
-msgid "The email address you entered does not seem to be valid"
-msgstr ""
-
-#: lib/Newsletter/Controller/User.php:138
-msgid "You must accept the terms of service in order to be subscribed!"
-msgstr ""
-
-#: lib/Newsletter/Controller/Admin.php:135
-msgid "Your test email was not sent since you did not enter an email address"
 msgstr ""
 
 #: lib/Newsletter/Controller/Admin.php:149
@@ -155,48 +134,29 @@ msgid ""
 "review your settings!"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:56 lib/Newsletter/DBObject/User.php:295
-#: lib/Newsletter/DBObject/User.php:307
-msgid "No such item found."
+#: lib/Newsletter/Controller/Admin.php:317
+#: lib/Newsletter/Controller/User.php:71
+msgid "Invalid [id] parameter received."
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:67
-msgid "You have unsubscribed from our newsletter"
+#: lib/Newsletter/Controller/User.php:111
+msgid "Invalid [ot] parameter received"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:77
-msgid "Newsletter Subscription Cancelled"
+#: lib/Newsletter/Controller/User.php:129
+msgid "Please enter your name"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:186
-msgid "Logic Error: logged-in user does not have his subscription UID set!"
+#: lib/Newsletter/Controller/User.php:132
+msgid "Please enter your email address"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:206
-msgid "This email address is already subscribed to our newsletter!"
+#: lib/Newsletter/Controller/User.php:138
+msgid "You must accept the terms of service in order to be subscribed!"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:218
-msgid "You are already subscribed to our newsletter!"
-msgstr ""
-
-#: lib/Newsletter/DBObject/User.php:225
-msgid "You have been subscribed to our newsletter"
-msgstr ""
-
-#: lib/Newsletter/DBObject/User.php:235
-msgid "Newsletter Subscription Received"
-msgstr ""
-
-#: lib/Newsletter/DBObject/User.php:243
-msgid "Newsletter Subscription"
-msgstr ""
-
-#: lib/Newsletter/DBObject/NewsletterDataArray.php:26
-#: lib/Newsletter/DBObject/Plugin.php:27
-#: lib/Newsletter/DBObject/PluginArray.php:38
-#, php-format
-msgid "Unable to load array class for [%s]"
+#: lib/Newsletter/DBObject/Archive.php:34
+msgid "Archives flushed."
 msgstr ""
 
 #: lib/Newsletter/DBObject/ExportArray.php:17
@@ -244,6 +204,13 @@ msgstr[1] ""
 msgid "Users skipped (duplicate email): "
 msgstr ""
 
+#: lib/Newsletter/DBObject/NewsletterDataArray.php:26
+#: lib/Newsletter/DBObject/Plugin.php:27
+#: lib/Newsletter/DBObject/PluginArray.php:38
+#, php-format
+msgid "Unable to load array class for [%s]"
+msgstr ""
+
 #: lib/Newsletter/DBObject/NewsletterSend.php:47
 msgid "The Mailer module is not available."
 msgstr ""
@@ -282,12 +249,41 @@ msgstr ""
 msgid "Wrong day"
 msgstr ""
 
-#: lib/Newsletter/DBObject/UserOptions.php:33
-msgid "Your newsletter subscription settings have been updated"
+#: lib/Newsletter/DBObject/User.php:56 lib/Newsletter/DBObject/User.php:295
+#: lib/Newsletter/DBObject/User.php:307
+msgid "No such item found."
 msgstr ""
 
-#: lib/Newsletter/DBObject/Archive.php:34
-msgid "Archives flushed."
+#: lib/Newsletter/DBObject/User.php:67
+msgid "You have unsubscribed from our newsletter"
+msgstr ""
+
+#: lib/Newsletter/DBObject/User.php:77
+msgid "Newsletter Subscription Cancelled"
+msgstr ""
+
+#: lib/Newsletter/DBObject/User.php:186
+msgid "Logic Error: logged-in user does not have his subscription UID set!"
+msgstr ""
+
+#: lib/Newsletter/DBObject/User.php:206
+msgid "This email address is already subscribed to our newsletter!"
+msgstr ""
+
+#: lib/Newsletter/DBObject/User.php:218
+msgid "You are already subscribed to our newsletter!"
+msgstr ""
+
+#: lib/Newsletter/DBObject/User.php:225
+msgid "You have been subscribed to our newsletter"
+msgstr ""
+
+#: lib/Newsletter/DBObject/User.php:235
+msgid "Newsletter Subscription Received"
+msgstr ""
+
+#: lib/Newsletter/DBObject/User.php:243
+msgid "Newsletter Subscription"
 msgstr ""
 
 #: lib/Newsletter/DBObject/UserActive.php:38
@@ -302,6 +298,16 @@ msgstr ""
 msgid "Unable to load class [user] ... disabling auto-join for array class"
 msgstr ""
 
+#: lib/Newsletter/DBObject/UserOptions.php:33
+msgid "Your newsletter subscription settings have been updated"
+msgstr ""
+
+#: lib/Newsletter/HookHandlers.php:96
+msgid ""
+"You have been subscribed to our newsletter. You can manage your subscription "
+"from your profile."
+msgstr ""
+
 #: lib/Newsletter/Listener/UsersUpdate.php:47
 msgid "Email adress for newsletter subscribtion changed."
 msgstr ""
@@ -312,29 +318,6 @@ msgstr ""
 
 #: lib/Newsletter/Listener/UsersUpdate.php:77
 msgid "Newsletter subscribtion canceled."
-msgstr ""
-
-#: lib/Newsletter/HookHandlers.php:96
-msgid ""
-"You have been subscribed to our newsletter. You can manage your subscription "
-"from your profile."
-msgstr ""
-
-#: lib/Newsletter/Version.php:20
-msgid "Provides a configurable and automated Newsletter for your Zikula site."
-msgstr ""
-
-#: lib/Newsletter/Version.php:21
-msgid "newsletter"
-msgstr ""
-
-#: lib/Newsletter/Version.php:34
-msgid "Newsletter Hooks"
-msgstr ""
-
-#: lib/Newsletter/Version.php:38 templates/user/hook_subscribe.tpl:7
-#: templates/user/hook_subscribe.tpl:15
-msgid "Subscribe to Newsletter"
 msgstr ""
 
 #: lib/Newsletter/Util.php:81 lib/Newsletter/Util.php:95
@@ -475,6 +458,23 @@ msgstr ""
 #: lib/Newsletter/Util.php:201
 #, php-format
 msgid "Directory [%s] seems to be a file nor a directory."
+msgstr ""
+
+#: lib/Newsletter/Version.php:20
+msgid "Provides a configurable and automated Newsletter for your Zikula site."
+msgstr ""
+
+#: lib/Newsletter/Version.php:21
+msgid "newsletter"
+msgstr ""
+
+#: lib/Newsletter/Version.php:34
+msgid "Newsletter Hooks"
+msgstr ""
+
+#: lib/Newsletter/Version.php:38 templates/user/hook_subscribe.tpl:7
+#: templates/user/hook_subscribe.tpl:15
+msgid "Subscribe to Newsletter"
 msgstr ""
 
 #: templates/admin/config.tpl:18 templates/user/generic_header.tpl:24
