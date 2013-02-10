@@ -43,12 +43,15 @@ class Newsletter_Listener_UsersUpdate
         $user = DBUtil::selectObject('newsletter_users', $where);
         if(!empty($user)) {
             //User is a Newsletter subscriber
-            $user = array('email' => $userObj['email']);
+            if ($user['email'] != $userObj['email']) {
+                // User email is changed, let's change in newsletter_users
+                $user = array('email' => $userObj['email']);
 
-            if(DBUtil::updateObject($user, 'newsletter_users', $where)) {
-                LogUtil::registerStatus(__('Email adress for newsletter subscribtion changed.', $dom));
-            } else {
-                LogUtil::registerStatus(__('Email adress for newsletter subscribtion NOT changed.', $dom));
+                if(DBUtil::updateObject($user, 'newsletter_users', $where)) {
+                    LogUtil::registerStatus(__('Email adress for newsletter subscribtion changed.', $dom));
+                } else {
+                    LogUtil::registerStatus(__('Email adress for newsletter subscribtion NOT changed.', $dom));
+                }
             }
         }
     }
