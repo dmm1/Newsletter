@@ -364,4 +364,175 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         return System::redirect($url);
     }
+
+    // Manage archive, recent and new newsletters
+    public function newsletters()
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $offset     = (int)FormUtil::getPassedValue('startnum', 1, 'GETPOST') - 1;
+        $pagesize   = (int)FormUtil::getPassedValue('pagesize', 5, 'GETPOST');
+
+        $objectArray = new Newsletter_DBObject_ArchiveArray();
+        $where = '';
+        $sort = 'id DESC';
+        $data = $objectArray->get($where, $sort, $offset, $pagesize);
+
+        $objArchive  = new Newsletter_DBObject_Archive();
+
+        $this->view->assign('objectArray', $data);
+        $this->view->assign('newsletterNextid', $objArchive->getnextid());
+        $this->view->assign('newsletterMaxid', $objArchive->getmaxid());
+        $pager = array();
+        $pager['numitems']     = $objectArray->getCount($where);
+        $pager['itemsperpage'] = $pagesize;
+        $this->view->assign('startnum', $offset)
+                   ->assign('pager', $pager);
+
+        return $this->view->fetch("admin/view_newsletters.tpl");
+    }
+
+    // Delete a newsletter from archive and optionally revert Id
+    public function deletenewsletter($args = array())
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+        $preserveid  = (int)FormUtil::getPassedValue('preserveid', $args['preserveid'] ? $args['preserveid'] : 0);
+
+        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+
+        if ($id > 0) {
+            $objArchive  = new Newsletter_DBObject_Archive();
+            $data = $objArchive->get($id);
+            if ($data) {
+                if ($objArchive->deletebyid($id)) {
+                    LogUtil::registerStatus($this->__('Newsletter successfully deleted, Id ').$id);
+                    if ($preserveid) {
+                        $objArchive->setnextid($id);
+                        LogUtil::registerStatus($this->__('Newsletter next Id set to ').$objArchive->getnextid());
+                    }
+                } else {
+                    LogUtil::registerError($this->__('Error deleting newsletter Id ').$id);
+                }
+            }
+        }
+
+        return System::redirect($url);
+    }
+
+    // Create newsletter in archive
+    public function createnewsletter($args = array())
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $Nextid  = (int)FormUtil::getPassedValue('Nextid', $args['Nextid'] ? $args['Nextid'] : 0);
+
+        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+
+        $objArchive  = new Newsletter_DBObject_Archive();
+
+        // Implement given newsletter Id
+        if ($Nextid > 0) {
+            $nextAutooincrement = $objArchive->getnextid();
+            if ($Nextid != $nextAutooincrement) {
+                $maxId = $objArchive->getmaxid();
+                if ($Nextid > $maxId) {
+                    $objArchive->setnextid($Nextid);
+                } else {
+                    LogUtil::registerError($this->__('Next newsletter Id have to be grater then ').$maxId);
+                    return System::redirect($url);
+                }
+            }
+        }
+
+        // Language - if not set - same sequence as in html.tpl/text.tpl
+        $Nllanguage = FormUtil::getPassedValue('language', '', 'GETPOST');
+        if (empty($Nllanguage)) {
+            $Nllanguage = ZLanguage::getLanguageCode();
+        }
+
+        // Get newsletter content
+        $nlDataObjectArray = new Newsletter_DBObject_NewsletterDataArray();
+        $objNewsletterData  = $nlDataObjectArray->getNewsletterData($Nllanguage);
+        $this->view->assign('show_header', '1');
+        $this->view->assign('site_url', System::getBaseUrl());
+        $this->view->assign('site_name', System::getVar('sitename'));
+        $this->view->assign('objectArray', $objNewsletterData);
+        $message_html = $this->view->fetch('output/html.tpl');
+        $message_text = $this->view->fetch('output/text.tpl');
+
+        // Prepare data
+        $archiveData = array();
+        $archiveData['date'] = DateUtil::getDatetime();
+        $archiveData['lang'] = $this->_objLang;
+        $archiveData['lang'] = $Nllanguage;
+        $archiveData['n_plugins'] = $objNewsletterData['nPlugins'];
+        $archiveData['n_items'] = $objNewsletterData['nItems'];
+        $archiveData['text'] = $message_text;
+        $archiveData['html'] = $message_html;
+
+        // Create new archive
+        $objArchive->setData($archiveData);
+        $result = $objArchive->save($archiveData);
+        if ($result) {
+            $newArchiveId = $result['id'];
+            LogUtil::registerStatus($this->__('The new newsletter is added to archive.').' Id: '.$newArchiveId);
+        } else {
+            LogUtil::registerError($this->__('Error creating newsletter in archive.'));
+        }
+
+        return System::redirect($url);
+    }
+
+    // Save a newsletter after edit
+    public function savenewsletter($args = array())
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+
+        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+
+        if ($id > 0) {
+            $objArchive  = new Newsletter_DBObject_Archive();
+            $data = $objArchive->get($id);
+            if ($data) {
+                $data['html'] = FormUtil::getPassedValue('html', $args['html'] ? $args['id'] : $data['html']);
+                $data['text'] = FormUtil::getPassedValue('text', $args['text'] ? $args['id'] : $data['text']);
+
+                $objArchive->setData($data);
+                if ($objArchive->save()) {
+                    LogUtil::registerStatus($this->__('Newsletter successfully saved, Id ').$id);
+                } else {
+                    LogUtil::registerError($this->__('Error saving newsletter Id ').$id);
+                }
+            }
+        }
+
+        return System::redirect($url);
+    }
+
+    // Edit a newsletter from archive
+    public function editnewsletter($args = array())
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+
+        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+
+        if ($id > 0) {
+            $objArchive  = new Newsletter_DBObject_Archive();
+            $data = $objArchive->get($id);
+            if ($data) {
+                $this->view->assign('newsletter', $data);
+
+                return $this->view->fetch("admin/edit_newsletter.tpl");
+            }
+        }
+
+        return System::redirect($url);
+    }
+
 }
