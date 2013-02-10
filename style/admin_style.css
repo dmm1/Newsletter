@@ -49,7 +49,7 @@ this is important to avoid conflict with your (or others) default stylesheet.
     padding: 5px;
 }
 .nl_autocomplete_user ul {
-    list-style-image: url("../../../images/icons/extrasmall/edit_user.png");
+    list-style-image: url("../../../images/icons/extrasmall/add_user.png");
     margin: 0;
     padding: 0;
 }
