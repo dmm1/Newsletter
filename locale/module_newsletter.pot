@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-10 05:51-0500\n"
+"POT-Creation-Date: 2013-02-11 06:27-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,7 +95,7 @@ msgstr ""
 #: lib/Newsletter/DBObject/NewsletterSend.php:51
 #: lib/Newsletter/DBObject/NewsletterSend.php:144
 #: lib/Newsletter/DBObject/NewsletterSend.php:200
-#: lib/Newsletter/DBObject/NewsletterSend.php:370
+#: lib/Newsletter/DBObject/NewsletterSend.php:369
 #: lib/Newsletter/DBObject/UserActive.php:17
 #: lib/Newsletter/DBObject/UserApproved.php:17
 #: lib/Newsletter/DBObject/UserDelete.php:17
@@ -140,29 +140,53 @@ msgstr ""
 msgid "Invalid [id] parameter received."
 msgstr ""
 
-#: lib/Newsletter/Controller/Admin.php:410
+#: lib/Newsletter/Controller/Admin.php:415
 msgid "Newsletter successfully deleted, Id "
 msgstr ""
 
-#: lib/Newsletter/Controller/Admin.php:413
+#: lib/Newsletter/Controller/Admin.php:418
 msgid "Newsletter next Id set to "
 msgstr ""
 
-#: lib/Newsletter/Controller/Admin.php:416
+#: lib/Newsletter/Controller/Admin.php:421
 msgid "Error deleting newsletter Id "
 msgstr ""
 
-#: lib/Newsletter/Controller/Admin.php:443
+#: lib/Newsletter/Controller/Admin.php:448
 msgid "Next newsletter Id have to be grater then "
 msgstr ""
 
-#: lib/Newsletter/Controller/Admin.php:480
+#: lib/Newsletter/Controller/Admin.php:485
 #: lib/Newsletter/DBObject/NewsletterSend.php:174
 msgid "The new newsletter is added to archive."
 msgstr ""
 
-#: lib/Newsletter/Controller/Admin.php:482
+#: lib/Newsletter/Controller/Admin.php:487
 msgid "Error creating newsletter in archive."
+msgstr ""
+
+#: lib/Newsletter/Controller/Admin.php:511
+msgid "Newsletter successfully saved, Id "
+msgstr ""
+
+#: lib/Newsletter/Controller/Admin.php:513
+msgid "Error saving newsletter Id "
+msgstr ""
+
+#: lib/Newsletter/Controller/Admin.php:601
+msgid "Newsletter successfully send to subscribers: "
+msgstr ""
+
+#: lib/Newsletter/Controller/Admin.php:603
+msgid "Skipped (already sent): "
+msgstr ""
+
+#: lib/Newsletter/Controller/Admin.php:606
+msgid "Skipped (not sent for some reason): "
+msgstr ""
+
+#: lib/Newsletter/Controller/Admin.php:609
+msgid "Error getting data for newsletter Id "
 msgstr ""
 
 #: lib/Newsletter/Controller/User.php:117
@@ -424,13 +448,15 @@ msgstr ""
 msgid "Yearly"
 msgstr ""
 
-#: lib/Newsletter/Util.php:160 templates/admin/view_newsletters.tpl:39
-#: templates/admin/view_user.tpl:194 templates/user/view_main.tpl:100
+#: lib/Newsletter/Util.php:160 templates/admin/edit_newsletter.tpl:24
+#: templates/admin/view_newsletters.tpl:39 templates/admin/view_user.tpl:194
+#: templates/user/view_main.tpl:100
 msgid "Text"
 msgstr ""
 
-#: lib/Newsletter/Util.php:161 templates/admin/view_newsletters.tpl:40
-#: templates/admin/view_user.tpl:196 templates/user/view_main.tpl:101
+#: lib/Newsletter/Util.php:161 templates/admin/edit_newsletter.tpl:19
+#: templates/admin/view_newsletters.tpl:40 templates/admin/view_user.tpl:196
+#: templates/user/view_main.tpl:101
 msgid "HTML"
 msgstr ""
 
@@ -519,7 +545,7 @@ msgstr ""
 #: templates/admin/config.tpl:38 templates/admin/config.tpl:48
 #: templates/admin/config.tpl:57 templates/admin/config.tpl:88
 #: templates/admin/config.tpl:164 templates/admin/view_newsletters.tpl:35
-#: templates/user/view_options.tpl:51
+#: templates/admin/view_newsletters.tpl:103 templates/user/view_options.tpl:51
 msgid "Help"
 msgstr ""
 
@@ -737,6 +763,28 @@ msgstr ""
 msgid "Database"
 msgstr ""
 
+#: templates/admin/edit_newsletter.tpl:2
+msgid "Edit a Newsletter"
+msgstr ""
+
+#: templates/admin/edit_newsletter.tpl:16
+msgid "Newsletter content"
+msgstr ""
+
+#: templates/admin/edit_newsletter.tpl:31
+msgid "Update - not ready yet"
+msgstr ""
+
+#: templates/admin/edit_newsletter.tpl:32 templates/forms/actions.tpl:16
+msgid "Update"
+msgstr ""
+
+#: templates/admin/edit_newsletter.tpl:34
+#: templates/admin/edit_newsletter.tpl:35 templates/forms/actions.tpl:30
+#: templates/forms/actions.tpl:31
+msgid "Cancel"
+msgstr ""
+
 #: templates/admin/edit_user.tpl:9
 msgid "Edit a User / Add a User"
 msgstr ""
@@ -757,7 +805,7 @@ msgid "Email"
 msgstr ""
 
 #: templates/admin/edit_user.tpl:47 templates/admin/view_newsletters.tpl:18
-#: templates/admin/view_newsletters.tpl:101 templates/admin/view_user.tpl:57
+#: templates/admin/view_newsletters.tpl:125 templates/admin/view_user.tpl:57
 #: templates/admin/view_user.tpl:136 templates/block/signup.tpl:24
 #: templates/user/view_archive.tpl:22 templates/user/view_main.tpl:34
 #: templates/user/view_options.tpl:23
@@ -851,65 +899,120 @@ msgstr ""
 msgid "Create new Newsletter"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:81
+#: templates/admin/view_newsletters.tpl:83
 msgid "Send newsletter to subscribers"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:84
-msgid "Go to Subscribers"
+#: templates/admin/view_newsletters.tpl:88
+msgid "Autamated sending:"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:91
+#: templates/admin/view_newsletters.tpl:88
+msgid "disabled"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:88
+msgid "enabled, send day is "
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:88
+msgid "This to occur Maintenance block have to be active."
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:92
+msgid "Last newsletter Id:"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:92
+msgid "Sent to subscribers:"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:92
+msgid "All subscribers:"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:98
+msgid "Multilingual support: enabled"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:98
+msgid "Newsletter will send to subscribers selected same language"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:103
+msgid "Manual sending"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:104
+msgid "Send last newsletter to subscribers"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:105
+msgid "Send to selected subscribers"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:108
+msgid ""
+"You can press this button several times, newsletter will send once per "
+"subscriber.<br />If you notice in the message newsletter is not send to all "
+"users, you can press again."
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:115
 msgid "Last Newsletters in archive"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:95 templates/admin/view_user.tpl:120
+#: templates/admin/view_newsletters.tpl:119 templates/admin/view_user.tpl:120
 #: templates/user/view_archive.tpl:12
 msgid "ID"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:98 templates/user/view_archive.tpl:17
+#: templates/admin/view_newsletters.tpl:122 templates/user/view_archive.tpl:17
 msgid "Date"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:104 templates/user/view_archive.tpl:27
+#: templates/admin/view_newsletters.tpl:128 templates/user/view_archive.tpl:27
 msgid "# of Plugins"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:107 templates/user/view_archive.tpl:32
+#: templates/admin/view_newsletters.tpl:131 templates/user/view_archive.tpl:32
 msgid "# of Items"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:110 templates/user/view_archive.tpl:37
+#: templates/admin/view_newsletters.tpl:134 templates/user/view_archive.tpl:37
 msgid "Length"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:113 templates/admin/view_user.tpl:163
+#: templates/admin/view_newsletters.tpl:137 templates/admin/view_user.tpl:163
 #: templates/admin/view_user.tpl:250 templates/user/view_archive.tpl:41
 msgid "Action"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:137
+#: templates/admin/view_newsletters.tpl:161
 msgid "View Archive HTML"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:141
+#: templates/admin/view_newsletters.tpl:163
 msgid "View Archive Text"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:145
+#: templates/admin/view_newsletters.tpl:167 templates/admin/view_user.tpl:33
+msgid "Edit"
+msgstr ""
+
+#: templates/admin/view_newsletters.tpl:171
 msgid "Delete Archive"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:146
+#: templates/admin/view_newsletters.tpl:172
 msgid "Are you sure? This will delete this item forever."
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:151
+#: templates/admin/view_newsletters.tpl:177
 msgid "Delete/Preserve Id"
 msgstr ""
 
-#: templates/admin/view_newsletters.tpl:152
+#: templates/admin/view_newsletters.tpl:178
 msgid "Next newsletter Id will not be incremented."
 msgstr ""
 
@@ -971,10 +1074,6 @@ msgstr ""
 
 #: templates/admin/view_statistics.tpl:58
 msgid "Number of archives"
-msgstr ""
-
-#: templates/admin/view_user.tpl:33
-msgid "Edit"
 msgstr ""
 
 #: templates/admin/view_user.tpl:34
@@ -1185,14 +1284,6 @@ msgstr ""
 msgid "Thank you,<br />%1$s Staff<br /><a href=\"%2$s\">%2$s</a>"
 msgstr ""
 
-#: templates/forms/actions.tpl:16
-msgid "Update"
-msgstr ""
-
-#: templates/forms/actions.tpl:30 templates/forms/actions.tpl:31
-msgid "Cancel"
-msgstr ""
-
 #: templates/output/html.tpl:316 templates/output/text.tpl:6
 msgid "Hello"
 msgstr ""
@@ -1205,7 +1296,7 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: templates/output/html.tpl:334 templates/output/html.tpl:385
+#: templates/output/html.tpl:334 templates/output/html.tpl:386
 msgid "read more"
 msgstr ""
 
@@ -1217,37 +1308,37 @@ msgstr ""
 msgid "Register Date"
 msgstr ""
 
-#: templates/output/html.tpl:359 templates/output/text.tpl:36
+#: templates/output/html.tpl:360 templates/output/text.tpl:36
 msgid "New Content Items"
 msgstr ""
 
-#: templates/output/html.tpl:369 templates/output/text.tpl:45
+#: templates/output/html.tpl:370 templates/output/text.tpl:45
 msgid "Recently Added Documents"
 msgstr ""
 
-#: templates/output/html.tpl:380
+#: templates/output/html.tpl:381
 msgid "Latest Comments"
 msgstr ""
 
-#: templates/output/html.tpl:392 templates/output/text.tpl:64
+#: templates/output/html.tpl:393 templates/output/text.tpl:64
 msgid "Latest Forum Posts"
 msgstr ""
 
-#: templates/output/html.tpl:402 templates/output/text.tpl:72
+#: templates/output/html.tpl:403 templates/output/text.tpl:72
 msgid "Recently Added Publications"
 msgstr ""
 
-#: templates/output/html.tpl:430
+#: templates/output/html.tpl:431
 msgid ""
 "You are receiving this newsletter since you subscribed to it on our site. "
 "Should you no longer wish to receive it, you can unsubscribe"
 msgstr ""
 
-#: templates/output/html.tpl:430
+#: templates/output/html.tpl:431
 msgid "here!"
 msgstr ""
 
-#: templates/output/html.tpl:433 templates/output/text.tpl:86
+#: templates/output/html.tpl:434 templates/output/text.tpl:86
 #: templates/output/text_with_link.tpl:3
 msgid "Link to the Newsletter Archive"
 msgstr ""

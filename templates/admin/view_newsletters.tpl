@@ -105,7 +105,7 @@
             <a href="{modurl modname='Newsletter' type='admin' func='view' ot='user'}">{gt text='Send to selected subscribers'}</a>
         </div>
         <div id="hint-2" class="z-informationmsg nl-hint" style="display:none;">
-            {gt text='You can pres this button several times, newsletter will send once per subscriber.<br />If you notice in the message newsletter is not send to all users, you can press again.'}
+            {gt text='You can press this button several times, newsletter will send once per subscriber.<br />If you notice in the message newsletter is not send to all users, you can press again.'}
         </div>
     </fieldset>
 </form>
