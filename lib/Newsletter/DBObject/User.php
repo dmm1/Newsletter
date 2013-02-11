@@ -311,4 +311,17 @@ class Newsletter_DBObject_User extends DBObject
 
         return parent::update();
     }
+
+    function countSendedNewsletter($nl_id)
+    {
+        if ($nl_id > 0) {
+            return (int)DBUtil::selectFieldMax('newsletter_users', 'nlu_last_send_nlid', 'COUNT', 'nlu_last_send_nlid = '.$nl_id);
+        }
+        return false;
+    }
+
+    function countSubscribers()
+    {
+        return (int)DBUtil::selectFieldMax('newsletter_users', 'nlu_id', 'COUNT', ' nlu_active=1 AND nlu_approved=1');
+    }
 }
