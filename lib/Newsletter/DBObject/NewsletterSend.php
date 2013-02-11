@@ -209,7 +209,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
         // get elegible users
         $objectArray = new Newsletter_DBObject_UserArray();
-        $users = $objectArray->getSendable($this->_objLang, 'id');
+        $users = $objectArray->getSendable($this->_objLang);
         if (!$users) {
             return (__('No users were available to send the newsletter to', $dom));
         }
@@ -314,12 +314,14 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return $view->fetch($tpl);
     }
 
-    function _sendNewsletter($user, $cacheID=null)
+    function _sendNewsletter($user, $message = '', $html = false, $cacheID = null)
     {
-        $html    = false;
-        $message = $this->_getNewsletterMessage($user, $cacheID, false, $html); // $html is output, defaults to html
+        if ($message == '') {
+            $message = $this->_getNewsletterMessage($user, $cacheID, false, $html); // $html is output, defaults to html
+        }
         $from    = ModUtil::getVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
         $subject = ModUtil::getVar('Newsletter', 'newsletter_subject') ;
+
         // ModUtil::apiFunc('Mailer', 'user', 'sendmessage') requires boolean html parameter!
         if ($html) {
             $html = true;
@@ -334,7 +336,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             // remove unwanted parts from <a> tag
             $message = preg_replace("#\<a.+href\=[\"|\'](.+)[\"|\'].*\>.*\<\/a\>#U","$1", $message);
         }
-        $sent    = ModUtil::apiFunc('Mailer', 'user', 'sendmessage',
+        $sent = ModUtil::apiFunc('Mailer', 'user', 'sendmessage',
                                     array('toaddress'  => $user['email'],
                                           'fromaddress'=> $from,
                                           'subject'    => $subject,
@@ -349,12 +351,9 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             if (isset($user['last_send_nlid'])) {
                 $userData['last_send_nlid'] = $user['last_send_nlid'];
             }
-
             $object = new Newsletter_DBObject_User();
             $object->setData($userData);
             $object->update();
-
-            return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => 'user')));
         }
 
         return $sent;
