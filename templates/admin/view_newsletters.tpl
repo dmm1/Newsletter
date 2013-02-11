@@ -76,19 +76,43 @@
     </fieldset>
 </form>
 
-<form class="z-form" method="post" name="sendNewsletter" action="{modurl modname='Newsletter' type='admin' func='view' ot='user'}" enctype="application/x-www-form-urlencoded">
-    <fieldset>
+<form class="z-form" method="post" name="sendNewsletter" action="{modurl modname='Newsletter' type='admin' func='sendnewsletter' id=$LastNewsletter.id}" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
+
+    <fieldset class="z-linear">
         <legend>{gt text='Send newsletter to subscribers'}</legend>
 
+        {modgetvar module="Newsletter" name="disable_auto" assign="disable_auto"}
+        {modgetvar module="Newsletter" name="send_day" assign="send_day"}
+        <div class="z-informationmsg z-formnote nl-round">
+            {gt text='Autamated sending:'} {if $disable_auto}{gt text='disabled'}.{else}{gt text='enabled, send day is '}{$arraysenddays[$send_day]}. {gt text='This to occur Maintenance block have to be active.'}{/if}
+        </div>
+        {if $LastNewsletter.id gt 0}
+        <div class="z-informationmsg z-formnote nl-round">
+            {gt text='Last newsletter Id:'} {$LastNewsletter.id}, {$LastNewsletter.lang}. {gt text='Sent to subscribers:'} {$newsletterLastidSentCount}. {gt text='All subscribers:'} {$SubscribersCount}.
+        </div>
+        {/if}
+        {modgetvar module="Newsletter" name="enable_multilingual" assign="enable_multilingual"}
+        {if $enable_multilingual}
+        <div class="z-informationmsg z-formnote nl-round">
+            {gt text='Multilingual support: enabled'}. {gt text='Newsletter will send to subscribers selected same language'} ({$LastNewsletter.lang}).
+        </div>
+        {/if}
+        <br />
         <div class="z-formbuttons z-buttons">
-            <input id="submit" class="z-button" type="submit" name="sendNewsletter" value="{gt text='Go to Subscribers'}" />
+            <label for="sendNewsletter">{gt text='Manual sending'}: <a class="z-normal" href="#" onclick="Effect.toggle('hint-2','BLIND'); return false;" title="{gt text='Help'}">(?)</a></label>
+            <input id="sendNewsletter" class="z-button" type="submit" name="sendNewsletter" value="{gt text='Send last newsletter to subscribers'}" />
+            <a href="{modurl modname='Newsletter' type='admin' func='view' ot='user'}">{gt text='Send to selected subscribers'}</a>
+        </div>
+        <div id="hint-2" class="z-informationmsg nl-hint" style="display:none;">
+            {gt text='You can press this button several times, newsletter will send once per subscriber.<br />If you notice in the message newsletter is not send to all users, you can press again.'}
         </div>
     </fieldset>
 </form>
 
 <form class="z-form" method="post" name="listNewsletters" action="{modurl modname='Newsletter' type='admin' func='newsletters'}" enctype="application/x-www-form-urlencoded">
     <fieldset>
-        <legend>{gt text='Last Newsletters in archive'}</legend>
+    <legend>{gt text='Last Newsletters in archive'}</legend>
     <ol id="filterlist" class="z-itemlist">
         <li class="z-itemheader z-clearfix">
             <span class="z-itemcell z-w05">

@@ -379,10 +379,15 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $data = $objectArray->get($where, $sort, $offset, $pagesize);
 
         $objArchive  = new Newsletter_DBObject_Archive();
+        $objUsers  = new Newsletter_DBObject_User();
 
         $this->view->assign('objectArray', $data);
+        $this->view->assign('LastNewsletter', $data[0]);
+        $this->view->assign('newsletterLastidSentCount', $objUsers->countSendedNewsletter($data[0]['id']));
+        $this->view->assign('SubscribersCount', $objUsers->countSubscribers());
         $this->view->assign('newsletterNextid', $objArchive->getnextid());
         $this->view->assign('newsletterMaxid', $objArchive->getmaxid());
+        $this->view->assign('arraysenddays', Newsletter_Util::getSelectorDataSendDay());
         $pager = array();
         $pager['numitems']     = $objectArray->getCount($where);
         $pager['itemsperpage'] = $pagesize;
@@ -530,6 +535,78 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
                 return $this->view->fetch("admin/edit_newsletter.tpl");
             }
+        }
+
+        return System::redirect($url);
+    }
+
+    // Send a newsletter from archive
+    public function sendnewsletter($args = array())
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
+
+        $id = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+
+        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+
+        if (!SecurityUtil::validateCsrfToken(FormUtil::getPassedValue('authid', null, 'GETPOST'))) {
+            return LogUtil::registerAuthidError($url);
+        }
+
+        // Get last archive
+        $objArchive  = new Newsletter_DBObject_Archive();
+        $dataNewsletter = $objArchive->get($id);
+        if ($dataNewsletter) {
+            // Determine users to send to
+            $where = "(nlu_active=1 AND nlu_approved=1)";
+            $enable_multilingual = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
+            if ($enable_multilingual) {
+                $where = "(nlu_lang='".$dataNewsletter['lang']."' OR nlu_lang='')";
+            }
+            // not take in account frequency in menual sending
+            //$allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
+            //$default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
+            $objectUserArray = new Newsletter_DBObject_UserArray();
+            $users = $objectUserArray->get($where, 'id');
+            // Send object
+            $objSend = new Newsletter_DBObject_NewsletterSend();
+            $objSend->_objData = $usrids;
+            $this->_objSendType = 'manual';
+            $objSend->_objUpdateSendDate = true;
+            // Scan users
+            $alreadysent = 0;
+            $nowsent = 0;
+            $notsent = 0;
+            $newSentTime = DateUtil::getDatetime();
+            foreach ($users as $user) {
+                if  ($user['last_send_nlid'] == $id) {
+                    $alreadysent++;
+                } else {
+                    // Send to subscriber
+                    $user['last_send_nlid'] = $id;
+                    if ($user['type'] == 1) {
+                        $html = false;
+                        $message = $dataNewsletter['text'];
+                    } else {
+                        $html = true;
+                        $message = $dataNewsletter['html'];
+                    }
+                    if ($objSend->_sendNewsletter($user, $message, $html)) {
+                        $nowsent++;
+                    } else {
+                        $notsent++;
+                    }
+                }
+            }
+            LogUtil::registerStatus($this->__('Newsletter successfully send to subscribers: ').$nowsent);
+            if ($alreadysent) {
+                LogUtil::registerStatus($this->__('Skipped (already sent): ').$alreadysent);
+            }
+            if ($notsent) {
+                LogUtil::registerStatus($this->__('Skipped (not sent for some reason): ').$notsent);
+            }
+        } else {
+                LogUtil::registerError($this->__('Error getting data for newsletter Id ').$id);
         }
 
         return System::redirect($url);
