@@ -17,19 +17,18 @@
 
         <div class="z-formrow">
             <label for="content_html">{gt text="HTML"}</label>
-            <textarea id="content_html" name="html" cols="65" rows="15" >{$newsletter.html|htmlentities}</textarea>
+            <textarea class="noeditor" id="content_html" name="html" cols="65" rows="20" >{$newsletter.html|safetext}</textarea>
         </div>
         <br />
         <div class="z-formrow">
             <label for="content_text">{gt text="Text"}</label>
-            <textarea id="content_text" name="text" cols="65" rows="15" >{$newsletter.text|htmlentities}</textarea>
+            <textarea class="noeditor" id="content_text" name="text" cols="65" rows="20" >{$newsletter.text|safetext}</textarea>
         </div>
 
-        {* notifydisplayhooks eventname='newsletter.ui_hooks.items.form_edit' *}
+        {notifydisplayhooks eventname='newsletter.ui_hooks.items.form_edit'}
         <br />
         <div class="z-buttons z-formbuttons">
-            {button src='button_ok.png' set='icons/small' id='notyet' type='reset' name='notyet' value='notyet' __alt='Update - not ready yet' __title='Update - not ready yet' __text='Update - not ready yet'}
-            {* button src='button_ok.png' set='icons/small' id='submit' name='submit' value='submit' __alt='Update' __title='Update' __text='Update' *}
+            {button src='button_ok.png' set='icons/small' id='submit' name='submit' value='submit' __alt='Update' __title='Update' __text='Update'}
             <a href="{modurl modname='Newsletter' type='admin' func='newsletters'}">
             {img modname='core' src='button_cancel.png' set='icons/small' alt='' __title='Cancel'}
             {gt text='Cancel'}
