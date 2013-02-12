@@ -434,6 +434,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
         $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+        $useeditor = (int)FormUtil::getPassedValue('useeditor', $args['useeditor'] ? $args['useeditor'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 
@@ -442,6 +443,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             $data = $objArchive->get($id);
             if ($data) {
                 $this->view->assign('newsletter', $data);
+                $this->view->assign('useeditor', $useeditor);
 
                 return $this->view->fetch("admin/edit_newsletter.tpl");
             }
