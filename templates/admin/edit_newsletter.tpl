@@ -17,7 +17,9 @@
 
         <div class="z-formrow">
             <label for="content_html">{gt text="HTML"}</label>
-            <textarea class="noeditor" id="content_html" name="html" cols="65" rows="20" >{$newsletter.html|safetext}</textarea>
+            {if $useeditor}{assign var='toggleeditor' value=0}{else}{assign var='toggleeditor' value=1}{/if}
+            <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$newsletter.id useeditor=$toggleeditor}">{gt text='Toggle editor'} ({gt text='page reload!'})</a>
+            <textarea class="fullpageeditor" id="content_html" name="html" cols="65" rows="20" >{$newsletter.html|safetext}</textarea>
         </div>
         <br />
         <div class="z-formrow">
@@ -25,7 +27,7 @@
             <textarea class="noeditor" id="content_text" name="text" cols="65" rows="20" >{$newsletter.text|safetext}</textarea>
         </div>
 
-        {notifydisplayhooks eventname='newsletter.ui_hooks.items.form_edit'}
+        {if $useeditor}{notifydisplayhooks eventname='newsletter.ui_hooks.items.form_edit'}{/if}
         <br />
         <div class="z-buttons z-formbuttons">
             {button src='button_ok.png' set='icons/small' id='submit' name='submit' value='submit' __alt='Update' __title='Update' __text='Update'}
