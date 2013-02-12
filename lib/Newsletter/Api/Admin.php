@@ -18,7 +18,7 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
         $links = array();
 
         if (SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
-            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'main'),
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'statistics')),
                              'text'  => $this->__('Start'),
                              'class' => 'z-icon-es-home');
 
@@ -26,20 +26,8 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                              'text'  => $this->__('Settings'),
                              'class' => 'z-icon-es-config');
 
-            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'archive'),
-                             'text'  => $this->__('Archive Settings'),
-                             'class' => 'z-icon-es-config');
-
-            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'statistics')),
-                             'text'  => $this->__('Statistics'),
-                             'class' => 'z-icon-es-info');
-
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'message')),
                              'text'  => $this->__('Header Message'));
-            /* This functionality is in Newsletters yet
-            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'preview')),
-                             'text'  => $this->__('Preview'),
-                             'class' => 'z-icon-es-preview');*/
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'newsletters'),
                              'text'  => $this->__('Newsletters'),

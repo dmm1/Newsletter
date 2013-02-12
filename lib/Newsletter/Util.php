@@ -13,28 +13,7 @@
 
 class Newsletter_Util
 {
-    // FIXME this is really needed with UTF-8 database?
-    public static function encodeText ($string)
-    {
-        $replace = array(
-            'Ä' => '&Auml;',
-            'ä' => '&auml;',
-            'Ö' => '&Ouml;',
-            'ö' => '&ouml;',
-            'Ü' => '&Uuml;',
-            'ü' => '&uuml;',
-            'À' => '&Agrave;',
-            'Á' => '&Aacute;',
-            'Â' => '&Acirc;',
-            'Ã' => '&Atilde;',
-            'Å' => '&Aring;',
-            'Æ' => '&AElig;'
-        );
-
-        return str_replace(array_keys($replace), array_values($replace), $string);
-    }
-
-    public static function getActivePlugins ()
+    public static function getActivePlugins()
     {
         $plugins = self::getPluginClasses();
 
@@ -173,7 +152,7 @@ class Newsletter_Util
             '2' => __('Tuesday', $dom),
             '3' => __('Wednesday', $dom),
             '4' => __('Thursday', $dom),
-            '5' => __('Firday', $dom),
+            '5' => __('Friday', $dom),
             '6' => __('Saturday', $dom),
             '0' => __('Sunday', $dom)
         );
@@ -181,6 +160,18 @@ class Newsletter_Util
         return $selector;
     }
 
+    public static function getSelectorHookUserRegistration()
+    {
+        $selector = array(
+            "checkboxon"  => __('Checkbox checked by default'),
+            "checkboxoff" => __('Checkbox not checked by default'),
+            "infmessage"  => __('Info message only'),
+            "nomessage"   => __('No special message')
+        );
+        
+        return $selector;
+    }
+    
     public static function scandir($directory, $ignoreFiles=null, $matchString=null)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
@@ -221,5 +212,16 @@ class Newsletter_Util
         }
 
         return $files;
+    }
+    
+    public static function convertSelectorArrayForFormHandler($array)
+    {
+        $outArray = array();
+        
+        foreach($array as $value => $text) {
+            $outArray[] = array('text' => $text, 'value' => $value);
+        }
+        
+        return $outArray;
     }
 }

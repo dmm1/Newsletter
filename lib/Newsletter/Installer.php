@@ -16,7 +16,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
     public function install()
     {
         if (!DBUtil::createTable('newsletter_users') || !DBUtil::createTable('newsletter_archives')) {
-            return false;
+            return LogUtil::registerError($this->__('Could not create tables!'));
         }
 
         $this->setVar('admin_key', substr(md5(time()),-10));
@@ -137,7 +137,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
     public function uninstall()
     {
         if (!DBUtil::dropTable('newsletter_users')  || !DBUtil::dropTable('newsletter_archives')) {
-            return false;
+            return LogUtil::registerError($this->__('Could not drop tables!'));
         }
 
         $this->delVars('Newsletter');
