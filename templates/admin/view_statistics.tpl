@@ -1,6 +1,17 @@
 {pageaddvar name='stylesheet' value='modules/Newsletter/style/admin_style.css'}
 {adminheader}
 
+<img class="z-floatleft" src="modules/Newsletter/images/admin-icon.png" width="137" />
+
+<h3>{gt text="Welcome to Newsletter!"}</h3>
+
+<p>
+    {gt text="Please report errors or request features for future versions in the Tracker!"}
+    <br /><br />
+    <a href="https://github.com/dmm1/Newsletter/wiki" target="_blank"><b>{gt text="Visit our project-page"}</b></a>
+</p>
+
+<br />
 <div class="z-admin-content-pagetitle">
     {icon type='info' size='small'}
     <h3>{gt text='Statistics'}</h3>
