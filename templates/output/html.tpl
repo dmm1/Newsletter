@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset={charset}" />
     <base href="{getbaseurl}" />
     <title>{gt text="Newsletter"}</title>
-</head>
 {if !$site_url}{getbaseurl assign='site_url'}{/if}
 <style>
 html,body { margin:0px; padding:0px; }
@@ -318,6 +317,7 @@ table.nl-calendar tbody tr th:hover {
     background:#fff;
 }
 </style>
+</head>
 
   {lang assign="currLang"}
   {formutil_getpassedvalue assign="nllang" name="language" default=$currLang}
