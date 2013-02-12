@@ -26,6 +26,9 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                              'text'  => $this->__('Settings'),
                              'class' => 'z-icon-es-config');
 
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'message')),
+                             'text'  => $this->__('Header Message'));
+
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'newsletters'),
                              'text'  => $this->__('Newsletters'),
                              'class' => 'z-icon-es-preview');

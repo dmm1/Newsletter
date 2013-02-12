@@ -33,22 +33,4 @@ class Newsletter_DBObject_PluginNewsletterMessageArray extends Newsletter_DBObje
 
         return ModUtil::getVar ('Newsletter', $vName, '');
     }
-
-    function setPluginParameters()
-    {
-        $messages = FormUtil::getPassedValue('NewsletterMessage', array(), 'POST');
-        ModUtil::setVar('Newsletter', 'message', $messages['text']);
-
-        $defaultLang = System::getVar('language_i18n', 'en');
-        $alternateLanguages = ZLanguage::getInstalledLanguageNames();
-        unset($alternateLanguages[$defaultLang]);
-        foreach ($alternateLanguages as $lang => $v) {
-            ModUtil::setVar('Newsletter', "text_$lang", $messages["text_$lang"]);
-        }
-    }
-
-    function getPluginParameters()
-    {
-        return array('number' => 1);
-    }
 }
