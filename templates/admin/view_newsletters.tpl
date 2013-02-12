@@ -137,6 +137,7 @@
                 {gt text="Action"}
             </span>
         </li>
+        {assign var='archivesExist' value=true}
         {foreach from=$objectArray key="key" item="archive"}
         <li class="{cycle values='z-odd,z-even'} z-clearfix">
             <span class="z-itemcell z-w05">
@@ -180,10 +181,29 @@
             </span>
             {/if}
         </li>
+        {foreachelse}
+            {assign var='archivesExist' value=false}
         {/foreach}
     </ol>
     {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='startnum' shift=1}
     </fieldset>
 </form>
+
+{if $archivesExist}
+    <form class="z-form" action="{modurl modname='Newsletter' type='admin' func='delete' ot='archive'}" method="post" onsubmit="return confirm('{gt text='Do you really want to prune all archives? This step cannot be undone.'}')">
+        <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
+
+        <fieldset>
+            <legend>{gt text='Prune Archives'}</legend>
+            <div class="z-warningmsg nl-round">
+                <strong>{gt text='Attention'}:</strong> {gt text='The archives cannot be restored.'}
+            </div>
+            <div class="z-buttons z-formbuttons">
+                <button id="submit" type="submit" name="submit" value="submit" title="{gt text='Prune'}"><img src="/images/icons/small/button_ok.png" alt="{gt text='Prune'}"> {gt text='Prune'}</button>
+                <a href="{modurl modname='Newsletter' type='admin' func='newsletters'}"><img src="/images/icons/small/button_cancel.png" alt="" title="{gt text='Cancel'}" width="22" height="22">{gt text='Cancel'}</a>
+            </div>
+        </fieldset>
+    </form>
+{/if}
 
 {adminfooter}

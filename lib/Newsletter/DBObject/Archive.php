@@ -30,8 +30,8 @@ class Newsletter_DBObject_Archive extends DBObject
             $data = $this->_objData;
         }
 
-        DBUtil::truncateTable ($this->_objType);
-        LogUtil::setStatusMessage (__('Archives flushed.', $dom));
+        DBUtil::truncateTable($this->_objType);
+        LogUtil::registerStatus(__('Archives flushed.', $dom));
 
         $this->_objData = $data;
         return $this->_objData;
