@@ -248,11 +248,15 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
-        $ot  = 'user';
+        $ot  = FormUtil::getPassedValue('ot', 'user', 'GETPOST');
         $id  = (int)FormUtil::getPassedValue('id', null, 'GETPOST');
-        $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot));
+        
+        if($ot == 'archive')
+            $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+        else
+            $url = ModUtil::url('Newsletter', 'admin', 'view', array('ot' => $ot));
 
-        if (!$id) {
+        if (!$id && $ot != 'archive') {
             return LogUtil::registerError($this->__('Invalid [id] parameter received.'), null, $url);
         }
 
@@ -267,12 +271,12 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $object = new $class();
         $data   = $object->get($id);
-        if (!$data) {
+        if (!$data && $ot != 'archive') {
             return LogUtil::registerError($this->__f('Unable to retrieve object of type [%1$s] with id [%2$s].', array($ot, $id)), null, $url);
         }
 
         $object->delete();
-        return System::redirect($url);
+        return $this->redirect($url);
     }
 
     // Manage archive, recent and new newsletters
