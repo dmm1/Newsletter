@@ -417,8 +417,17 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             $objArchive  = new Newsletter_DBObject_Archive();
             $data = $objArchive->get($id);
             if ($data) {
-                $data['html'] = FormUtil::getPassedValue('html', $args['html'] ? $args['id'] : $data['html']);
-                $data['text'] = FormUtil::getPassedValue('text', $args['text'] ? $args['id'] : $data['text']);
+                $htmlbody = FormUtil::getPassedValue('htmlbody', $args['htmlbody'] ? $args['htmlbody'] : null);
+                if (isset($htmlbody)) {
+                    // body only editor
+                    $partBefore = '';
+                    $partAfter = '';
+                    $this->getBodyParts($data['html'], $partBefore, $partAfter);
+                    $data['html'] = $partBefore ."\n". trim($htmlbody) ."\n". $partAfter;
+                } else {
+                    $data['html'] = FormUtil::getPassedValue('html', $args['html'] ? $args['html'] : $data['html']);
+                }
+                $data['text'] = FormUtil::getPassedValue('text', $args['text'] ? $args['text'] : $data['text']);
 
                 $objArchive->setData($data);
                 if ($objArchive->save()) {
@@ -446,6 +455,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             $objArchive  = new Newsletter_DBObject_Archive();
             $data = $objArchive->get($id);
             if ($data) {
+                $data['htmlbody'] = trim($this->getBodyParts($data['html']));
                 $this->view->assign('newsletter', $data);
                 $this->view->assign('useeditor', $useeditor);
 
@@ -454,6 +464,23 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         }
 
         return System::redirect($url);
+    }
+
+    // Return body parts
+    function getBodyParts($html, &$partBefore = '', &$partAfter = ''){
+        $start_tag = "<body";
+        $end_tag = "</body>";
+        $partInner = $html;
+        $pos = strpos($html, $start_tag);
+        if ($pos) {
+            $start_pos = strpos($html, ">", $pos) + 1;
+            $end_pos = strpos($html, $end_tag, $start_pos);
+            $partInner = substr($html, $start_pos, $end_pos - $start_pos);
+            $partBefore = substr($html, 0, $start_pos);
+            $partAfter = substr($html, $end_pos);
+        }
+
+        return $partInner;
     }
 
     // Send a newsletter from archive

@@ -17,9 +17,18 @@
 
         <div class="z-formrow">
             <label for="content_html">{gt text="HTML"}</label>
-            {if $useeditor}{assign var='toggleeditor' value=0}{else}{assign var='toggleeditor' value=1}{/if}
-            <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$newsletter.id useeditor=$toggleeditor}">{gt text='Toggle editor'} ({gt text='page reload!'})</a>
+            {if $useeditor}
+                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$newsletter.id useeditor=0}">{gt text='Remove editor'} ({gt text='page reload!'})</a>
+            {else}
+                {gt text='Toggle editor'} ({gt text='page reload!'}):
+                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$newsletter.id useeditor=1}">{gt text='For body only'}</a>&nbsp;|&nbsp;
+                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$newsletter.id useeditor=2}" onclick="return alert('Just test! Do not save!');">{gt text='For full page'}</a>
+            {/if}
+            {if $useeditor eq 1}
+            <textarea id="content_html" name="htmlbody" cols="65" rows="20" >{$newsletter.htmlbody|safetext}</textarea>
+            {else}
             <textarea class="fullpageeditor" id="content_html" name="html" cols="65" rows="20" >{$newsletter.html|safetext}</textarea>
+            {/if}
         </div>
         <br />
         <div class="z-formrow">
