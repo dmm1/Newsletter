@@ -5,53 +5,43 @@
  * @copyright  Newsletter Team
  * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package    Newsletter
- * @subpackage User
+ * @subpackage Listener
  *
  * Please see the CREDITS.txt file distributed with this source code for further
  * information regarding copyright.
  */
 
-class Newsletter_Block_Maintenance extends Zikula_Controller_AbstractBlock
+/**
+ * Provides a listener (handler) which is loaded on every pageload.
+ */
+class Newsletter_Listener_AutoSend
 {
-    public function init()
+    /**
+     * Sends out the automatic Newsletter.
+     *
+     * @param Zikula_Event $event The event that triggered this handler.
+     *
+     * @return void
+     */
+    public static function pageLoadListener(Zikula_Event $event)
     {
-        SecurityUtil::registerPermissionSchema('Maintenanceblock::', 'Block ID::');
-    }
-
-    public function info()
-    {
-        return array(
-            'module'         => 'Newsletter',
-            'text_type'      => $this->__('Maintenance'),
-            'text_type_long' => $this->__('Newsletter maintenance block'),
-            'allow_multiple' => true,
-            'form_content'   => false,
-            'form_refresh'   => false,
-            'show_preview'   => true
-        );
-    }
-
-    public function display($blockinfo)
-    {
-        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Maintenanceblock::', "$blockinfo[bid]::", ACCESS_READ));
-
-        if (!ModUtil::available('Newsletter')) {
-            return;
-        }
-
+        // Load module, otherwise translation is not working
+        ModUtil::load('Newsletter');
         ModUtil::dbInfoLoad('Newsletter');
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        $disable_auto = ModUtil::getVar ('Newsletter', 'disable_auto', 0);
+        $disable_auto = ModUtil::getVar('Newsletter', 'disable_auto', 0);
         if ($disable_auto) {
             return;
 
         } else {
             $today = date('w');
             $send_day = ModUtil::getVar('Newsletter','send_day');
-            if ($send_day == $today) {
+            if ($send_day == $today && !ModUtil::getVar('Newsletter', 'sendInProgress', false)) {
+                ModUtil::setVar('Newsletter', 'sendInProgress', true);
                 $class = 'Newsletter_DBObject_NewsletterSend';
                 if (!class_exists($class)) {
-                    return 'Unable to load class [newsletter_send]';
+                    return LogUtil::registerError('Newsletter auto-send:' . __f('Unable to load class [%s]', 'newsletter_send', $dom));
                 }
 
                 $enable_multilingual = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
@@ -62,7 +52,7 @@ class Newsletter_Block_Maintenance extends Zikula_Controller_AbstractBlock
 
                 $object = new Newsletter_DBObject_NewsletterSend();
                 $object->save();
-
+                ModUtil::setVar('Newsletter', 'sendInProgress', false);
                 // prune on send day before noon
                 //if (date('G') <= 12) {
                     //if (!Loader::loadClassFromModule('Newsletter', 'archive')) {
@@ -73,7 +63,5 @@ class Newsletter_Block_Maintenance extends Zikula_Controller_AbstractBlock
                 //}
             }
         }
-
-        return;
     }
 }

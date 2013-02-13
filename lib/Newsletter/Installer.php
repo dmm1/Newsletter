@@ -50,6 +50,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         // Persistent event handler registration
         EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
         EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
+        EventUtil::registerPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
 
 
         return true;
@@ -127,6 +128,18 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 
                 $this->delVar('Newsletter');
             case '2.2.2':
+                //Delete all Newsletter_Maintenance blocks
+                $connection = Doctrine_Manager::getInstance()->getConnection('default');
+                $sqlQuery = 'DELETE FROM `blocks` WHERE `bkey`="Maintenance" AND `mid`="' . ModUtil::getIdFromName('Newsletter') . '"';
+                $stmt = $connection->prepare($sqlQuery);
+                try {
+                    $stmt->execute();
+                } catch (Exception $e) {
+                }
+
+                //Register eventlistener for auto-sending emails.
+                EventUtil::registerPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
+            case '2.2.3':
                 // future upgrade routines
                 break;
         }
@@ -149,6 +162,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         // Persistent event handler unregistration
         EventUtil::unregisterPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
         EventUtil::unregisterPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
+        EventUtil::unregisterPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
         
         return true;
     }
