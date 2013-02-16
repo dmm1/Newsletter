@@ -44,6 +44,17 @@ class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBase
         }
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_News_nItems', 1);
 
-        return DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
+        $items = DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                if ($items[$k]['from'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 }
