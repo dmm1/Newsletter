@@ -50,8 +50,6 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         // Persistent event handler registration
         EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
         EventUtil::registerPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
-        EventUtil::registerPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
-
 
         return true;
     }
@@ -137,9 +135,8 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
                 } catch (Exception $e) {
                 }
 
-                //Register eventlistener for auto-sending emails.
-                EventUtil::registerPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
             case '2.2.3':
+            case '2.2.4':
                 // future upgrade routines
                 break;
         }
@@ -162,7 +159,8 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         // Persistent event handler unregistration
         EventUtil::unregisterPersistentModuleHandler('Newsletter', 'user.account.update', array('Newsletter_Listener_UsersUpdate', 'updateAccountListener'));
         EventUtil::unregisterPersistentModuleHandler('Newsletter', 'user.account.delete', array('Newsletter_Listener_UsersUpdate', 'deleteAccountListener'));
-        EventUtil::unregisterPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
+        if(!$this->getVar('disable_auto'))
+            EventUtil::unregisterPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
         
         return true;
     }
