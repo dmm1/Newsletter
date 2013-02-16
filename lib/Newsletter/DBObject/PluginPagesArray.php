@@ -39,7 +39,18 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
             $params['language'] = $lang;
         }
 
-        return ModUtil::apiFunc('Pages', 'user', 'getall', $params);
+        $items = ModUtil::apiFunc('Pages', 'user', 'getall', $params);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                if ($items[$k]['cr_date'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 }
 
