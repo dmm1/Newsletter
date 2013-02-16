@@ -59,6 +59,10 @@ class Newsletter_DBObject_Plugin extends DBObject
             }
         }
 
+        // General filters
+         ModUtil::setVar('Newsletter', 'plugins_filtlastdays', FormUtil::getPassedValue('plugins_filtlastdays', 0, 'GETPOST'));
+         ModUtil::setVar('Newsletter', 'plugins_filtlastarchive', FormUtil::getPassedValue('plugins_filtlastarchive', 0, 'GETPOST'));
+
         return true;
     }
 }

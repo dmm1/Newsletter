@@ -18,7 +18,8 @@ class Newsletter_DBObject_PluginContentArray extends Newsletter_DBObject_PluginB
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
-    function getPluginData($lang=null)
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!ModUtil::available('content')) {
             return array();

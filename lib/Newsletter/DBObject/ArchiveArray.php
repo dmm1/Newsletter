@@ -25,7 +25,9 @@ class Newsletter_DBObject_ArchiveArray extends DBObjectArray
 
     function get ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
-        $sort  = 'id DESC';
+        if (empty($sort)) {
+            $sort  = 'id DESC';
+        }
         $archives = $this->getWhere ($where, $sort, $limitOffset, $limitNumRows, $assocKey, $force, $distinct);
         foreach ($archives as $k=>$archive) {
             $archives[$k]['date_display'] = DateUtil::getDatetime_Date ($archive['date']);

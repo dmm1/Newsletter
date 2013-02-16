@@ -18,7 +18,8 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
-    function getPluginData($lang=null)
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!ModUtil::available('Clip') || !ModUtil::dbInfoLoad('Clip')) {
             return array();

@@ -18,7 +18,8 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         $this->Newsletter_DBObject_PluginBaseArray ();
     }
 
-    function getPluginData($lang=null)
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!ModUtil::available('Dizkus')) {
             return array();
