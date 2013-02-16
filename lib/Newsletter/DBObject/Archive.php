@@ -52,7 +52,7 @@ class Newsletter_DBObject_Archive extends DBObject
         }
 
         $expire_date = DateUtil::getDatetime_NextMonth ($archive_expire*-1, $format=DATEFORMAT_FIXED);
-        $where = "DATEDIFF(nla_date, '$expire_date') > 0";
+        $where = "DATEDIFF('$expire_date', nla_date) > 0";
         return DBUtil::deleteWhere ($this->_objType, $where);
     }
 

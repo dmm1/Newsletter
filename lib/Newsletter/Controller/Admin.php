@@ -250,7 +250,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $ot  = FormUtil::getPassedValue('ot', 'user', 'GETPOST');
         $id  = (int)FormUtil::getPassedValue('id', null, 'GETPOST');
-        
+
         if($ot == 'archive')
             $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
         else
@@ -275,7 +275,16 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             return LogUtil::registerError($this->__f('Unable to retrieve object of type [%1$s] with id [%2$s].', array($ot, $id)), null, $url);
         }
 
-        $object->delete();
+        if ($ot == 'archive') {
+            if (FormUtil::getPassedValue('deleteAll', null, 'GETPOST')) {
+                $object->delete();
+            }
+            if (FormUtil::getPassedValue('pruneInPeriod', null, 'GETPOST')) {
+                $object->prune();
+            }
+        } else {
+            $object->delete();
+        }
         return $this->redirect($url);
     }
 
@@ -302,6 +311,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->view->assign('newsletterNextid', $objArchive->getnextid());
         $this->view->assign('newsletterMaxid', $objArchive->getmaxid());
         $this->view->assign('arraysenddays', Newsletter_Util::getSelectorDataSendDay());
+        $this->view->assign('archiveExpireSelector', Newsletter_Util::getSelectorDataArchiveExpire());
         $pager = array();
         $pager['numitems']     = $objectArray->getCount($where);
         $pager['itemsperpage'] = $pagesize;
