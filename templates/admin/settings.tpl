@@ -22,10 +22,6 @@
     <h3>{gt text='Settings'}</h3>
 </div>
 
-<div class="z-informationmsg nl-round">
-    {gt text='It took %1$s seconds to send the last batch of %2$s mails.' tag1=$last_execution_time tag2=$last_execution_count}
-</div>
-
 {form cssClass='z-form'}
     {formvalidationsummary}
     <fieldset>

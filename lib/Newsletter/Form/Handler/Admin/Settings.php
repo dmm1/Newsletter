@@ -26,8 +26,6 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->view->caching = false;
         $this->view
              ->assign('preferences',          $this->getVars())
-             ->assign('last_execution_time',  $this->getVar('end_execution_time') - $this->getVar('start_execution_time'))
-             ->assign('last_execution_count', $this->getVar('end_execution_count', 0))
              ->assign('limitTypeSelector',                   Newsletter_Util::convertSelectorArrayForFormHandler(
                                                     Newsletter_Util::getSelectorDataNewsletterType(true)))
              ->assign('defaultTypeSelector',                 Newsletter_Util::convertSelectorArrayForFormHandler(
