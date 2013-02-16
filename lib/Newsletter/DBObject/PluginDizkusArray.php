@@ -44,6 +44,19 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         }
         $whereforum = ' forum_id IN (' . DataUtil::formatForStore(implode($allowedforums, ',')) . ') ';
 
-        return DBUtil::selectObjectArray('dizkus_topics', $whereforum, 'topic_id DESC', 0, $nItems);
+
+        $items = DBUtil::selectObjectArray('dizkus_topics', $whereforum, 'topic_id DESC', 0, $nItems);
+
+        // filter by date is given, remove older data
+        // ATTENTION: not implemented yet, need other select and lastpost/datetype column
+        if (false && $filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                if ($items[$k]['date'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 }
