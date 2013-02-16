@@ -27,7 +27,8 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $nItems   = ModUtil::getVar('Newsletter', 'plugin_Pages_nItems', 1);
         $params   = array();
-        $params['order']    = 'pageid DESC';
+        $params['order']    = 'pageid';
+        $params['orderdir'] = 'DESC';
         $params['numitems'] = $nItems;
         $params['startnum'] = 0;
         $params['ignoreml'] = true;
