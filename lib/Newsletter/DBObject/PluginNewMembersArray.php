@@ -29,6 +29,17 @@ class Newsletter_DBObject_PluginNewMembersArray extends Newsletter_DBObject_Plug
         $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
         $nItems   = ModUtil::getVar ('Newsletter', 'plugin_NewMembers_nItems', 1);
 
-        return DBUtil::selectObjectArray ('users', $where, $sort, 0, $nItems);
+        $items = DBUtil::selectObjectArray ('users', $where, $sort, 0, $nItems);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                if ($items[$k]['approved_date'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 }
