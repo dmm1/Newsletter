@@ -62,6 +62,8 @@
 
     <fieldset>
         <legend>{gt text='Create newsletter in archive'}</legend>
+        {modgetvar assign="archive_controlid" module="Newsletter" name="archive_controlid" default=0}
+        {if $archive_controlid}
         <div class="z-formrow">
             <label for="Nextid">{gt text='Next Id in archive'}:</label>
             <input id="Nextid" name="Nextid" type="text" value="{$newsletterNextid}" />
@@ -69,7 +71,7 @@
                 {gt text='Max Id in newsletter archive is '}{$newsletterMaxid}. {gt text='Be sure to enter proper value.'}
             </div>
         </div>
-
+        {/if}
         <div class="z-formbuttons z-buttons">
             <input id="submit" class="z-button" type="submit" name="create" value="{gt text='Create new Newsletter'}" />
         </div>
@@ -173,13 +175,13 @@
                 {gt text="Are you sure? This will delete this item forever." assign=lblConfirm}
                 <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id}" onclick="return confirm('{$lblConfirm}')">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
             </span>
-            {if $key eq 0}
+            {if $key eq 0}{if $archive_controlid}
             <span class="z-itemcell z-w20">
                 {gt text="Delete/Preserve Id" assign=lblDelPreserve}
                 {gt text="Next newsletter Id will not be incremented." assign=lblConfPreserve}
                 <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id preserveid=1}" onclick="return confirm('{$lblConfirm} {$lblConfPreserve}')">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelPreserve altml='false' title=$lblDelPreserve titleml='false'} {$lblDelPreserve}</a>
             </span>
-            {/if}
+            {/if}{/if}
         </li>
         {foreachelse}
             {assign var='archivesExist' value=false}

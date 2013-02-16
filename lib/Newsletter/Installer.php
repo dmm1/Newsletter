@@ -24,6 +24,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         $this->setVar('allow_frequency_change', '0');
         $this->setVar('allow_subscription_change', '0');
         $this->setVar('archive_expire', '0'); // never
+        $this->setVar('archive_controlid', '0');
         $this->setVar('auto_approve_registrations', '1');
         $this->setVar('default_frequency', '0');
         $this->setVar('default_type', '1'); //text/html/web

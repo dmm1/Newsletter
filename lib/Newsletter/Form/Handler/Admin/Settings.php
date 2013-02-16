@@ -71,6 +71,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('allow_frequency_change',     $prefs['allow_frequency_change']     ? 1 : 0);
         $this->setVar('allow_subscription_change',  $prefs['allow_subscription_change']  ? 1 : 0);
         $this->setVar('archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire'] : 0);
+        $this->setVar('archive_controlid',          $prefs['archive_controlid']          ? $prefs['archive_controlid'] : 0);
         $this->setVar('auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1 : 0);
         $this->setVar('default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
         $this->setVar('default_type',               $prefs['default_type']               ? $prefs['default_type'] : 1);

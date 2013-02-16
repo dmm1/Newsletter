@@ -166,6 +166,10 @@
             {formdropdownlist id="archive_expire" selectedValue=$preferences.archive_expire items=$archiveExpireSelector}
         </div>
         <div class="z-formrow">
+            {formlabel for="archive_controlid" __text="Control newsletter ID"}
+            {formcheckbox id="archive_controlid" checked=$preferences.archive_controlid}
+        </div>
+        <div class="z-formrow">
             {formlabel for="show_archive" __text="Show archive in the subscriber-menu"}
             {formcheckbox id="show_archive" checked=$preferences.show_archive}
         </div>
