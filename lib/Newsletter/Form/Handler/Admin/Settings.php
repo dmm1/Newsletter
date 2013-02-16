@@ -66,6 +66,12 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
             return LogUtil::registerError($this->__('You have selected to limit the type of newsletter subscriptions but have chosen a different default newsletter type. Your default newsletter type has been set to the value you have selected to limit subscriptions to. Please review your settings!'));
         }
 
+        if($prefs['disable_auto'] && !$this->getVar('disable_auto')) {
+             EventUtil::unregisterPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
+        } else if(!$prefs['disable_auto'] && $this->getVar('disable_auto')) {
+            EventUtil::registerPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
+        }
+
         $this->setVar('admin_key',                  $prefs['admin_key'] != ''            ? $prefs['admin_key'] : substr(md5(time()),-10));
         $this->setVar('allow_anon_registration',    $prefs['allow_anon_registration']    ? 1 : 0);
         $this->setVar('allow_frequency_change',     $prefs['allow_frequency_change']     ? 1 : 0);
