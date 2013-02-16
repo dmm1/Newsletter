@@ -499,6 +499,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
         $id = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+        $send_per_batch = (int)FormUtil::getPassedValue('send_per_batch', $args['send_per_batch'] ? $args['send_per_batch'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 
@@ -549,6 +550,10 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     } else {
                         $notsent++;
                     }
+                }
+                if ($send_per_batch > 0 && $nowsent >= $send_per_batch) {
+                    LogUtil::registerStatus($this->__('Reached max emails to send in batch: ').$send_per_batch);
+                    break;
                 }
             }
             LogUtil::registerStatus($this->__('Newsletter successfully send to subscribers: ').$nowsent);

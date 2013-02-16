@@ -100,9 +100,15 @@
             {gt text='Multilingual support: enabled'}. {gt text='Newsletter will send to subscribers selected same language'} ({$LastNewsletter.lang}).
         </div>
         {/if}
-        <br />
+        {modgetvar assign="send_per_request" module="Newsletter" name="send_per_request" default=0}
+        <div class="z-formrow">
+            <span>
+                <label for="send_per_batch">{gt text='Max emails to send in batch'}:</label>
+                <input id="send_per_batch" name="send_per_batch" type="text" value="{$send_per_request}" maxlength="20" />
+            </span>
+        </div>
         <div class="z-formbuttons z-buttons">
-            <label for="sendNewsletter">{gt text='Manual sending'}: <a class="z-normal" href="#" onclick="Effect.toggle('hint-2','BLIND'); return false;" title="{gt text='Help'}">(?)</a></label>
+            {gt text='Manual sending'}: <a class="z-normal" href="#" onclick="Effect.toggle('hint-2','BLIND'); return false;" title="{gt text='Help'}">(?)</a>
             <input id="sendNewsletter" class="z-button" type="submit" name="sendNewsletter" value="{gt text='Send last newsletter to subscribers'}" />
             <a href="{modurl modname='Newsletter' type='admin' func='view' ot='user'}">{gt text='Send to selected subscribers'}</a>
         </div>
