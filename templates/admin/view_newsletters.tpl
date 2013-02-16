@@ -87,7 +87,7 @@
         {modgetvar module="Newsletter" name="disable_auto" assign="disable_auto"}
         {modgetvar module="Newsletter" name="send_day" assign="send_day"}
         <div class="z-informationmsg z-formnote nl-round">
-            {gt text='Autamated sending:'} {if $disable_auto}{gt text='disabled'}.{else}{gt text='enabled, send day is '}{$arraysenddays[$send_day]}. {gt text='This to occur Maintenance block have to be active.'}{/if}
+            {gt text='Autamated sending:'} {if $disable_auto}{gt text='disabled'}.{else}{gt text='enabled, send day is '}{$arraysenddays[$send_day]}.{/if}
         </div>
         {if $LastNewsletter.id gt 0}
         <div class="z-informationmsg z-formnote nl-round">
