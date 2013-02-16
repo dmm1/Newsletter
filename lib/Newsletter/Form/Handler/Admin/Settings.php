@@ -93,7 +93,6 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
 
         //Archive
         $this->setVar('show_archive',   $prefs['show_archive']   ? 1 : 0);
-        $this->setVar('create_archive', $prefs['create_archive'] ? 1 : 0);
         $this->setVar('show_id',        $prefs['show_id']        ? 1 : 0);
         $this->setVar('show_lang',      $prefs['show_lang']      ? 1 : 0);
         $this->setVar('show_objects',   $prefs['show_objects']   ? 1 : 0);

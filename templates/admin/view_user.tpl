@@ -257,8 +257,8 @@
         <div class="z-formrow">
             <label for="sendType">{gt text='Save newsletter in archive?'}</label>
             <select id="sendType" name="sendType">
-                <option value="manual"{if !$create_archive} selected="selected"{/if}>{gt text="Don't save"}</option>
-                <option value="manual_archive"{if $create_archive} selected="selected"{/if}>{gt text='Save, but if not saved in one week'}</option>
+                <option value="manual" selected="selected">{gt text="Don't save"}</option>
+                <option value="manual_archive">{gt text='Save, but if not saved in one week'}</option>
                 <option value="manual_archive_nocheck">{gt text='Save without check'}</option>
             </select>
         </div>
