@@ -25,7 +25,19 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
             return array();
         }
 
-        return $this->_getClipItems($lang);
+        $items = $this->_getClipItems($lang);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                //if ($items[$k]['core_publishdate'] < $filtAfterDate) {
+                if ($items[$k]['cr_date'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 
     function setPluginParameters()
