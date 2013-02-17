@@ -7,26 +7,13 @@
 {if !$site_url}{getbaseurl assign='site_url'}{/if}
 <style type="text/css">
 html,body { margin:0px; padding:0px; }
-
-body#nl-body, div#nl-body
-{
+body, div {
     font: normal 11px arial;
     color: #222;
     background-color:#eeeeee;
 }
-
 .border {border: 2px solid grey;}
 
-#nl-wrapper
-{
-    margin:0px auto;
-    font: normal 12px  arial;
-    color: #444;
-    width:600px;
-}
-#nl-wrapper a {
-    font-size:12px; 
-}
 h1#nl-title {
     margin:0px; padding:7px 0px 0px;
     font-size:18px;
@@ -50,39 +37,9 @@ h4 {
     display:block;
     text-align:center;
 }
-#nl-wrapper p {
-    padding:0px 5px;
-}
-.nl-content-wrapper
-{
-    padding: 5px 5px;
-}
-.nl-content-wrapper h1,
-.nl-content-wrapper h2,
-.nl-content-wrapper h3,
-.nl-content-wrapper h4,
-.nl-content-wrapper h5 { font-size:15px; color:#000; }
-
-.nl-content-wrapper h1 { display:block; border-bottom:1px dashed #000; }
 
 table.nl-new-members,
-table.nl-new-subscribers,
-.nl-content-wrapper div, 
-.nl-content-wrapper p, 
-#nl-wrapper p { color: #444; }
-
-
-#nl-content-container
-{
-    width: 70%;
-    margin: 30px auto;
-}
-.nl-content-wrapper a, 
-#nl-wrapper a
-{
-    color: #7f0000;
-    text-decoration: none;
-}
+table.nl-new-subscribers { color: #444; }
 
 table.nl-new-members, table.nl-new-subscribers { width: 100%; border-collapse:collapse; }
 table.nl-new-members th, table.nl-new-subscribers th
@@ -321,7 +278,7 @@ table.nl-calendar tbody tr th:hover {
 
   {lang assign="currLang"}
   {formutil_getpassedvalue assign="nllang" name="language" default=$currLang}
-  <body id="nl-body">
+  <body>
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bg1">
         <tr>
           <td align="center">
@@ -348,7 +305,7 @@ table.nl-calendar tbody tr th:hover {
                         {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
                           <h2>{gt text="Message from the Site Administrators"}</h2>
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-                          <div>{$objectArray.NewsletterMessage|safehtml}</div>
+                          <p>{$objectArray.NewsletterMessage|safehtml}</p>
                           <br />
                         {/if}
 
@@ -357,7 +314,7 @@ table.nl-calendar tbody tr th:hover {
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           {foreach from=$objectArray.News item="item" name="loop"}
                             <h3><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}"><img src="{$site_url}modules/Newsletter/images/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" />{$item.title|safehtml}</a></h3>
-                            <div>{$item.hometext|trim|safehtml|url_check}</div>
+                            <p>{$item.hometext|trim|safehtml|url_check}</p>
                             <p class="more"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
@@ -398,7 +355,7 @@ table.nl-calendar tbody tr th:hover {
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           {foreach from=$objectArray.Pages item="item" name="loop"}
                             <h3><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                            <div>{$item.content|safehtml|url_check|truncate:400}</div>
+                            <p>{$item.content|safehtml|url_check|truncate:400}</p>
                             <p class="more"><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
@@ -410,7 +367,7 @@ table.nl-calendar tbody tr th:hover {
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           {foreach from=$objectArray.EZComments item="item" name="loop"}
                             <h3><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h3>
-                            <div>{$item.comment|safehtml|url_check|truncate:400}</div>
+                            <p>{$item.comment|safehtml|url_check|truncate:400}</p>
                             <p class="more"><a href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                              {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
@@ -432,8 +389,20 @@ table.nl-calendar tbody tr th:hover {
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           {foreach from=$objectArray.Clip item="item" name="loop"}
                             <h3><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h3>
-                            <div>{$item.content|safehtml|url_check|truncate:400}</div>
+                            <p>{$item.content|safehtml|url_check|truncate:400}</p>
                             <p class="more"><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                          {/foreach}
+                          <br />
+                        {/if}
+
+                        {if (isset($objectArray.Weblinks) && $objectArray.Weblinks)}        
+                          <h2>{if $nllang eq 'en'}Latest web links{else}Последни интернет връзки{/if}</h2>
+                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          {foreach from=$objectArray.Weblinks item="item" name="loop"}
+                            <h3><a href="{$item.url}">{$item.title}</a></h3>
+                            <p>{$item.description|safehtml|url_check|truncate:400}</p>
+                            <p class="more"><a href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
                           <br />
