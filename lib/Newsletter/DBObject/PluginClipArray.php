@@ -25,14 +25,17 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
             return array();
         }
 
-        $items = $this->_getClipItems($lang);
+        $itemsFull = $this->_getClipItems($lang);
 
-        // filter by date is given, remove older data
-        if ($filtAfterDate) {
-            foreach (array_keys($items) as $k) {
-                //if ($items[$k]['core_publishdate'] < $filtAfterDate) {
-                if ($items[$k]['cr_date'] < $filtAfterDate) {
-                    unset($items[$k]);
+        // Simplify data to be used in template
+        $items = array();
+        foreach ($itemsFull['txt'] as $itemPublist) {
+            foreach ($itemPublist as $Publication) {
+                //if ($filtAfterDate && $Publication['core_publishdate'] < $filtAfterDate) {
+                if ($filtAfterDate && $Publication['cr_date'] < $filtAfterDate) {
+                    // filter by date is given, remove older data
+                } else {
+                    $items[] = $Publication;
                 }
             }
         }
@@ -79,7 +82,8 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
     {
         $tids = ModUtil::getVar('Newsletter', 'ClipTIDs', array());
         $args = ModUtil::getVar('Newsletter', 'ClipArgs', array());
-        $types = array('txt', 'htm');
+        //$types = array('txt', 'htm');
+        $types = array('txt');
 
         $output = array();
 
