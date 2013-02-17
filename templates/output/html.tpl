@@ -407,6 +407,18 @@ table.nl-calendar tbody tr th:hover {
                           {/foreach}
                           <br />
                         {/if}
+
+                        {if (isset($objectArray.Downloads) && $objectArray.Downloads)}        
+                          <h2>{if $nllang eq 'en'}Latest downloads{else}Последни качени файлове{/if}</h2>
+                          <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                          {foreach from=$objectArray.Downloads item="item" name="loop"}
+                            <h3><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></h3>
+                            <p>{$item.description|safehtml|url_check|truncate:400}</p>
+                            <p class="more"><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+                            {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                          {/foreach}
+                          <br />
+                        {/if}
                       </td>
                     </tr>
                   </table>
