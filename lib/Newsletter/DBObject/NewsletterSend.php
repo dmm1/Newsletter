@@ -228,26 +228,10 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                 return __('Wrong day', $dom);
             }
         }
-        
-        // keep a record of how many mails were sent today
-        $maxPerHour = ModUtil::getVar('Newsletter', 'max_send_per_hour', 0);
-        if ($maxPerHour) {
-            $spamData  = ModUtil::getVar('Newsletter', 'spam_count', '');
-            if ($spamData) {
-                $spamArray = explode('-', $spamData);
-                $now       = time();
-                // if now minus start of send is more than an hour and more than "x" have been sent, stop the process
-                // step two: if the hour is greater than when we started, reset counters (and set spam array, used below)
-                if ($now-$spamArray['0'] >= 3600 && $spamArray['1'] >= $maxPerHour && date('G')==date('G', $spamArray['0'])) {
-                    return 'spam limits encountered';
-                } else if (date('G') > date('G', $spamArray['0'])) {
-                    ModUtil::setVar('Newsletter', 'spam_count', time().'-0');
-                    $spamArray = array(time(),'0');
-                }
-            }
-        }
 
-        ModUtil::setVar('Newsletter', 'start_execution_time', (float)array_sum(explode(' ', microtime())));
+        if (!$this->_setStartexecution()) {
+            return 'spam limits encountered';
+        }
         $sendPerRequest = ModUtil::getVar('Newsletter', 'send_per_request', 5);
         
         // check archives for new archive time
@@ -277,18 +261,50 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             }
         }
         LogUtil::registerStatus(_fn('%s newsletter were successfully sent.', '%s newsletters were successfully sent.', $nSent, $nSent, $dom));
-        
-        if ($maxPerHour) {
-            ModUtil::setVar('Newsletter', 'spam_count', $spamArray['0'] . '-' . ($spamArray['1']+$nSent));
-        }
 
-        ModUtil::setVar('Newsletter', 'end_execution_time', (float)array_sum(explode(' ', microtime())));
-        ModUtil::setVar('Newsletter', 'end_execution_count', $nSent);
+        $this->_setEndexecution($nSent);
         if (isset($args['respond']) && $args['respond']) {
             return " $nSent ";
         }
         
         return true;
+    }
+
+    function _setStartexecution() 
+    {
+        // keep a record of how many emails were sent today
+        $maxPerHour = ModUtil::getVar('Newsletter', 'max_send_per_hour', 0);
+        if ($maxPerHour) {
+            $spamArray = explode('-', ModUtil::getVar('Newsletter', 'spam_count', ''));
+            if ($spamArray[0] > 0) {
+                $now = time();
+                if ($now-$spamArray[0] >= 3600 || date('G', $now) != date('G', $spamArray[0])) {
+                    // if now minus start of send is more than an hour or other day - reset the counter
+                    ModUtil::setVar('Newsletter', 'spam_count', time().'-0');
+                } else {
+                    if ($spamArray[1] >= $maxPerHour) {
+                        // Max emails per hour encountered
+                        return false;
+                    }
+                }
+            } else {
+                // set counter for the first time
+                ModUtil::setVar('Newsletter', 'spam_count', time().'-0');
+            }
+        }
+        ModUtil::setVar('Newsletter', 'start_execution_time', (float)array_sum(explode(' ', microtime())));
+
+        return true;
+    }
+
+    function _setEndexecution($nSent) 
+    {
+        ModUtil::setVar('Newsletter', 'end_execution_time', (float)array_sum(explode(' ', microtime())));
+        ModUtil::setVar('Newsletter', 'last_execution_count', $nSent);
+        if (ModUtil::getVar('Newsletter', 'max_send_per_hour', 0)) {
+            $spamArray = explode('-', ModUtil::getVar('Newsletter', 'spam_count', ''));
+            ModUtil::setVar('Newsletter', 'spam_count', $spamArray[0] . '-' . ($spamArray[1]+$nSent));
+        }
     }
 
     function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=false) 

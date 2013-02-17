@@ -18,7 +18,8 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
-    function getPluginData($lang=null)
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!ModUtil::available('Pages')) {
             return array();
@@ -27,7 +28,8 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $nItems   = ModUtil::getVar('Newsletter', 'plugin_Pages_nItems', 1);
         $params   = array();
-        $params['order']    = 'pageid DESC';
+        $params['order']    = 'pageid';
+        $params['orderdir'] = 'DESC';
         $params['numitems'] = $nItems;
         $params['startnum'] = 0;
         $params['ignoreml'] = true;
@@ -37,7 +39,18 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
             $params['language'] = $lang;
         }
 
-        return ModUtil::apiFunc('Pages', 'user', 'getall', $params);
+        $items = ModUtil::apiFunc('Pages', 'user', 'getall', $params);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                if ($items[$k]['cr_date'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 }
 

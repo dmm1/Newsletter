@@ -26,8 +26,6 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->view->caching = false;
         $this->view
              ->assign('preferences',          $this->getVars())
-             ->assign('last_execution_time',  $this->getVar('end_execution_time') - $this->getVar('start_execution_time'))
-             ->assign('last_execution_count', $this->getVar('end_execution_count', 0))
              ->assign('limitTypeSelector',                   Newsletter_Util::convertSelectorArrayForFormHandler(
                                                     Newsletter_Util::getSelectorDataNewsletterType(true)))
              ->assign('defaultTypeSelector',                 Newsletter_Util::convertSelectorArrayForFormHandler(
@@ -77,6 +75,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('allow_frequency_change',     $prefs['allow_frequency_change']     ? 1 : 0);
         $this->setVar('allow_subscription_change',  $prefs['allow_subscription_change']  ? 1 : 0);
         $this->setVar('archive_expire',             $prefs['archive_expire']             ? $prefs['archive_expire'] : 0);
+        $this->setVar('archive_controlid',          $prefs['archive_controlid']          ? $prefs['archive_controlid'] : 0);
         $this->setVar('auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1 : 0);
         $this->setVar('default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
         $this->setVar('default_type',               $prefs['default_type']               ? $prefs['default_type'] : 1);
@@ -99,7 +98,6 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
 
         //Archive
         $this->setVar('show_archive',   $prefs['show_archive']   ? 1 : 0);
-        $this->setVar('create_archive', $prefs['create_archive'] ? 1 : 0);
         $this->setVar('show_id',        $prefs['show_id']        ? 1 : 0);
         $this->setVar('show_lang',      $prefs['show_lang']      ? 1 : 0);
         $this->setVar('show_objects',   $prefs['show_objects']   ? 1 : 0);

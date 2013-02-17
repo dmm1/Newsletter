@@ -398,8 +398,9 @@ table.nl-calendar tbody tr th:hover {
                           <h2>{gt text="Recently Added Documents"}</h2>
                           <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                           {foreach from=$objectArray.Pages item="item" name="loop"}
-                            <h3><a href="{modurl modname="Pages" type="user" func="display" pid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                            <div>{$item.content|safehtml}</div>
+                            <h3><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
+                            <div>{$item.content|safehtml|url_check|truncate:400}</div>
+                            <p class="more"><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                             {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                           {/foreach}
                           <br />

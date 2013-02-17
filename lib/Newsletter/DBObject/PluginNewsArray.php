@@ -18,7 +18,8 @@ class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBase
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
-    function getPluginData($lang=null)
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!ModUtil::available('News')) {
             return array();
@@ -43,6 +44,17 @@ class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBase
         }
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_News_nItems', 1);
 
-        return DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
+        $items = DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                if ($items[$k]['from'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 }

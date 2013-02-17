@@ -21,6 +21,14 @@
     <fieldset>
         <legend>{gt text='Newsletter Module Statistics'}</legend>
 
+        <div class="z-informationmsg nl-round">
+            {modgetvar assign="last_execution_count" module="Newsletter" name="last_execution_count" default=0}
+            {modgetvar assign="start_execution_time" module="Newsletter" name="start_execution_time" default=0}
+            {modgetvar assign="end_execution_time" module="Newsletter" name="end_execution_time" default=0}
+            {gt text='Last sending: '}{$start_execution_time|dateformat:datetimelong}&nbsp;
+            {gt text='It took %1$s seconds to send the last batch of %2$s mails.' tag1=$end_execution_time-$start_execution_time tag2=$last_execution_count}
+        </div>
+
         <div class="z-formrow">
             <label for="users"><em>{gt text="Total number of users"}:</em></label>
             <span id="users"><strong>{$objectArray.users}</strong></span>

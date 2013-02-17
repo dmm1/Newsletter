@@ -18,7 +18,8 @@ class Newsletter_DBObject_PluginEZCommentsArray extends Newsletter_DBObject_Plug
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
-    function getPluginData($lang=null)
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!ModUtil::available('EZComments')) {
             return array();
@@ -37,6 +38,17 @@ class Newsletter_DBObject_PluginEZCommentsArray extends Newsletter_DBObject_Plug
             $params['language'] = $lang;
         }
 
-        return ModUtil::apiFunc('EZComments', 'user', 'getall', $params);
+        $items = ModUtil::apiFunc('EZComments', 'user', 'getall', $params);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                if ($items[$k]['date'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 }

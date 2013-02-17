@@ -22,10 +22,6 @@
     <h3>{gt text='Settings'}</h3>
 </div>
 
-<div class="z-informationmsg nl-round">
-    {gt text='It took %1$s seconds to send the last batch of %2$s mails.' tag1=$last_execution_time tag2=$last_execution_count}
-</div>
-
 {form cssClass='z-form'}
     {formvalidationsummary}
     <fieldset>
@@ -162,12 +158,12 @@
     <fieldset>
         <legend>{gt text='Archive settings'}</legend>
         <div class="z-formrow">
-            {formlabel for="create_archive" __text='Create archive when sending out the newsletter manual'}
-            {formcheckbox id="create_archive" checked=$preferences.create_archive}
-        </div>
-        <div class="z-formrow">
             {formlabel for="archive_expire" __text='Expire time of archived newsletters' mandatorysym=true}
             {formdropdownlist id="archive_expire" selectedValue=$preferences.archive_expire items=$archiveExpireSelector}
+        </div>
+        <div class="z-formrow">
+            {formlabel for="archive_controlid" __text="Control newsletter ID"}
+            {formcheckbox id="archive_controlid" checked=$preferences.archive_controlid}
         </div>
         <div class="z-formrow">
             {formlabel for="show_archive" __text="Show archive in the subscriber-menu"}

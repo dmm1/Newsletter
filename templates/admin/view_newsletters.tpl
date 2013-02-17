@@ -62,6 +62,8 @@
 
     <fieldset>
         <legend>{gt text='Create newsletter in archive'}</legend>
+        {modgetvar assign="archive_controlid" module="Newsletter" name="archive_controlid" default=0}
+        {if $archive_controlid}
         <div class="z-formrow">
             <label for="Nextid">{gt text='Next Id in archive'}:</label>
             <input id="Nextid" name="Nextid" type="text" value="{$newsletterNextid}" />
@@ -69,7 +71,7 @@
                 {gt text='Max Id in newsletter archive is '}{$newsletterMaxid}. {gt text='Be sure to enter proper value.'}
             </div>
         </div>
-
+        {/if}
         <div class="z-formbuttons z-buttons">
             <input id="submit" class="z-button" type="submit" name="create" value="{gt text='Create new Newsletter'}" />
         </div>
@@ -85,7 +87,7 @@
         {modgetvar module="Newsletter" name="disable_auto" assign="disable_auto"}
         {modgetvar module="Newsletter" name="send_day" assign="send_day"}
         <div class="z-informationmsg z-formnote nl-round">
-            {gt text='Autamated sending:'} {if $disable_auto}{gt text='disabled'}.{else}{gt text='enabled, send day is '}{$arraysenddays[$send_day]}. {gt text='This to occur Maintenance block have to be active.'}{/if}
+            {gt text='Autamated sending:'} {if $disable_auto}{gt text='disabled'}.{else}{gt text='enabled, send day is '}{$arraysenddays[$send_day]}.{/if}
         </div>
         {if $LastNewsletter.id gt 0}
         <div class="z-informationmsg z-formnote nl-round">
@@ -98,9 +100,15 @@
             {gt text='Multilingual support: enabled'}. {gt text='Newsletter will send to subscribers selected same language'} ({$LastNewsletter.lang}).
         </div>
         {/if}
-        <br />
+        {modgetvar assign="send_per_request" module="Newsletter" name="send_per_request" default=0}
+        <div class="z-formrow">
+            <span>
+                <label for="send_per_batch">{gt text='Max emails to send in batch'}:</label>
+                <input id="send_per_batch" name="send_per_batch" type="text" value="{$send_per_request}" maxlength="20" />
+            </span>
+        </div>
         <div class="z-formbuttons z-buttons">
-            <label for="sendNewsletter">{gt text='Manual sending'}: <a class="z-normal" href="#" onclick="Effect.toggle('hint-2','BLIND'); return false;" title="{gt text='Help'}">(?)</a></label>
+            {gt text='Manual sending'}: <a class="z-normal" href="#" onclick="Effect.toggle('hint-2','BLIND'); return false;" title="{gt text='Help'}">(?)</a>
             <input id="sendNewsletter" class="z-button" type="submit" name="sendNewsletter" value="{gt text='Send last newsletter to subscribers'}" />
             <a href="{modurl modname='Newsletter' type='admin' func='view' ot='user'}">{gt text='Send to selected subscribers'}</a>
         </div>
@@ -173,13 +181,13 @@
                 {gt text="Are you sure? This will delete this item forever." assign=lblConfirm}
                 <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id}" onclick="return confirm('{$lblConfirm}')">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelete altml='false' title=$lblDelete titleml='false'}</a>
             </span>
-            {if $key eq 0}
+            {if $key eq 0}{if $archive_controlid}
             <span class="z-itemcell z-w20">
                 {gt text="Delete/Preserve Id" assign=lblDelPreserve}
                 {gt text="Next newsletter Id will not be incremented." assign=lblConfPreserve}
                 <a href="{modurl modname='Newsletter' type='admin' func='deletenewsletter' id=$archive.id preserveid=1}" onclick="return confirm('{$lblConfirm} {$lblConfPreserve}')">{img src='button_cancel.png' modname='core' set='icons/extrasmall' alt=$lblDelPreserve altml='false' title=$lblDelPreserve titleml='false'} {$lblDelPreserve}</a>
             </span>
-            {/if}
+            {/if}{/if}
         </li>
         {foreachelse}
             {assign var='archivesExist' value=false}
@@ -190,20 +198,27 @@
 </form>
 
 {if $archivesExist}
-    <form class="z-form" action="{modurl modname='Newsletter' type='admin' func='delete' ot='archive'}" method="post" onsubmit="return confirm('{gt text='Do you really want to prune all archives? This step cannot be undone.'}')">
+    {modgetvar assign="archive_expire" module="Newsletter" name="archive_expire" default=0}
+    {if $archive_expire}
+    <form class="z-form" action="{modurl modname='Newsletter' type='admin' func='delete' ot='archive'}" method="post" onsubmit="return confirm('{gt text='Do you really want to prune archives? This step cannot be undone.'}')">
         <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
         <fieldset>
-            <legend>{gt text='Prune Archives'}</legend>
+            <legend>{gt text='Prune archives'}</legend>
             <div class="z-warningmsg nl-round">
                 <strong>{gt text='Attention'}:</strong> {gt text='The archives cannot be restored.'}
             </div>
+            <div class="z-formrow">
+                <label for="archive_expire">{gt text='Expire time of archived newsletters'}:</label>
+                <span>{$archiveExpireSelector[$archive_expire]}</span>
+            </div>
             <div class="z-buttons z-formbuttons">
-                <button id="submit" type="submit" name="submit" value="submit" title="{gt text='Prune'}"><img src="/images/icons/small/button_ok.png" alt="{gt text='Prune'}"> {gt text='Prune'}</button>
-                <a href="{modurl modname='Newsletter' type='admin' func='newsletters'}"><img src="/images/icons/small/button_cancel.png" alt="" title="{gt text='Cancel'}" width="22" height="22">{gt text='Cancel'}</a>
+                <button id="submit" type="submit" name="pruneInPeriod" value="1" title="{gt text='Prune'}"><img src="/images/icons/small/button_cancel.png" alt="{gt text='Prune'}"> {gt text='Prune'}</button>
+                <button id="submit" type="submit" name="deleteAll" value="1" title="{gt text='Delete all'}"><img src="/images/icons/small/button_cancel.png" alt="{gt text='Prune'}"> {gt text='Delete all'}</button>
             </div>
         </fieldset>
     </form>
+    {/if}
 {/if}
 
 {adminfooter}

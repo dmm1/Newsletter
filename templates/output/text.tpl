@@ -46,7 +46,8 @@
 ===========================
 {foreach from=$objectArray.Pages item="item"}
 
-{$item.title|html_entity_decode}: {$item.content|html_entity_decode}
+{$item.title|html_entity_decode}: {$item.content|truncate:400|html_entity_decode}
+{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}
 {/foreach}
 {/if}
 {if (isset($objectArray.EZComments) && $objectArray.EZComments)}
