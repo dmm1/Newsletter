@@ -43,6 +43,27 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
             return LogUtil::registerError(__('Please use the language selector in the Filter section to select the language you with to send your newsletter for', $dom));
         }
         */
+        
+        // General filter parameter: items after after date
+        $filtAfterDate = null;
+        $filtlastdays = (int)ModUtil::getVar ('Newsletter', 'plugins_filtlastdays', 0);
+        $filtlastarchive = (int)ModUtil::getVar ('Newsletter', 'plugins_filtlastarchive', 0);
+        if ($filtlastdays > 0) {
+            // get date for filtering in format: yyyy-mm-dd hh:mm:ss
+            $filtAfterDate = DateUtil::getDatetime_NextDay(-$filtlastdays);
+        }
+        if ($filtlastarchive) {
+            // get last newsletter in archive, date is in same format
+            $objectArray = new Newsletter_DBObject_ArchiveArray();
+            $dataLastnl = $objectArray->get('', '', 0, 1);
+            if ($dataLastnl[0]['date']) {
+                if ($filtAfterDate) {
+                    $filtAfterDate = max($filtAfterDate, $dataLastnl[0]['date']);
+                } else {
+                    $filtAfterDate = $dataLastnl[0]['date'];
+                }
+            }
+        }
 
         $data['nItems']   = 0;
         $data['nPlugins'] = count($plugins);
@@ -51,7 +72,7 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
             $class = 'Newsletter_DBObject_Plugin' . $plugin . 'Array';
             if (class_exists($class)) {
                 $objArray        = new $class();
-                $data[$plugin]   = $objArray->getPluginData($language);
+                $data[$plugin]   = $objArray->getPluginData($language, $filtAfterDate);
                 $data['nItems'] += (is_array($data[$plugin]) ? count($data[$plugin]) : 1);
             }
         }

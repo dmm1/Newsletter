@@ -18,13 +18,26 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
-    function getPluginData($lang=null)
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!ModUtil::available('Clip') || !ModUtil::dbInfoLoad('Clip')) {
             return array();
         }
 
-        return $this->_getClipItems($lang);
+        $items = $this->_getClipItems($lang);
+
+        // filter by date is given, remove older data
+        if ($filtAfterDate) {
+            foreach (array_keys($items) as $k) {
+                //if ($items[$k]['core_publishdate'] < $filtAfterDate) {
+                if ($items[$k]['cr_date'] < $filtAfterDate) {
+                    unset($items[$k]);
+                }
+            }
+        }
+
+        return $items;
     }
 
     function setPluginParameters()

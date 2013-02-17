@@ -250,7 +250,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $ot  = FormUtil::getPassedValue('ot', 'user', 'GETPOST');
         $id  = (int)FormUtil::getPassedValue('id', null, 'GETPOST');
-        
+
         if($ot == 'archive')
             $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
         else
@@ -275,7 +275,16 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             return LogUtil::registerError($this->__f('Unable to retrieve object of type [%1$s] with id [%2$s].', array($ot, $id)), null, $url);
         }
 
-        $object->delete();
+        if ($ot == 'archive') {
+            if (FormUtil::getPassedValue('deleteAll', null, 'GETPOST')) {
+                $object->delete();
+            }
+            if (FormUtil::getPassedValue('pruneInPeriod', null, 'GETPOST')) {
+                $object->prune();
+            }
+        } else {
+            $object->delete();
+        }
         return $this->redirect($url);
     }
 
@@ -302,6 +311,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->view->assign('newsletterNextid', $objArchive->getnextid());
         $this->view->assign('newsletterMaxid', $objArchive->getmaxid());
         $this->view->assign('arraysenddays', Newsletter_Util::getSelectorDataSendDay());
+        $this->view->assign('archiveExpireSelector', Newsletter_Util::getSelectorDataArchiveExpire());
         $pager = array();
         $pager['numitems']     = $objectArray->getCount($where);
         $pager['itemsperpage'] = $pagesize;
@@ -489,6 +499,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
         $id = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+        $send_per_batch = (int)FormUtil::getPassedValue('send_per_batch', $args['send_per_batch'] ? $args['send_per_batch'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 
@@ -511,42 +522,54 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             //$default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
             $objectUserArray = new Newsletter_DBObject_UserArray();
             $users = $objectUserArray->get($where, 'id');
-            // Send object
+            // Create send object
             $objSend = new Newsletter_DBObject_NewsletterSend();
             $objSend->_objData = $usrids;
             $this->_objSendType = 'manual';
             $objSend->_objUpdateSendDate = true;
+
             // Scan users
-            $alreadysent = 0;
-            $nowsent = 0;
-            $notsent = 0;
-            $newSentTime = DateUtil::getDatetime();
-            foreach ($users as $user) {
-                if  ($user['last_send_nlid'] == $id) {
-                    $alreadysent++;
-                } else {
-                    // Send to subscriber
-                    $user['last_send_nlid'] = $id;
-                    if ($user['type'] == 1) {
-                        $html = false;
-                        $message = $dataNewsletter['text'];
+            if ($objSend->_setStartexecution()) {
+                $alreadysent = 0;
+                $nowsent = 0;
+                $notsent = 0;
+                $newSentTime = DateUtil::getDatetime();
+                foreach ($users as $user) {
+                    if  ($user['last_send_nlid'] == $id) {
+                        $alreadysent++;
                     } else {
-                        $html = true;
-                        $message = $dataNewsletter['html'];
+                        // Send to subscriber
+                        $user['last_send_nlid'] = $id;
+                        if ($user['type'] == 1) {
+                            $html = false;
+                            $message = $dataNewsletter['text'];
+                        } else {
+                            $html = true;
+                            $message = $dataNewsletter['html'];
+                        }
+                        if ($objSend->_sendNewsletter($user, $message, $html)) {
+                            $nowsent++;
+                        } else {
+                            $notsent++;
+                        }
                     }
-                    if ($objSend->_sendNewsletter($user, $message, $html)) {
-                        $nowsent++;
-                    } else {
-                        $notsent++;
+                    if ($send_per_batch > 0 && $nowsent >= $send_per_batch) {
+                        LogUtil::registerStatus($this->__('Reached max emails to send in batch: ').$send_per_batch);
+                        break;
                     }
                 }
-            }
-            LogUtil::registerStatus($this->__('Newsletter successfully send to subscribers: ').$nowsent);
-            if ($alreadysent) {
-                LogUtil::registerStatus($this->__('Skipped (already sent): ').$alreadysent);
-            }
-            if ($notsent) {
-                LogUtil::registerStatus($this->__('Skipped (not sent for some reason): ').$notsent);
+
+                $objSend->_setEndexecution($nowsent);
+
+                LogUtil::registerStatus($this->__('Newsletter successfully send to subscribers: ').$nowsent);
+                if ($alreadysent) {
+                    LogUtil::registerStatus($this->__('Skipped (already sent): ').$alreadysent);
+                }
+                if ($notsent) {
+                    LogUtil::registerStatus($this->__('Skipped (not sent for some reason): ').$notsent);
+                }
+            } else {
+                LogUtil::registerError($this->__('Max emails per hour encountered: ').ModUtil::getVar('Newsletter', 'max_send_per_hour'));
             }
         } else {
                 LogUtil::registerError($this->__('Error getting data for newsletter Id ').$id);

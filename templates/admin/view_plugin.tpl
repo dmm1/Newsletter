@@ -45,6 +45,24 @@ Event.observe(window, 'load', function() {
     <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
     <input type="hidden" name="ot" value="plugin" />
 
+    <fieldset>
+        <legend>{gt text='General filter'}</legend>
+        <span class="z-informationmsg z-formnote nl-round">
+            {gt text="To be effective, particular plugins have to implement."}
+        </span>
+        <div class="z-formrow">
+            {modgetvar assign='plugins_filtlastdays' module='Newsletter' name="plugins_filtlastdays" default=0}
+            <label for="plugins_filtlastdays">{gt text="Only items posted in last number of days:"}</label>
+            <input id="plugins_filtlastdays" name="plugins_filtlastdays" type="text" value="{$plugins_filtlastdays}" size="6" maxlength="6" />
+            <em class="z-sub z-formnote">{gt text='Leave 0 for unlimited.'}</em>
+        </div>
+        <div class="z-formrow">
+            {modgetvar assign='plugins_filtlastarchive' module='Newsletter' name="plugins_filtlastarchive" default=0}
+            <label for="plugins_filtlastarchive">{gt text="Only items posted after last newsletter:"}</label>
+            <input id="plugins_filtlastarchive" name="plugins_filtlastarchive" type="checkbox" value="1"{if $plugins_filtlastarchive} checked="checked"{/if} />
+        </div>
+    </fieldset>
+
     {assign var='i' value=1}
     {foreach from=$objectArray item='plugin'}
     {modgetvar assign="pluginActive" module="Newsletter" name="plugin_`$plugin`" default=0}
