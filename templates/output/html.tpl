@@ -314,7 +314,7 @@ td.footer a {
                     {/if}
 
                     {if (isset($objectArray.Weblinks) && $objectArray.Weblinks)}        
-                      <h2>{if $nllang eq 'en'}Latest web links{else}Последни интернет връзки{/if}</h2>
+                      <h2>{gt text="Latest web links"}</h2>
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Weblinks item="item" name="loop"}
                         <h3><a href="{$item.url}">{$item.title}</a></h3>
@@ -326,7 +326,7 @@ td.footer a {
                     {/if}
 
                     {if (isset($objectArray.Downloads) && $objectArray.Downloads)}        
-                      <h2>{if $nllang eq 'en'}Latest downloads{else}Последни качени файлове{/if}</h2>
+                      <h2>{gt text="Latest downloads"}</h2>
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Downloads item="item" name="loop"}
                         <h3><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></h3>
