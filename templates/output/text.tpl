@@ -72,12 +72,10 @@
 
 {gt text="Recently Added Publications"}
 ===========================
-{foreach from=$objectArray.Clip.txt key='tid' item='publist'}
+{foreach from=$objectArray.Clip item="item" name="loop"}
 
-{foreach from=$publist item="item"}
-
-{$item.core_title}
-{/foreach}
+{$item.title|html_entity_decode}
+{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}
 {/foreach}
 {/if}
 
