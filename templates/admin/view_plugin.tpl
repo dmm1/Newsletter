@@ -68,8 +68,8 @@ Event.observe(window, 'load', function() {
     {modgetvar assign="pluginActive" module="Newsletter" name="plugin_`$plugin`" default=0}
     <fieldset>
         <legend>
-            {$plugin|safehtml}
             <input type="checkbox" id="enable_{$i}" name="plugin[{$plugin}]" value="1" {if $pluginActive}checked="checked"{/if} />
+            {$plugin|safehtml}
         </legend>
         <div id="plugin_{$i}">
             {if $plugin neq 'NewsletterMessage'}
