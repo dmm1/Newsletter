@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <html>
 <head>
+{if !$site_url}{assign var='site_url' value=$baseurl}{/if}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <base href="{getbaseurl}" />
+    <base href="{$site_url}" />
     <title>{gt text="Newsletter"}</title>
-{if !$site_url}{getbaseurl assign='site_url'}{/if}
 <style type="text/css">
 html,body { margin:0px; padding:0px; }
 body, div {
