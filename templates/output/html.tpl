@@ -231,7 +231,8 @@ td.footer a {
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.News item="item" name="loop"}
                         <h3><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}"><img src="{$site_url}modules/Newsletter/images/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" />{$item.title|safehtml}</a></h3>
-                        <p>{$item.hometext|trim|safehtml|url_check}</p>
+                        <a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}images/news_picupload/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a>
+						<p>{$item.hometext|trim|safehtml|url_check}</p>
                         <p class="more"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                         {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
