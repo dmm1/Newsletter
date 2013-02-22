@@ -476,8 +476,8 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 							<td align="center">
 								<p>
 									<a href="{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}"><strong>{gt text="Archive"}</strong></a> |
-									<a href="#">Privacy</a> |
-									<a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="unsubscribe"}</strong></a>
+									<a href="{modurl modname="Newsletter" type="user" func="main" ot="tos" newlang=$nllang fqurl=true}"><strong>{gt text="Terms of Service"}</strong></a> |
+									<a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="Unsubscribe"}</strong></a>
 								</p>
 							</td>
 						</tr>
