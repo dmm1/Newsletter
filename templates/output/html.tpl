@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>{gt text="Newsletter"}</title>
 {if !$site_url}{assign var='site_url' value=$baseurl}{/if}
+<link rel="stylesheet" type="text/css" href="{$site_url}modules/Newsletter/style/html.css" >
 <style>
 /* ------------------------------------- 
 		GLOBAL 
@@ -34,18 +35,20 @@ body {
 		ELEMENTS 
 ------------------------------------- */
 a { color: #2BA6CB;}
-
+p{font-size:14px;}
 .btn {
 	text-decoration:none;
-	color: #FFF;
-	background-color: #666;
-	padding:10px 16px;
+	color: #000;
+	background-color: #ddd;
+	padding:8px 12px;
 	font-weight:bold;
 	margin-right:10px;
 	text-align:center;
 	cursor:pointer;
 	display: inline-block;
-}
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	}
 
 p.callout {
 	padding:15px;
@@ -118,7 +121,7 @@ font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", He
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small { font-size: 60%; color: #6f6f6f; line-height: 0; text-transform: none; }
 
 h1 { font-weight:200; font-size: 44px;}
-h2 { font-weight:200; font-size: 37px;}
+h2 { font-weight:200; font-size: 31px;}
 h3 { font-weight:500; font-size: 27px;}
 h4 { font-weight:500; font-size: 23px;}
 h5 { font-weight:900; font-size: 17px;}
@@ -235,14 +238,14 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 <body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
 
 <!-- HEADER -->
-<table class="head-wrap" bgcolor="#999999">
+<table class="head-wrap" bgcolor="#f0f0f0">
 	<tr>
 		<td></td>
 		<td class="header container" align="">
 			
 			<!-- /content -->
 			<div class="content">
-				<table bgcolor="#999999" >
+				<table bgcolor="#f0f0f0" >
 					<tr>
 						<td><h6 class="collapse">{$objectArray.title}</h6></td>
 					</tr>
@@ -295,7 +298,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<td>
 						<h4><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}">{$item.title|safehtml}</a></h4>
 						<p class="">{$item.hometext|trim|safehtml|url_check}</p>
-						<a class="btn"href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>						
+						<a class="btn" href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>						
 					</td>
 				</tr>
 			</table></div>
