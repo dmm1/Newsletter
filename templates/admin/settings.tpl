@@ -79,6 +79,32 @@
         </div>
     </fieldset>
 
+    <fieldset>
+        <legend>{gt text='Contact Information'}</legend>
+        <div class="z-informationmsg z-formnote nl-round">
+            {gt text="It is shown at the bottom of newsletter, if respective field is not empty."}
+        </div>
+        <div class="z-formrow">
+            {formlabel for="contact_phone" __text='Phone'}
+            {formtextinput id="contact_phone" text=$preferences.contact_phone maxLength=250}
+        </div>
+        <div class="z-formrow">
+            {formlabel for="contact_email" __text='Email'}
+            {formtextinput id="contact_email" text=$preferences.contact_email maxLength=250}
+        </div>
+        <div class="z-formrow">
+            {formlabel for="contact_facebook" __text='Facebook'}
+            {formtextinput id="contact_facebook" text=$preferences.contact_facebook maxLength=250}
+        </div>
+        <div class="z-formrow">
+            {formlabel for="contact_twitter" __text='Twitter'}
+            {formtextinput id="contact_twitter" text=$preferences.contact_twitter maxLength=250}
+        </div>
+        <div class="z-formrow">
+            {formlabel for="contact_google" __text='Google+'}
+            {formtextinput id="contact_google" text=$preferences.contact_google maxLength=250}
+        </div>
+    </fieldset>
 
 
     <fieldset>
