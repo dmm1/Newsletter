@@ -28,6 +28,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         $this->setVar('auto_approve_registrations', '1');
         $this->setVar('default_frequency', '0');
         $this->setVar('default_type', '1'); //text/html/web
+        $this->setVar('template_html', 'html.tpl');
         $this->setVar('enable_multilingual', '0');
         $this->setVar('import_active_status', '1');
         $this->setVar('import_activelastdays', '0');

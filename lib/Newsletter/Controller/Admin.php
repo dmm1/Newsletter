@@ -112,7 +112,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     $content = str_replace(array("\n", "\r"), '<br />', $content);
                     break;
                 case 2:
-                    $content = $this->view->fetch('output/html.tpl');
+                    $content = $this->view->fetch('output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'));
                     break;
                 case 3:
                     $content = $this->view->fetch('output/text_with_link.tpl');
@@ -388,7 +388,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->view->assign('site_url', System::getBaseUrl());
         $this->view->assign('site_name', System::getVar('sitename'));
         $this->view->assign('objectArray', $objNewsletterData);
-        $message_html = $this->view->fetch('output/html.tpl');
+        $message_html = $this->view->fetch('output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'));
         $message_text = $this->view->fetch('output/text.tpl');
 
         // Prepare data

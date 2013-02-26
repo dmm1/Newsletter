@@ -311,9 +311,9 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
     {
         switch ($user['type']) {
             case 1:  $tpl = 'output/text.tpl'; $html = false; break;
-            case 2:  $tpl = 'output/html.tpl'; $html = true; break;
+            case 2:  $tpl = 'output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'); $html = true; break;
             case 3:  $tpl = 'output/text_with_link.tpl'; $html = false; break;
-            default: $tpl = 'output/html.tpl'; $html = true; break;
+            default: $tpl = 'output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'); $html = true; break;
         }
 
         $personalize = ModUtil::getVar('Newsletter','personalize_email', false);
