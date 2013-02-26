@@ -204,9 +204,8 @@ td.footer a {
       <td align="center">
         <table width="600" border="0" cellspacing="0" cellpadding="0" class="bg2">
           <tr>
-            <td class="nl-header" align="left">
-              <img src="{$site_url}modules/Newsletter/images/newsletter_images/header.gif" width="600" height="101" />                 
-                <h2 id="nl-title">{$objectArray.title}</h2>
+            <td class="nl-header" align="left" width="600" height="61" style="background-repeat:no-repeat;width:600px;height:61px;float:center;" class="footer" background="{$site_url}modules/Newsletter/images/newsletter_images/header.gif">
+              <h2 id="nl-title" style="color:#fff;">{$objectArray.title}</h2>
             </td>
           </tr>
           <tr>
@@ -229,8 +228,9 @@ td.footer a {
 
                     {if (isset($objectArray.News) && $objectArray.News)}
                       <h2>{gt text="News"}</h2>
-                      <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" style="margin-top:2px;"/>
                       {foreach from=$objectArray.News item="item" name="loop"}
+						<span style="float:left;margin-right:4px;"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}images/news_picupload/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a></span>
                         <h3><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}"><img src="{$site_url}modules/Newsletter/images/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" />{$item.title|safehtml}</a></h3>
 						<p>{$item.hometext|trim|safehtml|url_check}</p>
                         <p class="more"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
@@ -343,9 +343,8 @@ td.footer a {
             </td>
           </tr>
           <tr>
-            <td valign="middle" align="left" class="footer">
-              <img src="{$site_url}modules/Newsletter/images/newsletter_images/footer-bg.gif" width="600" height="61" />                 
-              <p style="color: #333333;">
+            <td valign="middle" align="left" width="600" height="61" style="background-repeat:no-repeat;width:600px;height:61px;float:center;" class="footer" background="{$site_url}modules/Newsletter/images/newsletter_images/footer-bg.gif">
+              <p style="color: #fff;">
                 {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="here!"}</strong></a>
               </p>
               <p align="center">
