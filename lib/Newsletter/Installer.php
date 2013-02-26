@@ -44,6 +44,11 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         $this->setVar('send_from_address', System::getVar('adminmail'));
         $this->setVar('hookuserreg_display', 'checkboxon');
         $this->setVar('hookuserreg_inform', '1');
+        $this->setVar('contact_phone', 'phone or leave empty');
+        $this->setVar('contact_email', 'email or leave empty');
+        $this->setVar('contact_facebook', 'enter link or leave empty');
+        $this->setVar('contact_twitter', 'enter link or leave empty');
+        $this->setVar('contact_google', 'enter link or leave empty');
 
         // Register hooks
         HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
