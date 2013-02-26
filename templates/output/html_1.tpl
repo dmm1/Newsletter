@@ -2,9 +2,10 @@
 <html>
 <head>
 {if !$site_url}{assign var='site_url' value=$baseurl}{/if}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <base href="{$site_url}" />
-    <title>{gt text="Newsletter"}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<base href="{$site_url}" />
+<title>{gt text="Newsletter"}</title>
 <style type="text/css">
 html,body { margin:0px; padding:0px; }
 body, div {
