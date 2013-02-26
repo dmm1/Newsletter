@@ -106,6 +106,11 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']   : 5);
         $this->setVar('hookuserreg_display',        $prefs['hookuserreg_display']        ? $prefs['hookuserreg_display'] : 'checkboxon');
         $this->setVar('hookuserreg_inform',         $prefs['hookuserreg_inform']);
+        $this->setVar('contact_phone',              $prefs['contact_phone']              ? $prefs['contact_phone'] : '');
+        $this->setVar('contact_email',              $prefs['contact_email']              ? $prefs['contact_email'] : '');
+        $this->setVar('contact_facebook',           $prefs['contact_facebook']           ? $prefs['contact_facebook'] : '');
+        $this->setVar('contact_twitter',            $prefs['contact_twitter']            ? $prefs['contact_twitter'] : '');
+        $this->setVar('contact_google',             $prefs['contact_google']             ? $prefs['contact_google'] : '');
 
         //Archive
         $this->setVar('show_archive',   $prefs['show_archive']   ? 1 : 0);

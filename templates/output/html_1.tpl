@@ -53,27 +53,6 @@ table.bg2 {
     background-color: #ffffff;
 }
 
-td.footer {
-    background-color: #eeeeee;
-    padding: 10px 20px 10px 20px;
-}
-
-td.footer p {
-    font-family: Arial;
-    font-size: 11px;
-    font-weight: normal;
-    color: #333333;
-    margin: 0;
-    padding: 0;
-}
-
-td.footer p a {
-    font-family: Arial;
-    font-size: 11px;
-    font-weight: normal;
-    color: red;
-}
-
 td.body {
     padding: 0 20px 20px 20px;
     background-color: #ffffff;
@@ -168,9 +147,7 @@ td.nl-main-class ul li a {
 }
 
 td.footer {
-    padding: 0 20px 0 20px;
-    height: 61px;
-    vertical-align: middle;
+    padding: 0;
 }
 
 td.footer p {
@@ -204,7 +181,7 @@ td.footer a {
         <table width="600" border="0" cellspacing="0" cellpadding="0" class="bg2">
           <tr>
             <td class="nl-header" align="left">
-              <img src="{$site_url}modules/Newsletter/images/newsletter_images/header.gif" width="600" height="101" />                 
+                {*<img src="{$site_url}modules/Newsletter/images/newsletter_images/header.gif" width="100%" height="60" />*}
                 <h2 id="nl-title">{$objectArray.title}</h2>
             </td>
           </tr>
@@ -343,8 +320,55 @@ td.footer a {
           </tr>
           <tr>
             <td valign="middle" align="left" class="footer">
-              <img src="{$site_url}modules/Newsletter/images/newsletter_images/footer-bg.gif" width="600" height="61" />                 
-              <p style="color: #333333;">
+			<!--- remove social section if not needed -->
+			<div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
+				<table bgcolor="" width="100%">
+					<tr>
+						<td>
+							<table width="100%" bgcolor="" class="social" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;" width="100%">
+								<tr>
+									<td>
+										{if $modvars.Newsletter.contact_facebook or $modvars.Newsletter.contact_twitter or $modvars.Newsletter.contact_google}
+										<!--- column 1 -->
+										<div class="column" style="width: 280px;min-width: 279px;">
+											<table bgcolor="" cellpadding="" align="left">
+                                                <tr>
+                                                    <td>
+												<h5 style="color:#000;">{gt text='Connect with Us'}:</h5>
+												<p class="">
+													{if $modvars.Newsletter.contact_facebook}<a href="{$modvars.Newsletter.contact_facebook|safetext}" class="soc-btn fb" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#3B5998!important;">Facebook</a> {/if}
+													{if $modvars.Newsletter.contact_twitter}<a href="{$modvars.Newsletter.contact_twitter|safetext}" class="soc-btn tw" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#1daced!important;">Twitter</a> {/if}
+													{if $modvars.Newsletter.contact_google}<a href="{$modvars.Newsletter.contact_google|safetext}" class="soc-btn gp" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#DB4A39!important;">Google+</a> {/if}
+												</p>
+                                                    </td>
+                                                </tr>
+                                            </table><!-- /column 1 -->
+										</div>
+                                        {/if}
+										{if $modvars.Newsletter.contact_phone or $modvars.Newsletter.contact_email}
+										<!--- remove section if not needed -->
+										<div class="column" style="width: 280px;min-width: 279px;">
+											<table bgcolor="" cellpadding="" align="right">
+                                                <tr>
+                                                    <td>				
+												<h5 style="color:#000;">{gt text='Contact Information'}:</h5>												
+												<p style="color:#000;">{if $modvars.Newsletter.contact_phone}{gt text='Phone'}: <strong>{$modvars.Newsletter.contact_phone|safetext}</strong><br/>{/if}
+												{if $modvars.Newsletter.contact_email}{gt text='Email'}: <strong><a href="emailto:me@you.com">{$modvars.Newsletter.contact_email|safetext}</a></strong>{/if}</p>
+                                                    </td>
+                                                </tr>
+                                            </table><!-- /social section -->	
+										</div>
+										{/if}
+										<div class="clear"></div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+            <!-- /social & contact -->
+            <p style="color: #333333;">
                 {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="here!"}</strong></a>
               </p>
               <p align="center">
