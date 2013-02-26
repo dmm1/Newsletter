@@ -46,6 +46,10 @@
             <em class="z-sub z-formnote">{gt text='Newsletters now have to be sent out manually.'}</em>
         </div>
         <div class="z-formrow">
+            {formlabel for="template_html" __text='Html newsletter template'}
+            {formdropdownlist id="template_html" selectedValue=$preferences.template_html items=$templateHtmlSelector}
+        </div>
+        <div class="z-formrow">
             {formlabel for="limit_type" __text='Allow subscription of only this type' mandatorysym=true}
             {formdropdownlist id="limit_type" selectedValue=$preferences.limit_type items=$limitTypeSelector}
         </div>

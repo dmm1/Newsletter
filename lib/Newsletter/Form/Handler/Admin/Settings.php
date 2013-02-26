@@ -23,6 +23,15 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
      */
     public function initialize(Zikula_Form_View $view)
     {
+        // Prepare array for template selector
+        $files = FileUtil::getFiles('modules/Newsletter/templates/output', false, true, 'tpl', 'f');
+        $templateHtmlSelector = array();
+        foreach ($files as $file) {
+            if (substr($file, 0, 4) == 'html') {
+                $templateHtmlSelector[] = array('text' => $file, 'value' => $file);
+            }
+        }
+
         $this->view->caching = false;
         $this->view
              ->assign('preferences',          $this->getVars())
@@ -30,6 +39,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
                                                     Newsletter_Util::getSelectorDataNewsletterType(true)))
              ->assign('defaultTypeSelector',                 Newsletter_Util::convertSelectorArrayForFormHandler(
                                                     Newsletter_Util::getSelectorDataNewsletterType(false)))
+             ->assign('templateHtmlSelector',       $templateHtmlSelector)
              ->assign('defaultFrequencySelector',            Newsletter_Util::convertSelectorArrayForFormHandler(
                                                     Newsletter_Util::getSelectorDataNewsletterFrequency(false)))
              ->assign('sendDaySelector',                     Newsletter_Util::convertSelectorArrayForFormHandler(
@@ -78,6 +88,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('archive_controlid',          $prefs['archive_controlid']          ? $prefs['archive_controlid'] : 0);
         $this->setVar('auto_approve_registrations', $prefs['auto_approve_registrations'] ? 1 : 0);
         $this->setVar('default_frequency',          $prefs['default_frequency']          ? $prefs['default_frequency'] : 0);
+        $this->setVar('template_html',              $prefs['template_html']              ? $prefs['template_html'] : 'html.tpl');
         $this->setVar('default_type',               $prefs['default_type']               ? $prefs['default_type'] : 1);
         $this->setVar('enable_multilingual',        $prefs['enable_multilingual']        ? 1 : 0);
         $this->setVar('itemsperpage',               $prefs['itemsperpage']               ? $prefs['itemsperpage'] : 25);
