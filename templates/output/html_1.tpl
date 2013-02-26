@@ -207,6 +207,9 @@ td.footer a {
                       <h2>{gt text="News"}</h2>
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.News item="item" name="loop"}
+					  {if $modvars.News.picupload_enabled AND $item.pictures gt 0}
+						<span style="float:left;margin-right:4px;margin-bottom:4px;"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}{$modvars.News.picupload_uploaddir}/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a></span>
+						{/if}
                         <h3><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}"><img src="{$site_url}modules/Newsletter/images/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" />{$item.title|safehtml}</a></h3>
 						<p>{$item.hometext|trim|safehtml|url_check}</p>
                         <p class="more"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
@@ -368,7 +371,7 @@ td.footer a {
 				</table>
 			</div>
             <!-- /social & contact -->
-            <p style="color: #333333;">
+            <p style="color: #333333;padding:4px;">
                 {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="here!"}</strong></a>
               </p>
               <p align="center">
