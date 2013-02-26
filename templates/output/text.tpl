@@ -7,8 +7,6 @@
 {/if}
 {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
 
-{gt text="Message from the Site Administrators"}
-===========================
 {$objectArray.NewsletterMessage|html_entity_decode}
 {/if}
 {if (isset($objectArray.News) && $objectArray.News)}

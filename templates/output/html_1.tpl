@@ -197,8 +197,6 @@ td.footer a {
                     {/if}
 
                     {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
-                      <h2>{gt text="Message from the Site Administrators"}</h2>
-                      <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       <p>{$objectArray.NewsletterMessage|safehtml}</p>
                       <br />
                     {/if}
@@ -211,7 +209,7 @@ td.footer a {
 						<span style="float:left;margin-right:4px;margin-bottom:4px;"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}{$modvars.News.picupload_uploaddir}/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a></span>
 						{/if}
                         <h3><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}"><img src="{$site_url}modules/Newsletter/images/newsletter_images/next.gif" alt="Newsletter" width="12" height="12" />{$item.title|safehtml}</a></h3>
-						<p>{$item.hometext|trim|safehtml|url_check}</p>
+						<p>{$item.hometext|nlTreatContent:'News'}</p>
                         <p class="more"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                         {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
@@ -252,7 +250,7 @@ td.footer a {
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Pages item="item" name="loop"}
                         <h3><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                        <p>{$item.content|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.content|nlTreatContent:'Pages'}</p>
                         <p class="more"><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                         {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
@@ -264,7 +262,7 @@ td.footer a {
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.EZComments item="item" name="loop"}
                         <h3><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h3>
-                        <p>{$item.comment|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.comment|nlTreatContent:'EZComments'}</p>
                         <p class="more"><a href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                          {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
@@ -286,7 +284,7 @@ td.footer a {
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Clip item="item" name="loop"}
                         <h3><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h3>
-                        <p>{$item.content|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.content|nlTreatContent:'Clip'}</p>
                         <p class="more"><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                         {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
@@ -298,7 +296,7 @@ td.footer a {
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Weblinks item="item" name="loop"}
                         <h3><a href="{$item.url}">{$item.title}</a></h3>
-                        <p>{$item.description|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.description|nlTreatContent:'Weblinks'}</p>
                         <p class="more"><a href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                         {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
@@ -310,7 +308,7 @@ td.footer a {
                       <img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Downloads item="item" name="loop"}
                         <h3><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></h3>
-                        <p>{$item.description|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.description|nlTreatContent:'Downloads'}</p>
                         <p class="more"><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
                         {if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}

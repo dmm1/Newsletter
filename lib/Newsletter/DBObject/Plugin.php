@@ -54,8 +54,13 @@ class Newsletter_DBObject_Plugin extends DBObject
 
         // number of items settings
         foreach ($this->_objData as $k => $dat) {
-            if (strpos($k, '_nItems') !== false) {
+            $pos = strpos($k, '_nItems');
+            if ($pos !== false) {
                 ModUtil::setVar('Newsletter', 'plugin_'.$k, $dat);
+                // plugin settings
+                $pluginname = substr($k, 0, $pos);
+                $pluginSettings = $this->_objData[$pluginname.'_Settings0'] .';'. $this->_objData[$pluginname.'_Settings1'];
+                ModUtil::setVar('Newsletter', 'plugin_'.$pluginname.'_Settings', $pluginSettings);
             }
         }
 
