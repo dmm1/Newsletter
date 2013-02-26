@@ -4,8 +4,8 @@
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>{gt text="Newsletter"}</title>
-<base href="{$site_url}" />
 {if !$site_url}{assign var='site_url' value=$baseurl}{/if}
+<base href="{$site_url}" />
 <link rel="stylesheet" type="text/css" href="{$site_url}modules/Newsletter/style/html.css" >
 <style>
 /* ------------------------------------- 
@@ -278,7 +278,10 @@ ul li {
 			<div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
 			<table bgcolor="">
 				<tr>
-					<td class="small" width="20%" style="vertical-align: top; padding-right:10px;"> <a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}images/news_picupload/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a></td>
+                    {if $modvars.News.picupload_enabled AND $item.pictures gt 0}
+					<td class="small" width="20%" style="vertical-align: top; padding-right:10px;"> <a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}{$modvars.News.picupload_uploaddir}/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a>
+                    </td>
+                    {/if}
 					<td>
 						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}">{$item.title|safehtml}</a></h4>
 						<p class="">{$item.hometext|trim|safehtml|url_check}</p>
@@ -398,55 +401,48 @@ ul li {
 				<table bgcolor="" width="100%">
 					<tr>
 						<td>
-							
-							
 							<table width="100%" bgcolor="" class="social" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;" width="100%">
 								<tr>
 									<td>
-										
+										{if $modvars.Newsletter.contact_facebook or $modvars.Newsletter.contact_twitter or $modvars.Newsletter.contact_google}
 										<!--- column 1 -->
 										<div class="column" style="width: 280px;min-width: 279px;">
 											<table bgcolor="" cellpadding="" align="left">
-										<tr>
-											<td>				
-												
+                                                <tr>
+                                                    <td>
 												<h5 style="color:#000;">{gt text='Connect with Us'}:</h5>
 												<p class="">
-													<a href="#" class="soc-btn fb" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#3B5998!important;">Facebook</a> 
-													<a href="#" class="soc-btn tw" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#1daced!important;">Twitter</a> 
-													<a href="#" class="soc-btn gp" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#DB4A39!important;">Google+</a>
-												</p>	
-											</td>
-										</tr>
-									</table><!-- /column 1 -->
+													{if $modvars.Newsletter.contact_facebook}<a href="{$modvars.Newsletter.contact_facebook|safetext}" class="soc-btn fb" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#3B5998!important;">Facebook</a> {/if}
+													{if $modvars.Newsletter.contact_twitter}<a href="{$modvars.Newsletter.contact_twitter|safetext}" class="soc-btn tw" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#1daced!important;">Twitter</a> {/if}
+													{if $modvars.Newsletter.contact_google}<a href="{$modvars.Newsletter.contact_google|safetext}" class="soc-btn gp" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#DB4A39!important;">Google+</a> {/if}
+												</p>
+                                                    </td>
+                                                </tr>
+                                            </table><!-- /column 1 -->
 										</div>
-										
+                                        {/if}
+										{if $modvars.Newsletter.contact_phone or $modvars.Newsletter.contact_email}
 										<!--- remove section if not needed -->
 										<div class="column" style="width: 280px;min-width: 279px;">
 											<table bgcolor="" cellpadding="" align="right">
-										<tr>
-											<td>				
-																			
+                                                <tr>
+                                                    <td>				
 												<h5 style="color:#000;">{gt text='Contact Information'}:</h5>												
-												<p style="color:#000;">{gt text='Phone'}: <strong>+43 000 555</strong><br/>
-												{gt text='Email'}: <strong><a href="emailto:me@you.com">me@you.com</a></strong></p>
-                
-											</td>
-										</tr>
-									</table><!-- /social section -->	
+												<p style="color:#000;">{if $modvars.Newsletter.contact_phone}{gt text='Phone'}: <strong>{$modvars.Newsletter.contact_phone|safetext}</strong><br/>{/if}
+												{if $modvars.Newsletter.contact_email}{gt text='Email'}: <strong><a href="emailto:me@you.com">{$modvars.Newsletter.contact_email|safetext}</a></strong>{/if}</p>
+                                                    </td>
+                                                </tr>
+                                            </table><!-- /social section -->	
 										</div>
-										
+										{/if}
 										<div class="clear"></div>
-	
 									</td>
 								</tr>
 							</table>
-							
 						</td>
 					</tr>
 				</table>
 			</div><!-- /social & contact -->
-			
 
 		</td>
 		<td></td>
