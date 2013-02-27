@@ -7,9 +7,7 @@
 {/if}
 {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
 
-{gt text="Message from the Site Administrators"}
-===========================
-{$objectArray.NewsletterMessage|html_entity_decode}
+{$objectArray.NewsletterMessage|replace:'<br />':"\n"|html_entity_decode}
 {/if}
 {if (isset($objectArray.News) && $objectArray.News)}
 
@@ -18,7 +16,7 @@
 {foreach from=$objectArray.News item="item"}
 
 {$item.title|html_entity_decode}
-{$item.hometext|html_entity_decode}
+{$item.hometext|nlTreatContent:'News':false}
 {modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}
 {/foreach}
 {/if}
@@ -46,7 +44,8 @@
 ===========================
 {foreach from=$objectArray.Pages item="item"}
 
-{$item.title|html_entity_decode}: {$item.content|truncate:400|html_entity_decode}
+{$item.title|html_entity_decode}
+{$item.content|nlTreatContent:'Pages':false}
 {modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}
 {/foreach}
 {/if}
@@ -56,7 +55,7 @@
 ===========================
 {foreach from=$objectArray.EZComments item="item"}
 
-{$item.comment|truncate:400|trim|html_entity_decode}
+{$item.comment|nlTreatContent:'EZComments':false}
 {$item.url}
 {/foreach}
 {/if}
@@ -75,7 +74,30 @@
 {foreach from=$objectArray.Clip item="item" name="loop"}
 
 {$item.title|html_entity_decode}
+{$item.content|nlTreatContent:'Clip':false}
 {modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}
+{/foreach}
+{/if}
+{if (isset($objectArray.Weblinks) && $objectArray.Weblinks)}
+
+{gt text="Latest web links"}
+===========================
+{foreach from=$objectArray.Weblinks item="item" name="loop"}
+
+{$item.title|html_entity_decode}
+{$item.description|nlTreatContent:'Weblinks':false}
+{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}
+{/foreach}
+{/if}
+{if (isset($objectArray.Downloads) && $objectArray.Downloads)}
+
+{gt text="Latest downloads"}
+===========================
+{foreach from=$objectArray.Downloads item="item" name="loop"}
+
+{$item.title|html_entity_decode}
+{$item.description|nlTreatContent:'Downloads':false}
+{modurl modname="Downloads" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}
 {/foreach}
 {/if}
 
