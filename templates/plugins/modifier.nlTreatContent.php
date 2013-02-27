@@ -39,7 +39,7 @@ function smarty_modifier_nlTreatContent($data, $pluginName)
         $data = nl_truncate($data, $truncate);
 
         // url_check
-        include_once 'modules/Newsletter/templates/plugins/modifier.url_check.php';
+        include_once __DIR__.'/modifier.url_check.php';
         $data = smarty_modifier_url_check($data);
     }
 
