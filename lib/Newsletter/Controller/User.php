@@ -81,7 +81,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         // just echo content and exit; no need to use template
         if ($format == 1) {
-            $data['text'] = str_replace(array("\n", "\r"), '<br />', $data['text']);
+            $data['text'] = nl2br(strip_tags($data['text'], '<a>'));
             print $data['text'];
         } else {
             print $data['html'];

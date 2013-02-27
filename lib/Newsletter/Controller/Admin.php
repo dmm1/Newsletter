@@ -109,14 +109,14 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             switch ($format) {
                 case 1:
                     $content = $this->view->fetch('output/text.tpl');
-                    $content = str_replace(array("\n", "\r"), '<br />', $content);
+                    $content = nl2br(strip_tags($content, '<a>'));
                     break;
                 case 2:
                     $content = $this->view->fetch('output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'));
                     break;
                 case 3:
                     $content = $this->view->fetch('output/text_with_link.tpl');
-                    $content = str_replace(array("\n", "\r"), '<br />', $content);
+                    $content = nl2br(strip_tags($content, '<a>'));
                     break;
                 default:
                     $content = 'Invalid format [$format] specified...';
