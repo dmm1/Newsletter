@@ -84,10 +84,8 @@
 																				<p style="line-height: 1.4em; color: #444444; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0 0 1em 0; font-size: 14px; padding: 0; color: #666; padding-bottom: 0em;padding-left: 12px;">
 																				<table border="0" cellspacing="0" cellpadding="0" style="width: 100%; width: auto;margin-left:12px;">
 																				<tr>
-																				<td><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; border: 1px solid #ddd; text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">
-																				{gt text="read more"}</a>
-																				</td>																
-																																				</tr>
+																				<td><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a></td>																
+																				</tr>
 																			</table>
 																			</td>
 																		</tr>
@@ -135,7 +133,7 @@
 																		{foreach from=$objectArray.Pages item="item" name="loop"}
 																		<h3><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
 																		<p>{$item.content|nlTreatContent:'Pages'}</p>
-																		<p class="more"><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+																		<p class="more"><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a></p>
 																		{if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
 																		{/foreach} 
 																		</div>
@@ -147,7 +145,7 @@
 																		{foreach from=$objectArray.EZComments item="item" name="loop"}
 																		<h3><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h3>
 																		<p>{$item.comment|nlTreatContent:'EZComments'}</p>
-																		<p class="more"><a href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+																		<p class="more"><a href="{$item.url}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a></p>
 																		{if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
 																		{/foreach}
 																		</div>
@@ -169,7 +167,7 @@
 																		{foreach from=$objectArray.Clip item="item" name="loop"}
 																		<h3><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h3>
 																		<p>{$item.content|nlTreatContent:'Clip'}</p>
-																		<p class="more"><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+																		<p class="more"><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a></p>
 																		{if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
 																		{/foreach}
 																		</div>
@@ -181,7 +179,7 @@
 																		{foreach from=$objectArray.Weblinks item="item" name="loop"}
 																		<h3><a href="{$item.url}">{$item.title}</a></h3>
 																		<p>{$item.description|nlTreatContent:'Weblinks'}</p>
-																		<p class="more"><a href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+																		<p class="more"><a href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a></p>
 																		{if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
 																		{/foreach}
 																		</div>
@@ -193,7 +191,7 @@
 																		{foreach from=$objectArray.Downloads item="item" name="loop"}
 																		<h3><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></h3>
 																		<p>{$item.description|nlTreatContent:'Downloads'}</p>
-																		<p class="more"><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></p>
+																		<p class="more"><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a></p>
 																		{if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
 																		{/foreach}
 																		</div>
