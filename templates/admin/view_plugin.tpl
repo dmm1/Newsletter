@@ -78,6 +78,17 @@ Event.observe(window, 'load', function() {
                 <div>
                     {modgetvar assign='pluginItems' module='Newsletter' name="plugin_`$plugin`_nItems" default=3}
                     <input id="plugin{$i}_numitems" name="plugin[{$plugin}_nItems]" type="text" value="{$pluginItems}" size="3" maxlength="2" />
+                    {modgetvar assign='pluginSettings' module='Newsletter' name="plugin_`$plugin`_Settings" default=''}
+                    {assign var='arrSettings' value=";"|explode:$pluginSettings}
+                    &nbsp;Treat:
+                    <select id="plugin{$i}_Settings0" name="plugin[{$plugin}_Settings0]" size="1" >
+                        <option value="0"{if $arrSettings.0 eq '0'} selected="selected"{/if}>{gt text='As is'}</option>
+                        <option value="1"{if $arrSettings.0 eq '1'} selected="selected"{/if}>{gt text='nl2br (from text only)'}</option>
+                        <option value="2"{if $arrSettings.0 eq '2'} selected="selected"{/if}>{gt text='strip_tags (from html)'}</option>
+                        <option value="3"{if $arrSettings.0 eq '3'} selected="selected"{/if}>{gt text='strip_tags but img,a'}</option>
+                    </select>
+                    &nbsp;Truncate:
+                    <input id="plugin{$i}_Settings1" name="plugin[{$plugin}_Settings1]" type="text" value="{if $arrSettings.1 == ''}400{else}{$arrSettings.1}{/if}" size="10" />
                 </div>
             </div>
             {/if}

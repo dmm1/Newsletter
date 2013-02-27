@@ -284,7 +284,7 @@ ul li {
                     {/if}
 					<td>
 						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}">{$item.title|safehtml}</a></h4>
-						<p class="">{$item.hometext|trim|safehtml|url_check}</p>
+						<p class="">{$item.hometext|nlTreatContent:'News'}</p>
 						<a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;	padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>						
 					</td>
 				</tr>
@@ -328,7 +328,7 @@ ul li {
                       {foreach from=$objectArray.Pages item="item" name="loop"}
 					  <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
                         <h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h4>
-                        <p>{$item.content|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.content|nlTreatContent:'Pages'}</p>
                         <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
                         
                      </div>
@@ -340,7 +340,7 @@ ul li {
                         {foreach from=$objectArray.EZComments item="item" name="loop"}
 					    <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
                         <h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h4>
-                        <p>{$item.comment|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.comment|nlTreatContent:'EZComments'}</p>
                         <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{$item.url}">{gt text="read more"} &raquo;</a>
                          
                       </div>
@@ -364,7 +364,7 @@ ul li {
                       {foreach from=$objectArray.Clip item="item" name="loop"}
                         <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
 						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h4>
-                        <p>{$item.content|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.content|nlTreatContent:'Clip'}</p>
                         <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
                         
 						</div>
@@ -378,7 +378,7 @@ ul li {
                       {foreach from=$objectArray.Weblinks item="item" name="loop"}
 					  <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
                         <h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{$item.url}">{$item.title}</a></h4>
-                        <p>{$item.description|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.description|nlTreatContent:'Weblinks'}</p>
                         <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
 						</div>
 					 {/foreach}
@@ -389,7 +389,7 @@ ul li {
                       {foreach from=$objectArray.Downloads item="item" name="loop"}
                         <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
 						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></h4>
-                        <p>{$item.description|safehtml|url_check|truncate:400}</p>
+                        <p>{$item.description|nlTreatContent:'Downloads'}</p>
                         <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;	padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
                         </div>
                       {/foreach}
