@@ -11,7 +11,7 @@
  * @param        $data     the contents to transform
  * @return       string    the modified output
  */
-function smarty_modifier_nlTreatContent($data, $pluginName)
+function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
 {
     if ($data) {
         $arrSettings = explode(";", ModUtil::getVar('Newsletter', 'plugin_'.$pluginName.'_Settings', '0;400'));
@@ -23,17 +23,19 @@ function smarty_modifier_nlTreatContent($data, $pluginName)
             return '';
         }
 
-        $data = trim($data);
-        if ($treatType == 1) {
-            // nl2br (from text only)
-            $data = nl2br($data);
-        } elseif ($treatType == 2) {
-            // strip_tags (from html)
-            $data = strip_tags($data);
-        } elseif ($treatType == 3) {
-            // strip_tags but <img><a>
-            $data = strip_tags($data, '<img><a>');
+        if ($htmlOutput) {
+            if ($treatType == 1) {
+                // nl2br (from text only)
+                $data = nl2br($data);
+            } elseif ($treatType == 2) {
+                // strip_tags (from html)
+                $data = strip_tags($data);
+            } elseif ($treatType == 3) {
+                // strip_tags but <img><a>
+                $data = strip_tags($data, '<img><a>');
+            }
         }
+        $data = trim($data);
 
         // truncate if length is set
         $data = nl_truncate($data, $truncate);
@@ -43,7 +45,11 @@ function smarty_modifier_nlTreatContent($data, $pluginName)
         $data = smarty_modifier_url_check($data);
     }
 
-    return DataUtil::formatForDisplayHTML($data);
+    if ($htmlOutput) {
+        return DataUtil::formatForDisplayHTML($data);
+    } else {
+        return html_entity_decode($data);
+    }
 }
 
 // simplified copy from Zikula smarty_modifier_truncate
