@@ -37,6 +37,9 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
         }
         $data = trim($data);
 
+        // strip BBcode
+        $data = preg_replace('|[[\/\!]*?[^\[\]]*?]|si', '', $data);
+
         // truncate if length is set
         $data = nl_truncate($data, $truncate);
 
