@@ -65,7 +65,7 @@
 															{/if}
 																		<!-- Plugin News Start -->
 																		{if (isset($objectArray.News) && $objectArray.News)}
-																		<h2>{gt text='News'}</h2>
+																		<h2 style="margin-bottom:-8px;">{gt text='News'}</h2>
 																		{foreach from=$objectArray.News item="item" name="loop"}
 																		<table style="width: 100%;"  border="0" cellspacing="0" cellpadding="0">
 																		<div style="color: #999; font-size:14px; margin-top: 4px; margin-bottom:8px; color: #999; border-bottom: 1px solid #eee; overflow: hidden">
@@ -76,15 +76,15 @@
 																			</td>
 																			{/if}
 																			<td>
-																				<h2 style="margin: 0; font-size: 1.6em; color: #555; margin: 0; font-size: 1.6em; color: #555; margin: .4em 0 .3em 0; font-size: 1.8em; font-size: 20px;{if $modvars.News.picupload_enabled AND $item.pictures gt 0}margin-left:8px;{/if}">
-																				<a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}">{$item.title|safehtml}</a>
+																				<h2 style="text-decoration:none;font-size: 1.6em; color: #555; margin: .4em 0 .3em 0;{if $modvars.News.picupload_enabled AND $item.pictures gt 0}margin-left:8px;{/if}">
+																				{$item.title|safehtml}
 																				</h2>
 																				
 																				<p style="padding:8px;{if $modvars.News.picupload_enabled AND $item.pictures gt 0}margin-left:8px;{/if}">{$item.hometext|trim|safehtml|url_check}</p>
-																				<p style="font-size: 14px; line-height: 1.4em; color: #444444; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0 0 1em 0; font-size: 14px; padding: 0; color: #666; padding-bottom: 0em; margin-bottom: 0; padding-left: 12px;">
+																				<p style="line-height: 1.4em; color: #444444; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0 0 1em 0; font-size: 14px; padding: 0; color: #666; padding-bottom: 0em;padding-left: 12px;">
 																				<table border="0" cellspacing="0" cellpadding="0" style="width: 100%; width: auto;margin-left:12px;">
 																				<tr>
-																				<td><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; border: 1px solid #11729E; text-decoration: none; color: #fff; background-color: #2585B2; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">
+																				<td><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; border: 1px solid #ddd; text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">
 																				{gt text="read more"}</a>
 																				</td>																
 																																				</tr>
