@@ -64,7 +64,10 @@
 {gt text="Latest Forum Posts"}
 ===========================
 {foreach from=$objectArray.Dizkus item="item"}
+
 {$item.topic_title}
+{$item.username}
+{$item.post_text|nlTreatContent:'Dizkus':false}
 {/foreach}
 {/if}
 {if (isset($objectArray.Clip) && $objectArray.Clip)}
