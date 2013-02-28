@@ -40,7 +40,7 @@ class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_Plugi
         } catch (Exception $e) {
             return LogUtil::registerError(__('Error in plugin').' Downloads: ' . $e->getMessage());
         }
-        $items = $stmt->fetchAll(Doctrine::FETCH_ASSOC);
+        $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         return $items;
     }

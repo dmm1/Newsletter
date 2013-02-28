@@ -353,7 +353,7 @@ ul li {
                       {foreach from=$objectArray.Dizkus item="item" name="loop"}
                         <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
 						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true}">{$item.topic_title}</a></h4>
-                         
+                        <p>{$item.username}<br />{$item.post_text|nlTreatContent:'Dizkus'}</p>
 						</div>
 					  {/foreach}                    
                     {/if}

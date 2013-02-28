@@ -40,7 +40,7 @@ class Newsletter_DBObject_PluginWeblinksArray extends Newsletter_DBObject_Plugin
         } catch (Exception $e) {
             return LogUtil::registerError(__('Error in plugin').' Weblinks: ' . $e->getMessage());
         }
-        $items = $stmt->fetchAll(Doctrine::FETCH_ASSOC);
+        $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         return $items;
     }

@@ -156,6 +156,7 @@
 																		<div style="color: #999; font-size:14px; margin-top: 4px; margin-bottom:8px; color: #999; border-bottom: 1px solid #eee; overflow: hidden">
 																		{foreach from=$objectArray.Dizkus item="item" name="loop"}
 																		<h3><a href="{modurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true}">{$item.topic_title}</a></h3>
+																		<p>{$item.username}<br />{$item.post_text|nlTreatContent:'Dizkus'}</p>
 																		{if (!$smarty.foreach.loop.last)}<img class="hr" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
 																		{/foreach}
 																		</div>

@@ -109,6 +109,7 @@
                       <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Dizkus item="item" name="loop"}
                         <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true}">{$item.topic_title}</a></h3>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.username}<br />{$item.post_text|nlTreatContent:'Dizkus'}</div>
                          {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
