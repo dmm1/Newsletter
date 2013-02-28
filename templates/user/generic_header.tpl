@@ -37,12 +37,12 @@
                 </a>
             {/if}
 
-           {if $adminAuth}
+            {if $adminAuth}
                 &nbsp;|&nbsp;
                 <a href="{modurl modname='Newsletter' type='admin' func='main'}" title="{gt text='Admin'}">
                     {gt text='Admin'}
                 </a>
-           {/if}
+            {/if}
             {/strip}
         </span>
     </div>
