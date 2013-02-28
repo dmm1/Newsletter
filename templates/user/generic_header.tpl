@@ -1,4 +1,4 @@
-
+{securityutil_checkpermission component='AddressBook::' instance='::' level='ACCESS_ADMIN' assign='adminAuth'}
 <div class="nl-wrapper">
     {insert name='getstatusmsg'}
 
@@ -36,6 +36,13 @@
                     {gt text='Unsubscribe'}
                 </a>
             {/if}
+
+           {if $adminAuth}
+                &nbsp;|&nbsp;
+                <a href="{modurl modname='Newsletter' type='admin' func='main'}" title="{gt text='Admin'}">
+                    {gt text='Admin'}
+                </a>
+           {/if}
             {/strip}
         </span>
     </div>
