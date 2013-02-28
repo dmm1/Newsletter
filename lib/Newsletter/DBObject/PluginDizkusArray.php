@@ -21,6 +21,8 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
     function getPluginData($lang=null, $filtAfterDate=null)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!ModUtil::available('Dizkus')) {
             return array();
         }
@@ -28,39 +30,56 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         ModUtil::dbInfoLoad ('Dizkus');
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_Dizkus_nItems', 1);
 
-        // get all forums the user is allowed to read
-        /*$userforums = ModUtil::apiFunc('Dizkus', 'user', 'readuserforums'); 2013-02-17 this function is not working for now, so will replace with the code below */
-        $permFilter = array('component_left' => 'Dizkus',
-            'component_middle' => '',
-            'component_right' => '',
-            'instance_left' => 'cat_id',
-            'instance_middle' => 'forum_id',
-            'instance_right' => '',
-            'level' => ACCESS_READ);
-        $userforums = DBUtil::selectExpandedObjectArray('dizkus_forums', '', '', 'forum_id', -1, -1, 'forum_id', $permFilter);
-        if (!is_array($userforums) || count($userforums)==0) {
-            // error or user is not allowed to read any forum at all
-            // return empty result set without even doing a db access
+        $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
+        $sql = "SELECT forum_id FROM dizkus_forums WHERE 1";
+        $stmt = $connection->prepare($sql);
+        try {
+            $stmt->execute();
+        } catch (Exception $e) {
+            return LogUtil::registerError(__('Error in plugin').' Dizkus: ' . $e->getMessage());
+        }
+        $userforums = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
+        $allowedforums = array();
+        foreach (array_keys($userforums) as $k) {
+            if (SecurityUtil::checkPermission('Dizkus::', ":".$userforums[$k]['forum_id'].":", ACCESS_READ)) {
+                $allowedforums[] = $userforums[$k]['forum_id'];
+            }
+        }
+        if (count($allowedforums)==0) {
+            // user is not allowed to read any forum at all
             return array();
         }
 
-        // now create a very simple array of forum_ids only. we do not need
-        // all the other stuff in the $userforums array entries
-        $allowedforums = array();
-        foreach (array_keys($userforums) as $k) {
-            $allowedforums[] = $userforums[$k]['forum_id'];
-        }
         $whereforum = ' forum_id IN (' . DataUtil::formatForStore(implode(',', $allowedforums)) . ') ';
-
-        $items = DBUtil::selectObjectArray('dizkus_topics', $whereforum, 'topic_id DESC', 0, $nItems);
-
-        // filter by date is given, remove older data
+        $sql = 'SELECT * FROM dizkus_topics WHERE forum_id IN (' . DataUtil::formatForStore(implode(',', $allowedforums)) . ') ';
         if ($filtAfterDate) {
-            foreach (array_keys($items) as $k) {
-                if ($items[$k]['topic_time'] < $filtAfterDate) {
-                    unset($items[$k]);
-                }
+            $sql .= " AND topic_time>='".$filtAfterDate."'";
+        }
+        $sql .= " ORDER BY topic_id DESC LIMIT ".$nItems;
+        $stmt = $connection->prepare($sql);
+        try {
+            $stmt->execute();
+        } catch (Exception $e) {
+            return LogUtil::registerError(__('Error in plugin').' Dizkus: ' . $e->getMessage());
+        }
+        $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
+
+        // get latest posts data
+        foreach (array_keys($items) as $k) {
+            $sql = 'SELECT * FROM dizkus_posts WHERE post_id='.$items[$k]['topic_last_post_id'];
+            $stmt = $connection->prepare($sql);
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                return LogUtil::registerError(__('Error in plugin').' Dizkus: ' . $e->getMessage());
             }
+            $post = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
+
+            $items[$k]['post_time'] = $post[0]['post_time'];
+            $items[$k]['poster_id'] = $post[0]['poster_id'];
+            $items[$k]['post_text'] = $post[0]['post_text'];
+            $items[$k]['post_title'] = $post[0]['post_title'];
+            $items[$k]['username']= UserUtil::getVar('uname', $post[0]['poster_id']);
         }
 
         return $items;
