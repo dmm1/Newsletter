@@ -19,14 +19,14 @@
         <legend>{gt text='Newsletter Configuration'}</legend>
         {if $coredata.logged_in}
         <div class="z-formrow">
-          <span class="z-label">{gt text='Username'}:</span>
+          <span class="z-label">{gt text='Username'}</span>
           <span class="z-formnote"><strong>{usergetvar name='uname'}</strong></span>
         </div>
         {/if}
 
         <div class="z-formrow">
-            <span class="z-label">{gt text='Email'}:</span>
-            <span class="z-formnote"><strong>{$user.email}</strong></span>
+            <label for="user_email">{gt text='Email'}</label>
+            <input type="text" maxlength="30" value="{$user.email}" id="user_email" name="user[email]" />
         </div>
 
         {if !$modvars.Newsletter.limit_type}
