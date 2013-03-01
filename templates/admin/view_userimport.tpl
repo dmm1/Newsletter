@@ -30,9 +30,7 @@
     <fieldset>
         <legend>{gt text="Import registered Zikula users"}</legend>
         <h4>1. {gt text="Import configuration"}</h4>
-        <div class="z-formrow">
-            <label>{gt text='Defaults for imported users'}</label>
-        </div>
+        <h5 class="z-formnote">{gt text='Defaults for imported users'}</h5>
         <div class="z-formrow">
             <label for="import_type">{gt text='Type'}:</label>
             <select id="import_type" name="import[import_type]">{html_options values=$type_values output=$type_output selected=$import_type}</select>
@@ -55,9 +53,7 @@
                 <option value="0"{if $import_approval_status eq 0} selected="selected"{/if}>{gt text="Unapproved"}</option>
             </select>
         </div>
-        <div class="z-formrow">
-            <label>{gt text='Filter'}</label>
-        </div>
+        <h5 class="z-formnote">{gt text='Filter'}</h5>
         <div class="z-formrow">
             <label for="import_activelastdays">{gt text='Import only active users in last n days'}:</label>
             <input id="import_activelastdays" name="import[import_activelastdays]" value="{$import_activelastdays}" />
@@ -89,18 +85,18 @@
                 $this->assign('filenameCsv', $filenameCsv);
                 $this->assign('filenameXml', $filenameXml);
             {/php}
-            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='xml' outputToFile=1}" title="{gt text='Export'}">
+            <a href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='xml' outputToFile=1}" title="{gt text='Export'}">{img modname='core' src='filesave.png' set='icons/extrasmall'}
                 {gt text='Save as xml file at %s' tag1=$filenameXml}
             </a>
-            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='xml' outputToFile=0}" title="{gt text='Export'}">
+            <a href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='xml' outputToFile=0}" title="{gt text='Export'}">{img modname='core' src='down.png' set='icons/extrasmall'}
                 {gt text='Download as xml file'}
             </a>
             <br />
             <br />
-            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='csv' outputToFile=1}" title="{gt text='Export'}">
+            <a href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='csv' outputToFile=1}" title="{gt text='Export'}">{img modname='core' src='filesave.png' set='icons/extrasmall'}
                 {gt text='Save as csv file at %s' tag1=$filenameCsv}
             </a>
-            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='csv' outputToFile=0}" title="{gt text='Export'}">
+            <a href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='csv' outputToFile=0}" title="{gt text='Export'}">{img modname='core' src='down.png' set='icons/extrasmall'}
                 {gt text='Download as csv file'}
             </a>
         </div>
@@ -125,7 +121,7 @@
             <input id="import_file" name="file" type="file" class="z-form-upload">
         </div>
         <div class="z-buttons z-formbuttons">
-            <input type="submit" name="submit" value="{gt text='Import users'}" class="z-bt-ok" />
+            <input type="submit" name="submit" value="{gt text='Import subscribers'}" class="z-bt-ok" />
         </div>
     </fieldset>
 </form>
