@@ -38,6 +38,8 @@ class Newsletter_DBObject_PluginEZCommentsArray extends Newsletter_DBObject_Plug
             $params['language'] = $lang;
         }
 
+        $params['status'] = 0; //Only activated comments (status isn't 'waiting')
+
         $items = ModUtil::apiFunc('EZComments', 'user', 'getall', $params);
 
         // filter by date is given, remove older data
