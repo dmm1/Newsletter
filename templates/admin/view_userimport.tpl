@@ -3,7 +3,7 @@
 
 <div class="z-admin-content-pagetitle">
     {img modname='core' src='db_update.png' set='icons/small' alt=''}
-    <h3>{gt text='Import Zikula Users'}</h3>
+    <h3>{gt text='Import / Export'}</h3>
 </div>
 
 {newsletter_selector_frequency assign="frequency_values" return_keys=true}
@@ -28,7 +28,8 @@
     <input type="hidden" name="otTarget" value="userimport" />
 
     <fieldset>
-        <legend>1. {gt text="Zikula user import configuration"}</legend>
+        <legend>{gt text="Import registered Zikula users"}</legend>
+        <h4>1. {gt text="Import configuration"}</h4>
         <div class="z-formrow">
             <label>{gt text='Defaults for imported users'}</label>
         </div>
@@ -62,15 +63,12 @@
             <input id="import_activelastdays" name="import[import_activelastdays]" value="{$import_activelastdays}" />
             <div class="z-sub z-formnote">{gt text='Leave zero or empty for all users'}</div>
         </div>
-    </fieldset>
+        <div class="z-buttons z-formbuttons">
+            <input type="submit" name="submit" value="{gt text='Update Configuration'}" class="z-bt-ok" />
+        </div>
 
-    <div class="z-buttons z-formbuttons">
-        <input type="submit" name="submit" value="{gt text='Update Configuration'}" class="z-bt-ok" />
-    </div>
-
-    <fieldset>
-        <legend>2. {gt text='Import'}</legend>
-        <div class="z-formrow z-buttons">
+        <h4>2. {gt text='Import registered Zikula users'}</h4>
+        <div class="z-formrow z-buttons z-formbuttons">
             <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='save' ot='ImportUsers' otTarget='userimport' authKey=$admin_key authid=$authid}" title="{gt text='Import'}">
                 {gt text='Perform the Import'}
             </a>
@@ -81,4 +79,54 @@
     </fieldset>
 </form>
 
+<form class="z-form" action="{modurl modname='Newsletter' type='admin' func='view' ot='import' admin_key=$admin_key}" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <legend>{gt text='Export subscribers'}</legend>
+        <div class="z-formrow z-buttons">
+            {php}
+                $filenameCsv = CacheUtil::getLocalDir() . "/Newsletter/NewsletterUsers.csv";
+                $filenameXml = CacheUtil::getLocalDir() . "/Newsletter/NewsletterUsers.xml";
+                $this->assign('filenameCsv', $filenameCsv);
+                $this->assign('filenameXml', $filenameXml);
+            {/php}
+            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='xml' outputToFile=1}" title="{gt text='Export'}">
+                {gt text='Save as xml file at %s' tag1=$filenameXml}
+            </a>
+            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='xml' outputToFile=0}" title="{gt text='Export'}">
+                {gt text='Download as xml file'}
+            </a>
+            <br />
+            <br />
+            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='csv' outputToFile=1}" title="{gt text='Export'}">
+                {gt text='Save as csv file at %s' tag1=$filenameCsv}
+            </a>
+            <a class="z-bt-ok" href="{modurl modname='Newsletter' type='admin' func='view' ot='export' admin_key=$admin_key format='csv' outputToFile=0}" title="{gt text='Export'}">
+                {gt text='Download as csv file'}
+            </a>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{gt text='Import subscribers'}</legend>
+        <div class="z-formrow">
+            <label for="import_format">{gt text='Format'}</label>
+            <select id="import_format" name="format">
+                <option value="xml">xml</option>
+                <option value="csv">csv</option>
+            </select>
+        </div>
+        <div class="z-formrow">
+            <label for="import_delimiter">{gt text='Delimiter'}</label>
+            <input id="import_delimiter" name="delimiter" type="text" maxlength="5" value=";">
+            <em class="z-formnote z-sub">{gt text='This is only neccassary if you select csv as format.'}</em>
+        </div>
+        <div class="z-formrow">
+            <label for="import_file">{gt text='File'}</label>
+            <input id="import_file" name="file" type="file" class="z-form-upload">
+        </div>
+        <div class="z-buttons z-formbuttons">
+            <input type="submit" name="submit" value="{gt text='Import users'}" class="z-bt-ok" />
+        </div>
+    </fieldset>
+</form>
 {adminfooter}

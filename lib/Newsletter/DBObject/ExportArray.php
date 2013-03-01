@@ -27,7 +27,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
     {
         $this->Newsletter_DBObject_UserArray();
         $this->_objSort      = 'email';
-        $this->_delimeter    = FormUtil::getPassedValue ('delimeter', '|', 'GETPOST');
+        $this->_delimeter    = FormUtil::getPassedValue ('delimeter', ';', 'GETPOST');
         $this->_filename     = FormUtil::getPassedValue ('filename', '', 'GETPOST');
         $this->_format       = FormUtil::getPassedValue ('format', 'xml', 'GETPOST');
         $this->_outputToFile = FormUtil::getPassedValue ('outputToFile', 1, 'GETPOST');
@@ -87,8 +87,6 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
 
             $bytes = strlen($txt);
             LogUtil::registerStatus (__("Exported $cnt records ($bytes bytes) for ot [newsletter_users]", $dom));
-            $filename = 'modules/Newsletter/export/NewsletterUsers.' . $this->_format;
-
 
             // output to browser
             if (!$this->_outputToFile) {
@@ -104,6 +102,9 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
                 }
                 exit();
             } else {
+                CacheUtil::createLocalDir('Newsletter');
+                $filename = CacheUtil::getLocalDir() . "/Newsletter/" . $this->_filename;
+
                 $fp = fopen ($filename, 'w');
                 if (!$fp) {
                     LogUtil::registerError (__("Error opening file [$filename] for writing", $dom));
@@ -113,55 +114,14 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
                         LogUtil::registerError (__("Error writing to file [$filename]", $dom));
                     }
                 fclose ($fp);
+                
+                return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => 'userimport')));
                 }
 
             }
         }
-
-        // construct a meaningful name from type
-        $name = 'UserExportReturnCode';
-
-        // get errors and determine success
-        $errors   = LogUtil::getErrorMessages(true, false);
-        $messages = LogUtil::getStatusMessages(true, false, false);
-        $success  = $errors ? 0 : 1;
-
-        $xml        = '<?xml version="1.0" encoding="ISO-8859-15"?>' . "\n";
-        $xml       .= "<$name>\n";
-        $xml       .= "  <success>$success</success>\n";
-        if ($ot1) {
-            $xml   .= "  <type>User</type>\n";
-        }
-        if ($filename) {
-            $xml    .= "  <filename>$filename</filename>\n";
-            $host    = System::serverGetVar('HTTP_HOST');
-            $baseuri = System::getBaseUri();
-            $xml    .= "  <filenameURL>http://$host/$baseuri/$filename</filenameURL>\n";
-        }
-
-        $search = array ('<i>', '</i>', '<b>', '</b>');
-        if ($messages) {
-            $xml .= "  <messages>\n";
-            foreach ($messages as $message) {
-                $msg  = str_replace ($search, '', $message);
-                $xml .= "    <message>$msg</message>\n";
-            }
-            $xml .= "  </messages>\n";
-        }
-
-        if ($errors) {
-            $xml .= "  <errors>\n";
-            foreach ($errors as $error) {
-                $err  = str_replace ($search, '', $error);
-                $xml .= "    <error>$error</error>\n";
-            }
-            $xml .= "  </errors>\n";
-        }
-
-        $xml       .= "</$name>\n";
-        header('Content-type: text/xml');
-        print $xml;
-        exit();
+        
+        return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => 'userimport')));
     }
 
     function selectPostProcess ($data=null) 
