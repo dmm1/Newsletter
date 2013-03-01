@@ -199,8 +199,8 @@
             {formcheckbox id="archive_controlid" checked=$preferences.archive_controlid}
         </div>
         <div class="z-formrow">
-            {formlabel for="show_archive" __text="Show archive in the subscriber-menu"}
-            {formcheckbox id="show_archive" checked=$preferences.show_archive}
+            {formlabel for="show_archive" __text="Show archive"}
+            {formdropdownlist id="show_archive" selectedValue=$preferences.show_archive items=$showArchiveSelector}
         </div>
         <div class="z-formnote z-informationmsg">{gt text="The following settings define which columns are shown in the archive's table."}</div>
         <div class="z-formrow">
