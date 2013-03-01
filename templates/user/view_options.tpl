@@ -38,7 +38,7 @@
           {/nocache}
         {else}
           <div class="z-formrow">
-            <span class="z-label">{gt text='Format'}:</span>
+            <span class="z-label">{gt text='Format'}</span>
             <span class="z-formnote"><strong>
                 {switch expr=$user.type}
                     {case expr=1}{gt text='Text'}{/case}
