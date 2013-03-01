@@ -38,7 +38,7 @@ class Newsletter_Api_User extends Zikula_AbstractApi
                      'class' => 'z-icon-es-config');
         }
 
-        if($this->getVar('show_archive') && $isSubscriber) {
+        if($this->getVar('show_archive') == 1 || ($this->getVar('show_archive') == 2 && UserUtil::isLoggedIn()) || ($this->getVar('show_archive') == 3 && $isSubscriber)) {
             $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'archive')),
                      'text'  => $this->__('View Archives'),
                      'class' => 'z-icon-es-preview');
