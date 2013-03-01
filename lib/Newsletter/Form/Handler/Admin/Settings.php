@@ -75,7 +75,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         }
 
         if($prefs['disable_auto'] && !$this->getVar('disable_auto')) {
-             EventUtil::unregisterPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
+            EventUtil::unregisterPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
         } else if(!$prefs['disable_auto'] && $this->getVar('disable_auto')) {
             EventUtil::registerPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
         }

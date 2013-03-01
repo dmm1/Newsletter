@@ -145,7 +145,6 @@ class Newsletter_DBObject_User extends DBObject
             $data = $this->_objData;
             if (!isset($data['email']) || !$data['email']) {
                 return LogUtil::registerArgsError();
-                return false;
             }
             $key = $data['email'];
         }
@@ -181,7 +180,7 @@ class Newsletter_DBObject_User extends DBObject
         if (UserUtil::isLoggedIn()) {
             if ($data['uid']) {
                 $data['name']  = UserUtil::getVar ('uname', $data['uid']);
-                $data['email'] = UserUtil::getVar ('email', $data['uid']);
+                $data['email'] = ($data['email'] == '') ? UserUtil::getVar ('email', $data['uid']) : $data['email'];
             } else {
                 LogUtil::registerError(__('Logic Error: logged-in user does not have his subscription UID set!', $dom));
             }
@@ -259,7 +258,7 @@ class Newsletter_DBObject_User extends DBObject
         // take the info fields auto-joined from the users table
         if (isset($data['uid']) && $data['uid']) {
             $data['name']  = $data['user_name'];
-            $data['email'] = $data['user_email'];
+            $data['email'] = ($data['email'] == '') ? $data['user_email'] : $data['email'];
         }
 
         $this->_objData = $data;
@@ -274,7 +273,7 @@ class Newsletter_DBObject_User extends DBObject
 
         if (UserUtil::isLoggedIn() && $data['uid']) {
             $data['name']  = UserUtil::getVar('uname', $data['uid']);
-            $data['email'] = UserUtil::getVar('email', $data['uid']);
+            $data['email'] = ($data['email'] == '') ? UserUtil::getVar ('email', $data['uid']) : $data['email'];
         }
 
         $this->_objData = $data;

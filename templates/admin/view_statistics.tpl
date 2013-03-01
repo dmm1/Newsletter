@@ -1,7 +1,7 @@
 {pageaddvar name='stylesheet' value='modules/Newsletter/style/admin_style.css'}
 {adminheader}
 
-<img class="z-floatleft" src="modules/Newsletter/images/admin-icon.png" width="137" />
+{img src='admin-icon.png' modname='Newsletter' width="137" class="z-floatleft"}
 
 <h3>{gt text="Welcome to Newsletter!"}</h3>
 

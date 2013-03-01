@@ -46,7 +46,7 @@
             <em class="z-sub z-formnote">{gt text='Newsletters now have to be sent out manually.'}</em>
         </div>
         <div class="z-formrow">
-            {formlabel for="template_html" __text='Html newsletter template'}
+            {formlabel for="template_html" __text='Html newsletter template' mandatorysym=true}
             {formdropdownlist id="template_html" selectedValue=$preferences.template_html items=$templateHtmlSelector}
         </div>
         <div class="z-formrow">
@@ -79,10 +79,11 @@
         </div>
     </fieldset>
 
+
     <fieldset>
         <legend>{gt text='Contact Information'}</legend>
         <div class="z-informationmsg z-formnote nl-round">
-            {gt text="It is shown at the bottom of newsletter, if respective field is not empty."}
+            {gt text="This is shown at the bottom of each newsletter, if respective field is not empty."}
         </div>
         <div class="z-formrow">
             {formlabel for="contact_phone" __text='Phone'}
@@ -95,10 +96,12 @@
         <div class="z-formrow">
             {formlabel for="contact_facebook" __text='Facebook'}
             {formtextinput id="contact_facebook" text=$preferences.contact_facebook maxLength=250}
+            <em class="z-formnote z-sub">Example: https://www.facebook.com/zikula</em>
         </div>
         <div class="z-formrow">
             {formlabel for="contact_twitter" __text='Twitter'}
             {formtextinput id="contact_twitter" text=$preferences.contact_twitter maxLength=250}
+            <em class="z-formnote z-sub">Example: https://twitter.com/TheZikulan</em>
         </div>
         <div class="z-formrow">
             {formlabel for="contact_google" __text='Google+'}
@@ -128,14 +131,13 @@
         </div>
         <div class="z-formrow">
             {formlabel for="allow_frequency_change" __text='Allow frequency changes'}
-            {formcheckbox id="allow_frequency_changes" checked=$preferences.allow_frequency_change}
+            {formcheckbox id="allow_frequency_change" checked=$preferences.allow_frequency_change}
         </div>
         <div class="z-formrow">
             {formlabel for="allow_subscription_change" __text='Allow subscription changes'}
             {formcheckbox id="allow_subscription_change" checked=$preferences.allow_subscription_change}
         </div>
     </fieldset>
-
 
 
     <fieldset>
@@ -161,7 +163,6 @@
     </fieldset>
 
 
-
     <fieldset>
         <legend>{gt text='Sending'}</legend>
         <div class="z-formrow">
@@ -185,6 +186,8 @@
             <em class="z-sub z-formnote">{gt text='Used to authenticate cron/batchprocessing. Leave empty to generate a key.'}</em>
         </div>
     </fieldset>
+
+
     <fieldset>
         <legend>{gt text='Archive settings'}</legend>
         <div class="z-formrow">
@@ -199,7 +202,7 @@
             {formlabel for="show_archive" __text="Show archive in the subscriber-menu"}
             {formcheckbox id="show_archive" checked=$preferences.show_archive}
         </div>
-        <div class="z-formnote z-informationmsg">{gt text="The following settings define which columns should be shown in the archive's table."}</div>
+        <div class="z-formnote z-informationmsg">{gt text="The following settings define which columns are shown in the archive's table."}</div>
         <div class="z-formrow">
             {formlabel for="show_id" __text="Show newsletter ID"}
             {formcheckbox id="show_id" checked=$preferences.show_id}
@@ -225,6 +228,8 @@
             {formcheckbox id="show_size" checked=$preferences.show_size}
         </div>
     </fieldset>
+
+
     <div class="z-buttons z-formbuttons">
         {formbutton commandName='update' __text='Update' class='z-bt-ok'}
         {formbutton commandName='cancel' __text='Cancel' class='z-bt-cancel'}
