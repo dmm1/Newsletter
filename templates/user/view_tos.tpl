@@ -1,7 +1,7 @@
 {include file='user/generic_header.tpl'}
 
 <div id="nl-wrapper-tos">
-    <h3>{gt text="Terms of Service"}</h3>
+    <h3>{gt text="Terms of service"}</h3>
     <p>
         {gt text="%s will not distribute, sell or disclose your personal information to any parties, public or private." tag1=$modvars.ZConfig.sitename}
     </p>

@@ -1,5 +1,4 @@
 {pagesetvar name='title' __value='View Archive'}
-{gt text="View Archive" assign=lblDetail}
 
 {include file='user/generic_header.tpl'}
 
@@ -74,7 +73,7 @@
         </span>
         {/if}
         <span class="z-itemcell z-w10">
-            <a href="{modurl modname='Newsletter' type='user' func='detail' ot='archive' id=$archive.id}" target="_blank">{img src='demo.png' modname='core' set='icons/extrasmall' alt=$lblDetail altml='false' title=$lblDetail titleml='false'}</a>
+            <a href="{modurl modname='Newsletter' type='user' func='detail' ot='archive' id=$archive.id}" target="_blank">{img src='demo.png' modname='core' set='icons/extrasmall' __alt='View Archive' __title='View Archive'}</a>
         </span>
     </li>
     {/foreach}
