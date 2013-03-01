@@ -577,5 +577,4 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         return System::redirect($url);
     }
-
 }
