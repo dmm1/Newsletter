@@ -65,39 +65,4 @@ class Newsletter_Api_User extends Zikula_AbstractApi
 
         return $links;
     }
-    /*
-    FIXME: build the shortURLs correctly
-
-    public function encodeurl($args)
-    {
-        // check we have the required input
-        if (!isset($args['modname'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        if (isset($args['args']['ot'])) {
-            return $args['modname'] . '/' . $args['args']['ot'];
-        }
-
-        return $args['modname'];
-    }
-
-    public function decodeurl($args)
-    {
-        // check we actually have some vars to work with...
-        if (!isset($args['vars'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        $args['vars'] = array_slice($args['vars'], 1);
-
-        System::queryStringSetVar('func', 'main');
-
-        if (isset($args['vars'][1])) {
-            System::queryStringSetVar('ot', $args['vars'][1]);
-        }
-
-        return true;
-    }
-    */
 }
