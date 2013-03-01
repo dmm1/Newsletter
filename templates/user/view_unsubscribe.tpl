@@ -1,6 +1,6 @@
 {include file='user/generic_header.tpl'}
+{pagesetvar name='title' __value='Unsubscribe'}
 
-{if $user or $modvars.Newsletter.allow_anon_registration and !$coredata.logged_in}
 <h3>{gt text="Unsubscribe"}</h3>
 
 <form class="z-form" action="{modurl modname='Newsletter' type='user' func='edit' ot='UserDelete'}" method="post" enctype="application/x-www-form-urlencoded" onsubmit="if (this.user_email.value == '') {ldelim} this.user_email.focus(); return false; {rdelim}">
@@ -23,6 +23,5 @@
         </div>
     </fieldset>
 </form>
-{/if}
 
 {include file='user/generic_footer.tpl'}

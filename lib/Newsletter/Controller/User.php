@@ -17,7 +17,7 @@ class Newsletter_Controller_User extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW));
 
-        $ot         = FormUtil::getPassedValue('ot', 'main', 'GETPOST');
+        $ot         = FormUtil::getPassedValue('ot', (UserUtil::isLoggedIn()) ? 'options' : 'main', 'GETPOST');
         $offset     = FormUtil::getPassedValue('startnum', 0, 'GETPOST');
         $pagesize   = FormUtil::getPassedValue('pagesize', ModUtil::getVar ('Newsletter', 'itemsperpage', 30), 'GETPOST');
         $startpage  = isset($args['startpage']) ? 1 : 0;

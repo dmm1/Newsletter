@@ -13,39 +13,53 @@
 
 class Newsletter_Api_User extends Zikula_AbstractApi
 {
-    /*
-    FIXME: build the shortURLs correctly
-
-    public function encodeurl($args)
+    public function getlinks()
     {
-        // check we have the required input
-        if (!isset($args['modname'])) {
-            return LogUtil::registerArgsError();
+        $isSubscriber = false;
+
+        if (class_exists('Newsletter_DBObject_User') && UserUtil::isLoggedIn()) {
+            $object = new Newsletter_DBObject_User();
+            $user = $object->getUser(UserUtil::getVar('uid'));
+            if(!empty($user))
+                $isSubscriber = true;
         }
 
-        if (isset($args['args']['ot'])) {
-            return $args['modname'] . '/' . $args['args']['ot'];
+        $links = array();
+
+        if(!$isSubscriber && ($this->getVar('allow_anon_registration') || UserUtil::isLoggedIn())) {
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'main')),
+                     'text'  => $this->__('Subscribe'),
+                     'class' => 'z-icon-es-ok');
         }
 
-        return $args['modname'];
+        if($isSubscriber) {
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'options')),
+                     'text'  => $this->__('Settings'),
+                     'class' => 'z-icon-es-config');
+        }
+
+        if($this->getVar('show_archive') && $isSubscriber) {
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'archive')),
+                     'text'  => $this->__('View Archives'),
+                     'class' => 'z-icon-es-preview');
+        }
+
+        if(!(!$isSubscriber && UserUtil::isLoggedIn())) {
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'unsubscribe')),
+                     'text'  => $this->__('Unsubscribe'),
+                     'class' => 'z-icon-es-cancel');
+        }
+
+        $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'tos')),
+                 'text'  => $this->__('Terms of service'),
+                 'class' => 'z-icon-es-info');
+
+        if (SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN)) {
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'main'),
+                     'text'  => $this->__('Backend'),
+                     'class' => 'z-icon-es-options');
+        }
+
+        return $links;
     }
-
-    public function decodeurl($args)
-    {
-        // check we actually have some vars to work with...
-        if (!isset($args['vars'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        $args['vars'] = array_slice($args['vars'], 1);
-
-        System::queryStringSetVar('func', 'main');
-
-        if (isset($args['vars'][1])) {
-            System::queryStringSetVar('ot', $args['vars'][1]);
-        }
-
-        return true;
-    }
-    */
 }
