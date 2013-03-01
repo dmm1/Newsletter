@@ -41,7 +41,7 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                              'text'  => $this->__('Plugins'));
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'userimport')),
-                             'text'  => $this->__('Import'),
+                             'text'  => $this->__('Import / Export'),
                              'class' => 'z-icon-es-import');
         }
 

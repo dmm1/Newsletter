@@ -20,22 +20,17 @@ if (!class_exists('Newsletter_DBObject_User')) {
 class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
 {
     var $_format;
-    var $_outputToFile;
-    var $_pagesize;
+    var $_file;
+    var $_filename;
 
     function Newsletter_DBObject_ImportArray($init=null, $where='')
     {
         $this->Newsletter_DBObject_UserArray();
-        $this->_objSort      = 'email';
-        $this->_delimeter    = FormUtil::getPassedValue ('delimeter', '|', 'GETPOST');
-        $this->_filename     = FormUtil::getPassedValue ('filename', '', 'GETPOST');
-        $this->_format       = FormUtil::getPassedValue ('format', 'xml', 'GETPOST');
-        $this->_pagesize     = 100;
-
-        if (!$this->_filename) {
-            $this->_filename = 'NewsletterUsers.' . $this->_format;
-        }
-
+        $this->_objSort   = 'email';
+        $this->_delimeter = FormUtil::getPassedValue ('delimeter', ';', 'GETPOST');
+        $this->_file      = FormUtil::getPassedValue ('file', '', 'FILES');
+        $this->_format    = FormUtil::getPassedValue ('format', 'xml', 'GETPOST');
+        $this->_filename  = $this->_file['name'];
         $this->_init($init, $where);
     }
 
@@ -100,55 +95,18 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
 
         LogUtil::registerStatus("Inserted $insertCnt records");
         LogUtil::registerStatus("Updated $updateCnt records");
+        
+        unlink($this->_file['tmp_name']);
 
-        // construct a meaningful name from type
-        $name = 'UserImportReturnCode';
-
-        // get errors and determine success
-        $errors   = LogUtil::getErrorMessages(true, false);
-        $messages = LogUtil::getStatusMessages(true, false, false);
-        $success  = $errors ? 0 : 1;
-
-        $xml        = '<?xml version="1.0" encoding="ISO-8859-15"?>' . "\n";
-        $xml       .= "<$name>\n";
-        $xml       .= "  <success>$success</success>\n";
-        if ($ot1) {
-            $xml   .= "  <type>User</type>\n";
-        }
-        if ($filename) {
-            $xml    .= "  <filename>$filename</filename>\n";
-        }
-
-        $search = array ('<i>', '</i>', '<b>', '</b>');
-        if ($messages) {
-            $xml .= "  <messages>\n";
-            foreach ($messages as $message) {
-                $msg  = str_replace ($search, '', $message);
-                $xml .= "    <message>$msg</message>\n";
-            }
-            $xml .= "  </messages>\n";
-        }
-
-        if ($errors) {
-            $xml .= "  <errors>\n";
-            foreach ($errors as $error) {
-                $err  = str_replace ($search, '', $error);
-                $xml .= "    <error>$error</error>\n";
-            }
-            $xml .= "  </errors>\n";
-        }
-
-        $xml       .= "</$name>\n";
-        header('Content-type: text/xml');
-        print $xml;
-        exit();
+        return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => 'userimport')));
     }
 
     function _importCSV ()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        $fName = "modules/Newsletter/import/$this->_filename";
+        $fName = $this->_file['tmp_name'];
+
         if (!file_exists($fName)) {
             return LogUtil::registerError (__("Import file [$fName] does not exist", $dom));
         }
@@ -167,19 +125,19 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
             $rc = LogUtil::registerError (__("Unable to load column array for [newsletter_users]", $dom));
         }
 
-        $data       = array();
-        foreach ($lines as $line) {
-            if (!$line) {
+        $data = array();
+        foreach ($lines as $lineNumber => $line) {
+            if (!$line || $lineNumber == 0) {
                 continue;
             }
             $dat = array();
             $fields = explode ($this->_delimeter, $line);
+            $cnt = 0;
             foreach ($colArray as $col) {
                 $dat[$col] = $fields[$cnt++];
             } 
             $data[] = $dat;
         }
-        
         return $data;
     }
 
@@ -187,7 +145,8 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        $fName = "modules/Newsletter/import/$this->_filename";
+        $fName = $this->_file['tmp_name'];
+
         if (!file_exists($fName)) {
             return LogUtil::registerError (__("Import file [$fName] does not exist", $dom));
         }
