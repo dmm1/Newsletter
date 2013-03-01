@@ -1,4 +1,5 @@
 {include file='user/generic_header.tpl'}
+{pagesetvar name='title' __value='Terms of service'}
 
 <div id="nl-wrapper-tos">
     <h3>{gt text="Terms of service"}</h3>

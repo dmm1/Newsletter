@@ -1,4 +1,5 @@
 {include file='user/generic_header.tpl'}
+{pagesetvar name='title' __value='Unsubscribe'}
 
 <h3>{gt text="Unsubscribe"}</h3>
 

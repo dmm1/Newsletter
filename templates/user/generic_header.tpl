@@ -1,4 +1,5 @@
 {securityutil_checkpermission component='Newsletter::' instance='::' level='ACCESS_ADMIN' assign='adminAuth'}
+
 <div class="nl-wrapper">
     {insert name='getstatusmsg'}
 

@@ -27,15 +27,12 @@ class Newsletter_Api_User extends Zikula_AbstractApi
         $links = array();
 
         if(!$isSubscriber && ($this->getVar('allow_anon_registration') || UserUtil::isLoggedIn())) {
-            $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main'),
+            $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'main')),
                      'text'  => $this->__('Subscribe'),
                      'class' => 'z-icon-es-ok');
         }
 
         if($isSubscriber) {
-            $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main'),
-                     'text'  => $this->__('Your Information'),
-                     'class' => 'z-icon-es-home');
             $links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main', array('ot' => 'options')),
                      'text'  => $this->__('Settings'),
                      'class' => 'z-icon-es-config');

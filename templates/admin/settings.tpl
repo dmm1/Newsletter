@@ -131,7 +131,7 @@
         </div>
         <div class="z-formrow">
             {formlabel for="allow_frequency_change" __text='Allow frequency changes'}
-            {formcheckbox id="allow_frequency_changes" checked=$preferences.allow_frequency_change}
+            {formcheckbox id="allow_frequency_change" checked=$preferences.allow_frequency_change}
         </div>
         <div class="z-formrow">
             {formlabel for="allow_subscription_change" __text='Allow subscription changes'}
