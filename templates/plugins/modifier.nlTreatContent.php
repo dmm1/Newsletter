@@ -34,6 +34,12 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
                 // strip_tags but <img><a>
                 $data = strip_tags($data, '<img><a>');
             }
+            // If <img> tag exist, treat style for proper display in Outlook
+            $pos = strpos($data, "<img");
+            if ($pos !== false) {
+                include_once __DIR__.'/DOMDocumentUtil.php';
+                $data = DOMDocumentUtil::imgStyleConvert($data);
+            }
         }
         $data = trim($data);
 
