@@ -174,7 +174,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
 
         $cnt  = 0;
         $page = 0;
-        $xml  = '<?xml version="1.0" encoding="ISO-8859-15"?>' . "\n";
+        $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         $xml .= "<$otMultiple>\n";
         do {
             $data = $this->select ('', $this->_objSort, $page*$this->_pagesize, $this->_pagesize);
@@ -189,11 +189,12 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
                     if ($this->_complete || (!$this->_complete && $dat[$field] !== '')) {
                         if ($this->_fieldSetName && $this->_fieldSetValue!=null && isset($fieldSetNames[$field])) {
                             $idx = $fieldSetNames[$field];
-                            $val = htmlentities($fieldSetValues[$idx]);
+                            $val = $fieldSetValues[$idx];
                         } else {
-                            $val  = htmlentities($dat[$field]);
+                            $val  = $dat[$field];
                         }
-                        $xml .= "   <$field>$val</$field>\n";
+                        // htmlentities
+                        $xml .= "    <$field>".DataUtil::formatForDisplay($val)."</$field>\n";
                     }
                 }
                 $xml .= " </$otSingle>\n";
