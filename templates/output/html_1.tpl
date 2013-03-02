@@ -26,34 +26,34 @@
                   <td valign="top" class="nl-main-class" align="left">
 
                     {if (isset($user_name) && $user_name)}
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Hello"} {$user_name}</h2>
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Hello"} {$user_name}</div>
                       <br />
                     {/if}
 
                     {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
                       <br />
-                      <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$objectArray.NewsletterMessage|safehtml}</div>
+                      <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$objectArray.NewsletterMessage|safehtml}</div>
                       <br />
                     {/if}
 
                     {if (isset($objectArray.News) && $objectArray.News)}
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="News"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="News"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.News item="item" name="loop"}
 					    {if $modvars.News.picupload_enabled AND $item.pictures gt 0}
 						<span style="float:left;margin-right:4px;margin-bottom:4px;"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}{$modvars.News.picupload_uploaddir}/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a></span>
 						{/if}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}">{$item.title|safehtml}</a></h3>
-						<div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.hometext|nlTreatContent:'News'}</div>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
-                        {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}">{$item.title|safehtml}</a></div>
+						<div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$item.hometext|nlTreatContent:'News'}</div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 10px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
+                        {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
 
                     {if (isset($objectArray.NewMembers) && $objectArray.NewMembers)}
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Welcome New Members"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Welcome New Members"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       <table style="width: 100%; text-align: left; font:normal 12px arial; ">
                         <tr>
                           <th>{gt text="Username"}</th>
@@ -62,7 +62,7 @@
                         {modavailable modname="Profile" assign="profileAvailable"}
                         {foreach from=$objectArray.NewMembers item="item" name="loop"}
                           <tr>
-                            <td>{if $profileAvailable}<h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></h3>{/if}</td>
+                            <td>{if $profileAvailable}<div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
                             <td>{$item.user_regdate}</td>
                           </tr>
                         {/foreach}
@@ -71,82 +71,82 @@
                     {/if}
 
                     {if (isset($objectArray.Content) && $objectArray.Content)}
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="New Content Items"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="New Content Items"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Content item="item" name="loop"}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Content" type="user" func="view" pid=$item.id newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                        {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Content" type="user" func="view" pid=$item.id newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></div>
+                        {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
 
                     {if (isset($objectArray.Pages) && $objectArray.Pages)}
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Recently Added Documents"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Recently Added Documents"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Pages item="item" name="loop"}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h3>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.content|nlTreatContent:'Pages'}</div>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
-                        {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$item.content|nlTreatContent:'Pages'}</div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 10px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
+                        {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
 
                     {if (isset($objectArray.EZComments) && $objectArray.EZComments)}        
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Latest Comments"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Latest Comments"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.EZComments item="item" name="loop"}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h3>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.comment|nlTreatContent:'EZComments'}</div>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
-                         {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{$item.url}&newlang={$nllang}">{$item.subject}</a></div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$item.comment|nlTreatContent:'EZComments'}</div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 10px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{$item.url}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
+                         {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
 
                     {if (isset($objectArray.Dizkus) && $objectArray.Dizkus)}        
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Latest Forum Posts"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Latest Forum Posts"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Dizkus item="item" name="loop"}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true}">{$item.topic_title}</a></h3>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.username}<br />{$item.post_text|nlTreatContent:'Dizkus'}</div>
-                         {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true}">{$item.topic_title}</a></div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$item.username}<br />{$item.post_text|nlTreatContent:'Dizkus'}</div>
+                         {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
 
                     {if (isset($objectArray.Clip) && $objectArray.Clip)}
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Recently Added Publications"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Recently Added Publications"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Clip item="item" name="loop"}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h3>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.content|nlTreatContent:'Clip'}</div>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
-                        {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$item.content|nlTreatContent:'Clip'}</div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 10px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
+                        {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
 
                     {if (isset($objectArray.Weblinks) && $objectArray.Weblinks)}        
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Latest web links"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Latest web links"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Weblinks item="item" name="loop"}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{$item.url}">{$item.title}</a></h3>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.description|nlTreatContent:'Weblinks'}</div>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
-                        {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{$item.url}">{$item.title}</a></div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$item.description|nlTreatContent:'Weblinks'}</div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 10px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
+                        {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
 
                     {if (isset($objectArray.Downloads) && $objectArray.Downloads)}        
-                      <h2 style="font-size: 16px; font-weight: bold; color: #812323; margin: 0; padding: 0;">{gt text="Latest downloads"}</h2>
-                      <img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
+                      <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{gt text="Latest downloads"}</div>
+                      <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
                       {foreach from=$objectArray.Downloads item="item" name="loop"}
-                        <h3 style="font-size: 14px; font-weight: bold; color: #813939; margin: 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></h3>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;">{$item.description|nlTreatContent:'Downloads'}</div>
-                        <div style="font-size: 13px; color: #333333; margin: 0 0 14px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
-                        {if (!$smarty.foreach.loop.last)}<img style="margin: 0; padding: 0 0 10px 0;" src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
+                        <div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">{$item.description|nlTreatContent:'Downloads'}</div>
+                        <div style="font-size: 13px; color: #333333; margin: 0 0 10px 0; padding: 0;"><a style="color: #680606; text-decoration: none;" href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"}</a> <img src="{$site_url}modules/Newsletter/images/newsletter_images/read-more.gif" alt="Header" width="8" height="8" /></div>
+                        {if (!$smarty.foreach.loop.last)}<img src="{$site_url}modules/Newsletter/images/newsletter_images/hr-small.gif" alt="Newsletter" width="560" height="2" />{/if}
                       {/foreach}
                       <br />
                     {/if}
@@ -177,11 +177,11 @@
                 </tr>
             </table>
             <!-- /social & contact -->
-            <p style="font-size: 12px; color: #333333;padding:4px; text-align: center">
-                <strong>{gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a style="color: #680606;" href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}">{gt text="here!"}</a></strong>
-                <br /><br />
-                <a style="color: #680606;" href="{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}"><strong>{gt text="Link to the Newsletter Archive"}</strong></a>
-            </p>
+            <div style="font-family: Arial; font-size: 12px; color: #333333; margin: 5px; text-align: center">
+                <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}"><strong>{gt text="View Archives"}</strong></a> |
+                <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="tos" newlang=$nllang fqurl=true}"><strong>{gt text="Terms of Service"}</strong></a> |
+                <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="Unsubscribe"}</strong></a>
+            </div>
            </td>
         </tr>
       </table>
