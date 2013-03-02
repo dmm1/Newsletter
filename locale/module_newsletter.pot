@@ -6,15 +6,15 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Zikula 1.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-21 19:40+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: Newsletter 3.0.0\n"
+"Report-Msgid-Bugs-To: https://wwww.github.com/dmm1/Newsletter\n"
+"POT-Creation-Date: 2013-03-02 10:00+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: lib/Newsletter/Block/Signup.php:25
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Could not create tables!"
 msgstr ""
 
-#: lib/Newsletter/Installer.php:151
+#: lib/Newsletter/Installer.php:157
 msgid "Could not drop tables!"
 msgstr ""
 
@@ -51,7 +51,7 @@ msgstr ""
 #: lib/Newsletter/DBObject/NewsletterSend.php:200
 #: lib/Newsletter/DBObject/NewsletterSend.php:385
 #: lib/Newsletter/Listener/AutoSend.php:39
-#, php-format
+#, possible-php-format
 msgid "Unable to load class [%s]"
 msgstr ""
 
@@ -87,14 +87,14 @@ msgstr ""
 #: lib/Newsletter/Controller/Admin.php:166
 #: lib/Newsletter/Controller/Admin.php:204
 #: lib/Newsletter/Controller/Admin.php:226
-#, php-format
+#, possible-php-format
 msgid "Unable to load class for [%s]"
 msgstr ""
 
 #: lib/Newsletter/Controller/Admin.php:174
 #: lib/Newsletter/Controller/Admin.php:234
 #: lib/Newsletter/Controller/Admin.php:275
-#, php-format
+#, possible-php-format
 msgid "Unable to retrieve object of type [%1$s] with id [%2$s]."
 msgstr ""
 
@@ -159,11 +159,11 @@ msgstr ""
 msgid "Error getting data for newsletter Id "
 msgstr ""
 
-#: lib/Newsletter/Form/Handler/Admin/Settings.php:53
+#: lib/Newsletter/Form/Handler/Admin/Settings.php:71
 msgid "Editing settings canceled"
 msgstr ""
 
-#: lib/Newsletter/Form/Handler/Admin/Settings.php:64
+#: lib/Newsletter/Form/Handler/Admin/Settings.php:82
 msgid ""
 "You have selected to limit the type of newsletter subscriptions but have "
 "chosen a different default newsletter type. Your default newsletter type has "
@@ -171,7 +171,7 @@ msgid ""
 "review your settings!"
 msgstr ""
 
-#: lib/Newsletter/Form/Handler/Admin/Settings.php:108
+#: lib/Newsletter/Form/Handler/Admin/Settings.php:132
 msgid "Settings saved!"
 msgstr ""
 
@@ -187,28 +187,27 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: lib/Newsletter/Util.php:62 templates/admin/view_userimport.tpl:47
+#: lib/Newsletter/Util.php:62 templates/admin/view_userimport.tpl:46
 msgid "Inactive"
 msgstr ""
 
-#: lib/Newsletter/Util.php:63 templates/user/view_options.tpl:49
-#: templates/admin/view_user.tpl:61 templates/admin/view_user.tpl:148
-#: templates/admin/view_userimport.tpl:44
-#: templates/admin/view_userimport.tpl:46 templates/admin/edit_user.tpl:73
+#: lib/Newsletter/Util.php:63 templates/admin/view_user.tpl:61
+#: templates/admin/view_user.tpl:148 templates/admin/view_userimport.tpl:43
+#: templates/admin/view_userimport.tpl:45 templates/admin/edit_user.tpl:73
 msgid "Active"
 msgstr ""
 
-#: lib/Newsletter/Util.php:76 templates/user/view_main.tpl:130
+#: lib/Newsletter/Util.php:76 templates/user/view_options.tpl:91
 msgid "Not Approved"
 msgstr ""
 
-#: lib/Newsletter/Util.php:77 templates/user/view_main.tpl:128
+#: lib/Newsletter/Util.php:77 templates/user/view_options.tpl:89
 #: templates/admin/view_user.tpl:62 templates/admin/view_user.tpl:152
-#: templates/admin/view_userimport.tpl:53 templates/admin/edit_user.tpl:68
+#: templates/admin/view_userimport.tpl:52 templates/admin/edit_user.tpl:68
 msgid "Approved"
 msgstr ""
 
-#: lib/Newsletter/Util.php:87 templates/user/view_main.tpl:149
+#: lib/Newsletter/Util.php:87 templates/user/view_options.tpl:116
 msgid "Never"
 msgstr ""
 
@@ -232,50 +231,50 @@ msgstr ""
 msgid "1 Year"
 msgstr ""
 
-#: lib/Newsletter/Util.php:120 templates/user/view_main.tpl:112
+#: lib/Newsletter/Util.php:120 templates/user/view_options.tpl:72
 #: templates/admin/view_user.tpl:205
 msgid "Weekly"
 msgstr ""
 
-#: lib/Newsletter/Util.php:121 templates/user/view_main.tpl:113
+#: lib/Newsletter/Util.php:121 templates/user/view_options.tpl:73
 #: templates/admin/view_user.tpl:207
 msgid "Monthly"
 msgstr ""
 
-#: lib/Newsletter/Util.php:122 templates/user/view_main.tpl:114
+#: lib/Newsletter/Util.php:122 templates/user/view_options.tpl:74
 msgid "Every 2 Months"
 msgstr ""
 
-#: lib/Newsletter/Util.php:123 templates/user/view_main.tpl:115
+#: lib/Newsletter/Util.php:123 templates/user/view_options.tpl:75
 msgid "Every 3 Months"
 msgstr ""
 
-#: lib/Newsletter/Util.php:124 templates/user/view_main.tpl:116
+#: lib/Newsletter/Util.php:124 templates/user/view_options.tpl:76
 msgid "Every 6 Months"
 msgstr ""
 
-#: lib/Newsletter/Util.php:125 templates/user/view_main.tpl:117
+#: lib/Newsletter/Util.php:125 templates/user/view_options.tpl:77
 msgid "Every 9 Months"
 msgstr ""
 
-#: lib/Newsletter/Util.php:126 templates/user/view_main.tpl:118
+#: lib/Newsletter/Util.php:126 templates/user/view_options.tpl:78
 #: templates/admin/view_user.tpl:209
 msgid "Yearly"
 msgstr ""
 
-#: lib/Newsletter/Util.php:139 templates/user/view_main.tpl:100
+#: lib/Newsletter/Util.php:139 templates/user/view_options.tpl:44
 #: templates/admin/view_user.tpl:194 templates/admin/edit_newsletter.tpl:35
 #: templates/admin/view_newsletters.tpl:39
 msgid "Text"
 msgstr ""
 
-#: lib/Newsletter/Util.php:140 templates/user/view_main.tpl:101
+#: lib/Newsletter/Util.php:140 templates/user/view_options.tpl:45
 #: templates/admin/view_user.tpl:196 templates/admin/edit_newsletter.tpl:19
 #: templates/admin/view_newsletters.tpl:40
 msgid "HTML"
 msgstr ""
 
-#: lib/Newsletter/Util.php:141 templates/user/view_main.tpl:102
+#: lib/Newsletter/Util.php:141 templates/user/view_options.tpl:46
 #: templates/admin/view_newsletters.tpl:41
 msgid "Text with Link to Archive"
 msgstr ""
@@ -325,17 +324,17 @@ msgid "No special message"
 msgstr ""
 
 #: lib/Newsletter/Util.php:182
-#, php-format
+#, possible-php-format
 msgid "Empty [%s] received."
 msgstr ""
 
 #: lib/Newsletter/Util.php:187
-#, php-format
+#, possible-php-format
 msgid "Directory [%s] does not seem to exist."
 msgstr ""
 
 #: lib/Newsletter/Util.php:192
-#, php-format
+#, possible-php-format
 msgid "Directory [%s] seems to be a file nor a directory."
 msgstr ""
 
@@ -352,7 +351,7 @@ msgid "Unable to load class [user] ... disabling auto-join for array class"
 msgstr ""
 
 #: lib/Newsletter/DBObject/UserArray.php:127
-#: lib/Newsletter/DBObject/ExportArray.php:177
+#: lib/Newsletter/DBObject/ExportArray.php:137
 msgid ""
 "Unable to load class [user] ... disabling input post-processing for array "
 "class"
@@ -361,12 +360,12 @@ msgstr ""
 #: lib/Newsletter/DBObject/PluginArray.php:38
 #: lib/Newsletter/DBObject/NewsletterDataArray.php:26
 #: lib/Newsletter/DBObject/Plugin.php:27
-#, php-format
+#, possible-php-format
 msgid "Unable to load array class for [%s]"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:56 lib/Newsletter/DBObject/User.php:295
-#: lib/Newsletter/DBObject/User.php:307
+#: lib/Newsletter/DBObject/User.php:56 lib/Newsletter/DBObject/User.php:294
+#: lib/Newsletter/DBObject/User.php:306
 msgid "No such item found."
 msgstr ""
 
@@ -378,27 +377,27 @@ msgstr ""
 msgid "Newsletter Subscription Cancelled"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:186
+#: lib/Newsletter/DBObject/User.php:185
 msgid "Logic Error: logged-in user does not have his subscription UID set!"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:206
+#: lib/Newsletter/DBObject/User.php:205
 msgid "This email address is already subscribed to our newsletter!"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:218
+#: lib/Newsletter/DBObject/User.php:217
 msgid "You are already subscribed to our newsletter!"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:225
+#: lib/Newsletter/DBObject/User.php:224
 msgid "You have been subscribed to our newsletter"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:235
+#: lib/Newsletter/DBObject/User.php:234
 msgid "Newsletter Subscription Received"
 msgstr ""
 
-#: lib/Newsletter/DBObject/User.php:243
+#: lib/Newsletter/DBObject/User.php:242
 msgid "Newsletter Subscription"
 msgstr ""
 
@@ -407,6 +406,9 @@ msgid "Your newsletter subscription settings have been updated"
 msgstr ""
 
 #: lib/Newsletter/DBObject/PluginDownloadsArray.php:41
+#: lib/Newsletter/DBObject/PluginDizkusArray.php:43
+#: lib/Newsletter/DBObject/PluginDizkusArray.php:67
+#: lib/Newsletter/DBObject/PluginDizkusArray.php:78
 #: lib/Newsletter/DBObject/PluginWeblinksArray.php:41
 msgid "Error in plugin"
 msgstr ""
@@ -414,7 +416,8 @@ msgstr ""
 #: lib/Newsletter/DBObject/NewsletterDataArray.php:70
 #: lib/Newsletter/Api/Account.php:36 lib/Newsletter/Version.php:19
 #: templates/user/hook_subscribe.tpl:5 templates/user/hook_subscribe.tpl:13
-#: templates/user/generic_header.tpl:5 templates/output/html.tpl:7
+#: templates/user/generic_header.tpl:7 templates/output/html_2.tpl:8
+#: templates/output/html_1.tpl:7 templates/output/html.tpl:6
 msgid "Newsletter"
 msgstr ""
 
@@ -432,7 +435,7 @@ msgstr ""
 #: lib/Newsletter/DBObject/ImportArray.php:17
 #: lib/Newsletter/DBObject/ShowPreviewArray.php:17
 #: lib/Newsletter/DBObject/ImportUsers.php:50
-#, php-format
+#, possible-php-format
 msgid "Unable to load array class [%s]"
 msgstr ""
 
@@ -452,7 +455,7 @@ msgstr ""
 #: lib/Newsletter/DBObject/NewsletterSend.php:133
 #: lib/Newsletter/DBObject/NewsletterSend.php:189
 #: lib/Newsletter/DBObject/NewsletterSend.php:263
-#, php-format
+#, possible-php-format
 msgid "%s newsletter were successfully sent."
 msgid_plural "%s newsletters were successfully sent."
 msgstr[0] ""
@@ -464,7 +467,7 @@ msgstr ""
 
 #: lib/Newsletter/DBObject/NewsletterSend.php:207
 #: lib/Newsletter/DBObject/ExportArray.php:53
-#: lib/Newsletter/DBObject/ImportArray.php:52
+#: lib/Newsletter/DBObject/ImportArray.php:47
 #: lib/Newsletter/DBObject/ImportUsers.php:30
 msgid "Invalid admin_key received"
 msgstr ""
@@ -474,8 +477,8 @@ msgid "Wrong day"
 msgstr ""
 
 #: lib/Newsletter/DBObject/ExportArray.php:72
-#: lib/Newsletter/DBObject/ImportArray.php:167
-#: lib/Newsletter/DBObject/ImportArray.php:210
+#: lib/Newsletter/DBObject/ImportArray.php:125
+#: lib/Newsletter/DBObject/ImportArray.php:169
 msgid "Unable to load column array for [newsletter_users]"
 msgstr ""
 
@@ -484,7 +487,7 @@ msgid "Users to import: "
 msgstr ""
 
 #: lib/Newsletter/DBObject/ImportUsers.php:91
-#, php-format
+#, possible-php-format
 msgid "Import finished. %s user was imported."
 msgid_plural "Import finished. %s users were imported."
 msgstr[0] ""
@@ -506,13 +509,37 @@ msgstr ""
 msgid "Newsletter subscribtion canceled."
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:22
-msgid "Start"
+#: lib/Newsletter/Api/User.php:31 templates/user/view_main.tpl:11
+#: templates/user/view_main.tpl:73 templates/block/signup.tpl:45
+msgid "Subscribe"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:26 templates/user/generic_header.tpl:24
-#: templates/user/generic_header.tpl:25 templates/admin/settings.tpl:22
+#: lib/Newsletter/Api/User.php:37 lib/Newsletter/Api/Admin.php:26
+#: templates/admin/settings.tpl:22
 msgid "Settings"
+msgstr ""
+
+#: lib/Newsletter/Api/User.php:43
+msgid "View Archives"
+msgstr ""
+
+#: lib/Newsletter/Api/User.php:49 templates/user/view_unsubscribe.tpl:2
+#: templates/user/view_unsubscribe.tpl:4
+#: templates/user/view_unsubscribe.tpl:22 templates/output/html.tpl:457
+msgid "Unsubscribe"
+msgstr ""
+
+#: lib/Newsletter/Api/User.php:54 templates/user/view_tos.tpl:2
+#: templates/user/view_tos.tpl:5 templates/admin/settings.tpl:126
+msgid "Terms of service"
+msgstr ""
+
+#: lib/Newsletter/Api/User.php:59
+msgid "Backend"
+msgstr ""
+
+#: lib/Newsletter/Api/Admin.php:22
+msgid "Start"
 msgstr ""
 
 #: lib/Newsletter/Api/Admin.php:30 templates/admin/view_message.tpl:18
@@ -531,9 +558,8 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:44 templates/admin/view_userimport.tpl:72
-#: templates/admin/view_userimport.tpl:74
-msgid "Import"
+#: lib/Newsletter/Api/Admin.php:44 templates/admin/view_userimport.tpl:6
+msgid "Import / Export"
 msgstr ""
 
 #: lib/Newsletter/Version.php:20
@@ -549,12 +575,12 @@ msgid "Newsletter Hooks"
 msgstr ""
 
 #: lib/Newsletter/Version.php:38 templates/user/hook_subscribe.tpl:7
-#: templates/user/hook_subscribe.tpl:15
+#: templates/user/hook_subscribe.tpl:15 templates/user/view_main.tpl:10
 msgid "Subscribe to Newsletter"
 msgstr ""
 
 #: templates/email/user_notify.tpl:4
-#, php-format
+#, possible-php-format
 msgid "Hello %s"
 msgstr ""
 
@@ -563,12 +589,12 @@ msgid "Thank you for your Newsletter Subscription"
 msgstr ""
 
 #: templates/email/user_notify.tpl:8
-#, php-format
+#, possible-php-format
 msgid "Your %s Staff"
 msgstr ""
 
 #: templates/email/user_notify.tpl:12
-#, php-format
+#, possible-php-format
 msgid ""
 "If you didn`t subscribe yourself, please visit <a href=\"%1$s\">%1$s</a> to "
 "delete this Subscription"
@@ -583,7 +609,7 @@ msgid "Please feel free to re-subscribe in the future."
 msgstr ""
 
 #: templates/email/user_unsubscribe.tpl:5
-#, php-format
+#, possible-php-format
 msgid "Thank you,<br />%1$s Staff<br /><a href=\"%2$s\">%2$s</a>"
 msgstr ""
 
@@ -591,14 +617,17 @@ msgstr ""
 msgid "New Subscriber Info"
 msgstr ""
 
-#: templates/email/admin_notify.tpl:7 templates/user/view_main.tpl:86
-#: templates/output/html.tpl:240 templates/admin/view_user.tpl:128
+#: templates/email/admin_notify.tpl:7 templates/user/view_options.tpl:22
+#: templates/output/html_2.tpl:105 templates/output/html_1.tpl:59
+#: templates/output/html.tpl:292 templates/admin/view_user.tpl:128
 #: templates/admin/edit_user.tpl:30 templates/admin/edit_user.tpl:35
 msgid "Username"
 msgstr ""
 
-#: templates/email/admin_notify.tpl:11 templates/user/view_main.tpl:92
-#: templates/admin/view_user.tpl:132 templates/admin/edit_user.tpl:41
+#: templates/email/admin_notify.tpl:11 templates/user/view_options.tpl:28
+#: templates/output/html_2.tpl:241 templates/output/html_1.tpl:174
+#: templates/output/html.tpl:423 templates/admin/view_user.tpl:132
+#: templates/admin/settings.tpl:93 templates/admin/edit_user.tpl:41
 msgid "Email"
 msgstr ""
 
@@ -618,62 +647,41 @@ msgstr ""
 msgid "You can manage easy your subscription status in your profile."
 msgstr ""
 
-#: templates/user/generic_header.tpl:12 templates/user/generic_header.tpl:13
-#: templates/user/view_main.tpl:16 templates/user/view_main.tpl:81
-msgid "Your Information"
-msgstr ""
-
-#: templates/user/generic_header.tpl:18 templates/user/generic_header.tpl:19
-msgid "View Archives"
-msgstr ""
-
-#: templates/user/generic_header.tpl:28 templates/user/generic_header.tpl:29
-#: templates/user/view_main.tpl:10 templates/user/view_main.tpl:70
-#: templates/block/signup.tpl:45
-msgid "Subscribe"
-msgstr ""
-
-#: templates/user/generic_header.tpl:35 templates/user/generic_header.tpl:36
-#: templates/user/view_unsubscribe.tpl:4
-#: templates/user/view_unsubscribe.tpl:22
-msgid "Unsubscribe"
-msgstr ""
-
-#: templates/user/view_archive.tpl:1 templates/user/view_archive.tpl:2
-#: templates/user/view_archive.tpl:6
+#: templates/user/view_archive.tpl:1 templates/user/view_archive.tpl:5
+#: templates/user/view_archive.tpl:76
 msgid "View Archive"
 msgstr ""
 
-#: templates/user/view_archive.tpl:12 templates/admin/view_user.tpl:120
+#: templates/user/view_archive.tpl:11 templates/admin/view_user.tpl:120
 #: templates/admin/view_newsletters.tpl:127
 msgid "ID"
 msgstr ""
 
-#: templates/user/view_archive.tpl:17 templates/admin/view_newsletters.tpl:130
+#: templates/user/view_archive.tpl:16 templates/admin/view_newsletters.tpl:130
 msgid "Date"
 msgstr ""
 
-#: templates/user/view_archive.tpl:22 templates/user/view_main.tpl:34
-#: templates/user/view_options.tpl:23 templates/block/signup.tpl:24
+#: templates/user/view_archive.tpl:21 templates/user/view_main.tpl:37
+#: templates/user/view_options.tpl:55 templates/block/signup.tpl:24
 #: templates/admin/view_user.tpl:57 templates/admin/view_user.tpl:136
 #: templates/admin/edit_user.tpl:47 templates/admin/view_newsletters.tpl:18
 #: templates/admin/view_newsletters.tpl:133
 msgid "Language"
 msgstr ""
 
-#: templates/user/view_archive.tpl:27 templates/admin/view_newsletters.tpl:136
+#: templates/user/view_archive.tpl:26 templates/admin/view_newsletters.tpl:136
 msgid "# of Plugins"
 msgstr ""
 
-#: templates/user/view_archive.tpl:32 templates/admin/view_newsletters.tpl:139
+#: templates/user/view_archive.tpl:31 templates/admin/view_newsletters.tpl:139
 msgid "# of Items"
 msgstr ""
 
-#: templates/user/view_archive.tpl:37 templates/admin/view_newsletters.tpl:142
+#: templates/user/view_archive.tpl:36 templates/admin/view_newsletters.tpl:142
 msgid "Length"
 msgstr ""
 
-#: templates/user/view_archive.tpl:41 templates/admin/view_user.tpl:163
+#: templates/user/view_archive.tpl:40 templates/admin/view_user.tpl:163
 #: templates/admin/view_user.tpl:250 templates/admin/view_newsletters.tpl:145
 msgid "Action"
 msgstr ""
@@ -686,114 +694,110 @@ msgstr ""
 msgid "Are you sure you want to unsubscribe from the newsletter?"
 msgstr ""
 
-#: templates/user/view_unsubscribe.tpl:16 templates/user/view_main.tpl:28
+#: templates/user/view_unsubscribe.tpl:16 templates/user/view_main.tpl:31
 #: templates/block/signup.tpl:13 templates/block/signup.tpl:18
 msgid "Your E-Mail Address"
 msgstr ""
 
-#: templates/user/view_tos.tpl:4 templates/user/view_main.tpl:59
-#: templates/user/view_main.tpl:61 templates/user/view_options.tpl:59
-#: templates/block/signup.tpl:34
-msgid "Terms of Service"
-msgstr ""
-
-#: templates/user/view_tos.tpl:6
-#, php-format
+#: templates/user/view_tos.tpl:7
+#, possible-php-format
 msgid ""
 "%s will not distribute, sell or disclose your personal information to any "
 "parties, public or private."
 msgstr ""
 
-#: templates/user/view_tos.tpl:9
+#: templates/user/view_tos.tpl:10
 msgid ""
 "Staff is not responsible for maintaining your subscription. You may opt in "
 "or out or even suspend your account at your own convenience."
 msgstr ""
 
-#: templates/user/view_tos.tpl:12
-#, php-format
+#: templates/user/view_tos.tpl:13
+#, possible-php-format
 msgid ""
 "%s offers no warranties or guarantees for this service and accepts no "
 "responsibility or liability for any damages that may incur before, during or "
 "after subscription to this service."
 msgstr ""
 
-#: templates/user/view_main.tpl:19
-msgid "Subscriptions subject to approval."
+#: templates/user/view_main.tpl:17
+msgid "Your Information"
 msgstr ""
 
-#: templates/user/view_main.tpl:23 templates/block/signup.tpl:9
+#: templates/user/view_main.tpl:20
+msgid "Subscriptions are subject to approval."
+msgstr ""
+
+#: templates/user/view_main.tpl:25 templates/block/signup.tpl:9
 msgid "Your Name"
 msgstr ""
 
-#: templates/user/view_main.tpl:43 templates/user/view_main.tpl:97
+#: templates/user/view_main.tpl:46 templates/user/view_options.tpl:41
+#: templates/admin/view_userimport.tpl:108
 #: templates/admin/view_newsletters.tpl:35
 msgid "Format"
 msgstr ""
 
-#: templates/user/view_main.tpl:50 templates/user/view_main.tpl:109
-#: templates/user/view_options.tpl:40 templates/admin/view_user.tpl:60
-#: templates/admin/view_user.tpl:144 templates/admin/view_userimport.tpl:40
+#: templates/user/view_main.tpl:53 templates/user/view_options.tpl:63
+#: templates/user/view_options.tpl:69 templates/admin/view_user.tpl:60
+#: templates/admin/view_user.tpl:144 templates/admin/view_userimport.tpl:39
 #: templates/admin/edit_user.tpl:60
 msgid "Frequency"
 msgstr ""
 
-#: templates/user/view_main.tpl:62 templates/block/signup.tpl:35
+#: templates/user/view_main.tpl:62 templates/user/view_main.tpl:64
+#: templates/user/view_options.tpl:122 templates/block/signup.tpl:34
+#: templates/output/html.tpl:456
+msgid "Terms of Service"
+msgstr ""
+
+#: templates/user/view_main.tpl:65 templates/block/signup.tpl:35
 msgid "Yes, I agree to the terms of service."
 msgstr ""
 
-#: templates/user/view_main.tpl:76
+#: templates/user/view_main.tpl:79
 msgid "Sorry, but you must be a site member to subscribe to our newsletter."
 msgstr ""
 
-#: templates/user/view_main.tpl:103 templates/user/view_main.tpl:119
-msgid "Invalid"
-msgstr ""
-
-#: templates/user/view_main.tpl:126
-msgid "Approval Status"
-msgstr ""
-
-#: templates/user/view_main.tpl:136
-msgid "Subscription Status"
-msgstr ""
-
-#: templates/user/view_main.tpl:138
-msgid "Your Subscription is currently active"
-msgstr ""
-
-#: templates/user/view_main.tpl:140
-msgid "Your Subscription is currently inactive"
-msgstr ""
-
-#: templates/user/view_main.tpl:145
-msgid "Last newsletter was sent to you on"
-msgstr ""
-
-#: templates/user/view_options.tpl:12
-msgid "Change your subscription settings"
+#: templates/user/view_options.tpl:2 templates/user/view_options.tpl:12
+msgid "Subscription settings"
 msgstr ""
 
 #: templates/user/view_options.tpl:19 templates/admin/edit_user.tpl:26
 msgid "Newsletter Configuration"
 msgstr ""
 
-#: templates/user/view_options.tpl:31 templates/admin/view_user.tpl:59
-#: templates/admin/view_user.tpl:140 templates/admin/view_userimport.tpl:36
+#: templates/user/view_options.tpl:35 templates/admin/view_user.tpl:59
+#: templates/admin/view_user.tpl:140 templates/admin/view_userimport.tpl:35
 #: templates/admin/edit_user.tpl:53
 msgid "Type"
 msgstr ""
 
-#: templates/user/view_options.tpl:51 templates/admin/view_newsletters.tpl:35
-#: templates/admin/view_newsletters.tpl:111
-msgid "Help"
+#: templates/user/view_options.tpl:47 templates/user/view_options.tpl:79
+msgid "Invalid"
 msgstr ""
 
-#: templates/user/view_options.tpl:52
-msgid "Here you can activate or suspend yor subscription"
+#: templates/user/view_options.tpl:87
+msgid "Approval Status"
 msgstr ""
 
-#: templates/user/view_options.tpl:58
+#: templates/user/view_options.tpl:100
+msgid "Subscription active"
+msgstr ""
+
+#: templates/user/view_options.tpl:103
+msgid "Your Subscription is currently active"
+msgstr ""
+
+#: templates/user/view_options.tpl:105
+msgid "Your Subscription is currently inactive"
+msgstr ""
+
+#: templates/user/view_options.tpl:112
+msgid "Last newsletter was sent to you on"
+msgstr ""
+
+#: templates/user/view_options.tpl:121
 msgid "View our"
 msgstr ""
 
@@ -805,8 +809,8 @@ msgstr ""
 msgid "Default Frequency"
 msgstr ""
 
-#: templates/output/text_with_link.tpl:3 templates/output/text.tpl:85
-#: templates/output/html.tpl:345
+#: templates/output/text_with_link.tpl:3 templates/output/html_2.tpl:262
+#: templates/output/html_1.tpl:183 templates/output/text.tpl:110
 msgid "Link to the Newsletter Archive"
 msgstr ""
 
@@ -814,78 +818,113 @@ msgstr ""
 msgid "Thank you for suscribing to our newsletter!"
 msgstr ""
 
-#: templates/output/text_with_link.tpl:10 templates/output/text.tpl:83
+#: templates/output/text_with_link.tpl:10 templates/output/text.tpl:108
 msgid ""
 "You are receiving this newsletter since you subscribed to it on our site. "
 "Should you no longer wish to receive it, you can unsubscribe here!"
 msgstr ""
 
-#: templates/output/text.tpl:6 templates/output/html.tpl:212
+#: templates/output/html_2.tpl:40 templates/output/html_1.tpl:29
+#: templates/output/text.tpl:6 templates/output/html.tpl:247
 msgid "Hello"
 msgstr ""
 
-#: templates/output/text.tpl:10 templates/output/html.tpl:217
-msgid "Message from the Site Administrators"
-msgstr ""
-
-#: templates/output/text.tpl:16 templates/output/html.tpl:224
+#: templates/output/html_2.tpl:68 templates/output/html_1.tpl:40
+#: templates/output/text.tpl:14 templates/output/html.tpl:267
 msgid "News"
 msgstr ""
 
-#: templates/output/text.tpl:27 templates/output/html.tpl:236
-msgid "Welcome New Members"
-msgstr ""
-
-#: templates/output/text.tpl:36 templates/output/html.tpl:255
-msgid "New Content Items"
-msgstr ""
-
-#: templates/output/text.tpl:45 templates/output/html.tpl:265
-msgid "Recently Added Documents"
-msgstr ""
-
-#: templates/output/text.tpl:55
-msgid "Latest comments"
-msgstr ""
-
-#: templates/output/text.tpl:65 templates/output/html.tpl:289
-msgid "Latest Forum Posts"
-msgstr ""
-
-#: templates/output/text.tpl:73 templates/output/html.tpl:299
-msgid "Recently Added Publications"
-msgstr ""
-
-#: templates/output/html.tpl:229 templates/output/html.tpl:270
-#: templates/output/html.tpl:282 templates/output/html.tpl:304
-#: templates/output/html.tpl:316 templates/output/html.tpl:328
+#: templates/output/html_2.tpl:87 templates/output/html_2.tpl:136
+#: templates/output/html_2.tpl:148 templates/output/html_2.tpl:171
+#: templates/output/html_2.tpl:183 templates/output/html_2.tpl:195
+#: templates/output/html_1.tpl:48 templates/output/html_1.tpl:89
+#: templates/output/html_1.tpl:101 templates/output/html_1.tpl:124
+#: templates/output/html_1.tpl:136 templates/output/html_1.tpl:148
+#: templates/output/html.tpl:279 templates/output/html.tpl:323
+#: templates/output/html.tpl:335 templates/output/html.tpl:359
+#: templates/output/html.tpl:373 templates/output/html.tpl:384
 msgid "read more"
 msgstr ""
 
-#: templates/output/html.tpl:241
+#: templates/output/html_2.tpl:100 templates/output/html_1.tpl:55
+#: templates/output/text.tpl:25 templates/output/html.tpl:288
+msgid "Welcome New Members"
+msgstr ""
+
+#: templates/output/html_2.tpl:106 templates/output/html_1.tpl:60
+#: templates/output/html.tpl:293
 msgid "Register Date"
 msgstr ""
 
-#: templates/output/html.tpl:277
+#: templates/output/html_2.tpl:121 templates/output/html_1.tpl:74
+#: templates/output/text.tpl:34 templates/output/html.tpl:306
+msgid "New Content Items"
+msgstr ""
+
+#: templates/output/html_2.tpl:131 templates/output/html_1.tpl:84
+#: templates/output/text.tpl:43 templates/output/html.tpl:317
+msgid "Recently Added Documents"
+msgstr ""
+
+#: templates/output/html_2.tpl:143 templates/output/html_1.tpl:96
+#: templates/output/html.tpl:330
 msgid "Latest Comments"
 msgstr ""
 
-#: templates/output/html.tpl:311
+#: templates/output/html_2.tpl:155 templates/output/html_1.tpl:108
+#: templates/output/text.tpl:64 templates/output/html.tpl:342
+msgid "Latest Forum Posts"
+msgstr ""
+
+#: templates/output/html_2.tpl:167 templates/output/html_1.tpl:119
+#: templates/output/text.tpl:75 templates/output/html.tpl:353
+msgid "Recently Added Publications"
+msgstr ""
+
+#: templates/output/html_2.tpl:178 templates/output/html_1.tpl:131
+#: templates/output/text.tpl:86 templates/output/html.tpl:367
 msgid "Latest web links"
 msgstr ""
 
-#: templates/output/html.tpl:323
+#: templates/output/html_2.tpl:191 templates/output/html_1.tpl:143
+#: templates/output/text.tpl:97 templates/output/html.tpl:379
 msgid "Latest downloads"
 msgstr ""
 
-#: templates/output/html.tpl:342
+#: templates/output/html_2.tpl:222 templates/output/html.tpl:404
+msgid "Connect with Us"
+msgstr ""
+
+#: templates/output/html_2.tpl:239 templates/output/html_1.tpl:172
+#: templates/output/html.tpl:421 templates/admin/settings.tpl:84
+msgid "Contact Information"
+msgstr ""
+
+#: templates/output/html_2.tpl:240 templates/output/html_1.tpl:173
+#: templates/output/html.tpl:422 templates/admin/settings.tpl:89
+msgid "Phone"
+msgstr ""
+
+#: templates/output/html_2.tpl:259 templates/output/html_1.tpl:181
 msgid ""
 "You are receiving this newsletter since you subscribed to it on our site. "
 "Should you no longer wish to receive it, you can unsubscribe"
 msgstr ""
 
-#: templates/output/html.tpl:342
+#: templates/output/html_2.tpl:259
+msgid "here"
+msgstr ""
+
+#: templates/output/html_1.tpl:181
 msgid "here!"
+msgstr ""
+
+#: templates/output/text.tpl:54
+msgid "Latest comments"
+msgstr ""
+
+#: templates/output/html.tpl:455
+msgid "Archive"
 msgstr ""
 
 #: templates/plugin_configs/Clip_config.tpl:13
@@ -940,7 +979,7 @@ msgstr ""
 msgid "Add a user"
 msgstr ""
 
-#: templates/admin/view_user.tpl:53 templates/admin/view_userimport.tpl:58
+#: templates/admin/view_user.tpl:53 templates/admin/view_userimport.tpl:56
 msgid "Filter"
 msgstr ""
 
@@ -973,7 +1012,7 @@ msgid "Text with link to archive"
 msgstr ""
 
 #: templates/admin/view_user.tpl:211
-#, php-format
+#, possible-php-format
 msgid "Every %s months"
 msgstr ""
 
@@ -1002,7 +1041,7 @@ msgid "Save without check"
 msgstr ""
 
 #: templates/admin/view_user.tpl:264
-#, php-format
+#, possible-php-format
 msgid "Send to [%s] users"
 msgstr ""
 
@@ -1021,45 +1060,96 @@ msgstr ""
 msgid "Your message"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:6
-msgid "Import Zikula Users"
+#: templates/admin/view_userimport.tpl:31
+#: templates/admin/view_userimport.tpl:66
+msgid "Import registered Zikula users"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:31
-msgid "Zikula user import configuration"
+#: templates/admin/view_userimport.tpl:32
+msgid "Import configuration"
 msgstr ""
 
 #: templates/admin/view_userimport.tpl:33
 msgid "Defaults for imported users"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:51
+#: templates/admin/view_userimport.tpl:50
 msgid "Users approved"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:54
+#: templates/admin/view_userimport.tpl:53
 msgid "Unapproved"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:61
+#: templates/admin/view_userimport.tpl:58
 msgid "Import only active users in last n days"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:63
+#: templates/admin/view_userimport.tpl:60
 msgid "Leave zero or empty for all users"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:68
+#: templates/admin/view_userimport.tpl:63
 msgid "Update Configuration"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:75
+#: templates/admin/view_userimport.tpl:68
+msgid "Import"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:69
 msgid "Perform the Import"
 msgstr ""
 
-#: templates/admin/view_userimport.tpl:77
-#: templates/admin/view_userimport.tpl:78
+#: templates/admin/view_userimport.tpl:71
+#: templates/admin/view_userimport.tpl:72
 msgid "Just test"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:80
+msgid "Export subscribers"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:88
+#: templates/admin/view_userimport.tpl:91
+#: templates/admin/view_userimport.tpl:96
+#: templates/admin/view_userimport.tpl:99
+msgid "Export"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:89
+#, possible-php-format
+msgid "Save as xml file at %s"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:92
+msgid "Download as xml file"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:97
+#, possible-php-format
+msgid "Save as csv file at %s"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:100
+msgid "Download as csv file"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:106
+#: templates/admin/view_userimport.tpl:124
+msgid "Import subscribers"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:115
+msgid "Delimiter"
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:117
+msgid "This is only neccassary if you select csv as format."
+msgstr ""
+
+#: templates/admin/view_userimport.tpl:120
+msgid "File"
 msgstr ""
 
 #: templates/admin/view_plugin.tpl:6
@@ -1088,6 +1178,22 @@ msgstr ""
 
 #: templates/admin/view_plugin.tpl:71
 msgid "Number of items"
+msgstr ""
+
+#: templates/admin/view_plugin.tpl:79
+msgid "As is"
+msgstr ""
+
+#: templates/admin/view_plugin.tpl:80
+msgid "nl2br (from text only)"
+msgstr ""
+
+#: templates/admin/view_plugin.tpl:81
+msgid "strip_tags (from html)"
+msgstr ""
+
+#: templates/admin/view_plugin.tpl:82
+msgid "strip_tags but img,a"
 msgstr ""
 
 #: templates/admin/edit_newsletter.tpl:2
@@ -1119,13 +1225,13 @@ msgstr ""
 msgid "For full page"
 msgstr ""
 
-#: templates/admin/edit_newsletter.tpl:42 templates/admin/settings.tpl:199
+#: templates/admin/edit_newsletter.tpl:42 templates/admin/settings.tpl:234
 #: templates/forms/actions.tpl:16
 msgid "Update"
 msgstr ""
 
 #: templates/admin/edit_newsletter.tpl:44
-#: templates/admin/edit_newsletter.tpl:45 templates/admin/settings.tpl:200
+#: templates/admin/edit_newsletter.tpl:45 templates/admin/settings.tpl:235
 #: templates/forms/actions.tpl:30 templates/forms/actions.tpl:31
 msgid "Cancel"
 msgstr ""
@@ -1143,68 +1249,72 @@ msgstr ""
 msgid "Visit our project-page"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:17
+#: templates/admin/view_statistics.tpl:13
+msgid "Frontend"
+msgstr ""
+
+#: templates/admin/view_statistics.tpl:19
 msgid "Statistics"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:22
+#: templates/admin/view_statistics.tpl:24
 msgid "Newsletter Module Statistics"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:28
+#: templates/admin/view_statistics.tpl:30
 msgid "Last sending: "
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:29
-#, php-format
+#: templates/admin/view_statistics.tpl:31
+#, possible-php-format
 msgid "It took %1$s seconds to send the last batch of %2$s mails."
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:33
+#: templates/admin/view_statistics.tpl:35
 msgid "Total number of users"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:37
+#: templates/admin/view_statistics.tpl:39
 msgid "Active subscribers"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:41
+#: templates/admin/view_statistics.tpl:43
 msgid "Approved subscribers"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:45
+#: templates/admin/view_statistics.tpl:47
 msgid "Active and approved subscribers"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:49
+#: templates/admin/view_statistics.tpl:51
 msgid "Subscribers which are registered users"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:53
+#: templates/admin/view_statistics.tpl:55
 msgid "Number of subscribers for HTML format"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:57
+#: templates/admin/view_statistics.tpl:59
 msgid "Numer of subscribers for text format"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:61
+#: templates/admin/view_statistics.tpl:63
 msgid "Number of subscribers for text with links format"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:65
+#: templates/admin/view_statistics.tpl:67
 msgid "Number of subscribers for weekly delivery"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:69
+#: templates/admin/view_statistics.tpl:71
 msgid "Number of subscribers for monthly delivery"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:73
+#: templates/admin/view_statistics.tpl:75
 msgid "Number of subscribers for yearly delivery"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:77
+#: templates/admin/view_statistics.tpl:79
 msgid "Number of archives"
 msgstr ""
 
@@ -1243,76 +1353,94 @@ msgid "Newsletters now have to be sent out manually."
 msgstr ""
 
 #: templates/admin/settings.tpl:49
-msgid "Allow subscription of only this type"
+msgid "Html newsletter template"
 msgstr ""
 
 #: templates/admin/settings.tpl:53
-msgid "Default newsletter type"
+msgid "Allow subscription of only this type"
 msgstr ""
 
 #: templates/admin/settings.tpl:57
-msgid "Default frequency"
+msgid "Default newsletter type"
 msgstr ""
 
 #: templates/admin/settings.tpl:61
+msgid "Default frequency"
+msgstr ""
+
+#: templates/admin/settings.tpl:65
 msgid "Send day"
 msgstr ""
 
-#: templates/admin/settings.tpl:66
+#: templates/admin/settings.tpl:70
 msgid "Enable multilingual features"
 msgstr ""
 
-#: templates/admin/settings.tpl:68
+#: templates/admin/settings.tpl:72
 msgid "This enables sending of multilingual newsletters."
 msgstr ""
 
-#: templates/admin/settings.tpl:72
+#: templates/admin/settings.tpl:76
 msgid "Receive subscription notices"
 msgstr ""
 
-#: templates/admin/settings.tpl:74
+#: templates/admin/settings.tpl:78
 msgid ""
 "If you enable that, you'll get an email to your specified send-from-adress, "
 "if there is a new Newsletter subscription."
 msgstr ""
 
-#: templates/admin/settings.tpl:81
-msgid "Subscribing"
+#: templates/admin/settings.tpl:86
+msgid ""
+"This is shown at the bottom of each newsletter, if respective field is not "
+"empty."
 msgstr ""
 
-#: templates/admin/settings.tpl:83
-msgid "Allow anonymous registrations"
+#: templates/admin/settings.tpl:97
+msgid "Facebook"
 msgstr ""
 
-#: templates/admin/settings.tpl:87
-msgid "Show the approvalstatus to the user"
+#: templates/admin/settings.tpl:102
+msgid "Twitter"
 msgstr ""
 
-#: templates/admin/settings.tpl:91
-msgid "Require terms of service"
-msgstr ""
-
-#: templates/admin/settings.tpl:93
-msgid "Terms of service"
-msgstr ""
-
-#: templates/admin/settings.tpl:96
-msgid "Auto-approve registrations"
-msgstr ""
-
-#: templates/admin/settings.tpl:100
-msgid "Allow frequency changes"
-msgstr ""
-
-#: templates/admin/settings.tpl:104
-msgid "Allow subscription changes"
-msgstr ""
-
-#: templates/admin/settings.tpl:112
-msgid "Subscribing in main user registration workflow"
+#: templates/admin/settings.tpl:107
+msgid "Google+"
 msgstr ""
 
 #: templates/admin/settings.tpl:114
+msgid "Subscribing"
+msgstr ""
+
+#: templates/admin/settings.tpl:116
+msgid "Allow anonymous registrations"
+msgstr ""
+
+#: templates/admin/settings.tpl:120
+msgid "Show the approvalstatus to the user"
+msgstr ""
+
+#: templates/admin/settings.tpl:124
+msgid "Require terms of service"
+msgstr ""
+
+#: templates/admin/settings.tpl:129
+msgid "Auto-approve registrations"
+msgstr ""
+
+#: templates/admin/settings.tpl:133
+msgid "Allow frequency changes"
+msgstr ""
+
+#: templates/admin/settings.tpl:137
+msgid "Allow subscription changes"
+msgstr ""
+
+#: templates/admin/settings.tpl:144
+msgid "Subscribing in main user registration workflow"
+msgstr ""
+
+#: templates/admin/settings.tpl:146
 msgid ""
 "To enable newsletter subscribing in main user registration procedure, "
 "Newsletter provider hook has to be attached to user registration procedure "
@@ -1320,100 +1448,99 @@ msgid ""
 "management)."
 msgstr ""
 
-#: templates/admin/settings.tpl:117
+#: templates/admin/settings.tpl:149
 msgid "Display in user registration form"
 msgstr ""
 
-#: templates/admin/settings.tpl:127
+#: templates/admin/settings.tpl:159
 msgid "Info message to user if subscribed"
 msgstr ""
 
-#: templates/admin/settings.tpl:129
+#: templates/admin/settings.tpl:161
 msgid "Log short information about subscription."
 msgstr ""
 
-#: templates/admin/settings.tpl:136
+#: templates/admin/settings.tpl:167
 msgid "Sending"
 msgstr ""
 
-#: templates/admin/settings.tpl:138
+#: templates/admin/settings.tpl:169
 msgid "Personalize email"
 msgstr ""
 
-#: templates/admin/settings.tpl:140
+#: templates/admin/settings.tpl:171
 msgid "Disable to increase performance."
 msgstr ""
 
-#: templates/admin/settings.tpl:143
+#: templates/admin/settings.tpl:174
 msgid "Send per request"
 msgstr ""
 
-#: templates/admin/settings.tpl:145
+#: templates/admin/settings.tpl:176
 msgid "Number of emails (0 = no restriction)."
 msgstr ""
 
-#: templates/admin/settings.tpl:148
+#: templates/admin/settings.tpl:179
 msgid "Maximum newsletters to send per hour"
 msgstr ""
 
-#: templates/admin/settings.tpl:150
+#: templates/admin/settings.tpl:181
 msgid ""
 "Number of emails (0 = no restriction). Use this feature to avoid sending "
 "restrictions of your hoster!"
 msgstr ""
 
-#: templates/admin/settings.tpl:153
+#: templates/admin/settings.tpl:184
 msgid "Admin key"
 msgstr ""
 
-#: templates/admin/settings.tpl:155
+#: templates/admin/settings.tpl:186
 msgid ""
 "Used to authenticate cron/batchprocessing. Leave empty to generate a key."
 msgstr ""
 
-#: templates/admin/settings.tpl:159
+#: templates/admin/settings.tpl:192
 msgid "Archive settings"
 msgstr ""
 
-#: templates/admin/settings.tpl:161 templates/admin/view_newsletters.tpl:212
+#: templates/admin/settings.tpl:194 templates/admin/view_newsletters.tpl:212
 msgid "Expire time of archived newsletters"
 msgstr ""
 
-#: templates/admin/settings.tpl:165
+#: templates/admin/settings.tpl:198
 msgid "Control newsletter ID"
 msgstr ""
 
-#: templates/admin/settings.tpl:169
-msgid "Show archive in the subscriber-menu"
+#: templates/admin/settings.tpl:202
+msgid "Show archive"
 msgstr ""
 
-#: templates/admin/settings.tpl:172
+#: templates/admin/settings.tpl:205
 msgid ""
-"The following settings define which columns should be shown in the archive's "
-"table."
+"The following settings define which columns are shown in the archive's table."
 msgstr ""
 
-#: templates/admin/settings.tpl:174
+#: templates/admin/settings.tpl:207
 msgid "Show newsletter ID"
 msgstr ""
 
-#: templates/admin/settings.tpl:178
+#: templates/admin/settings.tpl:211
 msgid "Show date"
 msgstr ""
 
-#: templates/admin/settings.tpl:182
+#: templates/admin/settings.tpl:215
 msgid "Show language"
 msgstr ""
 
-#: templates/admin/settings.tpl:186
+#: templates/admin/settings.tpl:219
 msgid "Show plugins"
 msgstr ""
 
-#: templates/admin/settings.tpl:190
+#: templates/admin/settings.tpl:223
 msgid "Show objects"
 msgstr ""
 
-#: templates/admin/settings.tpl:194
+#: templates/admin/settings.tpl:227
 msgid "Show size"
 msgstr ""
 
@@ -1438,8 +1565,13 @@ msgstr ""
 msgid "Mail this preview to the following email address"
 msgstr ""
 
+#: templates/admin/view_newsletters.tpl:35
+#: templates/admin/view_newsletters.tpl:111
+msgid "Help"
+msgstr ""
+
 #: templates/admin/view_newsletters.tpl:44
-#, php-format
+#, possible-php-format
 msgid "You can find the templates in %s"
 msgstr ""
 
