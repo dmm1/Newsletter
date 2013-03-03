@@ -18,13 +18,21 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         $this->Newsletter_DBObject_PluginBaseArray ();
     }
 
+    function pluginAvailable()
+    {
+        return ModUtil::available('Dizkus');
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
     function getPluginData($lang=null, $filtAfterDate=null)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (!ModUtil::available('Dizkus')) {
+        if (!$this->pluginAvailable()) {
             return array();
+        }
+        if (empty($lang)) {
+            $lang = System::getVar('language_i18n', 'en');
         }
 
         ModUtil::dbInfoLoad ('Dizkus');
@@ -84,6 +92,11 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
             $items[$k]['post_text'] = $post[0]['post_text'];
             $items[$k]['post_title'] = $post[0]['post_title'];
             $items[$k]['username']= UserUtil::getVar('uname', $post[0]['poster_id']);
+
+            $items[$k]['nl_title'] = $items[$k]['topic_title'];
+            $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'newlang' => $lang, 'fqurl' => true));
+            $items[$k]['nl_content'] = $items[$k]['post_text'];
+            $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
 
         return $items;

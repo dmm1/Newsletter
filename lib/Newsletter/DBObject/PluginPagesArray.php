@@ -18,36 +18,47 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
+    function pluginAvailable()
+    {
+        return ModUtil::available('Pages');
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
     function getPluginData($lang=null, $filtAfterDate=null)
     {
-        if (!ModUtil::available('Pages')) {
+        if (!$this->pluginAvailable()) {
             return array();
         }
+        if (empty($lang)) {
+            $lang = System::getVar('language_i18n', 'en');
+        }
+        $dom = ZLanguage::getModuleDomain('Newsletter');
 
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $nItems   = ModUtil::getVar('Newsletter', 'plugin_Pages_nItems', 1);
-        $params   = array();
-        $params['order']    = 'pageid';
-        $params['orderdir'] = 'DESC';
-        $params['numitems'] = $nItems;
-        $params['startnum'] = 0;
-        $params['ignoreml'] = true;
 
-        if ($enableML && $lang) {
-            $params['ignoreml'] = false;
-            $params['language'] = $lang;
-        }
-
-        $items = ModUtil::apiFunc('Pages', 'user', 'getall', $params);
-
-        // filter by date is given, remove older data
+        $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
+        $sql = "SELECT * FROM pages WHERE 1";
         if ($filtAfterDate) {
-            foreach (array_keys($items) as $k) {
-                if ($items[$k]['cr_date'] < $filtAfterDate) {
-                    unset($items[$k]);
-                }
-            }
+            $sql .= " AND cr_date>='".$filtAfterDate."'";
+        }
+        if ($enableML && $lang) {
+            $sql .= " AND language>='".$lang."'";
+        }
+        $sql .= " ORDER BY pageid DESC LIMIT ".$nItems;
+        $stmt = $connection->prepare($sql);
+        try {
+            $stmt->execute();
+        } catch (Exception $e) {
+            return LogUtil::registerError(__('Error in plugin').' Pages: ' . $e->getMessage());
+        }
+        $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
+
+        foreach (array_keys($items) as $k) {
+            $items[$k]['nl_title'] = $items[$k]['title'];
+            $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]['pageid'], 'newlang' => $lang, 'fqurl' => true));
+            $items[$k]['nl_content'] = $items[$k]['content'];
+            $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
 
         return $items;

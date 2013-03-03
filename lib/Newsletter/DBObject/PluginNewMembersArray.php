@@ -18,9 +18,17 @@ class Newsletter_DBObject_PluginNewMembersArray extends Newsletter_DBObject_Plug
         $this->Newsletter_DBObject_PluginBaseArray();
     }
 
+    function pluginAvailable()
+    {
+        return true;
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
     function getPluginData($lang=null, $filtAfterDate=null)
     {
+        if (empty($lang)) {
+            $lang = System::getVar('language_i18n', 'en');
+        }
         ModUtil::dbInfoLoad('Users');
         $tables   = DBUtil::getTables();
         $column   = $tables['users_column'];
@@ -31,12 +39,12 @@ class Newsletter_DBObject_PluginNewMembersArray extends Newsletter_DBObject_Plug
 
         $items = DBUtil::selectObjectArray ('users', $where, $sort, 0, $nItems);
 
-        // filter by date is given, remove older data
-        if ($filtAfterDate) {
-            foreach (array_keys($items) as $k) {
-                if ($items[$k]['approved_date'] < $filtAfterDate) {
-                    unset($items[$k]);
-                }
+        foreach (array_keys($items) as $k) {
+            if ($filtAfterDate && $items[$k]['approved_date'] < $filtAfterDate) {
+                // filter by date is given, remove older data
+                unset($items[$k]);
+            } else {
+                $items[$k]['nl_title'] = $items[$k]['title'];
             }
         }
 
