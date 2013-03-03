@@ -54,7 +54,7 @@ class Newsletter_DBObject_PluginWeblinksArray extends Newsletter_DBObject_Plugin
             $items[$k]['nl_title'] = $items[$k]['title'];
             $items[$k]['nl_url_title'] = $items[$k]['url'];
             $items[$k]['nl_content'] = $items[$k]['description'];
-            $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'newlang' => $lang, 'fqurl' => true));
+            $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'newlang' => $lang), null, null, true);
         }
 
         return $items;

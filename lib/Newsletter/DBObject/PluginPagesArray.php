@@ -63,7 +63,7 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]['pageid'], 'newlang' => $lang, 'fqurl' => true));
+                $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]['pageid'], 'newlang' => $lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]['content'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }
