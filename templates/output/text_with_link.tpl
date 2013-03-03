@@ -1,7 +1,7 @@
 {$title|safetext}
 
-{gt text="Link to the Newsletter Archive"}: {modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}
-
+{gt text="Link to the Newsletter Archive"}:
+{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}
 
 {gt text="Thank you for suscribing to our newsletter!"}
 {$site_name|safetext}

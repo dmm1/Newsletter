@@ -7,102 +7,29 @@
 {/if}
 {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
 
-{$objectArray.NewsletterMessage|replace:'<br />':"\n"|html_entity_decode}
+{$objectArray.NewsletterMessage|strip|replace:'<br />':"\n"|strip_tags|html_entity_decode}
 {/if}
-{if (isset($objectArray.News) && $objectArray.News)}
+{strip}
+{assign var='includeFile' value='output/text_item.tpl'}
 
-{gt text="News"}
-===========================
-{foreach from=$objectArray.News item="item"}
+{include file=$includeFile pluginName='News'       __pluginTitle='News'}
 
-{$item.title|html_entity_decode}
-{$item.hometext|nlTreatContent:'News':false}
-{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}
-{/foreach}
-{/if}
-{if (isset($objectArray.NewMembers) && $objectArray.NewMembers)}
+{include file=$includeFile pluginName='Content'    __pluginTitle='New Content Items'}
 
-{gt text="Welcome New Members"}
-===========================
-{foreach from=$objectArray.NewMembers item="item"}
+{include file=$includeFile pluginName='Pages'      __pluginTitle='Recently Added Documents'}
 
-{$item.user_name|html_entity_decode}: {$item.register_date}
-{/foreach}
-{/if}
-{if (isset($objectArray.Content) && $objectArray.Content)}
+{include file=$includeFile pluginName='Clip'       __pluginTitle='Recently Added Publications'}
 
-{gt text="New Content Items"}
-===========================
-{foreach from=$objectArray.Content item="item"}
+{include file=$includeFile pluginName='EZComments' __pluginTitle='Latest Comments'}
 
-{$item.title|html_entity_decode}
-{/foreach}
-{/if}
-{if (isset($objectArray.Pages) && $objectArray.Pages)}
+{include file=$includeFile pluginName='Dizkus'     __pluginTitle='Latest Forum Posts'}
 
-{gt text="Recently Added Documents"}
-===========================
-{foreach from=$objectArray.Pages item="item"}
+{include file=$includeFile pluginName='Weblinks'   __pluginTitle='Latest web links'}
 
-{$item.title|html_entity_decode}
-{$item.content|nlTreatContent:'Pages':false}
-{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}
-{/foreach}
-{/if}
-{if (isset($objectArray.EZComments) && $objectArray.EZComments)}
+{include file=$includeFile pluginName='Downloads'  __pluginTitle='Latest downloads'}
 
-{gt text="Latest comments"}
-===========================
-{foreach from=$objectArray.EZComments item="item"}
-
-{$item.comment|nlTreatContent:'EZComments':false}
-{$item.url}
-{/foreach}
-{/if}
-{if (isset($objectArray.Dizkus) && $objectArray.Dizkus)}
-
-{gt text="Latest Forum Posts"}
-===========================
-{foreach from=$objectArray.Dizkus item="item"}
-
-{$item.topic_title}
-{$item.username}
-{$item.post_text|nlTreatContent:'Dizkus':false}
-{/foreach}
-{/if}
-{if (isset($objectArray.Clip) && $objectArray.Clip)}
-
-{gt text="Recently Added Publications"}
-===========================
-{foreach from=$objectArray.Clip item="item" name="loop"}
-
-{$item.title|html_entity_decode}
-{$item.content|nlTreatContent:'Clip':false}
-{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}
-{/foreach}
-{/if}
-{if (isset($objectArray.Weblinks) && $objectArray.Weblinks)}
-
-{gt text="Latest web links"}
-===========================
-{foreach from=$objectArray.Weblinks item="item" name="loop"}
-
-{$item.title|html_entity_decode}
-{$item.description|nlTreatContent:'Weblinks':false}
-{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}
-{/foreach}
-{/if}
-{if (isset($objectArray.Downloads) && $objectArray.Downloads)}
-
-{gt text="Latest downloads"}
-===========================
-{foreach from=$objectArray.Downloads item="item" name="loop"}
-
-{$item.title|html_entity_decode}
-{$item.description|nlTreatContent:'Downloads':false}
-{modurl modname="Downloads" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}
-{/foreach}
-{/if}
+{include file=$includeFile pluginName='NewMembers' __pluginTitle='Welcome New Members'}
+{/strip}
 
 ===========================
 {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe here!"}: {modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}
