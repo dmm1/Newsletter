@@ -43,7 +43,7 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
             $sql .= " AND cr_date>='".$filtAfterDate."'";
         }
         if ($enableML && $lang) {
-            $sql .= " AND language>='".$lang."'";
+            $sql .= " AND (language='' OR language='".$lang."')";
         }
         $sql .= " ORDER BY pageid DESC LIMIT ".$nItems;
         $stmt = $connection->prepare($sql);
