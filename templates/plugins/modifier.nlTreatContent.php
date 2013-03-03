@@ -37,7 +37,7 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
             // If <img> tag exist, treat style for proper display in Outlook
             $pos = strpos($data, "<img");
             if ($pos !== false) {
-                include_once __DIR__.'/DOMDocumentUtil.php';
+                include_once 'modules/Newsletter/vendor/DOMDocumentUtil.php';
                 $data = DOMDocumentUtil::imgStyleConvert($data);
             }
         }

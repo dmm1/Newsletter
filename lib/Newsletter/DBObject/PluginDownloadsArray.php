@@ -52,7 +52,7 @@ class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_Plugi
 
         foreach (array_keys($items) as $k) {
             $items[$k]['nl_title'] = $items[$k]['title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'newlang' => $lang, 'fqurl' => true));
+            $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'newlang' => $lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['description'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
