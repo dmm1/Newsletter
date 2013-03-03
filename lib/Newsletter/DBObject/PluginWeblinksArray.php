@@ -36,6 +36,10 @@ class Newsletter_DBObject_PluginWeblinksArray extends Newsletter_DBObject_Plugin
         }
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_Weblinks_nItems', 1);
 
+        // this can be setting in future
+        // $userNewsletter = 0; this can be default in future, if Zikula core start to accept such parameter in SecurityUtil::checkPermission
+        $userNewsletter = 1; // by default userid=1 is for guest, but it is member of Users group in practice. Better then to chow all forums topics
+
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
         $sql = "SELECT * FROM links_links WHERE status>0";
         if ($filtAfterDate) {
@@ -51,10 +55,20 @@ class Newsletter_DBObject_PluginWeblinksArray extends Newsletter_DBObject_Plugin
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            $items[$k]['nl_title'] = $items[$k]['title'];
-            $items[$k]['nl_url_title'] = $items[$k]['url'];
-            $items[$k]['nl_content'] = $items[$k]['description'];
-            $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'newlang' => $lang, 'fqurl' => true));
+            // get category to check permission
+            $stmt = $connection->prepare("SELECT * FROM links_categories WHERE cat_id=".$items[$k]['cat_id']);
+            $stmt->execute();
+            $category = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
+            if (!SecurityUtil::checkPermission('Weblinks::Link', '::'.$items[$k]['lid'], ACCESS_READ, $userNewsletter)) {
+                unset($items[$k]);
+            } elseif (!SecurityUtil::checkPermission('Weblinks::Category', $category['title']."::".$category['cat_id'], ACCESS_READ, $userNewsletter)) {
+                unset($items[$k]);
+            } else {
+                $items[$k]['nl_title'] = $items[$k]['title'];
+                $items[$k]['nl_url_title'] = $items[$k]['url'];
+                $items[$k]['nl_content'] = $items[$k]['description'];
+                $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'newlang' => $lang), null, null, true);
+            }
         }
 
         return $items;
