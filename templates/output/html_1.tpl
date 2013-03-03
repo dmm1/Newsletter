@@ -33,7 +33,7 @@
                     </div>
                     {/if}
 
-                    {assign var='includeFile' value='output/html_1_item.tpl'}
+                    {assign var='includeFile' value='output/Html_1_items.tpl'}
 
                     {include file=$includeFile pluginName='News'       __pluginTitle='News'}
 
