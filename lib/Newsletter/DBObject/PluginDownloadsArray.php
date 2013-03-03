@@ -36,6 +36,10 @@ class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_Plugi
         }
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_Downloads_nItems', 1);
 
+        // this can be setting in future
+        // $userNewsletter = 0; this can be default in future, if Zikula core start to accept such parameter in SecurityUtil::checkPermission
+        $userNewsletter = 1; // by default userid=1 is for guest, but it is member of Users group in practice. Better then to chow all forums topics
+
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
         $sql = "SELECT * FROM downloads_downloads WHERE status>0";
         if ($filtAfterDate) {
@@ -51,10 +55,16 @@ class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_Plugi
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            $items[$k]['nl_title'] = $items[$k]['title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'newlang' => $lang), null, null, true);
-            $items[$k]['nl_content'] = $items[$k]['description'];
-            $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
+            if (!SecurityUtil::checkPermission('Downloads::Item', $items[$k]['lid'].'::', ACCESS_READ, $userNewsletter)) {
+                unset($items[$k]);
+            } elseif (!SecurityUtil::checkPermission('Downloads::Category', $items[$k]['cid']."::", ACCESS_READ, $userNewsletter)) {
+                unset($items[$k]);
+            } else {
+                $items[$k]['nl_title'] = $items[$k]['title'];
+                $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_content'] = $items[$k]['description'];
+                $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
+            }
         }
 
         return $items;
