@@ -35,41 +35,23 @@
 
                     {assign var='includeFile' value='output/html_1_item.tpl'}
 
-                    {assign var='pluginName' value='News'}
-                    {gt text='News' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='News'       __pluginTitle='News'}
 
-                    {assign var='pluginName' value='Content'}
-                    {gt text='New Content Items' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='Content'    __pluginTitle='New Content Items'}
 
-                    {assign var='pluginName' value='Pages'}
-                    {gt text='Recently Added Documents' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='Pages'      __pluginTitle='Recently Added Documents'}
 
-                    {assign var='pluginName' value='Clip'}
-                    {gt text='Recently Added Publications' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='Clip'       __pluginTitle='Recently Added Publications'}
 
-                    {assign var='pluginName' value='EZComments'}
-                    {gt text='Latest Comments' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='EZComments' __pluginTitle='Latest Comments'}
 
-                    {assign var='pluginName' value='Dizkus'}
-                    {gt text='Latest Forum Posts' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='Dizkus'     __pluginTitle='Latest Forum Posts'}
 
-                    {assign var='pluginName' value='Weblinks'}
-                    {gt text='Latest web links' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='Weblinks'   __pluginTitle='Latest web links'}
 
-                    {assign var='pluginName' value='Downloads'}
-                    {gt text='Latest downloads' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='Downloads'  __pluginTitle='Latest downloads'}
 
-                    {assign var='pluginName' value='NewMembers'}
-                    {gt text='Welcome New Members' assign='pluginTitle'}
-                    {include file=$includeFile}
+                    {include file=$includeFile pluginName='NewMembers' __pluginTitle='Welcome New Members'}
                 </td>
             </tr>
             <tr>
