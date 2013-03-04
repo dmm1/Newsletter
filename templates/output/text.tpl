@@ -28,6 +28,12 @@
 
 {include file=$includeFile pluginName='Downloads'  __pluginTitle='Latest downloads'}
 
+{include file=$includeFile pluginName='AddressBook' __pluginTitle='Latest Contacts'}
+
+{include file=$includeFile pluginName='AdvancedPolls' __pluginTitle='Latest Polls'}
+
+{include file=$includeFile pluginName='PostCalendar' __pluginTitle='Latest Events'}
+
 {include file=$includeFile pluginName='NewMembers' __pluginTitle='Welcome New Members'}
 {/strip}
 
