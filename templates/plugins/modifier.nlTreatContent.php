@@ -14,6 +14,8 @@
 function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
 {
     if ($data) {
+        $view = Zikula_View::getInstance();
+
         $arrSettings = explode(";", ModUtil::getVar('Newsletter', 'plugin_'.$pluginName.'_Settings', '0;400'));
         $treatType = (int)$arrSettings[0];
         $truncate = (int)$arrSettings[1];
@@ -37,7 +39,7 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
             // If <img> tag exist, treat style for proper display in Outlook
             $pos = strpos($data, "<img");
             if ($pos !== false) {
-                include_once __DIR__.'/DOMDocumentUtil.php';
+                require_once ('modules/Newsletter/lib/vendor/DOMDocumentUtil.php');
                 $data = DOMDocumentUtil::imgStyleConvert($data);
             }
         }
@@ -50,7 +52,7 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
         $data = nl_truncate($data, $truncate);
 
         // url_check
-        include_once __DIR__.'/modifier.url_check.php';
+        require_once $view->_get_plugin_filepath('modifier','url_check');
         $data = smarty_modifier_url_check($data);
     }
 
