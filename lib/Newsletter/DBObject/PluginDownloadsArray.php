@@ -35,10 +35,11 @@ class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_Plugi
             $lang = System::getVar('language_i18n', 'en');
         }
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_Downloads_nItems', 1);
+        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
 
-        // this can be setting in future
-        // $userNewsletter = 0; this can be default in future, if Zikula core start to accept such parameter in SecurityUtil::checkPermission
-        $userNewsletter = 1; // by default userid=1 is for guest, but it is member of Users group in practice. Better then to chow all forums topics
+        if (!SecurityUtil::checkPermission('Downloads::', '::', ACCESS_READ, $userNewsletter)) {
+            return array();
+        }
 
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
         $sql = "SELECT * FROM downloads_downloads WHERE status>0";

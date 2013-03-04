@@ -36,10 +36,11 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
 
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $nItems   = ModUtil::getVar('Newsletter', 'plugin_Pages_nItems', 1);
+        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
 
-        // this can be setting in future
-        // $userNewsletter = 0; this can be default in future, if Zikula core start to accept such parameter in SecurityUtil::checkPermission
-        $userNewsletter = 1; // by default userid=1 is for guest, but it is member of Users group in practice. Better then to chow all forums topics
+        if (!SecurityUtil::checkPermission('Pages::', '::', ACCESS_READ, $userNewsletter)) {
+            return array();
+        }
 
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
         $sql = "SELECT * FROM pages WHERE 1";

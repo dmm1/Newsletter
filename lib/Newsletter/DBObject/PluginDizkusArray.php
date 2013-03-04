@@ -37,10 +37,11 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
 
         ModUtil::dbInfoLoad ('Dizkus');
         $nItems = ModUtil::getVar ('Newsletter', 'plugin_Dizkus_nItems', 1);
+        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
 
-        // this can be setting in future
-        // $userNewsletter = 0; this can be default in future, if Zikula core start to accept such parameter in SecurityUtil::checkPermission
-        $userNewsletter = 1; // by default userid=1 is for guest, but it is member of Users group in practice. Better then to chow all forums topics
+        if (!SecurityUtil::checkPermission('Dizkus::', '::', ACCESS_READ, $userNewsletter)) {
+            return array();
+        }
 
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
         $sql = "SELECT forum_id FROM dizkus_forums WHERE 1";
