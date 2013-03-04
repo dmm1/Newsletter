@@ -15,6 +15,5 @@
  */
 function smarty_modifier_html_entity_decode($data)
 {    
-    return html_entity_decode($data);
+    return html_entity_decode($data, ENT_QUOTES, 'UTF-8');
 }
-

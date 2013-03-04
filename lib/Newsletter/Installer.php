@@ -49,6 +49,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
         $this->setVar('contact_facebook', 'enter link or leave empty');
         $this->setVar('contact_twitter', 'enter link or leave empty');
         $this->setVar('contact_google', 'enter link or leave empty');
+        $this->setVar('newsletter_userid', '1');
 
         // Register hooks
         HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());

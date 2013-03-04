@@ -26,32 +26,52 @@ class Newsletter_DBObject_PluginEZCommentsArray extends Newsletter_DBObject_Plug
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
     function getPluginData($lang=null, $filtAfterDate=null)
     {
+        $dom = ZLanguage::getModuleDomain('Newsletter');
+
         if (!$this->pluginAvailable()) {
             return array();
         }
         if (empty($lang)) {
             $lang = System::getVar('language_i18n', 'en');
         }
-
         $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
         $nItems   = ModUtil::getVar ('Newsletter', 'plugin_EZComments_nItems', 1);
-        $params   = array();
+        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
+
+        if (!SecurityUtil::checkPermission('EZComments::', '::', ACCESS_READ, $userNewsletter)) {
+            return array();
+        }
+
+        /*$params   = array();
         $params['order']    = 'items DESC';
         $params['numitems'] = $nItems;
         $params['startnum'] = 0;
         $params['ignoreml'] = true;
-
         if ($enableML && $lang) {
             $params['ignoreml'] = false;
             $params['language'] = $lang;
         }
         $params['status'] = 0; //Only activated comments (status isn't 'waiting')
+        $items = ModUtil::apiFunc('EZComments', 'user', 'getall', $params);*/
 
-        $items = ModUtil::apiFunc('EZComments', 'user', 'getall', $params);
+        $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
+        $sql = "SELECT * FROM ezcomments WHERE status=0";
+        if ($filtAfterDate) {
+            $sql .= " AND date>='".$filtAfterDate."'";
+        }
+        $sql .= " ORDER BY date DESC LIMIT ".$nItems;
+        $stmt = $connection->prepare($sql);
+        try {
+            $stmt->execute();
+        } catch (Exception $e) {
+            return LogUtil::registerError(__('Error in plugin').' EZComments: ' . $e->getMessage());
+        }
+        $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if ($filtAfterDate && $items[$k]['date'] < $filtAfterDate) {
-                // filter by date is given, remove older data
+            if (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':', ACCESS_READ, $userNewsletter)) {
+                unset($items[$k]);
+            } elseif (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':'.$items[$k]['id'], ACCESS_READ, $userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['subject'];
