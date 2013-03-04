@@ -119,6 +119,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('contact_facebook',           $prefs['contact_facebook']           ? $prefs['contact_facebook'] : '');
         $this->setVar('contact_twitter',            $prefs['contact_twitter']            ? $prefs['contact_twitter'] : '');
         $this->setVar('contact_google',             $prefs['contact_google']             ? $prefs['contact_google'] : '');
+        $this->setVar('newsletter_userid',          $prefs['newsletter_userid']!=''      ? $prefs['newsletter_userid'] : 1);
 
         //Archive
         $this->setVar('show_archive',   (int)$prefs['show_archive']);

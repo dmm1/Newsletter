@@ -41,6 +41,11 @@
             <em class="z-sub z-formnote">{gt text='This is the subject of the generated Newsletter.'}</em>
         </div>
         <div class="z-formrow">
+            {formlabel for="newsletter_userid" __text='Newsletter user Id'}
+            {formtextinput id="newsletter_userid" text=$preferences.newsletter_userid maxLength=12}
+            <em class="z-sub z-formnote">{gt text='This user is used to security check items for displaying in newsletter.'}</em>
+        </div>
+        <div class="z-formrow">
             {formlabel for="disable_auto" __text='Disable automatic sending'}
             {formcheckbox id="disable_auto" checked=$preferences.disable_auto}
             <em class="z-sub z-formnote">{gt text='Newsletters now have to be sent out manually.'}</em>
