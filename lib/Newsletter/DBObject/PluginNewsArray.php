@@ -32,36 +32,46 @@ class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBase
         if (empty($lang)) {
             $lang = System::getVar('language_i18n', 'en');
         }
+        $nItems = ModUtil::getVar ('Newsletter', 'plugin_News_nItems', 1);
 
-        ModUtil::dbInfoLoad('News');
-        $tables = DBUtil::getTables();
-        $column = $tables['news_column'];
-        $where  = "$column[published_status] = 0";
+        // this can be setting in future
+        // $userNewsletter = 0; this can be default in future, if Zikula core start to accept such parameter in SecurityUtil::checkPermission
+        $userNewsletter = 1; // by default userid=1 is for guest, but it is member of Users group in practice. Better then to chow all forums topics
+
         $modvars = ModUtil::getVar('News');
         $storyorder = $modvars['storyorder'];
         switch ($storyorder)
         {
             case 0:
-                $sort = "$column[sid] DESC";
+                $sort = "sid DESC";
                 break;
             case 2:
-                $sort = "$column[weight] ASC";
+                $sort = "weight ASC";
                 break;
             case 1:
             default:
-                $sort = "$column[from] DESC";
+                $sort = "ffrom DESC";
         }
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_News_nItems', 1);
-
-        $items = DBUtil::selectObjectArray ('news', $where, $sort, 0, $nItems);
+        $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
+        $sql = "SELECT * FROM news WHERE published_status=0";
+        if ($filtAfterDate) {
+            $sql .= " AND ffrom>='".$filtAfterDate."'";
+        }
+        $sql .= " ORDER BY ".$sort." LIMIT ".$nItems;
+        $stmt = $connection->prepare($sql);
+        try {
+            $stmt->execute();
+        } catch (Exception $e) {
+            return LogUtil::registerError(__('Error in plugin').' News: ' . $e->getMessage());
+        }
+        $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if ($filtAfterDate && $items[$k]['from'] < $filtAfterDate) {
-                // filter by date is given, remove older data
+            if (!SecurityUtil::checkPermission('News::', $items[$k]['cr_uid'].'::'.$items[$k]['sid'], ACCESS_READ, $userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('News', 'user', 'display', array('sid' => $items[$k]['sid'], 'newlang' => $lang, 'fqurl' => true));
+                $items[$k]['nl_url_title'] = ModUtil::url('News', 'user', 'display', array('sid' => $items[$k]['sid'], 'newlang' => $lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]['hometext'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
                 if ($modvars['picupload_enabled'] && $items[$k]['pictures'] > 0) {
