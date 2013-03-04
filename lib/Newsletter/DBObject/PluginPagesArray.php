@@ -36,6 +36,11 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
 
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $nItems   = ModUtil::getVar('Newsletter', 'plugin_Pages_nItems', 1);
+        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
+
+        if (!SecurityUtil::checkPermission('Pages::', '::', ACCESS_READ, $userNewsletter)) {
+            return array();
+        }
 
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
         $sql = "SELECT * FROM pages WHERE 1";
@@ -43,7 +48,7 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
             $sql .= " AND cr_date>='".$filtAfterDate."'";
         }
         if ($enableML && $lang) {
-            $sql .= " AND language>='".$lang."'";
+            $sql .= " AND (language='' OR language='".$lang."')";
         }
         $sql .= " ORDER BY pageid DESC LIMIT ".$nItems;
         $stmt = $connection->prepare($sql);
@@ -55,13 +60,16 @@ class Newsletter_DBObject_PluginPagesArray extends Newsletter_DBObject_PluginBas
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            $items[$k]['nl_title'] = $items[$k]['title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]['pageid'], 'newlang' => $lang, 'fqurl' => true));
-            $items[$k]['nl_content'] = $items[$k]['content'];
-            $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
+            if (!SecurityUtil::checkPermission('Pages:title:', $items[$k]['pageid'].'::', ACCESS_READ, $userNewsletter)) {
+                unset($items[$k]);
+            } else {
+                $items[$k]['nl_title'] = $items[$k]['title'];
+                $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]['pageid'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_content'] = $items[$k]['content'];
+                $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
+            }
         }
 
         return $items;
     }
 }
-

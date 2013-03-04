@@ -39,7 +39,7 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
             // If <img> tag exist, treat style for proper display in Outlook
             $pos = strpos($data, "<img");
             if ($pos !== false) {
-                require_once ('modules/Newsletter/lib/vendor/DOMDocumentUtil.php');
+                include_once 'modules/Newsletter/vendor/DOMDocumentUtil.php';
                 $data = DOMDocumentUtil::imgStyleConvert($data);
             }
         }
@@ -59,7 +59,7 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
     if ($htmlOutput) {
         return DataUtil::formatForDisplayHTML($data);
     } else {
-        return html_entity_decode($data);
+        return html_entity_decode($data, ENT_QUOTES, 'UTF-8');
     }
 }
 

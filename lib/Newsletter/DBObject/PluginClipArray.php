@@ -50,7 +50,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
 
         foreach (array_keys($items) as $k) {
             $items[$k]['nl_title'] = $items[$k]['core_title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'newlang' => $lang, 'fqurl' => true));
+            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'newlang' => $lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['content'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }

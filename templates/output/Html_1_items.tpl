@@ -4,14 +4,14 @@
     {if $pluginName eq 'NewMembers'}
         <table style="width: 100%; text-align: left;">
             <tr>
-              <th>{gt text="Username"}</th>
-              <th>{gt text="Register Date"}</th>
+              <td>{gt text="Username"}</td>
+              <td>{gt text="Register Date"}</td>
             </tr>
             {modavailable modname="Profile" assign="profileAvailable"}
             {foreach from=$objectArray.$pluginName item="item" name="loop"}
                 <tr>
-                    <td>{if $profileAvailable}<div style="font-size: 14px; font-weight: bold; color: #813939; margin: 10px 0 5px 0; padding: 0;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
-                    <td>{$item.user_regdate}</td>
+                    <td>{if $profileAvailable}<div style="font-weight: bold;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
+                    <td>{$item.user_regdate|dateformat}</td>
                 </tr>
             {/foreach}
         </table>
