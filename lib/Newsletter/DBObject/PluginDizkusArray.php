@@ -94,7 +94,7 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
             $items[$k]['username']= UserUtil::getVar('uname', $post[0]['poster_id']);
 
             $items[$k]['nl_title'] = $items[$k]['topic_title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'newlang' => $lang, 'fqurl' => true));
+            $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'newlang' => $lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['post_text'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
