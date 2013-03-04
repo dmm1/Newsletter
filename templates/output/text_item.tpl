@@ -1,7 +1,7 @@
 {strip}
 {if (isset($objectArray.$pluginName) && $objectArray.$pluginName)}
 {"\n"}
-{$pluginTitle}{"\n"}
+{$pluginTitle|html_entity_decode}{"\n"}
 ==========================={"\n"}
 {if $pluginName eq 'NewMembers'}
 {"\n"}
@@ -13,7 +13,7 @@
 {"\n"}
 {if $item.nl_title}{$item.nl_title|html_entity_decode}{"\n"}{/if}
 {if $item.nl_content}{$item.nl_content|nlTreatContent:$pluginName:false}{"\n"}{/if}
-{if $item.nl_url_readmore}{$item.nl_url_readmore}{"\n"}{else}{if $item.nl_url_title}{$item.nl_url_title}{"\n"}{/if}{/if}
+{if $item.nl_url_readmore}{$item.nl_url_readmore|html_entity_decode}{"\n"}{else}{if $item.nl_url_title}{$item.nl_url_title|html_entity_decode}{"\n"}{/if}{/if}
 {/foreach}
 {/if}
 {/if}

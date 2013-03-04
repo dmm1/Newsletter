@@ -1,9 +1,9 @@
 {lang assign="currLang"}{formutil_getpassedvalue assign="nllang" name="language" default=$currLang}
-{$objectArray.title}
+{$objectArray.title|html_entity_decode}
 ===============================
 {if (isset($user_name) && $user_name)}
 
-{gt text="Hello"} {$user_name}
+{gt text="Hello"} {$user_name|html_entity_decode}
 {/if}
 {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
 
@@ -32,6 +32,6 @@
 {/strip}
 
 ===========================
-{gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe here!"}: {modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}
+{gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe here!"}: {modurl assign='nlUrl' modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}{$nlUrl|html_entity_decode}
 
-{gt text="Link to the Newsletter Archive"}: {modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}
+{gt text="Link to the Newsletter Archive"}: {modurl assign='nlUrl' modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}{$nlUrl|html_entity_decode}

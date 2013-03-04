@@ -57,7 +57,7 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
     if ($htmlOutput) {
         return DataUtil::formatForDisplayHTML($data);
     } else {
-        return html_entity_decode($data);
+        return html_entity_decode($data, ENT_QUOTES, 'UTF-8');
     }
 }
 
