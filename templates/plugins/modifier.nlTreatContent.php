@@ -36,11 +36,18 @@ function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
                 // strip_tags but <img><a>
                 $data = strip_tags($data, '<img><a>');
             }
-            // If <img> tag exist, treat style for proper display in Outlook
-            $pos = strpos($data, "<img");
+            // If <img> tag exist, treat style for proper display in Outlook, sets max size
+            $pos = strpos($data, "<img ");
             if ($pos !== false) {
-                include_once 'modules/Newsletter/vendor/DOMDocumentUtil.php';
-                $data = DOMDocumentUtil::imgStyleConvert($data);
+                require_once $view->_get_plugin_filepath('modifier','nlTreatImg');
+                $data = smarty_modifier_nlTreatImg($data);
+            }
+        } else {
+            // Text only output: treat <a> tags to convert to simple links, put base url
+            $pos = strpos($data, "<a ");
+            if ($pos !== false) {
+                require_once $view->_get_plugin_filepath('modifier','nlTreatAtag');
+                $data = smarty_modifier_nlTreatAtag($data);
             }
         }
         $data = trim($data);
