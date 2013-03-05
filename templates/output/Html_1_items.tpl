@@ -19,7 +19,8 @@
         {foreach from=$objectArray.$pluginName item="item" name="loop"}
             {if $item.nl_picture}
                 <div style="float: left; margin-right: 4px; margin-bottom: 4px;">
-                    {if $item.nl_url_title}<a href="{$item.nl_url_title}">{/if}<img src="{$site_url}{$item.nl_picture}" alt="" />{if $item.nl_url_title}</a>{/if}
+                    {capture assign="nlPicture"}<img src="{$site_url}{$item.nl_picture}" alt="" style="float: left" />{/capture}
+                    {if $item.nl_url_title}<a href="{$item.nl_url_title}">{/if}{$nlPicture|nlTreatImg}{if $item.nl_url_title}</a>{/if}
                 </div>
             {/if}
             {if $item.nl_title}
@@ -42,4 +43,5 @@
             {/if}
         {/foreach}
     {/if}
+    <div style="clear: both"></div>
 {/if}
