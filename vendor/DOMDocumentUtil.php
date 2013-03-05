@@ -282,6 +282,9 @@ class DOMDocumentUtil
  *
  *      saveHTMLbody - Wrap for DOMDocument::saveHTML, resolving adding extra tags
  *                     Optional parameter permits handling HTML parts wrapped with <body> tag
+ *                     $saveType optional parameter
+ *                       XML (default) - preserves self-closing tags closing slash: <br /> <img .../>
+ *                       HTML - removes closing slash (old HTML format): <br> <img ...>
  *
  * Usage: See DOMDocumentUtil.
  *
@@ -329,11 +332,18 @@ class DOMDocumentExact extends DOMDocument
     * Return HTML between or including <body> tag
     *
     * @param boolean $preserveBodytagIfExist (optional)
+    * $saveType string $saveType (optional):
+    *                  XML (default) - preserves self-closing tags closing slash: <br /> <img .../>
+    *                  HTML - removes closing slash (old HTML format): <br> <img ...>
     * @return string
     */
-    public function saveHTMLbody($preserveBodytagIfExist = true)
+    public function saveHTMLbody($preserveBodytagIfExist = true, $saveType = 'XML')
     {
-        $html = $this->saveHTML();
+        if ($saveType == 'XML') {
+            $html = $this->saveXML();
+        } else {
+            $html = $this->saveHTML();
+        }
         $pos = strpos($html, "<body");
         if ($pos === false) {
             $body = $html;
