@@ -5,13 +5,17 @@
  * Handles HTML fragments.
  *
  * Methods
- *      imgStyleConvert - Treat img tags in HTML fragment.
+ *      imgTagConvert - Treat <img> tags in HTML fragment.
  *                        Suitable to prepare HTML for HTML emails.
  *                        (Outlook 2000-2013 can't recognize style in <img> tag)
+ *      aTagConvert - Treat <a> tags in HTML fragment.
+ *                        Suitable to prepare HTML for HTML emails.
+ *      putBaseurl - Put a specified base url, if  not exist in given url.
+ *      stripBaseurl - Strip base url.
  *
  * Use: DOMDocumentExact (in same file).
  *
- * Usage: DOMDocumentUtil::imgStyleConvert($html)
+ * Usage: DOMDocumentUtil::imgTagConvert($html)
  *        For example see test.php in the package.
  *
  * @author     (c) Nikolay Petkov, http://www.cmstory.com/
@@ -22,7 +26,7 @@
 class DOMDocumentUtil
 {
     /**
-     * Treat img tags in HTML fragment.
+     * Treat <img> tags in HTML fragment.
      * Some style attributes are set as img attributes.
      *      float: value => align="value"
      *      width: valuepx => width="value"
@@ -31,9 +35,16 @@ class DOMDocumentUtil
      * @param string $html
      * @param string $encoding (optional, default UTF-8)
      * @param boolean $removeStyle (optional)
+     * @param string $baseurl (optional) - Base URL to put in src attribute (if relative path is given for the src)
+     * @param array $arrSize (optional) - Force size for the image, excepted array element:
+     *          width (integer)
+     *          height (integer)
+     *          retainratio (boolean)
+     *          noenlargeorig (boolean) - flag not to set size bigger then size of original image
+     *          noenlargesized (boolean) - flag not to set size bigger then olready set size
      * @return string
      */
-    public static function imgStyleConvert($html, $encoding = null, $removeStyle = false)
+    public static function imgTagConvert($html, $encoding = null, $removeStyle = false, $baseurl = null, $arrSize = null)
     {
         if (empty($encoding)) {
             $encoding = 'UTF-8';
@@ -41,34 +52,218 @@ class DOMDocumentUtil
 
         $DOMDoc = new DOMDocumentExact();
         $DOMDoc->loadHTMLbody($html, $encoding);
-        foreach($DOMDoc->getElementsByTagName('img') as $img) {
-            $style = $img->getAttribute('style');
-            $arrStyle = explode(';', $style);
-            foreach ($arrStyle as $styleAttr) {
-                $arrAttribute = explode(':', $styleAttr);
-                if (trim($arrAttribute[0]) == 'float') {
-                    $attrName = 'align';
-                    if (!$img->getAttribute($attrName)) {
-                        $img->setAttribute($attrName, trim($arrAttribute[1]));
-                    }
-                } elseif (trim($arrAttribute[0]) == 'width') {
-                    $attrName = 'width';
-                    if (!$img->getAttribute($attrName)) {
-                        $img->setAttribute($attrName, (int)$arrAttribute[1]);
-                    }
-                } elseif (trim($arrAttribute[0]) == 'height') {
-                    $attrName = 'height';
-                    if (!$img->getAttribute($attrName)) {
-                        $img->setAttribute($attrName, (int)$arrAttribute[1]);
+        foreach($DOMDoc->getElementsByTagName('img') as $img)
+        {
+            $src = trim($img->getAttribute('src'));
+
+            // Base URL treatment
+            if (!empty($baseurl)) {
+                if ($src) {
+                    $baseurlset = false;
+                    $src = self::putBaseurl($src, $baseurl, array('http://', 'https://'), $baseurlset);
+                    if ($baseurlset) {
+                        $img->setAttribute('src', $src);
                     }
                 }
             }
+
+            // Image size treatment
+            $setWidth = 0;
+            $setHeight = 0;
+            if (isset($arrSize)) {
+                $imageSize = @getimagesize($src, $imageInfo);
+                $imgWidth = $imageSize[0];
+                $imgHeight = $imageSize[1];
+                if ($imgWidth && $imgHeight) {
+                    if ($arrSize['width']) {
+                        // width for the image is given to be set
+                        $setWidth = $arrSize['width'];
+                    }
+                    if ($arrSize['height']) {
+                        // height for the image is given to be set
+                        $setHeight = $arrSize['height'];
+                    }
+                    if ($arrSize['noenlargeorig']) {
+                        // max dimensions are given (not to enlarge image)
+                        if ($setWidth > $imgWidth) {
+                            $setWidth = $imgWidth;
+                        }
+                        if ($setHeight > $imgHeight) {
+                            $setHeight = $imgHeight;
+                        }
+                    }
+                    if ($arrSize['retainratio'] && $setWidth && $setHeight) {
+                        // retain ration for size is given
+                        if ($imgWidth > $imgHeight) {
+                            $setHeight = round($setWidth * $imgHeight / $imgWidth);
+                        } else {
+                            $setWidth = round($setHeight * $imgWidth / $imgHeight);
+                        }
+                    }
+                }
+            }
+
+            // Style treatment
+            $style = $img->getAttribute('style');
+            $arrStyle = explode(';', $style);
+            foreach (array_keys($arrStyle) as $k) {
+                $arrAttribute = explode(':', $arrStyle[$k]);
+                if (trim($arrAttribute[0]) == 'float') {
+                    if (!$img->getAttribute('align')) {
+                        $img->setAttribute('align', trim($arrAttribute[1]));
+                    }
+                } elseif (trim($arrAttribute[0]) == 'width') {
+                    $styleWidth = (int)$arrAttribute[1];
+                    if ($setWidth && ($arrSize['noenlargesized'] && $styleWidth > $setWidth)) {
+                        // set in style
+                        $arrStyle[$k] = 'width: '.$setWidth.'px';
+                    } else {
+                        // get from style to set as img attribute
+                        $setWidth = $styleWidth;
+                    }
+                    if ($arrSize['retainratio'] && $imgHeight && $imgWidth) {
+                        $arrStyle[$k] = 'height: '.round($setWidth * $imgHeight / $imgWidth).'px';
+                    }
+                } elseif (trim($arrAttribute[0]) == 'height') {
+                    $styleHeight = (int)$arrAttribute[1];
+                    if ($setHeight && ($arrSize['noenlargesized'] && $styleHeight > $setHeight)) {
+                        // set in style
+                        $arrStyle[$k] = 'height: '.$setHeight.'px';
+                    } else {
+                        // get from style to set as img attribute
+                        $setHeight = $styleHeight;
+                    }
+                    if ($arrSize['retainratio'] && $imgHeight && $imgWidth) {
+                        $arrStyle[$k] = 'width: '.round($setHeight * $imgWidth / $imgHeight).'px';
+                    }
+                }
+            }
+
+            // Set calculated sizes as image attributes
+            $attrWidth = $img->getAttribute('width');
+            $attrHeight = $img->getAttribute('height');
+            if ($setWidth && (!$attrWidth || ($arrSize['noenlargesized'] && $attrWidth > $setWidth))) {
+                $img->setAttribute('width', $setWidth);
+            }
+            if ($setHeight && (!$attrHeight || ($arrSize['noenlargesized'] && $attrHeight > $setHeight))) {
+                $img->setAttribute('height', $setHeight);
+            }
+
+            // Remove or set he style
             if ($removeStyle) {
                 $img->removeAttribute('style');
+            } else {
+                $style = implode(';', $arrStyle);
+                if ($style) {
+                    $img->setAttribute('style', $style);
+                }
             }
         }
 
         return $DOMDoc->saveHTMLbody();
+    }
+
+    /**
+     * Treat <a tags in HTML fragment.
+     * Put base url, convert to simple links if given
+     *
+     * @param string $html
+     * @param string $encoding (optional, default UTF-8)
+     * @param string $baseurl (optional) - Base URL to put in href attribute (if relative path is given for the href)
+     * @return string
+     */
+    public static function aTagConvert($html, $encoding = null, $baseurl = nulll, $toSimpleLink = false)
+    {
+        if (empty($encoding)) {
+            $encoding = 'UTF-8';
+        }
+
+        $DOMDoc = new DOMDocumentExact();
+        $DOMDoc->loadHTMLbody($html, $encoding);
+        $docElements = $DOMDoc->getElementsByTagName('a');
+        // here have to use regressive loop, otherwise not all elements will be replaced!
+        $i = $docElements->length - 1;
+        while ($i > -1) {
+            $a = $docElements->item($i);
+            $href = trim($a->getAttribute('href'));
+
+            // Base URL treatment
+            if (!empty($baseurl)) {
+                if ($href) {
+                    $baseurlset = false;
+                    $href = self::putBaseurl($href, $baseurl, array('http://', 'https://', 'ftp://', 'mailto://'), $baseurlset);
+                    if ($baseurlset) {
+                        $a->setAttribute('href', $href);
+                    }
+                }
+            }
+
+            // Convert to simple link
+            if ($toSimpleLink) {
+                // text is same if link text is same
+                if (trim(self::stripBaseurl($a->nodeValue), '/') == trim(self::stripBaseurl($href), '/')) {
+                    $textnodeValue = $a->nodeValue;
+                } else {
+                    $textnodeValue = $a->nodeValue . ($href ? ' ('.$href.')' : '');
+                }
+                $textnode = $DOMDoc->createTextNode($textnodeValue);
+                $a->parentNode->replaceChild($textnode, $a);
+            }
+
+            $i--;
+        }
+
+        return $DOMDoc->saveHTMLbody();
+    }
+
+    /**
+     * Strip base url
+     *
+     * @param string $baseurl
+     * @param array $keyUrls - keys to check and strip
+     * @param boolean $baseurlstripped (output) - if base url is stripped
+     * @return string
+     */
+    public static function stripBaseurl($url, $keyUrls = array('http://', 'https://'), &$baseurlstripped = false)
+    {
+        foreach ($keyUrls as $key) {
+            if (substr(strtolower($url), 0, strlen($key)) == $key) {
+                $url = str_replace($key, '', $url);
+                $baseurlstripped = true;
+                break;
+            }
+        }
+
+        return $url;
+    }
+
+    /**
+     * Put base url
+     *
+     * @param string $baseurl
+     * @param array $keyUrls - keys to check if base url is not already put
+     * @param boolean $baseurlset (output) - if base url is put
+     * @return string
+     */
+    public static function putBaseurl($url, $baseurl, $keyUrls = array(), &$baseurlset = false)
+    {
+        $baseurlset = true;
+        foreach ($keyUrls as $key) {
+            if (substr(strtolower($url), 0, strlen($key)) == $key) {
+                $baseurlset = false;
+                break;
+            }
+        }
+
+        if ($baseurlset) {
+            if (substr($url, 0, 1) == '/') {
+                $url = trim($baseurl, '/') . $url;
+            } else {
+                $url = trim($baseurl, '/') .'/'. $url;
+            }
+        }
+
+        return $url;
     }
 }
 
