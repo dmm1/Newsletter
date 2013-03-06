@@ -44,7 +44,7 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         }
 
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
-        $sql = "SELECT forum_id FROM dizkus_forums WHERE 1";
+        $sql = "SELECT forum_id, forum_name FROM dizkus_forums WHERE 1";
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -77,8 +77,15 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         }
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
-        // get latest posts data
         foreach (array_keys($items) as $k) {
+            // get forum name
+            foreach ($userforums as $forum) {
+                if ($forum['forum_id'] == $items[$k]['forum_id']) {
+                    $items[$k]['forum_name'] = $forum['forum_name'];
+                }
+            }
+
+            // get latest posts data
             $sql = 'SELECT * FROM dizkus_posts WHERE post_id='.$items[$k]['topic_last_post_id'];
             $stmt = $connection->prepare($sql);
             try {
@@ -96,7 +103,7 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
 
             $items[$k]['nl_title'] = $items[$k]['topic_title'];
             $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'newlang' => $lang), null, null, true);
-            $items[$k]['nl_content'] = $items[$k]['post_text'];
+            $items[$k]['nl_content'] = $items[$k]['forum_name'].', '.$items[$k]['username']."<br />\n".$items[$k]['post_text'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
 
