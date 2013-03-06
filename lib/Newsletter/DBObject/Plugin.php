@@ -13,31 +13,21 @@
 
 class Newsletter_DBObject_Plugin extends DBObject 
 {
-    function Newsletter_DBObject_Plugin($init='P', $key=null, $field=null)
+    public function Newsletter_DBObject_Plugin($init='P', $key=null, $field=null)
     {
         $this->_objPath = 'plugin';
         $this->_init($init, $key, $field);
     }
 
-    function save()
+    public function save()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError(__f('Unable to load array class for [%s]', 'plugin_base', $dom), null, $url);
+        if (!class_exists('Newsletter_AbstractPlugin')) {
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'Newsletter_AbstractPlugin', $dom), null, $url);
         }
 
-        $pluginClasses = Newsletter_Util::getPluginClasses();
-
-        // save plugins parameters
-        foreach ($pluginClasses as $plugin) {
-            $class = 'Newsletter_DBObject_Plugin' . $plugin . 'Array';
-            if (class_exists($class)) {
-                $objArray = new $class();
-                $objArray->setPluginParameters();
-            }
-        }
-        $pluginClasses = array_flip($pluginClasses);
+        $pluginClasses = Newsletter_Util::getActivePlugins();
 
         // active plugins
         foreach ($this->_objData as $k => $dat) {

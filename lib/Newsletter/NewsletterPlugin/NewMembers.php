@@ -11,33 +11,30 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginNewMembersArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_NewMembers extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginNewMembersArray($init=null, $where='')
-    {
-        $this->Newsletter_DBObject_PluginBaseArray();
-    }
-
-    function pluginAvailable()
+    public function pluginAvailable()
     {
         return true;
     }
 
-    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginTitle()
     {
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
+        return $this->__('Newest members');
+    }
+
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    public function getPluginData($lang=null, $filtAfterDate=null)
+    {
+        $this->setLang($lang);
+
         ModUtil::dbInfoLoad('Users');
         $tables   = DBUtil::getTables();
         $column   = $tables['users_column'];
         $where    = "$column[uid] > 1";
         $sort     = "$column[user_regdate] DESC";
-        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
-        $nItems   = ModUtil::getVar ('Newsletter', 'plugin_NewMembers_nItems', 1);
 
-        $items = DBUtil::selectObjectArray ('users', $where, $sort, 0, $nItems);
+        $items = DBUtil::selectObjectArray ('users', $where, $sort, 0, $this->nItems);
 
         foreach (array_keys($items) as $k) {
             if ($filtAfterDate && $items[$k]['approved_date'] < $filtAfterDate) {

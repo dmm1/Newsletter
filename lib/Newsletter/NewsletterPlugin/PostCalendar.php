@@ -11,33 +11,28 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginPostCalendarArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_PostCalendar extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginPostCalendarArray($init=null, $where='')
-    {
-        $this->Newsletter_DBObject_PluginBaseArray();
-    }
-
-    function pluginAvailable()
+    public function pluginAvailable()
     {
         return ModUtil::available('PostCalendar');
     }
 
+    public function getPluginTitle()
+    {
+        return $this->__('Latest events');
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_PostCalendar_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
+        $this->lang($lang);
 
-        if (!SecurityUtil::checkPermission('PostCalendar::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('PostCalendar::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
@@ -48,7 +43,7 @@ class Newsletter_DBObject_PluginPostCalendarArray extends Newsletter_DBObject_Pl
         if ($filtAfterDate) {
             $sql .= " AND ttime>='".$filtAfterDate."'";
         }
-        $sql .= " ORDER BY eid DESC LIMIT ".$nItems;
+        $sql .= " ORDER BY eid DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -58,7 +53,7 @@ class Newsletter_DBObject_PluginPostCalendarArray extends Newsletter_DBObject_Pl
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if (!SecurityUtil::checkPermission('PostCalendar::Event', $items[$k]['title'].'::'.$items[$k]['eid'], ACCESS_READ, $userNewsletter)) {
+            if (!SecurityUtil::checkPermission('PostCalendar::Event', $items[$k]['title'].'::'.$items[$k]['eid'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];

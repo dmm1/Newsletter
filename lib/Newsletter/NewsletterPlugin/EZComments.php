@@ -11,43 +11,36 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginEZCommentsArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_EZComments extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginEZCommentsArray($init=null, $where='')
-    {
-        $this->Newsletter_DBObject_PluginBaseArray();
-    }
-
-    function pluginAvailable()
+    public function pluginAvailable()
     {
         return ModUtil::available('EZComments');
     }
 
-    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginTitle()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
+        return $this->__('Latest comments');
+    }
 
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    public function getPluginData($lang=null, $filtAfterDate=null)
+    {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $enableML = ModUtil::getVar ('Newsletter', 'enable_multilingual', 0);
-        $nItems   = ModUtil::getVar ('Newsletter', 'plugin_EZComments_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
+        $this->setLang($lang);
 
-        if (!SecurityUtil::checkPermission('EZComments::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('EZComments::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
         /*$params   = array();
         $params['order']    = 'items DESC';
-        $params['numitems'] = $nItems;
+        $params['numitems'] = $this->nItems;
         $params['startnum'] = 0;
         $params['ignoreml'] = true;
-        if ($enableML && $lang) {
+        if ($this->enableML && $lang) {
             $params['ignoreml'] = false;
             $params['language'] = $lang;
         }
@@ -59,7 +52,7 @@ class Newsletter_DBObject_PluginEZCommentsArray extends Newsletter_DBObject_Plug
         if ($filtAfterDate) {
             $sql .= " AND date>='".$filtAfterDate."'";
         }
-        $sql .= " ORDER BY date DESC LIMIT ".$nItems;
+        $sql .= " ORDER BY date DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -69,13 +62,13 @@ class Newsletter_DBObject_PluginEZCommentsArray extends Newsletter_DBObject_Plug
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':', ACCESS_READ, $userNewsletter)) {
+            if (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':', ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
-            } elseif (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':'.$items[$k]['id'], ACCESS_READ, $userNewsletter)) {
+            } elseif (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':'.$items[$k]['id'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['subject'];
-                $items[$k]['nl_url_title'] = $items[$k]['url'].'&newlang='.$lang;
+                $items[$k]['nl_url_title'] = $items[$k]['url'].'&newlang='.$this->lang;
                 $items[$k]['nl_content'] = $items[$k]['comment'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }

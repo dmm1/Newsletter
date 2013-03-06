@@ -22,8 +22,8 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError(__f('Unable to load array class for [%s]', 'plugin_base', $dom), null, $url);
+        if (!class_exists('Newsletter_AbstractPlugin')) {
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'Newsletter_AbstractPlugin', $dom), null, $url);
         }
 
         $data     = array();
@@ -69,7 +69,8 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
         $data['nPlugins'] = count($plugins);
         $data['title']    = System::getVar('sitename') . ' ' . (__('Newsletter', $dom));
         foreach ($plugins as $plugin) {
-            $class = 'Newsletter_DBObject_Plugin' . $plugin . 'Array';
+            $class = $plugin;
+
             if (class_exists($class)) {
                 $objArray        = new $class();
                 $data[$plugin]   = $objArray->getPluginData($language, $filtAfterDate);
@@ -81,12 +82,12 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
         return $this->_objData;
     }
 
-    function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    public function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         return $this->getNewsletterData(null);
     }
 
-    function getCount($where='', $doJoin=false)
+    public function getCount($where='', $doJoin=false)
     {
         return 0;
     }

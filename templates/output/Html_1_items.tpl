@@ -1,7 +1,7 @@
 ﻿{if (isset($objectArray.$pluginName) && $objectArray.$pluginName)}
-    <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{$pluginTitle}</div>
+    <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{newsletter_get_plugin_title pluginName=$pluginName}</div>
     <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-    {if $pluginName eq 'NewMembers'}
+    {if $pluginName eq 'Newsletter_NewsletterPlugin_NewMembers'}
         <table style="width: 100%; text-align: left;">
             <tr>
               <td>{gt text="Username"}</td>

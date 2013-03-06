@@ -13,29 +13,29 @@
 
 class Newsletter_DBObject_PluginArray extends DBObjectArray 
 {
-    function Newsletter_DBObject_PluginArray($init=null, $where='')
+    public function Newsletter_DBObject_PluginArray($init=null, $where='')
     {
         $this->_init();
     }
 
-    function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    public function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         $this->_objData = Newsletter_Util::getPluginClasses();
         return $this->_objData;
     }
 
-    function getCount($where='', $doJoin=false)
+    public function getCount($where='', $doJoin=false)
     {
         return count($this->_objData);
     }
 
     //EM Start
-    function getPluginsParameters()
+    public function getPluginsParameters()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError (__f('Unable to load array class for [%s]', 'plugin_base', $dom), null, $url);
+        if (!class_exists('Newsletter_AbstractPlugin')) {
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'Newsletter_AbstractPlugin', $dom), null, $url);
         }
 
         $pluginClasses = Newsletter_Util::getPluginClasses();
@@ -43,10 +43,10 @@ class Newsletter_DBObject_PluginArray extends DBObjectArray
         $parameters = array();
         // get plugins parameters
         foreach ($pluginClasses as $plugin) {
-            $class = 'Newsletter_DBObject_Plugin' . $plugin . 'Array';
+            $class = $plugin;
             if (class_exists($class)) {
                 $objArray = new $class();
-                $parameters[$plugin] = $objArray->getPluginParameters ();
+                $parameters[$plugin] = $objArray->getPluginParameters();
             }
         }
         return $parameters;

@@ -20,34 +20,37 @@ class Newsletter_Util
         foreach ($plugins as $k=>$plugin) {
             $active = ModUtil::getVar('Newsletter', "plugin_$plugin", false);
             if (!$active) {
-                unset($plugins[$k]);
+            #    unset($plugins[$k]);
             }
         }
-
         return $plugins;
     }
 
     public static function getPluginClasses()
     {
-        $ignoreFiles = array();
-        $ignoreFiles[] = 'Plugin.php';
-        $ignoreFiles[] = 'PluginArray.php';
-        $ignoreFiles[] = 'PluginBaseArray.php';
-
-        $files = self::scandir('modules/Newsletter/lib/Newsletter/DBObject', $ignoreFiles, 'Plugin');
-
-        // get plugin module base names
+        $modules = ModUtil::getModulesByState(ModUtil::STATE_ACTIVE);
+        
+        $files = array();
         $plugins = array();
 
-        foreach ($files as $file) {
-            if (strpos($file, '.') === 0) {
-                continue;
+        foreach($modules as $module)
+        {
+            $basedir = ModUtil::getModuleBaseDir($module['name']);
+            $files = FileUtil::getFiles($basedir . '/' . $module['name'] . '/lib/' . $module['name'] . '/NewsletterPlugin');
+            
+            
+            foreach ($files as $key => $file) {
+                if (strpos($file, '.') === 0) {
+                    continue;
+                }
+                $file = str_replace('.php', '', $file);
+                $files[$key] = $module['name'] . "_NewsletterPlugin_" . $file;
             }
-            $t = str_replace('Plugin', '', $file);
-            $t = str_replace('Array.php', '', $t);
-            $plugins[$file] = $t;
-        }
+            $plugins = array_merge($plugins, $files);
 
+            #echo $basedir . '/' . $module['name'] . '/lib/' . $module['name'] . '/NewsletterPlugin<br/>';
+            #echo "<pre>" . print_r($files) . "</pre><br />";
+        }
         return $plugins;
     }
 
@@ -171,49 +174,7 @@ class Newsletter_Util
         
         return $selector;
     }
-    
-    public static function scandir($directory, $ignoreFiles=null, $matchString=null)
-    {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        $files = array();
-
-        if (!$directory) {
-            LogUtil::registerError(__f("Empty [%s] received.", 'directory', $dom));
-            return $files;
-        }
-
-        if (!file_exists($directory)) {
-            LogUtil::registerError (__f("Directory [%s] does not seem to exist.", $directory, $dom));
-            return $files;
-        }
-
-        if (is_file($directory)) {
-            LogUtil::registerError (__f("Directory [%s] seems to be a file nor a directory.", $directory, $dom));
-            return $files;
-        }
-
-        $files = scandir($directory);
-
-        if ($ignoreFiles) {
-            foreach ($files as $k=>$v) {
-                if (in_array($v, $ignoreFiles))  {
-                    unset ($files[$k]);
-                }
-            }
-        }
-
-        if ($matchString) {
-            foreach ($files as $k=>$v) {
-                if (strpos($v, $matchString) === false) {
-                    unset ($files[$k]);
-                }
-            }
-        }
-
-        return $files;
-    }
-    
     public static function convertSelectorArrayForFormHandler($array)
     {
         $outArray = array();

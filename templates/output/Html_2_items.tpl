@@ -1,7 +1,7 @@
 ﻿{if (isset($objectArray.$pluginName) && $objectArray.$pluginName)}
-    <h1 style="font-size: 1.7em;">{$pluginTitle}</h1>
+    <h1 style="font-size: 1.7em;">{newsletter_get_plugin_title pluginName=$pluginName}</h1>
     <div style="color: #999; font-size:14px; margin-top: 4px; margin-bottom:8px; color: #999; border-bottom: 1px solid #eee; overflow: hidden">
-    {if $pluginName eq 'NewMembers'}
+    {if $pluginName eq 'Newsletter_NewsletterPlugin_NewMembers'}
 {strip}
         <table class="nl-new-members">
             <thead>

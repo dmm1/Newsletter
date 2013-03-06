@@ -11,29 +11,27 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginClipArray($init=null, $where='')
-    {
-        $this->Newsletter_DBObject_PluginBaseArray();
-    }
-
-    function pluginAvailable()
+    public function pluginAvailable()
     {
         return ModUtil::available('Clip');
     }
 
+    public function getPluginTitle()
+    {
+        return $this->__('Recently added publications');
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
+        $this->setLang($lang);
 
-        $itemsFull = $this->_getClipItems($lang);
+        $itemsFull = $this->_getClipItems();
 
         // Simplify data to be used in template
         $items = array();
@@ -50,7 +48,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
 
         foreach (array_keys($items) as $k) {
             $items[$k]['nl_title'] = $items[$k]['core_title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'newlang' => $lang), null, null, true);
+            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'newlang' => $this->lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['content'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
@@ -58,7 +56,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
         return $items;
     }
 
-    function setPluginParameters()
+    public function setPluginParameters()
     {
         // Clip TIDs
         $tids = FormUtil::getPassedValue('ClipTIDs', array(), 'POST');
@@ -71,7 +69,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
         ModUtil::setVar('Newsletter', 'ClipArgs', $args);
     }
 
-    function getPluginParameters()
+    public function getPluginParameters()
     {
         $pubtypes = array();
         if (ModUtil::available('Clip') && ModUtil::loadApi('Clip')) {
@@ -93,7 +91,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
                     );
     }
 
-    function _getClipItems($lang)
+    private function _getClipItems()
     {
         $tids = ModUtil::getVar('Newsletter', 'ClipTIDs', array());
         $args = ModUtil::getVar('Newsletter', 'ClipArgs', array());
@@ -114,7 +112,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
         return $output;
     }
 
-    function getClipList($args, $type)
+    private function getClipList($args, $type)
     {
         $list = array();
 

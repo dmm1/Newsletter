@@ -11,35 +11,29 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_Dizkus extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginDizkusArray($init=null, $where='')
-    {
-        $this->Newsletter_DBObject_PluginBaseArray ();
-    }
-
-    function pluginAvailable()
+    public function pluginAvailable()
     {
         return ModUtil::available('Dizkus');
     }
 
-    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginTitle()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
+        return $this->__('Latest forum posts');
+    }
 
+    // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
+    public function getPluginData($lang=null, $filtAfterDate=null)
+    {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
+        $this->setLang($lang);
 
         ModUtil::dbInfoLoad ('Dizkus');
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_Dizkus_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
 
-        if (!SecurityUtil::checkPermission('Dizkus::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('Dizkus::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
@@ -54,7 +48,7 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         $userforums = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
         $allowedforums = array();
         foreach (array_keys($userforums) as $k) {
-            if (SecurityUtil::checkPermission('Dizkus::', ":".$userforums[$k]['forum_id'].":", ACCESS_READ, $userNewsletter)) {
+            if (SecurityUtil::checkPermission('Dizkus::', ":".$userforums[$k]['forum_id'].":", ACCESS_READ, $this->userNewsletter)) {
                 $allowedforums[] = $userforums[$k]['forum_id'];
             }
         }
@@ -68,7 +62,7 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
         if ($filtAfterDate) {
             $sql .= " AND topic_time>='".$filtAfterDate."'";
         }
-        $sql .= " ORDER BY topic_id DESC LIMIT ".$nItems;
+        $sql .= " ORDER BY topic_id DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -102,7 +96,7 @@ class Newsletter_DBObject_PluginDizkusArray extends Newsletter_DBObject_PluginBa
             $items[$k]['username']= UserUtil::getVar('uname', $post[0]['poster_id']);
 
             $items[$k]['nl_title'] = $items[$k]['topic_title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'newlang' => $lang), null, null, true);
+            $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'newlang' => $this->lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['forum_name'].', '.$items[$k]['username']."<br />\n".$items[$k]['post_text'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }

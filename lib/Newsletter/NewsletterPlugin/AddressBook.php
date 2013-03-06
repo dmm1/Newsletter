@@ -11,33 +11,28 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginAddressBookArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_AddressBook extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginAddressBookArray($init=null, $where='')
-    {
-        $this->Newsletter_DBObject_PluginBaseArray();
-    }
-
-    function pluginAvailable()
+    public function pluginAvailable()
     {
         return ModUtil::available('AddressBook');
     }
 
+    public function getPluginTitle()
+    {
+        return $this->__('Latest Contacts');
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($lang=null, $filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $dom = ZLanguage::getModuleDomain('Newsletter');
+        
+        $this->setLang($lang);
 
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_AddressBook_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
-
-        if (!SecurityUtil::checkPermission('AddressBook::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('AddressBook::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
@@ -46,7 +41,7 @@ class Newsletter_DBObject_PluginAddressBookArray extends Newsletter_DBObject_Plu
         if ($filtAfterDate) {
             $sql .= " AND adr_cr_date>='".$filtAfterDate."'";
         }
-        $sql .= " ORDER BY adr_id DESC LIMIT ".$nItems;
+        $sql .= " ORDER BY adr_id DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -60,7 +55,7 @@ class Newsletter_DBObject_PluginAddressBookArray extends Newsletter_DBObject_Plu
             if (empty($items[$k]['nl_title'])) {
                 $items[$k]['nl_title'] = $items[$k]['adr_company'];
             }
-            $items[$k]['nl_url_title'] = ModUtil::url('AddressBook', 'user', 'display', array('id' => $items[$k]['adr_id'], 'newlang' => $lang), null, null, true);
+            $items[$k]['nl_url_title'] = ModUtil::url('AddressBook', 'user', 'display', array('id' => $items[$k]['adr_id'], 'newlang' => $this->lang), null, null, true);
             $items[$k]['nl_content'] = '';
             if ($items[$k]['adr_custom_1']) {
                 $items[$k]['nl_content'] .= ($items[$k]['nl_content'] ? "<br />\n" : '') . $items[$k]['adr_custom_1'];
