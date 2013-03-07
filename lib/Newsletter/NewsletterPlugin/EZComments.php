@@ -23,13 +23,17 @@ class Newsletter_NewsletterPlugin_EZComments extends Newsletter_AbstractPlugin
         return $this->__('Latest comments');
     }
 
+    public function getModname()
+    {
+        return 'EZComments';
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $this->setLang($lang);
 
         if (!SecurityUtil::checkPermission('EZComments::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();

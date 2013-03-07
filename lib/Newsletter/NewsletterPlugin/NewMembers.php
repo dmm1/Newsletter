@@ -24,10 +24,8 @@ class Newsletter_NewsletterPlugin_NewMembers extends Newsletter_AbstractPlugin
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
-        $this->setLang($lang);
-
         ModUtil::dbInfoLoad('Users');
         $tables   = DBUtil::getTables();
         $column   = $tables['users_column'];

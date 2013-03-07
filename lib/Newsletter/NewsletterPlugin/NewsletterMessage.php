@@ -13,15 +13,12 @@
 
 class Newsletter_NewsletterPlugin_NewsletterMessage extends Newsletter_AbstractPlugin
 {
-    public function getPluginData($lang=null)
+    public function getPluginData()
     {
-        if(!isset($lang))
-            $lang = $this->lang;
-
         $vName = 'message';
 
-        if ($lang != $this->lang) {
-            $vName = 'message_' . $lang;
+        if (System::getVar('language_i18n', 'en') != $this->lang) {
+            $vName = 'message_' . $this->lang;
         }
 
         return ModUtil::getVar ('Newsletter', $vName, '');

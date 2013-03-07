@@ -23,13 +23,17 @@ class Newsletter_NewsletterPlugin_Dizkus extends Newsletter_AbstractPlugin
         return $this->__('Latest forum posts');
     }
 
+    public function getModname()
+    {
+        return 'Dizkus';
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $this->setLang($lang);
 
         ModUtil::dbInfoLoad ('Dizkus');
 

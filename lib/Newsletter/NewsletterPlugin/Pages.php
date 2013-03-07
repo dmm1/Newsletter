@@ -22,14 +22,18 @@ class Newsletter_NewsletterPlugin_Pages extends Newsletter_AbstractPlugin
     {
         return $this->__('Recently added documents');
     }
+    
+    public function getPluginModule()
+    {
+        return 'Pages';
+    }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $this->setLang($lang);
 
         if (!SecurityUtil::checkPermission('Pages::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
@@ -40,8 +44,8 @@ class Newsletter_NewsletterPlugin_Pages extends Newsletter_AbstractPlugin
         if ($filtAfterDate) {
             $sql .= " AND cr_date>='".$filtAfterDate."'";
         }
-        if ($this->enableML && $lang) {
-            $sql .= " AND (language='' OR language='".$lang."')";
+        if ($this->enableML && $this->lang) {
+            $sql .= " AND (language='' OR language='".$this->lang."')";
         }
         $sql .= " ORDER BY pageid DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);

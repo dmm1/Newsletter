@@ -23,14 +23,17 @@ class Newsletter_NewsletterPlugin_AddressBook extends Newsletter_AbstractPlugin
         return $this->__('Latest Contacts');
     }
 
+    public function getModname()
+    {
+        return 'AddressBook';
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        
-        $this->setLang($lang);
 
         if (!SecurityUtil::checkPermission('AddressBook::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();

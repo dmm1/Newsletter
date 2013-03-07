@@ -69,10 +69,11 @@ Event.observe(window, 'load', function() {
     <fieldset>
         <legend>
             <input type="checkbox" id="enable_{$i}" name="plugin[{$plugin}]" value="1" {if $pluginActive}checked="checked"{/if} />
-            {$plugin|safehtml}
+            {newsletter_get_plugin_name pluginName=$plugin assign='name'}
+            {$name|safehtml}
         </legend>
         <div id="plugin_{$i}">
-            {if $plugin neq 'NewsletterMessage'}
+            {if $plugin neq 'Newsletter_NewsletterPlugin_NewsletterMessage'}
             <div class="z-formrow z-nw-numitemsrow">
                 <label for="plugin{$i}_numitems">{gt text='Number of items'}</label>
                 <div>
@@ -93,7 +94,8 @@ Event.observe(window, 'load', function() {
             </div>
             {/if}
             {if $plugin_parameters.$plugin.number ne 0}
-                {include file="plugin_configs/`$plugin`_config.tpl"}
+                {newsletter_get_plugin_name pluginName=$plugin assign='name'}
+                {include file="plugin_config/`$name`.tpl"}
             {/if}
         </div>
     </fieldset>

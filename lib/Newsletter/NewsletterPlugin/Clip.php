@@ -23,13 +23,17 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
         return $this->__('Recently added publications');
     }
 
+    public function getModname()
+    {
+        return 'Clip';
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $this->setLang($lang);
 
         $itemsFull = $this->_getClipItems();
 

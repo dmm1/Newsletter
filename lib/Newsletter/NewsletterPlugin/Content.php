@@ -23,13 +23,17 @@ class Newsletter_NewsletterPlugin_Content extends Newsletter_AbstractPlugin
         return $this->__('New Content items');
     }
 
+    public function getModname()
+    {
+        return 'Content';
+    }
+
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $this->setLang($lang);
 
         if (!SecurityUtil::checkPermission('Content::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();

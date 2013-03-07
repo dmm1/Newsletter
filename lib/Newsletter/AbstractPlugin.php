@@ -20,12 +20,6 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      */
     protected $domain;
     /**
-     * Instance of Zikula_View.
-     *
-     * @var Zikula_View
-     */
-    protected $view;
-    /**
      * Module name
      *
      * @var string
@@ -73,25 +67,20 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      *
      * @param Zikula_View $view View instance.
      */
-    public function __construct()
+    public function __construct($lang=null)
     {
         $parts = explode('_', get_class($this));
 
-        $this->modname = $parts[0];
+        $modname = $this->getModname();
+        $this->modname = (empty($modname)) ? $parts[0] : $modname;
         $this->pluginname = $parts[2];
         $this->nItems = (int)ModUtil::getVar('Newsletter', 'plugin_' . $this->pluginname . '_nItems', 1);
         $this->userNewsletter= (int)ModUtil::getVar('Newsletter', 'newsletter_userid', 1);
         $this->enableML = (bool)ModUtil::getVar('Newsletter', 'enable_multilingual', false);
         $this->modinfo = ModUtil::getInfoFromName($this->modname);
-        $this->lang = System::getVar('language_i18n', 'en');
+        $this->lang = (isset($lang)) ? $lang : System::getVar('language_i18n', 'en');
         
         $this->domain = ZLanguage::getModuleDomain($this->modname);
-    }
-
-    public function setLang($lang)
-    {
-        if(isset($lang))
-            $this->lang = $lang;
     }
     
     public function pluginAvailable()
@@ -104,7 +93,7 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         return $this->pluginname;
     }
     
-    public function getPluginModule()
+    public function getModname()
     {
         return $this->modname;
     }

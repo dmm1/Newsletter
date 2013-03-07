@@ -1,5 +1,5 @@
-{assign var='pubtypes' value=$plugin_parameters.Clip.param.PubTypes}
-{assign var='pageargs' value=$plugin_parameters.Clip.param.Args}
+{assign var='pubtypes' value=$plugin_parameters.Newsletter_NewsletterPlugin_Clip.param.PubTypes}
+{assign var='pageargs' value=$plugin_parameters.Newsletter_NewsletterPlugin_Clip.param.Args}
 
 {assign var='j' value=1}
 {foreach from=$pubtypes key='tid' item='pubtype'}

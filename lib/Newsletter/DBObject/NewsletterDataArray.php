@@ -72,8 +72,8 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
             $class = $plugin;
 
             if (class_exists($class)) {
-                $objArray        = new $class();
-                $data[$plugin]   = $objArray->getPluginData($language, $filtAfterDate);
+                $objArray        = new $class($language);
+                $data[$plugin]   = $objArray->getPluginData($filtAfterDate);
                 $data['nItems'] += (is_array($data[$plugin]) ? count($data[$plugin]) : 1);
             }
         }
