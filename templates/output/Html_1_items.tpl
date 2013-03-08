@@ -1,14 +1,14 @@
-﻿{if (isset($objectArray.$pluginName) && $objectArray.$pluginName)}
-    <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{newsletter_get_plugin_title pluginName=$pluginName}</div>
+﻿{if (isset($objectArray.$plugin) && $objectArray.$plugin)}
+    <div style="font-size: 16px; font-weight: bold; color: #812323; margin: 10px 0 5px 0; padding: 0;">{nlPluginTitle plugin=$plugin}</div>
     <img src="{$site_url}modules/Newsletter/images/newsletter_images/hr.gif" alt="Newsletter" width="560" height="3" />
-    {if $pluginName eq 'Newsletter_NewsletterPlugin_NewMembers'}
+    {if $plugin eq 'Newsletter_NewsletterPlugin_NewMembers'}
         <table style="width: 100%; text-align: left;">
             <tr>
               <td>{gt text="Username"}</td>
               <td>{gt text="Register Date"}</td>
             </tr>
             {modavailable modname="Profile" assign="profileAvailable"}
-            {foreach from=$objectArray.$pluginName item="item" name="loop"}
+            {foreach from=$objectArray.$plugin item="item" name="loop"}
                 <tr>
                     <td>{if $profileAvailable}<div style="font-weight: bold;"><a style="color: #813939; text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
                     <td>{$item.user_regdate|dateformat}</td>
@@ -16,7 +16,7 @@
             {/foreach}
         </table>
     {else}
-        {foreach from=$objectArray.$pluginName item="item" name="loop"}
+        {foreach from=$objectArray.$plugin item="item" name="loop"}
             {if $item.nl_picture}
                 <div style="float: left; margin-right: 4px; margin-bottom: 4px;">
                     {capture assign="nlPicture"}<img src="{$site_url}{$item.nl_picture}" alt="" style="float: left" />{/capture}
@@ -30,7 +30,7 @@
             {/if}
             {if $item.nl_content}
                 <div style="font-size: 13px; color: #333333; margin: 0 0 5px 0; padding: 0;">
-                    {$item.nl_content|nlTreatContent:$pluginName}
+                    {$item.nl_content|nlTreatContent:$plugin}
                 </div>
             {/if}
             {if $item.nl_url_readmore}

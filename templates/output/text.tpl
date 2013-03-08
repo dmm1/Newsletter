@@ -5,36 +5,18 @@
 
 {gt text="Hello"} {$user_name|html_entity_decode}
 {/if}
-{if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
+{if (isset($objectArray.Newsletter_NewsletterPlugin_NewsletterMessage) && $objectArray.Newsletter_NewsletterPlugin_NewsletterMessage)}
 
-{$objectArray.NewsletterMessage|strip|replace:'<br />':"\n"|strip_tags|html_entity_decode}
+{$objectArray.Newsletter_NewsletterPlugin_NewsletterMessage|strip|replace:'<br />':"\n"|strip_tags|html_entity_decode}
 {/if}
 {strip}
 {assign var='includeFile' value='output/text_item.tpl'}
-
-{include file=$includeFile pluginName='News'       __pluginTitle='News'}
-
-{include file=$includeFile pluginName='Content'    __pluginTitle='New Content Items'}
-
-{include file=$includeFile pluginName='Pages'      __pluginTitle='Recently Added Documents'}
-
-{include file=$includeFile pluginName='Clip'       __pluginTitle='Recently Added Publications'}
-
-{include file=$includeFile pluginName='EZComments' __pluginTitle='Latest Comments'}
-
-{include file=$includeFile pluginName='Dizkus'     __pluginTitle='Latest Forum Posts'}
-
-{include file=$includeFile pluginName='Weblinks'   __pluginTitle='Latest web links'}
-
-{include file=$includeFile pluginName='Downloads'  __pluginTitle='Latest downloads'}
-
-{include file=$includeFile pluginName='AddressBook' __pluginTitle='Latest Contacts'}
-
-{include file=$includeFile pluginName='AdvancedPolls' __pluginTitle='Latest Polls'}
-
-{include file=$includeFile pluginName='PostCalendar' __pluginTitle='Latest Events'}
-
-{include file=$includeFile pluginName='NewMembers' __pluginTitle='Welcome New Members'}
+{nlActivePlugins assign='plugins'}
+{foreach from=$plugins item='plugin'}
+    {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
+        {include file=$includeFile plugin=$plugin}
+    {/if}
+{/foreach}
 {/strip}
 
 ===========================

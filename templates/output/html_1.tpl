@@ -27,17 +27,17 @@
                     </div>
                     {/if}
 
-                    {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
+                    {if (isset($objectArray.Newsletter_NewsletterPlugin_NewsletterMessage) && $objectArray.Newsletter_NewsletterPlugin_NewsletterMessage)}
                     <div style="font-size: 13px; color: #333333; margin: 10px 0 5px 0; padding: 0;">
                         {$objectArray.NewsletterMessage|safehtml}
                     </div>
                     {/if}
 
                     {assign var='includeFile' value='output/Html_1_items.tpl'}
-                    {newsletter_active_plugins assign='plugins'}
+                    {nlActivePlugins assign='plugins'}
                     {foreach from=$plugins item='plugin'}
                         {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
-                            {include file=$includeFile pluginName=$plugin}
+                            {include file=$includeFile plugin=$plugin}
                         {/if}
                     {/foreach}
                 </td>
