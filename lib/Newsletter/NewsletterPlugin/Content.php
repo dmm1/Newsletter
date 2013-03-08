@@ -45,7 +45,7 @@ class Newsletter_NewsletterPlugin_Content extends Newsletter_AbstractPlugin
             $sql .= " AND page_cr_date>='".$filtAfterDate."'";
         }
         if ($this->enableML && $this->lang) {
-            $sql .= " AND (page_this->language='' OR page_this->language='".$this->lang."')";
+            $sql .= " AND (page_language='' OR page_language='".$this->lang."')";
         }
         $sql .= " ORDER BY page_id DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
