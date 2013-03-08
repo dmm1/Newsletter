@@ -29,7 +29,7 @@
 
                     {if (isset($objectArray.Newsletter_NewsletterPlugin_NewsletterMessage) && $objectArray.Newsletter_NewsletterPlugin_NewsletterMessage)}
                     <div style="font-size: 13px; color: #333333; margin: 10px 0 5px 0; padding: 0;">
-                        {$objectArray.NewsletterMessage|safehtml}
+                        {$objectArray.Newsletter_NewsletterPlugin_NewsletterMessage|safehtml}
                     </div>
                     {/if}
 
