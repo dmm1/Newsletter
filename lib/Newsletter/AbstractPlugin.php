@@ -135,7 +135,8 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         return $this->displayName;
     }
     
-    public function getName()
+    //The plugin name has to be the file name!!!
+    final public function getName()
     {
         return $this->name;
     }
@@ -170,19 +171,104 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         return array ('number' => 0, 'param' => array());
     }
 
-    ////Plugin variables section
-    
+    /**
+     * The setPluginVar method sets a Newsletter plugin variable.
+     *
+     * @param string $name    The name of the variable.
+     * @param string $value   The value of the variable.
+     *
+     * @return boolean True if successful, false otherwise.
+     *
+     * @note You can choose any name you want, your variable will be automatically prefixed.
+     * @warning Protected variable names:\n
+     * - Settings
+     * - nItems
+     * - Settings0
+     * - Settings1
+     */
     final protected function setPluginVar($name, $value)
     {
-        ModUtil::setVar('Newsletter', 'plugin_' . get_class($this) . '_' . $name, $value); 
+        return ModUtil::setVar('Newsletter', 'plugin_' . get_class($this) . '_' . $name, $value); 
     }
     
+    /**
+     * The setPluginVars method sets multiple Newsletter plugin variables.
+     *
+     * @param array $array    The variables array
+     *
+     * @note You can choose any name you want, your variable will be automatically prefixed.
+     * @warning Protected variable names:\n
+     * - Settings
+     * - nItems
+     * - Settings0
+     * - Settings1
+     */
+    final protected function setPluginVars($array)
+    {
+        foreach($array as $var)
+        {
+            $this->setPluginVar($var['name'], $var['value']);
+        }
+    }
+    
+    /**
+     * The getPluginVar method gets a Newsletter plugin variable.
+     *
+     * @param string  $name    The name of the variable.
+     * @param boolean $default The value to return if the requested modvar is not set.
+     *
+     * @return string Newsletter plugin variable value
+     */
     final protected function getPluginVar($name, $default=null)
     {
         return ModUtil::getVar('Newsletter', 'plugin_' . get_class($this) . '_' . $name, $default); 
     }
 
-    ////Translation section
+    /**
+     * The getPluginVars method gets multiple Newsletter plugin variables.
+     */
+    final protected function getPluginVars()
+    {
+        $prefix = 'plugin_' . get_class($this) . '_';
+
+        $vars = ModUtil::getVar('Newsletter');
+        foreach($vars as $name => $value)
+        {
+            if(strpos($name, $prefix) === 0)
+                $vars[substr($name, strlen($prefix))] = $value;
+
+            //Remove old variable
+            unset($vars[$name]);
+        }
+        return $vars;
+    }
+
+    /**
+     * The delPluginVar method deletes a Newsletter plugin variable.
+     *
+     * Delete a Newsletter plugin module variable.
+     *
+     * @param string $name    The name of the variable.
+     *
+     * @return boolean True if successful, false otherwise.
+     */
+    final protected function delPluginVar($name)
+    {
+        return ModUtil::delVar('Newsletter', 'plugin_' . get_class($this) . '_' . $name); 
+    }
+
+    /**
+     * The delPluginVars method deletes ALL Newsletter plugin variables.
+     */
+    final protected function delPluginVars()
+    {
+        $vars = $this->getPluginVars();
+        foreach($vars as $name => $value)
+        {
+            $this->delPluginVar($name);
+        }
+    }
+
     /**
      * Translate.
      *
