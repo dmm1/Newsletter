@@ -13,9 +13,13 @@
  * @param        array    $string     the contents to transform
  * @return       string   the modified output
  */
-function smarty_function_newsletter_active_plugins($params, Zikula_View $view)
+function smarty_function_nlTitle($params, Zikula_View $view)
 {
-    $result = Newsletter_Util::getActivePlugins();
+    $className = $params['pluginName'];
+    $class = new $className();
+    
+    $result = $class->getTitle();
+
     if (isset($params['assign'])) {
         $view->assign ($params['assign'], $result);
     } else {    
