@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_AddressBook extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
-    {
-        return ModUtil::available('AddressBook');
-    }
-
-    public function getPluginTitle()
-    {
-        return $this->__('Latest Contacts');
-    }
-
     public function getModname()
     {
         return 'AddressBook';
+    }
+
+    public function getTitle()
+    {
+        return $this->__('Latest Contacts');
+    }
+    
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest contacts.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

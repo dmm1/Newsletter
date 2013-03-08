@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_EZComments extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
+    public function getModname()
     {
-        return ModUtil::available('EZComments');
+        return 'EZComments';
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('Latest comments');
     }
 
-    public function getModname()
+    public function getDescription()
     {
-        return 'EZComments';
+        return $this->__('Displays a list of the latest comments.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

@@ -13,6 +13,21 @@
 
 class Newsletter_NewsletterPlugin_NewsletterMessage extends Newsletter_AbstractPlugin
 {
+    public function pluginAvailable()
+    {
+        return true;
+    }
+
+    public function getTitle()
+    {
+        return '';
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a message on top of your Newsletter. This message can be set at "Header message" in admin area.');
+    }
+
     public function getPluginData()
     {
         $vName = 'message';

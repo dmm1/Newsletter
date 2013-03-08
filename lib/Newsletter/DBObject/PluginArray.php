@@ -46,7 +46,7 @@ class Newsletter_DBObject_PluginArray extends DBObjectArray
             $class = $plugin;
             if (class_exists($class)) {
                 $objArray = new $class();
-                $parameters[$plugin] = $objArray->getPluginParameters();
+                $parameters[$plugin] = $objArray->getParameters();
             }
         }
         return $parameters;

@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_News extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
+    public function getModname()
     {
-        return ModUtil::available('News');
+        return 'News';
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('News');
     }
 
-    public function getModname()
+    public function getDescription()
     {
-        return 'News';
+        return $this->__('Displays a list of the latest news articles.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

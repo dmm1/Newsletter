@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_Content extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
+    public function getModname()
     {
-        return ModUtil::available('Content');
+        return 'Content';
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('New Content items');
     }
 
-    public function getModname()
+    public function getDescription()
     {
-        return 'Content';
+        return $this->__('Displays a list of the latest pages');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

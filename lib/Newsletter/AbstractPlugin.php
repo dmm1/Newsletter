@@ -14,11 +14,11 @@
 abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
 {
     /**
-     * Translation domain.
+     * Plugin name
      *
      * @var string
      */
-    protected $domain;
+    protected $name;
     /**
      * Module name
      *
@@ -31,6 +31,24 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      * @var string
      */
     protected $modinfo;
+    /**
+     * Plugin name
+     *
+     * @var string
+     */
+    protected $displayName;
+    /**
+     * Title in newsletter
+     *
+     * @var string
+     */
+    protected $title;
+    /**
+     * Description in admin interface
+     *
+     * @var string
+     */
+    protected $description;
     /**
      * Max number of items to display
      *
@@ -49,18 +67,20 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      * @var boolean
      */
     protected $enableML;
-    /**
-     * Plugin name
-     *
-     * @var string
-     */
-    protected $pluginname;
+    
+    //Translation
     /**
      * Language
      *
      * @var string
      */
     protected $lang;
+    /**
+     * Translation domain.
+     *
+     * @var string
+     */
+    protected $domain;
 
     /**
      * Constructor.
@@ -69,28 +89,55 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      */
     public function __construct($lang=null)
     {
-        $parts = explode('_', get_class($this));
+        $class = get_class($this);
+        $parts = explode('_', $class);
 
+        ////Plugin name
+        $this->name = $parts[2];
+
+        ////Modname and modinfo
+        //$modname is empty if the function is not available in the plugin class.
+        //It defaults to the module the class is located in ($parts[0]).
+        //This functionality is only usefull for the Newsletter module itself, providing plugins for other modules.
         $modname = $this->getModname();
         $this->modname = (empty($modname)) ? $parts[0] : $modname;
-        $this->pluginname = $parts[2];
-        $this->nItems = (int)ModUtil::getVar('Newsletter', 'plugin_' . $this->pluginname . '_nItems', 1);
+        //modinfo
+        $this->modinfo = ModUtil::getInfoFromName($this->modname);
+
+        ////Display name, title
+        //Display name is used in admin interface, defaults to the filename.
+        $displayName = $this->getDisplayName();
+        $this->displayName = (empty($displayName)) ? $parts[2] : $displayName;
+        //Title is used as title in the newsletter, defaults to display name.
+        $title = $this->getTitle();
+        $this->title = (empty($title)) ? $this->displayName : $title;
+
+        ////Plugin vars
+        $this->nItems = (int)ModUtil::getVar('Newsletter', 'plugin_' . $class . '_nItems', 1);
+        
+        ////Module vars
         $this->userNewsletter= (int)ModUtil::getVar('Newsletter', 'newsletter_userid', 1);
         $this->enableML = (bool)ModUtil::getVar('Newsletter', 'enable_multilingual', false);
-        $this->modinfo = ModUtil::getInfoFromName($this->modname);
-        $this->lang = (isset($lang)) ? $lang : System::getVar('language_i18n', 'en');
         
+        ////Language
+        $this->lang = (isset($lang)) ? $lang : System::getVar('language_i18n', 'en');
+        ZLanguage::setlocale($this->lang);
         $this->domain = ZLanguage::getModuleDomain($this->modname);
     }
     
     public function pluginAvailable()
     {
-        return false;
+        return ModUtil::available($this->modname);
     }
     
-    public function getPluginName()
+    public function getDisplayName()
     {
-        return $this->pluginname;
+        return $this->displayName;
+    }
+    
+    public function getName()
+    {
+        return $this->name;
     }
     
     public function getModname()
@@ -98,26 +145,32 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         return $this->modname;
     }
     
-    public function getPluginTitle()
+    public function getTitle()
     {
-        return $this->pluginname;
+        return $this->title;
     }
 
-    // to be implenented by derived classes
-    public function getPluginData($lang=null, $filtAfterDate=null)
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    
+    public function getData($filtAfterDate=null)
     {
         return array();
     }
 
-    public function setPluginParameters()
+    public function setParameters()
     {
         return;
     }
 
-    public function getPluginParameters()
+    public function getParameters()
     {
         return array ('number' => 0, 'param' => array());
     }
+
+    //Translation section
 
     /**
      * Translate.

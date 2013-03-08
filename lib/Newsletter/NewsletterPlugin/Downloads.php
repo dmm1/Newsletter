@@ -13,19 +13,20 @@
 
 class Newsletter_NewsletterPlugin_Downloads extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
-    {
-        return ModUtil::available('Downloads');
-    }
-
-    public function getPluginTitle()
-    {
-        return $this->__('Latest downloads');
-    }
 
     public function getModname()
     {
         return 'Downloads';
+    }
+
+    public function getTitle()
+    {
+        return $this->__('Latest downloads');
+    }
+    
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest downloads.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

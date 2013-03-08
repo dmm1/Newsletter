@@ -13,20 +13,21 @@
 
 class Newsletter_NewsletterPlugin_Pages extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
-    {
-        return ModUtil::available('Pages');
-    }
-
-    public function getPluginTitle()
-    {
-        return $this->__('Recently added documents');
-    }
-    
-    public function getPluginModule()
+    public function getModname()
     {
         return 'Pages';
     }
+
+    public function getTitle()
+    {
+        return $this->__('Recently added documents');
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest pages.');
+    }
+
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
     public function getPluginData($filtAfterDate=null)

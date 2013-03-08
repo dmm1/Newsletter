@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_PostCalendar extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
+    public function getModname()
     {
-        return ModUtil::available('PostCalendar');
+        return 'PostCalendar';
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('Latest events');
     }
 
-    public function getModname()
+    public function getDescription()
     {
-        return 'PostCalendar';
+        return $this->__('Displays a list of the latest events.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

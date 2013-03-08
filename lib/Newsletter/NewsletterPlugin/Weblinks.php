@@ -13,21 +13,21 @@
 
 class Newsletter_NewsletterPlugin_Weblinks extends Newsletter_AbstractPlugin
 {
-
-    public function pluginAvailable()
-    {
-        return ModUtil::available('Weblinks');
-    }
-
-    public function getPluginTitle()
-    {
-        return $this->__('Latest web links');
-    }
-
     public function getModname()
     {
         return 'Weblinks';
     }
+
+    public function getitle()
+    {
+        return $this->__('Latest web links');
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest web links.');
+    }
+
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
     public function getPluginData($filtAfterDate=null)

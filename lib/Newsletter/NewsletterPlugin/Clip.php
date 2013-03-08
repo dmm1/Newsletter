@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
+    public function getModname()
     {
-        return ModUtil::available('Clip');
+        return 'Clip';
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('Recently added publications');
     }
 
-    public function getModname()
+    public function getDescription()
     {
-        return 'Clip';
+        return $this->__('Displays a list of the latest publications.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
@@ -60,7 +60,7 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
         return $items;
     }
 
-    public function setPluginParameters()
+    public function setParameters()
     {
         // Clip TIDs
         $tids = FormUtil::getPassedValue('ClipTIDs', array(), 'POST');
@@ -73,7 +73,7 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
         ModUtil::setVar('Newsletter', 'ClipArgs', $args);
     }
 
-    public function getPluginParameters()
+    public function getParameters()
     {
         $pubtypes = array();
         if (ModUtil::available('Clip') && ModUtil::loadApi('Clip')) {

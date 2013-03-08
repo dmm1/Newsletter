@@ -18,9 +18,14 @@ class Newsletter_NewsletterPlugin_NewMembers extends Newsletter_AbstractPlugin
         return true;
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('Newest members');
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a table of new Newsletter subscribers.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

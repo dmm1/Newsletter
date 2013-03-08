@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_AdvancedPolls extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
+    public function getModname()
     {
-        return ModUtil::available('AdvancedPolls');
+        return 'AdvancedPolls';
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('Latest polls');
     }
 
-    public function getModname()
+    public function getDescription()
     {
-        return 'AdvancedPolls';
+        return $this->__('Displays a list of the latest polls. Supported are version 2.0.1 and >= 3.0.0.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss

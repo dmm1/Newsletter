@@ -13,19 +13,19 @@
 
 class Newsletter_NewsletterPlugin_Dizkus extends Newsletter_AbstractPlugin
 {
-    public function pluginAvailable()
+    public function getModname()
     {
-        return ModUtil::available('Dizkus');
+        return 'Dizkus';
     }
 
-    public function getPluginTitle()
+    public function getTitle()
     {
         return $this->__('Latest forum posts');
     }
 
-    public function getModname()
+    public function getDescription()
     {
-        return 'Dizkus';
+        return $this->__('Displays a list of the latest forum topics.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
