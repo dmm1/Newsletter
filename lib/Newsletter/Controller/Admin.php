@@ -106,6 +106,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                    ->assign('objectArray', $data);
 
         if ($ot == 'ShowPreview') {
+            $language = FormUtil::getPassedValue('language', 'en', 'GETPOST');
+            ZLanguage::setLocale($language);
             switch ($format) {
                 case 1:
                     $content = $this->view->fetch('output/text.tpl');

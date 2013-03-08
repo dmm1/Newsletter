@@ -61,8 +61,8 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
         $enable_multilingual       = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue('language', '', 'GETPOST') : SessionUtil::getVar('lang'); // custom var
-        $newsletterDataObjectArray = new Newsletter_DBObject_NewsletterDataArray();
-        $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData($this->_objLang);              // custom var
+        $newsletterDataObjectArray = new Newsletter_DBObject_NewsletterDataArray($this->_objLang);
+        $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData();              // custom var
 
         $this->_objSendType       = FormUtil::getPassedValue('sendType', '', 'GETPOST');                          // custom var
         $this->_objUpdateSendDate = FormUtil::getPassedValue('updateSendDate', '', 'GETPOST');                    // custom var
