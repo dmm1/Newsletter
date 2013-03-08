@@ -171,6 +171,13 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         return array ('number' => 0, 'param' => array());
     }
 
+    public function getModuleWherePlacedIn()
+    {
+        $class = get_class($this);
+        $parts = explode('_', $class);
+        return $parts[0];
+    }
+
     /**
      * The setPluginVar method sets a Newsletter plugin variable.
      *

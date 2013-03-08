@@ -98,8 +98,7 @@ Event.observe(window, 'load', function() {
             </div>
             {/if}
             {if $plugin_parameters.$plugin.number ne 0}
-                {nlPluginName plugin=$plugin assign='name'}
-                {include file="plugin_config/`$name`.tpl"}
+                {nlPluginIncludeConfig plugin=$plugin}
             {/if}
         </div>
     </fieldset>
