@@ -77,7 +77,6 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
                 $data['nItems'] += (is_array($data[$plugin]) ? count($data[$plugin]) : 1);
             }
         }
-
         $this->_objData = $data;
         return $this->_objData;
     }

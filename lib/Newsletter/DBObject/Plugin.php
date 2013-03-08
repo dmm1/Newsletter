@@ -27,7 +27,7 @@ class Newsletter_DBObject_Plugin extends DBObject
             return LogUtil::registerError(__f('Unable to load class [%s]', 'Newsletter_AbstractPlugin', $dom), null, $url);
         }
 
-        $pluginClasses = Newsletter_Util::getPlugins();
+        $pluginClasses = Newsletter_Util::getPluginClasses();
 
         // active plugins
         foreach ($this->_objData as $k => $dat) {

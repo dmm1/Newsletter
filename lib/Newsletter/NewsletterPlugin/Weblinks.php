@@ -18,7 +18,7 @@ class Newsletter_NewsletterPlugin_Weblinks extends Newsletter_AbstractPlugin
         return 'Weblinks';
     }
 
-    public function getitle()
+    public function getTitle()
     {
         return $this->__('Latest web links');
     }

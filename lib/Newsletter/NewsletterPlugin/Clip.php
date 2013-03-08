@@ -65,12 +65,12 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
         // Clip TIDs
         $tids = FormUtil::getPassedValue('ClipTIDs', array(), 'POST');
 
-        ModUtil::setVar('Newsletter', 'ClipTIDs', array_keys($tids));
+        $this->setPluginVar('TIDs', array_keys($tids));
 
         // Additional arguments
         $args = FormUtil::getPassedValue('ClipArgs', array(), 'POST');
 
-        ModUtil::setVar('Newsletter', 'ClipArgs', $args);
+        $this->setPluginVar('Args', $args);
     }
 
     public function getParameters()
@@ -80,12 +80,12 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
             $pubtypes = Clip_Util::getPubtype(-1)->toArray();
         }
 
-        $active = ModUtil::getVar ('Newsletter', 'ClipTIDs', array());
+        $active = $this->getPluginVar('TIDs', array());
         foreach ($pubtypes as $k => $v) {
             $pubtypes[$k]['nwactive'] = in_array($k, $active);
         }
 
-        $args = ModUtil::getVar('Newsletter', 'ClipArgs', array());
+        $args = $this->getPluginVar('Args', array());
 
         return array('number' => 1,
                      'param'  => array(
@@ -97,8 +97,8 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
 
     private function _getClipItems()
     {
-        $tids = ModUtil::getVar('Newsletter', 'ClipTIDs', array());
-        $args = ModUtil::getVar('Newsletter', 'ClipArgs', array());
+        $tids = $this->getPluginVar('TIDs', array());
+        $args = $this->getPluginVar('Args', array());
         //$types = array('txt', 'htm');
         $types = array('txt');
 

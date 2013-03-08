@@ -13,9 +13,9 @@
  * @param        array    $string     the contents to transform
  * @return       string   the modified output
  */
-function smarty_function_nlTitle($params, Zikula_View $view)
+function smarty_function_nlPluginTitle($params, Zikula_View $view)
 {
-    $className = $params['pluginName'];
+    $className = $params['plugin'];
     $class = new $className();
     
     $result = $class->getTitle();

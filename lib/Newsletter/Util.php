@@ -20,7 +20,7 @@ class Newsletter_Util
         foreach ($plugins as $k=>$plugin) {
             $active = ModUtil::getVar('Newsletter', "plugin_$plugin", false);
             if (!$active) {
-            #    unset($plugins[$k]);
+                unset($plugins[$k]);
             }
         }
         return $plugins;

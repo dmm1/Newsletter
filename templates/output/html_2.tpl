@@ -45,10 +45,10 @@
                         {/if}
                         
                         {assign var='includeFile' value='output/Html_2_items.tpl'}
-                        {newsletter_active_plugins assign='plugins'}
+                        {nlActivePlugins assign='plugins'}
                         {foreach from=$plugins item='plugin'}
                             {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
-                                {include file=$includeFile pluginName=$plugin}
+                                {include file=$includeFile plugin=$plugin}
                             {/if}
                         {/foreach}
                     </td>

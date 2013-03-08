@@ -170,8 +170,19 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         return array ('number' => 0, 'param' => array());
     }
 
-    //Translation section
+    ////Plugin variables section
+    
+    final protected function setPluginVar($name, $value)
+    {
+        ModUtil::setVar('Newsletter', 'plugin_' . get_class($this) . '_' . $name, $value); 
+    }
+    
+    final protected function getPluginVar($name, $default=null)
+    {
+        return ModUtil::getVar('Newsletter', 'plugin_' . get_class($this) . '_' . $name, $default); 
+    }
 
+    ////Translation section
     /**
      * Translate.
      *
