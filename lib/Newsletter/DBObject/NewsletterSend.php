@@ -59,10 +59,11 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
             return LogUtil::registerError(__f('Unable to load array class [%s]', 'newsletter_data', $dom));
         }
 
+        $langPost                  = FormUtil::getPassedValue('language', null, 'GETPOST');
         $enable_multilingual       = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
-        $this->_objLang            = $enable_multilingual ? FormUtil::getPassedValue('language', '', 'GETPOST') : SessionUtil::getVar('lang'); // custom var
-        $newsletterDataObjectArray = new Newsletter_DBObject_NewsletterDataArray($this->_objLang);
-        $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData();              // custom var
+        $this->_objLang            = ($enable_multilingual && !empty($langPost)) ?  : System::getVar('language_i18n', 'en'); // custom var
+        $newsletterDataObjectArray = new Newsletter_DBObject_NewsletterDataArray();
+        $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData($this->_objLang);              // custom var
 
         $this->_objSendType       = FormUtil::getPassedValue('sendType', '', 'GETPOST');                          // custom var
         $this->_objUpdateSendDate = FormUtil::getPassedValue('updateSendDate', '', 'GETPOST');                    // custom var
@@ -209,7 +210,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
         // get elegible users
         $objectArray = new Newsletter_DBObject_UserArray();
-        $users = $objectArray->getSendable($this->_objLang);
+        $users = $objectArray->getSendable(null); //Get users of all languages
         if (!$users) {
             return (__('No users were available to send the newsletter to', $dom));
         }
@@ -239,7 +240,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $archiveObj = new Newsletter_DBObject_Archive();
         $archive    = $archiveObj->getRecent ();
         if ($archive) {
-            $newArchiveTime = $archive['date'];                        
+            $newArchiveTime = $archive['date'];
             $matched = true;
         } else {
             $newArchiveTime = DateUtil::getDatetime();
@@ -319,14 +320,16 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $personalize = ModUtil::getVar('Newsletter','personalize_email', false);
 
         $view = Zikula_View::getInstance('Newsletter', $personalize ? false : true, $personalize ? null : $cacheID);
+        ZLanguage::setLocale($user['lang']);
+
+        $dataArray = new Newsletter_DBObject_NewsletterDataArray();
 
         $view->assign('show_header', '1');
         $view->assign('site_url', System::getBaseUrl());
         $view->assign('site_name', System::getVar('sitename'));
         $view->assign('user_name', $personalize ? $user['name'] : '');
         $view->assign('user_email', $personalize ? $user['email'] : '');
-        $view->assign('objectArray', $this->_objNewsletterData);
-
+        $view->assign('objectArray', $dataArray->getNewsletterData($user['lang']));
         return $view->fetch($tpl);
     }
 

@@ -72,14 +72,14 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
         return implode (' AND ', $wheres);
     }
 
-    function getSendable($language='')
+    function getSendable($language=null)
     {
         $allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
         $default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
 
         $where = "(nlu_active=1 AND nlu_approved=1)";
-        if ($language) {
-            $where = "(nlu_lang='$language' OR nlu_lang='')";
+        if (isset($language)) {
+            $where .= " AND (nlu_lang='$language' OR nlu_lang='')";
         }
 
         if (!$allow_frequency_change) {

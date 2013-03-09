@@ -29,7 +29,7 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
         $data     = array();
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $plugins  = Newsletter_Util::getActivePlugins();
-        $language = FormUtil::getPassedValue('language', $lang, 'GETPOST'); //This is set in case of preview.
+        $language = (empty($lang)) ? FormUtil::getPassedValue('language', System::getVar('language_i18n', 'en'), 'GETPOST') : $lang; //This is set in case of preview.
 
         /*
         FIXME: Language management in gettext is quite different, have to process one execution per language now
