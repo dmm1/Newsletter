@@ -10,7 +10,7 @@
 {$objectArray.Newsletter_NewsletterPlugin_NewsletterMessage|strip|replace:'<br />':"\n"|strip_tags|html_entity_decode}
 {/if}
 {strip}
-{assign var='includeFile' value='output/text_item.tpl'}
+{assign var='includeFile' value='output/items/text.tpl'}
 {nlActivePlugins assign='plugins'}
 {foreach from=$plugins item='plugin'}
     {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}

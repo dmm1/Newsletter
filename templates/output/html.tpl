@@ -269,7 +269,7 @@ ul li {
 			</table></div>
 			{/if}
 			
-            {assign var='includeFile' value='output/Html_items.tpl'}
+            {assign var='includeFile' value='output/items/html.tpl'}
             {nlActivePlugins assign='plugins'}
             {foreach from=$plugins item='plugin'}
                 {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}

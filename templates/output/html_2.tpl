@@ -44,7 +44,7 @@
                             <div style="margin-top: 1em; max-width: 560px;"></div>
                         {/if}
                         
-                        {assign var='includeFile' value='output/Html_2_items.tpl'}
+                        {assign var='includeFile' value='output/items/html_2.tpl'}
                         {nlActivePlugins assign='plugins'}
                         {foreach from=$plugins item='plugin'}
                             {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
