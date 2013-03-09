@@ -211,7 +211,7 @@ ul li {
 	}
 
 }
-</style>	
+</style>
 
 </head>
 {lang assign="currLang"}
@@ -243,160 +243,39 @@ ul li {
 	<tr>
 		<td></td>
 		<td class="container" align="" bgcolor="#FFFFFF">
-			
-                      
-                      <br />
-                   
+            <br />
 			<!-- content -->
 			{if (isset($user_name) && $user_name)}
 			<div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-			<table bgcolor="">
-				<tr>
-					<td>
-						<p class="callout"><center><strong>{gt text="Hello"} {$user_name}</strong></center></p>
-					</td>
-				</tr>
-			</table></div>
+			    <table bgcolor="">
+				    <tr>
+					    <td>
+						    <p class="callout"><center><strong>{gt text="Hello"} {$user_name}</strong></center></p>
+					    </td>
+				    </tr>
+			    </table>
+			</div>
 			 {/if}
 			<!-- /content -->
 			<!-- content -->
-			{if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
+			{if (isset($objectArray.Newsletter_NewsletterPlugin_NewsletterMessage) && $objectArray.Newsletter_NewsletterPlugin_NewsletterMessage)}
 			<div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
 			<table bgcolor="">
 				<tr>
 					<td>
-						<p class="callout">{$objectArray.NewsletterMessage|safehtml}</p>					</p>
+						<p class="callout">{$objectArray.Newsletter_NewsletterPlugin_NewsletterMessage|safehtml}</p>
 					</td>
 				</tr>
 			</table></div>
 			{/if}
-			<!-- /content -->
-			<!-- content -->
-			{if (isset($objectArray.News) && $objectArray.News)}
-			<div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="News"}</h2></div>
-			{foreach from=$objectArray.News item="item" name="loop"}
-			<div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-			<table bgcolor="">
-				<tr>
-                    {if $modvars.News.picupload_enabled AND $item.pictures gt 0}
-					<td class="small" width="20%" style="vertical-align: top; padding-right:10px;"> <a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}"><!--[*<span></span>*]--><img src="{$site_url}{$modvars.News.picupload_uploaddir}/pic_sid{$item.sid}-0-thumb2.jpg" alt="" /></a>
-                    </td>
-                    {/if}
-					<td>
-						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}" title="{$item.title|safehtml}">{$item.title|safehtml}</a></h4>
-						<p class="">{$item.hometext|nlTreatContent:'News'}</p>
-						<a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;	padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="News" type="user" func="display" sid=$item.sid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>						
-					</td>
-				</tr>
-			</table></div>
-			{/foreach}
-			{/if}
-			<!-- /content -->
 			
-			{if (isset($objectArray.NewMembers) && $objectArray.NewMembers)}
-                <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="Welcome New Members"}</h2></div>
-                    <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-					<table bgcolor="">
-                        <tr>
-                          <th>{gt text="Username"}</th>
-                          <th>{gt text="Register Date"}</th>
-                        </tr>
-                        {modavailable modname="Profile" assign="profileAvailable"}
-                        {foreach from=$objectArray.NewMembers item="item" name="loop"}
-                          <tr>
-                            <td>{if $profileAvailable}<h5><a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></h5>{/if}</td>
-                            <td>{$item.user_regdate}</td>
-                          </tr>
-                        {/foreach}
-                      </table></div>
-                    {/if}
-
-                    {if (isset($objectArray.Content) && $objectArray.Content)}
-                      <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="New Content Items"}</h2></div>
-                       {foreach from=$objectArray.Content item="item" name="loop"}
-                        <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Content" type="user" func="view" pid=$item.id newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h4>
-                        
-						</div>
-					  {/foreach}
-                      <br />
-                    {/if}
-
-                    {if (isset($objectArray.Pages) && $objectArray.Pages)}
-                       <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="Recently Added Documents"}</h2></div>
-                      
-                      {foreach from=$objectArray.Pages item="item" name="loop"}
-					  <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-                        <h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{$item.title|safehtml}</a></h4>
-                        <p>{$item.content|nlTreatContent:'Pages'}</p>
-                        <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Pages" type="user" func="display" pageid=$item.pageid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
-                        
-                     </div>
-					 {/foreach} 
-                    {/if}
-
-                    {if (isset($objectArray.EZComments) && $objectArray.EZComments)}        
-                       <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="Latest Comments"}</h2></div>
-                        {foreach from=$objectArray.EZComments item="item" name="loop"}
-					    <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-                        <h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{$item.url}&newlang={$nllang}">{$item.subject}</a></h4>
-                        <p>{$item.comment|nlTreatContent:'EZComments'}</p>
-                        <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{$item.url}">{gt text="read more"} &raquo;</a>
-                         
-                      </div>
-					  {/foreach} <br />
-                    {/if}
-
-                    {if (isset($objectArray.Dizkus) && $objectArray.Dizkus)}        
-                       <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="Latest Forum Posts"}</h2></div>
-                      
-                      {foreach from=$objectArray.Dizkus item="item" name="loop"}
-                        <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Dizkus" type="user" func="viewtopic" topic=$item.topic_id newlang=$nllang fqurl=true}">{$item.topic_title}</a></h4>
-                        <p>{$item.username}<br />{$item.post_text|nlTreatContent:'Dizkus'}</p>
-						</div>
-					  {/foreach}                    
-                    {/if}
-
-                    {if (isset($objectArray.Clip) && $objectArray.Clip)}
-                      <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="Recently Added Publications"}</h2></div>
-                      
-                      {foreach from=$objectArray.Clip item="item" name="loop"}
-                        <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{$item.core_title|safehtml}</a></h4>
-                        <p>{$item.content|nlTreatContent:'Clip'}</p>
-                        <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Clip" type="user" func="viewpub" tid=$item.core_tid pid=$item.core_pid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
-                        
-						</div>
-					 {/foreach}
-                      <br />
-                    {/if}
-
-                    {if (isset($objectArray.Weblinks) && $objectArray.Weblinks)}        
-                      <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="Latest web links"}</h2></div>
-                      
-                      {foreach from=$objectArray.Weblinks item="item" name="loop"}
-					  <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-                        <h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{$item.url}">{$item.title}</a></h4>
-                        <p>{$item.description|nlTreatContent:'Weblinks'}</p>
-                        <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Weblinks" type="user" func="viewlinkdetails" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
-						</div>
-					 {/foreach}
-                    {/if}
-
-                    {if (isset($objectArray.Downloads) && $objectArray.Downloads)}        
-                      <div class="title" style="background-color:#a8defd;padding-left:12px;margin-bottom:-14px;-webkit-border-radius: 4px 4px 0px 0px;border-radius: 4px 4px 0px 0px;"><h2 style="margin-top:12px;color:#fff;">{gt text="Latest downloads"}</h2></div>                      
-                      {foreach from=$objectArray.Downloads item="item" name="loop"}
-                        <div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-						<h4 style="font-weight:500; font-size: 23px;color:#fff;"><a href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{$item.title}</a></h4>
-                        <p>{$item.description|nlTreatContent:'Downloads'}</p>
-                        <a class="btn" style="text-decoration:none;color: #4291bf;background-color: #fff;	padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{modurl modname="Downloads" type="user" func="display" lid=$item.lid newlang=$nllang fqurl=true}">{gt text="read more"} &raquo;</a>
-                        </div>
-                      {/foreach}
-                      <br />
-                    {/if}
-			
-			<!--- remove social section if not needed -->
+            {assign var='includeFile' value='output/Html_items.tpl'}
+            {nlActivePlugins assign='plugins'}
+            {foreach from=$plugins item='plugin'}
+                {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
+                    {include file=$includeFile plugin=$plugin}
+                {/if}
+            {/foreach}
 			<div class="content" style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
 				<table bgcolor="" width="100%">
 					<tr>
