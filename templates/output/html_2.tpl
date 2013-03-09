@@ -26,7 +26,7 @@
                     <!-- Use Username or replace it with 32x32 Logo -->
                     <td style="text-align: right;">
                     {if (isset($user_name) && $user_name)}
-                        <h2>{gt text="Hello"} {$user_name}</h2>
+                        <h2 style="padding: 0px; margin: 5px 20px; font-size: 16px; line-height: 1; font-weight: normal; color: #464646; font-family: Arial, sans-serif;">{gt text="Hello"} {$user_name}</h2>
                     {else}
                         {img modname='Newsletter' src="newsletter_images/logo.png" style="margin: 5px 20px 5px 0; vertical-align: middle; vertical-align: middle;"}
                     {/if}
