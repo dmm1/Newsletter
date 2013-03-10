@@ -13,18 +13,18 @@
 
 class Newsletter_DBObject_Message extends DBObject 
 {
-    function Newsletter_DBObject_Message($init='P', $key=null, $field=null)
+    public function __construct($init='P', $key=null, $field=null)
     {
         $this->_objPath = 'message';
         $this->_init($init, $key, $field);
     }
 
-    function get($key=0, $field='id', $force=false)
+    public function get($key=0, $field='id', $force=false)
     {
         return array();
     }
 
-    function save()
+    public function save()
     {
         $data = $this->_objData;
         ModUtil::setVar('Newsletter', 'message', $data['text']);

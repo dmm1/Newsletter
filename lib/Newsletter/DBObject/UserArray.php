@@ -13,7 +13,7 @@
 
 class Newsletter_DBObject_UserArray extends DBObjectArray 
 {
-    function Newsletter_DBObject_UserArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -32,7 +32,7 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
         $this->_init($init, $where);
     }
 
-    function cleanFilter($filter=array())
+    public function cleanFilter($filter=array())
     {
         $filter['active']    =      (isset($filter['active'])    ? $filter['active']    : -1);
         $filter['approved']  =      (isset($filter['approved'])  ? $filter['approved']  : -1);
@@ -44,7 +44,7 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
         return $filter;
     }
 
-    function genFilter($filter=array())
+    public function genFilter($filter=array())
     {
         $wheres = array();
 
@@ -72,7 +72,7 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
         return implode (' AND ', $wheres);
     }
 
-    function getSendable($language=null)
+    public function getSendable($language=null)
     {
         $allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
         $default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
@@ -115,7 +115,7 @@ class Newsletter_DBObject_UserArray extends DBObjectArray
         return $this->objData;
     }
 
-    function selectPostProcess($data=null) 
+    public function selectPostProcess($data=null) 
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 

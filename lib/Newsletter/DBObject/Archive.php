@@ -13,7 +13,7 @@
 
 class Newsletter_DBObject_Archive extends DBObject 
 {
-    function Newsletter_DBObject_Archive ($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
         $this->_objType          = 'newsletter_archives';
         $this->_objColumnPrefix  = 'nla';
@@ -22,7 +22,7 @@ class Newsletter_DBObject_Archive extends DBObject
         $this->_init ($init, $key, $field);
     }
 
-    function delete ($data=null)
+    public function delete ($data=null)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -37,14 +37,14 @@ class Newsletter_DBObject_Archive extends DBObject
         return $this->_objData;
     }
 
-    function getRecent ()
+    public function getRecent ()
     {
         $checkDate = DateUtil::getDatetime_NextWeek (-1);
         $where     = "DATEDIFF(nla_date, '$checkDate') > 0";
         return $this->getWhere ($where);
     }
 
-    function prune ($data=null)
+    public function prune ($data=null)
     {
         $archive_expire = ModUtil::getVar('Newsletter','archive_expire', 0);
         if (!$archive_expire) {
@@ -56,7 +56,7 @@ class Newsletter_DBObject_Archive extends DBObject
         return DBUtil::deleteWhere ($this->_objType, $where);
     }
 
-    function deletebyid($id = 0)
+    public function deletebyid($id = 0)
     {
         if ($id > 0) {
             $where = "nla_id = ".$id;
@@ -66,12 +66,12 @@ class Newsletter_DBObject_Archive extends DBObject
         return false;
     }
 
-    function getmaxid()
+    public function getmaxid()
     {
         return (int)DBUtil::selectFieldMax('newsletter_archives', 'nla_id');
     }
 
-    function getnextid()
+    public function getnextid()
     {
         $result = DBUtil::executeSQL("SHOW TABLE STATUS LIKE 'newsletter_archives'");
         if ($result) {
@@ -83,7 +83,7 @@ class Newsletter_DBObject_Archive extends DBObject
         return false;
     }
 
-    function setnextid($id = 0)
+    public function setnextid($id = 0)
     {
         if ($id > 0) {
             DBUtil::executeSQL("ALTER TABLE `newsletter_archives` AUTO_INCREMENT = ".$id);

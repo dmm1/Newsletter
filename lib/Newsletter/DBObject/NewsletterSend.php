@@ -16,7 +16,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
     var $_objSendType;
     var $_objUpdateSendDate;
 
-    function Newsletter_DBObject_NewsletterSend($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
         $this->_objType           = 'generic';
         $this->_objColumnPrefix   = 'nlu';
@@ -39,7 +39,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
     }
 
     // doesn't save user info but allows us to use the standard API through Newsletter_userform_edit()
-    function insert($args=array())
+    public function insert($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -95,7 +95,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return $this->_sendAPI($args);
     }
 
-    function _sendTest()
+    public function _sendTest()
     {
         $testsendEmail = FormUtil::getPassedValue('testsend_email', 0, 'GETPOST');
         $format        = FormUtil::getPassedValue('format', 1, 'GETPOST');
@@ -107,7 +107,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return $this->_sendNewsletter($user);
     }
 
-    function _sendManual($args=array())
+    public function _sendManual($args=array())
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -135,7 +135,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return true;
     }
 
-    function _sendManual_archive($args=array(), $checkRecent = true) // send Newsletter & make an archive
+    public function _sendManual_archive($args=array(), $checkRecent = true) // send Newsletter & make an archive
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -193,7 +193,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return true;
     }
 
-    function _sendAPI($args=array()) // API
+    public function _sendAPI($args=array()) // API
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -271,7 +271,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return true;
     }
 
-    function _setStartexecution() 
+    public function _setStartexecution() 
     {
         // keep a record of how many emails were sent today
         $maxPerHour = ModUtil::getVar('Newsletter', 'max_send_per_hour', 0);
@@ -298,7 +298,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return true;
     }
 
-    function _setEndexecution($nSent) 
+    public function _setEndexecution($nSent) 
     {
         ModUtil::setVar('Newsletter', 'end_execution_time', (float)array_sum(explode(' ', microtime())));
         ModUtil::setVar('Newsletter', 'last_execution_count', $nSent);
@@ -308,7 +308,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         }
     }
 
-    function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=false) 
+    public function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=false) 
     {
         switch ($user['type']) {
             case 1:  $tpl = 'output/text.tpl'; $html = false; break;
@@ -333,7 +333,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return $view->fetch($tpl);
     }
 
-    function _sendNewsletter($user, $message = '', $html = false, $cacheID = null)
+    public function _sendNewsletter($user, $message = '', $html = false, $cacheID = null)
     {
         if ($message == '') {
             $message = $this->_getNewsletterMessage($user, $cacheID, false, $html); // $html is output, defaults to html
@@ -380,7 +380,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
     // creates new record in newsletter archive table
     // in $newArchiveId return new archive Id
-    function _archiveNewsletter($newArchive, $newArchiveTime, &$newArchiveId = 0)
+    public function _archiveNewsletter($newArchive, $newArchiveTime, &$newArchiveId = 0)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 

@@ -19,12 +19,12 @@ if (!class_exists('Newsletter_DBObject_User')) {
 
 class Newsletter_DBObject_UserActive extends Newsletter_DBObject_User 
 {
-    function Newsletter_DBObject_UserActive ($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
-        $this->Newsletter_DBObject_User($init, $key, $field);
+        parent::__construct($init, $key, $field);
     }
 
-    function save()
+    public function save()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 

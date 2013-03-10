@@ -13,7 +13,7 @@
 
 class Newsletter_DBObject_PluginArray extends DBObjectArray 
 {
-    public function Newsletter_DBObject_PluginArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
         $this->_init();
     }

@@ -13,13 +13,13 @@
 
 class Newsletter_DBObject_ImportUsers extends DBObject 
 {
-    function Newsletter_DBObject_ImportUsers ($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
         $this->_objPath = 'import';
         $this->_init ($init, $key, $field);
     }
 
-    function save()
+    public function save()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 

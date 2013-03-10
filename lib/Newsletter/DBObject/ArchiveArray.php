@@ -13,7 +13,7 @@
 
 class Newsletter_DBObject_ArchiveArray extends DBObjectArray 
 {
-    function Newsletter_DBObject_ArchiveArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
         $this->_objType          = 'newsletter_archives';
         $this->_objColumnPrefix  = 'nla';
@@ -23,7 +23,7 @@ class Newsletter_DBObject_ArchiveArray extends DBObjectArray
         $this->_init($init, $where);
     }
 
-    function get ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    public function get ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         if (empty($sort)) {
             $sort  = 'id DESC';

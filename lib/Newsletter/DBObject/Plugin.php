@@ -13,7 +13,7 @@
 
 class Newsletter_DBObject_Plugin extends DBObject 
 {
-    public function Newsletter_DBObject_Plugin($init='P', $key=null, $field=null)
+    public function __construct($init='P', $key=null, $field=null)
     {
         $this->_objPath = 'plugin';
         $this->_init($init, $key, $field);

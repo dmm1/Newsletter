@@ -19,12 +19,12 @@ if (!class_exists('Newsletter_DBObject_User')) {
 
 class Newsletter_DBObject_UserDelete extends Newsletter_DBObject_User 
 {
-    function Newsletter_DBObject_UserDelete($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
-        $this->Newsletter_DBObject_User($init, $key, $field);
+        parent::__construct($init, $key, $field);
     }
 
-    function save()
+    public function save()
     {
         return $this->delete();
     }

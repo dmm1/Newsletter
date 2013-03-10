@@ -13,12 +13,12 @@
 
 class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray 
 {
-    function Newsletter_DBObject_NewsletterDataArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
         $this->_init($init, $where);
     }
 
-    function getNewsletterData($lang=null)
+    public function getNewsletterData($lang=null)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 

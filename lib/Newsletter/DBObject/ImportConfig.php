@@ -13,13 +13,13 @@
 
 class Newsletter_DBObject_ImportConfig extends DBObject 
 {
-    function Newsletter_DBObject_ImportConfig($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
         $this->_objPath = 'import';
         $this->_init ($init, $key, $field);
     }
 
-    function save()
+    public function save()
     {
         foreach ($this->_objData as $k=>$v) {
             ModUtil::setVar('Newsletter', $k, $v);
