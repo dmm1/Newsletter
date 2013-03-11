@@ -39,13 +39,15 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
 
         // Simplify data to be used in template
         $items = array();
-        foreach ($itemsFull['txt'] as $itemPublist) {
-            foreach ($itemPublist as $Publication) {
-                //if ($filtAfterDate && $Publication['core_publishdate'] < $filtAfterDate) {
-                if ($filtAfterDate && $Publication['cr_date'] < $filtAfterDate) {
-                    // filter by date is given, remove older data
-                } else {
-                    $items[] = $Publication;
+        if ($itemsFull) {
+            foreach ($itemsFull['txt'] as $itemPublist) {
+                foreach ($itemPublist as $Publication) {
+                    //if ($filtAfterDate && $Publication['core_publishdate'] < $filtAfterDate) {
+                    if ($filtAfterDate && $Publication['cr_date'] < $filtAfterDate) {
+                        // filter by date is given, remove older data
+                    } else {
+                        $items[] = $Publication;
+                    }
                 }
             }
         }

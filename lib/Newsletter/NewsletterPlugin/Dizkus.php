@@ -61,7 +61,6 @@ class Newsletter_NewsletterPlugin_Dizkus extends Newsletter_AbstractPlugin
             return array();
         }
 
-        $whereforum = ' forum_id IN (' . DataUtil::formatForStore(implode(',', $allowedforums)) . ') ';
         $sql = 'SELECT * FROM dizkus_topics WHERE forum_id IN (' . DataUtil::formatForStore(implode(',', $allowedforums)) . ') ';
         if ($filtAfterDate) {
             $sql .= " AND topic_time>='".$filtAfterDate."'";

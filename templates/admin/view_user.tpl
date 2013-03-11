@@ -117,7 +117,7 @@
                 <span class="z-itemcell z-w02">
                     &nbsp;<input type="checkbox" onclick="checkAllFields(1);" id="checkAll" />
                 </span>
-                <span class="z-itemcell z-w02">
+                <span class="z-itemcell z-w05">
                     {php}$this->_tpl_vars['filter']['sort'] = 'id';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='ID'}</a>
                 </span>
@@ -129,11 +129,11 @@
                     {php}$this->_tpl_vars['filter']['sort'] = 'name';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Username'}</a>
                 </span>
-                <span class="z-itemcell z-w15">
+                <span class="z-itemcell z-w20">
                     {php}$this->_tpl_vars['filter']['sort'] = 'email';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Email'}</a>
                 </span>
-                <span class="z-itemcell z-w10">
+                <span class="z-itemcell z-w05">
                     {php}$this->_tpl_vars['filter']['sort'] = 'lang';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Language'}</a>
                 </span>
@@ -141,7 +141,7 @@
                     {php}$this->_tpl_vars['filter']['sort'] = 'type';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Type'}</a>
                 </span>
-                <span class="z-itemcell z-w10">
+                <span class="z-itemcell z-w08">
                     {php}$this->_tpl_vars['filter']['sort'] = 'frequency';{/php}
                     <a href="{modurl modname='Newsletter' type='admin' func='view' ot=$ot filter=$filter}">{gt text='Frequency'}</a>
                 </span>
@@ -170,26 +170,26 @@
             {foreach from=$objectArray item=user}
             <li class="{cycle values='z-odd,z-even'} z-clearfix">
                 <span class="z-itemcell z-w02">
-                    &nbsp;<input type="checkbox" name="user_array[]" value="{$user.id|safehtml}" onclick="checkAllFields(2);" />
+                    <input type="checkbox" name="user_array[]" value="{$user.id|safehtml}" onclick="checkAllFields(2);" />
                 </span>
-                <span class="z-itemcell z-w02">
+                <span class="z-itemcell z-w05">
                     {$user.id}
                 </span>
                 <span class="z-itemcell z-w05">
                     {if $user.uid gt 1}
                         <a href="{modurl modname='Profile' type='user' func='view' uid=$user.uid}">{$user.uid}</a>
                     {else}
-                        {gt text='No'}
+                        &nbsp;
                     {/if}
                 </span>
                 <span class="z-itemcell z-w10">
-                    {$user.name|safehtml}
+                    {if $user.name}{$user.name|safehtml}{else}&nbsp;{/if}
                 </span>
-                <span class="z-itemcell z-w15">
+                <span class="z-itemcell z-w20">
                     {$user.email|safehtml}
                 </span>
-                <span class="z-itemcell z-w10">
-                    {$user.lang|safehtml}
+                <span class="z-itemcell z-w05">
+                    {if $user.lang}{$user.lang|safehtml}{else}&nbsp;{/if}
                 </span>
                 <span class="z-itemcell z-w05">
                     {if $user.type eq 1}
@@ -202,7 +202,7 @@
                         {$user.type} (?)
                     {/if}
                 </span>
-                <span class="z-itemcell z-w10">
+                <span class="z-itemcell z-w08">
                     {if $user.frequency eq 0}
                         {gt text='Weekly'}
                     {elseif $user.frequency eq 1}
