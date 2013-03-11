@@ -19,8 +19,8 @@ if (!class_exists('Newsletter_DBObject_NewsletterDataArray')) {
 
 class Newsletter_DBObject_ShowPreviewArray extends Newsletter_DBObject_NewsletterDataArray
 {
-    function Newsletter_DBObject_ShowPreviewArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
-        $this->Newsletter_DBObject_NewsletterDataArray();
+        parent::__construct();
     }
 }

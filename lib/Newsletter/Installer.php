@@ -145,6 +145,15 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
 
             case '2.2.3':
             case '2.2.4':
+                //This removed the old plugin vars with the old plugin names. You have to go to the plugins page and click onto save once to
+                //create the new vars.
+                $vars = $this->getVars();
+                foreach($vars as $name => $value)
+                {
+                    if(strpos($name, 'plugin_') === 0)
+                        $this->delVar($name);
+                }
+            case '2.2.5':
                 // future upgrade routines
                 break;
         }

@@ -11,34 +11,31 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginContentArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_Content extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginContentArray($init=null, $where='')
+    public function getModname()
     {
-        $this->Newsletter_DBObject_PluginBaseArray();
+        return 'Content';
     }
 
-    function pluginAvailable()
+    public function getTitle()
     {
-        return ModUtil::available('Content');
+        return $this->__('New Content items');
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest pages');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
-        $nItems  = ModUtil::getVar ('Newsletter', 'plugin_Content_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
-
-        if (!SecurityUtil::checkPermission('Content::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('Content::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
@@ -47,10 +44,10 @@ class Newsletter_DBObject_PluginContentArray extends Newsletter_DBObject_PluginB
         if ($filtAfterDate) {
             $sql .= " AND page_cr_date>='".$filtAfterDate."'";
         }
-        if ($enableML && $lang) {
-            $sql .= " AND (page_language='' OR page_language='".$lang."')";
+        if ($this->enableML && $this->lang) {
+            $sql .= " AND (page_language='' OR page_language='".$this->lang."')";
         }
-        $sql .= " ORDER BY page_id DESC LIMIT ".$nItems;
+        $sql .= " ORDER BY page_id DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -60,11 +57,11 @@ class Newsletter_DBObject_PluginContentArray extends Newsletter_DBObject_PluginB
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if (!SecurityUtil::checkPermission('Content:page:', $items[$k]['page_id'].'::', ACCESS_READ, $userNewsletter)) {
+            if (!SecurityUtil::checkPermission('Content:page:', $items[$k]['page_id'].'::', ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['page_title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('Content', 'user', 'view', array('pid' => $items[$k]['page_id'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('Content', 'user', 'view', array('pid' => $items[$k]['page_id'], 'newlang' => $this->lang), null, null, true);
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
                 // get page content array and collect content
                 $items[$k]['nl_content'] = '';

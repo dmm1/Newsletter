@@ -62,6 +62,15 @@
 
     <fieldset>
         <legend>{gt text='Create newsletter in archive'}</legend>
+        {modgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual" default=0}
+        {if ($enable_multilingual)}
+        <div class="z-formrow">
+            <label for="language">{gt text="Language"}:</label>
+            {sessiongetvar assign="currLang" name="lang"}
+            {defaultlang assign="defaultLang"}
+            {html_select_languages id="user_lang" name="language" installed=true selected=$currLang|default:$defaultlang}
+        </div>
+        {/if}
         {modgetvar assign="archive_controlid" module="Newsletter" name="archive_controlid" default=0}
         {if $archive_controlid}
         <div class="z-formrow">
@@ -100,6 +109,11 @@
             {gt text='Multilingual support: enabled'}. {gt text='Newsletter will send to subscribers selected same language'} ({$LastNewsletter.lang}).
         </div>
         {/if}
+        {modgetvar assign="enable_multilingual" module="Newsletter" name="enable_multilingual" default=0}
+        {if ($enable_multilingual)}
+        <input type="hidden" name="language" value="{$LastNewsletter.lang}" />
+        {/if}
+
         {modgetvar assign="send_per_request" module="Newsletter" name="send_per_request" default=0}
         <div class="z-formrow">
             <span>

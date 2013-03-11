@@ -11,29 +11,31 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginClipArray($init=null, $where='')
+    public function getModname()
     {
-        $this->Newsletter_DBObject_PluginBaseArray();
+        return 'Clip';
     }
 
-    function pluginAvailable()
+    public function getTitle()
     {
-        return ModUtil::available('Clip');
+        return $this->__('Recently added publications');
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest publications.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
 
-        $itemsFull = $this->_getClipItems($lang);
+        $itemsFull = $this->_getClipItems();
 
         // Simplify data to be used in template
         $items = array();
@@ -50,7 +52,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
 
         foreach (array_keys($items) as $k) {
             $items[$k]['nl_title'] = $items[$k]['core_title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'newlang' => $lang), null, null, true);
+            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'newlang' => $this->lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['content'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
@@ -58,32 +60,32 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
         return $items;
     }
 
-    function setPluginParameters()
+    public function setParameters()
     {
         // Clip TIDs
         $tids = FormUtil::getPassedValue('ClipTIDs', array(), 'POST');
 
-        ModUtil::setVar('Newsletter', 'ClipTIDs', array_keys($tids));
+        $this->setPluginVar('TIDs', array_keys($tids));
 
         // Additional arguments
         $args = FormUtil::getPassedValue('ClipArgs', array(), 'POST');
 
-        ModUtil::setVar('Newsletter', 'ClipArgs', $args);
+        $this->setPluginVar('Args', $args);
     }
 
-    function getPluginParameters()
+    public function getParameters()
     {
         $pubtypes = array();
         if (ModUtil::available('Clip') && ModUtil::loadApi('Clip')) {
             $pubtypes = Clip_Util::getPubtype(-1)->toArray();
         }
 
-        $active = ModUtil::getVar ('Newsletter', 'ClipTIDs', array());
+        $active = $this->getPluginVar('TIDs', array());
         foreach ($pubtypes as $k => $v) {
             $pubtypes[$k]['nwactive'] = in_array($k, $active);
         }
 
-        $args = ModUtil::getVar('Newsletter', 'ClipArgs', array());
+        $args = $this->getPluginVar('Args', array());
 
         return array('number' => 1,
                      'param'  => array(
@@ -93,10 +95,10 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
                     );
     }
 
-    function _getClipItems($lang)
+    private function _getClipItems()
     {
-        $tids = ModUtil::getVar('Newsletter', 'ClipTIDs', array());
-        $args = ModUtil::getVar('Newsletter', 'ClipArgs', array());
+        $tids = $this->getPluginVar('TIDs', array());
+        $args = $this->getPluginVar('Args', array());
         //$types = array('txt', 'htm');
         $types = array('txt');
 
@@ -114,7 +116,7 @@ class Newsletter_DBObject_PluginClipArray extends Newsletter_DBObject_PluginBase
         return $output;
     }
 
-    function getClipList($args, $type)
+    private function getClipList($args, $type)
     {
         $list = array();
 

@@ -27,37 +27,19 @@
                     </div>
                     {/if}
 
-                    {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
+                    {if (isset($objectArray.Newsletter_NewsletterPlugin_NewsletterMessage) && $objectArray.Newsletter_NewsletterPlugin_NewsletterMessage)}
                     <div style="font-size: 13px; color: #333333; margin: 10px 0 5px 0; padding: 0;">
-                        {$objectArray.NewsletterMessage|safehtml}
+                        {$objectArray.Newsletter_NewsletterPlugin_NewsletterMessage|safehtml}
                     </div>
                     {/if}
 
-                    {assign var='includeFile' value='output/Html_1_items.tpl'}
-
-                    {include file=$includeFile pluginName='News'       __pluginTitle='News'}
-
-                    {include file=$includeFile pluginName='Content'    __pluginTitle='New Content Items'}
-
-                    {include file=$includeFile pluginName='Pages'      __pluginTitle='Recently Added Documents'}
-
-                    {include file=$includeFile pluginName='Clip'       __pluginTitle='Recently Added Publications'}
-
-                    {include file=$includeFile pluginName='EZComments' __pluginTitle='Latest Comments'}
-
-                    {include file=$includeFile pluginName='Dizkus'     __pluginTitle='Latest Forum Posts'}
-
-                    {include file=$includeFile pluginName='Weblinks'   __pluginTitle='Latest web links'}
-
-                    {include file=$includeFile pluginName='Downloads'  __pluginTitle='Latest downloads'}
-
-                    {include file=$includeFile pluginName='AddressBook'  __pluginTitle='Latest Contacts'}
-
-                    {include file=$includeFile pluginName='AdvancedPolls' __pluginTitle='Latest Polls'}
-
-                    {include file=$includeFile pluginName='PostCalendar' __pluginTitle='Latest Events'}
-
-                    {include file=$includeFile pluginName='NewMembers' __pluginTitle='Welcome New Members'}
+                    {assign var='includeFile' value='output/items/html_1.tpl'}
+                    {nlActivePlugins assign='plugins'}
+                    {foreach from=$plugins item='plugin'}
+                        {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
+                            {include file=$includeFile plugin=$plugin}
+                        {/if}
+                    {/foreach}
                 </td>
             </tr>
             <tr>

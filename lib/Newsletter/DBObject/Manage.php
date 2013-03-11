@@ -13,17 +13,17 @@
 
 class Newsletter_DBObject_Manage extends DBObject 
 {
-    function Newsletter_DBObject_Manage($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
         $this->_init ($init, $key, $field);
     }
 
-    function insertPreProcess($data=null)
+    public function insertPreProcess($data=null)
     {
         return $this->updatePreProcess($data);
     }
 
-    function updatePreProcess($data=null) 
+    public function updatePreProcess($data=null) 
     {
         if (!$data) {
             $data = $this->_objData;

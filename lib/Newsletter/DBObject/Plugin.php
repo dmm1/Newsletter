@@ -13,36 +13,32 @@
 
 class Newsletter_DBObject_Plugin extends DBObject 
 {
-    function Newsletter_DBObject_Plugin($init='P', $key=null, $field=null)
+    public function __construct($init='P', $key=null, $field=null)
     {
         $this->_objPath = 'plugin';
         $this->_init($init, $key, $field);
     }
 
-    function save()
+    public function save()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError(__f('Unable to load array class for [%s]', 'plugin_base', $dom), null, $url);
+        if (!class_exists('Newsletter_AbstractPlugin')) {
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'Newsletter_AbstractPlugin', $dom), null, $url);
         }
 
         $pluginClasses = Newsletter_Util::getPluginClasses();
 
-        // save plugins parameters
-        foreach ($pluginClasses as $plugin) {
-            $class = 'Newsletter_DBObject_Plugin' . $plugin . 'Array';
-            if (class_exists($class)) {
-                $objArray = new $class();
-                $objArray->setPluginParameters();
-            }
-        }
         $pluginClasses = array_flip($pluginClasses);
 
         // active plugins
         foreach ($this->_objData as $k => $dat) {
             if (strpos($k, '_nItems') === false) {
                 ModUtil::setVar('Newsletter', 'plugin_'.$k, 1);
+            }
+            if(class_exists($k)) {
+                $class = new $k();
+                $class->setParameters();
             }
             unset($pluginClasses[$k]);
         }

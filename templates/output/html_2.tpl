@@ -26,7 +26,7 @@
                     <!-- Use Username or replace it with 32x32 Logo -->
                     <td style="text-align: right;">
                     {if (isset($user_name) && $user_name)}
-                        <h2>{gt text="Hello"} {$user_name}</h2>
+                        <h2 style="padding: 0px; margin: 5px 20px; font-size: 16px; line-height: 1; font-weight: normal; color: #464646; font-family: Arial, sans-serif;">{gt text="Hello"} {$user_name}</h2>
                     {else}
                         {img modname='Newsletter' src="newsletter_images/logo.png" style="margin: 5px 20px 5px 0; vertical-align: middle; vertical-align: middle;"}
                     {/if}
@@ -37,38 +37,20 @@
             <table style="width: 100%;"  border="0" cellspacing="0" cellpadding="20" bgcolor="#ffffff">
                 <tr>
                     <td>
-                        {if (isset($objectArray.NewsletterMessage) && $objectArray.NewsletterMessage)}
+                        {if (isset($objectArray.Newsletter_NewsletterPlugin_NewsletterMessage) && $objectArray.Newsletter_NewsletterPlugin_NewsletterMessage)}
                             <div style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 6px 6px 6px 6px;border-radius: 6px 6px 6px 6px;">
-                                <p>{$objectArray.NewsletterMessage|safehtml}</p>
+                                <p>{$objectArray.Newsletter_NewsletterPlugin_NewsletterMessage|safehtml}</p>
                             </div>
                             <div style="margin-top: 1em; max-width: 560px;"></div>
                         {/if}
                         
-                        {assign var='includeFile' value='output/Html_2_items.tpl'}
-
-                        {include file=$includeFile pluginName='News'       __pluginTitle='News'}
-
-                        {include file=$includeFile pluginName='Content'    __pluginTitle='New Content Items'}
-
-                        {include file=$includeFile pluginName='Pages'      __pluginTitle='Recently Added Documents'}
-
-                        {include file=$includeFile pluginName='Clip'       __pluginTitle='Recently Added Publications'}
-
-                        {include file=$includeFile pluginName='EZComments' __pluginTitle='Latest Comments'}
-
-                        {include file=$includeFile pluginName='Dizkus'     __pluginTitle='Latest Forum Posts'}
-
-                        {include file=$includeFile pluginName='Weblinks'   __pluginTitle='Latest web links'}
-
-                        {include file=$includeFile pluginName='Downloads'  __pluginTitle='Latest downloads'}
-
-                        {include file=$includeFile pluginName='AddressBook'  __pluginTitle='Latest Contacts'}
-
-                        {include file=$includeFile pluginName='AdvancedPolls' __pluginTitle='Latest Polls'}
-
-                        {include file=$includeFile pluginName='PostCalendar' __pluginTitle='Latest Events'}
-
-                        {include file=$includeFile pluginName='NewMembers' __pluginTitle='Welcome New Members'}
+                        {assign var='includeFile' value='output/items/html_2.tpl'}
+                        {nlActivePlugins assign='plugins'}
+                        {foreach from=$plugins item='plugin'}
+                            {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
+                                {include file=$includeFile plugin=$plugin}
+                            {/if}
+                        {/foreach}
                     </td>
                 </tr>
             </table>

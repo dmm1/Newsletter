@@ -11,33 +11,32 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginWeblinksArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_Weblinks extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginWeblinksArray($init=null, $where='')
+    public function getModname()
     {
-        $this->Newsletter_DBObject_PluginBaseArray();
+        return 'Weblinks';
     }
 
-    function pluginAvailable()
+    public function getTitle()
     {
-        return ModUtil::available('Weblinks');
+        return $this->__('Latest web links');
     }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest web links.');
+    }
+
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_Weblinks_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
-
-        if (!SecurityUtil::checkPermission('Weblinks::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('Weblinks::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
@@ -46,7 +45,7 @@ class Newsletter_DBObject_PluginWeblinksArray extends Newsletter_DBObject_Plugin
         if ($filtAfterDate) {
             $sql .= " AND ddate>='".$filtAfterDate."'";
         }
-        $sql .= " ORDER BY ddate DESC LIMIT ".$nItems;
+        $sql .= " ORDER BY ddate DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -60,15 +59,15 @@ class Newsletter_DBObject_PluginWeblinksArray extends Newsletter_DBObject_Plugin
             $stmt = $connection->prepare("SELECT * FROM links_categories WHERE cat_id=".$items[$k]['cat_id']);
             $stmt->execute();
             $category = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
-            if (!SecurityUtil::checkPermission('Weblinks::Link', '::'.$items[$k]['lid'], ACCESS_READ, $userNewsletter)) {
+            if (!SecurityUtil::checkPermission('Weblinks::Link', '::'.$items[$k]['lid'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
-            } elseif (!SecurityUtil::checkPermission('Weblinks::Category', $category['title']."::".$category['cat_id'], ACCESS_READ, $userNewsletter)) {
+            } elseif (!SecurityUtil::checkPermission('Weblinks::Category', $category['title']."::".$category['cat_id'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
                 $items[$k]['nl_url_title'] = $items[$k]['url'];
                 $items[$k]['nl_content'] = $items[$k]['description'];
-                $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'newlang' => $this->lang), null, null, true);
             }
         }
 

@@ -13,7 +13,7 @@
 
 class Newsletter_DBObject_StatisticsArray extends DBObjectArray 
 {
-    function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    public function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         $data = array();
         $data['users']                     = DBUtil::selectObjectCount ('newsletter_users');
@@ -33,7 +33,7 @@ class Newsletter_DBObject_StatisticsArray extends DBObjectArray
         return $this->_objData;
     }
 
-    function getCount($where='', $doJoin=false)
+    public function getCount($where='', $doJoin=false)
     {
         return count($this->_objData);
     }
