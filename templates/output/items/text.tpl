@@ -1,6 +1,7 @@
 {strip}
 {if (isset($objectArray.$plugin) && $objectArray.$plugin)}
 {"\n"}
+{nlPluginTitle plugin=$plugin assign='pluginTitle'}
 {$pluginTitle|html_entity_decode}{"\n"}
 ==========================={"\n"}
 {if $plugin eq 'Newsletter_NewsletterPlugin_NewMembers'}

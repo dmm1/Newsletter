@@ -29,6 +29,8 @@ class Newsletter_DBObject_Plugin extends DBObject
 
         $pluginClasses = Newsletter_Util::getPluginClasses();
 
+        $pluginClasses = array_flip($pluginClasses);
+
         // active plugins
         foreach ($this->_objData as $k => $dat) {
             if (strpos($k, '_nItems') === false) {
