@@ -11,42 +11,39 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginAdvancedPollsArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_AdvancedPolls extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginAdvancedPollsArray($init=null, $where='')
+    public function getModname()
     {
-        $this->Newsletter_DBObject_PluginBaseArray();
+        return 'AdvancedPolls';
     }
 
-    function pluginAvailable()
+    public function getTitle()
     {
-        return ModUtil::available('AdvancedPolls');
+        return $this->__('Latest polls');
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest polls. Supported are version 2.0.1 and >= 3.0.0.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_AdvancedPolls_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
-        $modinfo = ModUtil::getInfoFromName('AdvancedPolls');
-        //$modinfo['version'] = '2.0.1' pn field prefix exist
-        //$modinfo['version'] = '3.0.0'
+        //$this->modinfo['version'] = '2.0.1' pn field prefix exist
+        //$this->modinfo['version'] = '3.0.0'
 
-        if (!SecurityUtil::checkPermission('AdvancedPolls::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('AdvancedPolls::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
-        if ($modinfo['version'] >= '3.0.0') {
+        if ($this->modinfo['version'] >= '3.0.0') {
             $datetime = DateUtil::getDatetime();
             $sql = "SELECT * FROM advancedpolls_polls WHERE ('".$datetime."' >= opendate OR opendate IS NULL) AND ('".$datetime."' <= closedate OR closedate = '' OR closedate IS NULL)";
         } else {
@@ -56,23 +53,23 @@ class Newsletter_DBObject_PluginAdvancedPollsArray extends Newsletter_DBObject_P
             $sql = "SELECT * FROM ".$prefix."advanced_polls_desc WHERE ".$time." >= pn_opendate AND (".$time." <= pn_closedate OR pn_closedate = 0)";
         }
         if ($filtAfterDate) {
-            if ($modinfo['version'] >= '3.0.0') {
+            if ($this->modinfo['version'] >= '3.0.0') {
                 $sql .= " AND cr_date>='".$filtAfterDate."'";
             } else {
                 $sql .= " AND pn_cr_date>='".$filtAfterDate."'";
             }
         }
-        if ($enableML && $lang) {
-            if ($modinfo['version'] >= '3.0.0') {
-                $sql .= " AND (language='' OR language='".$lang."')";
+        if ($this->enableML && $this->lang) {
+            if ($this->modinfo['version'] >= '3.0.0') {
+                $sql .= " AND (language='' OR language='".$this->lang."')";
             } else {
-                $sql .= " AND (pn_language='' OR pn_language='".$lang."')";
+                $sql .= " AND (pn_language='' OR pn_language='".$this->lang."')";
             }
         }
-        if ($modinfo['version'] >= '3.0.0') {
-            $sql .= " ORDER BY pollid DESC LIMIT ".$nItems;
+        if ($this->modinfo['version'] >= '3.0.0') {
+            $sql .= " ORDER BY pollid DESC LIMIT ".$this->nItems;
         } else {
-            $sql .= " ORDER BY pn_pollid DESC LIMIT ".$nItems;
+            $sql .= " ORDER BY pn_pollid DESC LIMIT ".$this->nItems;
         }
         $stmt = $connection->prepare($sql);
         try {
@@ -83,16 +80,16 @@ class Newsletter_DBObject_PluginAdvancedPollsArray extends Newsletter_DBObject_P
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if ($modinfo['version'] < '3.0.0') {
+            if ($this->modinfo['version'] < '3.0.0') {
                 $items[$k]['pollid'] = $items[$k]['pn_pollid'];
                 $items[$k]['title'] = $items[$k]['pn_title'];
                 $items[$k]['description'] = $items[$k]['pn_description'];
             }
-            if (!SecurityUtil::checkPermission('AdvancedPolls::item', $items[$k]['title'].'::'.$items[$k]['pollid'], ACCESS_READ, $userNewsletter)) {
+            if (!SecurityUtil::checkPermission('AdvancedPolls::item', $items[$k]['title'].'::'.$items[$k]['pollid'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('AdvancedPolls', 'user', 'display', array('pollid' => $items[$k]['pollid'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('AdvancedPolls', 'user', 'display', array('pollid' => $items[$k]['pollid'], 'newlang' => $this->lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]['description'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }

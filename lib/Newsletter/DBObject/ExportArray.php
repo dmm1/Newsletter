@@ -23,9 +23,9 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
     var $_outputToFile;
     var $_pagesize;
 
-    function Newsletter_DBObject_ExportArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
-        $this->Newsletter_DBObject_UserArray();
+        parent::__construct();
         $this->_objSort      = 'email';
         $this->_delimeter    = FormUtil::getPassedValue ('delimeter', ';', 'GETPOST');
         $this->_filename     = FormUtil::getPassedValue ('filename', '', 'GETPOST');
@@ -40,7 +40,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
         $this->_init($init, $where);
     }
 
-    function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    public function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -124,7 +124,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
         return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => 'userimport')));
     }
 
-    function selectPostProcess ($data=null) 
+    public function selectPostProcess ($data=null) 
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -166,7 +166,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
       to the order in which these fields are listed in tables.php
     */
     // this function uses text to build the xml because it seems that XMLWriter truncates output on large files
-    function _exportXML (&$cnt)
+    public function _exportXML (&$cnt)
     {
         $colArray   = DBUtil::getColumnsArray('newsletter_users');
         $otSingle   = 'user';
@@ -219,7 +219,7 @@ class Newsletter_DBObject_ExportArray extends Newsletter_DBObject_UserArray
 
       where the order of the fields on each line to the order in which these fields are listed in tables.php
     */
-    function _exportCSV (&$cnt)
+    public function _exportCSV (&$cnt)
     {
         $txt      = '';
         $colArray   = DBUtil::getColumnsArray('newsletter_users');

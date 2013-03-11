@@ -13,7 +13,7 @@
 
 class Newsletter_DBObject_User extends DBObject 
 {
-    function Newsletter_DBObject_User($init=null, $key=null, $field=null)
+    public function __construct($init=null, $key=null, $field=null)
     {
         $this->_objType         = 'newsletter_users';
         $this->_objColumnPrefix = 'nlu';
@@ -31,7 +31,7 @@ class Newsletter_DBObject_User extends DBObject
         $this->_init($init, $key, $field);
     }
 
-    function delete()
+    public function delete()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -83,7 +83,7 @@ class Newsletter_DBObject_User extends DBObject
         return true;
     }
 
-    function genWhere($key, $approved=null, $active=null)
+    public function genWhere($key, $approved=null, $active=null)
     {
         $wheres = array();
         if (is_numeric($key)) { // numeric arg == uid; string arg == email
@@ -104,7 +104,7 @@ class Newsletter_DBObject_User extends DBObject
         return implode(' AND ', $wheres);
     }
 
-    function getDataFromInputPostProcess($data=null)
+    public function getDataFromInputPostProcess($data=null)
     {
         if (!$data) { 
             $data = $this->_objData;
@@ -136,7 +136,7 @@ class Newsletter_DBObject_User extends DBObject
         return $this->_objData;
     }
 
-    function getSelectionKey()
+    public function getSelectionKey()
     {
         $key = false;
         if (UserUtil::isLoggedIn()) {
@@ -152,7 +152,7 @@ class Newsletter_DBObject_User extends DBObject
         return $key;
     }
 
-    function getUser($key, $approved=null, $active=null)
+    public function getUser($key, $approved=null, $active=null)
     {
         $where = $this->genWhere($key, $approved, $active);
         if (!$where) {
@@ -163,7 +163,7 @@ class Newsletter_DBObject_User extends DBObject
     }
 
 
-    function insertPreProcess($data=null)
+    public function insertPreProcess($data=null)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -190,7 +190,7 @@ class Newsletter_DBObject_User extends DBObject
         return $this->_objData;
     }
 
-    function insert()
+    public function insert()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -248,7 +248,7 @@ class Newsletter_DBObject_User extends DBObject
         return true;
     }
 
-    function selectPostProcess ($data=null)
+    public function selectPostProcess($data=null)
     {
         if (!$data) {
             $data = $this->_objData;
@@ -265,7 +265,7 @@ class Newsletter_DBObject_User extends DBObject
         return $this->_objData;
     }
 
-    function updatePreProcess($data=null)
+    public function updatePreProcess($data=null)
     {
         if (!$data) {
             $data = $this->_objData;
@@ -280,7 +280,7 @@ class Newsletter_DBObject_User extends DBObject
         return $this->_objData;
     }
 
-    function update()
+    public function update()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -311,7 +311,7 @@ class Newsletter_DBObject_User extends DBObject
         return parent::update();
     }
 
-    function countSendedNewsletter($nl_id)
+    public function countSendedNewsletter($nl_id)
     {
         if ($nl_id > 0) {
             return (int)DBUtil::selectFieldMax('newsletter_users', 'nlu_last_send_nlid', 'COUNT', 'nlu_last_send_nlid = '.$nl_id);
@@ -319,7 +319,7 @@ class Newsletter_DBObject_User extends DBObject
         return false;
     }
 
-    function countSubscribers()
+    public function countSubscribers()
     {
         return (int)DBUtil::selectFieldMax('newsletter_users', 'nlu_id', 'COUNT', ' nlu_active=1 AND nlu_approved=1');
     }

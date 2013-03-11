@@ -13,23 +13,23 @@
 
 class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray 
 {
-    function Newsletter_DBObject_NewsletterDataArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
         $this->_init($init, $where);
     }
 
-    function getNewsletterData($lang=null)
+    public function getNewsletterData($lang=null)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        if (!class_exists('Newsletter_DBObject_PluginBaseArray')) {
-            return LogUtil::registerError(__f('Unable to load array class for [%s]', 'plugin_base', $dom), null, $url);
+        if (!class_exists('Newsletter_AbstractPlugin')) {
+            return LogUtil::registerError(__f('Unable to load class [%s]', 'Newsletter_AbstractPlugin', $dom), null, $url);
         }
 
         $data     = array();
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
         $plugins  = Newsletter_Util::getActivePlugins();
-        $language = FormUtil::getPassedValue('language', $lang, 'GETPOST');
+        $language = (empty($lang)) ? FormUtil::getPassedValue('language', System::getVar('language_i18n', 'en'), 'GETPOST') : $lang; //This is set in case of preview.
 
         /*
         FIXME: Language management in gettext is quite different, have to process one execution per language now
@@ -69,24 +69,24 @@ class Newsletter_DBObject_NewsletterDataArray extends DBObjectArray
         $data['nPlugins'] = count($plugins);
         $data['title']    = System::getVar('sitename') . ' ' . (__('Newsletter', $dom));
         foreach ($plugins as $plugin) {
-            $class = 'Newsletter_DBObject_Plugin' . $plugin . 'Array';
+            $class = $plugin;
+
             if (class_exists($class)) {
-                $objArray        = new $class();
-                $data[$plugin]   = $objArray->getPluginData($language, $filtAfterDate);
+                $objArray        = new $class($language);
+                $data[$plugin]   = $objArray->getPluginData($filtAfterDate);
                 $data['nItems'] += (is_array($data[$plugin]) ? count($data[$plugin]) : 1);
             }
         }
-
         $this->_objData = $data;
         return $this->_objData;
     }
 
-    function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    public function getWhere($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         return $this->getNewsletterData(null);
     }
 
-    function getCount($where='', $doJoin=false)
+    public function getCount($where='', $doJoin=false)
     {
         return 0;
     }

@@ -1,7 +1,7 @@
-﻿{if (isset($objectArray.$pluginName) && $objectArray.$pluginName)}
-    <h1 style="font-size: 1.7em;">{$pluginTitle}</h1>
+﻿{if (isset($objectArray.$plugin) && $objectArray.$plugin)}
+    <h1 style="font-size: 1.7em;">{nlPluginTitle plugin=$plugin}</h1>
     <div style="color: #999; font-size:14px; margin-top: 4px; margin-bottom:8px; color: #999; border-bottom: 1px solid #eee; overflow: hidden">
-    {if $pluginName eq 'NewMembers'}
+    {if $plugin eq 'Newsletter_NewsletterPlugin_NewMembers'}
 {strip}
         <table class="nl-new-members">
             <thead>
@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 {modavailable modname="Profile" assign="profileAvailable"}
-                {foreach from=$objectArray.$pluginName item="item"}
+                {foreach from=$objectArray.$plugin item="item"}
                     <tr>
                         <td>
                         {if $profileAvailable}
@@ -32,7 +32,7 @@
         </table>
 {/strip}
     {else}
-        {foreach from=$objectArray.$pluginName item="item" name="loop"}
+        {foreach from=$objectArray.$plugin item="item" name="loop"}
 {strip}
             {if $item.nl_picture}
                 <div style="float: left; margin-right: 4px; margin-bottom: 4px;">
@@ -52,7 +52,7 @@
                 </h2>
             {/if}
             {if $item.nl_content}
-                <p style="padding:8px;">{$item.nl_content|nlTreatContent:$pluginName}</p>
+                <p style="padding:8px;">{$item.nl_content|nlTreatContent:$plugin}</p>
             {/if}
 {/strip}
             {if $item.nl_url_readmore}

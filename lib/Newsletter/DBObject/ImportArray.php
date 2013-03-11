@@ -23,9 +23,9 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
     var $_file;
     var $_filename;
 
-    function Newsletter_DBObject_ImportArray($init=null, $where='')
+    public function __construct($init=null, $where='')
     {
-        $this->Newsletter_DBObject_UserArray();
+        parent::__construct();
         $this->_objSort   = 'email';
         $this->_delimeter = FormUtil::getPassedValue ('delimeter', ';', 'GETPOST');
         $this->_file      = FormUtil::getPassedValue ('file', '', 'FILES');
@@ -34,7 +34,7 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
         $this->_init($init, $where);
     }
 
-    function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
+    public function getWhere ($where='', $sort='', $limitOffset=-1, $limitNumRows=-1, $assocKey=null, $force=false, $distinct=false)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -101,7 +101,7 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
         return System::redirect(ModUtil::url('Newsletter', 'admin', 'view', array('ot' => 'userimport')));
     }
 
-    function _importCSV ()
+    public function _importCSV ()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -141,7 +141,7 @@ class Newsletter_DBObject_ImportArray extends Newsletter_DBObject_UserArray
         return $data;
     }
 
-    function _importXML ()
+    public function _importXML ()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 

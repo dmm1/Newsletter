@@ -11,31 +11,31 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_News extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginNewsArray($init=null, $where='')
+    public function getModname()
     {
-        $this->Newsletter_DBObject_PluginBaseArray();
+        return 'News';
     }
 
-    function pluginAvailable()
+    public function getTitle()
     {
-        return ModUtil::available('News');
+        return $this->__('News');
+    }
+
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest news articles.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
         if (!$this->pluginAvailable()) {
             return array();
         }
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_News_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
 
-        if (!SecurityUtil::checkPermission('News::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('News::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
@@ -58,7 +58,7 @@ class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBase
         if ($filtAfterDate) {
             $sql .= " AND ffrom>='".$filtAfterDate."'";
         }
-        $sql .= " ORDER BY ".$sort." LIMIT ".$nItems;
+        $sql .= " ORDER BY ".$sort." LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -68,11 +68,11 @@ class Newsletter_DBObject_PluginNewsArray extends Newsletter_DBObject_PluginBase
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if (!SecurityUtil::checkPermission('News::', $items[$k]['cr_uid'].'::'.$items[$k]['sid'], ACCESS_READ, $userNewsletter)) {
+            if (!SecurityUtil::checkPermission('News::', $items[$k]['cr_uid'].'::'.$items[$k]['sid'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('News', 'user', 'display', array('sid' => $items[$k]['sid'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('News', 'user', 'display', array('sid' => $items[$k]['sid'], 'newlang' => $this->lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]['hometext'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
                 if ($modvars['picupload_enabled'] && $items[$k]['pictures'] > 0) {

@@ -106,6 +106,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                    ->assign('objectArray', $data);
 
         if ($ot == 'ShowPreview') {
+            $language = FormUtil::getPassedValue('language', 'en', 'GETPOST');
+            ZLanguage::setLocale($language);
             switch ($format) {
                 case 1:
                     $content = $this->view->fetch('output/text.tpl');
@@ -379,6 +381,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $Nllanguage = FormUtil::getPassedValue('language', '', 'GETPOST');
         if (empty($Nllanguage)) {
             $Nllanguage = ZLanguage::getLanguageCode();
+        }else{
+            ZLanguage::setLocale($Nllanguage);
         }
 
         // Get newsletter content
@@ -511,6 +515,11 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $objArchive  = new Newsletter_DBObject_Archive();
         $dataNewsletter = $objArchive->get($id);
         if ($dataNewsletter) {
+            //Set language
+            if ($enable_multilingual) {
+                ZLanguage::setLocale($dataNewsletter['lang']);
+            }
+
             // Determine users to send to
             $where = "(nlu_active=1 AND nlu_approved=1)";
             $enable_multilingual = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);

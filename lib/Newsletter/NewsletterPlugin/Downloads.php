@@ -11,33 +11,32 @@
  * information regarding copyright.
  */
 
-class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_PluginBaseArray
+class Newsletter_NewsletterPlugin_Downloads extends Newsletter_AbstractPlugin
 {
-    function Newsletter_DBObject_PluginDownloadsArray($init=null, $where='')
+
+    public function getModname()
     {
-        $this->Newsletter_DBObject_PluginBaseArray();
+        return 'Downloads';
     }
 
-    function pluginAvailable()
+    public function getTitle()
     {
-        return ModUtil::available('Downloads');
+        return $this->__('Latest downloads');
+    }
+    
+    public function getDescription()
+    {
+        return $this->__('Displays a list of the latest downloads.');
     }
 
     // $filtAfterDate is null if is not set, or in format yyyy-mm-dd hh:mm:ss
-    function getPluginData($lang=null, $filtAfterDate=null)
+    public function getPluginData($filtAfterDate=null)
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
         if (!$this->pluginAvailable()) {
             return array();
         }
-        if (empty($lang)) {
-            $lang = System::getVar('language_i18n', 'en');
-        }
-        $nItems = ModUtil::getVar ('Newsletter', 'plugin_Downloads_nItems', 1);
-        $userNewsletter  = (int)ModUtil::getVar ('Newsletter', 'newsletter_userid', 1);
 
-        if (!SecurityUtil::checkPermission('Downloads::', '::', ACCESS_READ, $userNewsletter)) {
+        if (!SecurityUtil::checkPermission('Downloads::', '::', ACCESS_READ, $this->userNewsletter)) {
             return array();
         }
 
@@ -46,7 +45,7 @@ class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_Plugi
         if ($filtAfterDate) {
             $sql .= " AND ddate>='".$filtAfterDate."'";
         }
-        $sql .= " ORDER BY ddate DESC LIMIT ".$nItems;
+        $sql .= " ORDER BY ddate DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -56,13 +55,13 @@ class Newsletter_DBObject_PluginDownloadsArray extends Newsletter_DBObject_Plugi
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
         foreach (array_keys($items) as $k) {
-            if (!SecurityUtil::checkPermission('Downloads::Item', $items[$k]['lid'].'::', ACCESS_READ, $userNewsletter)) {
+            if (!SecurityUtil::checkPermission('Downloads::Item', $items[$k]['lid'].'::', ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
-            } elseif (!SecurityUtil::checkPermission('Downloads::Category', $items[$k]['cid']."::", ACCESS_READ, $userNewsletter)) {
+            } elseif (!SecurityUtil::checkPermission('Downloads::Category', $items[$k]['cid']."::", ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'newlang' => $this->lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]['description'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }
