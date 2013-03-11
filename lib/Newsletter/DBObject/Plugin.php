@@ -33,7 +33,7 @@ class Newsletter_DBObject_Plugin extends DBObject
 
         // active plugins
         foreach ($this->_objData as $k => $dat) {
-            if (strpos($k, '_nItems') === false) {
+            if (strpos($k, '_nItems') === false && strpos($k, '_Settings') === false) {
                 ModUtil::setVar('Newsletter', 'plugin_'.$k, 1);
             }
             if(class_exists($k)) {
