@@ -36,16 +36,16 @@ class Newsletter_DBObject_Plugin extends DBObject
             if (strpos($k, '_nItems') === false) {
                 ModUtil::setVar('Newsletter', 'plugin_'.$k, 1);
             }
+            if(class_exists($k)) {
+                $class = new $k();
+                $class->setParameters();
+            }
             unset($pluginClasses[$k]);
         }
 
         // inactive plugins
         foreach ($pluginClasses as $k => $plugin) {
             ModUtil::setVar('Newsletter', 'plugin_'.$k, 0);
-            if(class_exists($plugin)) {
-                $class = new $plugin();
-                $class->setParameters();
-            }
         }
 
         // number of items settings
