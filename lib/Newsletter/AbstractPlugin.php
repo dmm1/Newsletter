@@ -209,8 +209,6 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      * @warning Protected variable names:\n
      * - Settings
      * - nItems
-     * - Settings0
-     * - Settings1
      */
     final protected function setPluginVars($array)
     {
