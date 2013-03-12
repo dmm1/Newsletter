@@ -149,4 +149,19 @@ class Newsletter_Controller_User extends Zikula_AbstractController
 
         return System::redirect($url);
     }
+
+    /**
+     * Display latest site content (similar to Newsletter preview)
+     *
+     * @param array $args Arguments.
+     */
+    public function display($args)
+    {
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_COMMENT));
+
+        $objectArray = new Newsletter_DBObject_ShowPreviewArray();
+        $this->view->assign('objectArray', $data  = $objectArray->get());
+
+        return $this->view->fetch('user/display.tpl');
+    }
 }
