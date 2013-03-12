@@ -121,7 +121,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     $content = nl2br(strip_tags($content, '<a>'));
                     break;
                 case 2:
-                    $content = $this->view->fetch('output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'));
+                    $content = $this->view->fetch('output/'.$this->getVar('template_html', 'html.tpl'));
                     break;
                 case 3:
                     $content = $this->view->fetch('output/text_with_link.tpl');
@@ -399,7 +399,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->view->assign('site_url', System::getBaseUrl());
         $this->view->assign('site_name', System::getVar('sitename'));
         $this->view->assign('objectArray', $objNewsletterData);
-        $message_html = $this->view->fetch('output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'));
+        $message_html = $this->view->fetch('output/'.$this->getVar('template_html', 'html.tpl'));
         $message_text = $this->view->fetch('output/text.tpl');
 
         // Prepare data
@@ -529,7 +529,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
             // Determine users to send to
             $where = "(nlu_active=1 AND nlu_approved=1)";
-            $enable_multilingual = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
+            $enable_multilingual = $this->getVar('enable_multilingual', 0);
             if ($enable_multilingual) {
                 $where = "(nlu_lang='".$dataNewsletter['lang']."' OR nlu_lang='')";
             }
@@ -585,7 +585,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     LogUtil::registerStatus($this->__('Skipped (not sent for some reason): ').$notsent);
                 }
             } else {
-                LogUtil::registerError($this->__('Max emails per hour encountered: ').ModUtil::getVar('Newsletter', 'max_send_per_hour'));
+                LogUtil::registerError($this->__('Max emails per hour encountered: ').$this->getVar('max_send_per_hour'));
             }
         } else {
                 LogUtil::registerError($this->__('Error getting data for newsletter Id ').$id);
