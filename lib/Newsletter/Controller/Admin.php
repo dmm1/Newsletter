@@ -71,22 +71,37 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $data = array();
 
         if ($ot) {
-            $class = 'Newsletter_DBObject_'. ucfirst($ot) . 'Array';
-            if (class_exists($class)) {
-                $objectArray = new $class();
-                if (method_exists($objectArray, 'cleanFilter')) {
-                    $filter = $objectArray->cleanFilter($filter);
+            if ($ot == 'plugin') {
+                $data = Newsletter_Util::getPluginClasses();
+                $plugin_parameters = array();
+                $plugin_settings = array();
+                foreach ($data as $plugin) {
+                    if (class_exists($plugin)) {
+                        $objPlugin = new $plugin();
+                        $plugin_parameters[$plugin] = $objPlugin->getParameters();
+                        $plugin_settings[$plugin] = $objPlugin->getSettings();
+                    }
                 }
-                $where = $objectArray->genFilter($filter);
-                $sort  = $sort ? $sort : $objectArray->_objSort;
-                $data  = $objectArray->get($where, $sort, $offset, $pagesize);
-                
-                $pager = array();
-                $pager['numitems']     = $objectArray->getCount($where, true);
-                $pager['itemsperpage'] = $pagesize;
-                $this->view->assign('startnum', $offset)
-                           ->assign('pager', $pager)
-                           ->assign('startpage', false);
+                $this->view->assign('plugin_parameters', $plugin_parameters);
+                $this->view->assign('plugin_settings', $plugin_settings);
+            } else {
+                $class = 'Newsletter_DBObject_'. ucfirst($ot) . 'Array';
+                if (class_exists($class)) {
+                    $objectArray = new $class();
+                    if (method_exists($objectArray, 'cleanFilter')) {
+                        $filter = $objectArray->cleanFilter($filter);
+                    }
+                    $where = $objectArray->genFilter($filter);
+                    $sort  = $sort ? $sort : $objectArray->_objSort;
+                    $data  = $objectArray->get($where, $sort, $offset, $pagesize);
+                    
+                    $pager = array();
+                    $pager['numitems']     = $objectArray->getCount($where, true);
+                    $pager['itemsperpage'] = $pagesize;
+                    $this->view->assign('startnum', $offset)
+                               ->assign('pager', $pager)
+                               ->assign('startpage', false);
+                }
             }
         }
 
@@ -94,19 +109,11 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             $this->view->assign('filter', $filter);
         }
 
-        //EM Start
-        if ($ot == 'plugin') {
-            if (method_exists($objectArray, 'getPluginsParameters')) {
-                $this->view->assign('plugin_parameters', $objectArray->getPluginsParameters());
-            }
-        }
-        //EM End
-
         $this->view->assign('ot', $ot)
                    ->assign('objectArray', $data);
 
         if ($ot == 'ShowPreview') {
-            $language = FormUtil::getPassedValue('language', 'en', 'GETPOST');
+            $language = FormUtil::getPassedValue('language', System::getVar('language_i18n', 'en'), 'GETPOST');
             ZLanguage::setLocale($language);
             switch ($format) {
                 case 1:
@@ -114,7 +121,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     $content = nl2br(strip_tags($content, '<a>'));
                     break;
                 case 2:
-                    $content = $this->view->fetch('output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'));
+                    $content = $this->view->fetch('output/'.$this->getVar('template_html', 'html.tpl'));
                     break;
                 case 3:
                     $content = $this->view->fetch('output/text_with_link.tpl');
@@ -380,10 +387,9 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         // Language - if not set - same sequence as in html.tpl/text.tpl
         $Nllanguage = FormUtil::getPassedValue('language', '', 'GETPOST');
         if (empty($Nllanguage)) {
-            $Nllanguage = ZLanguage::getLanguageCode();
-        }else{
-            ZLanguage::setLocale($Nllanguage);
+            $Nllanguage = System::getVar('language_i18n', 'en');
         }
+        ZLanguage::setLocale($Nllanguage);
 
         // Get newsletter content
         $nlDataObjectArray = new Newsletter_DBObject_NewsletterDataArray();
@@ -392,7 +398,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $this->view->assign('site_url', System::getBaseUrl());
         $this->view->assign('site_name', System::getVar('sitename'));
         $this->view->assign('objectArray', $objNewsletterData);
-        $message_html = $this->view->fetch('output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'));
+        $message_html = $this->view->fetch('output/'.$this->getVar('template_html', 'html.tpl'));
         $message_text = $this->view->fetch('output/text.tpl');
 
         // Prepare data
@@ -516,15 +522,16 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $dataNewsletter = $objArchive->get($id);
         if ($dataNewsletter) {
             //Set language
+            $lang = $dataNewsletter['lang'] ? $dataNewsletter['lang'] : System::getVar('language_i18n', 'en');
             if ($enable_multilingual) {
-                ZLanguage::setLocale($dataNewsletter['lang']);
+                ZLanguage::setLocale($lang);
             }
 
             // Determine users to send to
             $where = "(nlu_active=1 AND nlu_approved=1)";
-            $enable_multilingual = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
+            $enable_multilingual = $this->getVar('enable_multilingual', 0);
             if ($enable_multilingual) {
-                $where = "(nlu_lang='".$dataNewsletter['lang']."' OR nlu_lang='')";
+                $where = "(nlu_lang='".$lang."' OR nlu_lang='')";
             }
             // not take in account frequency in menual sending
             //$allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
@@ -578,7 +585,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     LogUtil::registerStatus($this->__('Skipped (not sent for some reason): ').$notsent);
                 }
             } else {
-                LogUtil::registerError($this->__('Max emails per hour encountered: ').ModUtil::getVar('Newsletter', 'max_send_per_hour'));
+                LogUtil::registerError($this->__('Max emails per hour encountered: ').$this->getVar('max_send_per_hour'));
             }
         } else {
                 LogUtil::registerError($this->__('Error getting data for newsletter Id ').$id);
