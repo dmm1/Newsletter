@@ -65,12 +65,10 @@ Event.observe(window, 'load', function() {
 
     {assign var='i' value=1}
     {foreach from=$objectArray item='plugin'}
-    {modgetvar assign="pluginActive" module="Newsletter" name="plugin_`$plugin`" default=0}
     <fieldset>
         <legend>
-            <input type="checkbox" id="enable_{$i}" name="plugin[{$plugin}]" value="1" {if $pluginActive}checked="checked"{/if} />
-            {nlPluginDisplayName plugin=$plugin assign='displayName'}
-            {$displayName|safehtml}
+            <input type="checkbox" id="enable_{$i}" name="plugin[{$plugin}]" value="1" {if $plugin_settings.$plugin.nActive}checked="checked"{/if} />
+            {nlPluginDisplayName plugin=$plugin assign='displayName'}{$displayName|safehtml}
         </legend>
         {nlPluginDescription plugin=$plugin assign='description'}
         {if !empty($description)}
@@ -79,21 +77,20 @@ Event.observe(window, 'load', function() {
         <div id="plugin_{$i}">
             {if $plugin neq 'Newsletter_NewsletterPlugin_NewsletterMessage'}
             <div class="z-formrow z-nw-numitemsrow">
-                <label for="plugin{$i}_numitems">{gt text='Number of items'}</label>
+                <label for="plugin{$i}_nItems">{gt text='Number of items'}</label>
                 <div>
-                    {modgetvar assign='pluginItems' module='Newsletter' name="plugin_`$plugin`_nItems" default=3}
-                    <input id="plugin{$i}_numitems" name="plugin[{$plugin}_nItems]" type="text" value="{$pluginItems}" size="3" maxlength="2" />
-                    {modgetvar assign='pluginSettings' module='Newsletter' name="plugin_`$plugin`_Settings" default=''}
-                    {assign var='arrSettings' value=";"|explode:$pluginSettings}
-                    &nbsp;Treat:
-                    <select id="plugin{$i}_Settings0" name="plugin[{$plugin}_Settings0]" size="1" >
-                        <option value="0"{if $arrSettings.0 eq '0'} selected="selected"{/if}>{gt text='As is'}</option>
-                        <option value="1"{if $arrSettings.0 eq '1'} selected="selected"{/if}>{gt text='nl2br (from text only)'}</option>
-                        <option value="2"{if $arrSettings.0 eq '2'} selected="selected"{/if}>{gt text='strip_tags (from html)'}</option>
-                        <option value="3"{if $arrSettings.0 eq '3'} selected="selected"{/if}>{gt text='strip_tags but img,a'}</option>
+                    <input id="plugin{$i}_nItems" name="plugin[{$plugin}_nItems]" type="text" value="{$plugin_settings.$plugin.nItems}" size="3" maxlength="2" />
+                    &nbsp;{gt text='Treat'}:
+                    <select id="plugin{$i}_nTreat" name="plugin[{$plugin}_nTreat]" size="1" >
+                        <option value="0"{if $plugin_settings.$plugin.nTreat eq 0} selected="selected"{/if}>{gt text='As is'}</option>
+                        <option value="1"{if $plugin_settings.$plugin.nTreat eq 1} selected="selected"{/if}>{gt text='nl2br (from text only)'}</option>
+                        <option value="2"{if $plugin_settings.$plugin.nTreat eq 2} selected="selected"{/if}>{gt text='strip_tags (from html)'}</option>
+                        <option value="3"{if $plugin_settings.$plugin.nTreat eq 3} selected="selected"{/if}>{gt text='strip_tags but img,a'}</option>
                     </select>
-                    &nbsp;Truncate:
-                    <input id="plugin{$i}_Settings1" name="plugin[{$plugin}_Settings1]" type="text" value="{if $arrSettings.1 == ''}400{else}{$arrSettings.1}{/if}" size="10" />
+                    &nbsp;{gt text='Truncate'}:
+                    <input id="plugin{$i}_nTruncate" name="plugin[{$plugin}_nTruncate]" type="text" value="{if $plugin_settings.$plugin.nTruncate == ''}400{else}{$plugin_settings.$plugin.nTruncate}{/if}" size="8" />
+                    &nbsp;{gt text='Order'}:
+                    <input id="plugin{$i}_nOrder" name="plugin[{$plugin}_nOrder]" type="text" value="{$plugin_settings.$plugin.nOrder}" size="8" />
                 </div>
             </div>
             {/if}

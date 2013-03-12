@@ -33,10 +33,8 @@ class Newsletter_DBObject_Plugin extends DBObject
             }
             // plugin nItems
             ModUtil::setVar('Newsletter', 'plugin_'.$k.'_nItems', $this->_objData[$k.'_nItems']);
-            // plugin settings
-            //      _Settings0 is Treat
-            //      _Settings1 is Truncate
-            $pluginSettings = $this->_objData[$k.'_Settings0'] .';'. $this->_objData[$k.'_Settings1'];
+            // plugin settings: nTreat, nTruncate, nOrder
+            $pluginSettings = $this->_objData[$k.'_nTreat'] .';'. $this->_objData[$k.'_nTruncate'] .';'. $this->_objData[$k.'_nOrder'];
             ModUtil::setVar('Newsletter', 'plugin_'.$k.'_Settings', $pluginSettings);
             // plugin parameters, if any
             if(class_exists($k)) {

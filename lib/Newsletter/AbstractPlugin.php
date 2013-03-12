@@ -50,11 +50,35 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      */
     protected $description;
     /**
+     * Plugin status: 1 - active; 0 - inactive
+     *
+     * @var integer
+     */
+    protected $nActive;
+    /**
      * Max number of items to display
      *
      * @var integer
      */
     protected $nItems;
+    /**
+     * Display order of this plugin
+     *
+     * @var integer
+     */
+    protected $nOrder;
+    /**
+     * Type of content treatment: 0 - As is; 1 - nl2br; 2 - strip_tags; 3 - strip_tags but img,a
+     *
+     * @var integer
+     */
+    protected $nTreat;
+    /**
+     * Number of chars from content to display (0 - content is ignored)
+     *
+     * @var integer
+     */
+    protected $nTruncate;
     /**
      * The user id to use in security checks
      *
@@ -113,12 +137,17 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         $this->title = (empty($title)) ? $this->displayName : $title;
 
         ////Plugin vars
-        $this->nItems = (int)ModUtil::getVar('Newsletter', 'plugin_' . $class . '_nItems', 1);
-        
+        $this->nActive = (int)ModUtil::getVar('Newsletter', 'plugin_' . $class, 0);
+        $this->nItems = (int)ModUtil::getVar('Newsletter', 'plugin_' . $class . '_nItems', 3);
+        $arrSettings = Newsletter_Util::getPluginSettingsArray($class); // explode(";", ModUtil::getVar('Newsletter', 'plugin_'.$class.'_Settings', ''));
+        $this->nTreat = (int)$arrSettings[0];
+        $this->nTruncate = isset($arrSettings[1]) ? (int)$arrSettings[1] : 400;
+        $this->nOrder = Newsletter_Util::getPluginOrderFromArray($arrSettings, $this->name);
+
         ////Module vars
         $this->userNewsletter= (int)ModUtil::getVar('Newsletter', 'newsletter_userid', 1);
         $this->enableML = (bool)ModUtil::getVar('Newsletter', 'enable_multilingual', false);
-        
+
         ////Language
         if(isset($lang) && empty($lang))
             throw new Zikula_Exception_Fatal('$lang cannot be empty!');
@@ -170,7 +199,12 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
 
     public function getParameters()
     {
-        return array ('number' => 0, 'param' => array());
+        return array('number' => 0, 'param' => array());
+    }
+
+    public function getSettings()
+    {
+        return array('nActive' => $this->nActive, 'nItems' => $this->nItems, 'nTreat' => $this->nTreat, 'nTruncate' => $this->nTruncate, 'nOrder' => $this->nOrder);
     }
 
     public function getModuleWherePlacedIn()
@@ -192,8 +226,6 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      * @warning Protected variable names:\n
      * - Settings
      * - nItems
-     * - Settings0
-     * - Settings1
      */
     final protected function setPluginVar($name, $value)
     {

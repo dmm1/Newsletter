@@ -71,36 +71,43 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $data = array();
 
         if ($ot) {
-            $class = 'Newsletter_DBObject_'. ucfirst($ot) . 'Array';
-            if (class_exists($class)) {
-                $objectArray = new $class();
-                if (method_exists($objectArray, 'cleanFilter')) {
-                    $filter = $objectArray->cleanFilter($filter);
+            if ($ot == 'plugin') {
+                $data = Newsletter_Util::getPluginClasses();
+                $plugin_parameters = array();
+                $plugin_settings = array();
+                foreach ($data as $plugin) {
+                    if (class_exists($plugin)) {
+                        $objPlugin = new $plugin();
+                        $plugin_parameters[$plugin] = $objPlugin->getParameters();
+                        $plugin_settings[$plugin] = $objPlugin->getSettings();
+                    }
                 }
-                $where = $objectArray->genFilter($filter);
-                $sort  = $sort ? $sort : $objectArray->_objSort;
-                $data  = $objectArray->get($where, $sort, $offset, $pagesize);
-                
-                $pager = array();
-                $pager['numitems']     = $objectArray->getCount($where, true);
-                $pager['itemsperpage'] = $pagesize;
-                $this->view->assign('startnum', $offset)
-                           ->assign('pager', $pager)
-                           ->assign('startpage', false);
+                $this->view->assign('plugin_parameters', $plugin_parameters);
+                $this->view->assign('plugin_settings', $plugin_settings);
+            } else {
+                $class = 'Newsletter_DBObject_'. ucfirst($ot) . 'Array';
+                if (class_exists($class)) {
+                    $objectArray = new $class();
+                    if (method_exists($objectArray, 'cleanFilter')) {
+                        $filter = $objectArray->cleanFilter($filter);
+                    }
+                    $where = $objectArray->genFilter($filter);
+                    $sort  = $sort ? $sort : $objectArray->_objSort;
+                    $data  = $objectArray->get($where, $sort, $offset, $pagesize);
+                    
+                    $pager = array();
+                    $pager['numitems']     = $objectArray->getCount($where, true);
+                    $pager['itemsperpage'] = $pagesize;
+                    $this->view->assign('startnum', $offset)
+                               ->assign('pager', $pager)
+                               ->assign('startpage', false);
+                }
             }
         }
 
         if ($ot == 'user') {
             $this->view->assign('filter', $filter);
         }
-
-        //EM Start
-        if ($ot == 'plugin') {
-            if (method_exists($objectArray, 'getPluginsParameters')) {
-                $this->view->assign('plugin_parameters', $objectArray->getPluginsParameters());
-            }
-        }
-        //EM End
 
         $this->view->assign('ot', $ot)
                    ->assign('objectArray', $data);
