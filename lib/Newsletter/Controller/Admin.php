@@ -113,7 +113,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                    ->assign('objectArray', $data);
 
         if ($ot == 'ShowPreview') {
-            $language = FormUtil::getPassedValue('language', 'en', 'GETPOST');
+            $language = FormUtil::getPassedValue('language', System::getVar('language_i18n', 'en'), 'GETPOST');
             ZLanguage::setLocale($language);
             switch ($format) {
                 case 1:
@@ -387,10 +387,9 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         // Language - if not set - same sequence as in html.tpl/text.tpl
         $Nllanguage = FormUtil::getPassedValue('language', '', 'GETPOST');
         if (empty($Nllanguage)) {
-            $Nllanguage = ZLanguage::getLanguageCode();
-        }else{
-            ZLanguage::setLocale($Nllanguage);
+            $Nllanguage = System::getVar('language_i18n', 'en');
         }
+        ZLanguage::setLocale($Nllanguage);
 
         // Get newsletter content
         $nlDataObjectArray = new Newsletter_DBObject_NewsletterDataArray();
@@ -523,15 +522,16 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $dataNewsletter = $objArchive->get($id);
         if ($dataNewsletter) {
             //Set language
+            $lang = $dataNewsletter['lang'] ? $dataNewsletter['lang'] : System::getVar('language_i18n', 'en');
             if ($enable_multilingual) {
-                ZLanguage::setLocale($dataNewsletter['lang']);
+                ZLanguage::setLocale($lang);
             }
 
             // Determine users to send to
             $where = "(nlu_active=1 AND nlu_approved=1)";
             $enable_multilingual = $this->getVar('enable_multilingual', 0);
             if ($enable_multilingual) {
-                $where = "(nlu_lang='".$dataNewsletter['lang']."' OR nlu_lang='')";
+                $where = "(nlu_lang='".$lang."' OR nlu_lang='')";
             }
             // not take in account frequency in menual sending
             //$allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);

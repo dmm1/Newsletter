@@ -320,7 +320,8 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $personalize = ModUtil::getVar('Newsletter','personalize_email', false);
 
         $view = Zikula_View::getInstance('Newsletter', $personalize ? false : true, $personalize ? null : $cacheID);
-        ZLanguage::setLocale($user['lang']);
+        $lang = $user['lang'] ? $user['lang'] : System::getVar('language_i18n', 'en');
+        ZLanguage::setLocale($lang);
 
         $dataArray = new Newsletter_DBObject_NewsletterDataArray();
 
@@ -329,7 +330,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $view->assign('site_name', System::getVar('sitename'));
         $view->assign('user_name', $personalize ? $user['name'] : '');
         $view->assign('user_email', $personalize ? $user['email'] : '');
-        $view->assign('objectArray', $dataArray->getNewsletterData($user['lang']));
+        $view->assign('objectArray', $dataArray->getNewsletterData($lang));
         return $view->fetch($tpl);
     }
 

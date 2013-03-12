@@ -118,6 +118,8 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
 
         ////Plugin name
         $this->name = $parts[2];
+        ////Plugin translation domain
+        $this->domain = ZLanguage::getModuleDomain($this->getModuleWherePlacedIn());
 
         ////Modname and modinfo
         //$modname is empty if the function is not available in the plugin class.
@@ -152,8 +154,6 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         if(isset($lang) && empty($lang))
             throw new Zikula_Exception_Fatal('$lang cannot be empty!');
         $this->lang = (isset($lang)) ? $lang : System::getVar('language_i18n', 'en');
-        
-        $this->domain = ZLanguage::getModuleDomain($this->getModuleWherePlacedIn());
     }
     
     public function pluginAvailable()
