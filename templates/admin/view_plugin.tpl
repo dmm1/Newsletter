@@ -1,12 +1,36 @@
 {pageaddvar name='stylesheet' value='modules/Newsletter/style/admin_style.css'}
-{adminheader}
+{pageaddvar name='stylesheet' value='javascript/jquery-ui/themes/base/jquery-ui.css'}
+{pageaddvar name='javascript' value='jquery-ui'}
 
-<div class="z-admin-content-pagetitle">
-    {img modname='core' src='ark.png' set='icons/small' alt=''}
-    <h3>{gt text='Manage Plugins'}</h3>
-</div>
+{pageaddvarblock}
+<style>
+  #sortable {
+    list-style-type: none; margin: 0; padding: 0;
+  }
+  #sortable li {
+    margin: 0 3px 3px 3px; padding-left: 1.5em; min-height: 4em;
+  }
+  #sortable li span {
+    position: absolute; margin-left: -1.3em;
+  }
+</style>
+<script>
+  jQuery(function() {
+    initializeplugins();
 
-<script type="text/javascript">
+    jQuery( "#sortable" ).sortable({items: "li:not(.nl-nosort)", placeholder: "ui-state-highlight"});
+    jQuery( "#sortable" ).disableSelection();
+    jQuery( "#sortable" ).on( "sortupdate", function( event, ui ) {
+        var sortedIDs = jQuery( "#sortable" ).sortable( "toArray" );
+
+        var counter = 100;
+        var li_id;
+        for(var i = 0; i < sortedIDs.length; i++) {
+            jQuery('#plugin' + sortedIDs[i].substr(3, 10) + '_nOrder').val(counter);
+            counter += 100;
+        }
+    });
+  });
 
 function initializeplugins()
 {
@@ -33,14 +57,15 @@ function initializeplugins()
         i++;
     }
 }
-
-Event.observe(window, 'load', function() {
-    if ($('nwplugins')) {
-        initializeplugins();
-    }
-}, false);
 </script>
+{/pageaddvarblock}
 
+{adminheader}
+
+<div class="z-admin-content-pagetitle">
+    {img modname='core' src='ark.png' set='icons/small' alt=''}
+    <h3>{gt text='Manage Plugins'}</h3>
+</div>
 <form id="nwplugins" class="z-form" action="{modurl modname='Newsletter' type='admin' func='save'}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
     <input type="hidden" name="ot" value="plugin" />
@@ -63,13 +88,14 @@ Event.observe(window, 'load', function() {
         </div>
     </fieldset>
 
+<ul id="sortable">
     {assign var='i' value=1}
     {foreach from=$objectArray item='plugin'}
-    <fieldset>
-        <legend>
+    <li id="li_{$i}" class="ui-state-default {if $plugin eq 'Newsletter_NewsletterPlugin_NewsletterMessage'}nl-nosort{/if}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+        <h5>
             <input type="checkbox" id="enable_{$i}" name="plugin[{$plugin}]" value="1" {if $plugin_settings.$plugin.nActive}checked="checked"{/if} />
             {nlPluginDisplayName plugin=$plugin assign='displayName'}{$displayName|safehtml}
-        </legend>
+        </h5>
         {nlPluginDescription plugin=$plugin assign='description'}
         {if !empty($description)}
             <div class="z-informationmsg nl-round">{$description}</div>
@@ -98,10 +124,10 @@ Event.observe(window, 'load', function() {
                 {nlPluginIncludeConfig plugin=$plugin}
             {/if}
         </div>
-    </fieldset>
+    </li>
     {assign var='i' value=$i+1}
     {/foreach}
-
+</ul>
     {include file='forms/actions.tpl'}
 </form>
 {adminfooter}
