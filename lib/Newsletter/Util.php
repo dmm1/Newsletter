@@ -31,27 +31,61 @@ class Newsletter_Util
         $modules = ModUtil::getModulesByState(ModUtil::STATE_ACTIVE);
         
         $files = array();
-        $plugins = array();
+        $pluginsord = array();
 
         foreach($modules as $module)
         {
             $basedir = ModUtil::getModuleBaseDir($module['name']);
             $files = FileUtil::getFiles($basedir . '/' . $module['name'] . '/lib/' . $module['name'] . '/NewsletterPlugin');
             
-            
             foreach ($files as $key => $file) {
                 if (strpos($file, '.') === 0) {
                     continue;
                 }
                 $file = str_replace('.php', '', $file);
-                $files[$key] = $module['name'] . "_NewsletterPlugin_" . $file;
+                $pluginClass = $module['name'] . "_NewsletterPlugin_" . $file;
+                // get plugin order and add to array
+                $order = self::getPluginOrder($pluginClass);
+                $pluginsord[] = array('order' => $order, 'class' => $pluginClass);
             }
-            $plugins = array_merge($plugins, $files);
-
-            #echo $basedir . '/' . $module['name'] . '/lib/' . $module['name'] . '/NewsletterPlugin<br/>';
-            #echo "<pre>" . print_r($files) . "</pre><br />";
         }
+        sort($pluginsord);
+
+        $plugins = array();
+        foreach($pluginsord as $plugin)
+        {
+            $plugins[] = $plugin['class'];
+        }
+
         return $plugins;
+    }
+
+    public static function getPluginOrder($class)
+    {
+        $parts = explode('_', $class);
+        $pluginName = $parts[2];
+
+        return self::getPluginOrderFromArray(self::getPluginSettingsArray($class), $pluginName);
+    }
+
+    public static function getPluginSettingsArray($class)
+    {
+        return explode(";", ModUtil::getVar('Newsletter', 'plugin_'.$class.'_Settings', ''));
+    }
+
+    public static function getPluginOrderFromArray($arrSettings, $pluginName)
+    {
+        return isset($arrSettings[2]) && $arrSettings[2]!='' ? (int)$arrSettings[2] : Newsletter_Util::pluginDefaultOrder($pluginName);
+    }
+
+    public static function pluginDefaultOrder($pluginName)
+    {
+        $arrOrder = array('NewsletterMessage', 'News', 'Pages', 'Content', 'Clip', 'EZComments', 'Dizkus', 'Downloads', 'Weblinks', 'PostCalendar', 'AddressBook', 'AdvancedPolls', 'NewMembers');
+        $order = array_search($pluginName, $arrOrder);
+        if ($order === false) {
+            $order = count($arrOrder);
+        }
+        return $order * 100;
     }
 
     public static function getSelectorDataActive($all=true)
