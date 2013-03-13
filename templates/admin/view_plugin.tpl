@@ -19,12 +19,10 @@
     initializeplugins();
 
     jQuery( "#sortable" ).sortable({items: "li:not(.nl-nosort)", placeholder: "ui-state-highlight"});
-    jQuery( "#sortable" ).disableSelection();
     jQuery( "#sortable" ).on( "sortupdate", function( event, ui ) {
         var sortedIDs = jQuery( "#sortable" ).sortable( "toArray" );
 
         var counter = 100;
-        var li_id;
         for(var i = 0; i < sortedIDs.length; i++) {
             jQuery('#plugin' + sortedIDs[i].substr(3, 10) + '_nOrder').val(counter);
             counter += 100;
