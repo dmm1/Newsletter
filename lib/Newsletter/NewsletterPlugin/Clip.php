@@ -65,12 +65,12 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
     public function setParameters()
     {
         // Clip TIDs
-        $tids = FormUtil::getPassedValue('ClipTIDs', array(), 'POST');
+        $tids = $this->getFormValue('TIDs', array(), 'POST');
 
         $this->setPluginVar('TIDs', array_keys($tids));
 
         // Additional arguments
-        $args = FormUtil::getPassedValue('ClipArgs', array(), 'POST');
+        $args = $this->getFormValue('Args', array(), 'POST');
 
         $this->setPluginVar('Args', $args);
     }
