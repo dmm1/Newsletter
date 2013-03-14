@@ -213,6 +213,11 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         $parts = explode('_', $class);
         return $parts[0];
     }
+    
+    final protected function getFormValue($key, $default = null, $source = null, $filter = null, array $args = array(), $objectType=null)
+    {
+        return FormUtil::getPassedValue(get_class($this) . '_' . $key, $default, $source, $filter, $args, $objectType);
+    }
 
     /**
      * The setPluginVar method sets a Newsletter plugin variable.
