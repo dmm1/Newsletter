@@ -40,15 +40,20 @@ class Newsletter_NewsletterPlugin_Pages extends Newsletter_AbstractPlugin
             return array();
         }
 
+        //Prefix for old versions
+        $prefix = '';
+        if($this->modinfo['version'] <= '2.4.2')
+            $prefix = 'pn_';
+
         $connection = Doctrine_Manager::getInstance()->getCurrentConnection();
         $sql = "SELECT * FROM pages WHERE 1";
         if ($filtAfterDate) {
-            $sql .= " AND cr_date>='".$filtAfterDate."'";
+            $sql .= " AND {$prefix}cr_date>='".$filtAfterDate."'";
         }
         if ($this->enableML && $this->lang) {
-            $sql .= " AND (language='' OR language='".$this->lang."')";
+            $sql .= " AND ({$prefix}language='' OR {$prefix}language='".$this->lang."')";
         }
-        $sql .= " ORDER BY pageid DESC LIMIT ".$this->nItems;
+        $sql .= " ORDER BY {$prefix}pageid DESC LIMIT ".$this->nItems;
         $stmt = $connection->prepare($sql);
         try {
             $stmt->execute();
@@ -61,9 +66,9 @@ class Newsletter_NewsletterPlugin_Pages extends Newsletter_AbstractPlugin
             if (!SecurityUtil::checkPermission('Pages:title:', $items[$k]['pageid'].'::', ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
-                $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]['pageid'], 'newlang' => $this->lang), null, null, true);
-                $items[$k]['nl_content'] = $items[$k]['content'];
+                $items[$k]['nl_title'] = $items[$k]["{$prefix}title"];
+                $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]["{$prefix}pageid"], 'newlang' => $this->lang), null, null, true);
+                $items[$k]['nl_content'] = $items[$k]["{$prefix}content"];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }
         }
