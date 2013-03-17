@@ -118,8 +118,6 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
 
         ////Plugin name
         $this->name = $parts[2];
-        ////Plugin translation domain
-        $this->domain = ZLanguage::getModuleDomain($this->getModuleWherePlacedIn());
 
         ////Modname and modinfo
         //$modname is empty if the function is not available in the plugin class.
@@ -129,6 +127,14 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         $this->modname = (empty($modname)) ? $parts[0] : $modname;
         //modinfo
         $this->modinfo = ModUtil::getInfoFromName($this->modname);
+
+        ////Plugin translation domain
+        $homeModule = $this->getModuleWherePlacedIn();
+        $this->domain = ZLanguage::getModuleDomain($homeModule);
+        if ($homeModule != 'Newsletter') {
+            // load module, otherwise translation doesn't work
+            ModUtil::load($homeModule);
+        }
 
         ////Display name, title
         //Display name is used in admin interface, defaults to the filename.
