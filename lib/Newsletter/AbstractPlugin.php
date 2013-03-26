@@ -105,6 +105,10 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      * @var string
      */
     protected $domain;
+    /**
+     * Instance of doctrine.entitymanager
+     */
+    protected $entityManager;
 
     /**
      * Constructor.
@@ -154,6 +158,9 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
         if(isset($lang) && empty($lang))
             throw new Zikula_Exception_Fatal('$lang cannot be empty!');
         $this->lang = (isset($lang)) ? $lang : System::getVar('language_i18n', 'en');
+        
+        //Assign instance of doctrine.entitymanager
+        $this->entityManager = ServiceUtil::getManager()->getService('doctrine.entitymanager');
     }
     
     public function pluginAvailable()
