@@ -1,17 +1,13 @@
 <?php
 
- /**
- * Smarty modifier decodes html entities
+/**
+ * Smarty function to return the plugin name of a plugin.
  *
  *
  * Example
- *  {$content|html_entity_decode}
+ *  {nlPluginName plugin='Newsletter_NewsletterPlugin_Clip'}
  *
- * 
- * @author       Devin Hayes
- * @since        2/4/2006
- * @param        array    $string     the contents to transform
- * @return       string   the modified output
+ * @return string the name of the plugin.
  */
 function smarty_function_nlPluginName($params, Zikula_View $view)
 {
