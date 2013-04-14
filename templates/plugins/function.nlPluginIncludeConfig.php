@@ -1,17 +1,13 @@
 <?php
 
- /**
- * Smarty modifier decodes html entities
+/**
+ * Smarty function to render the configuration of a plugin.
  *
  *
  * Example
- *  {$content|html_entity_decode}
+ *  {nlPluginIncludeConfig plugin='Newsletter_NewsletterPlugin_Clip'}
  *
- * 
- * @author       Devin Hayes
- * @since        2/4/2006
- * @param        array    $string     the contents to transform
- * @return       string   the modified output
+ * @return string the rendered plugin configuration.
  */
 function smarty_function_nlPluginIncludeConfig($params, Zikula_View $view)
 {

@@ -1,17 +1,13 @@
 <?php
 
  /**
- * Smarty modifier decodes html entities
+ * Smarty function to return all active plugins
  *
  *
  * Example
- *  {$content|html_entity_decode}
+ *  {nlActivePlugins assign='activePlugins'}
  *
- * 
- * @author       Devin Hayes
- * @since        2/4/2006
- * @param        array    $string     the contents to transform
- * @return       string   the modified output
+ * @return array   the active plugins
  */
 function smarty_function_nlActivePlugins($params, Zikula_View $view)
 {
