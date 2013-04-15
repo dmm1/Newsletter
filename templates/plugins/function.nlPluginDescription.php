@@ -1,17 +1,13 @@
 <?php
 
- /**
- * Smarty modifier decodes html entities
+/**
+ * Smarty function to return the description of a plugin.
  *
  *
  * Example
- *  {$content|html_entity_decode}
+ *  {nlPluginDescription plugin='Newsletter_NewsletterPlugin_Clip'}
  *
- * 
- * @author       Devin Hayes
- * @since        2/4/2006
- * @param        array    $string     the contents to transform
- * @return       string   the modified output
+ * @return string the plugin description.
  */
 function smarty_function_nlPluginDescription($params, Zikula_View $view)
 {
