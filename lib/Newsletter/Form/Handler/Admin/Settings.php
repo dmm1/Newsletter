@@ -84,6 +84,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
 
         if($prefs['disable_auto'] && !$this->getVar('disable_auto')) {
             EventUtil::unregisterPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
+            ModUtil::setVar('Newsletter', 'sendInProgress', false);
         } else if(!$prefs['disable_auto'] && $this->getVar('disable_auto')) {
             EventUtil::registerPersistentModuleHandler('Newsletter', 'frontcontroller.predispatch', array('Newsletter_Listener_AutoSend', 'pageLoadListener'));
         }
@@ -108,7 +109,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('disable_auto',               $prefs['disable_auto']               ? 1 : 0);
         $this->setVar('activate_archive',           $prefs['activate_archive']           ? 1 : 0);
         $this->setVar('personalize_email',          $prefs['personalize_email']          ? 1 : 0);
-        $this->setVar('send_day',                   $prefs['send_day']                   ? $prefs['send_day']           : 5);
+        $this->setVar('send_day',                   is_numeric($prefs['send_day'])       ? $prefs['send_day']           : 5);
         $this->setVar('send_from_address',          $prefs['send_from_address']);
         $this->setVar('newsletter_subject',         $prefs['newsletter_subject']         ? $prefs['newsletter_subject'] : 0);
         $this->setVar('send_per_request',           $prefs['send_per_request'] >= 0      ? $prefs['send_per_request']   : 5);
