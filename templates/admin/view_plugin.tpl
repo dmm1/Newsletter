@@ -87,15 +87,23 @@ function initializeplugins()
     </fieldset>
 
 <ul id="sortable">
+    {nlPluginsWhereModuleIsAvailable assign='pluginsWhereModuleIsAvailable'}
     {assign var='i' value=1}
     {foreach from=$objectArray item='plugin'}
+    {if in_array($plugin, $pluginsWhereModuleIsAvailable)}
+        {assign var='modAvailable' value=true}
+    {else}
+        {assign var='modAvailable' value=false}
+    {/if}
     <li id="li_{$i}" class="ui-state-default {if $plugin eq 'Newsletter_NewsletterPlugin_NewsletterMessage'}nl-nosort{/if}"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-        <h5>
-            <input type="checkbox" id="enable_{$i}" name="plugin[{$plugin}]" value="1" {if $plugin_settings.$plugin.nActive}checked="checked"{/if} />
+        <h5 {if !$modAvailable}style="text-decoration:line-through;" {/if}>
+            <input type="checkbox" id="enable_{$i}" name="plugin[{$plugin}]" value="1" {if !$modAvailable}disabled="disabled" {/if} {if $plugin_settings.$plugin.nActive && $modAvailable}checked="checked"{/if} />
             {nlPluginDisplayName plugin=$plugin assign='displayName'}{$displayName|safehtml}
         </h5>
         {nlPluginDescription plugin=$plugin assign='description'}
-        {if !empty($description)}
+        {if !$modAvailable}
+            <div class="z-warningmsg">{gt text='Module required for this plugin is not installed.'}</div>
+        {elseif !empty($description)}
             <div class="z-informationmsg nl-round">{$description}</div>
         {/if}
         <div id="plugin_{$i}">

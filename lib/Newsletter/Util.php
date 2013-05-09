@@ -26,6 +26,19 @@ class Newsletter_Util
         return $plugins;
     }
 
+    public static function getPluginsWhereModuleIsAvailable()
+    {
+        $plugins = self::getPluginClasses();
+
+        foreach ($plugins as $k => $plugin) {
+            $class = new $plugin();
+            if (!$class->pluginAvailable()) {
+                unset($plugins[$k]);
+            }
+        }
+        return $plugins;
+    }
+
     public static function getPluginClasses()
     {
         $modules = ModUtil::getModulesByState(ModUtil::STATE_ACTIVE);
