@@ -43,7 +43,6 @@ class Newsletter_Listener_AutoSend
             if ($enable_multilingual) {
                 $_POST['language'] = SessionUtil::getVar('lang'); // hack, to ensure that language can be retrieved from $_POST
             }
-            $_POST['authKey'] = ModUtil::getVar('Newsletter', 'admin_key');
 
             $object = new Newsletter_DBObject_NewsletterSend();
             $object->save();

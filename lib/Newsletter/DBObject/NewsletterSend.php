@@ -39,7 +39,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
     }
 
     // doesn't save user info but allows us to use the standard API through Newsletter_userform_edit()
-    public function insert($args=array())
+    public function insert()
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
@@ -65,34 +65,45 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $newsletterDataObjectArray = new Newsletter_DBObject_NewsletterDataArray();
         $this->_objNewsletterData  = $newsletterDataObjectArray->getNewsletterData($this->_objLang);              // custom var
 
-        $this->_objSendType       = FormUtil::getPassedValue('sendType', '', 'GETPOST');                          // custom var
-        $this->_objUpdateSendDate = FormUtil::getPassedValue('updateSendDate', '', 'GETPOST');                    // custom var
-        $testsend                 = FormUtil::getPassedValue('testsend', 0, 'GETPOST');                           // from admin->preview
+
+        /**
+         * _objSendType is '' when the newsletter is auto-sent.
+         */
+        $this->_objSendType       = FormUtil::getPassedValue('sendType', '', 'GETPOST');                          // see templates/admin/view_user.tpl
+        $this->_objUpdateSendDate = FormUtil::getPassedValue('updateSendDate', false, 'GETPOST');                 // see templates/admin/view_user.tpl
+        $testsend                 = FormUtil::getPassedValue('testsend', 0, 'GETPOST');                           // from admin->view->ot->ShowPreview
 
         if (!$this->_objNewsletterData) {
             return LogUtil::registerError(__('No newsletter data to send', $dom));
         }
 
+        /**
+         * Called by Controller_Admin::view()->ot='ShowPreview'
+         */
         if ($testsend) {
             $this->_objSendType = 'test';
             return $this->_sendTest();
         } 
 
+        //Don't save newsletter
         if ($this->_objSendType == 'manual') {
-            return $this->_sendManual($args);
+            return $this->_sendManual(false);
         }
 
+        //Save only if there was no other newsletter saved this week
         if ($this->_objSendType == 'manual_archive') {
-            return $this->_sendManual_archive($args);
+            return $this->_sendManual(true, true);
         }
 
+        //Save newsletter
         if ($this->_objSendType == 'manual_archive_nocheck') {
-            return $this->_sendManual_archive($args, false);
+            return $this->_sendManual(true, false);
         }
 
         $this->_objSendType = 'api';
+        $this->_objUpdateSendDate = true;
 
-        return $this->_sendAPI($args);
+        return $this->_sendAPI();
     }
 
     public function _sendTest()
@@ -107,72 +118,51 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return $this->_sendNewsletter($user);
     }
 
-    public function _sendManual($args=array())
+    /**
+     * Sends the newsletter to selected users and saves it into archive depending on $checkRecent
+     *
+     * @param bool  $createArchive
+     * @param bool  $checkRecent Weather or not to only save the newsletter if there was no newsletter during the last week.
+     *
+     * @return bool|false
+     */
+    public function _sendManual($createArchive = false, $checkRecent = true)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
-        $data = $this->_objData;
-        if (!$data) {
-            return LogUtil::registerError(__('No users were selected to send the newsletter to', $dom));
-        }
-
-        $objectArray = new Newsletter_DBObject_UserArray();
-        $userIDs     = implode(',', $data);
-        $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
-        $users       = $objectArray->get($where, 'id');
-        if (!$users) {
-            return LogUtil::registerError(__('No users were available to send the newsletter to', $dom));
-        }
-
-        $nSent   = 0;
-        foreach ($users as $user) {
-            if ($this->_sendNewsletter($user)) {
-                $nSent++;
-            }
-        }
-
-        LogUtil::registerStatus(_fn('%s newsletter were successfully sent.', '%s newsletters were successfully sent.', $nSent, $nSent, $dom));
-        return true;
-    }
-
-    public function _sendManual_archive($args=array(), $checkRecent = true) // send Newsletter & make an archive
-    {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
+        //Contains array of user ids to send the newsletter to.
         $data = $this->_objData;
         if ($data) {
-            if (!class_exists('Newsletter_DBObject_Archive')) {
-                return LogUtil::registerError(__f('Unable to load class [%s]', 'archive', $dom));
-            }
-
-            $objectArray = new Newsletter_DBObject_UserArray();
+            $objectUserArray = new Newsletter_DBObject_UserArray();
             $userIDs     = implode(',', $data);
             $where       = "nlu_id IN ($userIDs) AND nlu_active=1 AND nlu_approved=1";
-            $users       = $objectArray->get($where, 'id');
+            $users       = $objectUserArray->get($where, 'id');
             if (!$users) {
                 //return LogUtil::registerError(__('No users were available to send the newsletter to', $dom));
             }
         }
 
-        $sendPerRequest = ModUtil::getVar('Newsletter', 'send_per_request', 5);
+        if($createArchive) {
+            // Check if there was an archive created during the last week if $checkRecent is true.
+            $recentArchiveExists = false;
+            $newArchiveTime = DateUtil::getDatetime();
 
-        // check archives for new archive time
-        $matched = false;
-        $newArchiveTime = DateUtil::getDatetime();
-        if ($checkRecent) {
-            $archiveObj = new Newsletter_DBObject_Archive();
-            $archive    = $archiveObj->getRecent();
-            if ($archive) {
-                $newArchiveTime = $archive['date'];
-                $matched = true;
+            if ($checkRecent) {
+                $archiveObj = new Newsletter_DBObject_Archive();
+                $archive    = $archiveObj->getRecent();
+                if ($archive) {
+                    $newArchiveTime = $archive['date'];
+                    $recentArchiveExists = true;
+                }
             }
-        }
-        $newArchiveId = 0;
-        if ($matched) {
-            LogUtil::registerStatus(__('Newsletter is not saved to archive, as last saved is within 1 week ('.$newArchiveTime.').', $dom));
-        } else {
-            if ($this->_archiveNewsletter($newArchive, $newArchiveTime, $newArchiveId)) {
-                LogUtil::registerStatus(__('The new newsletter is added to archive.', $dom));
+
+            $newArchiveId = 0;
+            if ($recentArchiveExists) {
+                LogUtil::registerStatus(__('Newsletter is not saved to archive, as last saved is within 1 week (%s).', $newArchiveTime, $dom));
+            } else {
+                if ($this->_archiveNewsletter($newArchiveTime, $newArchiveId)) {
+                    LogUtil::registerStatus(__('The new newsletter is added to archive.', $dom));
+                }
             }
         }
 
@@ -186,69 +176,48 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                     $nSent++;
                 }
             }
-
             LogUtil::registerStatus(_fn('%s newsletter were successfully sent.', '%s newsletters were successfully sent.', $nSent, $nSent, $dom));
         }
 
         return true;
     }
 
-    public function _sendAPI($args=array()) // API
+    /**
+     * Auto-sends the newsletter. Only used by self::insert()
+     *
+     * @return bool True on succes, false on failure.
+     */
+    public function _sendAPI()
     {
-        $dom = ZLanguage::getModuleDomain('Newsletter');
-
-        if (!class_exists('Newsletter_DBObject_Archive')) {
-            return LogUtil::registerError(__f('Unable to load class [%s]', 'archive', $dom));
-        }
-
-        // check auth key
-        $adminKey  = (string)FormUtil::getPassedValue('admin_key', FormUtil::getPassedValue('authKey', 0));
-        $masterKey = (string)ModUtil::getVar('Newsletter', 'admin_key', -1);
-        if ($adminKey != $masterKey) {
-            return (__('Invalid admin_key received', $dom));
-        }
-
         // get elegible users
         $objectArray = new Newsletter_DBObject_UserArray();
         $users = $objectArray->getSendable(null); //Get users of all languages
         if (!$users) {
-            return (__('No users were available to send the newsletter to', $dom));
+            //Do not return anything here, because this function is called at a random time and such a message would confuse users.
+            return false;
         }
 
         $thisDay   = date('w', time());
-        $scheduled = isset($args['scheduled']) ? $args['scheduled'] : 0;
-        $sendAll   = (boolean)FormUtil::getPassedValue('send_all', 0);  // overrides send_limit per request
 
         set_time_limit(90);
         ignore_user_abort(true);
 
-        // ensure non-scheduled execution happens on the correct day
-        if (!$scheduled){
-            $sendDay = ModUtil::getVar('Newsletter', 'send_day', 0);
-            if ($sendDay != $thisDay) {
-                return __('Wrong day', $dom);
-            }
+
+        $sendDay = ModUtil::getVar('Newsletter', 'send_day', 0);
+        if ($sendDay != $thisDay) {
+            //Wrong day.
+            return false;
         }
 
+        //Too much sent newsletters this day already
         if (!$this->_setStartexecution()) {
-            return 'spam limits encountered';
+            //spam limits encountered
+            return false;
         }
         $sendPerRequest = ModUtil::getVar('Newsletter', 'send_per_request', 5);
         
-        // check archives for new archive time
-        $matched = false;
-        $archiveObj = new Newsletter_DBObject_Archive();
-        $archive    = $archiveObj->getRecent ();
-        if ($archive) {
-            $newArchiveTime = $archive['date'];
-            $matched = true;
-        } else {
-            $newArchiveTime = DateUtil::getDatetime();
-            $matched = false;
-        }
-        if (!$matched) {
-            $this->_archiveNewsletter($newArchive, $newArchiveTime);
-        }
+        //Archive newsletter
+        $this->_archiveNewsletter(DateUtil::getDatetime());
 
         $nSent = 0;
         $allowFrequencyChange = ModUtil::getVar('Newsletter', 'allow_frequency_change', 0);
@@ -261,16 +230,16 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                 }
             }
         }
-        LogUtil::registerStatus(_fn('%s newsletter were successfully sent.', '%s newsletters were successfully sent.', $nSent, $nSent, $dom));
 
         $this->_setEndexecution($nSent);
-        if (isset($args['respond']) && $args['respond']) {
-            return " $nSent ";
-        }
         
         return true;
     }
 
+    /**
+     * Sets the start of newsletter-sending execution.
+     * @return bool False if sending is not allowed (spam-limits), otherwise true.
+     */
     public function _setStartexecution() 
     {
         // keep a record of how many emails were sent today
@@ -298,6 +267,10 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return true;
     }
 
+    /**
+     * Calculates execution times and decrements the spamArray.
+     * @param $nSent (integer) How much newsletters were sent?
+     */
     public function _setEndexecution($nSent) 
     {
         ModUtil::setVar('Newsletter', 'end_execution_time', (float)array_sum(explode(' ', microtime())));
@@ -308,18 +281,39 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         }
     }
 
-    public function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=false) 
+    /**
+     * Returns the rendered newsletter content.
+     * @param      $user        The user to generate the newsletter for.
+     * @param null $cacheID
+     * @param bool $personalize Weather or not to personalize the newsletter.
+     *                          If the modvar 'personalize_email' is set to false, this param will be ignored.
+     * @param bool $html        This parameter becomes false or true depending on the template the user uses.
+     *
+     * @return string           The generated newsletter.
+     */
+    public function _getNewsletterMessage($user, $cacheID=null, $personalize=false, &$html=false)
     {
         switch ($user['type']) {
-            case 1:  $tpl = 'output/text.tpl'; $html = false; break;
-            case 2:  $tpl = 'output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'); $html = true; break;
-            case 3:  $tpl = 'output/text_with_link.tpl'; $html = false; break;
-            default: $tpl = 'output/'.ModUtil::getVar('Newsletter', 'template_html', 'html.tpl'); $html = true; break;
+            case 1:
+                $tpl = 'output/text.tpl';
+                $html = false;
+                break;
+            case 2:
+                $tpl = 'output/' . ModUtil::getVar('Newsletter', 'template_html', 'html.tpl');
+                $html = true; break;
+            case 3:
+                $tpl = 'output/text_with_link.tpl';
+                $html = false;
+                break;
+            default:
+                $tpl = 'output/' . ModUtil::getVar('Newsletter', 'template_html', 'html.tpl');
+                $html = true;
+                break;
         }
 
-        $personalize = ModUtil::getVar('Newsletter','personalize_email', false);
+        $personalize = ModUtil::getVar('Newsletter','personalize_email', false) && $personalize;
 
-        $view = Zikula_View::getInstance('Newsletter', $personalize ? false : true, $personalize ? null : $cacheID);
+        $view = Zikula_View::getInstance('Newsletter', $personalize ? Zikula_View::CACHE_DISABLED : Zikula_View::CACHE_ENABLED, $personalize ? null : $cacheID);
         $lang = $user['lang'] ? $user['lang'] : System::getVar('language_i18n', 'en');
         ZLanguage::setLocale($lang);
 
@@ -334,20 +328,23 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         return $view->fetch($tpl);
     }
 
-    public function _sendNewsletter($user, $message = '', $html = false, $cacheID = null)
+    /**
+     * Finally sends the newsletter
+     * @param array  $user    Users to send the newsletter to.
+     * @param string $message The content to send. This is taken from $this->_getNewsletterMessage() per default.
+     * @param bool   $html    Weather or not to send an html email.
+     * @param null   $cacheID
+     *
+     * @return mixed
+     */
+    public function _sendNewsletter($user, $message = '',$html = false, $cacheID = null)
     {
         if ($message == '') {
-            $message = $this->_getNewsletterMessage($user, $cacheID, false, $html); // $html is output, defaults to html
+            $message = $this->_getNewsletterMessage($user, $cacheID, false, $html); // $html is set by the function depending on the template used.
         }
         $from    = ModUtil::getVar('Newsletter', 'send_from_address', System::getVar('adminmail'));
         $subject = ModUtil::getVar('Newsletter', 'newsletter_subject') ;
 
-        // ModUtil::apiFunc('Mailer', 'user', 'sendmessage') requires boolean html parameter!
-        if ($html) {
-            $html = true;
-        } else {
-            $html = false;
-        }
         if (!$html) {
             // convert new lines, if exist in message
             $message = str_replace('<br />',"\n",$message);
@@ -361,9 +358,10 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
                                           'fromaddress'=> $from,
                                           'subject'    => $subject,
                                           'body'       => $message,
-                                          'html'       => $html));
+                                          'html'       => (bool)$html));
 
-        if ($sent && ($this->_objSendType == 'api' || $this->_objUpdateSendDate)) {
+        //Update last send date.
+        if ($sent && $this->_objUpdateSendDate) {
             $userData = array();
             $userData['id'] = $user['id'];
             $userData['last_send_date'] = DateUtil::getDatetime();
@@ -381,7 +379,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
 
     // creates new record in newsletter archive table
     // in $newArchiveId return new archive Id
-    public function _archiveNewsletter($newArchive, $newArchiveTime, &$newArchiveId = 0)
+    public function _archiveNewsletter($newArchiveTime, &$newArchiveId = 0)
     {
         $dom = ZLanguage::getModuleDomain('Newsletter');
 
