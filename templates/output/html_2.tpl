@@ -15,7 +15,6 @@
     <tr>
         <td>
             <div style="width: 100%; background-color: #43A4D0; height: 8px;"></div>
-
             <table border="0" cellspacing="0" cellpadding="0"  style="margin: 0 0 5px 0; font-size: 1.8em; color: #0088cc; background-color: #EFEFEF; padding: 0; border-bottom: 1px solid #DDD; width: 100%;">
                 <tr>
                     <td>
@@ -33,8 +32,7 @@
                     </td>
                 </tr>
             </table>
-
-            <table style="width: 100%;"  border="0" cellspacing="0" cellpadding="20" bgcolor="#ffffff">
+            <table style="width: 100%;"  border="0" cellspacing="0" cellpadding="15" bgcolor="#ffffff">
                 <tr>
                     <td>
                         {if (isset($objectArray.Newsletter_NewsletterPlugin_NewsletterMessage) && $objectArray.Newsletter_NewsletterPlugin_NewsletterMessage)}
@@ -43,25 +41,26 @@
                             </div>
                             <div style="margin-top: 1em; max-width: 560px;"></div>
                         {/if}
-                        
                         {assign var='includeFile' value='output/items/html_2.tpl'}
                         {nlActivePlugins assign='plugins'}
+                        {strip}
                         {foreach from=$plugins item='plugin'}
                             {if $plugin != 'Newsletter_NewsletterPlugin_NewsletterMessage'}
                                 {include file=$includeFile plugin=$plugin}
                             {/if}
                         {/foreach}
+                        {/strip}
                     </td>
                 </tr>
             </table>
-            <div style="padding:15px;max-width:600px;margin:0 auto;display:block;background-color:#ECF8FF;-webkit-border-radius: 0px 0px 4px 4px;border-radius: 0px 0px 4px 4px;">
-                <div style="padding: 3px 3px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center; width: 100%">
+            <div style="padding:5px;max-width:600px;margin:0 auto;display:block;background-color:#bbb;-webkit-border-radius: 0px 0px 4px 4px;">
+                <div style="padding: 3px 3px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center; width: 100%; margin:0">
                     {if $modvars.Newsletter.contact_facebook or $modvars.Newsletter.contact_twitter or $modvars.Newsletter.contact_google}
-                        <h5 style="color:#000;">{gt text='Connect with Us'}:</h5>
-                        <p>
-                            {if $modvars.Newsletter.contact_facebook}<a href="{$modvars.Newsletter.contact_facebook|safetext}" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#3B5998!important;">Facebook</a> {/if}
-                            {if $modvars.Newsletter.contact_twitter}<a href="{$modvars.Newsletter.contact_twitter|safetext}" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#1daced!important;">Twitter</a> {/if}
-                            {if $modvars.Newsletter.contact_google}<a href="{$modvars.Newsletter.contact_google|safetext}" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#DB4A39!important;">Google+</a> {/if}
+                        <h5 style="color:#000;margin:0">{gt text='Connect with Us'}:</h5>
+                        <p style="margin:0">
+                            {if $modvars.Newsletter.contact_facebook}<a href="{$modvars.Newsletter.contact_facebook|safetext}" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#3B5998!important;" target="_blank">Facebook</a> {/if}
+                            {if $modvars.Newsletter.contact_twitter}<a href="{$modvars.Newsletter.contact_twitter|safetext}" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#1daced!important;" target="_blank">Twitter</a> {/if}
+                            {if $modvars.Newsletter.contact_google}<a href="{$modvars.Newsletter.contact_google|safetext}" style="padding: 3px 7px;font-size:12px;margin-bottom:10px;text-decoration:none;color: #FFF;font-weight:bold;display:block;text-align:center;background-color:#DB4A39!important;" target="_blank">Google+</a> {/if}
                         </p>
                     {/if}
 {strip}
@@ -79,12 +78,12 @@
 
             <div style="width: 100%; background-color: #efefef; text-align: center; border-top: 1px solid #dddddd; color: #888; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.4em; padding-top: 20px">
                 <p style="color: #444444; margin: 0px;">
-                    {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}">
+                    {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}" target="_blank">
                         <strong>{gt text="here"}</strong>
                     </a>.
                 </p>
                 <p>
-                    <a href="{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}">
+                    <a href="{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}" target="_blank">
                         <strong>{gt text="Link to the Newsletter Archive"}</strong>
                     </a>
                 </p>
