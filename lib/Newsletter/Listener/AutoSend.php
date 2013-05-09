@@ -25,8 +25,6 @@ class Newsletter_Listener_AutoSend
      */
     public static function pageLoadListener(Zikula_Event $event)
     {
-        echo "<h1>Newsletter Pageload listener loaded</h1>";
-        var_dump(ModUtil::getVar('Newsletter', 'sendInProgress'));
         // Load module, otherwise translation is not working
         ModUtil::load('Newsletter');
         ModUtil::dbInfoLoad('Newsletter');
