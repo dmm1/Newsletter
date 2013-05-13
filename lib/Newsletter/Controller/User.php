@@ -89,22 +89,6 @@ class Newsletter_Controller_User extends Zikula_AbstractController
         exit;
     }
 
-    public function send()
-    {
-        $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_READ));
-
-        $class = 'Newsletter_DBObject_NewsletterSend';
-        if (!class_exists($class)) {
-            return LogUtil::registerError($this->__f('Unable to load class [%s]', 'newsletter_send'));
-        }
-
-        $scheduled = (int)FormUtil::getPassedValue('scheduled', 0);
-
-        $obj = new Newsletter_DBObject_NewsletterSend();
-
-        return $obj->save(array('respond' => 1, 'scheduled' => $scheduled));
-    }
-
     public function edit()
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_OVERVIEW));

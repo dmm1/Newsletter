@@ -14,7 +14,7 @@
 function smarty_modifier_nlTreatContent($data, $pluginName, $htmlOutput = true)
 {
     if ($data) {
-        $view = Zikula_View::getInstance();
+        $view = Zikula_View::getInstance('Newsletter');
 
         $arrSettings = explode(";", ModUtil::getVar('Newsletter', 'plugin_'.$pluginName.'_Settings', '0;400'));
         $treatType = (int)$arrSettings[0];

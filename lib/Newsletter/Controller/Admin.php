@@ -523,25 +523,23 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         if ($dataNewsletter) {
             //Set language
             $lang = $dataNewsletter['lang'] ? $dataNewsletter['lang'] : System::getVar('language_i18n', 'en');
-            if ($enable_multilingual) {
-                ZLanguage::setLocale($lang);
-            }
+            $enable_multilingual = $this->getVar('enable_multilingual', 0);
 
             // Determine users to send to
             $where = "(nlu_active=1 AND nlu_approved=1)";
-            $enable_multilingual = $this->getVar('enable_multilingual', 0);
             if ($enable_multilingual) {
                 $where = "(nlu_lang='".$lang."' OR nlu_lang='')";
+
+                //Set language
+                ZLanguage::setLocale($lang);
             }
-            // not take in account frequency in menual sending
+            // not take in account frequency in manual sending
             //$allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
             //$default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
             $objectUserArray = new Newsletter_DBObject_UserArray();
             $users = $objectUserArray->get($where, 'id');
             // Create send object
             $objSend = new Newsletter_DBObject_NewsletterSend();
-            $objSend->_objData = $usrids;
-            $this->_objSendType = 'manual';
             $objSend->_objUpdateSendDate = true;
 
             // Scan users
@@ -570,25 +568,25 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                         }
                     }
                     if ($send_per_batch > 0 && $nowsent >= $send_per_batch) {
-                        LogUtil::registerStatus($this->__('Reached max emails to send in batch: ').$send_per_batch);
+                        LogUtil::registerStatus($this->__f('Reached max emails to send in batch: %s', $send_per_batch));
                         break;
                     }
                 }
 
                 $objSend->_setEndexecution($nowsent);
 
-                LogUtil::registerStatus($this->__('Newsletter successfully send to subscribers: ').$nowsent);
+                LogUtil::registerStatus($this->__f('Newsletter successfully send to subscribers: %s', $nowsent));
                 if ($alreadysent) {
-                    LogUtil::registerStatus($this->__('Skipped (already sent): ').$alreadysent);
+                    LogUtil::registerStatus($this->__f('Skipped (already sent): %s', $alreadysent));
                 }
                 if ($notsent) {
-                    LogUtil::registerStatus($this->__('Skipped (not sent for some reason): ').$notsent);
+                    LogUtil::registerStatus($this->__f('Skipped (not sent for some reason): %s', $notsent));
                 }
             } else {
-                LogUtil::registerError($this->__('Max emails per hour encountered: ').$this->getVar('max_send_per_hour'));
+                LogUtil::registerError($this->__f('Max emails per hour encountered: %s', $this->getVar('max_send_per_hour')));
             }
         } else {
-                LogUtil::registerError($this->__('Error getting data for newsletter Id ').$id);
+                LogUtil::registerError($this->__f('Error getting data for newsletter Id %s', $id));
         }
 
         return System::redirect($url);

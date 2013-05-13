@@ -37,6 +37,9 @@ class Newsletter_DBObject_Archive extends DBObject
         return $this->_objData;
     }
 
+    /**
+     * @return array of archives created during the last week.
+     */
     public function getRecent ()
     {
         $checkDate = DateUtil::getDatetime_NextWeek (-1);
