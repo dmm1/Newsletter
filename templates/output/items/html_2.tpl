@@ -1,7 +1,7 @@
-﻿{if (isset($objectArray.$plugin) && $objectArray.$plugin)}
-    <h1 style="font-size: 1.7em;">{nlPluginTitle plugin=$plugin}</h1>
-    <div style="color: #999; font-size:14px; margin-top: 4px; margin-bottom:8px; color: #999; border-bottom: 1px solid #eee; overflow: hidden">
-    {if $plugin eq 'Newsletter_NewsletterPlugin_NewMembers'}
+﻿{if (isset($objectArray.$plugin) && $objectArray.$plugin)}{strip}
+    <h3 style="font-size: 1.4em;margin: 0px;color:#555">{nlPluginTitle plugin=$plugin}</h3>
+    <div style="color: #666; font-size:14px; margin-top: 4px; margin-bottom:8px; border-bottom: 1px solid #eee; overflow: hidden">
+    {/strip}{if $plugin eq 'Newsletter_NewsletterPlugin_NewMembers'}
 {strip}
         <table class="nl-new-members">
             <thead>
@@ -41,7 +41,7 @@
                 </div>
             {/if}
             {if $item.nl_title}
-                <h2 style="text-decoration:none;font-size: 1.6em; color: #555; margin: .4em 0 .3em 0;">
+                <h2 style="text-decoration:none;font-size: 1.0em; color: #555; margin: .4em 0 .3em 0;">
                     {if $item.nl_url_title}
                         <a style="text-decoration: none; color: #555" href="{$item.nl_url_title}" title="{$item.nl_title|safehtml}">
                     {/if}
@@ -52,7 +52,7 @@
                 </h2>
             {/if}
             {if $item.nl_content}
-                <p style="padding:8px;">{$item.nl_content|nlTreatContent:$plugin}</p>
+                <p style="padding:8px;margin:0px">{$item.nl_content|nlTreatContent:$plugin}</p>
             {/if}
 {/strip}
             {if $item.nl_url_readmore}
