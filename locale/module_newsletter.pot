@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Newsletter 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wwww.github.com/dmm1/Newsletter\n"
-"POT-Creation-Date: 2013-05-13 19:43+0000\n"
+"POT-Creation-Date: 2013-05-14 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -714,6 +714,7 @@ msgstr ""
 #: templates/admin/edit_user.tpl:30 templates/admin/edit_user.tpl:35
 #: templates/output/items/html_1.tpl:7 templates/output/items/html.tpl:7
 #: templates/output/items/html_2.tpl:9 templates/user/view_options.tpl:22
+#: templates/user/display_items.tpl:8
 msgid "Username"
 msgstr ""
 
@@ -1588,12 +1589,12 @@ msgid "Order"
 msgstr ""
 
 #: templates/output/items/html_1.tpl:8 templates/output/items/html.tpl:8
-#: templates/output/items/html_2.tpl:10
+#: templates/output/items/html_2.tpl:10 templates/user/display_items.tpl:9
 msgid "Register Date"
 msgstr ""
 
 #: templates/output/items/html_1.tpl:38 templates/output/items/html.tpl:40
-#: templates/output/items/html_2.tpl:60
+#: templates/output/items/html_2.tpl:60 templates/user/display_items.tpl:37
 msgid "read more"
 msgstr ""
 
