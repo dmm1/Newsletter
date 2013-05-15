@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Newsletter 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wwww.github.com/dmm1/Newsletter\n"
-"POT-Creation-Date: 2013-05-14 15:36+0000\n"
+"POT-Creation-Date: 2013-05-15 15:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -502,7 +502,7 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-#: lib/Newsletter/Api/User.php:37 lib/Newsletter/Api/Admin.php:26
+#: lib/Newsletter/Api/User.php:37 lib/Newsletter/Api/Admin.php:30
 #: templates/admin/settings.tpl:22
 msgid "Settings"
 msgstr ""
@@ -531,23 +531,27 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:30 templates/admin/view_message.tpl:18
+#: lib/Newsletter/Api/Admin.php:26
+msgid "Frontend"
+msgstr ""
+
+#: lib/Newsletter/Api/Admin.php:34 templates/admin/view_message.tpl:18
 msgid "Header Message"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:33
+#: lib/Newsletter/Api/Admin.php:38
 msgid "Newsletters"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:37 templates/admin/view_user.tpl:8
+#: lib/Newsletter/Api/Admin.php:42 templates/admin/view_user.tpl:8
 msgid "Subscribers"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:41
+#: lib/Newsletter/Api/Admin.php:46
 msgid "Plugins"
 msgstr ""
 
-#: lib/Newsletter/Api/Admin.php:44 templates/admin/view_userimport.tpl:6
+#: lib/Newsletter/Api/Admin.php:50 templates/admin/view_userimport.tpl:6
 msgid "Import / Export"
 msgstr ""
 
@@ -872,72 +876,68 @@ msgstr ""
 msgid "Visit our project-page"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:13
-msgid "Frontend"
-msgstr ""
-
-#: templates/admin/view_statistics.tpl:19
+#: templates/admin/view_statistics.tpl:17
 msgid "Statistics"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:24
+#: templates/admin/view_statistics.tpl:22
 msgid "Newsletter Module Statistics"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:30
+#: templates/admin/view_statistics.tpl:28
 msgid "Last sending: "
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:31
+#: templates/admin/view_statistics.tpl:29
 #, php-format
 msgid "It took %1$s seconds to send the last batch of %2$s mails."
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:35
+#: templates/admin/view_statistics.tpl:33
 msgid "Total number of users"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:39
+#: templates/admin/view_statistics.tpl:37
 msgid "Active subscribers"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:43
+#: templates/admin/view_statistics.tpl:41
 msgid "Approved subscribers"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:47
+#: templates/admin/view_statistics.tpl:45
 msgid "Active and approved subscribers"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:51
+#: templates/admin/view_statistics.tpl:49
 msgid "Subscribers which are registered users"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:55
+#: templates/admin/view_statistics.tpl:53
 msgid "Number of subscribers for HTML format"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:59
+#: templates/admin/view_statistics.tpl:57
 msgid "Numer of subscribers for text format"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:63
+#: templates/admin/view_statistics.tpl:61
 msgid "Number of subscribers for text with links format"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:67
+#: templates/admin/view_statistics.tpl:65
 msgid "Number of subscribers for weekly delivery"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:71
+#: templates/admin/view_statistics.tpl:69
 msgid "Number of subscribers for monthly delivery"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:75
+#: templates/admin/view_statistics.tpl:73
 msgid "Number of subscribers for yearly delivery"
 msgstr ""
 
-#: templates/admin/view_statistics.tpl:79
+#: templates/admin/view_statistics.tpl:77
 msgid "Number of archives"
 msgstr ""
 
