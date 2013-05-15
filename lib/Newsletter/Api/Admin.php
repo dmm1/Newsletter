@@ -21,13 +21,18 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'statistics')),
                              'text'  => $this->__('Start'),
                              'class' => 'z-icon-es-home');
+			
+			$links[] = array('url'   => ModUtil::url('Newsletter', 'user', 'main'),
+                             'text'  => $this->__('Frontend'),
+                             'class' => 'z-icon-es-display');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'settings'),
                              'text'  => $this->__('Settings'),
                              'class' => 'z-icon-es-config');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'message')),
-                             'text'  => $this->__('Header Message'));
+                             'text'  => $this->__('Header Message'),
+                             'class' => 'z-icon-es-edit');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'newsletters'),
                              'text'  => $this->__('Newsletters'),
@@ -38,7 +43,8 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                              'class' => 'z-icon-es-user');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'plugin')),
-                             'text'  => $this->__('Plugins'));
+                             'text'  => $this->__('Plugins'),
+							'class' => 'z-icon-es-cubes');
 
             $links[] = array('url'   => ModUtil::url('Newsletter', 'admin', 'view', array('ot'=>'userimport')),
                              'text'  => $this->__('Import / Export'),

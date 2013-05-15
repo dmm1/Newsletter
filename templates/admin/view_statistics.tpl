@@ -9,8 +9,6 @@
     {gt text="Please report errors or request features for future versions in the Tracker!"}
     <br /><br />
     <a href="https://github.com/dmm1/Newsletter/wiki" target="_blank"><b>{gt text="Visit our project-page"}</b></a>
-    <br /><br />
-    <a href="{modurl modname='Newsletter' type='user' func='main'}"><b>{gt text="Frontend"}</b></a>
 </p>
 
 <br />
