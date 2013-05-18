@@ -65,14 +65,18 @@ class Newsletter_NewsletterPlugin_EZComments extends Newsletter_AbstractPlugin
         }
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
+        $urlCounter = array();
+        
         foreach (array_keys($items) as $k) {
             if (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':', ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } elseif (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':'.$items[$k]['id'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
+                $urlCounter[($items[$k]['url'])]++;
+                
                 $items[$k]['nl_title'] = $items[$k]['subject'];
-                $items[$k]['nl_url_title'] = $items[$k]['url'].'&lang='.$this->lang;
+                $items[$k]['nl_url_title'] = $items[$k]['url'].'&lang='.$this->lang . "#comment{$urlCounter[($items[$k]['url'])]}";
                 $items[$k]['nl_content'] = $items[$k]['comment'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }
