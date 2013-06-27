@@ -58,7 +58,7 @@ class Newsletter_NewsletterPlugin_AddressBook extends Newsletter_AbstractPlugin
             if (empty($items[$k]['nl_title'])) {
                 $items[$k]['nl_title'] = $items[$k]['adr_company'];
             }
-            $items[$k]['nl_url_title'] = ModUtil::url('AddressBook', 'user', 'display', array('id' => $items[$k]['adr_id'], 'newlang' => $this->lang), null, null, true);
+            $items[$k]['nl_url_title'] = ModUtil::url('AddressBook', 'user', 'display', array('id' => $items[$k]['adr_id'], 'lang' => $this->lang), null, null, true);
             $items[$k]['nl_content'] = '';
             if ($items[$k]['adr_custom_1']) {
                 $items[$k]['nl_content'] .= ($items[$k]['nl_content'] ? "<br />\n" : '') . $items[$k]['adr_custom_1'];

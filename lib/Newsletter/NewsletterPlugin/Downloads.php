@@ -61,7 +61,7 @@ class Newsletter_NewsletterPlugin_Downloads extends Newsletter_AbstractPlugin
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'newlang' => $this->lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('Downloads', 'user', 'display', array('lid' => $items[$k]['lid'], 'lang' => $this->lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]['description'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }

@@ -54,7 +54,7 @@ class Newsletter_NewsletterPlugin_Clip extends Newsletter_AbstractPlugin
 
         foreach (array_keys($items) as $k) {
             $items[$k]['nl_title'] = $items[$k]['core_title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'newlang' => $this->lang), null, null, true);
+            $items[$k]['nl_url_title'] = ModUtil::url('Clip', 'user', 'viewpub', array('tid' => $items[$k]['core_tid'], 'pid' => $items[$k]['core_pid'], 'lang' => $this->lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['content'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }

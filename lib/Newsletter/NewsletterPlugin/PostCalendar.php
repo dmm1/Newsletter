@@ -60,7 +60,7 @@ class Newsletter_NewsletterPlugin_PostCalendar extends Newsletter_AbstractPlugin
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('PostCalendar', 'user', 'display', array('viewtype' => 'event', 'eid' => $items[$k]['eid'], 'newlang' => $lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('PostCalendar', 'user', 'display', array('viewtype' => 'event', 'eid' => $items[$k]['eid'], 'lang' => $lang), null, null, true);
                 $items[$k]['nl_content'] = '';
                 if ($items[$k]['eventStart']) {
                     $items[$k]['nl_content'] = DateUtil::getDatetime_Date($items[$k]['eventStart']);

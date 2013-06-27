@@ -67,7 +67,7 @@ class Newsletter_NewsletterPlugin_Pages extends Newsletter_AbstractPlugin
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]["{$prefix}title"];
-                $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]["{$prefix}pageid"], 'newlang' => $this->lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('Pages', 'user', 'display', array('pageid' => $items[$k]["{$prefix}pageid"], 'lang' => $this->lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]["{$prefix}content"];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }

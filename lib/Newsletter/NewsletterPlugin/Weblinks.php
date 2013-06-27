@@ -67,7 +67,7 @@ class Newsletter_NewsletterPlugin_Weblinks extends Newsletter_AbstractPlugin
                 $items[$k]['nl_title'] = $items[$k]['title'];
                 $items[$k]['nl_url_title'] = $items[$k]['url'];
                 $items[$k]['nl_content'] = $items[$k]['description'];
-                $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'newlang' => $this->lang), null, null, true);
+                $items[$k]['nl_url_readmore'] = ModUtil::url('Weblinks', 'user', 'viewlinkdetails', array('lid' => $items[$k]['lid'], 'lang' => $this->lang), null, null, true);
             }
         }
 

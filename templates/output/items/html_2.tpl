@@ -17,7 +17,7 @@
                         <td>
                         {if $profileAvailable}
                             <h3>
-                                <a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">
+                                <a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid lang=$nllang fqurl=true}">
                         {/if}
                         {$item.uname|safehtml}
                         {if $profileAvailable}

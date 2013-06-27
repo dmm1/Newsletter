@@ -72,7 +72,7 @@ class Newsletter_NewsletterPlugin_News extends Newsletter_AbstractPlugin
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['title'];
-                $items[$k]['nl_url_title'] = ModUtil::url('News', 'user', 'display', array('sid' => $items[$k]['sid'], 'newlang' => $this->lang), null, null, true);
+                $items[$k]['nl_url_title'] = ModUtil::url('News', 'user', 'display', array('sid' => $items[$k]['sid'], 'lang' => $this->lang), null, null, true);
                 $items[$k]['nl_content'] = $items[$k]['hometext'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
                 if ($modvars['picupload_enabled'] && $items[$k]['pictures'] > 0) {
