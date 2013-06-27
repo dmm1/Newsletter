@@ -76,7 +76,14 @@ class Newsletter_NewsletterPlugin_EZComments extends Newsletter_AbstractPlugin
                 $urlCounter[($items[$k]['url'])]++;
                 
                 $items[$k]['nl_title'] = $items[$k]['subject'];
-                $items[$k]['nl_url_title'] = $items[$k]['url'].'&lang='.$this->lang . "#comment{$urlCounter[($items[$k]['url'])]}";
+
+                if (substr($items[$k]['url'], -1, 1) == '/') {
+                    // short url: Adding of lang param is not possible.
+                    $items[$k]['nl_url_title'] = $items[$k]['url'] . "#comment{$urlCounter[($items[$k]['url'])]}";
+                } else {
+                    // normal url
+                    $items[$k]['nl_url_title'] = $items[$k]['url'] . '&lang='.$this->lang . "#comment{$urlCounter[($items[$k]['url'])]}";
+                }
                 $items[$k]['nl_content'] = $items[$k]['comment'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }
