@@ -340,9 +340,9 @@ ul li {
 						<tr>
 							<td align="center">
 								<p>
-									<a href="{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}"><strong>{gt text="Archive"}</strong></a> |
-									<a href="{modurl modname="Newsletter" type="user" func="main" ot="tos" newlang=$nllang fqurl=true}"><strong>{gt text="Terms of Service"}</strong></a> |
-									<a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="Unsubscribe"}</strong></a>
+									<a href="{modurl modname="Newsletter" type="user" func="main" ot="archive" lang=$nllang fqurl=true}"><strong>{gt text="Archive"}</strong></a> |
+									<a href="{modurl modname="Newsletter" type="user" func="main" ot="tos" lang=$nllang fqurl=true}"><strong>{gt text="Terms of Service"}</strong></a> |
+									<a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" lang=$nllang fqurl=true}"><strong>{gt text="Unsubscribe"}</strong></a>
 								</p>
 							</td>
 						</tr>

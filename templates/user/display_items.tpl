@@ -11,7 +11,7 @@
             {modavailable modname="Profile" assign="profileAvailable"}
             {foreach from=$objectArray.$plugin item="item" name="loop"}
                 <tr>
-                    <td>{if $profileAvailable}<div style="font-weight: bold;"><a style="text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid newlang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
+                    <td>{if $profileAvailable}<div style="font-weight: bold;"><a style="text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid lang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
                     <td>{$item.user_regdate|dateformat}</td>
                 </tr>
             {/foreach}

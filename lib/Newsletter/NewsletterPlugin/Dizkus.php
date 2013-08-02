@@ -99,7 +99,7 @@ class Newsletter_NewsletterPlugin_Dizkus extends Newsletter_AbstractPlugin
             $items[$k]['username']= UserUtil::getVar('uname', $post[0]['poster_id']);
 
             $items[$k]['nl_title'] = $items[$k]['topic_title'];
-            $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'newlang' => $this->lang), null, null, true);
+            $items[$k]['nl_url_title'] = ModUtil::url('Dizkus', 'user', 'viewtopic', array('topic' => $items[$k]['topic_id'], 'lang' => $this->lang), null, null, true);
             $items[$k]['nl_content'] = $items[$k]['forum_name'].', '.$items[$k]['username']."<br />\n".$items[$k]['post_text'];
             $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
         }
