@@ -72,7 +72,7 @@ class Newsletter_NewsletterPlugin_EZComments extends Newsletter_AbstractPlugin
                 unset($items[$k]);
             } else {
                 $items[$k]['nl_title'] = $items[$k]['subject'];
-                $items[$k]['nl_url_title'] = $items[$k]['url'].'&newlang='.$this->lang;
+                $items[$k]['nl_url_title'] = $items[$k]['url'].'&lang='.$this->lang;
                 $items[$k]['nl_content'] = $items[$k]['comment'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
             }

@@ -65,9 +65,9 @@
                     </table>
                     <!-- /social & contact -->
                     <div style="font-family: Arial; font-size: 12px; color: #333333; margin: 5px; text-align: center">
-                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="archive" newlang=$nllang fqurl=true}"><strong>{gt text="View Archives"}</strong></a> |
-                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="tos" newlang=$nllang fqurl=true}"><strong>{gt text="Terms of Service"}</strong></a> |
-                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" newlang=$nllang fqurl=true}"><strong>{gt text="Unsubscribe"}</strong></a>
+                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="archive" lang=$nllang fqurl=true}"><strong>{gt text="View Archives"}</strong></a> |
+                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="tos" lang=$nllang fqurl=true}"><strong>{gt text="Terms of Service"}</strong></a> |
+                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" lang=$nllang fqurl=true}"><strong>{gt text="Unsubscribe"}</strong></a>
                     </div>
                 </td>
             </tr>
