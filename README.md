@@ -19,6 +19,11 @@ Newsletter subscribers and their e-mails adresses are synchronized with Zikula u
 - [Plugins](https://github.com/dmm1/Newsletter/wiki/Plugins)
 - [Hooks](https://github.com/dmm1/Newsletter/wiki/Hooks)
 - [Automatic Newsletter sending](https://github.com/dmm1/Newsletter/wiki/Automatic-Newsletter-sending)
+- [Latest site content (What's new in the site page)](https://github.com/dmm1/Newsletter/wiki/What's-new-in-the-site)
+- [Create your own newsletter design](https://github.com/dmm1/Newsletter/wiki/Create-your-own-newsletter-design)
+
+## Developer
+- [Create Newsletter plugin for own module](https://github.com/dmm1/Newsletter/wiki/Create-your-own-Newsletter-plugin)
 
 ## Contribute!
 You are most welcome to contribute to the Newsletter project! Make pull requests, open issues or extend the wiki!
