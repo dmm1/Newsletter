@@ -272,7 +272,7 @@ abstract class Newsletter_AbstractPlugin implements Zikula_TranslatableInterface
      * The getPluginVar method gets a Newsletter plugin variable.
      *
      * @param string  $name    The name of the variable.
-     * @param boolean $default The value to return if the requested modvar is not set.
+     * @param mixed   $default The value to return if the requested modvar is not set.
      *
      * @return string Newsletter plugin variable value
      */
