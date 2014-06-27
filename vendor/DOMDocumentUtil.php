@@ -193,7 +193,7 @@ class DOMDocumentUtil
      * @param string $baseurl (optional) - Base URL to put in href attribute (if relative path is given for the href)
      * @return string
      */
-    public static function aTagConvert($html, $encoding = null, $baseurl = nulll, $toSimpleLink = false)
+    public static function aTagConvert($html, $encoding = null, $baseurl = null, $toSimpleLink = false)
     {
         if (empty($encoding)) {
             $encoding = 'UTF-8';
