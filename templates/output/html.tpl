@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>{gt text="Newsletter"}</title>
-{if !$site_url}{assign var='site_url' value=$baseurl}{/if}
+{if !isset($site_url)}{assign var='site_url' value=$baseurl}{/if}
 <base href="{$site_url}" />
 <link rel="stylesheet" type="text/css" href="{$site_url}modules/Newsletter/style/html.css" >
 <style>

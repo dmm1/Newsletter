@@ -1,4 +1,5 @@
 {pageaddvar name='stylesheet' value='modules/Newsletter/style/admin_style.css'}
+{ajaxheader modname='Newsletter' filename='newsletter.js' ui=true}
 {adminheader}
 
 <div class="z-admin-content-pagetitle">
@@ -87,6 +88,7 @@
     </fieldset>
 </form>
 
+{if isset($LastNewsletter.id)}
 <form class="z-form" method="post" name="sendNewsletter" action="{modurl modname='Newsletter' type='admin' func='sendnewsletter' id=$LastNewsletter.id}" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="authid" name="authid" value="{insert name='csrftoken' module='Newsletter'}" />
 
@@ -131,6 +133,7 @@
         </div>
     </fieldset>
 </form>
+{/if}
 
 <form class="z-form" method="post" name="listNewsletters" action="{modurl modname='Newsletter' type='admin' func='newsletters'}" enctype="application/x-www-form-urlencoded">
     <fieldset>
@@ -188,7 +191,7 @@
             </span>
             <span class="z-itemcell z-w05">
                 {gt text="Edit" assign=lblEdit}
-                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$archive.id authid=$authid}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt=$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
+                <a href="{modurl modname='Newsletter' type='admin' func='editnewsletter' id=$archive.id}">{img src='xedit.png' modname='core' set='icons/extrasmall' alt=$lblEdit altml='false' title=$lblEdit titleml='false'}</a>
             </span>
             <span class="z-itemcell z-w10">
                 {gt text="Delete Archive" assign=lblDelete}

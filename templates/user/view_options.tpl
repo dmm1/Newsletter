@@ -25,11 +25,12 @@
         {/if}
 
         <div class="z-formrow">
+        
             <label for="user_email">{gt text='Email'}</label>
-            <input type="text" maxlength="30" value="{$user.email}" id="user_email" name="user[email]" />
+            <input type="text" maxlength="30" value="{if isset($user.email)}{$user.email}{/if}" id="user_email" name="user[email]" />
         </div>
 
-        {if !$modvars.Newsletter.limit_type}
+        {if isset($modvars.Newsletter.limit_type) && !$modvars.Newsletter.limit_type}
           {nocache}
           <div class="z-formrow">
             <label for="user_type">{gt text='Type'}</label>

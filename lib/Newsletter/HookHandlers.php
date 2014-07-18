@@ -69,7 +69,7 @@ class Newsletter_HookHandlers extends Zikula_Hook_AbstractHandler
 
             $newUser = array();
             $newUser['uid'] = $callerobjectid;
-            if ($userdata['realname']) {
+            if (isset($userdata['realname']) && $userdata['realname']) {
                 $newUser['name'] = $userdata['realname'];
             } else {
                 $newUser['name'] = $userdata['uname'];

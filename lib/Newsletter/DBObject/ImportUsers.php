@@ -67,7 +67,7 @@ class Newsletter_DBObject_ImportUsers extends DBObject
             } else {
                 $newUser = array();
                 $newUser['uid']       = $user['uid'];
-                if ($user['realname']) {
+                if (isset($user['realname']) && $user['realname']) {
                     $newUser['name'] = $user['realname'];
                 } else {
                     $newUser['name'] = $user['uname'];

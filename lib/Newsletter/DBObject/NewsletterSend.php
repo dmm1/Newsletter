@@ -314,7 +314,7 @@ class Newsletter_DBObject_NewsletterSend extends DBObject
         $personalize = ModUtil::getVar('Newsletter','personalize_email', false) && $personalize;
 
         $view = Zikula_View::getInstance('Newsletter', $personalize ? Zikula_View::CACHE_DISABLED : Zikula_View::CACHE_ENABLED, $personalize ? null : $cacheID);
-        $lang = $user['lang'] ? $user['lang'] : System::getVar('language_i18n', 'en');
+        $lang = (isset($user['lang']) && $user['lang']) ? $user['lang'] : System::getVar('language_i18n', 'en');
         ZLanguage::setLocale($lang);
 
         $dataArray = new Newsletter_DBObject_NewsletterDataArray();

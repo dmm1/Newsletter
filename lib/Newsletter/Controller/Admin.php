@@ -314,8 +314,13 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         $objUsers  = new Newsletter_DBObject_User();
 
         $this->view->assign('objectArray', $data);
-        $this->view->assign('LastNewsletter', $data[0]);
-        $this->view->assign('newsletterLastidSentCount', $objUsers->countSendedNewsletter($data[0]['id']));
+        if (count($data) == 0) {
+            $this->view->assign('LastNewsletter', array());
+            $this->view->assign('newsletterLastidSentCount', 0);
+        } else {
+            $this->view->assign('LastNewsletter', $data[0]);
+            $this->view->assign('newsletterLastidSentCount', $objUsers->countSendedNewsletter($data[0]['id']));
+        }
         $this->view->assign('SubscribersCount', $objUsers->countSubscribers());
         $this->view->assign('newsletterNextid', $objArchive->getnextid());
         $this->view->assign('newsletterMaxid', $objArchive->getmaxid());
@@ -335,8 +340,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
-        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
-        $preserveid  = (int)FormUtil::getPassedValue('preserveid', $args['preserveid'] ? $args['preserveid'] : 0);
+        $id  = (int)FormUtil::getPassedValue('id', (isset($args['id']) && $args['id']) ? $args['id'] : 0);
+        $preserveid  = (int)FormUtil::getPassedValue('preserveid', (isset($args['preserveid']) && $args['preserveid']) ? $args['preserveid'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 
@@ -364,7 +369,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
-        $Nextid  = (int)FormUtil::getPassedValue('Nextid', $args['Nextid'] ? $args['Nextid'] : 0);
+        $Nextid  = (int)FormUtil::getPassedValue('Nextid', (isset($args['Nextid']) && $args['Nextid']) ? $args['Nextid'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 
@@ -404,7 +409,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
         // Prepare data
         $archiveData = array();
         $archiveData['date'] = DateUtil::getDatetime();
-        $archiveData['lang'] = $this->_objLang;
+        //$archiveData['lang'] = $this->_objLang;
         $archiveData['lang'] = $Nllanguage;
         $archiveData['n_plugins'] = $objNewsletterData['nPlugins'];
         $archiveData['n_items'] = $objNewsletterData['nItems'];
@@ -429,7 +434,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
-        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
+        $id  = (int)FormUtil::getPassedValue('id', (isset($args['id']) && $args['id']) ? $args['id'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 
@@ -437,7 +442,7 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             $objArchive  = new Newsletter_DBObject_Archive();
             $data = $objArchive->get($id);
             if ($data) {
-                $htmlbody = FormUtil::getPassedValue('htmlbody', $args['htmlbody'] ? $args['htmlbody'] : null);
+                $htmlbody = FormUtil::getPassedValue('htmlbody', (isset($args['htmlbody']) && $args['htmlbody']) ? $args['htmlbody'] : null);
                 if (isset($htmlbody)) {
                     // body only editor
                     $partBefore = '';
@@ -445,9 +450,9 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
                     $this->getBodyParts($data['html'], $partBefore, $partAfter);
                     $data['html'] = $partBefore ."\n". trim($htmlbody) ."\n". $partAfter;
                 } else {
-                    $data['html'] = FormUtil::getPassedValue('html', $args['html'] ? $args['html'] : $data['html']);
+                    $data['html'] = FormUtil::getPassedValue('html', (isset($args['html']) && $args['html']) ? $args['html'] : $data['html']);
                 }
-                $data['text'] = FormUtil::getPassedValue('text', $args['text'] ? $args['text'] : $data['text']);
+                $data['text'] = FormUtil::getPassedValue('text', (isset($args['text']) && $args['text']) ? $args['text'] : $data['text']);
 
                 $objArchive->setData($data);
                 if ($objArchive->save()) {
@@ -466,8 +471,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
-        $id  = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
-        $useeditor = (int)FormUtil::getPassedValue('useeditor', $args['useeditor'] ? $args['useeditor'] : 0);
+        $id  = (int)FormUtil::getPassedValue('id', (isset($args['id']) && $args['id']) ? $args['id'] : 0);
+        $useeditor = (int)FormUtil::getPassedValue('useeditor', (isset($args['useeditor']) && $args['useeditor']) ? $args['useeditor'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 
@@ -508,8 +513,8 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
     {
         $this->throwForbiddenUnless(SecurityUtil::checkPermission('Newsletter::', '::', ACCESS_ADMIN));
 
-        $id = (int)FormUtil::getPassedValue('id', $args['id'] ? $args['id'] : 0);
-        $send_per_batch = (int)FormUtil::getPassedValue('send_per_batch', $args['send_per_batch'] ? $args['send_per_batch'] : 0);
+        $id = (int)FormUtil::getPassedValue('id', (isset($args['id']) && $args['id']) ? $args['id'] : 0);
+        $send_per_batch = (int)FormUtil::getPassedValue('send_per_batch', (isset($args['send_per_batch']) && $args['send_per_batch']) ? $args['send_per_batch'] : 0);
 
         $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
 

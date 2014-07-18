@@ -123,7 +123,7 @@ class Newsletter_DBObject_User extends DBObject
         }
 
         $enableML = ModUtil::getVar('Newsletter', 'enable_multilingual', 0);
-        if (!$enableML && !$data['lang']) {
+        if (!$enableML && !(isset($data['lang']) && $data['lang'])) {
             $data['lang'] = System::getVar('language_i18n', 'en');
         }
 
@@ -271,7 +271,7 @@ class Newsletter_DBObject_User extends DBObject
             $data = $this->_objData;
         }
 
-        if (UserUtil::isLoggedIn() && $data['uid']) {
+        if (UserUtil::isLoggedIn() && isset($data['uid']) && $data['uid']) {
             $data['name']  = UserUtil::getVar('uname', $data['uid']);
             $data['email'] = ($data['email'] == '') ? UserUtil::getVar ('email', $data['uid']) : $data['email'];
         }

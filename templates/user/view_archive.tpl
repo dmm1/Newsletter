@@ -1,3 +1,4 @@
+{ajaxheader modname='Newsletter' ui=true}
 {pagesetvar name='title' __value='View Archive'}
 
 {include file='user/generic_header.tpl'}
