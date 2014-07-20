@@ -65,24 +65,20 @@ class Newsletter_NewsletterPlugin_EZComments extends Newsletter_AbstractPlugin
         }
         $items = $stmt->fetchAll(Doctrine_Core::FETCH_ASSOC);
 
-        $urlCounter = array();
-        
         foreach (array_keys($items) as $k) {
             if (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':', ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } elseif (!SecurityUtil::checkPermission('EZComments::', $items[$k]['modname'].':'.$items[$k]['objectid'].':'.$items[$k]['id'], ACCESS_READ, $this->userNewsletter)) {
                 unset($items[$k]);
             } else {
-                $urlCounter[($items[$k]['url'])]++;
-                
                 $items[$k]['nl_title'] = $items[$k]['subject'];
 
                 if (substr($items[$k]['url'], -1, 1) == '/') {
                     // short url: Adding of lang param is not possible.
-                    $items[$k]['nl_url_title'] = $items[$k]['url'] . "#comment{$urlCounter[($items[$k]['url'])]}";
+                    $items[$k]['nl_url_title'] = $items[$k]['url'] . "#comment{$items[$k]['id']}";
                 } else {
                     // normal url
-                    $items[$k]['nl_url_title'] = $items[$k]['url'] . '&lang='.$this->lang . "#comment{$urlCounter[($items[$k]['url'])]}";
+                    $items[$k]['nl_url_title'] = $items[$k]['url'] . '&lang='.$this->lang . "#comment{$items[$k]['id']}";
                 }
                 $items[$k]['nl_content'] = $items[$k]['comment'];
                 $items[$k]['nl_url_readmore'] = $items[$k]['nl_url_title'];
