@@ -40,8 +40,45 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $showArchiveSelector[] = array('text' => 'to nobody', 'value' => '0');
 
         $this->view->caching = false;
+        $preferences = $this->getVars();
+        if (!isset($preferences['newsletter_subject'])) {
+            $preferences['newsletter_subject'] = '';
+        }
+        if (!isset($preferences['disable_auto'])) {
+            $preferences['disable_auto'] = 1;
+        }
+        if (!isset($preferences['limit_type'])) {
+            $preferences['limit_type'] = 0;
+        }
+        if (!isset($preferences['show_approval_status'])) {
+            $preferences['show_approval_status'] = 0;
+        }
+        if (!isset($preferences['require_tos'])) {
+            $preferences['require_tos'] = 1;
+        }
+        if (!isset($preferences['show_archive'])) {
+            $preferences['show_archive'] = 1;
+        }
+        if (!isset($preferences['show_id'])) {
+            $preferences['show_id'] = 1;
+        }
+        if (!isset($preferences['show_date'])) {
+            $preferences['show_date'] = 1;
+        }
+        if (!isset($preferences['show_lang'])) {
+            $preferences['show_lang'] = 0;
+        }
+        if (!isset($preferences['show_plugins'])) {
+            $preferences['show_plugins'] = 0;
+        }
+        if (!isset($preferences['show_objects'])) {
+            $preferences['show_objects'] = 0;
+        }
+        if (!isset($preferences['show_size'])) {
+            $preferences['show_size'] = 0;
+        }
         $this->view
-             ->assign('preferences',          $this->getVars())
+             ->assign('preferences', $preferences)
              ->assign('limitTypeSelector',                   Newsletter_Util::convertSelectorArrayForFormHandler(
                                                     Newsletter_Util::getSelectorDataNewsletterType(true)))
              ->assign('defaultTypeSelector',                 Newsletter_Util::convertSelectorArrayForFormHandler(
@@ -107,7 +144,7 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('require_tos',                $prefs['require_tos']                ? 1 : 0);
         $this->setVar('show_approval_status',       $prefs['show_approval_status']       ? 1 : 0);
         $this->setVar('disable_auto',               $prefs['disable_auto']               ? 1 : 0);
-        $this->setVar('activate_archive',           $prefs['activate_archive']           ? 1 : 0);
+        //$this->setVar('activate_archive',           $prefs['activate_archive']           ? 1 : 0);
         $this->setVar('personalize_email',          $prefs['personalize_email']          ? 1 : 0);
         $this->setVar('send_day',                   is_numeric($prefs['send_day'])       ? $prefs['send_day']           : 5);
         $this->setVar('send_from_address',          $prefs['send_from_address']);

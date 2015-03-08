@@ -99,7 +99,7 @@
                 $psArray[500]  = 500;
                 $psArray[750]  = 750;
                 $psArray[1000] = 1000;
-                $psArray[-1]   = All;
+                $psArray[-1]   = 'All';
                 $this->assign ('pagesizes', $psArray);
             {/php}
             {gt text='Display number of users per page:'}

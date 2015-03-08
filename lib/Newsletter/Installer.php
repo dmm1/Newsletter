@@ -164,7 +164,7 @@ class Newsletter_Installer extends Zikula_AbstractInstaller
     public function uninstall()
     {
         if (!DBUtil::dropTable('newsletter_users')  || !DBUtil::dropTable('newsletter_archives')) {
-            return LogUtil::registerError($this->__('Could not drop tables!'));
+            //return LogUtil::registerError($this->__('Could not drop tables!'));
         }
 
         $this->delVars('Newsletter');

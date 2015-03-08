@@ -24,7 +24,7 @@ class Newsletter_DBObject_Plugin extends DBObject
         $pluginClasses = array_flip(Newsletter_Util::getPluginClasses());
 
         foreach ($pluginClasses as $k => $plugin) {
-            if ($this->_objData[$k]) {
+            if (isset($this->_objData[$k]) && $this->_objData[$k]) {
                 // active plugin
                 ModUtil::setVar('Newsletter', 'plugin_'.$k, 1);
             } else {
@@ -32,9 +32,11 @@ class Newsletter_DBObject_Plugin extends DBObject
                 ModUtil::setVar('Newsletter', 'plugin_'.$k, 0);
             }
             // plugin nItems
-            ModUtil::setVar('Newsletter', 'plugin_'.$k.'_nItems', $this->_objData[$k.'_nItems']);
+            ModUtil::setVar('Newsletter', 'plugin_'.$k.'_nItems', isset($this->_objData[$k.'_nItems']) ? $this->_objData[$k.'_nItems'] : 3);
             // plugin settings: nTreat, nTruncate, nOrder
-            $pluginSettings = $this->_objData[$k.'_nTreat'] .';'. $this->_objData[$k.'_nTruncate'] .';'. $this->_objData[$k.'_nOrder'];
+            $pluginSettings = (isset($this->_objData[$k.'_nTreat']) ? $this->_objData[$k.'_nTreat'] : 0) .';'. 
+                (isset($this->_objData[$k.'_nTruncate']) ? $this->_objData[$k.'_nTruncate'] : 400) .';'. 
+                (isset($this->_objData[$k.'_nOrder']) ? $this->_objData[$k.'_nOrder'] : 0);
             ModUtil::setVar('Newsletter', 'plugin_'.$k.'_Settings', $pluginSettings);
             // plugin parameters, if any
             if(class_exists($k)) {
