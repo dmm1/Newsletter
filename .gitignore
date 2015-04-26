@@ -1,0 +1,11 @@
+/templates/output/*
+!/templates/output/html.tpl
+!/templates/output/html_1.tpl
+!/templates/output/html_2.tpl
+!/templates/output/text.tpl
+!/templates/output/text_with_link.tpl
+!/templates/output/items/html.tpl
+!/templates/output/items/html_1.tpl
+!/templates/output/items/html_2.tpl
+!/templates/output/items/text.tpl
+/locale/*/*
