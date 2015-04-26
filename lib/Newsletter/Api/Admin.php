@@ -132,6 +132,9 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
         }
         $send_per_batch = isset($args['send_per_batch']) ? $args['send_per_batch'] : 0;
 
+        $log = fopen('ztemp/EM_NL.log', 'a');
+        fwrite($log, "Starting Newsletter sending\n");
+
         // Get last archive
         $objArchive  = new Newsletter_DBObject_Archive();
         $dataNewsletter = $objArchive->get($id);
@@ -157,6 +160,8 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
             $objSend = new Newsletter_DBObject_NewsletterSend();
             $objSend->_objUpdateSendDate = true;
 
+            fwrite($log, "Will send to " . count($users) . " users.\n");
+
             // Scan users
             if ($objSend->_setStartexecution()) {
                 $alreadysent = 0;
@@ -164,8 +169,10 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                 $notsent = 0;
                 $newSentTime = DateUtil::getDatetime();
                 foreach ($users as $user) {
+                    fwrite($log, "Sending to user. Time: " . time() . " memory: " . (memory_get_usage() / 1024 / 1024) . " ");
                     if  ($user['last_send_nlid'] == $id) {
                         $alreadysent++;
+                        fwrite($log, "Already sent!");
                     } else {
                         // Send to subscriber
                         $user['last_send_nlid'] = $id;
@@ -178,14 +185,18 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                         }
                         if ($objSend->_sendNewsletter($user, $message, $html)) {
                             $nowsent++;
+                            fwrite($log, "sent!");
                         } else {
                             $notsent++;
+                            fwrite($log, "not sent!");
                         }
                     }
                     if ($send_per_batch > 0 && $nowsent >= $send_per_batch) {
+                        fwrite($log, "\nSENT PER BATCH!!!\n");
                         LogUtil::registerStatus($this->__f('Reached max emails to send in batch: %s', $send_per_batch));
                         break;
                     }
+                    fwrite($log, "\n");
                 }
 
                 $objSend->_setEndexecution($nowsent);
@@ -203,6 +214,9 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
         } else {
             LogUtil::registerError($this->__f('Error getting data for newsletter Id %s', $id));
         }
+
+        fwrite($log, "done!\n");
+        fclose($log);
 
         return true;
     }
