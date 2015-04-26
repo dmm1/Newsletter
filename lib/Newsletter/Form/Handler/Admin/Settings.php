@@ -168,6 +168,10 @@ class Newsletter_Form_Handler_Admin_Settings extends Zikula_Form_AbstractHandler
         $this->setVar('show_size',      $prefs['show_size']      ? 1 : 0);
         $this->setVar('show_date',      $prefs['show_date']      ? 1 : 0);
 
+        // Piwik campain
+        $this->setVar('tracking_campaign', $prefs['tracking_campaign']);
+        $this->setVar('tracking_keyword', $prefs['tracking_keyword']);
+
         return LogUtil::registerStatus($this->__('Settings saved!'), $url);
     }
 }

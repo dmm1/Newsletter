@@ -234,6 +234,21 @@
         </div>
     </fieldset>
 
+    <fieldset>
+        <legend>{gt text='Piwik Tracking'}</legend>
+        <div class="z-informationmsg"><a href="http://piwik.org/docs/tracking-campaigns">http://piwik.org/docs/tracking-campaigns</a></div>
+        <div class="z-formrow">
+            {formlabel for="tracking_campaign" __text='Campaign name'}
+            {formtextinput id="tracking_campaign" text=$preferences.tracking_campaign|default:'' maxLength=255}
+            <em class="z-sub z-formnote">{gt text='The date the newsletter was sent gets appended.'}</em>
+        </div>
+        <div class="z-formrow">
+            {formlabel for="tracking_keyword" __text='Campaign keyword'}
+            {formtextinput id="tracking_keyword" text=$preferences.tracking_keyword|default:'' maxLength=255}
+            <em class="z-sub z-formnote">{gt text='Should be left empty.'}</em>
+        </div>
+    </fieldset>
+
 
     <div class="z-buttons z-formbuttons">
         {formbutton commandName='update' __text='Update' class='z-bt-ok'}
