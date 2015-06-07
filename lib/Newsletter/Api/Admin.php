@@ -130,10 +130,9 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
             $archive = $this->getLatestArchive(array());
             $id = $archive['id'];
         }
+        $useLogUtil = isset($args['useLogUtil']) ? $args['useLogUtil'] : true;
         $send_per_batch = isset($args['send_per_batch']) ? $args['send_per_batch'] : 0;
-
-        $log = fopen('ztemp/EM_NL.log', 'a');
-        fwrite($log, "Starting Newsletter sending\n");
+        $usersLeftToSendTo = 0;
 
         // Get last archive
         $objArchive  = new Newsletter_DBObject_Archive();
@@ -160,19 +159,14 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
             $objSend = new Newsletter_DBObject_NewsletterSend();
             $objSend->_objUpdateSendDate = true;
 
-            fwrite($log, "Will send to " . count($users) . " users.\n");
-
             // Scan users
             if ($objSend->_setStartexecution()) {
                 $alreadysent = 0;
                 $nowsent = 0;
                 $notsent = 0;
-                $newSentTime = DateUtil::getDatetime();
                 foreach ($users as $user) {
-                    fwrite($log, "Sending to user. Time: " . time() . " memory: " . (memory_get_usage() / 1024 / 1024) . " ");
                     if  ($user['last_send_nlid'] == $id) {
                         $alreadysent++;
-                        fwrite($log, "Already sent!");
                     } else {
                         // Send to subscriber
                         $user['last_send_nlid'] = $id;
@@ -183,40 +177,46 @@ class Newsletter_Api_Admin extends Zikula_AbstractApi
                             $html = true;
                             $message = $dataNewsletter['html'];
                         }
-                        if ($objSend->_sendNewsletter($user, $message, $html)) {
+                        if ($objSend->_sendNewsletter($user, $message, $html, null, $log)) {
                             $nowsent++;
-                            fwrite($log, "sent!");
                         } else {
                             $notsent++;
-                            fwrite($log, "not sent!");
                         }
                     }
                     if ($send_per_batch > 0 && $nowsent >= $send_per_batch) {
-                        fwrite($log, "\nSENT PER BATCH!!!\n");
-                        LogUtil::registerStatus($this->__f('Reached max emails to send in batch: %s', $send_per_batch));
+                        if ($useLogUtil) {
+                            LogUtil::registerStatus($this->__f('Reached max emails to send in batch: %s', $send_per_batch));
+                        }
+                        $usersLeftToSendTo = count($users) - $nowsent - $alreadysent;
                         break;
                     }
-                    fwrite($log, "\n");
                 }
 
                 $objSend->_setEndexecution($nowsent);
 
-                LogUtil::registerStatus($this->__f('Newsletter successfully send to subscribers: %s', $nowsent));
-                if ($alreadysent) {
-                    LogUtil::registerStatus($this->__f('Skipped (already sent): %s', $alreadysent));
-                }
-                if ($notsent) {
-                    LogUtil::registerStatus($this->__f('Skipped (not sent for some reason): %s', $notsent));
+                if ($useLogUtil) {
+                    LogUtil::registerStatus($this->__f('Newsletter successfully send to subscribers: %s', $nowsent));
+                    if ($alreadysent) {
+                        LogUtil::registerStatus($this->__f('Skipped (already sent): %s', $alreadysent));
+                    }
+                    if ($notsent) {
+                        LogUtil::registerStatus($this->__f('Skipped (not sent for some reason): %s', $notsent));
+                    }
                 }
             } else {
-                LogUtil::registerError($this->__f('Max emails per hour encountered: %s', $this->getVar('max_send_per_hour')));
+                if ($useLogUtil) {
+                    LogUtil::registerError($this->__f('Max emails per hour encountered: %s', $this->getVar('max_send_per_hour')));
+                }
             }
         } else {
-            LogUtil::registerError($this->__f('Error getting data for newsletter Id %s', $id));
+            if ($useLogUtil) {
+                LogUtil::registerError($this->__f('Error getting data for newsletter Id %s', $id));
+            }
         }
 
-        fwrite($log, "done!\n");
-        fclose($log);
+        if ($send_per_batch > 0 && $usersLeftToSendTo > 0) {
+            return array($alreadysent + $nowsent, $usersLeftToSendTo, count($users));
+        }
 
         return true;
     }
