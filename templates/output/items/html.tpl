@@ -10,7 +10,7 @@
             {modavailable modname="Profile" assign="profileAvailable"}
             {foreach from=$objectArray.$plugin item="item" name="loop"}
                 <tr>
-                    <td>{if $profileAvailable}<div style="font-weight: bold;"><a style="text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid lang=$nllang fqurl=true}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
+                    <td>{if $profileAvailable}<div style="font-weight: bold;"><a style="text-decoration: none;" href="{modurl modname="Profile" type="user" func="view" uid=$item.uid lang=$nllang fqurl=true assign='url'}{$url|nlTreatUrl|safetext}">{/if}{$item.uname|safehtml}{if $profileAvailable}</a></div>{/if}</td>
                     <td>{$item.user_regdate|dateformat}</td>
                 </tr>
             {/foreach}
@@ -20,13 +20,13 @@
             {if isset($item.nl_picture) && $item.nl_picture}
                 <div style="float: left; margin-right: 4px; margin-bottom: 4px;">
                     {capture assign="nlPicture"}<img src="{$site_url}{$item.nl_picture}" alt="" style="float: left" />{/capture}
-                    {if $item.nl_url_title}<a href="{$item.nl_url_title}">{/if}{$nlPicture|nlTreatImg}{if $item.nl_url_title}</a>{/if}
+                    {if $item.nl_url_title}<a href="{$item.nl_url_title|nlTreatUrl}">{/if}{$nlPicture|nlTreatImg}{if $item.nl_url_title}</a>{/if}
                 </div>
             {/if}
             {if $item.nl_title}
                 <div style="font-weight:500; font-size: 23px;color:#fff;">
                     <h4 style="font-weight:500; font-size: 23px;color:#fff; text-decoration: none;">
-                        {if $item.nl_url_title}<a href="{$item.nl_url_title}" title="{$item.nl_title|safehtml}">{/if}{$item.nl_title|safehtml}{if $item.nl_url_title}</a>
+                        {if $item.nl_url_title}<a href="{$item.nl_url_title|nlTreatUrl}" title="{$item.nl_title|safehtml}">{/if}{$item.nl_title|safehtml}{if $item.nl_url_title}</a>
                         {/if}
                     </h4>
                 </div>
@@ -37,7 +37,7 @@
                 </div>
             {/if}
             {if $item.nl_url_readmore}
-                <a style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{$item.nl_url_readmore}">{gt text="read more"} &raquo;</a>
+                <a style="text-decoration:none;color: #4291bf;background-color: #fff;padding:8px 12px;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display: inline-block;-webkit-border-radius: 4px;border-radius: 4px;" href="{$item.nl_url_readmore|nlTreatUrl}">{gt text="read more"} &raquo;</a>
             {/if}
             {if !$smarty.foreach.loop.last}
                 <!--nothing-->

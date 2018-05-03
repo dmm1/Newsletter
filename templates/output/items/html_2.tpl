@@ -17,7 +17,7 @@
                         <td>
                         {if $profileAvailable}
                             <h3>
-                                <a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid lang=$nllang fqurl=true}">
+                                <a href="{modurl modname="Profile" type="user" func="view" uid=$item.uid lang=$nllang fqurl=true assign='url'}{$url|nlTreatUrl|safetext}">
                         {/if}
                         {$item.uname|safehtml}
                         {if $profileAvailable}
@@ -37,13 +37,13 @@
             {if $item.nl_picture}
                 <div style="float: left; margin-right: 4px; margin-bottom: 4px;">
                     {capture assign="nlPicture"}<img src="{$site_url}{$item.nl_picture}" alt="" style="float: left" />{/capture}
-                    {if $item.nl_url_title}<a href="{$item.nl_url_title}">{/if}{$nlPicture|nlTreatImg}{if $item.nl_url_title}</a>{/if}
+                    {if $item.nl_url_title}<a href="{$item.nl_url_title|nlTreatUrl}">{/if}{$nlPicture|nlTreatImg}{if $item.nl_url_title}</a>{/if}
                 </div>
             {/if}
             {if $item.nl_title}
                 <h2 style="text-decoration:none;font-size: 1.0em; color: #555; margin: .4em 0 .3em 0;">
                     {if $item.nl_url_title}
-                        <a style="text-decoration: none; color: #555" href="{$item.nl_url_title}" title="{$item.nl_title|safehtml}">
+                        <a style="text-decoration: none; color: #555" href="{$item.nl_url_title|nlTreatUrl}" title="{$item.nl_title|safehtml}">
                     {/if}
                     {$item.nl_title|safehtml}
                     {if $item.nl_url_title}
@@ -57,7 +57,7 @@
 {/strip}
             {if $item.nl_url_readmore}
                 
-                    <a href="{$item.nl_url_readmore}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a>
+                    <a href="{$item.nl_url_readmore|nlTreatUrl}" style="-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;text-decoration: none; color: #000; background-color: #ECF8FF; padding: 5px 15px; font-size: 16px; line-height: 1.4em; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: normal; margin-left: 0; white-space: nowrap;">{gt text="read more"}</a>
             {/if}
 {strip}
             {if !$smarty.foreach.loop.last}

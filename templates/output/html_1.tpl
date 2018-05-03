@@ -56,7 +56,7 @@
                             </td>
                             <td style="width: 60%;">
                                 {if $modvars.Newsletter.contact_phone or $modvars.Newsletter.contact_email}
-                                    <h5 style="color:#000;">{gt text='Contact Information'}:</h5>												
+                                    <h5 style="color:#000;">{gt text='Contact Information'}:</h5>
                                     {if $modvars.Newsletter.contact_phone}{gt text='Phone'}: <strong>{$modvars.Newsletter.contact_phone|safetext}</strong><br/>{/if}
                                     {if $modvars.Newsletter.contact_email}{gt text='Email'}: <strong><a href="emailto:me@you.com">{$modvars.Newsletter.contact_email|safetext}</a></strong>{/if}
                                 {/if}
@@ -65,9 +65,9 @@
                     </table>
                     <!-- /social & contact -->
                     <div style="font-family: Arial; font-size: 12px; color: #333333; margin: 5px; text-align: center">
-                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="archive" lang=$nllang fqurl=true}"><strong>{gt text="View Archives"}</strong></a> |
-                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="tos" lang=$nllang fqurl=true}"><strong>{gt text="Terms of Service"}</strong></a> |
-                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" lang=$nllang fqurl=true}"><strong>{gt text="Unsubscribe"}</strong></a>
+                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="archive" lang=$nllang fqurl=true assign='url'}{$url|nlTreatUrl|safetext}"><strong>{gt text="View Archives"}</strong></a> |
+                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="tos" lang=$nllang fqurl=true assign='url'}{$url|nlTreatUrl|safetext}"><strong>{gt text="Terms of Service"}</strong></a> |
+                        <a style="color: #680606; text-decoration: none;" href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" lang=$nllang fqurl=true assign='url'}{$url|nlTreatUrl|safetext}"><strong>{gt text="Unsubscribe"}</strong></a>
                     </div>
                 </td>
             </tr>

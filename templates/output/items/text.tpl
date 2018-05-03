@@ -14,7 +14,7 @@
 {"\n"}
 {if $item.nl_title}{$item.nl_title|html_entity_decode}{"\n"}{/if}
 {if $item.nl_content}{$item.nl_content|nlTreatContent:$plugin:false}{"\n"}{/if}
-{if $item.nl_url_readmore}{$item.nl_url_readmore|html_entity_decode}{"\n"}{else}{if $item.nl_url_title}{$item.nl_url_title|html_entity_decode}{"\n"}{/if}{/if}
+{if $item.nl_url_readmore}{$item.nl_url_readmore|nlTreatUrl|html_entity_decode}{"\n"}{else}{if $item.nl_url_title}{$item.nl_url_title|nlTreatUrl|html_entity_decode}{"\n"}{/if}{/if}
 {/foreach}
 {/if}
 {/if}

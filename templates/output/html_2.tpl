@@ -78,12 +78,12 @@
 
             <div style="width: 100%; background-color: #efefef; text-align: center; border-top: 1px solid #dddddd; color: #888; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.4em; padding-top: 20px">
                 <p style="color: #444444; margin: 0px;">
-                    {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" lang=$nllang fqurl=true}" target="_blank">
+                    {gt text="You are receiving this newsletter since you subscribed to it on our site. Should you no longer wish to receive it, you can unsubscribe"} <a href="{modurl modname="Newsletter" type="user" func="main" ot="unsubscribe" lang=$nllang fqurl=true assign='url'}{$url|nlTreatUrl|safetext}" target="_blank">
                         <strong>{gt text="here"}</strong>
                     </a>.
                 </p>
                 <p>
-                    <a href="{modurl modname="Newsletter" type="user" func="main" ot="archive" lang=$nllang fqurl=true}" target="_blank">
+                    <a href="{modurl modname="Newsletter" type="user" func="main" ot="archive" lang=$nllang fqurl=true assign='url'}{$url|nlTreatUrl|safetext}" target="_blank">
                         <strong>{gt text="Link to the Newsletter Archive"}</strong>
                     </a>
                 </p>

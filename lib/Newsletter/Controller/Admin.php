@@ -371,62 +371,13 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
 
         $Nextid  = (int)FormUtil::getPassedValue('Nextid', (isset($args['Nextid']) && $args['Nextid']) ? $args['Nextid'] : 0);
 
-        $url = ModUtil::url('Newsletter', 'admin', 'newsletters');
+        $newArchiveId = ModUtil::apiFunc('Newsletter', 'admin', 'createNewsletter', array(
+            'nextId' => $Nextid,
+            'language' => FormUtil::getPassedValue('language', '', 'GETPOST')
+        ));
+        LogUtil::registerStatus($this->__('The new newsletter is added to archive.').' Id: '.$newArchiveId);
 
-        $objArchive  = new Newsletter_DBObject_Archive();
-
-        // Implement given newsletter Id
-        if ($Nextid > 0) {
-            $nextAutooincrement = $objArchive->getnextid();
-            if ($Nextid != $nextAutooincrement) {
-                $maxId = $objArchive->getmaxid();
-                if ($Nextid > $maxId) {
-                    $objArchive->setnextid($Nextid);
-                } else {
-                    LogUtil::registerError($this->__('Next newsletter Id have to be grater then ').$maxId);
-                    return System::redirect($url);
-                }
-            }
-        }
-
-        // Language - if not set - same sequence as in html.tpl/text.tpl
-        $Nllanguage = FormUtil::getPassedValue('language', '', 'GETPOST');
-        if (empty($Nllanguage)) {
-            $Nllanguage = System::getVar('language_i18n', 'en');
-        }
-        ZLanguage::setLocale($Nllanguage);
-
-        // Get newsletter content
-        $nlDataObjectArray = new Newsletter_DBObject_NewsletterDataArray();
-        $objNewsletterData  = $nlDataObjectArray->getNewsletterData($Nllanguage);
-        $this->view->assign('show_header', '1');
-        $this->view->assign('site_url', System::getBaseUrl());
-        $this->view->assign('site_name', System::getVar('sitename'));
-        $this->view->assign('objectArray', $objNewsletterData);
-        $message_html = $this->view->fetch('output/'.$this->getVar('template_html', 'html.tpl'));
-        $message_text = $this->view->fetch('output/text.tpl');
-
-        // Prepare data
-        $archiveData = array();
-        $archiveData['date'] = DateUtil::getDatetime();
-        //$archiveData['lang'] = $this->_objLang;
-        $archiveData['lang'] = $Nllanguage;
-        $archiveData['n_plugins'] = $objNewsletterData['nPlugins'];
-        $archiveData['n_items'] = $objNewsletterData['nItems'];
-        $archiveData['text'] = $message_text;
-        $archiveData['html'] = $message_html;
-
-        // Create new archive
-        $objArchive->setData($archiveData);
-        $result = $objArchive->save($archiveData);
-        if ($result) {
-            $newArchiveId = $result['id'];
-            LogUtil::registerStatus($this->__('The new newsletter is added to archive.').' Id: '.$newArchiveId);
-        } else {
-            LogUtil::registerError($this->__('Error creating newsletter in archive.'));
-        }
-
-        return System::redirect($url);
+        return System::redirect(ModUtil::url('Newsletter', 'admin', 'newsletters'));
     }
 
     // Save a newsletter after edit
@@ -522,77 +473,10 @@ class Newsletter_Controller_Admin extends Zikula_AbstractController
             return LogUtil::registerAuthidError($url);
         }
 
-        // Get last archive
-        $objArchive  = new Newsletter_DBObject_Archive();
-        $dataNewsletter = $objArchive->get($id);
-        if ($dataNewsletter) {
-            //Set language
-            $lang = $dataNewsletter['lang'] ? $dataNewsletter['lang'] : System::getVar('language_i18n', 'en');
-            $enable_multilingual = $this->getVar('enable_multilingual', 0);
-
-            // Determine users to send to
-            $where = "(nlu_active=1 AND nlu_approved=1)";
-            if ($enable_multilingual) {
-                $where = "(nlu_lang='".$lang."' OR nlu_lang='')";
-
-                //Set language
-                ZLanguage::setLocale($lang);
-            }
-            // not take in account frequency in manual sending
-            //$allow_frequency_change = ModUtil::getVar ('Newsletter', 'allow_frequency_change', 0);
-            //$default_frequency = ModUtil::getVar ('Newsletter', 'default_frequency', 1);
-            $objectUserArray = new Newsletter_DBObject_UserArray();
-            $users = $objectUserArray->get($where, 'id');
-            // Create send object
-            $objSend = new Newsletter_DBObject_NewsletterSend();
-            $objSend->_objUpdateSendDate = true;
-
-            // Scan users
-            if ($objSend->_setStartexecution()) {
-                $alreadysent = 0;
-                $nowsent = 0;
-                $notsent = 0;
-                $newSentTime = DateUtil::getDatetime();
-                foreach ($users as $user) {
-                    if  ($user['last_send_nlid'] == $id) {
-                        $alreadysent++;
-                    } else {
-                        // Send to subscriber
-                        $user['last_send_nlid'] = $id;
-                        if ($user['type'] == 1) {
-                            $html = false;
-                            $message = $dataNewsletter['text'];
-                        } else {
-                            $html = true;
-                            $message = $dataNewsletter['html'];
-                        }
-                        if ($objSend->_sendNewsletter($user, $message, $html)) {
-                            $nowsent++;
-                        } else {
-                            $notsent++;
-                        }
-                    }
-                    if ($send_per_batch > 0 && $nowsent >= $send_per_batch) {
-                        LogUtil::registerStatus($this->__f('Reached max emails to send in batch: %s', $send_per_batch));
-                        break;
-                    }
-                }
-
-                $objSend->_setEndexecution($nowsent);
-
-                LogUtil::registerStatus($this->__f('Newsletter successfully send to subscribers: %s', $nowsent));
-                if ($alreadysent) {
-                    LogUtil::registerStatus($this->__f('Skipped (already sent): %s', $alreadysent));
-                }
-                if ($notsent) {
-                    LogUtil::registerStatus($this->__f('Skipped (not sent for some reason): %s', $notsent));
-                }
-            } else {
-                LogUtil::registerError($this->__f('Max emails per hour encountered: %s', $this->getVar('max_send_per_hour')));
-            }
-        } else {
-                LogUtil::registerError($this->__f('Error getting data for newsletter Id %s', $id));
-        }
+        ModUtil::apiFunc('Newsletter', 'admin', 'sendNewsletter', array(
+            'id' => $id,
+            'send_per_batch' => $send_per_batch
+        ));
 
         return System::redirect($url);
     }
